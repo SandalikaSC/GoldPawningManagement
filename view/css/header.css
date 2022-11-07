@@ -9,7 +9,7 @@
 .vogue {
     width: 10vw;
     top: 0;
-    right: 1vw;
+    right: 2vw;
     position: absolute;
 }
 
@@ -62,6 +62,10 @@
     border: 3px solid #BB8A04;
     
 }
+.logout-btn .inactive-btn .center{
+    padding: 20px;
+}
+
 .page-btn {
     width: 12vw;
     height: 5vh;
@@ -105,4 +109,46 @@
     color: #BB8A04; 
     text-align: center;
      
+}
+
+.toggler{
+    display: none;
+}
+
+
+@media  screen and (max-width: 1500px) {
+    .all{
+        width: 100%;
+
+    }
+
+    .toggler{
+        display:block;
+    }
+
+    .nav{
+        display: none;
+    }
+}
+
+.toggler{
+    position:absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 10;
+    cursor: pointer;
+    padding: 4px;
+    background-color: #BB8A04;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+}        
+.bar{
+    padding:  2px 10px;
+    background-color: black;
+    margin: 2px;
+    border-radius: 10px;   
+}
+.hidePanel{
+    display: none;
 }
