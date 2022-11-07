@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <img class="vogue" src="assets/af.3-removebg-preview.png">
+    <img class="vogue" src="assets/logo.png">
     <nav class="nav">
 
         <div class="profile">
