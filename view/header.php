@@ -19,7 +19,7 @@
             <h4 class="user-name">Nirmani Abesinghe</h4>
         </div>
 
-        <?php include 'view/components/dashboardContainer.html' ?>
+        <?php include '../view/components/dashboardContainer.html' ?>
         
         <div class="logout-btn inactive-btn center ">
         <h4 class="page-btn-text gold-text">Logout</h4>
