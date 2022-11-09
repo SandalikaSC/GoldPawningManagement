@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -23,7 +23,7 @@ body {
     width: 60vw;
     height: 80vh;
     background-color: white;
-    display: flex; 
+    display: flex;
 }
 
 .signIn {
@@ -46,21 +46,21 @@ input {
     border: none;
     outline: none;
     background: none;
-    font-size:1.2vw;
-    text-align: center; 
+    font-size: 1.2vw;
+    text-align: center;
     width: 50%;
     margin: auto;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.4); 
-    margin-top: 5%; 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    margin-top: 5%;
 }
 
 button {
     display: block;
-    margin: 0 auto;
+    margin:auto;
     width: 25vw;
     height: 5vh;
     border-radius: 5rem;
@@ -75,18 +75,20 @@ button {
 label {
     display: flex;
     flex-direction: column;
-    text-align: center; 
+    text-align: center;
 }
 
 p,
-h2{
+h2 {
     text-align: center;
     margin-top: 5%;
 }
-span{
+
+span {
     margin-top: 5%;
 }
-.signup{
+
+.signup {
     display: block;
     margin: 0 auto;
     width: 10vw;
@@ -100,19 +102,22 @@ span{
     background: white;
     margin-top: 5vh;
 }
-.login-Img{
+
+.login-Img {
     height: 40vh;
-    margin-top: 10vh; 
+    margin-top: 10vh;
 }
-.logo{
-    width:  10vh; 
+
+.logo {
+    width: 10vh;
     margin: auto;
     right: 0;
     left: 0;
     top: 0;
     animation: rotate infinite 2s linear;
 
-} 
+}
+
 @keyframes rotate {
     0% {
         transform: perspective(400px) scaleX(1);

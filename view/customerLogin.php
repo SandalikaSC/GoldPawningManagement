@@ -27,14 +27,16 @@
                 <input type="password" />
             </label>
             <p class="">Forgot password?</p>
-            <button type="button" class="">Login</button>
+            <button type="button"  class="">Login</button>
         </div>
         <div class="signIn">
             <div class="img">
                 <div class="">
                     <h2>New here?</h2>
                     <p>Sign up and discover great amount of new opportunities!</p>
-                    <button type="button" class="signup">SignUp</button>
+                    <a href="customerRegistration.php"> 
+                        <button type="button" class="signup">SignUp</button> 
+                    </a>
                     <img src="../view/assets/Money motivation _Two Color.svg" class="login-Img">
                 </div>
             </div>   
