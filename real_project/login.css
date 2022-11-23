@@ -1,0 +1,266 @@
+body {font-family: Arial, Helvetica, sans-serif; }
+  /* background-color:#f6cc5a;} */
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  /* border: 1px solid #ccc; */
+  box-sizing: border-box;
+  /* border-radius: 10px; */
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid white;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  /* border: 1px solid #ccc; */
+  box-sizing: border-box;
+  /* border-radius: 10px; */
+  outline: none;
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid rgb(15, 15, 15);
+}
+
+input[type=text]::placeholder, input[type=password]::placeholder{
+  color: black;
+}
+
+.heading{
+    align-items: center;
+}
+
+/* body{
+   background-color: rgb(3, 3, 45);
+} */
+
+hr{
+    width:100%;
+    background-color: black;
+}
+
+.form .title{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    line-height: 80px;
+    /* background-color: #3d3c3c94; */
+    padding-left: 20px;
+    /* border-radius: 0px 20px 0 0; */
+    font-size: 50px;
+    font-weight: 1000;
+    color: rgb(97, 98, 99);
+
+}
+.bot-div a:hover{
+    text-decoration: underline;
+}
+
+.bot-div a{
+    color: rgb(16, 15, 15);
+    text-decoration: none;
+}
+
+.bot-div{
+    display: flex;
+    justify-content: center;
+    padding:10px 10px 25px 18px;
+
+}
+
+.form{
+    /* background-color: rgba(0, 0, 0, 0.422); */
+    border-radius: 10px;
+    /* backdrop-filter: blur(25px); */
+} 
+
+.logo-anim{
+    width: 50px;
+    height: 60px;
+}
+
+button {
+  background-color: #c29006;
+  color: rgb(16, 16, 16);
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: large;
+  font-weight: bold;
+
+}
+
+/* .img{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+} */
+
+.pic > img{
+   width:500px;
+   padding: 0 20px 0 0;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+label{
+    color: rgb(10, 10, 10);
+}
+
+/* .imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+} */
+
+/* img.avatar {
+  width: 40%;
+  border-radius: 50%;
+} */
+.whole{
+    display:flex;
+    width:fit-content;
+    height: 100vh;
+    align-items: center;
+    margin-left: 250px;
+    /* margin-top: 150px; */
+    margin-right: 250px;
+    /* border: 2px solid white; */
+    /* border-radius: 20px; */
+
+}
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+
+@media screen and (max-width: 1430px) {
+  .form .title{
+    font-size: 35px;
+  }
+
+  .pic{
+    display: none;
+}
+}
+
+/* @media screen and (min-width:1400px){
+  .pic img{
+   width:300px;
+}
+} */
+
+@media screen and (max-width:1200px) {
+    .pic{
+        display: none;
+    }
+    
+    .bot-div{
+        border-radius: 0 0 20px 20px;
+    }
+
+    .title{
+        border-radius: 20px 20px 0 0;
+    }
+
+    .form{
+      max-width: 450px;
+    }
+
+    /* body{
+        background-image: url("Humaaans - Wireframe.png");
+        background-repeat: none;
+        background-size:  cover;
+        background-position: center center;
+        background-attachment: fixed;
+    } */
+}
+
+@media screen and (max-width:940px){
+  .form .title{
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width:850px) {
+  .whole{
+    margin-left: 180px;
+    margin-right: 180px;
+  }
+
+  /* .bot-div{
+        border-radius: 0 0 20px 20px;
+    } */
+}
+
+@media screen and (max-width:700px) {
+    .whole{
+    margin-left: 90px;
+    margin-right: 90px;
+  }
+  /* .bot-div{
+        border-radius: 0 0 20px 20px;
+    } */
+}
+
+@media  screen and (max-width:500px) {
+    .whole{
+      margin-left: 65px;
+      margin-right: 65px;
+  }
+  /* .bot-div{
+        border-radius: 0 0 20px 20px;
+    } */
+}
+
+@media screen and (max-width: 459px) {
+  .form .title{
+    font-size: 23px;
+  }
+}
+
+
+@media screen and (max-width:400px) {
+  .whole{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+
+  .whole{
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+
+  /* .bot-div{
+        border-radius: 0 0 20px 20px;
+    } */
+}
+
+/* .title span{
+  font-size: large;
+} */
