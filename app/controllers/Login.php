@@ -233,7 +233,7 @@ class Login extends Controller
         $this->view('Customer/customerDash');
         break;
       case 2:
-        $this->view('Customer/adminDash');
+        $this->view('Admin/adminDash'); 
         break;
       case 3:
         $this->view('Manager/managerDash');
