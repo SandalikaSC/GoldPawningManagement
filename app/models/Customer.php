@@ -33,7 +33,7 @@ class Customer
 
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
-        $this->db->bind(':type', 'customer');
+        $this->db->bind(':type', 1);
         $this->db->bind(':verification_status', 0);
         $this->db->bind(':First_Name', $data['fname']);
         $this->db->bind(':Last_Name', $data['lname']);
@@ -43,19 +43,19 @@ class Customer
         $this->db->bind(':Line1', $data['address1']);
         $this->db->bind(':Line2', $data['address2']);
         $this->db->bind(':Line3', $data['address3']);
-        $this->db->bind(':Status', 'active');
+        $this->db->bind(':Status', 1);
         $this->db->bind(':Created_By', $userid);
 
 
         // Execute
         if ($this->db->execute()) {
             if (!empty($data['home'])) {
-                $this->db->query('INSERT INTO user_phoneno(UserId,Phone_Number) VALUES (:userId,:mobile),(:userId,:home);');
+                $this->db->query('INSERT INTO phone(UserId,Phone) VALUES (:userId,:mobile),(:userId,:home);');
                 $this->db->bind(':userId', $userid);
                 $this->db->bind(':mobile', $data['mobile']);
                 $this->db->bind(':home', $data['home']);
             } else {
-                $this->db->query('INSERT INTO user_phoneno(UserId,Phone_Number) VALUES (:userId,:mobile);');
+                $this->db->query('INSERT INTO phone(UserId,Phone) VALUES (:userId,:mobile);');
                 $this->db->bind(':userId', $userid);
                 $this->db->bind(':mobile', $data['mobile']);
 

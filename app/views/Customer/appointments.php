@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/customerDash.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/header.css'>
-    <title>DashBoard</title>
+    <title>Appointments</title>
 </head>
 <body>
 <?php include APPROOT."/views/Customer/sidebar.php" ?>
-<div class="content">
-    
+<div class="">
+    dfdaefafasf
 </div>
 </body>
 </html>
