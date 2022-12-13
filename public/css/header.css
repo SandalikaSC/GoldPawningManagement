@@ -55,10 +55,11 @@ body{
 }
 
 .container {
+    padding-top: 10%;
     height: 60vh;
     width: 18vw;
     background: rgba(204, 204, 204, 0.08);
-    padding-top: 10%;
+    
 
 }
 .activate{ 
@@ -155,4 +156,7 @@ body{
 }
 .hidePanel{
     display: none;
+}
+.a{
+    color: inherit;
 }
