@@ -229,8 +229,13 @@ class Login extends Controller
       case "customer":
         $this->view('Customer/customerDash');
         break;
+<<<<<<< Updated upstream
       case "admin":
         $this->view('Customer/adminDash');
+=======
+      case 2:
+        $this->view('Admin/adminDash');
+>>>>>>> Stashed changes
         break;
       case "manager":
         $this->view('Manager/managerDash');
