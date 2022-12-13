@@ -55,7 +55,7 @@ class Login extends Controller
         if ($loggedInUser) {
           // Create Session
           $this->createUserSession($loggedInUser);
-          die("success");
+
         } else {
           $data['password_err'] = 'Password incorrect';
 
@@ -116,11 +116,14 @@ class Login extends Controller
       // Validate name
       if (empty($data['fname']) || empty($data['lname'])) {
         $data['name_err'] = 'Require field';
+      } else if (!preg_match("/^[a-zA-Z]+$/", $data['fname']) || !preg_match("/^[a-zA-Z]+$/", $data['lname'])) {
+        $data['name_err'] = 'Invalid';
       }
-
       // Validate nic
       if (empty($data['nic'])) {
         $data['nic_err'] = 'Require field';
+      } else if (!preg_match("/^[\d]{12}$/", $data['nic'])) {
+        $data['contact_err'] = 'Invalid';
       }
       // Validate dob
       if (empty($data['dob'])) {
@@ -226,31 +229,26 @@ class Login extends Controller
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     switch ($user->type) {
-      case "customer":
+      case 1:
         $this->view('Customer/customerDash');
         break;
-<<<<<<< Updated upstream
-      case "admin":
-        $this->view('Customer/adminDash');
-=======
       case 2:
-        $this->view('Admin/adminDash');
->>>>>>> Stashed changes
+        $this->view('Admin/adminDash'); 
         break;
-      case "manager":
+      case 3:
         $this->view('Manager/managerDash');
         break;
-      case "goldappraiser":
+      case 4:
         $this->view('GoldAppraiser/goldappDash');
         break;
-      case "vaultkeeper":
+      case 5:
         $this->view('VaultKeeper/vaultkeeperDash');
         break;
-        case "pawnofficer":
-          $this->view('PawnOfficer/pawnofficerDash');
-          break;
+      case 6:
+        $this->view('PawnOfficer/pawnofficerDash');
+        break;
       default:
-      $this->view('Owner/ownerDash');
+        $this->view('Owner/ownerDash');
     }
 
 

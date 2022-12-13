@@ -1,10 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 
 .vogue {
     width: 10vw;
@@ -43,7 +38,7 @@
 }
 
 .profileImg {
-    width: 6vw;
+    height: 70%;
     border-radius: 100%;
 }
 
@@ -53,9 +48,12 @@
 }
 
 .container {
+    padding-top: 10%;
     height: 60vh;
     width: 18vw;
-    background: rgba(204, 204, 204, 0.08)
+    background: rgba(204, 204, 204, 0.08);
+    
+
 }
 .activate{ 
     background-color: rgba(255, 255, 255);  
@@ -151,4 +149,7 @@
 }
 .hidePanel{
     display: none;
+}
+.a{
+    color: inherit;
 }
