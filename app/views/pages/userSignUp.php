@@ -33,8 +33,7 @@
                 </div>
             </div>
             <br>
-
-            <label for="nic" class="label " value="<?php echo $data['nic']; ?>">NIC</label><span class="span require">*</span><br>
+            <label for="nic" class="label" value="<?php echo $data['nic']; ?>">NIC</label><span class="span require">*</span><br>
             <input type="text" id="nic" name="nic" class="input <?php echo (!empty($data['nic_err'])) ? 'is-invalid' : ''; ?>"><br>
 
             <span class="<?php echo (!empty($data['nic_err'])) ? 'invalid-feedback' : 'span'; ?>">NIC</span>
