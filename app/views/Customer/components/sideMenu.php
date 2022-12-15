@@ -24,9 +24,9 @@
             <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
             <p>My Locker</p>
         </a>
-        <a href="<?php echo URLROOT; ?>/customerDashboard/appointment">
-            <img src="<?php echo URLROOT ?>/img/calender-white.png" alt="">
-            <p>Appointments</p>
+        <a id="appointment" href="<?php echo URLROOT; ?>/customerDashboard/appointment">
+            <img id="appointment-Img" src="<?php echo URLROOT ?>/img/calender-white.png" alt="">
+            <p id="appointment-text" >Appointments</p>
         </a>
 
         <hr class="hr">
@@ -40,6 +40,6 @@
         </a>
     </div>
     <div class="lgout">
-        <a href="<?php echo URLROOT ?>logout">Logout</a>
+        <a href="<?php echo URLROOT ?>/Login/logout">Logout</a>
     </div>
 </div>
