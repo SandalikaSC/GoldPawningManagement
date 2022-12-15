@@ -5,14 +5,6 @@
 </head>
 
 <body>
-<<<<<<< Updated upstream
-<?php include APPROOT."/views/Customer/sidebar.php" ?>
-<div class="">
-    dfdaefafasf
-</div>
-</body>
-</html>
-=======
     <div class="page">
         <?php require APPROOT . "/views/Customer/components/sideMenu.php" ?>
         <div class="right">
@@ -31,4 +23,3 @@
         </div>
     </div>
     <?php require APPROOT."/views/inc/footer.php"?>
->>>>>>> Stashed changes
