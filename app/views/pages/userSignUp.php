@@ -24,7 +24,10 @@
                     <span class="<?php echo (!empty($data['name_err'])) ? 'invalid-feedback' : 'span'; ?>">First name</span>
                     <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
                 </div>
-                <div><input id="Lname" name="Lname" type="text" class="input input-section <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['lname']; ?>"><br>
+
+                <div>
+                    <input id="Lname" name="Lname" type="text" class="input input-section <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['lname']; ?>"><br>
+
                     <span class="<?php echo (!empty($data['name_err'])) ? 'invalid-feedback' : 'span'; ?>">Last name</span>
                     <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
                 </div>
@@ -32,6 +35,7 @@
             <br>
             <label for="nic" class="label" value="<?php echo $data['nic']; ?>">NIC</label><span class="span require">*</span><br>
             <input type="text" id="nic" name="nic" class="input <?php echo (!empty($data['nic_err'])) ? 'is-invalid' : ''; ?>"><br>
+
             <span class="<?php echo (!empty($data['nic_err'])) ? 'invalid-feedback' : 'span'; ?>">NIC</span>
             <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span>
             <br>
