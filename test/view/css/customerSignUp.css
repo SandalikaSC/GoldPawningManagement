@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color:  rgb(248, 245, 230);
+}
+
+.center {
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.container {
+    position: absolute;
+    width: 75vw; 
+    height: 90vh;
+    background-color: white; 
+   border-radius: 2em;
+    margin: auto; 
+    border: 1px #bb8a04 solid ;
+    border-top: 4px solid #bb8a04;
+}
+.reg-text{
+    font-size: 2rem; 
+    margin: 1%;
+}
+.reg-line{
+    background-color: #bb8a04;
+    width: 70%;
+    text-align: center;
+    border-radius: 50%;
+}
+.reg-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}  
+.display-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+.form-label{
+    margin: 1%  ;
+    margin: auto;
+}
+form{   
+    padding: 2%; 
+    display: flex;
+
+}
+input{
+    
+    margin-left: 1%  ;
+    margin-top: 1%  ;
+    background: rgb(240, 234, 200); 
+    border: none; 
+    border-radius: 1em;
+    width: 31.5vw;
+    height:  5vh;
+    outline: none;
+}
+.input-short{
+    width: 15vw;
+}
+.submit-btn{
+    border:none ;
+    background-color: #bb8a04;
+    color: white;
+    width: 10vw;
+    height:  5vh;
+    border-radius: 3em;
+    margin-top: 2%;
+}
+input[type="checkbox"],input[type="radio"]{
+    width:auto;
+    margin: auto;
+}
+input[type="date"]{ 
+}
+.radio{
+    display: flex;
+    justify-content:space-evenly;
+}
+.div-user{ 
+    margin: auto;
+}
+.div-form{  
+    margin: auto;
+}
+.divide{
+    background-color: #bb8a04;
+}
+.signUp-img{
+    z-index: 1;
+    width: 28vw;
+    position: absolute;
+    bottom: 0vw;
+    right: 0vw;
+    margin: auto;
+    overflow: hidden;
+}
+.submit-btn{
+    margin: auto;
+
+}
+.login-btn{
+    background-color: darkgray;
+    border:none ; 
+    color: white;
+    width: 10vw;
+    height:  5vh;
+    border-radius: 3em;
+    margin-top: 2%;
+    margin: auto;
+}
