@@ -1,6 +1,5 @@
 <?php require APPROOT."/views/inc/header.php"?>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/appointment.css'> -->
-    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/header.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/appointment.css'>
     <title>Vogue | Appointments</title>
 </head>
 
@@ -13,7 +12,7 @@
                     <div class="bars" id="bars">
                         <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
                     </div>
-                    <h1>Appointments</h1>
+                    <h1 id="title">Appointments</h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
