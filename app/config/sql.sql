@@ -1,14 +1,4 @@
-<<<<<<< Updated upstream
-CREATE TABLE User (
-   userId int NOT NULL AUTO_INCREMENT,
-   email varchar(255) NOT NULL,
-    password varchar(255) NOT NULL,
-    type varchar(255) NOT NULL,
-    verification_status int NOT NULL,
-    created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (userId)
-)ENGINE=INNODB;
-=======
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
@@ -413,7 +403,6 @@ ALTER TABLE `payment`
   ADD PRIMARY KEY (`PID`),
   ADD KEY `allocate_Id` (`allocate_Id`),
 
-  
   ADD KEY `Pawn_Id` (`Pawn_Id`);
 
 --
@@ -611,4 +600,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
->>>>>>> Stashed changes
+
