@@ -31,6 +31,14 @@ class Login extends Controller
       // Validate Email
       if (empty($data['email'])) {
         $data['email_err'] = 'Please enter email';
+      } else {
+        // Check for user/email
+        if ($this->userModel->findUserByEmail($data['email'])) {
+          // User found
+        } else {
+          // User not found
+          $data['email_err'] = 'No user found';
+        }
       }
 
       // Validate Password
@@ -38,13 +46,7 @@ class Login extends Controller
         $data['password_err'] = 'Please enter password';
       }
 
-      // Check for user/email
-      if ($this->userModel->findUserByEmail($data['email'])) {
-        // User found
-      } else {
-        // User not found
-        $data['email_err'] = 'No user found';
-      }
+
 
       // Make sure errors are empty
       if (empty($data['email_err']) && empty($data['password_err'])) {
@@ -233,7 +235,7 @@ class Login extends Controller
         $this->view('Customer/customerDash');
         break;
       case 2:
-        $this->view('Admin/adminDash'); 
+        $this->view('Admin/adminDash');
         break;
       case 3:
         $this->view('Manager/managerDash');

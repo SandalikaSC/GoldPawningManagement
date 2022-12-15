@@ -11,5 +11,26 @@ class customerDashboard extends Controller
                 $data = [];
                 $this->view('Customer/appointments');
         }
+        public function locker()
+        { 
+                $data = [];
+                $this->view('Customer/locker');
+        }
+        public function pawnArticles()
+        { 
+                $data = [];
+                $this->view('Customer/pawnArticles');
+        }
+        public function ContactUs()
+        { 
+                $data = [];
+                $this->view('Customer/ContactUs');
+        }
+        public function About()
+        { 
+                $data = [];
+                $this->view('Customer/about');
+        }
+
 } 
 ?>

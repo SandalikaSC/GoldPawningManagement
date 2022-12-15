@@ -12,29 +12,29 @@
         </div>
     </div>
     <div class="btn-set">
-        <a class="dash" href="<?php echo URLROOT ?>/customerDashboard/dashboard">
-            <img src="<?php echo URLROOT ?>/img/home-gold.png" alt="">
+        <a id="dashboard" class="" href="<?php echo URLROOT ?>/customerDashboard/dashboard">
+            <img src="<?php echo URLROOT ?>/img/home.png" alt="">
             <p>Dashboard</p>
         </a>
-        <a href="<?php echo URLROOT ?>locker">
+        <a id="pawnArticles" class="dash-btn" href="<?php echo URLROOT ?>/customerDashboard/pawnArticles">
             <img src="<?php echo URLROOT ?>/img/pawn-white.png" alt="">
             <p>Pawn Articles</p>
         </a>
-        <a href="<?php echo URLROOT ?>pawnArticles">
+        <a id="locker" class="dash-btn" href="<?php echo URLROOT ?>/customerDashboard/locker">
             <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
             <p>My Locker</p>
         </a>
-        <a id="appointment" href="<?php echo URLROOT; ?>/customerDashboard/appointment">
+        <a id="appointment"  class="dash-btn" href="<?php echo URLROOT; ?>/customerDashboard/appointment">
             <img id="appointment-Img" src="<?php echo URLROOT ?>/img/calender-white.png" alt="">
-            <p id="appointment-text" >Appointments</p>
+            <p >Appointments</p>
         </a>
 
         <hr class="hr">
-        <a href="<?php echo URLROOT ?>Auction">
+        <a  id="contactUs" class="dash-btn" href="<?php echo URLROOT ?>/customerDashboard/ContactUs">
             <img src="<?php echo URLROOT ?>/img/contact-us-white.png" alt="">
             <p>Contact Us</p>
         </a>
-        <a href="<?php echo URLROOT ?>staff">
+        <a id="about" class="dash-btn" href="<?php echo URLROOT ?>/customerDashboard/About">
             <img src="<?php echo URLROOT ?>/img/about_white.png" alt="">
             <p>About</p>
         </a>

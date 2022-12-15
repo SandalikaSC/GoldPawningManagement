@@ -1,0 +1,82 @@
+.inside-page {
+    display: flex;
+    flex-direction: column;
+}
+/* top panel */
+.top { 
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly; 
+}  
+.date-input{
+    width: 200px; 
+    outline: none; 
+    padding: 10px;
+    border-radius: 10px;
+    border: black 1px solid;
+} 
+.date-input:hover{
+    border: black 2px solid;
+}
+.add-new-btn{
+    background-color: white;
+    padding: 15px;
+    color: #bb8a04;
+    border-radius: 20px;
+    border: #bb8a04 1px solid; 
+}
+.add-new-btn:hover{
+    background-color: #bb8a04;
+    color: white;
+    cursor: pointer;
+}
+.search-btn{
+    background-color: white;
+    padding: 10px; 
+    border-radius: 10px;
+    border: black 1px solid; 
+} 
+.search-btn:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+input{
+    margin: 30px;
+    background-color: white;
+    border-radius: 20px;
+    border:none;
+    font-family: sans-serif;
+}
+.form-search{ 
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly; 
+}  
+.middle {
+    height: 30%;
+    /* background-color: rgb(135, 14, 14); */
+}
+
+.bottom {
+    background-color: rgb(54, 230, 15);
+
+}
+
+
+
+
+
+
+
+
+/* make appoinmrnt */
+.wrapper{
+    flex-direction: column; overflow-y: scroll;
+}
+.content{
+    
+}
+.back{
+    width: 40px;
+}
