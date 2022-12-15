@@ -1,6 +1,6 @@
-<?php require APPROOT."/views/inc/header.php"?>
-    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/appointment.css'>
-    <title>Vogue | Appointments</title>
+<?php require APPROOT . "/views/inc/header.php" ?>
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/appointment.css'>
+<title>Vogue | Appointments</title>
 </head>
 
 <body>
@@ -17,8 +17,30 @@
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
-               
+                <div class="top">
+                    <form class="form-search" action="">
+                        <div class="date-div">
+                            <label>From Date :</label>
+                            <input class="date-input" type="date" placeholder="From Date" name="fromdate">
+                        </div>
+                        <div class="date-div">
+                            <label>To Date :</label>
+                            <input class="date-input" type="date" placeholder="To Date" name="todate">
+                        </div>
+                        <div class="div-search">
+                            <input class="search-btn" value="Search" type="submit"> 
+                        </div>
+
+
+                    </form>
+                    <div class="div-btn">
+                        <a href="<?php echo URLROOT?>/appointments"><input  type="button" name="newAppointment"  class="add-new-btn" value="+ New Appointment"> </a>
+                    </div>
+
+                </div>
+                <div class="middle"></div>
+                <div class="bottom"></div>
             </div>
         </div>
     </div>
-    <?php require APPROOT."/views/inc/footer.php"?>
+    <?php require APPROOT . "/views/inc/footer.php" ?>
