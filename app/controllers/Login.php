@@ -37,6 +37,7 @@ class Login extends Controller
           // User found
         } else {
           // User not found
+          flash('register', 'You are not registered with Us', 'invalid');
           $data['email_err'] = 'No user found';
         }
       }
@@ -204,18 +205,17 @@ class Login extends Controller
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
         // Register User
-        if ($this->userModel->register($data)) {
 
-          // $this->view('pages/emailVerification', $data); 
+        $verification_code = $this->userModel->register($data);
+        if ($verification_code) {
+          sendMail($data['email'], "registration", $verification_code); 
 
-          sendMail($data['email'], "<h1> successfully registered</h> verify your email to loggedIn <a href='http://localhost/Vogue/Login'>click me</a>", "");
-
-
-          flash('register_success', 'You are registered. Verify your email to log in', 'success');
+          flash('register', 'You are registered. Verify your email to log in', 'success');
           redirect('/Login');
 
         } else {
-          die('Something went wrong');
+          flash('register', 'Registration Failed Try again', 'invalid');
+          redirect('/Login');
         }
 
 
@@ -253,7 +253,23 @@ class Login extends Controller
 
 
   }
+  public function emailVerify($verification_Code)
+  {
+    $data = [
+      'status' => ''
+    ];
 
+    $status = $this->userModel->verify($verification_Code);
+    if ($status) {
+      $this->view('pages/EmailVerify', $data);
+    } else {
+      $data = [
+        'status' => 'Unsuccessful'
+      ];
+      $this->view('pages/EmailVerify', $data);
+    }
+
+  }
   public function createUserSession($user)
   {
     $_SESSION['user_id'] = $user->UserID;
@@ -261,7 +277,13 @@ class Login extends Controller
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     switch ($user->type) {
       case 1:
-        $this->view('Customer/customerDash');
+        if ($user->verification_status==="1") {
+          $this->view('Customer/customerDash');
+        }else{
+          flash('register', 'Your email has not been validated', 'invalid');
+          redirect('/Login');
+        }
+        
         break;
       case 2:
         $this->view('Admin/adminDash');

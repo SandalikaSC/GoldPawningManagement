@@ -11,7 +11,9 @@
       <form class="form center" action="" method="post">
         <img alt="logo" src="<?php echo URLROOT ?>/img/logo.png" class="logo center ">
         <h2 class="h2">Welcome back,</h2>
-        <br> <?php flash('register_success'); ?><br>
+        <br> <?php flash('register'); ?>
+        
+        <br>
         <p class="p">EMAIL</p>
         <input type="email" name="email" class=" <?php echo (!empty($data['email_err'])) ? 'is-invalid' : 'input'; ?>"
           value="<?php echo $data['email']; ?>" />
