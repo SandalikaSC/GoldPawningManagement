@@ -56,8 +56,8 @@
     height: 5vh;
     text-align: center;
     border-radius: 5rem;
-    color: #fff;
-    font-size: 0.9vw;
+    color: #fff; 
+    font-size: 0.9vw; 
     cursor: pointer;
     border: none;
     background: #BB8A04;
@@ -137,7 +137,7 @@
     text-align: center;
     
 }
-.invalid{
+.invalid{ 
     width: 80%;
     border-radius: 10px;
     text-align: center;
@@ -154,4 +154,5 @@
     background: #f9dc8b;
     margin: auto;
     font-size: 1vw;
+ 
 }

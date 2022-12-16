@@ -20,6 +20,7 @@
         <form action="<?php echo URLROOT; ?>/Login/signUp" method="post" class="signup-form">
             <label for="Fname" class="label">Name</label><span class="span require">*</span>
             <div class="name-div">
+
                 <div><input id="Fname" name="Fname" type="text" class="input input-section <?php echo (!empty($data['fname_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['fname']; ?>"><br>
                     <span class="<?php echo (!empty($data['fname_err'])) ? 'invalid-feedback' : 'span'; ?>">First name</span>
                     <span class="invalid-feedback"><?php echo $data['fname_err']; ?></span>
@@ -30,6 +31,7 @@
 
                     <span class="<?php echo (!empty($data['lname_err'])) ? 'invalid-feedback' : 'span'; ?>">Last name</span>
                     <span class="invalid-feedback"><?php echo $data['lname_err']; ?></span>
+
                 </div>
             </div>
             <br>

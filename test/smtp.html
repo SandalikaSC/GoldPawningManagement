@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    subject : <input type="text" id="sub"> <br>
+    body : <input type="text" id="body"> <br>
+    <button onclick="send();">send</button>
+  </body>
+
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+      const send = () => {
+          const sub  = document.getElementById("sub").value
+          const body = document.getElementById("body").value
+        Email.send({
+          SecureToken: "901af08b-4fae-4d70-8dae-7d77a86450c2",
+          To: "kss20001218@gmail.com",
+          From: "thimethimesha03@gmail.com",
+          Subject: sub,
+          Body: body,
+        }).then((message) => alert(message));
+    }
+  </script>
+
+</html>
