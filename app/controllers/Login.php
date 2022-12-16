@@ -137,8 +137,8 @@ class Login extends Controller
       // Validate nic
       if (empty($data['nic'])) {
         $data['nic_err'] = 'Require field';
-      } else if (!preg_match("/^[\d]{12}$/", $data['nic'])) {
-        $data['contact_err'] = 'Invalid';
+      } else if (!preg_match('/^[0-9]{12}+$/', $data['nic'])) {
+        $data['nic_err'] = 'Invalid';
       }
       // Validate dob
       if (empty($data['dob'])) {
@@ -166,13 +166,24 @@ class Login extends Controller
 
 
         }
-      }
-
-
+      } 
       // Validate Password
       if (empty($data['password'])) {
         $data['password_err'] = 'Require field';
-      } elseif (strlen($data['password']) < 6) {
+      } elseif (!preg_match('@[A-Z]@', $data['password'])) {
+        //uppercase letter
+        $data['password_err'] = 'must contain least one upper case letter';
+      }elseif (!preg_match('@[a-z]@', $data['password'])) {
+        //lower letter
+        $data['password_err'] = 'must contain least one lower case letter';
+      }elseif (!preg_match('@[0-9]@', $data['password'])) {
+        //numbers
+        $data['password_err'] = 'must contain least one number';
+      }elseif (!preg_match('@[^\w]@',$data['password'])) {
+        //special Character
+        $data['password_err'] = 'must contain least one special character';
+      }   
+      elseif (strlen($data['password']) < 6) {
         $data['password_err'] = ' must be at least 6 characters';
       }
 
