@@ -1,8 +1,12 @@
 <?php
 class appointments extends Controller
 {
+
         public function __construct()
-        {
+        { 
+                if (!isLoggedIn()) {
+                        redirect('/Login');
+                }
                 $this->userModel = $this->model('appointment');
         }
 
