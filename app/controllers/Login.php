@@ -153,38 +153,31 @@ class Login extends Controller
       }
       // Validate email
       if (empty($data['email'])) {
-        $data['email_err'] = 'Require field'; 
+        $data['email_err'] = 'Require field';
       } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         $data['email_err'] = 'Invalid';
-      }
-      else if(!isValidEmail($data['email'])){ //check email deliverable or disposable one
+      } else if (!isValidEmail($data['email'])) { //check email deliverable or disposable one
         $data['email_err'] = 'Invalid';
-      } 
-      else {
+      } else {
         // Check email
         if ($this->userModel->findUserByEmail($data['email'])) {
           $data['email_err'] = 'is already exist';
 
- 
+
         }
-      } 
+      }
+
       // Validate Password
+      $uppercase = preg_match('@[A-Z]@', $data['password']);
+      $lowercase = preg_match('@[a-z]@', $data['password']);
+      $number = preg_match('@[0-9]@', $data['password']);
+      $specialChars = preg_match('@[^\w]@', $data['password']);
+
       if (empty($data['password'])) {
         $data['password_err'] = 'Require field';
-      } elseif (!preg_match('@[A-Z]@', $data['password'])) {
-        //uppercase letter
-        $data['password_err'] = 'must contain least one upper case letter';
-      }elseif (!preg_match('@[a-z]@', $data['password'])) {
-        //lower letter
-        $data['password_err'] = 'must contain least one lower case letter';
-      }elseif (!preg_match('@[0-9]@', $data['password'])) {
-        //numbers
-        $data['password_err'] = 'must contain least one number';
-      }elseif (!preg_match('@[^\w]@',$data['password'])) {
-        //special Character
-        $data['password_err'] = 'must contain least one special character';
-      }   
-      elseif (strlen($data['password']) < 6) {
+      } elseif (!$uppercase || !$lowercase || !$number || !$specialChars) {
+        $data['password_err'] = 'must contain least one uppercase, lowercase, special character and a number';
+      } elseif (strlen($data['password']) < 6) {
         $data['password_err'] = ' must be at least 6 characters';
       }
 
@@ -199,9 +192,9 @@ class Login extends Controller
 
       // Make sure errors are empty
       if (
- 
+
         empty($data['fname_err']) && empty($data['lname_err']) && empty($data['nic_err']) && empty($data['dob_err'])
- 
+
         && empty($data['address_err']) && empty($data['contact_err']) && empty($data['email_err'])
         && empty($data['password_err'])
       ) {
@@ -214,9 +207,9 @@ class Login extends Controller
         if ($this->userModel->register($data)) {
 
           // $this->view('pages/emailVerification', $data); 
- 
+
           sendMail($data['email'], "<h1> successfully registered</h> verify your email to loggedIn <a href='http://localhost/Vogue/Login'>click me</a>", "");
- 
+
 
           flash('register_success', 'You are registered. Verify your email to log in', 'success');
           redirect('/Login');
@@ -235,7 +228,7 @@ class Login extends Controller
         'fname' => '',
         'lname' => '',
         'fname_err' => '',
-        'lname_err' => '', 
+        'lname_err' => '',
         'nic' => '',
         'nic_err' => '',
         'dob' => '',
