@@ -40,7 +40,7 @@ require 'phpmailer/src/SMTP.php';
 // }
 // }
 
-function sendVerification($receiver,$email_Type,$verificatoin_Code){
+function sendMail($receiver,$email_Type,$verificatoin_Code){
     $mail = new PHPMailer(true);
     
     try {

@@ -201,7 +201,7 @@ class Login extends Controller
         // Register User
         $verification_code = $this->userModel->register($data);
         if ($verification_code) {
-          sendVerification($data['email'], "registration", $verification_code);
+          sendMail($data['email'], "registration", $verification_code);
 
           flash('register', 'You are registered. Verify your email to log in', 'success');
           redirect('/Login');
@@ -273,7 +273,7 @@ class Login extends Controller
         if ($user->verification_status==="1") {
           $this->view('Customer/customerDash');
         }else{
-          flash('register', 'Your email has not been validated', 'invalid');
+          flash('register', 'Your email has not been validated', 'invalid');
           redirect('/Login');
         }
         
