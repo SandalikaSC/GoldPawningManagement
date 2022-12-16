@@ -166,24 +166,19 @@ class Login extends Controller
 
 
         }
-      } 
+      }
+
       // Validate Password
+      $uppercase = preg_match('@[A-Z]@', $data['password']);
+      $lowercase = preg_match('@[a-z]@', $data['password']);
+      $number = preg_match('@[0-9]@', $data['password']);
+      $specialChars = preg_match('@[^\w]@', $data['password']);
+
       if (empty($data['password'])) {
         $data['password_err'] = 'Require field';
-      } elseif (!preg_match('@[A-Z]@', $data['password'])) {
-        //uppercase letter
-        $data['password_err'] = 'must contain least one upper case letter';
-      }elseif (!preg_match('@[a-z]@', $data['password'])) {
-        //lower letter
-        $data['password_err'] = 'must contain least one lower case letter';
-      }elseif (!preg_match('@[0-9]@', $data['password'])) {
-        //numbers
-        $data['password_err'] = 'must contain least one number';
-      }elseif (!preg_match('@[^\w]@',$data['password'])) {
-        //special Character
-        $data['password_err'] = 'must contain least one special character';
-      }   
-      elseif (strlen($data['password']) < 6) {
+      } elseif (!$uppercase || !$lowercase || !$number || !$specialChars) {
+        $data['password_err'] = 'must contain least one uppercase, lowercase, special character and a number';
+      } elseif (strlen($data['password']) < 6) {
         $data['password_err'] = ' must be at least 6 characters';
       }
 
@@ -210,9 +205,10 @@ class Login extends Controller
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
         // Register User
+
         $verification_code = $this->userModel->register($data);
         if ($verification_code) {
-          sendMail($data['email'], "registration", $verification_code);
+          sendMail($data['email'], "registration", $verification_code); 
 
           flash('register', 'You are registered. Verify your email to log in', 'success');
           redirect('/Login');
