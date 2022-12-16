@@ -37,6 +37,7 @@ class Login extends Controller
           // User found
         } else {
           // User not found
+          flash('register', 'You are not registered with Us', 'invalid');
           $data['email_err'] = 'No user found';
         }
       }
@@ -153,19 +154,17 @@ class Login extends Controller
       }
       // Validate email
       if (empty($data['email'])) {
-        $data['email_err'] = 'Require field'; 
+        $data['email_err'] = 'Require field';
       } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         $data['email_err'] = 'Invalid';
-      }
-      else if(!isValidEmail($data['email'])){ //check email deliverable or disposable one
+      } else if (!isValidEmail($data['email'])) { //check email deliverable or disposable one
         $data['email_err'] = 'Invalid';
-      } 
-      else {
+      } else {
         // Check email
         if ($this->userModel->findUserByEmail($data['email'])) {
           $data['email_err'] = 'is already exist';
 
- 
+
         }
       }
 
@@ -188,9 +187,9 @@ class Login extends Controller
 
       // Make sure errors are empty
       if (
- 
+
         empty($data['fname_err']) && empty($data['lname_err']) && empty($data['nic_err']) && empty($data['dob_err'])
- 
+
         && empty($data['address_err']) && empty($data['contact_err']) && empty($data['email_err'])
         && empty($data['password_err'])
       ) {
@@ -200,18 +199,16 @@ class Login extends Controller
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
         // Register User
-        if ($this->userModel->register($data)) {
+        $verification_code = $this->userModel->register($data);
+        if ($verification_code) {
+          sendVerification($data['email'], "registration", $verification_code);
 
-          // $this->view('pages/emailVerification', $data); 
- 
-          sendMail($data['email'], "<h1> successfully registered</h> verify your email to loggedIn <a href='http://localhost/Vogue/Login'>click me</a>", "");
- 
-
-          flash('register_success', 'You are registered. Verify your email to log in', 'success');
+          flash('register', 'You are registered. Verify your email to log in', 'success');
           redirect('/Login');
 
         } else {
-          die('Something went wrong');
+          flash('register', 'Registration Failed Try again', 'invalid');
+          redirect('/Login');
         }
 
 
@@ -224,7 +221,7 @@ class Login extends Controller
         'fname' => '',
         'lname' => '',
         'fname_err' => '',
-        'lname_err' => '', 
+        'lname_err' => '',
         'nic' => '',
         'nic_err' => '',
         'dob' => '',
@@ -249,7 +246,23 @@ class Login extends Controller
 
 
   }
+  public function emailVerify($verification_Code)
+  {
+    $data = [
+      'status' => ''
+    ];
 
+    $status = $this->userModel->verify($verification_Code);
+    if ($status) {
+      $this->view('pages/EmailVerify', $data);
+    } else {
+      $data = [
+        'status' => 'Unsuccessful'
+      ];
+      $this->view('pages/EmailVerify', $data);
+    }
+
+  }
   public function createUserSession($user)
   {
     $_SESSION['user_id'] = $user->UserID;
@@ -257,7 +270,13 @@ class Login extends Controller
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     switch ($user->type) {
       case 1:
-        $this->view('Customer/customerDash');
+        if ($user->verification_status==="1") {
+          $this->view('Customer/customerDash');
+        }else{
+          flash('register', 'Your email has not been validated', 'invalid');
+          redirect('/Login');
+        }
+        
         break;
       case 2:
         $this->view('Admin/adminDash');
