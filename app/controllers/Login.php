@@ -94,7 +94,8 @@ class Login extends Controller
       $data = [
         'fname' => trim($_POST['Fname']),
         'lname' => trim($_POST['Lname']),
-        'name_err' => '',
+        'fname_err' => '',
+        'lname_err' => '',
         'nic' => trim($_POST['nic']),
         'nic_err' => '',
         'dob' => trim($_POST['dob']),
@@ -115,11 +116,22 @@ class Login extends Controller
         'confirm_password_err' => ''
 
       ];
-      // Validate name
-      if (empty($data['fname']) || empty($data['lname'])) {
-        $data['name_err'] = 'Require field';
-      } else if (!preg_match("/^[a-zA-Z]+$/", $data['fname']) || !preg_match("/^[a-zA-Z]+$/", $data['lname'])) {
-        $data['name_err'] = 'Invalid';
+
+      // Validate fname
+      if (empty($data['fname'])) {
+        $data['fname_err'] = 'Require field';
+      } else if (!preg_match("/^[a-zA-Z]+$/", $data['fname'])) {
+        $data['fname_err'] = 'Invalid';
+      }
+
+
+
+      // Validate lname
+      if (empty($data['lname'])) {
+        $data['lname_err'] = 'Require field';
+      } else if (!preg_match("/^[a-zA-Z]+$/", $data['lname'])) {
+        $data['lname_err'] = 'Invalid';
+
       }
       // Validate nic
       if (empty($data['nic'])) {
@@ -141,11 +153,19 @@ class Login extends Controller
       }
       // Validate email
       if (empty($data['email'])) {
-        $data['email_err'] = 'Require field';
-      } else {
+        $data['email_err'] = 'Require field'; 
+      } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        $data['email_err'] = 'Invalid';
+      }
+      else if(!isValidEmail($data['email'])){ //check email deliverable or disposable one
+        $data['email_err'] = 'Invalid';
+      } 
+      else {
         // Check email
         if ($this->userModel->findUserByEmail($data['email'])) {
           $data['email_err'] = 'is already exist';
+
+ 
         }
       }
 
@@ -168,7 +188,9 @@ class Login extends Controller
 
       // Make sure errors are empty
       if (
-        empty($data['name_err']) && empty($data['nic_err']) && empty($data['dob_err'])
+ 
+        empty($data['fname_err']) && empty($data['lname_err']) && empty($data['nic_err']) && empty($data['dob_err'])
+ 
         && empty($data['address_err']) && empty($data['contact_err']) && empty($data['email_err'])
         && empty($data['password_err'])
       ) {
@@ -181,7 +203,9 @@ class Login extends Controller
         if ($this->userModel->register($data)) {
 
           // $this->view('pages/emailVerification', $data); 
-          sendMail("sandalikachamari@gmail.com", "successfully registered verify your email to loggedIn", "");
+ 
+          sendMail($data['email'], "<h1> successfully registered</h> verify your email to loggedIn <a href='http://localhost/Vogue/Login'>click me</a>", "");
+ 
 
           flash('register_success', 'You are registered. Verify your email to log in', 'success');
           redirect('/Login');
@@ -199,7 +223,8 @@ class Login extends Controller
       $data = [
         'fname' => '',
         'lname' => '',
-        'name_err' => '',
+        'fname_err' => '',
+        'lname_err' => '', 
         'nic' => '',
         'nic_err' => '',
         'dob' => '',

@@ -56,8 +56,8 @@
     height: 5vh;
     text-align: center;
     border-radius: 5rem;
-    color: #fff;
-    font-size: 15px;
+    color: #fff; 
+    font-size: 0.9vw; 
     cursor: pointer;
     border: none;
     background: #BB8A04;
@@ -137,16 +137,22 @@
     text-align: center;
     
 }
-.invalid{
-    width: 70%;
+.invalid{ 
+    width: 80%;
+    border-radius: 10px;
     text-align: center;
     color: rgb(255, 0, 51);
-    background: rgb(236, 99, 99);
+    background: rgb(236, 99, 99); 
+    margin: auto;
+    font-size: 1vw;
 }
 .success{
-    width: 70%;
+    width: 80%;
     border-radius: 10px;
     text-align: center;
     color: #836000;
-    background:  #f9dc8b;
+    background: #f9dc8b;
+    margin: auto;
+    font-size: 1vw;
+ 
 }
