@@ -55,7 +55,7 @@ class Customer
         $this->db->bind(':UserId', $userid );
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
-        $this->db->bind(':type', 1);
+        $this->db->bind(':type', "Customer");
         $this->db->bind(':verification_status', $verification_code);
         $this->db->bind(':First_Name', $data['fname']);
         $this->db->bind(':Last_Name', $data['lname']);
