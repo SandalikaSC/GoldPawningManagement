@@ -1,10 +1,9 @@
-
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2022 at 07:27 PM
+-- Generation Time: Dec 17, 2022 at 07:11 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -34,12 +33,9 @@ CREATE TABLE `appointment` (
   `appointment_date` date NOT NULL,
   `Status` varchar(255) NOT NULL,
   `slot_Id` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
+  `UserID` varchar(255) NOT NULL,
   `Reason_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- status 1 canceled, 0 active
--- 
 
 -- --------------------------------------------------------
 
@@ -67,7 +63,7 @@ CREATE TABLE `complaint` (
   `CID` int(11) NOT NULL,
   `Date` date NOT NULL DEFAULT current_timestamp(),
   `Description` varchar(255) NOT NULL,
-  `UserID` int(11) NOT NULL
+  `UserID` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -85,9 +81,6 @@ CREATE TABLE `delivery` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
--- status 0 not deliverd , 1 deliverd
-
-
 
 --
 -- Table structure for table `gold_rate`
@@ -148,7 +141,7 @@ CREATE TABLE `loan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
--- payment method ????
+
 --
 -- Table structure for table `locker`
 --
@@ -162,8 +155,7 @@ CREATE TABLE `locker` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
--- status 0 not allocated, 1 allocated
--- key status 0 not deliverd, 1 deliverd
+
 --
 -- Table structure for table `pawn`
 --
@@ -175,13 +167,13 @@ CREATE TABLE `pawn` (
   `Retrieved_Date` date NOT NULL,
   `End_Date` date NOT NULL,
   `Article_Id` int(11) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `Appraiser_Id` int(11) NOT NULL,
-  `Officer_Id` int(11) NOT NULL
+  `userid` varchar(255) NOT NULL,
+  `Appraiser_Id` varchar(255) NOT NULL,
+  `Officer_Id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
--- pawn status 0 pending, 1 renewed, 2  added to auction
+
 --
 -- Table structure for table `payment`
 --
@@ -197,13 +189,13 @@ CREATE TABLE `payment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
--- type 0 pawn , 1 locker
+
 --
 -- Table structure for table `phone`
 --
 
 CREATE TABLE `phone` (
-  `userID` int(11) NOT NULL,
+  `userID` varchar(255) NOT NULL,
   `Phone` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -212,7 +204,10 @@ CREATE TABLE `phone` (
 --
 
 INSERT INTO `phone` (`userID`, `Phone`) VALUES
-(5, 779232261);
+(13, 779232261),
+(14, 779232261),
+(15, 779232261),
+(17, 779232261);
 
 -- --------------------------------------------------------
 
@@ -246,10 +241,10 @@ CREATE TABLE `reserves` (
   `Allocate_Id` int(11) NOT NULL,
   `Article_Id` int(11) NOT NULL,
   `lockerNo` int(11) NOT NULL,
-  `UserID` int(11) NOT NULL,
+  `UserID` varchar(255) NOT NULL,
   `Date` date NOT NULL DEFAULT current_timestamp(),
   `Retrieve_Date` date NOT NULL,
-  `Keeper_Id` int(11) NOT NULL
+  `Keeper_Id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -282,11 +277,11 @@ INSERT INTO `time_slot` (`slot_ID`, `time`) VALUES
 --
 
 CREATE TABLE `user` (
-  `UserID` int(11) NOT NULL,
+  `UserID`varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `type` int(11) NOT NULL,
-  `verification_status` int(11) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `verification_status` varchar(255) NOT NULL,
   `First_Name` varchar(255) NOT NULL,
   `Last_Name` varchar(255) NOT NULL,
   `NIC` varchar(12) NOT NULL,
@@ -298,35 +293,15 @@ CREATE TABLE `user` (
   `Status` int(11) NOT NULL,
   `Last_Seen` date NOT NULL DEFAULT current_timestamp(),
   `Created_date` date NOT NULL DEFAULT current_timestamp(),
-  `Created_By` int(11) NOT NULL
+  `Created_By` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`UserID`, `email`, `password`, `type`, `verification_status`, `First_Name`, `Last_Name`, `NIC`, `Gender`, `DOB`, `Line1`, `Line2`, `Line3`, `Status`, `Last_Seen`, `Created_date`, `Created_By`) VALUES
-(5, 'schamexo2017@gmail.com', '$2y$10$YaDklEysKUOnD4o/O/OHNOiSFcjUhwWh.6.oLAOnz2nD.wPzT/m6u', 1, 0, 'jayasekara', 'chamari', '200064703151', 'male', '2022-12-22', '', 'Welladeniya, Midigama, Ahangama', '', 1, '2022-12-13', '2022-12-13', 5),
-(6, '2@gmail.com', '$2y$10$YaDklEysKUOnD4o/O/OHNOiSFcjUhwWh.6.oLAOnz2nD.wPzT/m6u', 2, 0, '2', '2', '123456789', 'male', '2022-12-16', '2', '2', '2', 1, '0000-00-00', '2022-12-13', 5);
 
--- TYPE
--- case 1:'Customer/
--- case 2:Admin
--- case 3:'Manager
--- case 4:GoldAppraiser
--- case 5:'VaultKeeper
--- case 6:PawnOfficer
--- case 7:Owner
 --
--- verification stTUS 0, not verified, 1 verified
-
--- STATUS 0 active, 1 blocked
-
-
-
-
-
-
 -- Indexes for dumped tables
 --
 
@@ -402,7 +377,6 @@ ALTER TABLE `pawn`
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`PID`),
   ADD KEY `allocate_Id` (`allocate_Id`),
-
   ADD KEY `Pawn_Id` (`Pawn_Id`);
 
 --
@@ -526,7 +500,7 @@ ALTER TABLE `time_slot`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
@@ -600,4 +574,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

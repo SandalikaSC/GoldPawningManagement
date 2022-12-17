@@ -8,29 +8,75 @@ class Customer
         $this->db = new Database;
     }
 
+<<<<<<< Updated upstream
     public function getLastUserId()
+=======
+    function generate_code()
     {
-        $this->db->query('SELECT userId FROM user ORDER BY userId DESC LIMIT 1;');
+        return bin2hex(openssl_random_pseudo_bytes(15));
+    }
+    function verify($verification_code)
+    {
+        $this->db->query('UPDATE user SET verification_status="1" where verification_status=:verification_status;');
+        $this->db->bind(':verification_status', $verification_code);
+        //Registration  verified successfully
+        if ($this->db->execute()) {
 
-        $row = $this->db->single();
-        if ($this->db->rowCount() > 0) {
-            return $row->userId;
+            return true;
         } else {
-            return 0;
+            return false;
         }
+    }
+    // public function getLastUserId()
+    // {
+    //     $this->db->query('SELECT userId FROM user ORDER BY userId DESC LIMIT 1;');
 
+    //     $row = $this->db->single();
+    //     if ($this->db->rowCount() > 0) {
+    //         return $row->userId;
+    //     } else {
+    //         return 0;
+    //     }
+
+    // }
+    private function getUserId($role)
+>>>>>>> Stashed changes
+    {
+        $sql = "select UserID from user where type=? order by UserID desc limit 1";
+        $this->db->query($sql);
+        $this->db->bind(1, $role);
+        $result = $this->db->single();
+
+
+        if (empty($result)) {
+
+            return 'CU000';
+        } else {
+            return $result->UserID;
+        }
     }
     // Regsiter user
     public function register($data)
     {
 
+<<<<<<< Updated upstream
         $userid = $this->getLastUserId() + 1;
         //insert to user table
         $this->db->query('INSERT INTO user (email,password,type,verification_status, First_Name, Last_Name, NIC, Gender, DOB, Line1, Line2, Line3, Status,Created_By) 
         VALUES(:email,:password,:type,:verification_status,:First_Name,
         :Last_Name,:NIC,:Gender,:DOB,:Line1,:Line2,:Line3,:Status,:Created_By)');
+=======
+        $verification_code = $this->generate_code();
+        $userid = $this->getUserId("Customer");
+        ++$userid;
+        //insert to user table
+        $this->db->query('INSERT INTO user (UserId,email,password,type,verification_status, First_Name, Last_Name, NIC, Gender, DOB, Line1, Line2, Line3, Status) 
+        VALUES(:UserID,:email,:password,:type,:verification_status,:First_Name,
+        :Last_Name,:NIC,:Gender,:DOB,:Line1,:Line2,:Line3,:Status)');
+>>>>>>> Stashed changes
         // Bind values
 
+        $this->db->bind(':UserID', $userid);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':type', 1);
@@ -49,6 +95,10 @@ class Customer
 
         // Execute
         if ($this->db->execute()) {
+<<<<<<< Updated upstream
+=======
+           
+>>>>>>> Stashed changes
             if (!empty($data['home'])) {
                 $this->db->query('INSERT INTO phone(UserId,Phone) VALUES (:userId,:mobile),(:userId,:home);');
                 $this->db->bind(':userId', $userid);

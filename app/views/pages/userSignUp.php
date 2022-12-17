@@ -17,7 +17,7 @@
 
         </div>
         <hr class="line">
-        <form action="<?php echo URLROOT; ?>/Login/signUp" method="post" class="signup-form">
+        <form action="<?php echo URLROOT; ?>/Users/signUp" method="post" class="signup-form">
             <label for="Fname" class="label">Name</label><span class="span require">*</span>
             <div class="name-div">
                 <div><input id="Fname" name="Fname" type="text" class="input input-section <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['fname']; ?>"><br>
@@ -100,7 +100,7 @@
             
             <br>
             <input type="submit" name="signup" value="SignUp" class="btn"><br>
-            <div><label class="label">Alredy Have an Account? <a href="<?php echo URLROOT?>/Login/index">Login</a></label>
+            <div><label class="label">Alredy Have an Account? <a href="<?php echo URLROOT?>/Users/index">Login</a></label>
             </div>
         </form>
     </div>

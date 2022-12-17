@@ -1,6 +1,16 @@
 <?php
 class customerDashboard extends Controller
 {
+<<<<<<< Updated upstream
+=======
+        public function __construct()
+        {
+                if (!isLoggedIn()) {
+                        redirect('/Users');
+                }
+        }
+
+>>>>>>> Stashed changes
         public function dashboard()
         { 
                 $data = [];

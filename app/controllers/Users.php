@@ -1,5 +1,5 @@
 <?php
-class Login extends Controller
+class Users extends Controller
 {
   public function __construct()
   {
@@ -180,6 +180,7 @@ class Login extends Controller
         // Register User
         if ($this->userModel->register($data)) {
 
+<<<<<<< Updated upstream:app/controllers/Login.php
           // $this->view('pages/emailVerification', $data); 
           sendMail("sandalikachamari@gmail.com", "successfully registered verify your email to loggedIn", "");
 
@@ -188,6 +189,18 @@ class Login extends Controller
 
         } else {
           die('Something went wrong');
+=======
+        $verification_code = $this->userModel->register($data);
+        if ($verification_code) {
+          sendMail($data['email'], "registration", $verification_code,""); 
+
+          flash('register', 'You are registered. Verify your email to log in', 'success');
+          redirect('/Users');
+
+        } else {
+          flash('register', 'Registration Failed Try again', 'invalid');
+          redirect('/Users');
+>>>>>>> Stashed changes:app/controllers/Users.php
         }
 
 
@@ -232,7 +245,17 @@ class Login extends Controller
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     switch ($user->type) {
       case 1:
+<<<<<<< Updated upstream:app/controllers/Login.php
         $this->view('Customer/customerDash');
+=======
+        if ($user->verification_status==="1") {
+          $this->view('Customer/customerDash');
+        }else{
+          flash('register', 'Your email has not been validated', 'invalid');
+          redirect('/Users');
+        }
+        
+>>>>>>> Stashed changes:app/controllers/Users.php
         break;
       case 2:
         $this->view('Admin/adminDash');
@@ -262,7 +285,7 @@ class Login extends Controller
     unset($_SESSION['user_email']);
     unset($_SESSION['user_name']);
     session_destroy();
-    redirect('/Login');
+    redirect('/Users');
   }
 
   public function isLoggedIn()

@@ -34,7 +34,7 @@
       <h2 class="h2">New here?</h2>
       <p class="p">Sign up and discover great amount of new opportunities!</p>
 
-      <button type="button" class="button signup"><a href="<?php echo URLROOT ?>/Login/signUp">SignUp</a></button>
+      <button type="button" class="button signup"><a href="<?php echo URLROOT ?>/Users/signUp">SignUp</a></button>
 
 
     </div>
