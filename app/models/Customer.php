@@ -24,29 +24,35 @@ class Customer
             return false;
         }
     }
-    public function getLastUserId()
+    public function getLastUserId($role)
     {
-        $this->db->query('SELECT userId FROM user ORDER BY userId DESC LIMIT 1;');
+        $sql = "select UserID from user where type=? order by UserID desc limit 1";
+        $this->db->query($sql);
+        $this->db->bind(1, $role);
+        $result = $this->db->single();
 
-        $row = $this->db->single();
-        if ($this->db->rowCount() > 0) {
-            return $row->userId;
+
+        if (empty($result)) {
+           
+                    return 'CU000';
+                   
         } else {
-            return 0;
+            return $result->UserID;
         }
-
     }
     // Regsiter user
     public function register($data)
     {
-
+        $userid = $this->getLastUserId("Customer");
+        ++$userid;
         $verification_code = $this->generate_code();
         //insert to user table
-        $this->db->query('INSERT INTO user (email,password,type,verification_status, First_Name, Last_Name, NIC, Gender, DOB, Line1, Line2, Line3, Status) 
-        VALUES(:email,:password,:type,:verification_status,:First_Name,
+        $this->db->query('INSERT INTO user (UserId,email,password,type,verification_status, First_Name, Last_Name, NIC, Gender, DOB, Line1, Line2, Line3, Status) 
+        VALUES(:UserId,:email,:password,:type,:verification_status,:First_Name,
         :Last_Name,:NIC,:Gender,:DOB,:Line1,:Line2,:Line3,:Status)');
         // Bind values
 
+        $this->db->bind(':UserId', $userid );
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':type', 1);
@@ -65,7 +71,7 @@ class Customer
 
         // Execute
         if ($this->db->execute()) {
-            $userid = $this->getLastUserId();
+           
             if (!empty($data['home'])) {
                 $this->db->query('INSERT INTO phone(UserId,Phone) VALUES (:userId,:mobile),(:userId,:home);');
                 $this->db->bind(':userId', $userid);

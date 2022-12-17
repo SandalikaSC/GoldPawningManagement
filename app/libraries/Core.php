@@ -5,7 +5,7 @@
    * URL FORMAT - /controller/method/params
    */
   class Core {
-    protected $currentController = 'Login';
+    protected $currentController = 'Users';
     protected $currentMethod = 'index';
     protected $params = [];
 

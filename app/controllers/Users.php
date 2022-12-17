@@ -1,5 +1,5 @@
 <?php
-class Login extends Controller
+class Users extends Controller
 {
   public function __construct()
   {
@@ -208,14 +208,14 @@ class Login extends Controller
 
         $verification_code = $this->userModel->register($data);
         if ($verification_code) {
-          sendMail($data['email'], "registration", $verification_code); 
+          sendMail($data['email'], "registration", $verification_code,"VOGUE"); 
 
           flash('register', 'You are registered. Verify your email to log in', 'success');
-          redirect('/Login');
+          redirect('/Users');
 
         } else {
           flash('register', 'Registration Failed Try again', 'invalid');
-          redirect('/Login');
+          redirect('/Users');
         }
 
 
@@ -281,7 +281,7 @@ class Login extends Controller
           $this->view('Customer/customerDash');
         }else{
           flash('register', 'Your email has not been validated', 'invalid');
-          redirect('/Login');
+          redirect('/Users');
         }
         
         break;
@@ -313,7 +313,7 @@ class Login extends Controller
     unset($_SESSION['user_email']);
     unset($_SESSION['user_name']);
     session_destroy();
-    redirect('/Login');
+    redirect('/Users');
   }
 
   public function isLoggedIn()
