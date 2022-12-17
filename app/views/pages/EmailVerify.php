@@ -16,7 +16,7 @@
 
     <h4 class="verifyMSG">Your registration is  <?php echo(!empty($data['status'])) ?$data['status'] :"succesfull."; ?></h4>
     <p class="logintxt"><?php echo(!empty($data['status'])) ?"Something went wrong":"Login to your account." ; ?></p>
-    <a href="<?php echo URLROOT ?>/Login" >
+    <a href="<?php echo URLROOT ?>/Users" >
       <input type="submit" name="login" value="Login" class="<?php echo(!empty($data['status'])) ? "hide" : "button"; ?>">
     </a>
   </div>
