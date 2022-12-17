@@ -1,8 +1,6 @@
 <?php
 class customerDashboard extends Controller
 {
-<<<<<<< Updated upstream
-=======
         public function __construct()
         {
                 if (!isLoggedIn()) {
@@ -10,7 +8,6 @@ class customerDashboard extends Controller
                 }
         }
 
->>>>>>> Stashed changes
         public function dashboard()
         { 
                 $data = [];

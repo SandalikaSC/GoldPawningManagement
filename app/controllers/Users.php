@@ -180,61 +180,50 @@ class Users extends Controller
         // Register User
         if ($this->userModel->register($data)) {
 
-<<<<<<< Updated upstream:app/controllers/Login.php
-          // $this->view('pages/emailVerification', $data); 
-          sendMail("sandalikachamari@gmail.com", "successfully registered verify your email to loggedIn", "");
+          $verification_code = $this->userModel->register($data);
+          if ($verification_code) {
+            sendMail($data['email'], "registration", $verification_code, "");
 
-          flash('register_success', 'You are registered. Verify your email to log in', 'success');
-          redirect('/Login');
+            flash('register', 'You are registered. Verify your email to log in', 'success');
+            redirect('/Users');
 
-        } else {
-          die('Something went wrong');
-=======
-        $verification_code = $this->userModel->register($data);
-        if ($verification_code) {
-          sendMail($data['email'], "registration", $verification_code,""); 
+          } else {
+            flash('register', 'Registration Failed Try again', 'invalid');
+            redirect('/Users');
+          }
 
-          flash('register', 'You are registered. Verify your email to log in', 'success');
-          redirect('/Users');
 
         } else {
-          flash('register', 'Registration Failed Try again', 'invalid');
-          redirect('/Users');
->>>>>>> Stashed changes:app/controllers/Users.php
+          // Load view with errors
+          $this->view('pages/userSignUp', $data);
         }
-
-
       } else {
-        // Load view with errors
+        $data = [
+          'fname' => '',
+          'lname' => '',
+          'name_err' => '',
+          'nic' => '',
+          'nic_err' => '',
+          'dob' => '',
+          'dob_err' => '',
+          'gender' => 'male',
+          'address1' => '',
+          'address2' => '',
+          'address3' => '',
+          'address_err' => '',
+          'mobile' => '',
+          'home' => '',
+          'contact_err' => '',
+          'email' => '',
+          'email_err' => '',
+          'password' => '',
+          'password_err' => '',
+          'confirm_password' => '',
+          'confirm_password_err' => ''
+        ];
         $this->view('pages/userSignUp', $data);
       }
-    } else {
-      $data = [
-        'fname' => '',
-        'lname' => '',
-        'name_err' => '',
-        'nic' => '',
-        'nic_err' => '',
-        'dob' => '',
-        'dob_err' => '',
-        'gender' => 'male',
-        'address1' => '',
-        'address2' => '',
-        'address3' => '',
-        'address_err' => '',
-        'mobile' => '',
-        'home' => '',
-        'contact_err' => '',
-        'email' => '',
-        'email_err' => '',
-        'password' => '',
-        'password_err' => '',
-        'confirm_password' => '',
-        'confirm_password_err' => ''
-      ];
-      $this->view('pages/userSignUp', $data);
     }
-
 
   }
 
@@ -245,9 +234,6 @@ class Users extends Controller
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     switch ($user->type) {
       case 1:
-<<<<<<< Updated upstream:app/controllers/Login.php
-        $this->view('Customer/customerDash');
-=======
         if ($user->verification_status==="1") {
           $this->view('Customer/customerDash');
         }else{
@@ -255,7 +241,6 @@ class Users extends Controller
           redirect('/Users');
         }
         
->>>>>>> Stashed changes:app/controllers/Users.php
         break;
       case 2:
         $this->view('Admin/adminDash');

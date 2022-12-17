@@ -128,6 +128,14 @@ function isValidEmail($email)
 
     // <!-- abuugrshlwzghtwj -->
 }
+ function isLoggedIn()
+{
+  if (isset($_SESSION['user_id'])) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 // function sendMail($receiver,$email_Type,$code){
 //     $mail = new PHPMailer(true);

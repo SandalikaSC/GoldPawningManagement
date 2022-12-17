@@ -8,9 +8,6 @@ class Customer
         $this->db = new Database;
     }
 
-<<<<<<< Updated upstream
-    public function getLastUserId()
-=======
     function generate_code()
     {
         return bin2hex(openssl_random_pseudo_bytes(15));
@@ -40,7 +37,6 @@ class Customer
 
     // }
     private function getUserId($role)
->>>>>>> Stashed changes
     {
         $sql = "select UserID from user where type=? order by UserID desc limit 1";
         $this->db->query($sql);
@@ -59,13 +55,6 @@ class Customer
     public function register($data)
     {
 
-<<<<<<< Updated upstream
-        $userid = $this->getLastUserId() + 1;
-        //insert to user table
-        $this->db->query('INSERT INTO user (email,password,type,verification_status, First_Name, Last_Name, NIC, Gender, DOB, Line1, Line2, Line3, Status,Created_By) 
-        VALUES(:email,:password,:type,:verification_status,:First_Name,
-        :Last_Name,:NIC,:Gender,:DOB,:Line1,:Line2,:Line3,:Status,:Created_By)');
-=======
         $verification_code = $this->generate_code();
         $userid = $this->getUserId("Customer");
         ++$userid;
@@ -73,7 +62,6 @@ class Customer
         $this->db->query('INSERT INTO user (UserId,email,password,type,verification_status, First_Name, Last_Name, NIC, Gender, DOB, Line1, Line2, Line3, Status) 
         VALUES(:UserID,:email,:password,:type,:verification_status,:First_Name,
         :Last_Name,:NIC,:Gender,:DOB,:Line1,:Line2,:Line3,:Status)');
->>>>>>> Stashed changes
         // Bind values
 
         $this->db->bind(':UserID', $userid);
@@ -95,10 +83,7 @@ class Customer
 
         // Execute
         if ($this->db->execute()) {
-<<<<<<< Updated upstream
-=======
            
->>>>>>> Stashed changes
             if (!empty($data['home'])) {
                 $this->db->query('INSERT INTO phone(UserId,Phone) VALUES (:userId,:mobile),(:userId,:home);');
                 $this->db->bind(':userId', $userid);

@@ -2,14 +2,10 @@
 class appointments extends Controller
 {
         public function __construct()
-<<<<<<< Updated upstream
-        {
-=======
         { 
                 if (!isLoggedIn()) {
                         redirect('/Users');
                 }
->>>>>>> Stashed changes
                 $this->userModel = $this->model('appointment');
         }
 
