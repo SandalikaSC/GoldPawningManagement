@@ -3,7 +3,7 @@
   define('DB_HOST', 'localhost');
   define('DB_USER', 'root');
   define('DB_PASS', '');
-  define('DB_NAME', 'vogue2');
+  define('DB_NAME', 'vogue');
 
   // App Root
   define('APPROOT', dirname(dirname(__FILE__)));
