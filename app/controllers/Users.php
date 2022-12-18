@@ -141,8 +141,12 @@ class Users extends Controller
         $data['nic_err'] = 'Invalid';
       }
       // Validate dob
+      $diff = abs(strtotime(date("Y-m-d")) - strtotime($data['dob']));
+      $years = floor($diff / (365*60*60*24));
       if (empty($data['dob'])) {
         $data['dob_err'] = 'Require field';
+      }else if($years<18){ 
+        $data['dob_err'] = '-You must be at least 18 years old to register.';
       }
       // Validate address
       if (empty($data['address1']) && empty($data['address2']) && empty($data['address3'])) {
