@@ -11,4 +11,5 @@
   define('URLROOT', 'http://localhost/Vogue');
   // Site Name
   define('SITENAME', 'Gold Pawn');
+  define('MAIL_PASSWORD', 'vvv');
   ?>

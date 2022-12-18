@@ -17,18 +17,18 @@ function sendMail($receiver, $email_Type, $code, $name)
             case "OTP":
                 $mail->Subject = "VOGUE OTP";
                 $mail->Body    = "Here is the OTP code $code";
-                $mail->addAddress("$receiver", $name);
+                $mail->addAddress($receiver, $name);
                 break;
             case "registration":
                 $link = "<a href='http://localhost/Vogue/Users/emailVerify/$code'>here</a>";
                 $mail->Subject = "VOGUE email Verification";
                 $mail->Body    = "Thanks for Registering with us.<br> To activate your account click $link";
-                $mail->addAddress("$receiver", $name);
+                $mail->addAddress($receiver, $name);
                 break;
             case "staff_reg":
                 $mail->Subject = "VOGUE Employee registration";
                 $mail->Body    = "here is the password for your employee account $code";
-                $mail->addAddress("$receiver", $name);
+                $mail->addAddress($receiver, $name);
                 break;
             default:
                 # code...
@@ -42,7 +42,7 @@ function sendMail($receiver, $email_Type, $code, $name)
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
 
         $mail->Username   = 'voguepawners@gmail.com';                     //SMTP username
-        $mail->Password   = 'abuugrshlwzghtwj';                               //SMTP password
+        $mail->Password   = MAIL_PASSWORD;                               //SMTP password
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
@@ -62,6 +62,7 @@ function sendMail($receiver, $email_Type, $code, $name)
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
+
 
 function isValidEmail($email)
 {

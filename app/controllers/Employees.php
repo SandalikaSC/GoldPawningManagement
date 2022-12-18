@@ -1,5 +1,5 @@
 <?php
-class Users extends Controller
+class Employees extends Controller
 {
   public function __construct()
   {
@@ -157,10 +157,9 @@ class Users extends Controller
         $data['email_err'] = 'Require field';
       } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         $data['email_err'] = 'Invalid';
-      // } else if (!isValidEmail($data['email'])) { //check email deliverable or disposable one
-      //   $data['email_err'] = 'Invalid';
-      // 
-    } else {
+      } else if (!isValidEmail($data['email'])) { //check email deliverable or disposable one
+        $data['email_err'] = 'Invalid';
+      } else {
         // Check email
         if ($this->userModel->findUserByEmail($data['email'])) {
           $data['email_err'] = 'is already exist';
@@ -209,11 +208,11 @@ class Users extends Controller
 
         $verification_code = $this->userModel->register($data);
         if ($verification_code) {
-          if ((sendMail($data['email'], "registration", $verification_code, "VOGUE")))
-            {
-            flash('register', 'You are registered. Verify your email to log in', 'success');
-            redirect('/Users');
-          }
+          sendMail($data['email'], "registration", $verification_code,"VOGUE"); 
+
+          flash('register', 'You are registered. Verify your email to log in', 'success');
+          redirect('/Users');
+
         } else {
           flash('register', 'Registration Failed Try again', 'invalid');
           redirect('/Users');
@@ -273,38 +272,36 @@ class Users extends Controller
   }
   public function createUserSession($user)
   {
-    $_SESSION['user_id'] = $user->UserId;
+    $_SESSION['user_id'] = $user->UserID;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     switch ($user->type) {
-      case "Customer":
-        if ($user->verification_status === "1") {
+      case 1:
+        if ($user->verification_status==="1") {
           $this->view('Customer/customerDash');
-        } else {
+        }else{
           flash('register', 'Your email has not been validated', 'invalid');
           redirect('/Users');
         }
-
+        
         break;
-      case "Admin":
+      case 2:
         $this->view('Admin/adminDash');
         break;
-      case "Manager":
+      case 3:
         $this->view('Manager/managerDash');
         break;
-      case "Gold Appraiser":
-        $this->view('Gold Appraiser/goldappDash');
+      case 4:
+        $this->view('GoldAppraiser/goldappDash');
         break;
-      case "Vault Keeper":
+      case 5:
         $this->view('VaultKeeper/vaultkeeperDash');
         break;
-      case "Pawn Officer":
+      case 6:
         $this->view('PawnOfficer/pawnofficerDash');
         break;
-      case "Owner":
+      default:
         $this->view('Owner/ownerDash');
-        break;
-
     }
 
 
