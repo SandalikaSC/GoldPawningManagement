@@ -7,7 +7,17 @@ class Appointment
     {
         $this->db = new Database;
     }
- 
+    public function getSlotsNotIn($appointment_date)
+    {
+        $this->db->query("SELECT slot_Id as slotID , time as time FROM time_slot 
+                            where slot_Id not IN 
+                            (select slot_Id from appointment where appointment_date=:date) ;"); 
+        $this->db->bind(':date', $appointment_date);
+        $results = $this->db->resultset();
+        return $results;
+
+
+    }
     // new appointment
     public function addAppointment($data)
     {
@@ -58,19 +68,20 @@ class Appointment
         }
     }
 
-    public function login($email, $password){
+    public function login($email, $password)
+    {
         $this->db->query('SELECT * FROM user WHERE email = :email');
         $this->db->bind(':email', $email);
-  
+
         $row = $this->db->single();
-  
+
         $hashed_password = $row->password;
-        if(password_verify($password, $hashed_password)){
-          return $row;
+        if (password_verify($password, $hashed_password)) {
+            return $row;
         } else {
-          return false;
+            return false;
         }
-      }
+    }
     // Find user by email
     public function findUserByEmail($email)
     {

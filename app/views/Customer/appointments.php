@@ -34,7 +34,7 @@
 
                     </form>
                     <div class="div-btn">
-                        <a href="<?php echo URLROOT?>/appointments"><input  type="button" name="newAppointment"  class="add-new-btn" value="+ New Appointment"> </a>
+                        <a href="<?php echo URLROOT?>/appointments/AddAppointment"><input  type="button" name="newAppointment"  class="add-new-btn" value="+ New Appointment"> </a>
                     </div>
 
                 </div>
