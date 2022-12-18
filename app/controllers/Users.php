@@ -209,7 +209,7 @@ class Users extends Controller
 
         $verification_code = $this->userModel->register($data);
         if ($verification_code) {
-          if ((sendMail($data['email'], "registration", $verification_code, "VOGUE")))
+          sendMail($data['email'], "registration", $verification_code, "VOGUE");
             {
             flash('register', 'You are registered. Verify your email to log in', 'success');
             redirect('/Users');
