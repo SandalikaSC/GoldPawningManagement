@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif; 
+  /* font-family: "Poppins", sans-serif;  */
 }
 
  
@@ -119,8 +119,9 @@ input{
     background: #faf7e5;
 }
 span{
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     padding-left: 4%;
+    color: red;
 }
 .input:focus{
     border: #bb8a04 2px solid;
@@ -177,9 +178,9 @@ margin-left: 20% ;
     transform: scaleX(-1);
 }
 .button{
-    /* margin-top: 10%; */
+    margin-top: 10%;
     padding: 3%;
-    font-family: "Poppins", sans-serif; 
+    /* font-family: "Poppins", sans-serif;  */
 
     border: 1px #bb8a04 solid;
 }
@@ -187,6 +188,7 @@ margin-left: 20% ;
     background-color: #bb8a04;
     color: white;
     width: 42%;
+    border-radius: 20px;
     margin-left: 30%;
 }
 .button:hover{
@@ -213,4 +215,56 @@ margin-left: 20% ;
     display: flex;
     flex-direction: row; 
     
+}
+.hidden{
+    position: absolute;
+    width: 35%;
+    margin-left: 12%;
+    padding: 0.5%;
+}
+.col-names{
+    display: flex;
+    justify-content: space-around;
+}
+.app-div{
+    display: flex;
+    flex-direction: column;
+}
+.appointment-content{
+    /* border: 1px #bb8a04 solid; */
+    border-radius: 10px;
+    padding: 2%;
+    margin: 2%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.appointment-content:hover{
+     border: 1px #bb8a04 solid;
+}
+.cancel{
+    outline: none;
+    background: none;
+    border: 1px solid #bb8a04;
+    border-radius: 10px;
+    border-radius: 10px;
+    padding: 13% 35% 13% 35%;
+    color: gray;
+    cursor: pointer;
+} 
+th{
+    margin-left: 5%;    
+}
+td{
+    margin-left: 2%;    
+}
+.green{
+    color: #04bb29;
+}
+.red{
+    color: #dacaca;
+}
+.no-app{
+    border: 1px solid gray;
+    margin: auto;
+    padding: 15% 40% 20% 40%;
+    border-radius: 26px;
 }
