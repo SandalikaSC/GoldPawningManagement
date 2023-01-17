@@ -14,6 +14,18 @@ class appointments extends Controller
 
         public function index()
         {
+ 
+                // Init data
+                $data = [
+                        'email' => '',
+                        'password' => '',
+                        'email_err' => '',
+                        'password_err' => '',
+                ];
+                // Load view
+                // $this->view('pages/userLogin', $data);
+                $this->view('Customer/newAppointment');
+ 
                 $this->viewAppointments();
 
         }
@@ -134,8 +146,7 @@ class appointments extends Controller
                 }
         }
 
-        public function viewAppointments()
-        {
+        public function viewAppointments() {  
                 $result = $this->Model->getAppointmentById($_SESSION['user_id']);
                 $data = [
                         'appointments' => $result,
@@ -148,18 +159,17 @@ class appointments extends Controller
 
                 if (empty($result)) {
                         $data['appointments'] = (array) null;
-                }
+                } 
 
                 $this->view('Customer/appointments', $data);
                 
 
         }
-
-
+ 
         public function cancelAppointment($appId,$date)
         {
                
-                $result = $this->Model->cancelAppointment($appId);
+               $result = $this->Model->cancelAppointment($appId);
                 if ($result) {
                         flash('appointment', "Your appointment on '$date' cancelled", 'success');
 
@@ -168,8 +178,9 @@ class appointments extends Controller
 
                 }
                 redirect('/appointments');
+                
 
-        }
+        } 
         public function searchAppointment()
         {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -209,9 +220,8 @@ class appointments extends Controller
                         
                                 
                         $this->view('Customer/appointments', $data);
- 
-                } 
-                
+  
+                }  
         }
 }
 ?>

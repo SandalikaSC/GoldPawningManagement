@@ -44,6 +44,9 @@
                     </div>
 
                 </div>
+ 
+                <div class="middle"></div>
+ 
                 <?php if(empty($data['appointments'])):?>
                 <div class="no-app">No Appointments</div>
                 <?php else:?>
@@ -62,9 +65,13 @@
                     <tbody>
 
                         <?php foreach ($data['appointments'] as $appointment): ?>
+
+ 
                         <form action="<?php echo URLROOT ?>/appointments/cancelAppointment/<?php echo $appointment->Appointment_Id ?>/<?php echo $appointment->appointment_date ?>" method="" class="">
                             <tr class="col-names appointment-content">
                                 <td class="" name="<?php echo $appointment->Appointment_Id ?>" >
+ 
+
                                     <?php echo $appointment->Appointment_Id ?>
                                 </td>
                                 <td class="">
@@ -88,7 +95,7 @@
                         <?php endif ;?>
                     </tbody>
 
-                </table>
+                </table> 
                 <div class="bottom"></div>
             </div>
         </div>
