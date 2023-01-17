@@ -16,7 +16,9 @@
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
+
             <div class="inside-page">
+                <?php flash('appointment'); ?>
                 <div class="top">
                     <form class="form-search" action="<?php echo URLROOT ?>/appointments/searchAppointment" method="POST"> 
                             <label>From Date :</label>
@@ -31,19 +33,20 @@
                           
                         </div>
                         <div class="div-search">
-                            <input class="search-btn" value="Search" type="submit"> 
+                            <input class="search-btn" value="Search" type="submit">
                         </div>
 
 
                     </form>
                     <div class="div-btn">
-                        <a href="<?php echo URLROOT?>/appointments"><input  type="button" name="newAppointment"  class="add-new-btn" value="+ New Appointment"> </a>
+                        <a href="<?php echo URLROOT ?>/appointments/AddAppointment"><input type="button"
+                                name="newAppointment" class="add-new-btn" value="+ New Appointment"> </a>
                     </div>
 
                 </div>
-<<<<<<< Updated upstream
+ 
                 <div class="middle"></div>
-=======
+ 
                 <?php if(empty($data['appointments'])):?>
                 <div class="no-app">No Appointments</div>
                 <?php else:?>
@@ -62,9 +65,11 @@
                     <tbody>
 
                         <?php foreach ($data['appointments'] as $appointment): ?>
+ 
                         <form action="<?php echo URLROOT ?>/appointments/cancelAppointment/<?php echo $appointment->Appointment_Id ?>/<?php echo $appointment->appointment_date ?>" method="" class="">
                             <tr class="col-names appointment-content">
                                 <td class="" name="<?php echo $appointment->Appointment_Id ?>" >
+ 
                                     <?php echo $appointment->Appointment_Id ?>
                                 </td>
                                 <td class="">
@@ -88,8 +93,7 @@
                         <?php endif ;?>
                     </tbody>
 
-                </table>
->>>>>>> Stashed changes
+                </table> 
                 <div class="bottom"></div>
             </div>
         </div>

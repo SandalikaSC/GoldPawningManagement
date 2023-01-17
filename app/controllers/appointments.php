@@ -3,17 +3,18 @@ class appointments extends Controller
 {
 
         public function __construct()
-        { 
+        {
                 if (!isLoggedIn()) {
                         redirect('/Users');
                 }
-                $this->userModel = $this->model('appointment');
+                $this->Model = $this->model('Appointment');
+
         }
 
 
         public function index()
         {
-<<<<<<< Updated upstream
+ 
                 // Init data
                 $data = [
                         'email' => '',
@@ -24,7 +25,7 @@ class appointments extends Controller
                 // Load view
                 // $this->view('pages/userLogin', $data);
                 $this->view('Customer/newAppointment');
-=======
+ 
                 $this->viewAppointments();
 
         }
@@ -147,6 +148,7 @@ class appointments extends Controller
 
         public function viewAppointments()
         {
+ 
                 $result = $this->Model->getAppointmentById($_SESSION['user_id']);
                 $data = [
                         'appointments' => $result,
@@ -222,8 +224,35 @@ class appointments extends Controller
                         $this->view('Customer/appointments', $data);
  
                 } 
-                
->>>>>>> Stashed changes
+  
+
+                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel'])) {
+                        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
+                        // $result = $this->Model->getSlotsNotIn(trim($_POST['date']));
+
+                        $data = [];
+                } elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deupdatelete'])) {
+                        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
+                        // $result = $this->Model->getSlotsNotIn(trim($_POST['date']));
+
+                        $data = [];
+                } else {
+                        $result = $this->Model->getAppointmentById($_SESSION['user_id']); 
+                        $data = [
+                                'appointments' => $result
+                        ];
+                       
+                        if (empty($result)) {
+                                $data['appointments'] = (array) null;
+                        }
+
+                        $this->view('Customer/appointments', $data);
+                }
+ 
         }
 }
 ?>

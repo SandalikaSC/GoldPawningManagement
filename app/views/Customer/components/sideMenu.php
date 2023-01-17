@@ -24,7 +24,7 @@
             <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
             <p>My Locker</p>
         </a>
-        <a id="appointment"  class="dash-btn" href="<?php echo URLROOT; ?>/customerDashboard/appointment">
+        <a id="appointment"  class="dash-btn" href="<?php echo URLROOT; ?>/appointments/">
             <img id="appointment-Img" src="<?php echo URLROOT ?>/img/calender-white.png" alt="">
             <p >Appointments</p>
         </a>
