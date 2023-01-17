@@ -20,14 +20,17 @@
             <div class="inside-page">
                 <?php flash('appointment'); ?>
                 <div class="top">
-                    <form class="form-search" action="">
-                        <div class="date-div">
+                    <form class="form-search" action="<?php echo URLROOT ?>/appointments/searchAppointment" method="POST"> 
                             <label>From Date :</label>
-                            <input class="date-input" type="date" placeholder="From Date" name="fromdate">
-                        </div>
-                        <div class="date-div">
-                            <label>To Date :</label>
-                            <input class="date-input" type="date" placeholder="To Date" name="todate">
+                           <div class="date-div">
+                           <input  value="<?php echo $data['from'] ?>" class="date-input" type="date" placeholder="From Date" name="from">
+                            <span><?php echo $data['from_err'] ?></span>
+                           </div>  
+                            <label>To Date :</label> 
+                            <div class="date-div">
+                            <input value="<?php echo $data['to'] ?>" class="date-input" type="date" placeholder="To Date" name="to">
+                            <span><?php echo $data['to_err'] ?></span>
+                          
                         </div>
                         <div class="div-search">
                             <input class="search-btn" value="Search" type="submit">
@@ -59,9 +62,9 @@
                     <tbody>
 
                         <?php foreach ($data['appointments'] as $appointment): ?>
-                        <form action="" method="" class="">
+                        <form action="<?php echo URLROOT ?>/appointments/cancelAppointment/<?php echo $appointment->Appointment_Id ?>/<?php echo $appointment->appointment_date ?>" method="" class="">
                             <tr class="col-names appointment-content">
-                                <td class="">
+                                <td class="" name="<?php echo $appointment->Appointment_Id ?>" >
                                     <?php echo $appointment->Appointment_Id ?>
                                 </td>
                                 <td class="">

@@ -101,4 +101,35 @@ class Appointment
 
         return $results;
     }
+    public function cancelAppointment($appointmentId)
+    {
+        // Prepare Query
+        $this->db->query('DELETE FROM appointment WHERE Appointment_Id= :id');
+
+        // Bind Values
+        $this->db->bind(':id',$appointmentId);
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function getAppointmentFromTo($data)
+    {
+
+        $this->db->query("SELECT Appointment_Id,appointment_date,Status,time_slot.time as time, description as reason from appointment,reason,time_slot
+         where appointment.slot_ID=time_slot.slot_Id 
+         AND reason.reason_Id=appointment.reason_Id 
+         AND userId= :userid AND appointment_date BETWEEN (:from) AND (:to) ORDER BY Appointment_Id ;");
+
+        $this->db->bind(':from', $data['from']);
+        $this->db->bind(':to', $data['to']);
+        $this->db->bind(':userid', $_SESSION['user_id']);
+        $results = $this->db->resultset();
+
+        return $results;
+
+    }
 }
