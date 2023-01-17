@@ -9,13 +9,7 @@ class Users extends Controller
 
   public function index()
   {
-<<<<<<< Updated upstream
-    $this->view('pages/VogueLanding');
-    // $this->login();
-=======
-    // $this->login();
-    $this->view('pages/VogueLanding');
->>>>>>> Stashed changes
+    $this->login();
   }
 
 
@@ -232,11 +226,10 @@ class Users extends Controller
         // Register User
 
         $verification_code = $this->userModel->register($data);
- 
-        if ($verification_code) { 
+        if ($verification_code) {
           $status = sendMail($data['email'], "registration", $verification_code, "VOGUE");
-          if ($status) { 
-   
+          if ($status) {
+
             flash('register', 'You are registered. Verify your email to log in', 'success');
             redirect('/Users');
           } else {
