@@ -11,6 +11,7 @@
 .inside-page {
     display: flex;
     flex-direction: column;
+    font-family: "Poppins", sans-serif; 
 }
 /* top panel */
 .top { 
@@ -73,7 +74,16 @@ input{
 
 }
 
-
+.date-div{
+    display: flex;
+    flex-direction: column;
+}
+.date-div,span{
+    margin: auto;
+}
+.date-div,input{
+    margin-bottom: 2%;
+}
 
 
 
@@ -238,7 +248,7 @@ margin-left: 20% ;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .appointment-content:hover{
-     border: 1px #bb8a04 solid;
+     border: 3px #bb8a04 solid;
 }
 .cancel{
     outline: none;
@@ -250,6 +260,10 @@ margin-left: 20% ;
     color: gray;
     cursor: pointer;
 } 
+.cancel:hover{
+    background-color: #bb8a04;
+    color: white;
+}
 th{
     margin-left: 5%;    
 }
@@ -267,4 +281,8 @@ td{
     margin: auto;
     padding: 15% 40% 20% 40%;
     border-radius: 26px;
+}
+.span-container{
+    display: flex;
+    flex-direction: column;
 }
