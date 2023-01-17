@@ -3,12 +3,14 @@ class Users extends Controller
 {
   public function __construct()
   {
+
     $this->userModel = $this->model('Customer');
   }
 
   public function index()
   {
-    $this->login();
+    $this->view('pages/VogueLanding');
+    // $this->login();
   }
 
 
@@ -99,8 +101,7 @@ class Users extends Controller
         'lname_err' => '',
         'nic' => trim($_POST['nic']),
         'nic_err' => '',
-        'dob' => trim($_POST['dob']),
-        'dob_err' => '',
+        'dob' => '',
         'gender' => $_POST['gender'],
         'address1' => $_POST['line1'],
         'address2' => $_POST['line2'],
@@ -134,19 +135,24 @@ class Users extends Controller
         $data['lname_err'] = 'Invalid';
 
       }
+      $nicValid = $this->isNicValid($data['nic']);
       // Validate nic
       if (empty($data['nic'])) {
         $data['nic_err'] = 'Require field';
-      } else if (!preg_match('/^[0-9]{12}+$/', $data['nic'])) {
+      } else if (!$nicValid) {
         $data['nic_err'] = 'Invalid';
       }
       // Validate dob
-      $diff = abs(strtotime(date("Y-m-d")) - strtotime($data['dob']));
-      $years = floor($diff / (365*60*60*24));
-      if (empty($data['dob'])) {
-        $data['dob_err'] = 'Require field';
-      }else if($years<18){ 
-        $data['dob_err'] = '-You must be at least 18 years old to register.';
+      if ($nicValid) {
+        $data['dob'] = $this->CalculateDOB($data['nic']);
+        if (!$data['dob']) {
+          $data['nic_err'] = 'Invalid';
+        }
+      }
+      $diff = abs(strtotime($data['dob']) - strtotime(date("Y-m-d")));
+      $years = floor($diff / (365 * 60 * 60 * 24));
+      if (!empty($data['nic']) && $years < 18) {
+         $data['nic_err'] = '-You must be at least 18 years old to register.';
       }
       // Validate address
       if (empty($data['address1']) && empty($data['address2']) && empty($data['address3'])) {
@@ -161,16 +167,25 @@ class Users extends Controller
         $data['email_err'] = 'Require field';
       } else if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         $data['email_err'] = 'Invalid';
-      // } else if (!isValidEmail($data['email'])) { //check email deliverable or disposable one
-      //   $data['email_err'] = 'Invalid';
-      // 
-    } else {
+      } else if (!isValidEmail($data['email'])) { //check email deliverable or disposable one
+        $data['email_err'] = 'Invalid';
+
+      } else {
         // Check email
         if ($this->userModel->findUserByEmail($data['email'])) {
           $data['email_err'] = 'is already exist';
-
-
         }
+
+      }
+      if ($this->userModel->findUserByPhoneNo($data['mobile'], $data['home'])) {
+        $data['contact_err'] = 'is already exist';
+
+
+      }
+      if ($this->userModel->findUserByNic($data['nic'])) {
+        $data['nic_err'] = 'is already exist';
+
+
       }
 
       // Validate Password
@@ -213,9 +228,18 @@ class Users extends Controller
 
         $verification_code = $this->userModel->register($data);
         if ($verification_code) {
-          sendMail($data['email'], "registration", $verification_code, "VOGUE");
+ 
             {
+=======
+          $status = sendMail($data['email'], "registration", $verification_code, "VOGUE");
+          if ($status) {
+
+ 
             flash('register', 'You are registered. Verify your email to log in', 'success');
+            redirect('/Users');
+          } else {
+            $this->userModel->deleteUser($data['email']);
+            flash('register', 'Registration Failed Check your connection', 'invalid');
             redirect('/Users');
           }
         } else {
@@ -236,8 +260,6 @@ class Users extends Controller
         'lname_err' => '',
         'nic' => '',
         'nic_err' => '',
-        'dob' => '',
-        'dob_err' => '',
         'gender' => 'male',
         'address1' => '',
         'address2' => '',
@@ -258,6 +280,109 @@ class Users extends Controller
 
 
   }
+  public function CalculateDOB($nic)
+  {
+    $dayText = 0;
+    $year = "";
+    $month = "";
+    $day = "";
+    if (strlen($nic) == 10) {
+      $set = substr($nic, 0, 2);
+      $year = "19$set";
+      $dayText = substr($nic, 2, 3);
+    } else {
+      $year = substr($nic, 0, 4);
+      $dayText = substr($nic, 4, 3);
+    }
+    if ($dayText > 500) {
+      $dayText = $dayText - 500;
+    }
+    if ($dayText < 1 && $dayText > 366) {
+      return 0;
+    } else {
+
+      //Month
+      if ($dayText > 335) {
+        $day = $dayText - 335;
+        $month = "12";
+      } else if ($dayText > 305) {
+        $day = $dayText - 305;
+        $month = "11";
+      } else if ($dayText > 274) {
+        $day = $dayText - 274;
+        $month = "10";
+      } else if ($dayText > 244) {
+        $day = $dayText - 244;
+        $month = "09";
+      } else if ($dayText > 213) {
+        $day = $dayText - 213;
+        $month = "08";
+      } else if ($dayText > 182) {
+        $day = $dayText - 182;
+        $month = "07";
+      } else if ($dayText > 152) {
+        $day = $dayText - 152;
+        $month = "06";
+      } else if ($dayText > 121) {
+        $day = $dayText - 121;
+        $month = "05";
+      } else if ($dayText > 91) {
+        $day = $dayText - 91;
+        $month = "04";
+      } else if ($dayText > 60) {
+        $day = $dayText - 60;
+        $month = "03";
+      } else if ($dayText < 32) {
+        $month = "01";
+        $day = $dayText;
+      } else if ($dayText > 31) {
+        $day = $dayText - 31;
+        $month = "02";
+      }
+      return "$year-$month-$day";
+
+    }
+  }
+
+  public function isNicValid($nic)
+  {
+    $result = true;
+    if ($nic == "") {
+      $result = false;
+    } else {
+      if (strlen($nic) == 10) {
+
+        $nic_9 = substr($nic, 0, 9);
+
+        if (!is_numeric($nic_9)) {
+
+          $result = false;
+        }
+
+        $nic_v = substr($nic, 9, 1);
+        if (!(strtoupper($nic_v) == "V")) {
+
+          $result = false;
+        }
+      } else if (strlen($nic) == 12) {
+        // $nic_12 = substr($nic, 0, 11);
+
+        if (!is_numeric($nic)) {
+
+          $result = false;
+        }
+      } else {
+
+        $result = false;
+      }
+    }
+
+    return $result;
+
+  }
+
+
+
   public function emailVerify($verification_Code)
   {
     $data = [
@@ -280,10 +405,14 @@ class Users extends Controller
     $_SESSION['user_id'] = $user->UserId;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
+    $_SESSION['user_fname'] = $user->First_Name;
+    $_SESSION['user_lname'] = $user->Last_Name;
+    $_SESSION['user_phone'] = $user->Last_Name;
+    $_SESSION['image'] = $user->image;
     switch ($user->type) {
       case "Customer":
         if ($user->verification_status === "1") {
-          $this->view('Customer/customerDash');
+          redirect('/customerDashboard/dashboard');
         } else {
           flash('register', 'Your email has not been validated', 'invalid');
           redirect('/Users');

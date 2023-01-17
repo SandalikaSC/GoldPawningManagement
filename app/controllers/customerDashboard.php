@@ -6,18 +6,23 @@ class customerDashboard extends Controller
                 if (!isLoggedIn()) {
                         redirect('/Users');
                 }
+                $this->Model = $this->model('Appointment');
         }
 
         public function dashboard()
         {
-                $data = [];
-                $this->view('Customer/customerDash');
+                $result = $this->Model->getAppointmentById($_SESSION['user_id']);
+                $data = [
+                        'appointments' => $result
+
+                ];
+
+                if (empty($result)) {
+                        $data['appointments'] = (array) null;
+                }
+                $this->view('Customer/customerDash', $data);
         }
-        public function appointment()
-        {
-                $data = [];
-                $this->view('Customer/appointments');
-        }
+
         public function locker()
         {
                 $data = [];
@@ -30,8 +35,11 @@ class customerDashboard extends Controller
         }
         public function ContactUs()
         {
-                $data = [];
-                $this->view('Customer/ContactUs');
+                $data = [
+                        'compalint' => '',
+                        'compalint_err' => ''
+                ];
+                $this->view('Customer/ContactUs', $data);
         }
         public function About()
         {

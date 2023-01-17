@@ -1,0 +1,66 @@
+.locker-page{
+    display: flex; 
+}
+
+.jewellery-card{
+    background-color: white;
+    width: 20%;
+    /* height: 400px; */
+    padding: 2%;
+    border: solid 3px #bb8a04;
+    border-radius: 20px;
+    margin-left: 5%;
+}
+
+.jw-img{
+    width:100%;
+    border-radius: 10px;
+}
+
+.jw-details{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+}
+.jw-date-name{
+    display: flex;
+    justify-content: space-between; 
+}
+.jw-date{
+   
+    margin-bottom: 5%;
+}
+.status-pending{
+    color:#bb8a04 ;
+}
+.status-overdue{
+    color:red ;
+}
+
+
+.jw-status{
+    display: flex;
+    gap: 50%;
+    margin-bottom: 5%;
+}
+
+.jw-dt{
+    color:rgb(158, 158, 158);
+    font-weight:400;
+}
+
+.jw-st{
+    color:rgb(168, 168, 62);
+    font-weight:600;
+}
+
+.v-btn {
+    border: solid 1px #bb8a04;
+    color: white;
+    background-color: #bb8a04;
+    padding: 5% 15% 5% 15%; 
+    cursor: pointer; 
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 4%;
+}

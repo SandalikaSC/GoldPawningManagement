@@ -14,6 +14,18 @@ class appointments extends Controller
 
         public function index()
         {
+ 
+                // Init data
+                $data = [
+                        'email' => '',
+                        'password' => '',
+                        'email_err' => '',
+                        'password_err' => '',
+                ];
+                // Load view
+                // $this->view('pages/userLogin', $data);
+                $this->view('Customer/newAppointment');
+ 
                 $this->viewAppointments();
 
         }
@@ -136,6 +148,83 @@ class appointments extends Controller
 
         public function viewAppointments()
         {
+ 
+                $result = $this->Model->getAppointmentById($_SESSION['user_id']);
+                $data = [
+                        'appointments' => $result,
+                        'from' => '',
+                        'from_err' => '',
+                        'to' => '',
+                        'to_err' => ''
+               
+                ];
+
+                if (empty($result)) {
+                        $data['appointments'] = (array) null;
+                }
+
+                $this->view('Customer/appointments', $data);
+                
+
+        }
+
+
+        public function cancelAppointment($appId,$date)
+        {
+               
+                $result = $this->Model->cancelAppointment($appId);
+                if ($result) {
+                        flash('appointment', "Your appointment on '$date' cancelled", 'success');
+
+                } else {
+                        flash('appointment', 'Something went wrong. Try Again.', 'invalid');
+
+                }
+                redirect('/appointments');
+
+        }
+        public function searchAppointment()
+        {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        // Process form
+                        // Sanitize POST data
+                        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                
+                        $data = [
+                                'appointments' =>(array) null,
+                                'from' => trim($_POST['from']),
+                                'from_err' => '',
+                                'to' => trim($_POST['to']),
+                                'to_err' => ''
+                        ];
+                          //from date valodation
+                        if (empty($data['from'])) {
+                                $data['from_err'] = 'Required field';
+                        }
+                        //to date valodation
+                        if (empty($data['to'])) {
+                                $data['to_err'] = 'Required field';
+                        }
+                        //date difference validation
+                        if(!empty($data['to']) && !empty($data['from'])){
+                                $difference = strtotime($data['to']) - strtotime($data['from']);
+                                if ($difference<0) {
+                                        $data['to_err'] = 'Invalid Date Selection';
+                                }
+                        }
+                        if(empty($data['to_err']) && empty($data['from_err'])){
+                                $result = $this->Model->getAppointmentFromTo($data);  
+                                if (!empty($result)) { 
+                                
+                                        $data['appointments'] = $result;
+                                } 
+                        }
+                        
+                                
+                        $this->view('Customer/appointments', $data);
+ 
+                } 
+  
 
                 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel'])) {
                         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -163,7 +252,7 @@ class appointments extends Controller
 
                         $this->view('Customer/appointments', $data);
                 }
-
+ 
         }
 }
 ?>

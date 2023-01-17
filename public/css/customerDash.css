@@ -12,8 +12,7 @@ body{
 }
 
 .page{
-    display:flex;
-    width: 100%;
+    display:flex; 
     height:100vh;
 }
 
@@ -169,5 +168,124 @@ hr{
      }
 }
 
+
+
+
+
+
+.inside-page{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.top{
+    display: flex; 
+    
+    justify-content: space-evenly;
+} 
     
     
+
+
+ .col1{
+    display: flex; 
+} 
+.col3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gold-rate-card{
+    display: flex;
+    align-items: center;
+    /* max-width: 300px; */
+    border: 2px solid #c39823;
+    border-radius: 10px;
+    /* background-color: #FFE499; */
+    /* padding: 20px; */
+    margin: 40px;
+}
+
+.col3 .loan-interest{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    padding: 20px; 
+    border: 2px solid #c39823;
+    border-radius: 100%;
+    background-color: #FFE499;
+}
+
+.gold-rate-card label{
+    font-size: large;
+    font-weight: 600;
+    padding: 0 10px;
+    border-right: 4px solid #c39823;
+}
+
+.gold-rate-card p{
+    font-size: large;
+    font-weight: 600;
+    padding: 5px 10px;
+}
+
+.loan-interest label{
+    font-size: large;
+    font-weight: 600;
+    
+}
+
+.loan-interest p{
+    font-size: large;
+    font-weight: 600; 
+}
+.bottom{
+    display: flex;
+    justify-content: space-between;
+
+}
+.bottom-left{ 
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+}
+.bottom-right{
+  
+    display: flex;
+    flex-direction: column;
+}
+.dash-pic{
+    /* margin: auto; */
+    width: 30%;
+    margin: auto;
+    width: 30%;
+    position: absolute;
+    padding: 3%;
+    margin-top: 5%;
+}
+.appointment{
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    /* border: gray 1px solid; */
+    display: flex;
+    justify-content: space-around;
+    padding: 5%;
+    margin: 5%;
+    border-radius: 20px;
+}
+.quote{
+    padding-left: 16%;
+}
+.appointment-title{
+    margin-top: 5%;
+}
+.no-app{
+    padding: 20% 40%;
+    border-radius: 20px; 
+    margin-top: 2%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+
+} 

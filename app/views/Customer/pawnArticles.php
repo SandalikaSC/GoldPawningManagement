@@ -1,6 +1,6 @@
-<?php require APPROOT."/views/inc/header.php"?>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/pawnArticles.css'> -->
-    <title>Vogue | Pawn Articles</title>
+<?php require APPROOT . "/views/inc/header.php" ?>
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/pawnArticles.css'>
+<title>Vogue | Pawn Articles</title>
 </head>
 
 <body>
@@ -16,9 +16,55 @@
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
-            <div class="inside-page">
-               
+            <div class="pawn-page">
+                <div class="jewellery-card">
+                    <div class="jewellery-img">
+                        <img class="jw-img" src="<?php echo URLROOT ?>/img/images.jpg">
+                    </div>
+                    <div class="jw-details">
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Due Date</label>
+                                <label class="jw-dt">2023/11/03</label>
+                            </div>
+
+                        </div>
+                        <div class="jw-date-name">
+
+                            <label>Status</label>
+                            <label class="status-pending">Pending</label>
+                        </div>
+
+                         
+                            <button class="v-btn">View</button>
+                         
+                    </div>
+                </div>
+                <div class="jewellery-card">
+                    <div class="jewellery-img">
+                        <img class="jw-img" src="<?php echo URLROOT ?>/img/images.jpg">
+                    </div>
+                    <div class="jw-details">
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Due Date</label>
+                                <label class="jw-dt">2023/11/03</label>
+                            </div>
+
+                        </div>
+                        <div class="jw-date-name">
+
+                            <label>Status</label>
+                            <label class="status-overdue">Overdue</label>
+                        </div>
+
+                       
+                            <button class="v-btn">View</button>
+                        
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <?php require APPROOT."/views/inc/footer.php"?>
+        <?php require APPROOT . "/views/inc/footer.php" ?>
