@@ -41,10 +41,10 @@
             <span class="<?php echo (!empty($data['nic_err'])) ? 'invalid-feedback' : 'span'; ?>">NIC</span>
             <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span>
             <br>
-            <label for="dob" class="label">Date of Birth</label><span class="span require">*</span><br>
+            <!-- <label for="dob" class="label">Date of Birth</label><span class="span require">*</span><br>
             <input type="date" id="dob" name="dob" class="input <?php echo (!empty($data['dob_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['dob']; ?>"><br>
             <span class="<?php echo (!empty($data['dob_err'])) ? 'invalid-feedback' : 'span'; ?>">date of birth</span>
-            <span class="invalid-feedback"><?php echo $data['dob_err']; ?></span><br>
+            <span class="invalid-feedback"><?php echo $data['dob_err']; ?></span><br> -->
 
             <label for="gender" class="label">Gender</label><span class="span require">*</span><br>
 
@@ -102,7 +102,7 @@
             
             <br>
             <input type="submit" name="signup" value="SignUp" class="btn"><br>
-            <div><label class="label">Alredy Have an Account? <a href="<?php echo URLROOT?>/Users/index">Login</a></label>
+            <div><label class="label">Alredy Have an Account? <a href="<?php echo URLROOT?>/Users/login">Login</a></label>
             </div>
         </form>
     </div>

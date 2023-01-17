@@ -57,9 +57,11 @@ function sendMail($receiver, $email_Type, $code, $name)
 
 
         $mail->send();
+        return 1;
         // echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        return 0;
     }
 }
 

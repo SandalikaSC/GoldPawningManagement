@@ -17,10 +17,10 @@ class Customer
         $this->db->query('UPDATE user SET verification_status="1" where verification_status=:verification_status;');
         $this->db->bind(':verification_status', $verification_code);
         //Registration  verified successfully
-        if ($this->db->execute()){
-            
+        if ($this->db->execute()) {
+
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -33,9 +33,9 @@ class Customer
 
 
         if (empty($result)) {
-           
-                    return 'CU000';
-                   
+
+            return 'CU000';
+
         } else {
             return $result->UserID;
         }
@@ -52,7 +52,7 @@ class Customer
         :Last_Name,:NIC,:Gender,:DOB,:Line1,:Line2,:Line3,:Status)');
         // Bind values
 
-        $this->db->bind(':UserId', $userid );
+        $this->db->bind(':UserId', $userid);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':type', "Customer");
@@ -71,7 +71,7 @@ class Customer
 
         // Execute
         if ($this->db->execute()) {
-           
+
             if (!empty($data['home'])) {
                 $this->db->query('INSERT INTO phone(UserId,Phone) VALUES (:userId,:mobile),(:userId,:home);');
                 $this->db->bind(':userId', $userid);
@@ -123,6 +123,74 @@ class Customer
             return false;
         }
     }
+    public function findUserByPhoneNo($mobile,$home)
+    {
+        $this->db->query('SELECT * FROM phone WHERE phone = :mobile OR phone = :home');
+        // Bind value
+        $this->db->bind(':mobile', $mobile);
+        $this->db->bind(':home', $home);
+
+        $row = $this->db->single();
+
+        // Check row
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function findUserIDByEmail($email)
+    {
+        $this->db->query('SELECT UserId FROM user WHERE email = :email');
+        // Bind value
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+
+        // Check row
+        if ($this->db->rowCount() > 0) {
+            return $row->UserId;
+        } else {
+            return false;
+        }
+    }
+    public function findUserByNic($nic)
+    {
+        $this->db->query('SELECT UserId FROM user WHERE NIC = :nic');
+        // Bind value
+        $this->db->bind(':nic', $nic);
+
+        $row = $this->db->single();
+
+        // Check row
+        if ($this->db->rowCount() > 0) {
+            return $row->UserId;
+        } else {
+            return false;
+        }
+    }
+    public function deleteUser($email)
+    {
+        $userid = $this->findUserIDByEmail($email);
+        // Prepare Query
+        $this->db->query('DELETE FROM phone WHERE userId= :id');
+        // Bind Values
+        $this->db->bind(':id', $userid);
+        //Execute
+        if ($this->db->execute()) {
+
+            $this->db->query("DELETE FROM user WHERE UserId= :id");
+            $this->db->bind(':id', $userid);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
 
 
+    }
 }

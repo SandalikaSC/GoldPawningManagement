@@ -3,7 +3,7 @@
     <div class="profile">
         <div class="profile-pic">
             <a href="<?php echo URLROOT ?>editprofile/viewEditProfile"><img class="profileImg"
-                    src="<?php echo URLROOT ?>/img/image 1.png" alt=""></a>
+                    src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "/public/img/image 1.png";} ?>" alt=""></a>
         </div>
         <div class="name">
             <p class="profile_name">

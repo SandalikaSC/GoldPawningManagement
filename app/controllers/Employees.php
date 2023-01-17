@@ -3,6 +3,9 @@ class Employees extends Controller
 {
   public function __construct()
   {
+    if (!isLoggedIn()) {
+      redirect('/Users');
+}
     $this->userModel = $this->model('Customer');
   }
 
