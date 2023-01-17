@@ -141,7 +141,7 @@ span{
 /* border: #bb8a04 1px solid; */
 }
 .back{
-    width: 40px;
+    width: 40px; 
 } 
 .selector{
     position:relative; 
@@ -248,7 +248,8 @@ margin-left: 20% ;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .appointment-content:hover{
-     border: 3px #bb8a04 solid;
+ 
+     border: 3px #bb8a04 solid; 
 }
 .cancel{
     outline: none;
@@ -259,6 +260,10 @@ margin-left: 20% ;
     padding: 13% 35% 13% 35%;
     color: gray;
     cursor: pointer;
+}  
+.cancel:hover{
+    background-color: #bb8a04;
+    color: white;
 } 
 .cancel:hover{
     background-color: #bb8a04;
@@ -281,8 +286,10 @@ td{
     margin: auto;
     padding: 15% 40% 20% 40%;
     border-radius: 26px;
+ 
 }
 .span-container{
     display: flex;
     flex-direction: column;
+ 
 }

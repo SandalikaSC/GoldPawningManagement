@@ -14,6 +14,18 @@ class appointments extends Controller
 
         public function index()
         {
+ 
+                // Init data
+                $data = [
+                        'email' => '',
+                        'password' => '',
+                        'email_err' => '',
+                        'password_err' => '',
+                ];
+                // Load view
+                // $this->view('pages/userLogin', $data);
+                $this->view('Customer/newAppointment');
+ 
                 $this->viewAppointments();
 
         }
@@ -135,7 +147,8 @@ class appointments extends Controller
         }
 
         public function viewAppointments()
-        {
+        { 
+ 
                 $result = $this->Model->getAppointmentById($_SESSION['user_id']);
                 $data = [
                         'appointments' => $result,
@@ -149,6 +162,7 @@ class appointments extends Controller
                 if (empty($result)) {
                         $data['appointments'] = (array) null;
                 }
+
 
                 $this->view('Customer/appointments', $data);
                 
@@ -210,8 +224,10 @@ class appointments extends Controller
                                 
                         $this->view('Customer/appointments', $data);
  
+ 
                 } 
                 
+ 
         }
 }
 ?>
