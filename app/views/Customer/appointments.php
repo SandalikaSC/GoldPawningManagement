@@ -65,11 +65,13 @@
                     <tbody>
 
                         <?php foreach ($data['appointments'] as $appointment): ?>
+
  
                         <form action="<?php echo URLROOT ?>/appointments/cancelAppointment/<?php echo $appointment->Appointment_Id ?>/<?php echo $appointment->appointment_date ?>" method="" class="">
                             <tr class="col-names appointment-content">
                                 <td class="" name="<?php echo $appointment->Appointment_Id ?>" >
  
+
                                     <?php echo $appointment->Appointment_Id ?>
                                 </td>
                                 <td class="">

@@ -131,8 +131,7 @@ class Appointment
 
         return $results;
 
-    }
- 
+    } 
     public function cancelAppointment($appointmentId)
     {
         // Prepare Query
@@ -163,5 +162,6 @@ class Appointment
 
         return $results;
 
-    } 
+ 
+    }  
 }
