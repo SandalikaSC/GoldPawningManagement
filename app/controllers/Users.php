@@ -9,8 +9,13 @@ class Users extends Controller
 
   public function index()
   {
+<<<<<<< Updated upstream
     $this->view('pages/VogueLanding');
     // $this->login();
+=======
+    // $this->login();
+    $this->view('pages/VogueLanding');
+>>>>>>> Stashed changes
   }
 
 
