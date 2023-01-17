@@ -147,7 +147,7 @@ class appointments extends Controller
         }
 
         public function viewAppointments()
-        {
+        { 
  
                 $result = $this->Model->getAppointmentById($_SESSION['user_id']);
                 $data = [
@@ -162,6 +162,7 @@ class appointments extends Controller
                 if (empty($result)) {
                         $data['appointments'] = (array) null;
                 }
+
 
                 $this->view('Customer/appointments', $data);
                 
@@ -223,35 +224,9 @@ class appointments extends Controller
                                 
                         $this->view('Customer/appointments', $data);
  
+ 
                 } 
-  
-
-                if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel'])) {
-                        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-
-                        // $result = $this->Model->getSlotsNotIn(trim($_POST['date']));
-
-                        $data = [];
-                } elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['deupdatelete'])) {
-                        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-
-                        // $result = $this->Model->getSlotsNotIn(trim($_POST['date']));
-
-                        $data = [];
-                } else {
-                        $result = $this->Model->getAppointmentById($_SESSION['user_id']); 
-                        $data = [
-                                'appointments' => $result
-                        ];
-                       
-                        if (empty($result)) {
-                                $data['appointments'] = (array) null;
-                        }
-
-                        $this->view('Customer/appointments', $data);
-                }
+                
  
         }
 }

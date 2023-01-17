@@ -249,7 +249,7 @@ margin-left: 20% ;
 }
 .appointment-content:hover{
  
-     border: 1px #bb8a04 solid; 
+     border: 3px #bb8a04 solid; 
 }
 .cancel{
     outline: none;
@@ -265,6 +265,10 @@ margin-left: 20% ;
     background-color: #bb8a04;
     color: white;
 } 
+.cancel:hover{
+    background-color: #bb8a04;
+    color: white;
+}
 th{
     margin-left: 5%;    
 }
@@ -286,5 +290,6 @@ td{
 }
 .span-container{
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+ 
 }
