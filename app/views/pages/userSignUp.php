@@ -102,7 +102,7 @@
             
             <br>
             <input type="submit" name="signup" value="SignUp" class="btn"><br>
-            <div><label class="label">Alredy Have an Account? <a href="<?php echo URLROOT?>/Users/login">Login</a></label>
+            <div><label class="label">Alredy Have an Account? <a href="<?php echo URLROOT?>/Users/index">Login</a></label>
             </div>
         </form>
     </div>
