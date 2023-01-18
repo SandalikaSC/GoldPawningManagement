@@ -9,7 +9,8 @@ class Users extends Controller
 
   public function index()
   {
-    $this->login();
+    // $this->login();
+    $this->view('pages/VogueLanding');
   }
 
 
