@@ -52,7 +52,7 @@
                 </a>
             </div>
             <div class="lgout">
-                <a href="<?php echo URLROOT ?>/mgLogout">Logout</a>
+                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
             </div>
         </div>
         <div class="right">
@@ -71,21 +71,21 @@
                     <div class="gold-rates">
                         <div class="col1">
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[0]->Karatage ?>K</label>
+                                <label><?php echo $data[0]->Karatage ?>K</label>
                                 <p><?php echo $data[0]->Price ?></p>
                             </div>
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[1]->Karatage ?>K</label>
+                                <label><?php echo $data[1]->Karatage ?>K</label>
                                 <p><?php echo $data[1]->Price ?></p>
                             </div>
                         </div>
                         <div class="col2">
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[2]->Karatage ?>K</label>
+                                <label><?php echo $data[2]->Karatage ?>K</label>
                                 <p><?php echo $data[2]->Price ?></p>
                             </div>
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[3]->Karatage ?>K</label>
+                                <label><?php echo $data[3]->Karatage ?>K</label>
                                 <p><?php echo $data[3]->Price ?></p>
                             </div>
                         </div>

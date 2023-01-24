@@ -129,7 +129,7 @@ class staffModel extends Database
         
         $this->bind(14, $image);
         $this->bind(15, 1);
-        $this->bind(16, $_SESSION['userid']);
+        $this->bind(16,$_SESSION['user_id']);
         $result=$this->execute();
         if ($result) {
               $result1='';
@@ -163,8 +163,6 @@ class staffModel extends Database
 
     public function viewStaffMember($id)
     {
-        // $sql = "select user.UserID, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date, phone.Phone1 from user inner join phone on user.UserID=phone.UserID where user.UserID=?";
-
         $sql=" select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
         $this->query($sql);
         $this->bind(1, $id);
@@ -174,46 +172,21 @@ class staffModel extends Database
     }
 
     public function deleteStaffMember($id)
-    {
-        // $sql="delete from user where UserID=?";
-        // $this->query($sql);
-        // $this->bind(1, $id);
-        // $result = $this->single();
-        
-        // $sql2 = "delete from phone where UserID= ?";
-        // $this->query($sql2);
-        // $this->bind(1,$id);
-        // $result1=$this->single();
-        
-        // $this->query($sql2);
-        // $this->bind(1,$id);
-        // $result3=$this->single();
-        
-        // return $result and $result1 and $result3;
+    {  
+        $sql2 = "delete from phone where userId= ?";
+        $this->query($sql2);
+        $this->bind(1, $id);
+        $result2 = $this->execute();
         
         $sql="delete from user where UserId=?";
         $this->query($sql);
         $this->bind(1, $id);
         $result1 = $this->execute();
         
-        $sql2 = "delete from phone where userId= ?";
-        $this->query($sql2);
-        $this->bind(1, $id);
-        $result2 = $this->execute();
 
         return $result1 and $result2;
    }
     
-
-
-    // public function setLastSeen($last_seen,$email){
-    //     $sql = "insert into user (Last_Seen) values (?) where email=? ";
-    //     $this->query($sql);
-    //     $this->bind(1, $last_seen);
-    //     $this->bind(2,$email);
-    //     $result = $this->execute();
-    //     return $result;
-    // }
 
     public function loadProfilePicture($email)
     {
