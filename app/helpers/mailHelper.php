@@ -30,6 +30,11 @@ function sendMail($receiver, $email_Type, $code, $name)
                 $mail->Body    = "here is the password for your employee account $code";
                 $mail->addAddress($receiver, $name);
                 break;
+            case "customer_reg":
+                $mail->Subject = "VOGUE Customer Registration";
+                $mail->Body    = "Here is the password for your customer account: <b>$code</b>";
+                $mail->addAddress($receiver, $name);
+                break;
             default:
                 # code...
                 break;
