@@ -193,4 +193,71 @@ class Customer
 
 
     }
+
+
+
+
+    // ------------pawning officer----------------------
+
+    
+        // Register customer
+        public function registerCustomer($data) {          
+            $userid = $this->getLastUserId("Customer");
+            ++$userid;
+
+            $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT);
+
+            $this->db->query('INSERT INTO user (UserId, First_Name, Last_Name, email, password, type, verification_status, NIC, DOB, Gender, Line1, Line2, Line3, Status, Created_By) 
+                              VALUES(:userid, :first_name, :last_name, :email, :password, :type, :verification_status, :nic, :dob, :gender, :line1, :line2, :line3, :status, :created_by)');
+            
+            // Bind values
+            $this->db->bind(':userid', $userid);
+            $this->db->bind(':first_name', $data['first_name']);
+            $this->db->bind(':last_name', $data['last_name']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':line1', $data['line1']);
+            $this->db->bind(':line2', $data['line2']);
+            $this->db->bind(':line3', $data['line3']);
+            $this->db->bind(':nic', $data['nic']);
+            $this->db->bind(':dob', $data['dob']);
+            $this->db->bind(':gender', $data['gender']);
+            $this->db->bind(':type', "Customer");
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':verification_status', 0);
+            $this->db->bind(':password', $hashed_password);
+            $this->db->bind(':status', 0);
+            $this->db->bind(':created_by', $data['created_by']);
+
+            if ($this->db->execute()) {
+                $this->db->query('INSERT INTO phone (userId, Phone) VALUES (:userId, :phone);');
+                $this->db->bind(':userId', $userid);
+                $this->db->bind(':phone', $data['phone']);
+
+                if ($this->db->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        public function getCustomerById($id) {
+            $this->db->query('SELECT * FROM user INNER JOIN phone ON user.UserId=phone.userId WHERE user.UserId = :id');
+            $this->db->bind(':id', $id);
+
+            $row = $this->db->single();
+
+            return $row;
+        }  
+
+
+        public function getCustomer() {
+            $this->db->query('SELECT * FROM user INNER JOIN phone ON user.UserId=phone.userId WHERE user.type = "Customer"');
+
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
 }

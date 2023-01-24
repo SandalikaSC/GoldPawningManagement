@@ -14,7 +14,7 @@
             <div class="btns">
                 <button href="url" class="otpbtn">Send OTP</button>
                 <button type="submit" id="okbtn" class="okbtn">OK</button>
-                <a href="<?php echo URLROOT ?>/mgEditProfile"><button type="button" id="cancel" class="canbtn">Cancel</button></a>
+                <button type="button" id="cancel" class="canbtn">Cancel</button>
             </div>
         </div>
 
