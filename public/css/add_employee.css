@@ -1,0 +1,459 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font:bold;
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    display: flex;
+    overflow-y: hidden;
+}
+
+.page{
+    display:flex;
+    width: 100%;
+    height:100vh;
+}
+
+
+/* with respect to the side bar */
+.left{
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 20px 10px;
+    border-radius: 0 25px 25px 0;
+    position: relative;
+    transition: all 0.7s ease;
+    overflow-y: hidden;
+    z-index: 7;
+}
+
+.hide{
+   display: none;
+}
+
+
+
+.profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile p{
+    padding-top: 10px;
+}
+
+.page .left .profile .profile-pic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page .left .profile .profile-pic img{
+    width:100px;
+    height:100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile .name{
+    color: white ;
+}
+
+
+
+.btn-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+.btn-set p{
+    color: white;
+}
+
+.btn-set .staf p{
+    
+    color: #BB8A04;
+}
+
+.btn-set .staf{
+    border: 2px solid #BB8A04;
+    background-color: white;
+}
+
+.btn-set a{
+    padding: 10px 20px;
+    background-color: #212121;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.btn-set a img{
+    width:40px;
+    padding-right: 15px;
+}
+
+.btn-set a:hover{
+    opacity: 0.5;
+}
+
+
+
+.left .lgout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left .lgout a{
+    text-decoration: none;
+    font: bold;
+    color: #BB8A04;
+    font-size: large;
+    border: 2px solid #BB8A04;
+    padding: 5px 50px;
+    border-radius: 20px;
+}
+
+/*  */
+
+
+.right{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    position:relative;
+}
+
+.right-heading{
+    padding: 15px 15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    position: sticky;
+    top: 0; 
+    background-color: rgba(255, 255, 255, 0.669);
+    backdrop-filter: blur(15px);
+    z-index: 8;
+}
+
+.right-side h1{
+    border-bottom: 2px solid #BB8A04;
+    margin: 0 20px;
+}
+
+.right-side .backbtn img{
+    height: 40px;
+    width:50px;
+ }
+
+@keyframes logo {
+    0%   {transform: rotateY(0);}
+    50%  {transform: rotateY(360deg);}
+    100%  {transform: rotateY(0);}
+}
+
+.vogue {
+    animation-name: logo;
+    animation-duration:18s;
+    width: 200px;
+    animation-iteration-count: infinite;
+}
+
+.right-side{
+    display: flex;
+}
+
+::placeholder{
+    color:#000000;
+}
+
+.bars img{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.bars{
+    z-index: 100;
+    cursor: pointer;
+}
+
+
+    
+/* with respect to the form */
+.section_left{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px 0;
+    flex-wrap: wrap;
+  
+  }
+  
+  
+  .big-form{
+      display: flex;
+      flex-direction: column;
+      border: 2px solid #B47D00;
+      border-radius: 20px;
+      position: relative;
+      padding:80px 10px 50px;
+      margin-bottom: 10px;
+      margin-top: 75px;
+  }
+  
+  .big-form img{
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 2px solid #B47D00;
+      border-radius: 50%;
+      position: absolute;
+      /* z-index: 20; */
+      z-index: 2;
+
+      left: 220px;
+      top: -80px;
+  }
+
+  
+  .roles{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 2px solid #B47D00;
+      border-radius: 20px;
+      padding:50px;
+      margin: auto;
+  }
+  
+  
+  .role{
+      display: flex;
+      padding: 10px;
+  }
+  
+  .roles .role input{
+      margin-right: 5px;
+  }
+  
+  .section_right{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+  
+  .form-group{
+      display: flex;
+      flex-wrap: wrap;
+      margin: 5px 70px;
+      justify-content: space-between;
+      align-items: center;
+  }
+  
+  .form-group input, .form-group select {
+      padding: 7px;
+      background-color: #EFE9C7;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      margin-left: 50px;
+      width: 250px;
+  }
+
+
+  .form-group input:focus, .form-group select:focus{
+      outline: none;
+  }
+  
+  .two-btns{
+      display: flex;
+      flex-wrap: wrap;
+  }
+  
+  .two-btns .cancelbtn{
+      font-weight: 500;
+      font-size: large;
+      margin: 10px 10px 150px 10px;
+      padding: 5px 65px;
+      background-color: rgba(128, 128, 128, 0.272);
+      color: black;
+      border: 4px solid #B47D00;
+      border-radius: 20px;
+      text-decoration: none;
+  }
+  
+  .two-btns .registerbtn{
+      font-weight: 500;
+      font-size: large;
+      margin: 10px 10px 150px 10px;
+      padding: 5px 60px;
+      background-color: #B47D00;
+      border-radius: 20px;
+      border: 4px solid #B47D00;
+      color: white;
+  }
+  
+  @media screen and (max-width:849px) {
+    .big-form{
+          padding:70px 5px 50px;
+          margin-top: 100px;
+      }
+
+      .form-group{
+        margin: 5px 50px;
+      }
+
+      .roles{
+        padding:20px
+      }
+
+       .big-form img{
+        left: 190px;
+        top: -90px;
+      }
+  }
+
+  @media screen and (max-width:795px){
+    .form-group{
+        margin: 5px 30px;
+      }
+
+    .big-form img{
+        left: 170px;
+        top: -90px;
+      }
+  }
+
+  
+
+  @media screen and (max-width:758px) {
+
+    .vogue {
+        animation: none;
+        width: 100px;
+    }
+    .right-side h1{
+        font-size: medium;
+        margin: 0 10px ;
+    }
+
+    .right-side .backbtn img{
+        height: 30px;
+        width:40px;
+     }
+
+     
+    .bars img{
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+  
+    .big-form img{
+        left: 100px;
+        top: -90px;
+    }
+     
+    
+    .big-form .form-group{
+          margin: 5px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+  }
+  
+  
+  @media screen and (max-width:675px) {
+        .two-btns{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       }
+  }
+
+  @media screen and (max-width:615px) {
+        .left{
+        width: 250px;
+        z-index: 60;
+        position: absolute;
+        margin-top: 55px;
+        height: 94vh;
+        border-radius: 0 ;
+    }
+    
+  }
+  
+  @media screen and (max-width:426px) {
+  
+       .big-form{
+        min-width: 280px;
+      }
+      
+      .big-form img{
+        left: 65px;
+        top: -90px;
+     }
+      .big-form .form-group{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin: 5px 0;
+        
+      }
+   
+
+    .form-group input, .form-group select {
+       margin-left: 0;
+      
+    }
+       .two-btns{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       }
+     
+  }
+
+  
+/* with respect to the form */
+
+
+.border-red{
+    border: 2px solid rgb(181, 17, 17) !important;
+}
+
+.border-green{
+    border: 2px solid green !important;
+}
+
+.button-visibility{
+    display:none !important;
+    
+}
+
+.profile-hidden{
+    filter:brightness(50%);
+    cursor:pointer;
+}
+
+.hidden{
+    display:none;
+}
