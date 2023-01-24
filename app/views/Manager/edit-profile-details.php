@@ -89,7 +89,7 @@
                             </div>
 
                             <div class="two-btns">
-                                <a href="<?php echo URLROOT ?>/staff/index" class="cancelbtn">Cancel</a>
+                                <a href="<?php echo URLROOT ?>/mgEditProfile" class="cancelbtn">Cancel</a>
                                 <button type="submit" id="updatebtn" class="updatebtn">Update Profile</button>
                             </div>
                         </section>
