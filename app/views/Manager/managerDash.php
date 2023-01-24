@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a213068d92c558b1f96d459457da08e1c073bdc
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -134,4 +137,13 @@ new Chart("myChart", {
 });
 </script>
 
+<<<<<<< HEAD
+=======
+=======
+    <title>Document</title>
+</head>
+<body>
+manager dashboard
+</body>
+>>>>>>> 6a213068d92c558b1f96d459457da08e1c073bdc
 </html>

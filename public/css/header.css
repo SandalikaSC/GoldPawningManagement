@@ -1,0 +1,272 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Poppins", sans-serif;  */
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    overflow-y: hidden;
+}
+
+.page{
+    display:flex;
+    width: 100%;
+    height:100vh;
+}
+
+.left{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 40px 10px;
+    border-radius: 0 25px 25px 0;
+    position: relative;
+    transition: all 0.7s ease;
+    overflow-y: hidden;
+    z-index: 7;
+}
+
+.hide{
+   display: none;
+}
+
+.profileImg {
+    height: 70%;
+    border-radius: 100%;
+}
+hr{
+    border: 0;
+    margin-bottom: 10px;
+    height: 1px;
+    background: rgb(255, 255, 255);
+    /* background-image: linear-gradient(to right, #ccc, #333, #ccc); */
+}
+.profile_name{
+    color: #BB8A04;
+    /* font-size: large; */
+}
+.profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile p{
+    padding-top: 10px;
+}
+
+.page .left .profile .profile-pic img{
+    width:100px;
+    height:100px;
+}
+
+.page .left .profile .name{
+    color: white ;
+}
+
+
+
+.btn-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+.btn-set p{
+    color: white;
+}
+
+ 
+
+.btn-set .dash{
+    /* border: 2px solid #BB8A04; */
+    background-color: #BB8A04;
+}
+
+.btn-set a{
+    padding: 10px 20px;
+    background-color: #212121;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.btn-set a img{
+    width:40px;
+    padding-right: 15px;
+}
+
+.btn-set a:hover{
+   opacity: 0.8;
+   border: #BB8A04 0.02px solid;
+
+}
+
+
+
+.left .lgout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left .lgout a{
+    text-decoration: none;
+    font: bold;
+    color: #BB8A04;
+    font-size: large;
+    border: 2px solid #BB8A04;
+    padding: 5px 50px;
+    border-radius: 20px;
+}
+
+
+
+
+.right{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.right-heading{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+    align-items: center;
+    position: sticky;
+    top: 0; 
+    background-color: rgba(255, 255, 255, 0.669);
+    backdrop-filter: blur(15px);
+    z-index: 8;
+}
+
+.right-side h1{
+    border-bottom: 2px solid #BB8A04;
+    margin: 0 20px;
+}
+
+
+
+
+@keyframes logo {
+    0%   {transform: rotateY(0);}
+    50%  {transform: rotateY(360deg);}
+    100%  {transform: rotateY(0);}
+    
+}
+
+.vogue {
+    /* animation-name: logo;
+    animation-duration:18s; */
+    width: 200px;
+    /* animation-iteration-count: infinite; */
+}
+
+.right-side{
+    display: flex;
+}
+
+
+
+
+
+.bars img{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.bars{
+    z-index: 100;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width:670px) {
+    .vogue {
+        animation: none;
+        width: 100px;
+    }
+
+    .right-side h1{
+        /* margin: 0 10px ; */
+        font-size: medium;
+    }
+
+    
+    .left{
+        z-index: 60;
+        position: absolute;
+        margin-top: 55px;
+        height: 94vh;
+        border-radius: 0 ;
+    }
+
+
+
+    .bars img{
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .right{
+        padding-left:0;
+     }
+}
+
+    
+    
+.is-invalid{ 
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2vw;
+    text-align: center;
+    width: 50%;
+    margin: auto; 
+    border-bottom: 1px solid red;
+}
+.invalid-feedback{
+    color: red;
+    font-size: 0.6em;
+    text-align: center;
+    
+}
+.invalid{ 
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(233 14 14);
+    background: rgb(255 199 199);
+    margin: auto;
+    font-size: 1vw;
+}
+.success{
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: #836000;
+    background: #f9dc8b;
+    margin: auto;
+    font-size: 1vw;
+ 
+} 
