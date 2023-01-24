@@ -168,7 +168,7 @@ header h1 {
 main {
     margin-top: 85px;
     padding: 1rem 3rem;
-    background: #f0f0f0;
+    background: #fff;
     min-height: calc(100vh - 85px);
 }
 
@@ -228,10 +228,10 @@ main {
 .right-content .tbl-details table .table-body .btn {
     background-color: #fff;
     border: 2px solid #0000ff;
-    width: 100px;
-    height: 40px;
+    width: 90px;
+    height: 35px;
     border-radius: 20px;
-    font-size: 16px;
+    font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -247,7 +247,7 @@ main {
 }
 
 .right-content .tbl-details table td {
-    background-color: #bebebe;  
+    background-color: #dddddd;  
 }
 
 .right-content .tbl-details table td:first-child {
