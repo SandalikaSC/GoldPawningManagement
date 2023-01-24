@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
-=======
->>>>>>> 6a213068d92c558b1f96d459457da08e1c073bdc
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title><?php echo SITENAME ?></title>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mgmain_dashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mggold-rates.css">
@@ -137,13 +134,9 @@ new Chart("myChart", {
 });
 </script>
 
-<<<<<<< HEAD
-=======
-=======
     <title>Document</title>
 </head>
 <body>
 manager dashboard
 </body>
->>>>>>> 6a213068d92c558b1f96d459457da08e1c073bdc
 </html>
