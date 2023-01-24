@@ -36,7 +36,7 @@
                                 <input type="password" placeholder="Enter Password" name="confirm" id="confirm"   required />
                              </div>
                              <div class="two-btns">
-                                <a href="url" class="cancelbtn">Cancel</a>
+                                <a href="<?php echo URLROOT ?>/mgEditProfile" class="cancelbtn">Cancel</a>
                                 <button type="submit" id="changepwdbtn" class="changepwdbtn">Change Password</button>
                             </div>
                         </div>
