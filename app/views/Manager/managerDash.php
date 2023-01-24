@@ -17,7 +17,7 @@
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
-                    <a href="<?php echo URLROOT ?>mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
+                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
                                                                                 echo $_SESSION['image'];
                                                                             } else {
                                                                                 echo URLROOT . "/img/image 1.png";
@@ -71,21 +71,21 @@
                     <div class="gold-rates">
                         <div class="col1">
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[0]->Karatage?>K</label>
+                                <label for=""><?php echo $data[0]->Karatage ?>K</label>
                                 <p><?php echo $data[0]->Price ?></p>
                             </div>
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[1]->Karatage?>K</label>
+                                <label for=""><?php echo $data[1]->Karatage ?>K</label>
                                 <p><?php echo $data[1]->Price ?></p>
                             </div>
                         </div>
                         <div class="col2">
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[2]->Karatage?>K</label>
+                                <label for=""><?php echo $data[2]->Karatage ?>K</label>
                                 <p><?php echo $data[2]->Price ?></p>
                             </div>
                             <div class="gold-rate-card">
-                                <label for=""><?php echo $data[3]->Karatage?>K</label>
+                                <label for=""><?php echo $data[3]->Karatage ?>K</label>
                                 <p><?php echo $data[3]->Price ?></p>
                             </div>
                         </div>
@@ -98,8 +98,8 @@
                     </div>
 
                 </div>
-                <div >
-                <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large;font-weight: 600;">Income and Expenditure</label>
+                <div>
+                    <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large;font-weight: 600;">Income and Expenditure</label>
                     <div class="graph">
                         <canvas id="myChart" style="height: 300px; width:800px; margin-top:20px; float:left;"></canvas>
                     </div>
@@ -111,27 +111,29 @@
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 <script>
-    var xValues = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug"," Sep", "Oct", "Nov", "Dec"];
+    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
 
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      data: [10,20,30,40,50,60,70,80,90,100,110,120],
-      borderColor: "red",
-      fill: false
-    }, { 
-      data: [50,0,100,20,10,150,100,110,120,0,30,40],
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-    
-});
+    new Chart("myChart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
+                borderColor: "red",
+                fill: false
+            }, {
+                data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
+                borderColor: "blue",
+                fill: false
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
+        }
+
+    });
 </script>
 
 </html>
