@@ -431,8 +431,9 @@ class Users extends Controller
       case "Vault Keeper":
         $this->view('VaultKeeper/vaultkeeperDash');
         break;
-      case "Pawn Officer":
-        $this->view('PawnOfficer/pawnofficerDash');
+      case "Pawning Officer":
+        // $this->view('PawnOfficer/pawnofficerDash');
+        redirect('/pawningOfficerDashboard/dashboard');
         break;
       case "Owner":
         $this->view('Owner/ownerDash');
