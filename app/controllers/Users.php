@@ -421,9 +421,7 @@ class Users extends Controller
         $this->view('Admin/adminDash');
         break;
       case "Manager":
-        $staff = $this->model("staffModel");
-        $details = $staff->loadProfilePicture($_SESSION['user_email']); 
-        redirect("/mgDashboard");
+        $this->view('Manager/managerDash');
         break;
       case "Gold Appraiser":
         $this->view('Gold Appraiser/goldappDash');
