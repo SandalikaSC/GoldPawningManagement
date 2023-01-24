@@ -39,14 +39,24 @@
 
 .wrapper .customer-details h2 {
     width: fit-content;
+    height: fit-content;
     border-bottom: 3px solid #bb8a04;
+}
+
+.wrapper .customer-details .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .wrapper .customer-details .div-details {
     display: flex;
+    width: 80%;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 30px;
+    border: 2px solid #bb8a04;
+    border-radius: 20px;
 }
 
 /* .wrapper .customer-details .div-details .sub-details {

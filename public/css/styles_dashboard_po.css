@@ -156,8 +156,8 @@ header .page-title {
 }
 
 header img {
-    width: 250px;
-    height: 75px;
+    width: 200px;
+    height: 65px;
 }
 
 header h1 {
@@ -168,7 +168,7 @@ header h1 {
 main {
     margin-top: 85px;
     padding: 1rem 3rem;
-    background: #f0f0f0;
+    background: #fff;
     min-height: calc(100vh - 85px);
 }
 
@@ -238,7 +238,7 @@ main {
     width: 150px;
     height: 150px;
     background: #bb8a04;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 700;
     color: #fff;
     display: flex;
