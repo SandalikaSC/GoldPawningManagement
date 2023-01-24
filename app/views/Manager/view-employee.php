@@ -45,7 +45,7 @@
         </a>
       </div>
       <div class="lgout">
-        <a href="<?php echo URLROOT ?>/mgLogout">Logout</a>
+        <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
       </div>
     </div>
     <div class="right">
