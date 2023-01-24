@@ -79,7 +79,7 @@
                 if(empty($data['nic'])) {
                     $data['nic_err'] = 'Please enter NIC';
                 } else {
-                    if($this->customerModel->findCustomerByNIC($data['nic'])) {
+                    if($this->customerModel->findUserByNic($data['nic'])) {
                         $data['nic_err'] = 'Customer has already registered with the NIC';
                     }
                 }
@@ -109,10 +109,11 @@
 
                         // Redirect to successful message                        
                         flash('register', 'Customer registered successfully', 'success');
-                        redirect('customers/register_customer');
+                        // redirect('customers/register_customer');
+                        $this->view('PawnOfficer/register_customer');
                     } else {
                         flash('register', 'Registration failed. Something went wrong', 'invalid');
-                        redirect('customers/register_customer');
+                        $this->view('PawnOfficer/register_customer');
                     }
                 } else {
                     // Load view with errors
