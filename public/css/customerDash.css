@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Poppins", sans-serif;  */
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    overflow-y: hidden;
+}
+
+.page{
+    display:flex; 
+    height:100vh;
+}
+
+.left{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 40px 10px;
+    border-radius: 0 25px 25px 0;
+    position: relative;
+    transition: all 0.7s ease;
+    overflow-y: hidden;
+    z-index: 7;
+}
+
+.hide{
+   display: none;
+}
+
+.profileImg {
+    height: 70%;
+    border-radius: 100%;
+}
+hr{
+    border: 0;
+    height: 1px;
+    background: rgb(255, 255, 255);
+    /* background-image: linear-gradient(to right, #ccc, #333, #ccc); */
+}
+.profile_name{
+    color: #BB8A04;
+    /* font-size: large; */
+}
+.profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile p{
+    padding-top: 10px;
+}
+
+.page .left .profile .profile-pic img{
+    width:100px;
+    height:100px;
+}
+
+.page .left .profile .name{
+    color: white ;
+}
+
+
+.right{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.right-heading{
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+    align-items: center;
+    position: sticky;
+    top: 0; 
+    background-color: rgba(255, 255, 255, 0.669);
+    backdrop-filter: blur(15px);
+    z-index: 8;
+}
+
+.right-side h1{
+    border-bottom: 2px solid #BB8A04;
+    margin: 0 20px;
+}
+
+
+
+
+@keyframes logo {
+    0%   {transform: rotateY(0);}
+    50%  {transform: rotateY(360deg);}
+    100%  {transform: rotateY(0);}
+    
+}
+
+.vogue {
+    /* animation-name: logo;
+    animation-duration:18s; */
+    width: 200px;
+    /* animation-iteration-count: infinite; */
+}
+
+.right-side{
+    display: flex;
+}
+
+
+
+
+
+.bars img{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.bars{
+    z-index: 100;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width:670px) {
+    .vogue {
+        animation: none;
+        width: 100px;
+    }
+
+    .right-side h1{
+        /* margin: 0 10px ; */
+        font-size: medium;
+    }
+
+    
+    .left{
+        z-index: 60;
+        position: absolute;
+        margin-top: 55px;
+        height: 94vh;
+        border-radius: 0 ;
+    }
+
+
+
+    .bars img{
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .right{
+        padding-left:0;
+     }
+}
+
+
+
+
+
+
+.inside-page{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.top{
+    display: flex; 
+    
+    justify-content: space-evenly;
+} 
+    
+    
+
+
+ .col1{
+    display: flex; 
+} 
+.col3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gold-rate-card{
+    display: flex;
+    align-items: center;
+    /* max-width: 300px; */
+    border: 2px solid #c39823;
+    border-radius: 10px;
+    /* background-color: #FFE499; */
+    /* padding: 20px; */
+    margin: 40px;
+}
+
+.col3 .loan-interest{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    padding: 20px; 
+    border: 2px solid #c39823;
+    border-radius: 100%;
+    background-color: #FFE499;
+}
+
+.gold-rate-card label{
+    font-size: large;
+    font-weight: 600;
+    padding: 0 10px;
+    border-right: 4px solid #c39823;
+}
+
+.gold-rate-card p{
+    font-size: large;
+    font-weight: 600;
+    padding: 5px 10px;
+}
+
+.loan-interest label{
+    font-size: large;
+    font-weight: 600;
+    
+}
+
+.loan-interest p{
+    font-size: large;
+    font-weight: 600; 
+}
+.bottom{
+    display: flex;
+    justify-content: space-between;
+
+}
+.bottom-left{ 
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+}
+.bottom-right{
+  
+    display: flex;
+    flex-direction: column;
+}
+.dash-pic{
+    /* margin: auto; */
+    width: 30%;
+    margin: auto;
+    width: 30%;
+    position: absolute;
+    padding: 3%;
+    margin-top: 5%;
+}
+.appointment{
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    /* border: gray 1px solid; */
+    display: flex;
+    justify-content: space-around;
+    padding: 5%;
+    margin: 5%;
+    border-radius: 20px;
+}
+.quote{
+    padding-left: 16%;
+}
+.appointment-title{
+    margin-top: 5%;
+}
+.no-app{
+    padding: 20% 40%;
+    border-radius: 20px; 
+    margin-top: 2%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+
+} 
