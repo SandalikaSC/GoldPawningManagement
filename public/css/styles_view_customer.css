@@ -62,9 +62,8 @@
     border-radius: 20px;
     background: #333333;
     color: #fff;
-    font-weight: 600;
     column-gap: 10px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 .sidebar-menu li a img {
@@ -76,7 +75,7 @@
 }
 
 .sidebar-menu li a:hover {
-    border: 2px solid #bb8a04;
+    border: 1px solid #bb8a04;
 }
 
 .sidebar-menu .btn-logout {

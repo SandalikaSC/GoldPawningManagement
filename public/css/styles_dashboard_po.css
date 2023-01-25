@@ -62,9 +62,8 @@
     border-radius: 20px;
     background: #333333;
     color: #fff;
-    font-weight: 600;
     column-gap: 10px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 .sidebar-menu li a img {
@@ -76,7 +75,7 @@
 }
 
 .sidebar-menu li a:hover {
-    border: 2px solid #bb8a04;
+    border: 1px solid #bb8a04;
 }
 
 .sidebar-menu .btn-logout {
@@ -256,7 +255,7 @@ main {
 }
 
 .main-btn-container .btn-main {
-    border: 3px solid #bb8a04;
+    border: 2px solid #bb8a04;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -267,8 +266,12 @@ main {
     border-radius: 25px;
     margin: 10px;
     font-size: 18px;
-    font-weight: 700;
     text-align: center;
+}
+
+.main-btn-container .btn-main:hover {
+    background: #222;
+    color: #bb8a04;
 }
 
 .main-btn-container .register-customer {
