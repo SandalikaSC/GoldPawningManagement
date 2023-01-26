@@ -101,8 +101,6 @@
     padding: 10px 20px;
 }
 
-
-
 #custom-button {
     padding: 6px 10px;
     color: white;
@@ -111,6 +109,7 @@
     border-radius: 20px;
     cursor: pointer;
     top: 5px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
 #custom-button:hover {
@@ -162,13 +161,16 @@
     padding: 15px 30px;
     background: #bb8a04;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     color: #fff;
-    font-weight: 600;
-    border-radius: 20px;
+    border-radius: 25px;
+    box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.5);
 }
 
-
+.buttons .validation-send:hover {
+    background: #000;
+    color: #bb8a04;
+}
 
 
 /* * {
