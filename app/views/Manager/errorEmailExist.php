@@ -15,6 +15,7 @@
         }
 
         .whole {
+            /* margin-top: 0; */
             z-index: 20;
             position: absolute;
             width: 100%;
@@ -22,11 +23,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            /* background-color: transparent; */
             backdrop-filter: blur(5px);
 
         }
 
-        .add-success-box {
+        .password-changed-box {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -40,27 +42,28 @@
             /* outline: black; */
         }
 
-        .add-success-box .done-btn {
+        .password-changed-box .done-btn {
             border: 2px solid #BB8A04;
             color: white;
             background-color: #BB8A04;
             border-radius: 20px;
             padding: 2px 40px;
             text-decoration: none;
+
         }
 
-        .add-success-box .done-btn:hover {
+        .password-changed-box .done-btn:hover {
             opacity: 0.8;
         }
 
-        .add-success-box p {
+        .password-changed-box p {
             font-size: x-large;
             font-weight: 900;
             padding-bottom: 60px;
         }
 
         @media screen and (max-width:355px) {
-            .add-success-box {
+            .password-changed-box {
                 max-width: 300px;
                 padding: 20px;
 
@@ -68,7 +71,7 @@
         }
 
         @media screen and (max-width:300px) {
-            .add-success-box {
+            .password-changed-box {
                 max-width: fit-content;
             }
         }
@@ -77,9 +80,9 @@
 
 <body>
     <section class="whole">
-        <div class="add-success-box">
-            <p>Phone Number Already Exists</p>
-            <a class="done-btn" href="<?php echo URLROOT ?>/staff/addNew">OK</a>
+        <div class="password-changed-box">
+            <p>Email Already Exists</p>
+            <a class="done-btn" href="<?php echo URLROOT ?>/mgEditProfile">Done</a>
         </div>
     </section>
 

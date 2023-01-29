@@ -67,14 +67,22 @@ class Staff extends Controller
     $id = $this->model('staffModel')->getStaffId($_POST['role']);
     ++$id;
     if ($staffMem->rowCount() > 0 or $NIC->rowCount()>0 or $phone->rowCount()>0) {
-      if($staffMem->rowCount() > 0 and $NIC->rowCount()>0){
-        redirect('staff/addNew/nicandemail');
-      }else if($NIC->rowCount()>0){
-        redirect('staff/addNew/nicExists');
+      if($staffMem->rowCount() > 0 and $NIC->rowCount()>0  and $phone->rowCount()>0){
+        redirect('/staff/addNew/NIC,_email_and_Phone_Number_already_Exists');
+      }
+      else if($staffMem->rowCount() > 0 and $NIC->rowCount()>0){
+        redirect('/staff/addNew/Email_and_NIC_already_Exist');
+      } else if($staffMem->rowCount() > 0 and $phone->rowCount()>0){
+        redirect('/staff/addNew/Email_and_Phone_Number_already_Exist');
+      } else if($NIC->rowCount() > 0 and $phone->rowCount()>0){
+        redirect('/staff/addNew/NIC_and_Phone_Number_already_Exist');
+      }
+      else if($NIC->rowCount()>0){
+        redirect('/staff/addNew/NIC_already_Exists');
       }else if($staffMem->rowCount() > 0){
-        redirect('staff/addNew/emailExists');
+        redirect('/staff/addNew/Email_already_Exists');
       }else if($phone->rowCount() > 0){
-        redirect('staff/addNew/phoneExists');
+        redirect('/staff/addNew/Phone_Number_already_Exists');
       }
     } else {
       $staffMem = $this->model("staffModel");
@@ -85,14 +93,14 @@ class Staff extends Controller
         if($abc == null){
           $staffMem = $this->model("staffModel");
           $staffMem->deleteStaffMember($id);
-          redirect('staff/index/unsuccess');
+          redirect('/staff/index/unsuccess');
 
         }else{
-          redirect('staff/index/success');
+          redirect('/staff/index/success');
         }
 
       } else {
-        redirect('staff/addNew');
+        redirect('/staff/addNew');
       }
     }
   }

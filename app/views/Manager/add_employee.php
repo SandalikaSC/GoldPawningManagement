@@ -14,22 +14,16 @@
 
         <?php
         $msg;
-        if ($data == "emailExists") {
+        if (!empty($data)) {
             // include_once 'email-exist.php';
-            $msg= "Email Exists";
-           include_once 'error.php';
-           echo "
-           <script type=\"text/javascript\">
-             document.getElementById('error-msg').innerHTML=`Email already exists`;
+            $msg= str_replace("_"," ",$data);
+            include_once 'error.php';
+           ?>
+           <script>
+             document.getElementById('error-msg').innerHTML=`<?php echo $msg ?>`;
            </script>
-           ";
-        } else if ($data == "nicExists") {
-            include_once 'nicExist.php';
-        }else if($data == "nicandemail"){
-            include_once 'nicandemailExist.php';     
-        }else if($data == "phoneExists"){
-            include_once 'phoneNumberExist.php';     
-        }
+          <?php
+        } 
         ?>
 
         <div class="left" id="panel">

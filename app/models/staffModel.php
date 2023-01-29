@@ -163,7 +163,7 @@ class staffModel extends Database
 
     public function viewStaffMember($id)
     {
-        $sql=" select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
+        $sql=" select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date,user.Created_By, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
         $this->query($sql);
         $this->bind(1, $id);
         $result = $this->resultSet();
@@ -195,5 +195,15 @@ class staffModel extends Database
         $this->bind(1, $email);
         $result = $this->single();
         return $result;
+    }
+
+
+    public function getUserPassword($email){
+       $sql='select password from user where email= ? limit 1';
+       $this->query($sql);
+       $this->bind(1,$email);
+       $result=$this->single();
+       return $result;
+
     }
 }

@@ -150,7 +150,7 @@ body{
     background-color: rgba(255, 255, 255, 0.669);
     backdrop-filter: blur(15px);
     z-index: 8;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .right-side h1{
@@ -197,9 +197,41 @@ body{
 
 .inside-page{
     display: flex;
+    /* min-width: 100%; */
     flex-direction: column;
+    flex-wrap: wrap;
+    background-color:  #ccc;
     align-items: center;
     justify-content: center;
+    /* margin: auto; */
+    /* padding:60px; */
+    height: 100vh;
+    /* overflow-x:hidden; */
+   
+}
+
+.complaint-chart{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* margin: auto; */
+
+}
+
+.complaint-chart .complaint{
+    padding: 50px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.complaint-chart .chart{
+    padding: 50px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 10px;
+
+    /* margin: auto; */
 }
 
 
