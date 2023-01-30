@@ -206,4 +206,64 @@ class staffModel extends Database
        return $result;
 
     }
+
+    public function setPersonalDetails($id,$fName, $lName, $gender, $dob, $line1, $line2, $line3, $mob, $mob2, $image){
+        // $sql = 'insert into user(First_Name, Last_Name, Gender, DOB, Line1, Line2, Line3, image) values (?,?,?,?,?,?,?,?) where userId=?';
+        $sql='update user set First_Name=?,Last_Name=?,Gender=?,DOB=?,Line1=?,Line2=?,Line3=?,image=? where userId=?;'
+        $this->query($sql);
+
+        $this->bind(1, $fName);
+        $this->bind(2, $lName);
+        $this->bind(3, $gender);
+        $this->bind(4, $dob);
+        
+        if ($line1 == "Not Available") {
+            $this->bind(5, "Empty");
+        } else {
+            $this->bind(5, $line1);
+        }
+        
+        if ($line2 == "Not Available") {
+            $this->bind(6, "Empty");
+        } else {
+            $this->bind(6, $line2);
+        }
+        
+        if ($line3 == "Not Available") {
+            $this->bind(7, "Empty");
+        } else {
+            $this->bind(7, $line3);
+        }
+        
+        $this->bind(8, $image);
+        $this->bind(9, $id);
+        
+        $result=$this->execute();
+        if ($result) {
+              $result1='';
+            if (!empty($mob2)) {
+                $sql1 = 'update phone set (phone) (:userId,:mobile),(:userId,:home);';
+                $this->query($sql1);
+
+                $this->bind(":userId", $id);
+                $this->bind(":mobile", $mob);
+                $this->bind(":home", $mob2);
+                $result1=$this->execute();
+            } else {
+                $sql1 = 'update phone set phone=:mobile where userId=:userId;';
+                $this->query($sql1);
+
+                $this->bind(":mobile", $mob);
+                $this->bind(":userId", $id);
+                $result1=$this->execute();
+            }
+            if ($result1) {
+                return $result and $result1;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
