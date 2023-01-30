@@ -185,12 +185,22 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 .top1{
   /* display: flex; */
-  height: 80vh;
+  /* height: 80vh; */
+  position: relative; 
+  z-index: 1;
+
 }
 .top1Img{
-  height: 90vh;
-  background-image: linear-gradient(to right, red , yellow);
+  height: 60vh; 
+  width: 100vw;
+  z-index: 2;
+  position: absolute;  
 }
 .top1Content{
-
+  background-image: linear-gradient(to right, rgba(255,0,0,0),#ffffff);
+  /* background-color: white;   */
+  height: 60vh; 
+  width: 100vw;  
+  position: relative;  
+   z-index: 3;
 }
