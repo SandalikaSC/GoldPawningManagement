@@ -8,7 +8,7 @@
  
     <div class="login">
    
-      <form class="form center" action="" method="post">
+      <form class="form center" action="<?php echo URLROOT; ?>/Users/login" method="post">
         <img alt="logo" src="<?php echo URLROOT ?>/img/logo.png" class="logo center ">
         <h2 class="h2">Welcome back,</h2>
         <br> <?php flash('register'); ?>

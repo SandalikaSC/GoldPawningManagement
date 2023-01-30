@@ -446,11 +446,15 @@ class Users extends Controller
 
   public function logout()
   {
-    unset($_SESSION['user_id']);
-    unset($_SESSION['user_email']);
-    unset($_SESSION['user_name']);
-    session_destroy();
-    redirect('/Users');
+    if($this->userModel->setLastSeen($_SESSION['user_id'])){
+      unset($_SESSION['user_id']);
+      unset($_SESSION['user_email']);
+      unset($_SESSION['user_name']);
+      session_destroy();
+  
+      redirect('/Users');
+    }
+    
   }
 
   public function isLoggedIn()
