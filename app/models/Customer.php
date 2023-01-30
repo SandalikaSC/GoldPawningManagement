@@ -194,7 +194,22 @@ class Customer
 
     }
 
+    public function setLastSeen($userid)
+    { 
+        $this->db->query('UPDATE User SET Last_Seen=CURRENT_TIMESTAMP WHERE userId= :id');
+        
+        // Bind Values
+        $this->db->bind(':id', $userid);
+        //Execute
+        if ($this->db->execute()) {
+ 
+                return true; 
+        } else {
+            return false;
+        }
 
+
+    }
 
 
     // ------------pawning officer----------------------
