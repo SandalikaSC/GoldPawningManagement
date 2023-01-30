@@ -43,7 +43,8 @@
 
       <h2 class="sectiontopic">INSTANT CASH FOR <br> YOUR <b><i><span class="gold">GOLD!</span></i></b> </h2>
       <h3 class="registration">New Here ?</h3>
-      <a href="<?php echo URLROOT ?>/Users/signup"> <button class="signup"> Sign Up</button></a>
+      <h3 class="reg-txt">Sign up and discover great amount of new opportunities!</h3>
+      <a href="<?php echo URLROOT ?>/Users/signup"> <button class="signup"> Sign Up >></button></a>
 
     </div>
 
