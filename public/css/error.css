@@ -1,0 +1,47 @@
+body{
+    overflow-x: hidden;
+}
+.error-set{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.error-msg-main{
+    right: 20px;
+    bottom: 20px;
+    margin: 5px 5px;
+    display: flex;
+    position: relative;
+    background-color: #e7e7e7;
+    padding: 15px 20px;
+    width: 200px;
+}
+
+.error-close{
+    flex: 1;
+    cursor: pointer;
+}
+
+.error-msg{
+    flex: 6;
+}
+
+.text-red{
+    color: red;
+}
+
+.text-green{
+    color: green;
+}
+
+.hide-msg{
+    right: -300px !important;
+    transition: all 0.5s ease-in;
+
+}
+
+.hide-msg:hover{
+    transition: all 0.5s ease-in;
+}

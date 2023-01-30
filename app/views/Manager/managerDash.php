@@ -52,7 +52,7 @@
                 </a>
             </div>
             <div class="lgout">
-                <a href="<?php echo URLROOT ?>/mgLogout">Logout</a>
+                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
             </div>
         </div>
         <div class="right">
@@ -66,44 +66,57 @@
                 <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
             </div>
             <div class="inside-page">
-                <div class="current-gold-rates">
-                    <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large; font-weight: 600;">Gold Rates</label>
-                    <div class="gold-rates">
-                        <div class="col1">
-                            <div class="gold-rate-card">
-                                <label for=""><?php echo $data[0]->Karatage ?>K</label>
-                                <p><?php echo $data[0]->Price ?></p>
+
+                
+                    <div class="current-gold-rates">
+                        <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large; font-weight: 600;">Gold Rates</label>
+                        <div class="gold-rates">
+                            <div class="col1">
+                                <div class="gold-rate-card">
+                                    <label><?php echo $data[0]->Karatage ?>K</label>
+                                    <p><?php echo $data[0]->Price ?></p>
+                                </div>
+                                <div class="gold-rate-card">
+                                    <label><?php echo $data[1]->Karatage ?>K</label>
+                                    <p><?php echo $data[1]->Price ?></p>
+                                </div>
                             </div>
-                            <div class="gold-rate-card">
-                                <label for=""><?php echo $data[1]->Karatage ?>K</label>
-                                <p><?php echo $data[1]->Price ?></p>
+                            <div class="col2">
+                                <div class="gold-rate-card">
+                                    <label><?php echo $data[2]->Karatage ?>K</label>
+                                    <p><?php echo $data[2]->Price ?></p>
+                                </div>
+                                <div class="gold-rate-card">
+                                    <label><?php echo $data[3]->Karatage ?>K</label>
+                                    <p><?php echo $data[3]->Price ?></p>
+                                </div>
+                            </div>
+                            <div class="col3">
+                                <div class="loan-interest">
+                                    <label for="">24%</label>
+                                    <p>Interest</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col2">
-                            <div class="gold-rate-card">
-                                <label for=""><?php echo $data[2]->Karatage ?>K</label>
-                                <p><?php echo $data[2]->Price ?></p>
-                            </div>
-                            <div class="gold-rate-card">
-                                <label for=""><?php echo $data[3]->Karatage ?>K</label>
-                                <p><?php echo $data[3]->Price ?></p>
-                            </div>
+
+                    </div>
+                
+                <div class="complaint-chart">
+                    <div class="chart">
+                        <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large;font-weight: 600;">Income and Expenditure</label>
+                        <div class="graph" style="width:100%;">
+                            <canvas id="myChart"></canvas>
                         </div>
-                        <div class="col3">
-                            <div class="loan-interest">
-                                <label for="">24%</label>
-                                <p>Interest</p>
-                            </div>
+                    </div>
+                    <div class="complaint">
+                        <label class="gold-rate-topic" style="color: black; margin-bottom:20px; border-bottom: 2px solid #BB8A04; font-size: large;font-weight: 600;">Income and Expenditure</label>
+                        <div class="graph" style="width:100%;">
+                            <canvas id="Chart"></canvas>
                         </div>
                     </div>
 
                 </div>
-                <div>
-                    <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large;font-weight: 600;">Income and Expenditure</label>
-                    <div class="graph">
-                        <canvas id="myChart" style="height: 300px; width:800px; margin-top:20px; float:left;"></canvas>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -128,6 +141,36 @@
             }]
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            }
+        }
+
+    });
+</script>
+
+<script>
+    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
+
+    new Chart("Chart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
+                borderColor: "red",
+                fill: false
+            }, {
+                data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
+                borderColor: "blue",
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
             legend: {
                 display: false
             }

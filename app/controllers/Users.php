@@ -86,6 +86,8 @@ class Users extends Controller
       $this->view('pages/userLogin', $data);
     }
   }
+
+  
   public function signUp()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {

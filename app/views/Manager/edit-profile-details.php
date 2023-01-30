@@ -107,7 +107,6 @@
 <script src="<?php echo URLROOT ?>/js/addEmployeeInputValidation.js"></script>
 
 <script>
-    let emailForm = document.querySelector('#popup-form');
 
 </script>
 
