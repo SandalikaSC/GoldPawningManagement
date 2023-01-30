@@ -359,7 +359,7 @@ body {
   width: 100vw;
   position: relative;
   z-index: 3;
-  padding: 5rem 7rem 0 0;
+  padding: 5rem 9rem 0 0;
   text-align: right;
 }
 
@@ -387,12 +387,25 @@ body {
   filter: drop-shadow(-1px 0px 4px #1515154d);
 }
 .registration{
-  padding: 2rem; 
-  
-  font-style: italic;
+  padding: 2rem 2rem 1rem 0; 
+  font-size: 1.5rem;
+  /* font-style: italic; */
 
   font-family: "Poppins", sans-serif;
 }
 .signup{
-  
+  background: #bb8a04;
+    color: white;
+    outline: none;
+    border-radius: 30px; 
+    width: 8rem;
+    padding: 10px;
+    border: solid 1px #bb8a04;
 }
+    .reg-txt{
+      padding: 0 2rem 2rem 0; 
+      font-size: 1rem;
+      /* font-style: italic; */
+    
+      font-family: "Poppins", sans-serif;
+    }
