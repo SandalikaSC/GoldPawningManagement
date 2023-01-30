@@ -395,12 +395,14 @@ body {
 }
 .signup{
   background: #bb8a04;
-    color: white;
-    outline: none;
-    border-radius: 30px; 
-    width: 8rem;
-    padding: 10px;
-    border: solid 1px #bb8a04;
+  color: white;
+  outline: none;
+  border-radius: 30px;
+  width: 14rem;
+  padding: 10px;
+  border: solid 1px #bb8a04;
+  margin: 5px;
+  font-size: 1.1em;
 }
     .reg-txt{
       padding: 0 2rem 2rem 0; 
