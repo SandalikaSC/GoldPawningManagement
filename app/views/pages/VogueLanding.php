@@ -35,6 +35,12 @@
         </div>
       </div>
     </header>
+    <section class="top1">
+<img class="top1Img" src="<?php  echo URLROOT?>/img/lum3n-nPUJAJOk0mc-unsplash.jpg">
+<div class="top1Content"></div>
+
+
+    </section>
     <!-- Header End -->
 
     <script src='<?php echo URLROOT?>/js/landing.js'></script>
