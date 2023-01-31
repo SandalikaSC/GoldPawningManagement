@@ -108,11 +108,11 @@
     </div>
       <img src="<?php echo URLROOT?>/Img/albina-white-qILRFVJmsBc-unsplash.jpg" alt="" class="imgside  ">
    <div class="overlay">
-   <img class="vogue center" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
+  
     <h2 class="txt">
       Welcome to Vogue 
     </h2>
-   
+    <img class="vogue center" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
     <h3 class="txt2">
      Let's Create Your Vogue Account
     </h3>
