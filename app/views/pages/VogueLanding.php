@@ -49,12 +49,27 @@
     </div>
 
 <div class="info">
-  <div class="count">
+  <div class="sec">
+      <img src="<?php echo URLROOT ?>/img/icons8-lock-100.png" alt="" class="secure">
+      <h3 class="txt">Safe & Secure!</h3>
+  </div>
+  <div class="sec">
+  <img src="<?php echo URLROOT ?>/img/sanda-01.png" alt="" class="process">
+      <h3 class="txt"> Transparent Process</h3>
+  </div>
+  <div class="sec">
+  <img src="<?php echo URLROOT ?>/img/icons8-magnetic-card-100.png" alt="" class="payment">
+      <h3 class="txt">Anytime Anywhere Payment</h3>
+  </div>
+  <div class="sec">
+  <img src="<?php echo URLROOT ?>/img/Picture1.png" alt="" class="rate">
+      <h3 class="txt">Best Gold Rates</h3>
+  </div>
+  <!-- <div class="process">
+  <!-- <img class="logo 100" src="<?php echo URLROOT ?>/img/sanda-01.png"> -->
+  <!-- </div> --> 
 
-  </div>
-  <div class="process">
-  <img class="logo 100" src="<?php echo URLROOT ?>/img/sanda-01.png">
-  </div>
+
 </div>
   </section>
   <!-- Header End -->
