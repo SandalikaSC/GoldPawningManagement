@@ -177,8 +177,8 @@
                                         <tr>
                                             <td><?php echo $appointment->Appointment_Id;?></td>
                                             <td><?php echo $appointment->appointment_date;?></td>
-                                            <td>10.30 a.m. - 11.00 p.m</td>
-                                            <td>For Pawning</td>
+                                            <td><?php echo $appointment->time;?></td>
+                                            <td><?php echo $appointment->description;?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     
