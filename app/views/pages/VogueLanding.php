@@ -27,9 +27,8 @@
             <li class="nav__item active"><a href="#">Home</a></li>
             <li class="nav__item"><a href="#">Services</a></li>
             <li class="nav__item"><a href="#">About</a></li>
-            
+
             <li class="nav__item"><a href="#">FAQ</a></li>
-            <li class="nav__item"><a href="#">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -50,18 +49,18 @@
     </div>
 
     <div class="info">
-      <div class="sec" >
+      <div class="sec">
         <img src="<?php echo URLROOT ?>/img/icons8-lock-100.png" alt="" class="pic secure">
-      <h3 class="txt">Safe & Secure!</h3>
+        <h3 class="txt">Safe & Secure!</h3>
       </div>
-       
-      <div class="sec" >
+
+      <div class="sec">
         <img src="<?php echo URLROOT ?>/img/icons8-magnetic-card-100.png" alt="" class="pic payment">
-      <h3 class="txt">Anytime Anywhere Payment</h3>
+        <h3 class="txt">Anytime Anywhere Payment</h3>
       </div>
-      <div class="sec" >
+      <div class="sec">
         <img src="<?php echo URLROOT ?>/img/icons8-golds-64.png" alt="" class="pic rate">
-      <h3 class="txt">Best Gold Rates</h3>
+        <h3 class="txt">Best Gold Rates</h3>
       </div>
       <!-- <div class="process">
   <!-- <img class="logo 100" src="<?php echo URLROOT ?>/img/sanda-01.png"> -->
@@ -71,8 +70,49 @@
     </div>
   </section>
   <!-- Header End -->
+  <section class="section-services">
+    <h2 class="sevices-txt"> Our Services</h2>
+    <div class="service-info">
 
+      <div>
+        <div class="card">
+          <img src="<?php echo URLROOT ?>/img/dmitry-demidko-eBWzFKahEaU-unsplash.jpg" alt="" class="service-pic">
+          <p class="header-service">
+           Instant Cash For Gold
+          </p>
+        </div>
+      </div>
 
+      <div>
+        <div class="card">
+          <img src="<?php echo URLROOT ?>/img/scottsdale-mint-XHikIfxVZdY-unsplash.jpg" alt="" class="service-pic">
+          <p class="header-service">
+           Gold Article Validation
+          </p>
+        </div>
+      </div>
+      
+      <div>
+        <div class="card">
+          <img src="<?php echo URLROOT ?>/img/vaibhav-nagare-vv2vIFeNEMg-unsplash.jpg" alt="" class="service-pic">
+          <p class="header-service">
+            Release Pawned Articles
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <img src="<?php echo URLROOT ?>/img/Screenshot 2023-01-31 235407.png" alt="" class="service-pic">
+          <p class="header-service">
+           Secure Gold Locker Facility
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-about">
+    <h2 class="sevices-txt"> About</h2>
+  </section>
   <script src='<?php echo URLROOT ?>/js/landing.js'></script>
 </body>
 
