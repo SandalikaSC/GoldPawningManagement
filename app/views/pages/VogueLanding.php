@@ -24,9 +24,10 @@
             menu
           </button>
           <ul class="nav__wrapper">
-            <li class="nav__item"><a href="#">Home</a></li>
-            <li class="nav__item"><a href="#">About</a></li>
+            <li class="nav__item active"><a href="#">Home</a></li>
             <li class="nav__item"><a href="#">Services</a></li>
+            <li class="nav__item"><a href="#">About</a></li>
+            
             <li class="nav__item"><a href="#">FAQ</a></li>
             <li class="nav__item"><a href="#">Contact</a></li>
           </ul>
@@ -40,41 +41,38 @@
   <section class="top1">
     <img class="top1Img" src="<?php echo URLROOT ?>/img/Picture1.png">
     <div class="top1Content">
-   
-        <h2 class="sectiontopic">INSTANT CASH FOR <br> YOUR <b><i><span class="gold">GOLD!</span></i></b> </h2>
-        <h3 class="registration">New Here ?</h3>
-        <h3 class="reg-txt">Sign up and discover great amount of new opportunities!</h3>
-        <a href="<?php echo URLROOT ?>/Users/signup"> <button class="signup"> Sign Up >></button></a>
+
+      <h2 class="sectiontopic">INSTANT CASH FOR <br> YOUR <b><i><span class="gold">GOLD!</span></i></b> </h2>
+      <h3 class="registration">New Here ?</h3>
+      <h3 class="reg-txt">Sign up and discover great amount of new opportunities!</h3>
+      <a href="<?php echo URLROOT ?>/Users/signup"> <button class="signup"> Sign Up >></button></a>
 
     </div>
 
-<div class="info">
-  <div class="sec">
-      <img src="<?php echo URLROOT ?>/img/icons8-lock-100.png" alt="" class="secure">
+    <div class="info">
+      <div class="sec" >
+        <img src="<?php echo URLROOT ?>/img/icons8-lock-100.png" alt="" class="pic secure">
       <h3 class="txt">Safe & Secure!</h3>
-  </div>
-  <div class="sec">
-  <img src="<?php echo URLROOT ?>/img/sanda-01.png" alt="" class="process">
-      <h3 class="txt"> Transparent Process</h3>
-  </div>
-  <div class="sec">
-  <img src="<?php echo URLROOT ?>/img/icons8-magnetic-card-100.png" alt="" class="payment">
+      </div>
+       
+      <div class="sec" >
+        <img src="<?php echo URLROOT ?>/img/icons8-magnetic-card-100.png" alt="" class="pic payment">
       <h3 class="txt">Anytime Anywhere Payment</h3>
-  </div>
-  <div class="sec">
-  <img src="<?php echo URLROOT ?>/img/icons8-magnetic-card-100.png" alt="" class="rate">
+      </div>
+      <div class="sec" >
+        <img src="<?php echo URLROOT ?>/img/icons8-golds-64.png" alt="" class="pic rate">
       <h3 class="txt">Best Gold Rates</h3>
-  </div>
-  <!-- <div class="process">
+      </div>
+      <!-- <div class="process">
   <!-- <img class="logo 100" src="<?php echo URLROOT ?>/img/sanda-01.png"> -->
-  <!-- </div> --> 
+      <!-- </div> -->
 
 
-</div>
+    </div>
   </section>
   <!-- Header End -->
 
-  
+
   <script src='<?php echo URLROOT ?>/js/landing.js'></script>
 </body>
 
