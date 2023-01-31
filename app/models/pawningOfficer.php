@@ -27,4 +27,12 @@
             }
 
         }
+
+        public function getAppointments() {
+            $this->db->query('SELECT * FROM appointment;');
+
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
     }

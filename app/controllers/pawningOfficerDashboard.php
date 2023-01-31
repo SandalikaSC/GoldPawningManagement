@@ -8,12 +8,14 @@
 
         public function dashboard(){
             $gold_rates = $this->model('pawningOfficer')->getGoldRates();
-            $interest = $this->model('pawningOfficer')->getInterestRates();                ;
+            $interest = $this->model('pawningOfficer')->getInterestRates();           
+            $appointments = $this->model('pawningOfficer')->getAppointments();
 
             $data = [
                 'title' => 'Dashboard',
                 'gold_rates' => $gold_rates,
-                'interest' => $interest
+                'interest' => $interest,
+                'appointments' => $appointments
             ];
 
             $this->view('PawnOfficer/pawnofficerDash', $data);
