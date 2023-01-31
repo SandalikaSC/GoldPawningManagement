@@ -62,7 +62,7 @@
       <h3 class="txt">Anytime Anywhere Payment</h3>
   </div>
   <div class="sec">
-  <img src="<?php echo URLROOT ?>/img/Picture1.png" alt="" class="rate">
+  <img src="<?php echo URLROOT ?>/img/icons8-magnetic-card-100.png" alt="" class="rate">
       <h3 class="txt">Best Gold Rates</h3>
   </div>
   <!-- <div class="process">
