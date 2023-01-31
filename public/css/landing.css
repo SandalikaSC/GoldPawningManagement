@@ -288,9 +288,14 @@ body {
 
 .nav__item a {
   display: block;
-  padding: 1.5rem 1rem;
+  padding: 0.5rem 2rem
 }
-
+.active{
+  border: 2px solid #bb8a04;
+    border-radius: 1em;
+    /* color: #bb8a04; */
+    background: #ffe8aa;
+}
 .nav__toggle {
   display: none;
 }
@@ -413,11 +418,31 @@ body {
     }
 .info{
   display: flex;
+  width: 100%;
+  height: 20vh;
+  /* border: solid 1px #bb8a04; */
+  justify-content: space-evenly;
 }
 .sec{
   display: flex;
   flex-direction:column;
+  width: 20%;
+  /* border: solid 1px #bb8a04; */
 }
 .txt{
   text-align: center;
+  color: #bb8a04;
+  padding: 1em;
+  /* margin-top: 2em; */
+}
+.pic{
+  /* margin: auto; */
+  width: 40%;
+  margin: auto;
+  margin-top: 2em;
+ 
+  
+} 
+.active{
+
 }
