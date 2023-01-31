@@ -414,3 +414,10 @@ body {
 .info{
   display: flex;
 }
+.sec{
+  display: flex;
+  flex-direction:column;
+}
+.txt{
+  text-align: center;
+}
