@@ -8,7 +8,7 @@
 
         // Get gold rates
         public function getGoldRates() {
-            $this->db->query('SELECT * FROM gold_rate WHERE Karatage=22 OR Karatage=24');
+            $this->db->query('SELECT * FROM gold_rate;');
 
             $results = $this->db->resultSet();
 
