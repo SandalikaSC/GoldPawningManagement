@@ -112,6 +112,42 @@
   </section>
   <section class="section-about">
     <h2 class="sevices-txt"> About</h2>
+
+
+
+    <div class="projcard-container">
+		
+    <div class="projcard projcard-1">
+      <div class="projcard-innerbox">
+        <img class="projcard-img" src="<?php echo URLROOT ?>/Img/jp-valery-lVFoIi3SJq8-unsplash.jpg" />
+        <div class="projcard-textbox">
+          <div class="projcard-title">WE BUY YOUR GOLD!</div> 
+          <div class="projcard-bar"></div>
+          <div class="projcard-description"><b>S</b>pecializes in buying gold at the best market price; 
+            with our expertisise we are able to value and make the whole process of selling gold transparent. </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="projcard projcard-2">
+      <div class="projcard-innerbox">
+        <img class="projcard-img" src="<?php echo URLROOT ?>/Img/maria-ziegler-jJnZg7vBfMs-unsplash.jpg" />
+        <div class="projcard-textbox">
+          <div class="projcard-title">WE SECURE YOUR GOLD !</div>
+          <div class="projcard-bar"></div>
+          <div class="projcard-description">
+            <b>A</b>nxious about the security of your gold? Worry no further. Within our vaults we you provide the best security for your gold assets.</div>
+          <div class="projcard-tagbox"> 
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+
+
   </section>
   <script src='<?php echo URLROOT ?>/js/landing.js'></script>
 </body>
