@@ -185,6 +185,12 @@
 
     </div>
   </section>
+  <section class="FAQ">
+  <h2 class="sevices-txt"> FAQ</h2>
+
+
+ 
+  </section>
   <script src='<?php echo URLROOT ?>/js/landing.js'></script>
 </body>
 
