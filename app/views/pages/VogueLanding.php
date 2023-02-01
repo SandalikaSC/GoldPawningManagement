@@ -85,7 +85,7 @@
 
       <div>
         <div class="card">
-          <img src="<?php echo URLROOT ?>/img/scottsdale-mint-XHikIfxVZdY-unsplash.jpg" alt="" class="service-pic">
+          <img src="<?php echo URLROOT ?>/img/scottsdale-mint-IYg1hjCO5DA-unsplash.jpg" alt="" class="service-pic">
           <p class="header-service">
            Gold Article Validation
           </p>
@@ -147,7 +147,10 @@
     
   </div>
 
-
+<div class="how-section">
+  <img class="howImg" src="<?php echo URLROOT ?>/img/lum3n-rtAEbQ6RrgI-unsplash.jpg">
+ 
+</div>
   </section>
   <script src='<?php echo URLROOT ?>/js/landing.js'></script>
 </body>
