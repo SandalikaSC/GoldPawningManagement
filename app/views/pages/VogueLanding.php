@@ -78,7 +78,7 @@
         <div class="card">
           <img src="<?php echo URLROOT ?>/img/dmitry-demidko-eBWzFKahEaU-unsplash.jpg" alt="" class="service-pic">
           <p class="header-service">
-           Instant Cash For Gold
+            Instant Cash For Gold
           </p>
         </div>
       </div>
@@ -87,11 +87,11 @@
         <div class="card">
           <img src="<?php echo URLROOT ?>/img/scottsdale-mint-IYg1hjCO5DA-unsplash.jpg" alt="" class="service-pic">
           <p class="header-service">
-           Gold Article Validation
+            Gold Article Validation
           </p>
         </div>
       </div>
-      
+
       <div>
         <div class="card">
           <img src="<?php echo URLROOT ?>/img/vaibhav-nagare-vv2vIFeNEMg-unsplash.jpg" alt="" class="service-pic">
@@ -104,7 +104,7 @@
         <div class="card">
           <img src="<?php echo URLROOT ?>/img/Screenshot 2023-01-31 235407.png" alt="" class="service-pic">
           <p class="header-service">
-           Secure Gold Locker Facility
+            Secure Gold Locker Facility
           </p>
         </div>
       </div>
@@ -116,41 +116,74 @@
 
 
     <div class="projcard-container">
-		
-    <div class="projcard projcard-1">
-      <div class="projcard-innerbox">
-        <img class="projcard-img" src="<?php echo URLROOT ?>/Img/jp-valery-lVFoIi3SJq8-unsplash.jpg" />
-        <div class="projcard-textbox">
-          <div class="projcard-title">WE BUY YOUR GOLD!</div> 
-          <div class="projcard-bar"></div>
-          <div class="projcard-description"><b>S</b>pecializes in buying gold at the best market price; 
-            with our expertisise we are able to value and make the whole process of selling gold transparent. </div>
-          
-        </div>
-      </div>
-    </div>
-    
-    <div class="projcard projcard-2">
-      <div class="projcard-innerbox">
-        <img class="projcard-img" src="<?php echo URLROOT ?>/Img/maria-ziegler-jJnZg7vBfMs-unsplash.jpg" />
-        <div class="projcard-textbox">
-          <div class="projcard-title">WE SECURE YOUR GOLD !</div>
-          <div class="projcard-bar"></div>
-          <div class="projcard-description">
-            <b>A</b>nxious about the security of your gold? Worry no further. Within our vaults we you provide the best security for your gold assets.</div>
-          <div class="projcard-tagbox"> 
+
+      <div class="projcard projcard-1">
+        <div class="projcard-innerbox">
+          <img class="projcard-img" src="<?php echo URLROOT ?>/Img/jp-valery-lVFoIi3SJq8-unsplash.jpg" />
+          <div class="projcard-textbox">
+            <div class="projcard-title">WE BUY YOUR GOLD!</div>
+            <div class="projcard-bar"></div>
+            <div class="projcard-description"><b>S</b>pecializes in buying gold at the best market price;
+              with our expertisise we are able to value and make the whole process of selling gold transparent. </div>
+
           </div>
         </div>
       </div>
-    </div>
-    
-    
-  </div>
 
-<div class="how-section">
-  <img class="howImg" src="<?php echo URLROOT ?>/img/lum3n-rtAEbQ6RrgI-unsplash.jpg">
- 
-</div>
+      <div class="projcard projcard-2">
+        <div class="projcard-innerbox">
+          <img class="projcard-img" src="<?php echo URLROOT ?>/Img/maria-ziegler-jJnZg7vBfMs-unsplash.jpg" />
+          <div class="projcard-textbox">
+            <div class="projcard-title">WE SECURE YOUR GOLD !</div>
+            <div class="projcard-bar"></div>
+            <div class="projcard-description">
+              <b>A</b>nxious about the security of your gold? Worry no further. Within our vaults we you provide the best security for your gold assets.
+            </div>
+            <div class="projcard-tagbox">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="how-section">
+      <div class="howdiv">
+        <h2 class="how-h2">HOW IT WORKS</h2>
+        <h3 class="how-h3">Simple, Safe and Secure steps to pawn your gold!</h3>
+        <div class="step-content">
+          <div class="step">
+            <h3 class="how-h3">Step 01</h3>
+            <img src="<?php echo URLROOT ?>/Img/icons8-charity-64.png" alt="" class="step-img">
+            <h3 class="how-txt">Register With Us<br>It's only few clicks away</h3>
+          </div>
+          <div class="step">
+            <h3 class="how-h3">Step 02</h3>
+            <img src="<?php echo URLROOT ?>/Img/icons8-today-64.png" alt="" class="step-img">
+            <h3 class="how-txt">Make a Appointment <br>or walk in to a vogue outlet</h3>
+          </div>
+          <div class="step">
+            <h3 class="how-h3">Step 03</h3>
+            <img src="<?php echo URLROOT ?>/Img/icons8-scales-64.png" alt="" class="step-img">
+            <h3 class="how-txt">We weight and test the purity of your gold.</h3>
+          </div>
+          <div class="step">
+            <h3 class="how-h3">Step 04</h3>
+            <img src="<?php echo URLROOT ?>/Img/icons8-investing-64.png" alt="" class="step-img">
+            <h3 class="how-txt">Once the gold is tested and valued, we will make you an offer.</h3>
+          </div>
+          <div class="step">
+            <h3 class="how-h3">Step 05 
+            </h3>
+            <img src="<?php echo URLROOT ?>/Img/icons8-money-64.png" alt="" class="step-img">
+            <h3 class="how-txt">Get cash instantly at our branch</h3>
+          </div>
+        </div>
+      </div>
+      <img class="howImg" src="<?php echo URLROOT ?>/img/lum3n-rtAEbQ6RrgI-unsplash.jpg">
+
+    </div>
   </section>
   <script src='<?php echo URLROOT ?>/js/landing.js'></script>
 </body>
