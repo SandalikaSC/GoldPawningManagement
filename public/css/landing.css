@@ -692,3 +692,9 @@ body {
 	right: -10px;
 	top: 0;
 }
+
+.howImg{
+  /* transform: rotate(90deg); */
+  width: 100vw;
+  height: 90vh;
+}
