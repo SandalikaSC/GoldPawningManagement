@@ -1,10 +1,17 @@
 
-        .inside-page{
+        /* .inside-page{
             display: flex;
             align-items: center;
             justify-content: center;
-            /* background-color: gray; */
     
+        } */
+
+        .current-gold-rates{
+           background-color: white ;
+           padding:20px;
+           margin: 20px;
+           border-radius: 20px;
+
         }
         .gold-rates{
             display: flex;

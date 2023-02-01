@@ -8,7 +8,7 @@
 
         // Get gold rates
         public function getGoldRates() {
-            $this->db->query('SELECT * FROM gold_rate WHERE Karatage=22 OR Karatage=24');
+            $this->db->query('SELECT * FROM gold_rate;');
 
             $results = $this->db->resultSet();
 
@@ -25,6 +25,19 @@
             } else {
                 return 0;
             }
+        }
 
+        public function getAppointments() {
+            $this->db->query('SELECT * FROM appointment LEFT JOIN time_slot
+                              ON appointment.slot_Id = time_slot.slot_ID JOIN reason
+                              ON reason.Reason_ID = appointment.Reason_ID');
+
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
+
+        public function getValidatedArticles() {
+            
         }
     }

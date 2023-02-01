@@ -91,8 +91,7 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
-  font: inherit;
+  font-size: 100%; 
   vertical-align: baseline
 }
 
@@ -401,12 +400,14 @@ body {
 }
 .signup{
   background: #bb8a04;
-    color: white;
-    outline: none;
-    border-radius: 30px; 
-    width: 8rem;
-    padding: 10px;
-    border: solid 1px #bb8a04;
+  color: white;
+  outline: none;
+  border-radius: 30px;
+  width: 14rem;
+  padding: 10px;
+  border: solid 1px #bb8a04;
+  margin: 5px;
+  font-size: 1.1em;
 }
     .reg-txt{
       padding: 0 2rem 2rem 0; 
@@ -495,13 +496,7 @@ body {
 /* ///////////////////// */
 
 
-
-/* Demo Code: */
-body {
-	font-family: 'Open Sans', arial, sans-serif;
-	color: #333;
-	font-size: 14px;
-}
+ 
 .projcard-container {
 	margin: 50px 0;
 }
@@ -691,12 +686,14 @@ body {
 	top: 0;
 }
 
+.how-section{
+  position: relative;
+}
+
 .howImg{
   /* transform: rotate(90deg); */
   width: 100vw;
-  height: 90vh;
-<<<<<<< Updated upstream
-=======
+  height: 90vh; 
 }
  
 .howdiv {
@@ -722,8 +719,7 @@ body {
 .how-txt{ 
     text-align: center;
       color: white;
-      font-size: 1rem; 
-      
+      font-size: 1rem;  
 }
 b{
   font-size: 2rem;
@@ -745,6 +741,5 @@ b{
   width: 20%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
->>>>>>> Stashed changes
+  justify-content: space-evenly; 
 }

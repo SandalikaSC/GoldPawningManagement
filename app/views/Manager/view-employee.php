@@ -100,8 +100,8 @@
               </div>
               <div class="form-group tooltip">
                 <label for="lane2"><b>Address Lane 2:</b></label>
-                <input disabled value="<?php echo $data[0]->Line2 ?>" type="text" name="lane2" id="lane2">
-                <span class="tooltiptext"><?php echo $data[0]->Line2 ?></span>
+                <input disabled value="<?php if($data[0]->Line2==null){echo "Not Available";}else{echo $data[0]->Line2;} ?>" type="text" name="lane2" id="lane2">
+                <span class="tooltiptext"><?php if($data[0]->Line2==null){echo "Not Available";}else{echo $data[0]->Line2;} ?></span>
               </div>
               <div class="form-group tooltip">
                 <label for="lane3"><b>Address Lane 3:</b></label>
@@ -130,7 +130,7 @@
                                           } ?></span>
               </div>
               <div class="form-group tooltip">
-                <label for="home-no"><b>Extra Number:</b></label>
+                <label for="home-no"><b>Additional Number:</b></label>
                 <input disabled value="<?php if (!empty($data[0]) && !empty($data[1])) {
                                           echo $data[0]->phone;
                                         } else if (!empty($data[0]) && empty($data[1])) {
@@ -167,6 +167,11 @@
                   <label for="added_date"><b>Added date:</b></label>
                   <input class="data" type="text" disabled value="<?php echo $data[0]->Created_date ?>" name="added_date" id="added_date">
                   <span class="tooltiptext"><?php echo $data[0]->Created_date ?></span>
+                </div>
+                <div class="form-group tooltip">
+                  <label for="created_by"><b>Created By:</b></label>
+                  <input class="data" type="text" disabled value="<?php if($data[0]->Created_By==null){echo "Not Available";}else{echo $data[0]->Created_By;} ?>" name="created_by" id="created_by">
+                  <span class="tooltiptext"><?php if($data[0]->Created_By==null){echo "Not Available";}else{echo $data[0]->Created_By;} ?></span>
                 </div>
               </div>
               <div class="single-btn">

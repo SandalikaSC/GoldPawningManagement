@@ -81,8 +81,8 @@
 <body>
     <section class="whole">
         <div class="password-changed-box">
-            <p>Password Changed</p>
-            <a class="done-btn" href="<?php echo URLROOT ?>/mgLogin">Done</a>
+            <p>Email Changed</p>
+            <a class="done-btn" href="<?php echo URLROOT ?>/mgEditProfile">Done</a>
         </div>
     </section>
 

@@ -129,7 +129,7 @@ class staffModel extends Database
         
         $this->bind(14, $image);
         $this->bind(15, 1);
-        $this->bind(16, $_SESSION['userid']);
+        $this->bind(16,$_SESSION['user_id']);
         $result=$this->execute();
         if ($result) {
               $result1='';
@@ -163,9 +163,7 @@ class staffModel extends Database
 
     public function viewStaffMember($id)
     {
-        // $sql = "select user.UserID, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date, phone.Phone1 from user inner join phone on user.UserID=phone.UserID where user.UserID=?";
-
-        $sql=" select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
+        $sql=" select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date,user.Created_By, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
         $this->query($sql);
         $this->bind(1, $id);
         $result = $this->resultSet();
@@ -174,46 +172,21 @@ class staffModel extends Database
     }
 
     public function deleteStaffMember($id)
-    {
-        // $sql="delete from user where UserID=?";
-        // $this->query($sql);
-        // $this->bind(1, $id);
-        // $result = $this->single();
-        
-        // $sql2 = "delete from phone where UserID= ?";
-        // $this->query($sql2);
-        // $this->bind(1,$id);
-        // $result1=$this->single();
-        
-        // $this->query($sql2);
-        // $this->bind(1,$id);
-        // $result3=$this->single();
-        
-        // return $result and $result1 and $result3;
+    {  
+        $sql2 = "delete from phone where userId= ?";
+        $this->query($sql2);
+        $this->bind(1, $id);
+        $result2 = $this->execute();
         
         $sql="delete from user where UserId=?";
         $this->query($sql);
         $this->bind(1, $id);
         $result1 = $this->execute();
         
-        $sql2 = "delete from phone where userId= ?";
-        $this->query($sql2);
-        $this->bind(1, $id);
-        $result2 = $this->execute();
 
         return $result1 and $result2;
    }
     
-
-
-    // public function setLastSeen($last_seen,$email){
-    //     $sql = "insert into user (Last_Seen) values (?) where email=? ";
-    //     $this->query($sql);
-    //     $this->bind(1, $last_seen);
-    //     $this->bind(2,$email);
-    //     $result = $this->execute();
-    //     return $result;
-    // }
 
     public function loadProfilePicture($email)
     {
@@ -222,5 +195,75 @@ class staffModel extends Database
         $this->bind(1, $email);
         $result = $this->single();
         return $result;
+    }
+
+
+    public function getUserPassword($email){
+       $sql='select password from user where email= ? limit 1';
+       $this->query($sql);
+       $this->bind(1,$email);
+       $result=$this->single();
+       return $result;
+
+    }
+
+    public function setPersonalDetails($id,$fName, $lName, $gender, $dob, $line1, $line2, $line3, $mob, $mob2, $image){
+        // $sql = 'insert into user(First_Name, Last_Name, Gender, DOB, Line1, Line2, Line3, image) values (?,?,?,?,?,?,?,?) where userId=?';
+        $sql='update user set First_Name=?,Last_Name=?,Gender=?,DOB=?,Line1=?,Line2=?,Line3=?,image=? where userId=?;'
+        $this->query($sql);
+
+        $this->bind(1, $fName);
+        $this->bind(2, $lName);
+        $this->bind(3, $gender);
+        $this->bind(4, $dob);
+        
+        if ($line1 == "Not Available") {
+            $this->bind(5, "Empty");
+        } else {
+            $this->bind(5, $line1);
+        }
+        
+        if ($line2 == "Not Available") {
+            $this->bind(6, "Empty");
+        } else {
+            $this->bind(6, $line2);
+        }
+        
+        if ($line3 == "Not Available") {
+            $this->bind(7, "Empty");
+        } else {
+            $this->bind(7, $line3);
+        }
+        
+        $this->bind(8, $image);
+        $this->bind(9, $id);
+        
+        $result=$this->execute();
+        if ($result) {
+              $result1='';
+            if (!empty($mob2)) {
+                $sql1 = 'update phone set (phone) (:userId,:mobile),(:userId,:home);';
+                $this->query($sql1);
+
+                $this->bind(":userId", $id);
+                $this->bind(":mobile", $mob);
+                $this->bind(":home", $mob2);
+                $result1=$this->execute();
+            } else {
+                $sql1 = 'update phone set phone=:mobile where userId=:userId;';
+                $this->query($sql1);
+
+                $this->bind(":mobile", $mob);
+                $this->bind(":userId", $id);
+                $result1=$this->execute();
+            }
+            if ($result1) {
+                return $result and $result1;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }

@@ -12,7 +12,7 @@
     <input type="checkbox" id="side-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
-            <img src="<?php echo URLROOT . '/img/profile_pic.png'; ?>">
+            <img src="<?php echo URLROOT?>/img/profile_pic.png">
             <h3><?php echo $_SESSION['user_name']; ?></h3>
         </div>
 
@@ -21,7 +21,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/pawningOfficerDashboard/dashboard" class="active">
                         <span>
-                            <img src="<?php echo URLROOT . '/img/white_dashboard.png'; ?>">
+                            <img src="<?php echo URLROOT?>/img/white_dashboard.png">
                         </span>
                         <span>Dashboard</span>
                     </a>
@@ -29,15 +29,15 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/pawnings/pawned_items">
                         <span>
-                            <img src="<?php echo URLROOT . '/img/white_pawn_items.png'; ?>">
+                            <img src="<?php echo URLROOT?>/img/white_pawn_items.png">
                         </span>
                         <span>Pawned Items</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/customers/view_customers">
+                    <a href = "<?php echo URLROOT; ?>/customers/view_customers">
                         <span>
-                            <img src="<?php echo URLROOT . '/img/white_customers.png'; ?>">
+                            <img src="<?php echo URLROOT?>/img/white_customers.png">
                         </span>
                         <span>Customers</span>
                     </a>
@@ -56,123 +56,145 @@
             <div class="page-title">
                 <label for="side-toggle">
                     <span class="menu-bar">
-                        <img src="<?php echo URLROOT . '/img/menu_bar_black.png'; ?>">
+                        <img src="<?php echo URLROOT?>/img/menu_bar_black.png">
                     </span>
                 </label>   
                 <h1>Dashboard</h1> 
             </div>
                     
-            <img src="<?php echo URLROOT . '/img/logo_name.png'; ?>">
+            <img src="<?php echo URLROOT?>/img/logo_name.png">
         </header>
 
-        <main>
-            <div class="cards">
-                <div class="card-single">                    
-                    <div class="rates">
-                        <h2>Gold Rates</h2>
-                    </div>
-                    <div class="rates">
-                        <div class="sub-rates">
-                            <?php foreach($data['gold_rates'] as $gold_rates) : ?>
-                                <div class="rates-container">
-                                    <div class="div-price"> 
-                                        <?php echo $gold_rates->Karatage . 'k'; ?>             
-                                        <input type="text" class="22k-price" placeholder="Rs. <?php echo $gold_rates->Price; ?>">
-                                    </div>                            
-                                </div>
-                            <?php endforeach; ?>
+        <main> 
+            <div class="page-wrapper">
+                <div class="cards">
+                    
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
+                        <div class="box">
+                            <h4>24 KARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 24) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
                     </div>
-                </div>
-                <div class="card-single ">                    
-                    <div class="rates">
-                        <h2>Loan Interest</h2>
-                    </div>
-                    <div class="rates">
-                        <div class="interest">
-                            <?php echo $data['interest'] . '%'; ?> 
-                        </div>
-                    </div>
-                </div>
-                <div class="card-single">
-                    <div class="main-btn-container">
-                        <div class="main-buttons">
-                            <div>                           
-                                <a href="<?php echo URLROOT; ?>/customers/register_customer" class="register-customer btn-main">Register Customer</a>
-                            </div>
-                            <div>
-                                <a href="<?php echo URLROOT; ?>/pawnings/new_pawning" class="new-pawn btn-main">New Pawning</a>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
-            </div>
 
-            <div class="recent-grid">
-                <div class="validated">
-                    <div class="card">
-                        <div class="card-header">
-                             <h2>Validated Articles</h2>
-                             <button>See All</button>
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
+                        <div class="box">
+                            <h4>22 KARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 22) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
+                    </div>
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
+                    <div class="loan-interest">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-interest.png" alt="">
+                        </div>
+                        <div class="box">
+                            <h4>Loan Interest</h4>
+                            <h1><?php echo $data['interest'] . '%'; ?></h1>
+                        </div>                                
+                    </div> 
+
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
+                        </div>
+                        <div class="box">
+                            <h4>20 KARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 20) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
+                    </div>
+
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
+                        </div>
+                        <div class="box">
+                            <h4>18 KARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 18) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
+                    </div>
+                    
+                </div>      
+
+                <div class="table-wrapper">
+                    <div class="table-container">
+                        <div class="table-title">
+                            <h2>Validated Articles</h2>
+                        </div>
+                        <div class="div-table-validated">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Article ID</td>
+                                        <td>Estimated Value</td>
+                                    </tr> 
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AR001</td>
+                                        <td>Rs. 150,000/-</td>
+                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AR001</td>
+                                        <td>Rs. 150,000/-</td>
+                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                    <div class="table-container">
+                        <div class="table-title">
+                            <h2>Appointments</h2>
+                        </div>
+                        <div class="div-date">
+                            <label for="date">Date</label>
+                            <input type="date">
+                        </div>
+                        <div class="div-table-appointments">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Appointment No</td>
+                                        <td>Appointment Date</td>
+                                        <td>Time</td>
+                                        <td>Reason</td>
+                                    </tr> 
+                                </thead>
+                                <tbody>
+
+                                    <?php foreach ($data['appointments'] as $appointment) : ?>
                                         <tr>
-                                            <td>Article ID</td>
-                                            <td>Estimated Value</td>
-                                        </tr> 
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>AR001</td>
-                                            <td>Rs. 150,000/-</td>
-                                            <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
-                                            <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                            <td><?php echo $appointment->Appointment_Id;?></td>
+                                            <td><?php echo $appointment->appointment_date;?></td>
+                                            <td><?php echo $appointment->time;?></td>
+                                            <td><?php echo $appointment->description;?></td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    <?php endforeach; ?>
+                                    
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="appointments">
-                    <div class="card">
-                        <div class="card-header">
-                             <h2>Appointments</h2>
-                             <button>See All</button>
-                        </div>
 
-                        <div class="date">
-                            <label for="appointment-date">Date</label>
-                            <input type="date" class="appointment-date">
-                        </div>
-
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <td>Appointment No</td>
-                                            <td>Time</td>
-                                            <td>Reason</td>
-                                        </tr> 
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>AP001</td>
-                                            <td>10.30 a.m. - 11.00 p.m.</td>
-                                            <td>For Pawning</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                <div class="div-main-buttons">
+                    <a href="<?php echo URLROOT; ?>/customers/register_customer">Register Customer</a>
+                    <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">New Pawning</a>
                 </div>
+
             </div>
+            
         </main>
     </div>
 </body>
