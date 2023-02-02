@@ -750,7 +750,7 @@ b{
 
  
 .accordion{
-  padding: 2% 10%;
+  padding: 2% 15%;
 }
 
 .accordion .accordion-item {
@@ -761,9 +761,9 @@ b{
 .accordion h2 {
   position: relative; 
   color: #ffffff;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 400;
-  background-color: #bb8a04; 
+  background-color: #d9b654; 
 }
 .accordion h2:hover, .accordion h2:focus {
   cursor: pointer; 
@@ -837,3 +837,15 @@ b{
     padding: 2%;
 
 }
+.sub-title{
+  font-size: 2rem;
+  text-align: center; 
+}
+.sec-sub-title{
+  font-size: 1rem;
+  color: #777;
+  text-align: center;
+  margin-top: 2%;
+   font-weight: 100;
+  
+} 
