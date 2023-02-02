@@ -223,7 +223,7 @@ class Customer
             $this->db->bind(':gender', $data['gender']);
             $this->db->bind(':type', "Customer");
             $this->db->bind(':email', $data['email']);
-            $this->db->bind(':verification_status', 0);
+            $this->db->bind(':verification_status', 1);
             $this->db->bind(':password', $hashed_password);
             $this->db->bind(':status', 0);
             $this->db->bind(':created_by', $data['created_by']);
