@@ -193,19 +193,81 @@
     <section class="FAQ">
         <h2 class="sevices-txt"> FAQ</h2>
 
-
-
-
-        <div class="faq-div">
-
-            <label for="touch"><span class="span-title">titre</span></label>
-            <input type="checkbox" id="touch">
-
-            <ul class="slide">
-                <li class="faq-description"><a href="#">Lorem Ipsum</a></li>
-            </ul>
-
+        <div class="accordion">
+            <div class="accordion-item">
+                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem
+                        Ipsum is simply
+                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                        aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. 
+                        </p>
+                    
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem
+                        Ipsum is simply
+                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                        aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                    <!-- <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p> -->
+                </div>
+            </div>
+            <!-- <div class="accordion-item">
+                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
+                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                        aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
+                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                        aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
+                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                        aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
+                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                        aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. </p>
+                </div>
+            </div> -->
         </div>
+
+
+
+
+
 
 
 
@@ -214,3 +276,63 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+<!-- 
+
+
+.faq-description a { color : #2d2f31;}
+
+
+.faq-div {
+  padding: 2% 15%; 
+}
+
+.span-title {
+  padding: 3%;
+  background: #bb8a04;
+  color: #ffffff;
+  font-size: 1.2em;
+  /* font-variant: small-caps; */
+  cursor: pointer;
+  display: block;
+}
+
+.span-title::after {
+  float: right;
+  right: 10%;
+  content: "+";
+}
+
+.slide {
+  clear:both;
+  /* width:100%; */
+  height:0px;
+  overflow: hidden;
+  /* text-align: center; */
+  transition: height .4s ease;
+}
+
+.slide .faq-description {padding : 3%;}
+
+#touch {position: absolute; opacity: 0; height: 0px;}    
+
+.question:checked>.slide {height: 10%;}  -->
+
+
+<!-- <div class="faq-div">
+
+<label class="question" for="touch"><span class="span-title">What can be pawn?</span></label>
+<input type="checkbox" id="touch">
+
+<ul class="slide">
+    <li class="faq-description"><a href="#">We accept Gold Jewellery, Gold Coins, Gold bars.</a></li>
+</ul>
+
+</div> -->
