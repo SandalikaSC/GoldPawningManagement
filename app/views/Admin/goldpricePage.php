@@ -74,22 +74,20 @@
 <!-- four cards -->
 <div class="cardWrapper">
     <?php
-    $sql = "SELECT * FROM `gold_rate`";
-    $result = mysqli_query($conn, $sql);
 
-    if($result){
-        while($row = mysqli_fetch_array($result)){
+    
+          foreach ($data['goldrates'] as $goldrate):  
         ?>   
 
 
 
             <div class="card">
                 <div class="karat">
-                    <p><?php echo $row['Karatage']?>K</p>
+                    <p><?php echo $goldrate->Karatage?>K</p>
                 </div>
-                <h2>Rs.<?php echo $row['Price']?>/-</h2>
+                <h2>Rs.<?php echo $goldrate->Price?>/-</h2>
                 <p>Last Update</p>
-                <p><?php echo $row['Last_Edit']?></p>
+                <p><?php echo $goldrate->Last_Edit?></p>
 
                 <form  action="" method="GET">
                     <button class="editIcon" type="submit" name="edit" value="<?php echo $row['Rate_Id']?>">
@@ -100,12 +98,9 @@
 
 
 
-        <?php 
-        }
-    }
-    ?>
+            <?php endforeach; ?>
 
-
+            
 
 </div>
 
