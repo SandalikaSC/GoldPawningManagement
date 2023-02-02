@@ -56,7 +56,7 @@
                 <p>Market</p>
             </a>
 
-            <a href="./goldprice.php">
+            <a href="<?php echo URLROOT ?>/Goldprices/index">
                 <img width="24" class="page-btn-img" src="./img/goldprice.png">
                 <p>Gold Price</p>
             </a>
