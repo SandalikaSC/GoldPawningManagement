@@ -89,7 +89,7 @@
                 <p>Last Update</p>
                 <p><?php echo $goldrate->Last_Edit?></p>
 
-                <form  action="<?php echo URLROOT?>/Goldprices/selectRate/"<?php echo $goldrate->Rate_Id?> method="GET">
+                <form  action="<?php echo URLROOT?>/Goldprices/selectRate/<?php echo $goldrate->Rate_Id?>" method="GET">
                     <button class="editIcon" type="submit" name="edit" value="<?php echo $goldrate->Rate_Id?>">
                         <img width="24" src="./img/edit-white.png" alt="edit">
                     </button>
@@ -107,35 +107,23 @@
 
 
 <?php
-        
-        if(isset($_GET['edit']) && !empty(['edit'])){
-            $edit = $_GET['edit'];
-            $sql = "SELECT * FROM `gold_rate` WHERE `Rate_Id` = '$edit'";
-            $result = mysqli_query($conn, $sql);
-            
-            if($result){
-                $row = mysqli_fetch_assoc($result);
+      
+            if($data['editRate']):
                 ?>
-
-
-
-
-
-
-
+ 
 
                 <div id="form" class="formWrapper">
                 <div class="formIcon">
                     <img width="32" src="./img/edit.png" alt="edit">
                 </div>
-                <form action="process.php" method="POST">
+                <form action="<?php echo URLROOT?>/Goldprices/editRate" method="POST">
                     <div class="inputField">
                         <label>Karat</label>
-                        <input type="Text" name="karat" placeholder="Karat" value="<?php echo $row['Karatage']?>" disabled />
+                        <input type="number" name="karat" placeholder="Karat" value="<?php echo $data['editRate']->Karatage ?>" disabled />
                     </div>
                     <div class="inputField">
                         <label>Current Price</label>
-                        <input type="number" name="currentPrice" placeholder="Current Price" value="<?php echo $row['Price']?>" disabled/>
+                        <input type="number" name="currentPrice" placeholder="Current Price" value="<?php echo $data['editRate']->Price ?>" disabled/>
                     </div>
                     <div class="inputField">
                         <label>New Price</label>
@@ -154,8 +142,8 @@
 
 
         <?php
-            }
-        }
+            
+        endif;
         ?>
 
 
