@@ -744,44 +744,96 @@ b{
   justify-content: space-evenly; 
 }
 
+  
+
+
+
  
-
-.faq-description a {text-decoration : none; color : #2d2f31;}
-
-
-.faq-div {
-  width : 300px; 
-  background: #d9d9d9;
-  margin : 40px auto; 
+.accordion{
+  padding: 2% 10%;
 }
 
-.span-title {
-  padding : 30px;
-  background : #2d2f31; 
-  color : white;
-  font-size : 1.2em;
-  font-variant : small-caps;
-  cursor : pointer;
+.accordion .accordion-item {
+  
+  padding:1%; 
+  
+} 
+.accordion h2 {
+  position: relative; 
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 400;
+  background-color: #bb8a04; 
+}
+.accordion h2:hover, .accordion h2:focus {
+  cursor: pointer; 
+}
+.accordion h2:hover::after, .accordion h2:focus::after {
+  cursor: pointer; 
+}
+.accordion h2 .accordion-title {
+  padding: 1em 1.5em 1em 0;
+}
+.accordion h2 .icon {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid;
+  border-radius: 22px;
+  margin:2%;
+}
+ 
+.accordion h2 .icon::before {
   display: block;
+  position: absolute;
+  content: "";
+  top: 9px;
+  left: 5px;
+  width: 10px;
+  height: 2px;
+  background: currentColor;
 }
-
-.span-title::after {
-  float: right;
-  right: 10%;
-  content: "+";
+.accordion h2 .icon::after {
+  display: block;
+  position: absolute;
+  content: "";
+  top: 5px;
+  left: 9px;
+  width: 2px;
+  height: 10px;
+  background: currentColor;
+} 
+.accordion h2[aria-expanded=true] .icon::after {
+  width: 0;
 }
-
-.slide {
-  clear:both;
-  width:100%;
-  height:0px;
+.accordion h2[aria-expanded=true] + .accordion-content {
+  opacity: 1;
+  max-height: 0%;
+  transition: all 200ms linear;
+  will-change: opacity, max-height;
+}
+.accordion .accordion-content {
+  opacity: 0;
+  max-height: 0;
   overflow: hidden;
-  text-align: center;
-  transition: height .4s ease;
+  transition: opacity 200ms linear, max-height 200ms linear;
+  will-change: opacity, max-height;
+  border: 1px solid #bb8a04;
+ 
 }
+.accordion .accordion-content p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0px;
+  margin-top: 10px;
+  padding: 2% 3%;
+  /* font-family: 'Open Sans', sans-serif; */
+}
+.question{
+  /* border: 1px solid black; */
+    padding: 2%;
 
-.slide .faq-description {padding : 30px;}
-
-#touch {position: absolute; opacity: 0; height: 0px;}    
-
-#touch:checked + .slide {height: 300px;} 
+}
