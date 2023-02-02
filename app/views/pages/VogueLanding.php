@@ -195,73 +195,72 @@
 
         <div class="accordion">
             <div class="accordion-item">
-                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem
-                        Ipsum is simply
-                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+
+                What can be pawn?
+
+                </span><span class="icon"
                         aria-hidden="true"></span></h2>
                 <div class="accordion-content">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. 
-                        </p>
+                    <p> 
+                        
+                   We accept Gold Jewelleries ,Gold Coins ,Gold bars. 
+                
+                </p>
+                    
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+
+                Why pawn our gold to Vogue pawners?
+
+                </span><span class="icon"
+                        aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p> 
+                        
+                    Our process is quick fast and simple that offers the highest value for your gold, using the most advance technogolgy for valuation.
+                
+                </p>
                     
                 </div>
             </div>
             <div class="accordion-item">
-                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem
-                        Ipsum is simply
-                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+
+                What happens to jewellery with stones?
+
+                </span><span class="icon"
                         aria-hidden="true"></span></h2>
                 <div class="accordion-content">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
-                    <!-- <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p> -->
-                </div>
-            </div>
-            <!-- <div class="accordion-item">
-                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
-                        dummy text of the printing and typesetting industry?</span><span class="icon"
-                        aria-hidden="true"></span></h2>
-                <div class="accordion-content">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
+                    <p> 
+                        
+                    We will only value the gold content and will deduct the weight of stones, either by physical removal of stones, or by approximate estimate of stone weight.
+                
+                </p>
+                    
                 </div>
             </div>
             <div class="accordion-item">
-                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
-                        dummy text of the printing and typesetting industry?</span><span class="icon"
+                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+
+                Do we buy broken gold jewellery?
+
+                </span><span class="icon"
                         aria-hidden="true"></span></h2>
                 <div class="accordion-content">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
+                    <p> 
+                        
+                    Yes that does not matter because gold bought will be refined.
+                
+                </p>
+                    
                 </div>
             </div>
-            <div class="accordion-item">
-                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
-                        dummy text of the printing and typesetting industry?</span><span class="icon"
-                        aria-hidden="true"></span></h2>
-                <div class="accordion-content">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 id="accordion-button-1" aria-expanded="false"><span class="accordion-title">Lorem Ipsum is simply
-                        dummy text of the printing and typesetting industry?</span><span class="icon"
-                        aria-hidden="true"></span></h2>
-                <div class="accordion-content">
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. </p>
-                </div>
-            </div> -->
+            
+
         </div>
 
 
@@ -280,59 +279,4 @@
 
 
 
-
-
-
-
-<!-- 
-
-
-.faq-description a { color : #2d2f31;}
-
-
-.faq-div {
-  padding: 2% 15%; 
-}
-
-.span-title {
-  padding: 3%;
-  background: #bb8a04;
-  color: #ffffff;
-  font-size: 1.2em;
-  /* font-variant: small-caps; */
-  cursor: pointer;
-  display: block;
-}
-
-.span-title::after {
-  float: right;
-  right: 10%;
-  content: "+";
-}
-
-.slide {
-  clear:both;
-  /* width:100%; */
-  height:0px;
-  overflow: hidden;
-  /* text-align: center; */
-  transition: height .4s ease;
-}
-
-.slide .faq-description {padding : 3%;}
-
-#touch {position: absolute; opacity: 0; height: 0px;}    
-
-.question:checked>.slide {height: 10%;}  -->
-
-
-<!-- <div class="faq-div">
-
-<label class="question" for="touch"><span class="span-title">What can be pawn?</span></label>
-<input type="checkbox" id="touch">
-
-<ul class="slide">
-    <li class="faq-description"><a href="#">We accept Gold Jewellery, Gold Coins, Gold bars.</a></li>
-</ul>
-
-</div> -->
+ 
