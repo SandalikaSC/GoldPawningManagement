@@ -119,11 +119,11 @@
                 <form action="<?php echo URLROOT?>/Goldprices/editRate" method="POST">
                     <div class="inputField">
                         <label>Karat</label>
-                        <input type="number" name="karat" placeholder="Karat" value="<?php echo $data['editRate']->Karatage ?>" disabled />
+                        <input type="number" name="Karat" placeholder="Karat" value="<?php echo $data['editRate']->Karatage ?>" readonly />
                     </div>
                     <div class="inputField">
                         <label>Current Price</label>
-                        <input type="number" name="currentPrice" placeholder="Current Price" value="<?php echo $data['editRate']->Price ?>" disabled/>
+                        <input type="number" name="currentPrice" placeholder="Current Price" value="<?php echo $data['editRate']->Price ?>" readonly/>
                     </div>
                     <div class="inputField">
                         <label>New Price</label>

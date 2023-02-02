@@ -68,15 +68,14 @@ class Goldprices extends Controller
                         // Init data
                        // $result = $this->Model->getGoldRates();
                         $data = [
-                                'Karat' => trim($_POST['karat']) ,
-                                'newprice'=>trim($_POST['newPrice']) ,
+                                'Karat' => trim($_POST['Karat']) ,
+                                'newprice'=>trim($_POST['newPrice']) 
                        
                         ];  
                         $result = $this->Model->EditGoldRate($data); 
                         if($result){
-                                echo "updated";
-                              }else
-                              {
+                               echo "updated";
+                              }else{
                                   echo"not";
                               }
         }
