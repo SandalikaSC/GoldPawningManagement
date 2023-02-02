@@ -1,0 +1,66 @@
+.hero {
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 200px;
+    align-items: center;
+    gap: 100px;
+    background-color: rgba(242, 231, 172, 0.23);
+    /* background: rgb(220,213,88); */
+    /* background: radial-gradient(circle, rgba(220,213,88,0.846673703661152) 9%, rgba(183,170,55,1) 88%, rgba(163,172,79,1) 94%); */
+}
+
+.hero > .left {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--clr-black, black);
+}
+
+
+
+.hero > .right {
+    display: grid;
+    place-items: center;
+}
+
+.hero > .right > .circle {
+    width: 160px;
+    height: 160px;
+    padding: 50px;
+    background-color: var(--clr-primary, gold);
+    border: 3px solid var(--clr-secondary, rgb(181, 155, 8));
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.cardWrapper {
+    margin-top: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    padding: 0 100px;
+    justify-items: center;
+}
+
+.cardWrapper > .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--clr-black, black);
+    min-width: 100%;
+    min-height: 100px;
+    margin: 20px;
+    background-color: rgba(255, 217, 0, 0.492);
+    border: 3px solid var(--clr-secondary, black);
+    border-radius: 20px;
+}
