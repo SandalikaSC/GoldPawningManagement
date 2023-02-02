@@ -14,7 +14,18 @@ class Goldprices extends Controller
 
         public function index()
         {
-            $this->view('Admin/goldpricePage');
+
+                $result = $this->Model->getGoldRates();
+                $data = [
+                        'goldrates' => $result 
+               
+                ];
+
+                if (empty($result)) {
+                        $data['goldrates'] = (array) null;
+                } 
+
+            $this->view('Admin/goldpricePage',$data);
 
         }
 
