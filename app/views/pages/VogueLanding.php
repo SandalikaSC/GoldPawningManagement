@@ -29,6 +29,7 @@
                         <li class="nav__item"><a href="#">About</a></li>
 
                         <li class="nav__item"><a href="#">FAQ</a></li>
+                        <li class="nav__item"><a href="#">Contact Us</a></li>
                     </ul>
                 </nav>
             </div>
@@ -258,11 +259,12 @@
                 </p>
                     
                 </div>
-            </div>
-            
-
+            </div> 
         </div>
 
+    <h3 class="sub-title">Still have questions?</h3>
+    <h4 class="sec-sub-title">If you cannot find answer to your question in our FAQ, you can always
+contact us. <br>We will answer shortly!</h4>
 
 
 
