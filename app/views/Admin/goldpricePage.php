@@ -89,8 +89,8 @@
                 <p>Last Update</p>
                 <p><?php echo $goldrate->Last_Edit?></p>
 
-                <form  action="" method="GET">
-                    <button class="editIcon" type="submit" name="edit" value="<?php echo $row['Rate_Id']?>">
+                <form  action="<?php echo URLROOT?>/Goldprices/selectRate/"<?php echo $goldrate->Rate_Id?> method="GET">
+                    <button class="editIcon" type="submit" name="edit" value="<?php echo $goldrate->Rate_Id?>">
                         <img width="24" src="./img/edit-white.png" alt="edit">
                     </button>
                 </form>
@@ -116,6 +116,14 @@
             if($result){
                 $row = mysqli_fetch_assoc($result);
                 ?>
+
+
+
+
+
+
+
+
                 <div id="form" class="formWrapper">
                 <div class="formIcon">
                     <img width="32" src="./img/edit.png" alt="edit">
@@ -140,10 +148,18 @@
                     </div>
                 </form>
                 </div>
+
+
+
+
+
         <?php
             }
         }
         ?>
+
+
+
 </div>
 </body>
 
