@@ -24,12 +24,15 @@
                         menu
                     </button>
                     <ul class="nav__wrapper">
-                        <li class="nav__item active"><a href="#">Home</a></li>
-                        <li class="nav__item"><a href="#">Services</a></li>
-                        <li class="nav__item"><a href="#">About</a></li>
+                        <li class="nav__item active"><a href="#home">Home</a></li>
+                        <li class="nav__item"><a href="#services">Services</a></li>
+                        <li class="nav__item"><a href="#about">About</a></li>
 
-                        <li class="nav__item"><a href="#">FAQ</a></li>
-                        <li class="nav__item"><a href="#">Contact Us</a></li>
+                        <li class="nav__item"><a href="#faq">FAQ</a></li>
+                        <li class="nav__item"><a href="#contact">Contact Us
+
+
+                            </a></li>
                     </ul>
                 </nav>
             </div>
@@ -38,7 +41,9 @@
             </div>
         </div>
     </header>
-    <section class="top1">
+    
+    <!-- Header End -->
+    <section id="home" class="top1">
         <img class="top1Img" src="<?php echo URLROOT ?>/img/Picture1.png">
         <div class="top1Content">
 
@@ -65,13 +70,10 @@
             </div>
             <!-- <div class="process">
   <!-- <img class="logo 100" src="<?php echo URLROOT ?>/img/sanda-01.png"> -->
-            <!-- </div> -->
-
-
+            <!-- </div> --> 
         </div>
     </section>
-    <!-- Header End -->
-    <section class="section-services">
+    <section id="services" class="section-services">
         <h2 class="sevices-txt"> Our Services</h2>
         <div class="service-info">
 
@@ -114,7 +116,7 @@
             </div>
         </div>
     </section>
-    <section class="section-about">
+    <section id="about" class="section-about">
         <h2 class="sevices-txt"> About</h2>
 
 
@@ -191,80 +193,78 @@
 
         </div>
     </section>
-    <section class="FAQ">
+    <section id="faq" class="FAQ">
         <h2 class="sevices-txt"> FAQ</h2>
 
         <div class="accordion">
             <div class="accordion-item">
                 <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
 
-                What can be pawn?
+                        What can be pawn?
 
-                </span><span class="icon"
-                        aria-hidden="true"></span></h2>
+                    </span><span class="icon" aria-hidden="true"></span></h2>
                 <div class="accordion-content">
-                    <p> 
-                        
-                   We accept Gold Jewelleries ,Gold Coins ,Gold bars. 
-                
-                </p>
-                    
+                    <p>
+
+                        We accept Gold Jewelleries ,Gold Coins ,Gold bars.
+
+                    </p>
+
                 </div>
             </div>
-            
+
             <div class="accordion-item">
                 <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
 
-                Why pawn our gold to Vogue pawners?
+                        Why pawn our gold to Vogue pawners?
 
-                </span><span class="icon"
-                        aria-hidden="true"></span></h2>
+                    </span><span class="icon" aria-hidden="true"></span></h2>
                 <div class="accordion-content">
-                    <p> 
-                        
-                    Our process is quick fast and simple that offers the highest value for your gold, using the most advance technogolgy for valuation.
-                
-                </p>
-                    
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+                    <p>
 
-                What happens to jewellery with stones?
+                        Our process is quick fast and simple that offers the highest value for your gold, using the most
+                        advance technogolgy for valuation.
 
-                </span><span class="icon"
-                        aria-hidden="true"></span></h2>
-                <div class="accordion-content">
-                    <p> 
-                        
-                    We will only value the gold content and will deduct the weight of stones, either by physical removal of stones, or by approximate estimate of stone weight.
-                
-                </p>
-                    
+                    </p>
+
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
 
-                Do we buy broken gold jewellery?
+                        What happens to jewellery with stones?
 
-                </span><span class="icon"
-                        aria-hidden="true"></span></h2>
+                    </span><span class="icon" aria-hidden="true"></span></h2>
                 <div class="accordion-content">
-                    <p> 
-                        
-                    Yes that does not matter because gold bought will be refined.
-                
-                </p>
-                    
+                    <p>
+
+                        We will only value the gold content and will deduct the weight of stones, either by physical
+                        removal of stones, or by approximate estimate of stone weight.
+
+                    </p>
+
                 </div>
-            </div> 
+            </div>
+            <div class="accordion-item">
+                <h2 class="question" id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+
+                        Do we buy broken gold jewellery?
+
+                    </span><span class="icon" aria-hidden="true"></span></h2>
+                <div class="accordion-content">
+                    <p>
+
+                        Yes that does not matter because gold bought will be refined.
+
+                    </p>
+
+                </div>
+            </div>
         </div>
 
-    <h3 class="sub-title">Still have questions?</h3>
-    <h4 class="sec-sub-title">If you cannot find answer to your question in our FAQ, you can always
-contact us. <br>We will answer shortly!</h4>
+        <h3 class="sub-title">Still have questions?</h3>
+        <h4 class="sec-sub-title">If you cannot find answer to your question in our FAQ, you can always
+            contact us. <br>We will answer shortly!</h4>
 
 
 
@@ -273,12 +273,69 @@ contact us. <br>We will answer shortly!</h4>
 
 
     </section>
+
+    <div id="contact" class="contact">
+        <h2 class="sevices-txt"> Contact Us</h2>
+        <div class="contact-section">
+            <div class="contact-info">
+                <div class="location">
+                    <h4 class="sec-sub-title">Location</h4>
+                    <p class="txt-small">
+                        No.528 Galle Road,<br>
+                        Colombo 03,
+                        <br> Sri Lanka.
+                    </p>
+                </div>
+                <div class="telephone">
+                    <h4 class="sec-sub-title">Give us a call</h4>
+                    <p class="txt-small">
+                        0112 414 414<br>
+                        0112 129 329
+                    </p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 class="sub-title">Send us a message</h3>
+
+                <form action="<?php echo URLROOT ?>/complaints/addComplaint" class="form" method="post">
+                    <h4 class="sec-sub-title">Our team is happy to answer your questions.</h4>
+                    <div class="form-name">
+                        <label for="" class="label"><strong>First name</strong></label>
+                        <label for="" class="label"> <strong>Last name</strong></label>
+                        <input id="Fname" name="Fname" type="text" class="name-input"
+                            value=" " >
+                        <input id="lname" name="lname" type="text" class="name-input"
+                            value=" "  >
+                    </div>
+                    <div class="phone">
+                        <label for="" class="label"><strong>Email</strong></label>
+                        <input id="Fname" name="Fname" type="email" class="name-input"
+                            value=" "  >
+
+                    </div>
+                    <div class="phone">
+                        <label for="" class="label"><strong>Message</strong></label>
+                        <!-- <span><?php echo $data['compalint_err'] ?></span> -->
+                        <textarea rows="4" cols="50" name="msg" class="name-input" placeholder=" Your messege here"></textarea>
+
+
+                    </div>
+                    <div class="phone">
+                        <button class="submit-btn"> Submit</button>
+                    </div>
+                </form>
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
     <script src='<?php echo URLROOT ?>/js/landing.js'></script>
 </body>
 
 </html>
-
-
-
-
- 

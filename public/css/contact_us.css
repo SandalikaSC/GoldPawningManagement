@@ -18,11 +18,7 @@
     justify-content: space-evenly;
 }
 
-.form-name {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    ;
-}
+
 
 .bottom-left {
     border: solid 2px #bb8a04;
@@ -42,7 +38,11 @@
     margin: 5% 0 5% 0%;
 }
 
- 
+.form-name {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    ;
+}
 .phone {
     display: flex;
     flex-direction: column;
