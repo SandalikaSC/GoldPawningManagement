@@ -102,9 +102,7 @@
                         </div>                        
                     </div> 
 
-                    <div class="background-img">
-
-                    </div>
+                    
                 </div>
                    
                 <div class="bottom-div">

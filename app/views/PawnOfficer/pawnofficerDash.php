@@ -68,6 +68,23 @@
         <main> 
             <div class="page-wrapper">
                 <div class="cards">
+                    <div class="card-summary">
+                        <div class="title">
+                            <h2>Customers</h2>
+                            <img src="<?php echo URLROOT?>/img/gold_customers.png" alt="">
+                        </div>                        
+                        <h1>80</h1>
+                    </div>
+                    <div class="card-summary">
+                        <div class="title">
+                            <h2>Pawned Items</h2>
+                            <img src="<?php echo URLROOT?>/img/golden_pawned_article.png" alt="">
+                        </div>                        
+                        <h1>150</h1>
+                    </div>
+                </div>
+
+                <div class="cards">
                     
                     <div class="gold-rates">
                         <div class="icon-case">
@@ -90,9 +107,9 @@
                     </div>
 
                     <div class="loan-interest">
-                        <div class="icon-case">
+                        <!-- <div class="icon-case">
                             <img src="<?php echo URLROOT?>/img/gold-interest.png" alt="">
-                        </div>
+                        </div> -->
                         <div class="box">
                             <h4>Loan Interest</h4>
                             <h1><?php echo $data['interest'] . '%'; ?></h1>
@@ -117,9 +134,13 @@
                             <h4>18 KARATS</h4>
                             <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 18) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
                         </div>                                
-                    </div>
-                    
-                </div>      
+                    </div>                    
+                </div>    
+                
+                <div class="div-main-buttons">
+                    <a href="<?php echo URLROOT; ?>/customers/register_customer">Register Customer</a>
+                    <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">New Pawning</a>
+                </div>
 
                 <div class="table-wrapper">
                     <div class="table-container">
@@ -153,6 +174,7 @@
                         </div>
                         
                     </div>
+
                     <div class="table-container">
                         <div class="table-title">
                             <h2>Appointments</h2>
@@ -186,11 +208,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
-
-                <div class="div-main-buttons">
-                    <a href="<?php echo URLROOT; ?>/customers/register_customer">Register Customer</a>
-                    <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">New Pawning</a>
                 </div>
 
             </div>
