@@ -172,15 +172,13 @@ main {
 }
 
 .page-wrapper .top-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
 }
 
 .cards {
-    width: fit-content;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .gold-rates {
@@ -194,14 +192,6 @@ main {
     align-items: center;
     justify-content: space-around;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.background-img {
-    width: 400px;
-    height: 200px;
-    background-image: url("../img/discount.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 .page-wrapper .bottom-div {
