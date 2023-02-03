@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_payment_details.css">
-    <title>Vogue Pawn | Payment Details</title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_make_payments.css">
+    <title>Vogue Pawn | Make Payments</title>
 </head>
 <body> 
     
     <div class="wrapper">
         <div class="header">
             <div class="title">
-                <a href="<?php echo URLROOT; ?>/pawnings/pawned_items">
+                <a href="<?php echo URLROOT; ?>/pawnings/payment_details/<?php echo $data['pawn_item']->Pawn_Id; ?>">
                     <img src="<?php echo URLROOT . '/img/back-arrow.png'; ?>">
                 </a>
                 
@@ -45,44 +45,45 @@
         </div>
         <div class="form-container">
             <div class="payment-details">
-                <div class="payment-history">
-                    <h2 class="form-header">Payment History</h2>
-                    <table>
-                        <tr>
-                            <th>Payment ID</th>
-                            <th>Installments</th>
-                            <th>Paid Date</th>
-                            <th>Paid Amount</th> 
-                        </tr>
-                        <tr>
-                            <td>PD1956</td>
-                            <td>03</td>
-                            <td>2022/09/30</td>
-                            <td>RS. 5000.00</td> 
-                        </tr>
-                    </table>
-                </div>
-                <div class="payments-amount">
-                    <div class="due-loan due-pay">
-                        <h2 class="form-header">Due Payments</h2>
-                        <div class="content">Amount: <p>Rs. 5000.00</p></div>
-                        <div class="content">Due Date: <p>2022/10/31</p></div>
-                        <!-- <p>No due payments</p> -->
+                <h2 class="form-header">Payment Details</h2>
+                
+                <form action="" method="post">
+                    <div class="field-wrapper">
+                        <label>Amount<sup>*</sup></label>
+                        <div class="input-wrapper">
+                            <input type="text" name="amount" placeholder="Amount">
+                        </div>
+                        <span class="invalid-feedback"></span>
                     </div>
-                    <div class="due-loan">
-                        <h2 class="form-header">Full Loan Amount</h2>
-                        <div class="content"><?php echo 'Rs. ' . $data['pawn_item']->Amount; ?></div>
+                    <div class="field-wrapper">
+                        <label>Date<sup>*</sup></label>
+                        <div class="input-wrapper">
+                            <input type="date" name="date">
+                        </div>
+                        <span class="invalid-feedback"></span>
                     </div>
-                </div>
+                    <div class="field-wrapper">
+                        <label>Fine</label>
+                        <div class="input-wrapper">
+                            <input type="text" name="fine" placeholder="Fine">
+                        </div>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </form>                
+            </div>
+
+            <div class="payment-details">
+                <h2 class="form-header">Remaining Loan Amount</h2>
+                <div class="remaining-amount">Rs. 100000.00</div>
             </div>
         </div>
-        <div class="form-container btn-container">
-            <a href="<?php echo URLROOT; ?>/pawnings/make_payments/<?php echo $data['pawn_item']->Pawn_Id; ?>" class="button">Make Payments</a>
-            <a href="#" class="button">Release Pawn</a>
-            <a href="#" class="button">Renew Pawn</a>
+
+        <div class="form-container">
+            <a href="" class="btn save">Save</a>
+            <a href="" class="btn cancel">Cancel</a>
         </div>
+                   
     </div>
-        
     
     <script type="text/javascript">
         const realFileBtn = document.getElementById("real-file");

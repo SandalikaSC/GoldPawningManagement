@@ -134,7 +134,7 @@ td,th {
     color: #fff;
     font-size: 18px;
     font-weight: 600;
-    padding: 15px 0;
+    padding: 10px 0;
     border: 2px solid #bb8a04;
     border-radius: 25px;
     box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.5);
@@ -142,9 +142,9 @@ td,th {
 }
 
 .form-container .button:hover {
-    background: #000;
     transform: translateY(-5px);
-    color: #bb8a04;
+    color: #333;
+    border-color: #333;
 }
 
 @media only screen and (max-width: 1145px) {
