@@ -84,8 +84,7 @@
                     </div>
                 </div>
 
-                <div class="cards">
-                    
+                <div class="cards">                    
                     <div class="gold-rates">
                         <div class="icon-case">
                             <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
