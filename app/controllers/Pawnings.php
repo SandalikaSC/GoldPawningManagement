@@ -27,7 +27,18 @@
                 'pawn_item' => $pawned_item
             ];
 
-            $this->view('pawning/payment_details', $data);
+            $this->view('PawnOfficer/payment_details', $data);
+        }
+
+        public function make_payments($id) {
+            // Get pawned item
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+
+            $data = [
+                'pawn_item' => $pawned_item
+            ];
+
+            $this->view('PawnOfficer/make_payments', $data);
         }
 
         public function new_pawning() {

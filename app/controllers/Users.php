@@ -424,7 +424,7 @@ class Users extends Controller
         $this->view('Manager/managerDash');
         break;
       case "Gold Appraiser":
-        $this->view('Gold Appraiser/goldappDash');
+        $this->view('GoldAppraiser/goldappDash');
         break;
       case "Vault Keeper":
         $this->view('VaultKeeper/vaultkeeperDash');
