@@ -205,10 +205,10 @@ main {
 }
 
 .cards {
-    padding: 0 15px;
+    padding: 0 15px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
@@ -237,8 +237,8 @@ main {
 }
 
 .gold-rates {
-    width: 230px;
-    height: 80px;
+    width: 240px;
+    height: 100px;
     padding: 10px;
     margin: 5px;
     background: #fff;
@@ -250,8 +250,8 @@ main {
 }
 
 .loan-interest {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     padding: 5px;
     margin: 5px;
     border-radius: 50%;
