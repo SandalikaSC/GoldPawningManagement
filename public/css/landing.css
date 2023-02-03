@@ -224,7 +224,10 @@ body {
   position: relative;
   background-color: white;
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
-
+  opacity: 0.9;
+  position: fixed;
+  width: 100vw;
+  z-index: 11  ;
 }
 
 .site-header__start {
@@ -290,6 +293,7 @@ body {
   display: block;
   padding: 0.5rem 2rem
 }
+ 
 .active{
   border: 2px solid #bb8a04;
     border-radius: 1em;
@@ -365,7 +369,7 @@ body {
   position: relative;
   z-index: 3;
   padding: 5rem 9rem 0 0;
-  text-align: right;
+  text-align: right;  
 }
 
 .sectiontopic {
@@ -750,7 +754,7 @@ b{
 
  
 .accordion{
-  padding: 2% 15%;
+  padding: 4% 15% 4%;
 }
 
 .accordion .accordion-item {
@@ -849,3 +853,92 @@ b{
    font-weight: 100;
   
 } 
+
+
+.contact-section{
+  display: flex;
+  display: flex;
+    margin: 2% 0 0 0; 
+    /* background-image: linear-gradient(to right, rgb(255, 255, 255), #bb8a04); */
+    /* border: 1px solid black;   */
+    justify-content: space-around; 
+    background-image: url('../img/tahlia-doyle-i1B8PtxYmoY-unsplash.jpg');
+}
+
+.contact-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.contact-form{
+  display: flex;
+    flex-direction: column;
+    margin: 3% 0;
+    background: white;
+    padding: 3%;
+    border-radius: 45px;
+    border: 1px solid #bb8a04;
+}
+.txt-small{
+  padding: 15% 0;
+}
+
+
+
+
+.form-name {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  ;
+}
+.phone {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.name-input {
+  padding: 4%;
+  border-radius: 10px;
+  margin: 6%;
+  border: solid gray 1px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+.name-input:focus {
+  border: solid 2px #bb8a04;
+  /* height: 20%; */
+}
+
+.info {
+  display: flex; 
+}
+
+.info-lablel {
+  color: gray;
+  padding: 5% 0 5% 5%;
+}
+
+.submit-btn {
+  background: #bb8a04;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 3% 30% 3% 30%;
+  /* margin: auto;*/
+  cursor: pointer;
+}
+.contactUS{
+  width: 25%;
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 45%;
+}   
+/* span{
+  color: red;
+  font-size: 0.8em;
+  margin: auto;
+} */
