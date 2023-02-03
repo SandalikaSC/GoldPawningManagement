@@ -66,7 +66,7 @@
         </header>
 
         <main> 
-            <div class="page-wrapper">
+            <div class="page-wrapper">                
                 <div class="cards">
                     <div class="card-summary">
                         <div class="title">
@@ -110,10 +110,10 @@
                             <img src="<?php echo URLROOT?>/img/gold-interest.png" alt="">
                         </div> -->
                         <div class="box">
-                            <h4>Loan Interest</h4>
+                            <h3>Loan Interest</h3>
                             <h1><?php echo $data['interest'] . '%'; ?></h1>
                         </div>                                
-                    </div> 
+                    </div>
 
                     <div class="gold-rates">
                         <div class="icon-case">
@@ -134,46 +134,14 @@
                             <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 18) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
                         </div>                                
                     </div>                    
-                </div>    
-                
+                </div>
+
                 <div class="div-main-buttons">
                     <a href="<?php echo URLROOT; ?>/customers/register_customer">Register Customer</a>
                     <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">New Pawning</a>
                 </div>
 
                 <div class="table-wrapper">
-                    <div class="table-container">
-                        <div class="table-title">
-                            <h2>Validated Articles</h2>
-                        </div>
-                        <div class="div-table-validated">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td>Article ID</td>
-                                        <td>Estimated Value</td>
-                                    </tr> 
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>AR001</td>
-                                        <td>Rs. 150,000/-</td>
-                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
-                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>AR001</td>
-                                        <td>Rs. 150,000/-</td>
-                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
-                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                    </div>
-
                     <div class="table-container">
                         <div class="table-title">
                             <h2>Appointments</h2>
@@ -207,8 +175,38 @@
                             </table>
                         </div>
                     </div>
-                </div>
 
+                    <div class="table-container">
+                        <div class="table-title">
+                            <h2>Validated Articles</h2>
+                        </div>
+                        <div class="div-table-validated">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <td>Article ID</td>
+                                        <td>Estimated Value</td>
+                                    </tr> 
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AR001</td>
+                                        <td>Rs. 150,000/-</td>
+                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AR001</td>
+                                        <td>Rs. 150,000/-</td>
+                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>                            
+                    </div>
+                </div>     
             </div>
             
         </main>
