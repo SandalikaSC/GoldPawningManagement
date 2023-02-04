@@ -21,7 +21,7 @@ body, html {
     justify-content: space-between;
     padding: 10px;
     background: #fff;
-    width: 100%;
+    width: 100vw;
     position: static;
     height: fit-content;
     margin-bottom: 10px;
@@ -73,6 +73,7 @@ main .left-wrapper .item-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 50px;
     border-bottom: 2px solid #dddddd;
 }
@@ -102,6 +103,7 @@ main .left-wrapper .loan-details div {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     padding: 3px;
 }
 
@@ -186,3 +188,38 @@ main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-save {
     margin-top: 40px;
 }
 
+@media only screen and (max-width: 1175px) {
+    main .left-wrapper {
+        
+        padding: 20px 60px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    main .left-wrapper .item-details {
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    main .left-wrapper .loan-details div {
+        width: 100%;
+    }
+
+    main .left-wrapper .loan-details div .amount {
+        margin-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    main .right-wrapper .form-wrapper {
+        width: 100%;
+    }
+}
