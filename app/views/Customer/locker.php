@@ -1,6 +1,6 @@
 <?php require APPROOT."/views/inc/header.php"?>
-    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/locker.css'>
-    <title>Vogue | My Locker</title>
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/locker.css'>
+<title>Vogue | My Locker</title>
 </head>
 
 <body>
@@ -17,31 +17,31 @@
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="locker-page">
-               
+
             <div class="jewellery-card">
                     <div class="jewellery-img">
-                        <img class="jw-img" src="<?php echo URLROOT ?>/img/images.jpg">
+                        <img class="jw-img" src="<?php echo URLROOT ?>/img/imam-kurniawan-qoGdi3R3ekQ-unsplash.jpg">
                     </div>
                     <div class="jw-details">
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Due Date</label>
-                                <label class="jw-dt">2023/11/03</label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05"))?></label>
                             </div>
 
                         </div>
                         <div class="jw-date-name">
 
                             <label>Status</label>
-                            <label class="status-pending">Pending</label>
+                            <label class="status tag-auctioned">Auction</label>
                         </div>
 
-                         
-                            <button class="v-btn">View</button>
-                         
+                       
+                        
+                        
                     </div>
+                    <button class="v-btn">View</button>
                 </div>
-
 
 
 

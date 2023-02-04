@@ -139,6 +139,7 @@ hr{
     flex-direction: column;
     overflow-y: scroll;
     position: relative;
+    width: 75%;
 }
 
 .right-heading{
