@@ -102,68 +102,7 @@
                     </div>
                 </div>
             </div>
-        </main>
-        
-
-        <!-- <div class="form-container">
-            <div class="article-details">
-                <div>
-                    <h4 class="form-header">Customer ID</h4>
-                    <p><?php echo $data['pawn_item']->userId; ?></p>
-                </div>
-                <div>
-                    <h4 class="form-header">Article ID</h4>
-                    <p><?php echo $data['pawn_item']->Article_Id; ?></p>
-                </div>
-                <div>
-                    <h4 class="form-header">Pawned Date</h4>
-                    <p><?php echo date('Y/m/d', strtotime($data['pawn_item']->Pawn_Date)); ?></p>
-                </div>
-                <div>
-                    <img src="<?php echo URLROOT . '/img/bracelet_01.jpg'; ?>">
-                </div>
-            </div>
-        </div>
-        <div class="form-container">
-            <div class="payment-details">
-                <h2 class="form-header">Payment Details</h2>
-                
-                <form action="" method="post">
-                    <div class="field-wrapper">
-                        <label>Amount<sup>*</sup></label>
-                        <div class="input-wrapper">
-                            <input type="text" name="amount" placeholder="Amount">
-                        </div>
-                        <span class="invalid-feedback"></span>
-                    </div>
-                    <div class="field-wrapper">
-                        <label>Date<sup>*</sup></label>
-                        <div class="input-wrapper">
-                            <input type="date" name="date">
-                        </div>
-                        <span class="invalid-feedback"></span>
-                    </div>
-                    <div class="field-wrapper">
-                        <label>Fine</label>
-                        <div class="input-wrapper">
-                            <input type="text" name="fine" placeholder="Fine">
-                        </div>
-                        <span class="invalid-feedback"></span>
-                    </div>
-                </form>                
-            </div>
-
-            <div class="payment-details">
-                <h2 class="form-header">Remaining Loan Amount</h2>
-                <div class="remaining-amount">Rs. 100000.00</div>
-            </div>
-        </div> -->
-
-        <!-- <div class="form-container">
-            <a href="" class="btn save">Save</a>
-            <a href="" class="btn cancel">Cancel</a>
-        </div> -->
-                   
+        </main>        
     </div>
     
     <script type="text/javascript">
