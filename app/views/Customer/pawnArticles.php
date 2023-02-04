@@ -32,13 +32,14 @@
                         <div class="jw-date-name">
 
                             <label>Status</label>
-                            <label class="status-pending">Pending</label>
+                            <label class="status tag-pending">Pending</label>
                         </div>
 
                          
-                            <button class="v-btn">View</button>
+                          
                          
                     </div>
+                    <button class="v-btn">View</button>
                 </div>
                 <div class="jewellery-card">
                     <div class="jewellery-img">
@@ -55,15 +56,64 @@
                         <div class="jw-date-name">
 
                             <label>Status</label>
-                            <label class="status-overdue">Overdue</label>
+                            <label class="status tag-overdue">Overdue</label>
                         </div>
 
                        
-                            <button class="v-btn">View</button>
+                           
+                    </div>
+                    <button class="v-btn">View</button>
+                        
+                </div>
+                
+                <div class="jewellery-card">
+                    <div class="jewellery-img">
+                        <img class="jw-img" src="<?php echo URLROOT ?>/img/images.jpg">
+                    </div>
+                    <div class="jw-details">
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Due Date</label>
+                                <label class="jw-dt">2023/11/03</label>
+                            </div>
+
+                        </div>
+                        <div class="jw-date-name">
+
+                            <label>Status</label>
+                            <label class="status tag-auctioned">Auction</label>
+                        </div>
+
+                       
+                        
                         
                     </div>
+                    <button class="v-btn">View</button>
                 </div>
+                <div class="jewellery-card">
+                    <div class="jewellery-img">
+                        <img class="jw-img" src="<?php echo URLROOT ?>/img/images.jpg">
+                    </div>
+                    <div class="jw-details">
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Due Date</label>
+                                <label class="jw-dt">2023/11/03</label>
+                            </div>
 
+                        </div>
+                        <div class="jw-date-name">
+
+                            <label>Status</label>
+                            <label class="status tag-overdue">Overdue</label>
+                        </div>
+
+                       
+                          
+                        
+                    </div>
+                    <button class="v-btn">View</button>
+                </div>
             </div>
         </div>
     </div>
