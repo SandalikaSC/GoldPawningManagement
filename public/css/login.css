@@ -66,8 +66,9 @@
 .form{
     height: 80%;
     position: absolute;
-    display: flex;
-    flex-direction: column;
+    display: flex; 
+    flex-direction: column; 
+    
 }
  .login-Img{ 
      width: 35%;  
@@ -157,3 +158,19 @@
     font-size: 1vw;
  
 }
+.forget-pw{
+    height: 60%;
+    position: absolute;
+    display: flex; 
+    flex-direction: column;
+    display: none;
+}
+.p{
+    cursor: pointer;
+}
+.p:hover{
+    color: #f2b81b;
+    font-weight: 300;
+
+}
+ 
