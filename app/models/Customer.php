@@ -266,6 +266,14 @@ class Customer
 
             return $row;
         }  
+        public function getUserByEmail($email) {
+            $this->db->query('SELECT * FROM user WHERE email = :email');
+            $this->db->bind(':email', $email);
+
+            $row = $this->db->single();
+
+            return $row;
+        }  
 
 
         public function getCustomer() {

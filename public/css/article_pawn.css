@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; 
+}
+
+  
+
+
+/*  article */
+.wrapper{
+    flex-direction: column; 
+    overflow-y: scroll;
+}
+.content{
+    display: flex;
+    width: 100%; 
+    /* place-items: center center ; */
+
+}  
+.back{
+    width: 40px;
+}  
+.article{
+    display: flex;
+    flex-direction: column; 
+    /* border: 1px solid black; */
+    width: 60%;
+}
+
+.article-info{
+    display: flex;
+    /* border: 1px solid black; */
+    justify-content: space-evenly;
+
+   
+}
+
+
+
+.info-div{
+    /* margin-top: 10%; */
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 35%;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+    border-radius: 20px;
+    
+}
+
+.due-payment{
+    /* border: 1px solid black; */
+
+}
+.pay-btn{
+    background-color: #bb8a04;
+    color: white;
+    width: 42%;
+    border-radius: 20px;
+    margin-left: 30%;
+}
+
+.jewellery-card{
+    background-color: white;
+    position: relative;
+    width: 20%;
+    height: 80%;
+    padding: 1%;
+    padding-bottom: 2%;
+    /* border: solid 1px #bb8a04; */
+    border-radius: 20px;
+    /* margin-left: 5%; */
+    box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
+}
+.jewellery-img{
+    width: 100%;
+    height: 35%;
+    margin-bottom: 4%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.jw-img{
+    width: 50%;
+    height: 90%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    /* height: 50%; */
+    /* width: 50%; */
+    border-radius: 25px;
+    box-shadow: 0 2px 20px rgb(187 138 4 / 30%);
+}
+ 
+.jewellery-card:hover{
+    border: 1px solid #b7b7b7;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+.tag-overdue {
+    background-color: #ff01018a;
+  } 
+  .tag-pending {
+    background-color: #bb8a048c;
+  } 
+  .tag-auctioned {
+    background-color: #0000007d;
+  }
+
+ 
+.jw-date-name{
+    display: flex;
+    justify-content: space-between; 
+}
+.jw-date{
+   
+    margin-bottom: 5%;
+}
+.status-pending{
+    color:#bb8a04 ;
+}
+.status{
+    color:rgb(255, 255, 255) ;
+    padding: 1% 3%;
+    border-radius: 10px;
+    font-size: 0.9em;
+}
+
+
+.jw-status{
+    display: flex;
+    gap: 50%;
+    margin-bottom: 5%;
+}
+
+.jw-dt{
+    color:rgb(158, 158, 158);
+    font-weight:400;
+}
+
+.jw-st{
+    color:rgb(168, 168, 62);
+    font-weight:600;
+}
+.sub-title{
+    font-size: 1rem;
+    border-bottom: 2px solid #bb8a04;
+    /* margin: 0 5%; */
+    text-align: center;
+    
+    padding: 2%;
+    margin: 4% 18% 5%;
+}

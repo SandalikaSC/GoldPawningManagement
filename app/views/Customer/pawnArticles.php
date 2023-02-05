@@ -39,7 +39,8 @@
                           
                          
                     </div>
-                    <button class="v-btn">View</button>
+                    <form action="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle" method="POST"> <button class="v-btn" >View</button></form>
+                   
                 </div>
                 <div class="jewellery-card">
                     <div class="jewellery-img">
@@ -62,7 +63,8 @@
                        
                            
                     </div>
-                    <button class="v-btn">View</button>
+                    <form action="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle" method="POST"> <button class="v-btn" >View</button></form>
+                   
                         
                 </div>
                 
@@ -88,7 +90,8 @@
                         
                         
                     </div>
-                    <button class="v-btn">View</button>
+                    <form action="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle" method="POST"> <button class="v-btn" >View</button></form>
+                   
                 </div>
                 <div class="jewellery-card">
                     <div class="jewellery-img">
@@ -112,7 +115,8 @@
                           
                         
                     </div>
-                    <button class="v-btn">View</button>
+                    <form action="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle" method="POST"> <button class="v-btn" >View</button></form>
+                   
                 </div>
             </div>
         </div>
