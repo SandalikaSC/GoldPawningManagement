@@ -14,3 +14,4 @@ back.addEventListener('click', function() {
     form.style.display = form.style.display === 'none' ? 'flex' : 'none';
   forgetPw.style.display = forgetPw.style.display === 'flex' ? 'none' : 'flex';
 });
+

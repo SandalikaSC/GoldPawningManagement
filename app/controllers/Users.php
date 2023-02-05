@@ -425,24 +425,11 @@ class Users extends Controller
   }
   public function checkEmail()
   {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Process form 
-      // Sanitize POST data
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-      // Init data
-      $data = [
-        'email' => trim($_POST['email']),
-        'email_err' => ''
-      ];
-      $this->view('inc/notification');
-      // $result = $this->userModel->findUserByEmail($data['email']);
-      // if($result){
-      //   echo "otp yawanna";
-      // }else{
-
-      // }
+     
+    if(isset($_POST["email"])){
+      $data['name']="sandalika";
     }
+    echo json_encode($data);
   }
 
   public function logout()
