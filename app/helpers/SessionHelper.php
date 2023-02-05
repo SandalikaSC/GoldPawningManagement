@@ -30,13 +30,7 @@ function flash($name = '', $message = '', $class = 'invalid')
 }
 
 
-<<<<<<< Updated upstream
 function notification($name = '', $message = '', $class = 'gold')
-=======
-  
-
-function isLoggedIn()
->>>>>>> Stashed changes
 {
   if (!empty($name)) {
     if (!empty($message) && empty($_SESSION[$name])) {
