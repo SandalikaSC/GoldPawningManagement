@@ -71,7 +71,7 @@ body{
     position: absolute;
     display: flex; 
     flex-direction: column; 
-    
+    /* display: none; */
 }
  .login-Img{ 
      width: 35%;  
@@ -161,10 +161,10 @@ body{
     font-size: 1vw;
  
 }
-.forget-pw{
+.forget-pw,.otp{
     height: 60%;
     position: absolute;
-    display: flex; 
+    /* display: flex;  */
     flex-direction: column;
     display: none;
 }
@@ -177,3 +177,7 @@ body{
 
 }
  
+ .h3{
+    font-size: 1rem;
+    text-align: center;
+ }

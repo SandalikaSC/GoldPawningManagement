@@ -433,10 +433,37 @@ class Users extends Controller
   {
      
     if(isset($_POST["email"])){
-      $data['name']="sandalika";
+        $result=$this->userModel->getUserByEmail($_POST["email"]);
+        if(empty($result)){ 
+          flash('register', "You are not registered with Us.", 'invalid');
+          $this->view('pages/userLogin');
+
+        }    
+        else if($result->verification_status==="0"){
+          flash('register', "You are not verified your email yet.", 'invalid');
+          $this->view('pages/userLogin');
+        }else if(!empty($result) && $result->verification_status==="1"){
+          $_SESSION['OTP']=$this->randomPassword();
+          $data['success']=1;
+          echo json_encode($data);
+        }
+
+      // $data['name']="sandalika";
     }
-    echo json_encode($data);
+   
   }
+   //to generate a OTP number
+   private function randomPassword()
+   {
+       $alphabet = '1234567890';
+       $pass = array(); //remember to declare $pass as an array
+       $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+       for ($i = 0; $i < 6; $i++) {
+           $n = rand(0, $alphaLength);
+           $pass[] = $alphabet[$n];
+       }
+       return implode($pass); //turn the array into a string
+   }
 
   public function logout()
   {
