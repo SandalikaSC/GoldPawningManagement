@@ -13,16 +13,10 @@
     <div class="page">
 
         <?php
-        $msg;
-        if (!empty($data)) {
-            // include_once 'email-exist.php';
-            $msg= str_replace("_"," ",$data);
+        if (!empty($_SESSION['message'])) {
+          
             include_once 'error.php';
-           ?>
-           <script>
-             document.getElementById('error-msg').innerHTML=`<?php echo $msg ?>`;
-           </script>
-          <?php
+         
         } 
         ?>
 
@@ -74,7 +68,7 @@
                     </h1>
                     <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="content-add-new-page">
 

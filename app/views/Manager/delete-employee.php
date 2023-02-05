@@ -58,7 +58,7 @@
                         <?php echo $data[0]->UserId ?>
                     </h1>
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="content-of-view-page">
                 <!--  -->

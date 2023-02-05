@@ -1,4 +1,7 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+*{
    margin:0;
     padding:0;
     box-sizing: border-box;
@@ -6,9 +9,11 @@
 
   /*  */
   body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
+    background-color:  #e8e6e6;
+
 }
 
 .page{
@@ -49,8 +54,8 @@
 }
 
 .page .left .profile .profile-pic img{
-    width:100px;
-    height:100px;
+    width:150px;
+    height:150px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -137,7 +142,8 @@
     align-items: center;
     position: sticky;
     top: 0; 
-    background-color: rgba(255, 255, 255, 0.669);
+    /* background-color: rgba(255, 255, 255, 0.669); */
+    background-color:  #e8e6e6;
     backdrop-filter: blur(15px);
     z-index: 8;
 }
@@ -172,6 +178,13 @@
 
 
 
+.bars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    cursor: pointer;
+}
 
 
 .bars img{
@@ -180,10 +193,18 @@
     border-radius: 5px;
 }
 
-.bars{
-    z-index: 100;
-    cursor: pointer;
+.page-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 
 /* with respect to the search bar */
@@ -195,6 +216,7 @@
 }
 /* for search bar */
 .search-bar {
+    /* width:100%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -207,14 +229,14 @@
     padding: 8px 15px;
     font-size: large;
     /* outline: none; */
-    border-radius: 20px;
+    border-radius: 4px;
     background-color: #E5E9E7;
-    border: none;
+    /* border: none; */
 }
 
-.search-bar>input::placeholder {
+/* .search-bar>input::placeholder {
     color: rgba(82, 82, 82, 0.608);
-}
+} */
 
 .search-bar>input:focus {
     outline: none;
@@ -346,7 +368,7 @@
     align-items: center;
     justify-content: center; */
     position: absolute;
-    top: 365px;
+    top: 385px;
     left: 70px;
     
   }
@@ -375,9 +397,10 @@
   .card {
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
     padding: 30px 0;
-    background-color: #f1f1f1;
-    border: 6px solid #c39823;
+    background-color: white;
+    border: 2px solid #c39823;
     border-radius: 20px;
+    box-shadow: 1px 5px 15px 0 black;
   }
 
 

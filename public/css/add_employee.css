@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 *{
     margin:0;
     padding:0;
@@ -5,17 +7,18 @@
 }
 
 body{
-    font:bold;
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+    font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
+    
 }
 
 .page{
     display:flex;
     width: 100%;
     height:100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
 
@@ -58,8 +61,8 @@ body{
 }
 
 .page .left .profile .profile-pic img{
-    width:100px;
-    height:100px;
+    width:150px;
+    height:150px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -190,6 +193,9 @@ body{
 }
 
 .bars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 100;
     cursor: pointer;
 }
@@ -197,6 +203,8 @@ body{
 
     
 /* with respect to the form */
+
+
 .section_left{
     display: flex;
     width: 100%;

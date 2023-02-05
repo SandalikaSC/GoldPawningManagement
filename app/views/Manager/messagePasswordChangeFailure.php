@@ -68,7 +68,7 @@
 <section style="display:none;" class="whole" id="password-changed-failure-message-box">
 <div class="password-changed-box">
     <p>Failure..Try again.</p>
-    <button type="button" id="done-btn" class="done-btn">Done</button>
+    <button id="donebtn" class="done-btn">Done</button>
 </div>
 </section>
 

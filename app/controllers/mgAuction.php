@@ -12,4 +12,10 @@ class mgAuction extends controller
       // $this->view("auction_dashboard", array($result, $msg));
       $this->view("/Manager/auction_dashboard");
    }
+
+   public function viewAuctionItem(){
+      isLoggedIn();
+      $this->view("/Manager/viewAuctionItem");
+      
+   }
 }

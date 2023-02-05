@@ -4,6 +4,8 @@ session_start();
 // Flash message helper
 // EXAMPLE - flash('register_success', 'You are now registered');
 // DISPLAY IN VIEW - echo flash('register_success');
+
+
 function flash($name = '', $message = '', $class = 'invalid')
 {
   if (!empty($name)) {
@@ -28,7 +30,13 @@ function flash($name = '', $message = '', $class = 'invalid')
 }
 
 
+<<<<<<< Updated upstream
 function notification($name = '', $message = '', $class = 'gold')
+=======
+  
+
+function isLoggedIn()
+>>>>>>> Stashed changes
 {
   if (!empty($name)) {
     if (!empty($message) && empty($_SESSION[$name])) {

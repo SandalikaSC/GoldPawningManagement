@@ -406,7 +406,9 @@ class Users extends Controller
         $this->view('Admin/adminDash');
         break;
       case "Manager":
-        $this->view('Manager/managerDash');
+       
+        redirect('/mgDashboard');
+        // $this->view('Manager/managerDash');
         break;
       case "Gold Appraiser":
         $this->view('GoldAppraiser/goldappDash');
@@ -419,7 +421,11 @@ class Users extends Controller
         redirect('/pawningOfficerDashboard/dashboard');
         break;
       case "Owner":
-        $this->view('Owner/ownerDash');
+        $staff=$this->model("staffModel");
+        $result=$staff->loadProfilePicture($_SESSION['user_email']);
+        $_SESSION['profile_pic']=$result->image;
+        $_SESSION['mg_name']=$result->Name;
+        redirect('/ownerDashboard');
         break;
     }
   }

@@ -59,10 +59,52 @@
                     <a href="<?php echo URLROOT ?>/mgDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
+                <div class="search">
 
+                    <div class="search-bar">
+                        <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
+
+                    </div>
+
+                </div>
+                <div class="table">
+                    <div class="table-section">
+                       
+                            <table id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th>Locker No</th>
+                                        <th>Date</th>
+                                        <th>Customer Name</th>
+                                        <th>Retrieve Date</th>
+                                        <th>No of Items</th>
+                
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                            <tr>
+                                                <td>LC001</td>
+                                                <td>2022/11/03</td>
+                                                <td>M.A.Thimeth Imesha</td>
+                                                <td>2023/11/03</td>
+                                                <td>2</td>
+                                                
+                                                <td>
+                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
+                                            
+                                                </td>
+                                            </tr>
+                             
+
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -59,11 +59,16 @@
           <div class="bars" id="bars">
             <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
           </div>
-          <h1>Auction</h1>
-          <a href="<?php echo URLROOT ?>/mgDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+          <div class="page-name">
+            <h1>Auction</h1>
+          </div>
+          <div class="back">
+            <a href="<?php echo URLROOT ?>/mgDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+          </div>
+
 
         </div>
-        <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+        <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
       </div>
       <div class="inside-page">
         <div class="search">
@@ -77,7 +82,7 @@
         <div class="auction-page-row">
           <div class="auction-page-column">
             <div class="card">
-              <img src="<?php echo URLROOT ?>/img/gold-bar.jpg" alt="gold-bar" />
+              <img src="<?php echo URLROOT ?>/img/bracelet.png" alt="gold-bar" />
               <div class="details">
                 
                 <h3>Ariticle No:</h3>
@@ -88,13 +93,13 @@
               </div>
             </div>
             <div class="card-view-btn">
-              <a href="#">View</a>
+              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
             </div>
           </div> 
           
           <div class="auction-page-column">
             <div class="card">
-              <img src="<?php echo URLROOT ?>/img/gold-bar.jpg" alt="gold-bar" />
+              <img src="<?php echo URLROOT ?>/img/bracelet.png" alt="gold-bar" />
               <div class="details">
                 
                 <h3>Ariticle No:</h3>
@@ -105,13 +110,13 @@
               </div>
             </div>
             <div class="card-view-btn">
-              <a href="#">View</a>
+              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
             </div>
           </div> 
           
           <div class="auction-page-column">
             <div class="card">
-              <img src="<?php echo URLROOT ?>/img/gold-bar.jpg" alt="gold-bar" />
+              <img src="<?php echo URLROOT ?>/img/bracelet.png" alt="gold-bar" />
               <div class="details">
                 
                 <h3>Ariticle No:</h3>
@@ -122,7 +127,7 @@
               </div>
             </div>
             <div class="card-view-btn">
-              <a href="#">View</a>
+              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
             </div>
           </div>         
         </div>

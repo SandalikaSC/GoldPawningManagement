@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -5,6 +8,7 @@
 }
 
 body{
+    font-family: 'Poppins';
     background-image: url("http://localhost/vogueMy/public/img/img5.jpg");
     background-repeat: none;
     background-size: cover;

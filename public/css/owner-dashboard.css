@@ -368,11 +368,11 @@ input[type=text] {
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    /* background-image: url('http://localhost/vogueMy/public/img/search-icon.png'); */
+    background-image: url('http://localhost/vogueMy/public/img/search-icon.png');
     /* background-image: url('searchicon.png'); */
     /* background-position: 10px 10px;  */
     background-repeat: no-repeat;
-    padding: 15px 20px 15px 10px;
+    padding: 15px 20px 15px 50px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
   }
@@ -438,3 +438,149 @@ input[type=text] {
 
     
     
+
+/* gold rate cards */
+    
+
+        .current-gold-rates{
+           background-color: white ;
+           padding:10px;
+           border-radius: 20px;
+           /* border: 2px solid goldenrod; */
+           font-family: 'Poppins';
+            box-shadow: 1px 5px 5px 0 black;
+        }
+
+        .gold-rates{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        
+        }
+
+        .gold-rates .col1{
+            display: flex;
+            /* flex-direction: column; */
+        }
+        
+        .gold-rates .col2{
+            display: flex;
+            /* flex-direction: column; */
+        }
+        
+        .gold-rates .col3{
+            display: flex;
+            /* margin: 0 30px; */
+            justify-content: center;
+            align-items: center;
+        }
+        .gold-rate-card{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 300px;
+            border: 2px solid #c39823;
+            border-radius: 10px;
+            background-color: #FFE499;
+            padding: 5px 10px;
+            margin: 0 25px;
+        }
+
+        .col3 .loan-interest{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            margin: 0 20px; 
+            border: 2px solid #c39823;
+            border-radius: 100%;
+            background-color: #FFE499;
+        }
+
+        .gold-rate-card label{
+            font-size: large;
+            font-weight: 600;
+            padding: 0 10px;
+            border-bottom: 4px solid #c39823;
+        }
+
+        .gold-rate-card p{
+            font-size: large;
+            font-weight: 600;
+            padding: 5px 10px;
+        }
+
+        .loan-interest label{
+            font-size: large;
+            font-weight: 600;
+            
+        }
+
+        .loan-interest p{
+            font-size: large;
+            font-weight: 600; 
+        }
+    
+        @media screen and (max-width:958px) {
+            .gold-rate-card{
+               
+                margin:20px 5px;
+            }
+
+            .gold-rates{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            
+        }
+
+        @media screen and (max-width:750px){
+            .gold-rate-card{
+               
+                margin:10px 0;
+            }
+
+            .gold-rates{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+
+ .pag{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+ }
+        
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

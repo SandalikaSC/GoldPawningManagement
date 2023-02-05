@@ -6,5 +6,10 @@ class mgLocker extends controller{
         isLoggedIn();
         $this->view("/Manager/locker_dashboard");
      }
+
+     public function viewLockerItems(){
+      isLoggedIn();
+        $this->view("/Manager/viewLockerItems");
+     }
 }
 ?>
