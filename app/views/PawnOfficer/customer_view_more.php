@@ -74,13 +74,41 @@
             <div class="sub-details">
                 <div class="title">
                     <h3>Pawned Articles</h3>
-                </div>                
+                </div>   
+                <div class="article-details">
+                    <div class="article-details-card">
+                        <img src="<?php echo URLROOT?>/img/ring1.jpg">
+                        <div><label>Article ID: </label>AR001</div>
+                        <div><label>Customer ID: </label>CS0021</div>
+                        <div><label>Type: </label>Jewelry</div>
+                    </div> 
+                    <div class="article-details-card">
+                        <img src="<?php echo URLROOT?>/img/ring1.jpg">
+                        <div><label>Article ID: </label>AR001</div>
+                        <div><label>Customer ID: </label>CS0021</div>
+                        <div><label>Type: </label>Jewelry</div>
+                    </div> 
+                </div>             
             </div>
 
             <div class="sub-details">
                 <div class="title">
                     <h3>Articles in Lockers</h3>
-                </div>                
+                </div>     
+                <div class="article-details">
+                    <div class="article-details-card">
+                        <img src="<?php echo URLROOT?>/img/ring1.jpg">
+                        <div><label>Article ID: </label>AR001</div>
+                        <div><label>Customer ID: </label>CS0021</div>
+                        <div><label>Type: </label>Jewelry</div>
+                    </div> 
+                    <div class="article-details-card">
+                        <img src="<?php echo URLROOT?>/img/ring1.jpg">
+                        <div><label>Article ID: </label>AR001</div>
+                        <div><label>Customer ID: </label>CS0021</div>
+                        <div><label>Type: </label>Jewelry</div>
+                    </div> 
+                </div>            
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="#">
                         <span>
                             <img src="<?php echo URLROOT?>/img/white_pawn_items.png">
                         </span>

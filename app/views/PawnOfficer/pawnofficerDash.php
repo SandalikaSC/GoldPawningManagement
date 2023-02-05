@@ -192,7 +192,7 @@
                                     <tr>
                                         <td>AR001</td>
                                         <td>Rs. 150,000/-</td>
-                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="<?php echo URLROOT; ?>/customers/confirm_pawn" class="btn-validated btn-pawn">Pawn</a></td>
                                         <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
                                     </tr>
                                     <tr>
