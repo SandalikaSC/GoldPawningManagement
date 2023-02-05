@@ -17,7 +17,7 @@
 <!-- navbar -->
 <nav>
     <h1>Dashboard</h1>
-    <img width="48" src="<?php echo URLROOT ?>/img/FULLlogo.png" class="logo" alt="logo">
+    <img width="100" src="<?php echo URLROOT ?>/img/FULLlogo.png" class="logo" alt="logo">
 </nav>
 
 
@@ -25,7 +25,7 @@
 <aside class="sidebar">
         <div class="sidebar_header">
             <div class="profile_image">
-                <img width="100" src="img/profile.jpg" alt="profile">
+                <img width="100" src="<?php echo URLROOT ?>/img/profile.jpg" alt="profile">
             </div>
             <p><?php echo $_SESSION['user_name']; ?></p>
         </div>
@@ -37,27 +37,27 @@
             </a>
             
             <a href="./pawnarticales.php">
-            <img width="24" class="page-btn-img" src="./img/articale.png"> 
+            <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/articale.png"> 
                 <p>Pawn Articles</p>
             </a>
 
             <a href="./locker.php">
-                <img width="24" class="page-btn-img" src="./img/locker.png">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/locker1.png">
                 <p>Locker</p>
             </a>
 
             <a href="./staff.php">
-                <img width="24" class="page-btn-img" src="./img/staff.png">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/staff1.png">
                 <p>Staff</p>
             </a>
             
             <a href="./market.php">
-                <img width="24" class="page-btn-img" src="./img/payment.png">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/payment.png">
                 <p>Market</p>
             </a>
 
             <a href="<?php echo URLROOT ?>/Goldprices/index">
-                <img width="24" class="page-btn-img" src="./img/goldprice.png">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/goldprice.png">
                 <p>Gold Price</p>
             </a>
         </div>
