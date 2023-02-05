@@ -113,36 +113,54 @@
                             <div><label>Article ID: </label>AR001</div>
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
+                            <div class="div-btn">
+                                <a href="">Validate</a>
+                            </div>
                         </div> 
                         <div class="article-details-card">
                             <img src="<?php echo URLROOT?>/img/ring1.jpg">
                             <div><label>Article ID: </label>AR001</div>
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
+                            <div class="div-btn">
+                                <a href="">Validate</a>
+                            </div>
                         </div> 
                         <div class="article-details-card">
                             <img src="<?php echo URLROOT?>/img/ring1.jpg">
                             <div><label>Article ID: </label>AR001</div>
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
+                            <div class="div-btn">
+                                <a href="">Validate</a>
+                            </div>
                         </div> 
                         <div class="article-details-card">
                             <img src="<?php echo URLROOT?>/img/ring1.jpg">
                             <div><label>Article ID: </label>AR001</div>
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
+                            <div class="div-btn">
+                                <a href="">Validate</a>
+                            </div>
                         </div> 
                         <div class="article-details-card">
                             <img src="<?php echo URLROOT?>/img/ring1.jpg">
                             <div><label>Article ID: </label>AR001</div>
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
+                            <div class="div-btn">
+                                <a href="">Validate</a>
+                            </div>
                         </div> 
                         <div class="article-details-card">
                             <img src="<?php echo URLROOT?>/img/ring1.jpg">
                             <div><label>Article ID: </label>AR001</div>
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
+                            <div class="div-btn">
+                                <a href="">Validate</a>
+                            </div>
                         </div>                        
                     </div>
                 </div>
