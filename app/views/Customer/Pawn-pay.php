@@ -36,14 +36,39 @@
                     <hr>
                 </div>
                 <div class="info-section">
-                    <img src="" alt="" class="icon">
-                    <label for="">Rs. 4000.00</label>
+                    <div><img src="<?php echo URLROOT ?>/img/calender-white.png"" alt="" class=" icon">
+                        <label for="">Next Pay Date</label>
+                    </div>
+                    <label for="" class="icon-label"><?php echo date("d M Y", strtotime("2024/01/03"))?></label>
                 </div>
             </div>
-            <div class="card-info"></div>
+            <form class="card-info">
+                <h2>
+                    Payment Details
+                </h2>
+                <label for="">
+                    Credit Card
+                </label>
+                <input type="text" class="card-no">
+                <div class="card-grid">
+                    <label for="">
+                    Expiration Date
+                    </label>
+                    <label for="">
+                    Code CVV
+                    </label>
+                    <input type="date" class="card-no">
+                    <input type="password" class="card-no">
+                </div>
+                <label for="">
+                Name
+                </label>
+                <input type="text" class="card-no">
+                <button class="pay">Pay Rs. 5600</button>
+            </form>
         </div>
     </div>
     <script>
 
-</script>
-<?php require APPROOT . "/views/inc/footer.php" ?>
+    </script>
+    <?php require APPROOT . "/views/inc/footer.php" ?>
