@@ -13,27 +13,17 @@ function func() {
     var txt = dashboard_btn.innerHTML;
     // console.log(txt);
     switch (txt) {
-        case "Appointments":
-            document.getElementById("appointment").classList.add("dash");
-            document.getElementById("dashboard").classList.remove("dash");
-            break;
+        
         case "Dashboard":
             document.getElementById("dashboard").classList.add("dash");
             break;
-        case "Locker":
+        case "Lockers":
             document.getElementById("locker").classList.add("dash");
             document.getElementById("dashboard").classList.remove("dash");
             break;
-        case "Pawn Articles":
-            document.getElementById("pawnArticles").classList.add("dash");
-            document.getElementById("dashboard").classList.remove("dash");
-            break;
-        case "Contact Us":
-            document.getElementById("contactUs").classList.add("dash");
-            document.getElementById("dashboard").classList.remove("dash");
-            break;
-        case "About":
-            document.getElementById("about").classList.add("dash");
+         
+        case "Customers":
+            document.getElementById("Customers").classList.add("dash");
             document.getElementById("dashboard").classList.remove("dash");
             break;
         default:

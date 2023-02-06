@@ -83,4 +83,6 @@
         </div>
 
     </div>
+    <script src="<?php echo URLROOT ?>/js/sideMenu.js"></script>
+
     <?php require APPROOT."/views/inc/footer.php"?>
