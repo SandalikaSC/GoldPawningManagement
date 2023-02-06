@@ -1,0 +1,46 @@
+.payment-invoice{
+    width: 60%;
+    height: 90%;
+    /* border: 1px solid black; */
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+.page{
+    
+
+}  
+.payment-info{
+    width: 45%;
+    height: 90%;
+    margin: auto;
+    background-color: #bb8a04ce;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    color: white;
+    padding: 5%;
+ /* border: 1px solid black; */
+ display: flex;
+ flex-direction: column;
+ place-content: center;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+}
+.card-info{
+ /* border: 1px solid black; */
+ border-radius: 20px;
+ width: 55%;
+ box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+}
+.h2-txt{
+    font-size: 1.2rem;
+    /* padding: 5%; */
+}
+.info-section{
+    display: flex;
+    justify-content: space-between;
+}
+hr{
+    color: white;
+    width: 100%;
+    margin: 4% 3%;
+}
