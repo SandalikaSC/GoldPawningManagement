@@ -19,7 +19,29 @@
         </div>
 
     </div>
-    <div class="content">
+    <div class="page">
+
+        <div class="payment-invoice">
+            <div class="payment-info">
+                <h2 class="h2-txt amount">Rs. 5600.00</h2>
+                <div class="info-section">
+                    <label for="">Interest amount</label>
+                    <label for="">Rs. 1600.00</label>
+                </div>
+                <div class="info-section">
+                    <label for="">Loan Amount</label>
+                    <label for="">Rs. 4000.00</label>
+                </div>
+                <div class="info-section">
+                    <hr>
+                </div>
+                <div class="info-section">
+                    <img src="" alt="" class="icon">
+                    <label for="">Rs. 4000.00</label>
+                </div>
+            </div>
+            <div class="card-info"></div>
+        </div>
     </div>
     <script>
 
