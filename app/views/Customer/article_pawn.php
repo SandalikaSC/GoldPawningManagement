@@ -156,9 +156,9 @@
             </div>
             </div>
            
-
+            <form action="<?php echo URLROOT ?>/CustomerPawn/makePayment" method="get">
             <button class="pay-btn">Renew</button>
-
+            </form>
 
         </div>
     </div>

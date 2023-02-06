@@ -27,4 +27,7 @@ class CustomerPawn extends Controller
            
 
         }
+        public function makePayment(){
+            $this->view('Customer/Pawn-pay');
+        }
     }
