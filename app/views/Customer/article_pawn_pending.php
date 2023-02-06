@@ -30,7 +30,7 @@
         <div class="article">
 
             <div class="jewellery-img">
-                <img class="jw-img" src="<?php echo URLROOT ?>/img/lum3n-esAis38NHT8-unsplash.jpg">
+                <img class="jw-img" src="<?php echo URLROOT ?>/img/images.jpg">
 
 
             </div>
@@ -78,7 +78,7 @@
                     <div class="jw-date-name">
 
                         <label>Status</label>
-                        <label class="status tag-overdue">Overdue</label>
+                        <label class="status tag-pending">Pending</label>
                     </div>
                 </div>
                 <div class="due-payment info-div">
@@ -157,7 +157,7 @@
             </div>
            
 
-            <button class="pay-btn">Renew</button>
+            <button class="pay-btn">Pay</button>
 
 
         </div>

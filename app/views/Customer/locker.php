@@ -43,7 +43,8 @@
                         
                         
                     </div>
-                    <button class="v-btn">View</button>
+                    <form action="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle" method="POST"> <button class="v-btn">View</button>
+                    </form>
                 </div>
                 <div class="jewellery-card">
                     <div class="jewellery-img">

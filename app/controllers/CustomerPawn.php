@@ -17,9 +17,14 @@ class CustomerPawn extends Controller
             $this->view('Customer/pawnArticles');
 
         }
-        public function viewPawnArticle()
+        public function viewPawnArticle($id)
         {
-            $this->view('Customer/article_pawn');
+            if($id==1){
+                $this->view('Customer/article_pawn_pending');
+            }else if($id==2){
+                $this->view('Customer/article_pawn');
+            }
+           
 
         }
     }
