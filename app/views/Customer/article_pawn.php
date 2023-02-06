@@ -120,9 +120,46 @@
             </div>
         </div>
         <div class="payment-history">
+            <div class="payments his-div">
+            <h2 class="sub-title">
+                Payment History </h2>
+            <div class="payments">
+                <div class="pay-header">
+                    <label>Payment ID</label>
+                    <label>Inst No</label>
+                    <label>Paid Date</label>
+                    <label> Amount</label>
+                    <!-- <label>Article Id</label> -->
+                </div>
+                <div class="payment-content">
+                    <label>PD1956</label>
+                    <label>03</label>
+                    <label>2022/09/30 09:53 A.M.</label>
+                    <label>Rs. 5000</label>
+                    <!-- <label>sdfsdfsdfsdf Id</label> -->
+                </div>
+                <div class="payment-content">
+                    <label>PD1866</label>
+                    <label>02</label>
+                    <label>2022/09/30 09:53 A.M.</label>
+                    <label>Rs.25000</label>
+                    <!-- <label>sdfsdfsdfsdf Id</label> -->
+                </div>
+                <div class="payment-content">
+                    <label>PD1096</label>
+                    <label>01</label>
+                    <label>2022/09/30 09:53 A.M.</label>
+                    <label>Rs. 15000</label>
+                    <!-- <label>sdfsdfsdfsdf Id</label> -->
+                </div>
+
+            </div>
+            </div>
+           
+
+            <button class="pay-btn">Renew</button>
 
 
-        
         </div>
     </div>
     <script>
