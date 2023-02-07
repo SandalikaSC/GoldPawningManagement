@@ -1,5 +1,5 @@
 <?php require APPROOT . "/views/inc/header.php" ?>
-<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/customerDash.css'>
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/vkdash.css'>
 <title>Vogue | DashBoard</title>
 </head>
 
@@ -17,8 +17,36 @@
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
-                vault keeper dashboard
+                <div class="dash-info">
+                    <div class="top-section">
+                        <div class="info-section">
+                        <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
+                            <div class="info">
+                                <label for="">Available Lockers</label>
+                                <label for="">10</label>
+                            </div>
+                        </div>
+                        <div class="info-section">
+                            <img  class="icon"></img>
+                            <div class="info">
+                                <label for="">Available Lockers</label>
+                                <label for="">10</label>
+                            </div>
+                        </div>
+                        <div class="info-section">
+                            <img  class="icon"></img>
+                            <div class="info">
+                                <label for="">Available Lockers</label>
+                                <label for="">10</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="botton-section">
 
+                    </div>
+
+                </div>
+                <div class="appo-info"></div>
             </div>
         </div>
     </div>
