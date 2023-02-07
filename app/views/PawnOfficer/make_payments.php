@@ -17,7 +17,7 @@
                     <img src="<?php echo URLROOT . '/img/back-arrow.png'; ?>">
                 </a>
                 
-                <h1>Payments</h1>
+                <h1>Make Payments</h1>
             </div>
             
             <div class="logo">
