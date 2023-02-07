@@ -1,6 +1,12 @@
-.content,.cus-details, .article-details,.info-section{
+.content.cus-details, .article-details,.info-section{
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+}
+.content{
+    justify-content:flex-start;
+}
+.info-section{
+    justify-content: space-evenly; 
 }
 .cus-details, .article-details,.info-section{
     flex-direction: column;
@@ -9,10 +15,14 @@
 .cus-details, .article-details{
     border: 1px solid #bb8a04;
     padding :2%;
+    margin: 0 5% auto;
     justify-content: flex-start;
 }
 .cus-details, .article-details{
     width: 30%;
+    border-radius: 20px;
+    
+    box-shadow: 0px 10px 10px #b2afa7;
 }
 input{
     padding: 3% 8%;
@@ -26,4 +36,47 @@ input{
 }
 .content h2{
     border-bottom: 2px solid #bb8a04;
+}
+.btn{
+    /* margin:  auto; */
+    BACKGROUND: #bb8a04;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 15% 20%;
+    margin: 5% auto;
+}
+.article-details a{
+    margin: auto;
+}
+[type="file"] {
+    /* Style the color of the message that says 'No file chosen' */
+      color: #878787;
+    }
+    [type="file"]::-webkit-file-upload-button {
+      background: white;
+      border: 2px solid #bb8a04;
+      border-radius: 20px;
+      color: #878787;
+      cursor: pointer;
+      /* font-size: 12px; */
+      outline: none;
+      padding: 10px 25px;
+      text-transform: uppercase;
+      transition: all 1s ease;
+    }
+    
+    [type="file"]::-webkit-file-upload-button:hover {
+      background: #fff;
+      border: 2px solid #535353;
+      color: #000;
+    }
+.validation-img{
+    width: 27%;
+    align-self: self-end;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    bottom: 0;
+
 }
