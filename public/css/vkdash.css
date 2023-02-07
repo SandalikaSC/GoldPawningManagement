@@ -43,10 +43,14 @@
     /* margin: auto auto 5%; */
 }
 .appointment{
-    margin: 2%;
+    margin: 1%;
     border-left: 3px solid #bb8a04;
     padding: 2%;
     border-radius: 6px;
+}
+.appointment:hover{
+    border: 1px solid #bb8a04;
+    border-left:3px solid #bb8a04;;
 }
 .time{
     color: #bb8a04;
@@ -159,4 +163,14 @@ background-color: #bb8a04b3;
     color: #bb8a04;
     padding: 1% 4%;
     margin: auto 3%;
+}
+.cancel:hover{
+    color: white;
+    background-color:#0000008a ;
+    border: none;
+}
+.Allocate:hover{
+    color: white;
+    background-color:#bb8a04 ;
+    border: none;
 }

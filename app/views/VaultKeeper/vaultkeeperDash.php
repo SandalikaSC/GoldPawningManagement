@@ -82,7 +82,7 @@
 
                 </div>
                 <div class="appo-info">
-                    <button class="allocate">+ New Allocation</button>
+                    <a href="<?php echo URLROOT ?>/allocations"><button class="allocate">+ New Allocation</button></a> 
                     <div class="app-list">
                         <h2> Today Appointments</h2>
                         <div class="appointment">
@@ -91,7 +91,7 @@
                             <div class="appo-content">
                                 <label for="">AP005</label>
                                 <label for=""> Mr.Lankshan Gamage</label>
-                                <button>Take</button>
+                                <button class="Allocate">Take</button>
                             </div>
 
                         </div>
@@ -101,7 +101,7 @@
                             <div class="appo-content">
                                 <label for="">AP005</label>
                                 <label for=""> Mr.Lankshan Gamage</label>
-                                <button>Take</button>
+                                <button class="Allocate">Take</button>
                             </div>
 
                         </div>
@@ -111,7 +111,7 @@
                             <div class="appo-content">
                                 <label for="">AP005</label>
                                 <label for=""> Mr.Lankshan Gamage</label>
-                                <button>Take</button>
+                                <button class="Allocate">Take</button>
                             </div>
 
                         </div>
@@ -121,7 +121,7 @@
                             <div class="appo-content">
                                 <label for="">AP005</label>
                                 <label for=""> Mr.Lankshan Gamage</label>
-                                <button>Take</button>
+                                <button class="Allocate">Take</button>
                             </div>
 
                         </div>
@@ -131,7 +131,7 @@
                             <div class="appo-content">
                                 <label for="">AP005</label>
                                 <label for=""> Mr.Lankshan Gamage</label>
-                                <button>Take</button>
+                                <button class="Allocate">Take</button>
                             </div>
 
                         </div>
