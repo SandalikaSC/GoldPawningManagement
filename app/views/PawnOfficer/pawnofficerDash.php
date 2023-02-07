@@ -78,7 +78,7 @@
                     <div class="card-summary">
                         <div class="title">
                             <h2>Pawned Items</h2>
-                            <img src="<?php echo URLROOT?>/img/golden_pawned_article.png" alt="">
+                            <img src="<?php echo URLROOT?>/img/golden_pawn_items.png" alt="">
                         </div>                        
                         <h1>150</h1>
                     </div>
