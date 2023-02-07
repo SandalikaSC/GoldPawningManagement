@@ -1,0 +1,29 @@
+.content,.cus-details, .article-details,.info-section{
+    display: flex;
+    justify-content: space-evenly;
+}
+.cus-details, .article-details,.info-section{
+    flex-direction: column;
+
+}
+.cus-details, .article-details{
+    border: 1px solid #bb8a04;
+    padding :2%;
+    justify-content: flex-start;
+}
+.cus-details, .article-details{
+    width: 30%;
+}
+input{
+    padding: 3% 8%;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #bb8a04;
+    outline: none;
+}
+.content label{
+    margin: 5%;
+}
+.content h2{
+    border-bottom: 2px solid #bb8a04;
+}
