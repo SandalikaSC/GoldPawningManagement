@@ -1,5 +1,5 @@
 <?php require APPROOT . "/views/inc/header.php" ?>
-<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/customerDash.css'>
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/Reservations.css'>
 <title>Vogue | Lockers</title>
 </head>
 
@@ -12,12 +12,18 @@
                     <div class="bars" id="bars">
                         <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
                     </div>
-                    <h1 id="title">Lockers</h1>
+                    <h1 id="title">Reservations</h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
-                vault keeper Lockers
+                
+<div class="reservations">
+    
+<div class="search"></div>
+<div class="table"></div>
+</div>
+<div class="locker-info"></div>
 
             </div>
         </div>

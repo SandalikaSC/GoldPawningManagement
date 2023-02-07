@@ -1,5 +1,5 @@
 <?php
-class allocations extends Controller
+class Reservations extends Controller
 {
 
         public function __construct()

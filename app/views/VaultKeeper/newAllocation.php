@@ -49,7 +49,15 @@
                 <label for="">Article Image</label>
                 <input type="file" name="fname" id="">
             </div>
+            <!-- <div class="info-section" > -->
+            <a class="">
+                <button class="btn">Validation</button></a>
              
+            <!-- </div> -->
+            
+        </div>
+        <div class="validation-img">
+            <img src="<?php echo URLROOT ?>/img/Web search-cuate.svg" alt="">
         </div>
     </form>
 

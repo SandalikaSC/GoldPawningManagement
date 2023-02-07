@@ -17,8 +17,8 @@ function func() {
         case "Dashboard":
             document.getElementById("dashboard").classList.add("dash");
             break;
-        case "Lockers":
-            document.getElementById("locker").classList.add("dash");
+        case "Reservations":
+            document.getElementById("Reservations").classList.add("dash");
             document.getElementById("dashboard").classList.remove("dash");
             break;
          
