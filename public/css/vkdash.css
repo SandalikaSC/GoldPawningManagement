@@ -1,0 +1,33 @@
+.inside-page{
+    display: flex;
+    /* height: 100vh; */
+    justify-content: space-evenly;
+    border: 1px solid black;
+}
+.dash-info{
+    width: 70%;
+    /* height: 90wh; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid black;
+}
+.appo-info{
+    width: 30%;
+    /* height: 90wh; */
+    border: 1px solid black;
+}
+.info-section{
+    border: 1px solid black;
+
+}
+.top-section{
+    display: flex; 
+    justify-content: space-evenly;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+}
