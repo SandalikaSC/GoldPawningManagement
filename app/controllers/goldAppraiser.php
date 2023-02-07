@@ -17,4 +17,10 @@
 
             $this->view('GoldAppraiser/view_validated_articles', $data);
         }
+
+        public function validate_articles() {
+            $data = [];
+
+            $this->view('GoldAppraiser/validate_new_articles', $data);
+        }
     }
