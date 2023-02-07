@@ -183,11 +183,12 @@ main {
 
 .gold-rates {
     width: 260px;
-    height: 100px;
+    height: 80px;
     padding: 10px;
     margin: 20px;
     background: #fff;
     color: #bb8a04;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -210,6 +211,7 @@ main {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .page-wrapper .bottom-div .article-details-card {
