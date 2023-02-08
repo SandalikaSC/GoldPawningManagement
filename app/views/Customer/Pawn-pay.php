@@ -52,16 +52,16 @@
                 <input type="text" class="card-no">
                 <div class="card-grid">
                     <label for="">
-                    Expiration Date
+                        Expiration Date
                     </label>
                     <label for="">
-                    Code CVV
+                        Code CVV
                     </label>
                     <input type="date" class="card-no">
                     <input type="password" class="card-no">
                 </div>
                 <label for="">
-                Name
+                    Name
                 </label>
                 <input type="text" class="card-no">
                 <button class="pay">Pay Rs. 5600</button>
