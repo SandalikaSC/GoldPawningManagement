@@ -142,97 +142,96 @@ main .left-wrapper .div-details .loan-details .btn-pay a:hover {
     transform: translateY(-5px);
 }
 
-main .right-wrapper .div-form {
+main .right-wrapper .form-wrapper {
     width: 500px;
-    padding: 45px;
-    background: #ddd;
+    background: #dddddd;
+    padding: 50px;
 }
 
-main .right-wrapper .div-form .form-wrapper {
-    width: 100%;
-    height: fit-content;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+main .right-wrapper .form-wrapper .div-form {
     background: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-main .right-wrapper .div-form .form-wrapper .form-title {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
+main .right-wrapper .form-wrapper .div-form .form-title {
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    text-align: center;
+    background: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
-main .right-wrapper .div-form .form-wrapper form {
-    width: 100%;
-    padding: 20px 40px;
+main .right-wrapper .form-wrapper .div-form form {
+    padding: 30px 50px;
 }
 
-main .right-wrapper .div-form .form-wrapper form .field {
-    width: 100%;
+main .right-wrapper .form-wrapper .div-form form .field-wrapper {
     margin-bottom: 20px;
 }
 
-main .right-wrapper .div-form .form-wrapper form .field label {
+main .right-wrapper .form-wrapper .div-form form .field-wrapper label {
     font-weight: 600;
 }
 
-main .right-wrapper .div-form .form-wrapper form .field input {
-    width: 100%;
-    font-size: 16px;
-    padding: 10px 20px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: none;
-    background: #e6e6e6;
+main .right-wrapper .form-wrapper .div-form form .field-wrapper sup {
+    color: #ff0000;
 }
 
-main .right-wrapper .div-form .form-wrapper form .field .div-radio {
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .input-wrapper input {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    background: #e5e5e5;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .input-wrapper input::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew {
+    display: flex;
+    justify-content: center;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background: #bb8a04;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #bb8a04;  
+    text-decoration: none;
+    margin-top: 40px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew:hover {
+    transform: translateY(-5px);
+    
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio {
     display: flex;
     justify-content: space-evenly;
     margin-top: 10px;
 }
 
-main .right-wrapper .div-form .form-wrapper form .field .div-radio div {
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-main .right-wrapper .div-form .form-wrapper form .field .div-radio div input {
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio div input {
     width: fit-content;
     margin: 0;
     margin-right: 5px;
 }
 
-main .right-wrapper .div-form .form-wrapper form .div-btn {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0 20px;
-}
-
-main .right-wrapper .div-form .form-wrapper form .div-btn a {
-    background: #bb8a04;
-    color: #fff;
-    padding: 12px;
-    font-size: 18px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    border: 2px solid #bb8a04;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-}
-
-main .right-wrapper .div-form .form-wrapper form .div-btn a:hover {
-    background: #fff;
-    color: #bb8a04;
-    transform: translateY(-5px);
-}
 
