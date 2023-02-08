@@ -23,10 +23,17 @@
                 <img src="<?php echo URLROOT . '/img/logo_name.png'; ?>">
             </div>
         </div>
-        
 
-            
-        </div>
+        <main>
+            <div class="left-content">
+                <div class="article-details">
+                    
+                </div>
+            </div>
+            <div class="right-content">
+
+            </div>
+        </main>
     </div>
     
     <script>
