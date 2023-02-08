@@ -90,59 +90,22 @@
                             </div>
                             <div class="field-wrapper">
                                 <label>Payment Method</label>
-                                <div class="div-radio">
-                                    <div>
-                                        <input type="radio">
-                                        <label>Fixed</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio">
-                                        <label>Partial</label>
-                                    </div>
-                                </div>  
-                                <span class="invalid-feedback"></span>
-                            </div>
+                                <div class="payment-method">                        
+                                    <label>
+                                        <input type="radio" name="method" value="Fixed" checked> Fixed
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="method" value="Partial"> Partial
+                                    </label>
+                                </div> 
+                            </div>                             
                             
-                            <div class="field-wrapper">
+                            <div class="div-button">
                                 <a href="" class="btn-renew">Save</a>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!-- <div class="div-form">
-                    <div class="form-wrapper">
-                        <div class="form-title">
-                            <h2>New Pawning Details</h2>
-                        </div>
-                        <form action="">
-                            <div class="field">
-                                <label>Loan Amount (Rs.)</label>
-                                <input type="text" placeholder="Loan Amount">
-                            </div>
-                            <div class="field">
-                                <label>End Date</label>
-                                <input type="date" placeholder="End Date">
-                            </div>
-                            <div class="field">
-                                <label>Payment Method</label>
-                                <div class="div-radio">
-                                    <div>
-                                        <input type="radio">
-                                        <label>Fixed</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio">
-                                        <label>Partial</label>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <div class="div-btn">
-                                <a href="">Renew Pawn</a>
-                            </div>
-                        </form>
-                    </div>
-                    
-                </div> -->
             </div>          
         </main>        
     </div>
