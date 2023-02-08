@@ -190,14 +190,15 @@ main .right-wrapper .form-wrapper .div-form form .field-wrapper .input-wrapper i
     font-size: 14px;
 }
 
-main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew {
+main .right-wrapper .form-wrapper .div-form form .div-button {
     display: flex;
     justify-content: center;
 }
 
-main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew {
+main .right-wrapper .form-wrapper .div-form form .div-button .btn-renew {
     width: 100%;
     padding: 10px;
+    margin-top: 10px;
     border-radius: 5px;
     background: #bb8a04;
     color: #fff;
@@ -207,31 +208,21 @@ main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew {
     align-items: center;
     border: 2px solid #bb8a04;  
     text-decoration: none;
-    margin-top: 40px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
-main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew:hover {
-    transform: translateY(-5px);
-    
+main .right-wrapper .form-wrapper .div-form form .div-button .btn-renew:hover {
+    transform: translateY(-5px);    
 }
 
-main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio {
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .payment-method {
+    margin-top: 5px;
     display: flex;
     justify-content: space-evenly;
-    margin-top: 10px;
 }
 
-main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio div input {
-    width: fit-content;
-    margin: 0;
-    margin-right: 5px;
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .payment-method label {
+    font-weight: 500;
 }
 
 
