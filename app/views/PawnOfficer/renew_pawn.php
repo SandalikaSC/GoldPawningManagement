@@ -50,14 +50,58 @@
                             <div>2023/02/27</div>
                         </div>
                     </div>
+
+                    <div class="loan-details">
+                        <div class="field">
+                            <label>Remaining Loan Amount</label>
+                            <div>Rs. 30000.00</div>
+                        </div>
+                        <div class="field">
+                            <label>Interest for Remaining Loan Amount</label>
+                            <div>Rs. 9000.00</div>
+                        </div>
+                        <div class="btn-pay">
+                            <a href="<?php echo URLROOT; ?>/pawnings/make_payments/<?php echo $data['pawn_item']->Pawn_Id; ?>">Pay Interest</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="right-wrapper">
-
-            </div>
-            <div class="main-content">
-                
-            </div>            
+                <div class="div-form">
+                    <div class="form-wrapper">
+                        <div class="form-title">
+                            <h2>New Pawning Details</h2>
+                        </div>
+                        <form action="">
+                            <div class="field">
+                                <label>Loan Amount (Rs.)</label>
+                                <input type="text" placeholder="Loan Amount">
+                            </div>
+                            <div class="field">
+                                <label>End Date</label>
+                                <input type="date" placeholder="End Date">
+                            </div>
+                            <div class="field">
+                                <label>Payment Method</label>
+                                <div class="div-radio">
+                                    <div>
+                                        <input type="radio">
+                                        <label>Fixed</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio">
+                                        <label>Partial</label>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="div-btn">
+                                <a href="">Renew Pawn</a>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>          
         </main>        
     </div>
         
