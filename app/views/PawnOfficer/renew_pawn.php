@@ -67,7 +67,49 @@
                 </div>
             </div>
             <div class="right-wrapper">
-                <div class="div-form">
+                <div class="form-wrapper">
+                    <div class="div-form">
+                        <div class="form-title">
+                            <h2>New Pawning Details</h2>
+                        </div>
+                    
+                        <form action="" method="post">
+                            <div class="field-wrapper">
+                                <label>Loan Amount (Rs.)<sup>*</sup></label>
+                                <div class="input-wrapper">
+                                    <input type="text" name="amount" placeholder="Amount">
+                                </div>
+                                <span class="invalid-feedback"></span>
+                            </div>
+                            <div class="field-wrapper">
+                                <label>End Date<sup>*</sup></label>
+                                <div class="input-wrapper">
+                                    <input type="date" name="date">
+                                </div>
+                                <span class="invalid-feedback"></span>
+                            </div>
+                            <div class="field-wrapper">
+                                <label>Payment Method</label>
+                                <div class="div-radio">
+                                    <div>
+                                        <input type="radio">
+                                        <label>Fixed</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio">
+                                        <label>Partial</label>
+                                    </div>
+                                </div>  
+                                <span class="invalid-feedback"></span>
+                            </div>
+                            
+                            <div class="field-wrapper">
+                                <a href="" class="btn-renew">Save</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="div-form">
                     <div class="form-wrapper">
                         <div class="form-title">
                             <h2>New Pawning Details</h2>
@@ -100,7 +142,7 @@
                         </form>
                     </div>
                     
-                </div>
+                </div> -->
             </div>          
         </main>        
     </div>
