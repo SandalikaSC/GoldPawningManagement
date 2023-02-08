@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="logo_1.png">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_dashboard_ga.css">
     <title>Vogue Pawn | Dashboard</title>
 </head>
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?php echo URLROOT; ?>/goldAppraiser/view_validated_articles">
                         <span>
                             <img src="<?php echo URLROOT?>/img/white_pawn_items.png">
                         </span>
@@ -114,7 +114,7 @@
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
                             <div class="div-btn">
-                                <a href="">Validate</a>
+                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
                             </div>
                         </div> 
                         <div class="article-details-card">
@@ -123,7 +123,7 @@
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
                             <div class="div-btn">
-                                <a href="">Validate</a>
+                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
                             </div>
                         </div> 
                         <div class="article-details-card">
@@ -132,7 +132,7 @@
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
                             <div class="div-btn">
-                                <a href="">Validate</a>
+                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
                             </div>
                         </div> 
                         <div class="article-details-card">
@@ -141,7 +141,7 @@
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
                             <div class="div-btn">
-                                <a href="">Validate</a>
+                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
                             </div>
                         </div> 
                         <div class="article-details-card">
@@ -150,7 +150,7 @@
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
                             <div class="div-btn">
-                                <a href="">Validate</a>
+                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
                             </div>
                         </div> 
                         <div class="article-details-card">
@@ -159,7 +159,7 @@
                             <div><label>Customer ID: </label>CS0021</div>
                             <div><label>Type: </label>Jewelry</div>
                             <div class="div-btn">
-                                <a href="">Validate</a>
+                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
                             </div>
                         </div>                        
                     </div>

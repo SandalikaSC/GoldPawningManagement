@@ -23,10 +23,10 @@ class VKDashboard extends Controller
                 $this->view('VaultKeeper/vaultkeeperDash');
         }
 
-        public function lockers()
+        public function Reservations()
         {
                 $data = [];
-                $this->view('VaultKeeper/locker');
+                $this->view('VaultKeeper/Reservations');
         } 
         public function Customers()
         {

@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: sans-serif;
+}
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.header .title {
+    display: flex;
+    padding: 10px;
+}
+
+.header .title img {
+    height: 35px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.header .title h1 {
+    border-bottom: 3px solid #bb8a04;
+}
+
+.header .logo img {
+    width: 200px;
+    height: 60px;
+}
+

@@ -42,89 +42,170 @@
     height: 60px;
 }
 
-.wrapper .form-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 0 20px;
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.wrapper .article-details {
-    padding: 15px 20px;
-    width: 80%;
-    border: 2px solid #bb8a04;
-    border-radius: 20px;
+main .left-wrapper {
+    /* background: #dbdbdb; */
+    padding: 60px 20px 20px 100px;
+}
+
+main .left-wrapper h2 {
+    border-bottom: 2px solid #bb8a04;
+    width: fit-content;
+}
+
+main .left-wrapper .item-details {
+    padding: 10px 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    border-bottom: 2px solid #dddddd;
+}
+
+main .left-wrapper .item-details .field {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    width: 300px;
+}
+
+main .left-wrapper .item-details .field label {
+    font-weight: 600;
+}
+
+main .left-wrapper .item-details img {
+    width: 200px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 5px -1px, rgba(0, 0, 0, 0.3) 0px 5px 5px -1px;
+    margin: 20px;
+}
+
+main .left-wrapper .due-payment {
+    padding: 20px 30px;
+}
+
+main .left-wrapper .due-payment div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 3px;
+}
+
+main .left-wrapper .due-payment label {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+main .left-wrapper .due-payment div .due-date,
+main .left-wrapper .due-payment div .amount {
+    font-size: 26px;
+    color: red;
+}
+
+main .right-wrapper {
+    padding: 20px;
+    height: 100%;
+}
+
+main .right-wrapper .full-amount {
     display: flex;
     justify-content: space-around;
-}
-
-.wrapper .article-details p {
-    font-size: 1.2rem;
-    font-weight: 550;
-}
-
-.wrapper .article-details img {
-    height: 150px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.wrapper .form-header {
-    width: fit-content;
-    height: fit-content;
-    border-bottom: 3px solid #bb8a04;
-    margin-bottom: 20px;
-}
-
-.wrapper .payment-details {
-    width: 80%;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    grid-gap: 20px;
-}
-
-.form-container .due-loan,
-.form-container .payment-history {    
-    border: 2px solid #bb8a04;
-    padding: 15px 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 0 30px 50px;    
+    background: #e4e4e4;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
 }
 
-.form-container .due-pay {
-    margin-bottom: 20px;
+main .right-wrapper .full-amount label {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+main .right-wrapper .full-amount .amount {
+    color: #bb8a04;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+main .right-wrapper .table-container {
+    margin: 30px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);    
+    height: 300px;  
+}
+
+main .right-wrapper .table-container .table-title {
+    padding: 10px 20px;
+    height: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 0 10px;
+}
+
+main .right-wrapper .table-container .table-title h2 {
+    border-bottom: 2px solid #bb8a04;
+    width: fit-content;
+}
+
+main .right-wrapper .table-container .div-table-validated {
+    height: 80%;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+main .right-wrapper .table-container .div-table-appointments {
+    height: 60%;
+    overflow-x: auto;
+    padding: 10px;
 }
 
 table {
+    table-layout: fixed;
     border-collapse: collapse;
-    border-spacing: 0;
     width: 100%;
-    overflow-x: auto;
+    padding: 10px;
 }
 
-td,th {
+thead tr {
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+thead td {
+    font-weight: 600;
+}
+
+td {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: #222;
     text-align: center;
-    padding: 8px;
 }
 
-.content {
-    width: 100%;
-    font-size: 25px;
-    font-weight: 800;
+tr td:last-child {
     display: flex;
-    justify-content: center;
+    align-items: center;
 }
 
-.due-pay p {
-    color: #ff0000;
-    margin-left: 15px;
+.right-wrapper .btn-container {
+    width: 100%;
+    padding: 0 30px;
 }
 
-.form-container .btn-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
+.right-wrapper .btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.form-container .button {
+.right-wrapper .btn-container .button {
     width: 180px;
     background: #bb8a04;
     display: flex;
@@ -141,10 +222,11 @@ td,th {
     margin: 20px 0;
 }
 
-.form-container .button:hover {
+.right-wrapper .btn-container .button:hover {
     transform: translateY(-5px);
-    color: #333;
-    border-color: #333;
+    color: #bb8a04;
+    border-color: #bb8a04;
+    background: #fff;
 }
 
 @media only screen and (max-width: 1145px) {

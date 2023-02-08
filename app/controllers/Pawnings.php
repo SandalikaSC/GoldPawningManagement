@@ -41,6 +41,17 @@
             $this->view('PawnOfficer/make_payments', $data);
         }
 
+        public function release_pawn($id) {
+            // Get pawned item
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+
+            $data = [
+                'pawn_item' => $pawned_item
+            ];
+
+            $this->view('PawnOfficer/release_pawn', $data);
+        }
+
         public function new_pawning() {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process form
@@ -114,7 +125,5 @@
                 // Load view
                 $this->view('PawnOfficer/new_pawning', $data);
             }
-        }
-
-        
+        }        
     }
