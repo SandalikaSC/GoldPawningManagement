@@ -28,8 +28,8 @@
                         <th>Customer ID</th>
                         <th>Customer</th>
                         <th>Status</th>
-                        <th>Locker</th>
-                        <th>Key Delivery</th>
+                        <th>Phone</th>
+                        <th>Date Joined</th>
                         <th> </th>
                         </tr>
                     </thead>
@@ -47,79 +47,81 @@
                             </div>
                         </td>
                         <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
+                        <td>0714456490</td>
+                        <td >2022 Oct 15</td>
                         <td><button class="view">View</button></td>
                     </tr>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>0714456490</td>
+                        <td >2022 Oct 15</td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>0714456490</td>
+                        <td >2022 Oct 15</td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>0714456490</td>
+                        <td >2022 Oct 15</td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>0714456490</td>
+                        <td >2022 Oct 15</td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                    
                       
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
+                   
                         
                     </tbody>
                 </table>

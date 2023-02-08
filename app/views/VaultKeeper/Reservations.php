@@ -17,13 +17,121 @@
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
-                
-<div class="reservations">
-    
-<div class="search"></div>
-<div class="table"></div>
-</div>
-<div class="locker-info"></div>
+
+
+
+                <div class="search-container">
+                    <input type="text" placeholder="Search...">
+                    <span class="search-icon"></span>
+                </div>
+
+
+
+                <div class="reservations">
+                     <table class="content-table">
+                    <thead>
+                        <tr>
+                        <th> </th>
+                        <th>Customer ID</th>
+                        <th>Customer</th>
+                        <th>Status</th>
+                        <th>Locker</th>
+                        <th>Key Delivery</th>
+                        <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>01</td>
+                        <td ><label class="tag-del black" for="">Deliverd</label></td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                      
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>01</td>
+                        <td ><label class="tag-del black" for="">Deliverd</label></td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>01</td>
+                        <td ><label class="tag-del black" for="">Deliverd</label></td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>01</td>
+                        <td ><label class="tag-del black" for="">Deliverd</label></td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                    <tr class="data">
+                        <td> 254</td>
+                        <td>CU001</td>
+                        <td class="name">
+                            <div class="profile">
+                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
+                            </div>
+                            <div class="pro-details">
+                                <label>Sandalika Chamari</label>
+                                <label class="email">SandalikaChamari@gmail.com</label>
+                            </div>
+                        </td>
+                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td>01</td>
+                        <td ><label class="tag-del black" for="">Deliverd</label></td>
+                        <td><button class="view">View</button></td>
+                    </tr>
+                        
+                    </tbody>
+                </table>
+                    <div class="res-info"></div>
+                </div>
 
             </div>
         </div>
