@@ -52,6 +52,17 @@
             $this->view('PawnOfficer/release_pawn', $data);
         }
 
+        public function renew_pawn($id) {
+            // Get pawned item
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+
+            $data = [
+                'pawn_item' => $pawned_item
+            ];
+
+            $this->view('PawnOfficer/renew_pawn', $data);
+        }
+
         public function new_pawning() {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process form
