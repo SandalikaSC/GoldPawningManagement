@@ -1,0 +1,90 @@
+.payment-invoice{
+    width: 60%;
+    height: 75%;
+    /* border: 1px solid black; */
+    margin: 1% auto;
+    display: flex;
+    justify-content: space-around;
+}
+.page{
+    
+
+}  
+.payment-info{
+    width: 45%;
+    height: 90%;
+    margin: auto;
+    background-color: #bb8a04ce;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    color: white;
+    padding: 5%;
+ /* border: 1px solid black; */
+ display: flex;
+ flex-direction: column;
+ /* place-content: center; */
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+}
+.card-info{
+ /* border: 1px solid black; */
+ border-radius: 20px;
+ width: 55%;
+ box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+ color: black;
+ display: flex;
+ flex-direction: column;
+ padding: 5% 4%
+}
+.h2-txt{
+    font-size: 1.2rem;
+    /* padding: 5%; */
+}
+.info-section{
+    display: flex;
+    justify-content: space-between;
+}
+hr{
+    color: white;
+    width: 100%;
+    margin: 8% 3%;
+}
+.info-section div{
+    display :flex;
+    justify-content: flex-start;
+    place-content: center;
+}
+
+.info-section div label{
+    margin: auto;
+}
+.icon-label{
+    margin:  auto 0 auto auto;
+
+}
+.icon{
+    width: 20%;
+}
+.card-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.card-info input{
+    border: 1px solid #bb8a04ab;
+    outline: none;
+    padding: 2% 3%;
+    border-radius: 20px;
+    margin: 4%2%;
+    /* border: none; */
+    /* box-shadow: 0 2px 20px rgb(0 0 0 / 10%);*/
+}
+.card-info label{
+    margin: 2% 1%;
+}
+button{
+    background: #bb8a04;
+    border: none;
+    color: white;
+    padding: 2%;
+    border-radius: 20px;
+    margin: 2%;
+}

@@ -26,6 +26,16 @@
             return implode($pass);
         }
 
+        public function confirm_pawn() {
+            // Get pawned items
+
+            $data = [
+                
+            ];
+
+            $this->view('PawnOfficer/confirmPawn');
+        }
+
         public function register_customer() {
             $pass = $this->randomPassword();
 
@@ -168,4 +178,12 @@
 
             $this->view('PawnOfficer/customer_view_more', $data);
         }
+
+
+public function getCustomer($id){
+    $this->view('VaultKeeper/viewCustomer');
+}
+
+
+
     }

@@ -89,7 +89,7 @@
                                     <td><?php echo $pawned_item->userId; ?></td>
                                     <td><?php echo $pawned_item->Article_Id; ?></td>
                                     <td><?php echo 'Rs. '.$pawned_item->Amount; ?></td>
-                                    <td><a href="<?php echo URLROOT; ?>/pawnings/payment_details/<?php echo $pawned_item->Pawn_Id; ?>" class="view btn">Payment Details</a></td>                            
+                                    <td><a href="<?php echo URLROOT; ?>/pawnings/payment_details/<?php echo $pawned_item->Pawn_Id; ?>" class="view btn">View</a></td>                            
                                 </tr>
                             <?php endforeach; ?>
                             

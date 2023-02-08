@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: sans-serif;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.wrapper .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.header .title {
+    display: flex;
+    padding: 10px;
+}
+
+.header .title img {
+    height: 35px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.header .title h1 {
+    border-bottom: 3px solid #bb8a04;
+    height: fit-content;
+}
+
+.header .logo img {
+    width: 200px;
+    height: 60px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+main .left-wrapper,
+main .right-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: wrap;
+}
+
+main .left-wrapper .div-details {
+    padding: 20px;
+    width: 500px;
+    border: 2px solid #bb8a04;
+    background: #ddd;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    border-radius: 20px;
+}
+
+main .left-wrapper .div-details .div-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+main .left-wrapper .div-details .div-img img {
+    max-width: 200px;
+    max-height: 150px;
+}
+
+main .left-wrapper .div-details .article-details,
+main .left-wrapper .div-details .loan-details {
+    width: 100%;
+    padding: 0 20px;
+}
+
+main .left-wrapper .div-details .article-details .field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+main .left-wrapper .div-details .article-details .field label {
+    font-weight: 600;
+}
+
+main .left-wrapper .div-details .loan-details {
+    margin-top: 40px;
+}
+
+main .left-wrapper .div-details .loan-details .field {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+main .left-wrapper .div-details .loan-details .field label {
+    font-weight: 600;
+}
+
+main .left-wrapper .div-details .loan-details .field div {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #ff0000;
+}
+
+main .left-wrapper .div-details .loan-details .btn-pay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .left-wrapper .div-details .loan-details .btn-pay a {
+    text-decoration: none;
+    width: 160px;
+    font-size: 18px;
+    background: #bb8a04;
+    color: #fff;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 2px solid #bb8a04;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .left-wrapper .div-details .loan-details .btn-pay a:hover {
+    background: #fff;
+    color: #bb8a04;
+    transform: translateY(-5px);
+}
+
+main .right-wrapper .form-wrapper {
+    width: 500px;
+    background: #dddddd;
+    padding: 50px;
+}
+
+main .right-wrapper .form-wrapper .div-form {
+    background: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+main .right-wrapper .form-wrapper .div-form .form-title {
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+main .right-wrapper .form-wrapper .div-form form {
+    padding: 30px 50px;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper {
+    margin-bottom: 20px;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper label {
+    font-weight: 600;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper sup {
+    color: #ff0000;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .input-wrapper input {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    background: #e5e5e5;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .input-wrapper input::-webkit-input-placeholder {
+    font-size: 14px;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew {
+    display: flex;
+    justify-content: center;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background: #bb8a04;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #bb8a04;  
+    text-decoration: none;
+    margin-top: 40px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-renew:hover {
+    transform: translateY(-5px);
+    
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .right-wrapper .form-wrapper .div-form form .field-wrapper .div-radio div input {
+    width: fit-content;
+    margin: 0;
+    margin-right: 5px;
+}
+
+

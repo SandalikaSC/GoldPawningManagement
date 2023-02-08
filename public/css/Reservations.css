@@ -1,0 +1,133 @@
+.inside-page{
+    display: flex;
+flex-direction: column;
+    
+}
+.reservations{
+    display: flex;
+    
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2% 30%;
+}
+
+  input[type="text"] {
+    padding: 0.5em;
+    border: 1px solid gray;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    flex-grow: 1;
+  }
+
+  .search-icon {
+    /* width: 1em; */
+    /* height: 1em; */
+    padding: 1em;
+    background-image: url(../img/search-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid gray;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    margin: auto;
+  }
+.res-info{
+  display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 2% 3%;
+    border-radius: 20px;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 60%);
+}
+.section{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+  
+  
+.content-table {
+    border-collapse: collapse;
+    margin:  auto;
+    border-radius: 20px ;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .content-table thead tr {
+    background-color: #dac17bb0;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .content-table th,
+  .content-table td {
+    padding: 12px 15px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  .res-info h2{
+    font-size: 1.5rem;
+    border-bottom: #bb8a04 3px solid;
+    margin: 4% 0;
+  }
+  .res-info label{
+    color: rgb(85, 83, 83);
+  }
+  
+  
+  .content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #bb8a04;
+  }
+  .tag{
+    color: white;
+    border-radius: 20px;
+    padding: 2% 10%;
+    font-size: 1rem;
+  }
+  .green{
+    background-color: rgba(71, 219, 71, 0.811);
+  }
+  .black{
+   color: rgba(30, 29, 29, 0.811);
+   border: 1px solid rgba(30, 29, 29, 0.811) ;
+  }
+  .tag-del{
+     
+    border-radius: 20px;
+    padding: 2% 5%;
+    font-size: 1rem;
+    background-color: white;
+  }
+  .view{
+    background: #ffffff;
+    border: 1px solid #bb8a04;
+    color: #bb8a04;
+    outline: none;
+    padding: 2% 10%;
+    border-radius: 20px;
+    /* margin: auto; */
+  
+  }

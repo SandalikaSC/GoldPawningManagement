@@ -78,7 +78,7 @@
                     <div class="card-summary">
                         <div class="title">
                             <h2>Pawned Items</h2>
-                            <img src="<?php echo URLROOT?>/img/golden_pawned_article.png" alt="">
+                            <img src="<?php echo URLROOT?>/img/golden_pawn_items.png" alt="">
                         </div>                        
                         <h1>150</h1>
                     </div>
@@ -192,7 +192,7 @@
                                     <tr>
                                         <td>AR001</td>
                                         <td>Rs. 150,000/-</td>
-                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="<?php echo URLROOT; ?>/customers/confirm_pawn" class="btn-validated btn-pawn">Pawn</a></td>
                                         <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
                                     </tr>
                                     <tr>

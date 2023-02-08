@@ -56,21 +56,21 @@
                         <label class="appointment-title"><i>Up coming appointments</i></label>
                         <?php $i = 0;
                             if(empty($data['appointments'])):?>
-                            <div class="no-app"><label>No Appointments</label></div>
+                        <div class="no-app"><label>No Appointments</label></div>
                         <?php else:?>
-                            <?php foreach ($data['appointments'] as $appointment):?>
-                                <?php if($i<2) :?>
-                                    <?php ++$i?>
-                                <div class="appointment">
-                                    <label> <?php echo $appointment->Appointment_Id ;?></label>
-                                    <label><?php echo $appointment->appointment_date;?></label>
-                                    <label> <?php echo $appointment->time ;?></label>
-                                    <label> <?php echo $appointment->reason ;?></label>
+                        <?php foreach ($data['appointments'] as $appointment):?>
+                        <?php if($i<2) :?>
+                        <?php ++$i?>
+                        <div class="appointment">
+                            <label> <?php echo $appointment->Appointment_Id ;?></label>
+                            <label><?php echo $appointment->appointment_date;?></label>
+                            <label> <?php echo $appointment->time ;?></label>
+                            <label> <?php echo $appointment->reason ;?></label>
 
-                                </div>
-                                <?php endif ;?>
-                            <?php endforeach ;?>
-                         <?php endif ;?>
+                        </div>
+                        <?php endif ;?>
+                        <?php endforeach ;?>
+                        <?php endif ;?>
 
 
                     </div>
@@ -81,11 +81,8 @@
 
 
             </div>
-        </div>
-
-
-
-
-
+        </div> 
     </div>
+    <script src="<?php echo URLROOT ?>/js/sideMenu.js"></script>
+
     <?php require APPROOT . "/views/inc/footer.php" ?>
