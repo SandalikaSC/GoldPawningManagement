@@ -17,5 +17,9 @@ class Reservations extends Controller
                 $this->view('VaultKeeper/newAllocation');
 
         }
+        public function ViewReservation()
+        {
+                $this->view('VaultKeeper/LockerItemDetails');
+        }
 
     }
