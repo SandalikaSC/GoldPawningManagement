@@ -188,7 +188,7 @@ main {
     width: 600px;
     height: 45px;
     border-radius: 25px;
-    background: #bebebe;
+    background: #ddd;
     margin: 20px 50px 0;
     padding: 0 20px;
 }
@@ -232,8 +232,15 @@ main {
 }
 
 .right-content .tbl-details table td {
-    background-color: #dddddd;  
+    
     padding: 15px 0;
+    
+}
+
+.right-content .tbl-details table .table-body {
+    background-color: #fff;  
+    border-radius: 20px; 
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .right-content .tbl-details table td:first-child {
