@@ -56,7 +56,7 @@ main .right-wrapper {
 }
 
 main .left-wrapper .div-details {
-    padding: 30px;
+    padding: 20px;
     width: 500px;
     border: 2px solid #bb8a04;
     background: #ddd;
@@ -66,32 +66,171 @@ main .left-wrapper .div-details {
 
 main .left-wrapper .div-details .div-img {
     width: 100%;
-    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 main .left-wrapper .div-details .div-img img {
-    max-width: 250px;
-    max-height: 170px;
+    max-width: 200px;
+    max-height: 150px;
 }
 
-main .left-wrapper .div-details .article-details {
+main .left-wrapper .div-details .article-details,
+main .left-wrapper .div-details .loan-details {
     width: 100%;
     padding: 0 20px;
 }
 
-main .left-wrapper .div-details .field {
+main .left-wrapper .div-details .article-details .field {
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
     flex-wrap: wrap;
 }
 
-main .left-wrapper .div-details .field label {
+main .left-wrapper .div-details .article-details .field label {
     font-weight: 600;
 }
 
+main .left-wrapper .div-details .loan-details {
+    margin-top: 40px;
+}
 
+main .left-wrapper .div-details .loan-details .field {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+main .left-wrapper .div-details .loan-details .field label {
+    font-weight: 600;
+}
+
+main .left-wrapper .div-details .loan-details .field div {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #ff0000;
+}
+
+main .left-wrapper .div-details .loan-details .btn-pay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .left-wrapper .div-details .loan-details .btn-pay a {
+    text-decoration: none;
+    width: 160px;
+    font-size: 18px;
+    background: #bb8a04;
+    color: #fff;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 2px solid #bb8a04;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .left-wrapper .div-details .loan-details .btn-pay a:hover {
+    background: #fff;
+    color: #bb8a04;
+    transform: translateY(-5px);
+}
+
+main .right-wrapper .div-form {
+    width: 500px;
+    padding: 45px;
+    background: #ddd;
+}
+
+main .right-wrapper .div-form .form-wrapper {
+    width: 100%;
+    height: fit-content;
+}
+
+main .right-wrapper .div-form .form-wrapper .form-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 20px;
+}
+
+main .right-wrapper .div-form .form-wrapper form {
+    width: 100%;
+    padding: 20px 40px;
+    background: #fff;
+}
+
+main .right-wrapper .div-form .form-wrapper form .field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+main .right-wrapper .div-form .form-wrapper form .field label {
+    font-weight: 600;
+}
+
+main .right-wrapper .div-form .form-wrapper form .field input {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    background: #e6e6e6;
+}
+
+main .right-wrapper .div-form .form-wrapper form .field .div-radio {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+main .right-wrapper .div-form .form-wrapper form .field .div-radio div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .right-wrapper .div-form .form-wrapper form .field .div-radio div input {
+    width: fit-content;
+    margin: 0;
+    margin-right: 5px;
+}
+
+main .right-wrapper .div-form .form-wrapper form .div-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 20px;
+}
+
+main .right-wrapper .div-form .form-wrapper form .div-btn a {
+    background: #bb8a04;
+    color: #fff;
+    padding: 12px;
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: 2px solid #bb8a04;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .right-wrapper .div-form .form-wrapper form .div-btn a:hover {
+    background: #fff;
+    color: #bb8a04;
+    transform: translateY(-5px);
+}
 
