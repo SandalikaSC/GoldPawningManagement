@@ -111,8 +111,8 @@
     <div class="confirm-delete-box">
         <p>Confirm Delete?</p>
         <div class="no-yes-btns">
-            <a href="<?php echo URLROOT ?>/staff_dashboard" class="no-btn">No</a>
-            <a href="<?php echo URLROOT ?>/staff_dashboard" class="yes-btn">Yes</a>
+            <a href="<?php echo URLROOT ?>/staff/viewStaffMember/<?php echo $data[0]->UserId ?>" class="no-btn">No</a>
+            <a href="<?php echo URLROOT ?><?php echo URLROOT ?>/staff/deleteEmployee/<?php echo $data[0]->UserId ?>" class="yes-btn">Yes</a>
         </div>
 
     </div>

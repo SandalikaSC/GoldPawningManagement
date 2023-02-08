@@ -69,6 +69,7 @@
                     <table cellspacing="0">
                         <tbody>
                             <tr>
+                                <th></th>
                                 <th>Article ID</th>
                                 <th>Customer ID</th>
                                 <th>Type</th>
@@ -88,6 +89,7 @@
                             <?php endforeach; ?> -->
 
                             <tr class="table-body">
+                                <td><img src="<?php echo URLROOT?>/img/ring1.jpg"></td>
                                 <td>A001</td>
                                 <td>CS0021</td>
                                 <td>Jewelry</td>

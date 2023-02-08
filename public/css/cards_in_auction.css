@@ -307,16 +307,22 @@
   .auction-page-column {
     width: 250px;
     padding: 0 10px;
-    margin-bottom: 30px;
+    margin:25px;
+    /* margin-bottom: 30px; */
     position: relative;
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
     transition: top ease 0.5s;
   }
 
+  
+/* 
   .auction-page-column:hover{
     
-     margin-top: -10px;
-  }
+        -ms-transform: scale(1.5); 
+        -webkit-transform: scale(1.5); 
+        transform: scale(1.5); 
+      
+  } */
 
   /* Remove extra left and right margins, due to padding */
   

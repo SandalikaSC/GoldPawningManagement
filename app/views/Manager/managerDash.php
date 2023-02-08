@@ -11,10 +11,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
-<body>
-    
+<body>  
     <div class="page">
-        <?php include_once 'sendReplyForm.php'; ?>
+        <?php include_once 'sendReplyForm.php';?>
+
+        <?php
+        if (!empty($_SESSION['message'])) {
+          
+            include_once 'error.php';
+         
+        } 
+        ?>
+
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
@@ -188,14 +196,14 @@
                                 <div class="search">
 
                                     <div class="search-bar">
-                                        <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
+                                        <input type="text" id="myInput" name="search_input" onkeyup="myFunction()" placeholder="Search the date" />
 
                                     </div>
 
                                 </div>
                             </div>
 
-                            <div class="graph complaint-sec">
+                            <div id="myDiv" class="graph complaint-sec">
             
                                 <?php include_once 'viewComplaints.php'; ?>
                             </div>
@@ -240,32 +248,25 @@
     });
 </script>
 
+
 <script>
-    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
-
-    new Chart("Chart", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
-                borderColor: "red",
-                fill: false
-            }, {
-                data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
-                borderColor: "blue",
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                display: false
-            }
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    di = document.getElementById("myDiv");
+    li = di.getElementsByTagName("section");
+    for (i = 0; i < li.length; i++) {
+        a=li[i];
+        // a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
         }
-
-    });
+    }
+}
 </script>
 
 </html>

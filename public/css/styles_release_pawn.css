@@ -51,8 +51,9 @@ main .main-content {
 }
 
 main .main-content .div-details {
-    padding: 20px;
+    padding: 30px;
     width: 500px;
+    border: 2px solid #bb8a04;
     background: #ddd;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     border-radius: 20px;
@@ -67,7 +68,8 @@ main .main-content .div-details .div-img {
 }
 
 main .main-content .div-details .div-img img {
-    width: 200px;
+    max-height: 170px;
+    max-width: 250px;
 }
 
 main .main-content .div-details .article-details,

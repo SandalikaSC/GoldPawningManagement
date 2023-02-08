@@ -11,6 +11,7 @@
 
 <body>
     <div class="page">
+        
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
@@ -45,7 +46,7 @@
                 </a>
             </div>
             <div class="lgout">
-                <a href="<?php echo URLROOT ?>/mgLogout">Logout</a>
+                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
             </div>
         </div>
         <div class="right">

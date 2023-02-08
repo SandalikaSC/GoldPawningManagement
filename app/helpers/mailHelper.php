@@ -19,6 +19,11 @@ function sendMail($receiver, $email_Type, $code, $name)
                 $mail->Body    = "Here is the OTP code $code";
                 $mail->addAddress($receiver, $name);
                 break;
+            case "send_reply":
+                $mail->Subject = "Reply For Complaint";
+                $mail->Body    = "$code";
+                $mail->addAddress($receiver, $name);
+                break;
             case "registration":
                 $link = "<a href='http://localhost/Vogue/Users/emailVerify/$code'>here</a>";
                 $mail->Subject = "VOGUE email Verification";

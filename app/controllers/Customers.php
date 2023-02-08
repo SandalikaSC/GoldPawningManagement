@@ -178,4 +178,12 @@
 
             $this->view('PawnOfficer/customer_view_more', $data);
         }
+
+
+public function getCustomer($id){
+    $this->view('VaultKeeper/viewCustomer');
+}
+
+
+
     }

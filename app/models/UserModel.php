@@ -32,9 +32,22 @@ class UserModel extends Database{
         $this->execute();
     }
 
-    
+    public function getUserEmail($id){
+        $sql = 'select email from user where UserId=?';
+        $this->query($sql);
+        $this->bind(1,$id);
+        $result = $this->single();
+        return $result;
+    }
 
-    
+
+    public function deleteComplaint($cid){
+        $sql='delete from complaint where CID=?';
+        $this->query($sql);
+        $this->bind(1,$cid);
+        $result = $this->execute();
+        return $result;
+    }
 
 }
 ?>
