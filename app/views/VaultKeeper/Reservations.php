@@ -31,106 +31,62 @@
                      <table class="content-table">
                     <thead>
                         <tr>
-                        <th> </th>
+                        <th> Locker</th>
                         <th>Customer ID</th>
-                        <th>Customer</th>
-                        <th>Status</th>
-                        <th>Locker</th>
+                        <th>Customer</th> 
+                        <th>Articles</th>
                         <th>Key Delivery</th>
                         <th> </th>
                         </tr>
                     </thead>
                     <tbody>
+                     
                     <tr class="data">
-                        <td> 254</td>
+                        <td> 05</td>
                         <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
+                        <td>
+                           Sandalika Chamari  
                         </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
+                         
+                        <td>02</td>
                         <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
+                        <td><a href="<?php echo URLROOT ?>/Reservations/ViewReservation">
+                        <button class="view">View</button>
+                        </a></td>
                     </tr>
-                      
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
-                    <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
-                        <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
-                            <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
-                            </div>
-                        </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
-                        <td>01</td>
-                        <td ><label class="tag-del black" for="">Deliverd</label></td>
-                        <td><button class="view">View</button></td>
-                    </tr>
-                        
+                    
                     </tbody>
                 </table>
-                    <div class="res-info"></div>
+                    <div class="res-info">
+                        <h2>Locker Information</h2>
+                          <div class="section">
+                            <label for="">Locker Count</label>
+                            <label for="">50</label>
+                          </div>     
+                          <div class="section">
+                            <label for="">Available </label>
+                            <label for="">15</label>
+                          </div>  
+                          <div class="section">
+                            <label for="">Reserved </label>
+                            <label for="">35</label>
+                          </div>   
+                          <h2>Article Information</h2>
+                          <div class="section">
+                            <label for="">Total Articles </label>
+                            <label for="">18</label>
+                          </div> 
+                          <h2>Key Information</h2>
+                          <div class="section">
+                            <label for="">Deliverd </label>
+                            <label for="">12</label>
+                          </div> 
+                          <div class="section">
+                            <label for="">Tobe Deliverd </label>
+                            <label for="">2</label>
+                          </div>           
+
+                    </div>
                 </div>
 
             </div>
