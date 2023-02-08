@@ -102,7 +102,7 @@
 
                 <div class="btn-container">
                     <a href="<?php echo URLROOT; ?>/pawnings/make_payments/<?php echo $data['pawn_item']->Pawn_Id; ?>" class="button">Make Payments</a>
-                    <a href="#" class="button">Release Pawn</a>
+                    <a href="<?php echo URLROOT; ?>/pawnings/release_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>" class="button">Release Pawn</a>
                     <a href="#" class="button">Renew Pawn</a>
                 </div>
             </div>
