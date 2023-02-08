@@ -13,7 +13,8 @@
 <body>
     <?php
        if (!empty($data[1] && $data[1] == 'success')) {
-           include_once URLROOT.'/Manager/add-success.php';
+        //    include_once URLROOT.'/Manager/add-success.php';
+            include_once 'add-success.php';
         } elseif (!empty($data[1] && $data[1] == 'delsuccess')) {
             include_once 'del-success.php';
         } else if (!empty($data[1] && $data[1] == 'unsuccess')) {
@@ -60,7 +61,7 @@
                 </a>
             </div>
             <div class="lgout">
-                <a href="<?php echo URLROOT ?>/mgLogout">Logout</a>
+                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
             </div>
         </div>
         <div class="right">

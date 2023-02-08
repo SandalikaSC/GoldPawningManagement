@@ -1,5 +1,5 @@
 <style>
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 .page-manual-password-enter{
     font-family: 'Poppins',sans-serif;
@@ -12,7 +12,7 @@
     height:100%; 
     backdrop-filter: blur(10px);
     z-index: 10;
-    /* padding:20px; */
+    
     
 }
 
@@ -74,7 +74,7 @@
      padding: 10px 100px;
      font-size: medium;
      color:black;
-     background-color: rgb(32, 218, 60);
+     /* background-color: rgb(32, 218, 60); */
      border-radius: 20px;
      text-decoration: none;
      margin-top: 10px;
@@ -87,9 +87,9 @@
     border: 2px solid red;
     padding: 10px 40px;
     font-size: large;
-    color:white;
+    color:red;
     border-radius: 20px;
-    background-color: red;
+    /* background-color: red; */
     margin-top: 10px;
     width: 300px;
 
@@ -98,16 +98,11 @@
 </style>
 
 
-<div style="display:none;" class="page-manual-password-enter" id="manual-password-change-form">
+<div style="display:none;" class="page-manual-password-enter" id="send-reply-form">
                 <div class="content-manual-password-enter">
-                        <form class="entire-password-form" id="password-popup-form">
-                            <div class="password-form-group">
-                                <label><b>Customer ID</b></label>
-                                <input type="text" placeholder="Customer ID" name="curr-password" id="curr-password" required>
-                            </div>
+                        <form action="<?php echo URLROOT ?>/mgDashboard/sendReplyForComplaints" method="POST" class="entire-password-form" id="password-popup-form">
                            <div class="password-form-group">
-                                <label><b>Message</b></label>
-                                <!-- <input type="password" placeholder="Enter New password" name="new-password" id="new-password" required> -->
+                                <label><b>Reply Message</b></label>
                                 <textarea id="text-area" name="text-area" rows="4" cols="35"></textarea>
                             </div>
                            
@@ -115,7 +110,10 @@
                                 <button type="submit" id="ok-btn" class="ok-btn">Reply</button>
                                 <button type="button" id="cancelButton" class="cancel-btn">Cancel</button>
                             </div>
+                            <input type="hidden" value="" name="cusId" id="cusId"/>
                         </form>
                    
                 </div>
     </div>
+
+   

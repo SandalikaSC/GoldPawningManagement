@@ -18,7 +18,7 @@ class MgDashboardModel extends Database{
     }
 
     public function loadComplaints(){
-        $sql = 'select CID,Date,Description,UserID from complaint';
+        $sql = 'select CID,Date,Description,UserID from complaint order by CID desc';
         $this->query($sql);
         $result = $this->resultSet();
         return $result;

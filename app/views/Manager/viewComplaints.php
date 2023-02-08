@@ -71,11 +71,17 @@
         .btns .reply-btn{
             padding:3px 10px;
             margin-left: 0px;
+            color:blue;
+            border:1px solid blue;
         }
 
         .btns .delete-btn{
-            padding:3px 6px;
+            padding:2px 6px;
             margin-left:10px;
+            border:1px solid red;
+            text-decoration: none;
+            color:red;
+            font-size: small;
         }
     </style>
 </head>
@@ -87,27 +93,27 @@
          <?php
             foreach($data[2] as $row){      
          ?>
-        <div class="complaint-set">
+        <section class="complaint-set">
             <div class="cus-details">
                <div class="cus-name">
                    <div class="name"><?php echo $row->CID?>)</div>
                   <div class="from">From:</div>
                   <div class="cus_id"><?php echo $row->UserID?></div>
                </div>
-               <div class="date-time"><?php echo $row->Date?></div>
+               <section class="date-time"><?php echo $row->Date?></section>
             </div>
             <div class="complaint">
                <?php echo $row->Description?>
             </div>
             <div class="btns">
                 <div>
-                    <button type="button" class="reply-btn" id="reply-btn" onclick="popup()">Reply</button>
+                    <button type="button" class="reply-btn" id="reply-btn" onclick="popup('<?php echo $row->UserID?>');">Reply</button>
                 </div>
                 <div>
-                    <button type="button" class="delete-btn" id="delete-btn">Remove</button>
+                    <a class="delete-btn" href="<?php echo URLROOT?>/mgDashboard/removeComplaint/<?php echo $row->CID?>">Remove</a>
                 </div>
             </div>
-        </div>
+        </section>
             
          <?php  }
      }else{
@@ -121,15 +127,18 @@
 <script>
 
 
-    function popup(){
-        document.getElementById("manual-password-change-form").style.display = "flex";
+    function popup(id){
+        document.getElementById("send-reply-form").style.display = "flex";
+        document.getElementById("cusId").value = id;
     }
 
-let cancelwindow=document.getElementById("cancelButton");
-cancelwindow.addEventListener('click',()=>{
-   location.reload(true)
-})
 
+       let cancelwindow=document.getElementById("cancelButton");
+        cancelwindow.addEventListener('click',()=>{
+            window.location.href = "<?php echo URLROOT ?>/mgDashboard/index";
+        })
 
 </script>
+
+
 </html>

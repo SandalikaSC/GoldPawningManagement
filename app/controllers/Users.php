@@ -444,6 +444,8 @@ class Users extends Controller
       unset($_SESSION['user_id']);
       unset($_SESSION['user_email']);
       unset($_SESSION['user_name']);
+      unset($_SESSION['profile_pic']);
+      unset($_SESSION['mg_name']);
       session_destroy();
 
       redirect('/Users');
