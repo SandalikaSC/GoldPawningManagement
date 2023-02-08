@@ -49,7 +49,7 @@
                         <td ><label class="tag green" for="">Active</label> </td>
                         <td>0714456490</td>
                         <td >2022 Oct 15</td>
-                        <td><button class="view">View</button></td>
+                        <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/1" class="view">View</a></td>
                     </tr>
                     <tr class="data">
                         <td> 254</td>
@@ -66,7 +66,7 @@
                         <td ><label class="tag green" for="">Active</label> </td>
                         <td>0714456490</td>
                         <td >2022 Oct 15</td>
-                        <td><button class="view">View</button></td>
+                        <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/1" class="view">View</a></td>
                     </tr>
                     <tr class="data">
                         <td> 254</td>
@@ -83,7 +83,7 @@
                         <td ><label class="tag green" for="">Active</label> </td>
                         <td>0714456490</td>
                         <td >2022 Oct 15</td>
-                        <td><button class="view">View</button></td>
+                        <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/1" class="view">View</a></td>
                     </tr>
                     <tr class="data">
                         <td> 254</td>
@@ -100,7 +100,7 @@
                         <td ><label class="tag green" for="">Active</label> </td>
                         <td>0714456490</td>
                         <td >2022 Oct 15</td>
-                        <td><button class="view">View</button></td>
+                        <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/1" class="view">View</a></td>
                     </tr>
                     <tr class="data">
                         <td> 254</td>
@@ -117,7 +117,7 @@
                         <td ><label class="tag green" for="">Active</label> </td>
                         <td>0714456490</td>
                         <td >2022 Oct 15</td>
-                        <td><button class="view">View</button></td>
+                        <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/1" class="view">View</a></td>
                     </tr>
                     
                       

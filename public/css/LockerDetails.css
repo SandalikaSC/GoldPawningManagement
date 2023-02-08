@@ -83,7 +83,7 @@
    }
    .res-details{
     justify-content: space-evenly;
-    width: 40%;
+    width: 50%;
    }
    .locker-details{
     width: 25%;
@@ -93,4 +93,18 @@
    }
    .details label{
         margin: 2% 0;
+   }
+   .nxt{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 15%;
+   }
+   .nxt button{
+    border-radius: 20px;
+    background-color: #bb8a04;
+    border: none;
+    color: white;
+    padding: 7% 13%;
+    margin: auto;
    }
