@@ -70,24 +70,26 @@
 
 .twoButtons .ok-btn{
     width:100%;
-     border: 2px solid rgb(32, 218, 60);
+     border:none;
      padding: 10px 100px;
      font-size: medium;
-     color:black;
+     color:white;
      /* background-color: rgb(32, 218, 60); */
      border-radius: 20px;
      text-decoration: none;
      margin-top: 10px;
      width: 300px;
+     background-color: #bb8a04;
     
 }
 
 .twoButtons .cancel-btn{  
     width:100%;
-    border: 2px solid red;
+    border: 2px solid #bb8a04;
     padding: 10px 40px;
     font-size: large;
-    color:red;
+    color:#bb8a04;
+    background-color: white;
     border-radius: 20px;
     /* background-color: red; */
     margin-top: 10px;
