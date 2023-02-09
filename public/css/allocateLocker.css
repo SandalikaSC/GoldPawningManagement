@@ -27,3 +27,18 @@
 .back{
     width: 40px;
 }  
+.pay-header,.payment-content{
+ display: flex;
+ justify-content: space-between;
+}
+ 
+.pay-btn {
+    margin: auto;
+}
+.payments{
+    width: 90%;
+}
+.jewellery-card {
+    height: initial;
+    margin-top: 8% ;
+}
