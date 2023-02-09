@@ -26,4 +26,12 @@
                 return 0;
             }
         }
+
+        public function getPawnedItems() {
+            $this->db->query('SELECT * FROM pawn INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id');
+
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
     }

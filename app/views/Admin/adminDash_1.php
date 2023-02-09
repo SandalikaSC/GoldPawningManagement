@@ -26,6 +26,46 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/Admin/pawned_items">
+                        <span>
+                            <img src="<?php echo URLROOT?>/img/pawned.png">
+                        </span>
+                        <span>Pawn Articles</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                        <span>
+                            <img src="<?php echo URLROOT?>/img/locker-white.png">
+                        </span>
+                        <span>Locker</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                        <span>
+                            <img src="<?php echo URLROOT?>/img/staff_white.png">
+                        </span>
+                        <span>Staff</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                        <span>
+                            <img src="<?php echo URLROOT?>/img/market_white.png">
+                        </span>
+                        <span>Market</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                        <span>
+                            <img src="<?php echo URLROOT?>/img/goldprice_white.png">
+                        </span>
+                        <span>Gold Prices</span>
+                    </a>
+                </li>
                 
                 
             </ul>
