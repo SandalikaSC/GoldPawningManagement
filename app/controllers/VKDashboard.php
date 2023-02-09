@@ -9,7 +9,7 @@ class VKDashboard extends Controller
                 // $this->Model = $this->model('Appointment');
         }
 
-        public function dashboard()
+        public function index()
         {
                 // $result = $this->Model->getAppointmentById($_SESSION['user_id']);
                 // $data = [
