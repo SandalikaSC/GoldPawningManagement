@@ -25,7 +25,7 @@
         backdrop-filter: blur(5px);
         font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-        border: 1px solid red;
+        border: 1px solid #057001;
     }
 
     .message-cont-btn {
@@ -36,7 +36,7 @@
         cursor: pointer;
         align-self: center;
         font-size: large;
-        color: rgb(199, 6, 6);
+        color: #057001;
         /* background-color: rgba(255, 0, 0, 0.116); */
         border-radius: 5px;
         padding: 5px 10px;
@@ -60,9 +60,9 @@
     <section class="side-message" id="message-main">
         <div class="message-content" id="message-content">
             <button type="button" class="message-cont-btn" id="close-btn">
-                <img style="width: 25px;margin-top: 5px;" src="<?php echo URLROOT ?>/img/cross-mark.png" alt="">
+                <img style="width: 25px;margin-top: 5px;" src="<?php echo URLROOT ?>/img/success_mark.png" alt="">
             </button>
-            <div class="message-cont-text" style="color:brown;" id="right-alert-text">
+            <div class="message-cont-text" style="color:#057001;" id="right-alert-text">
                 <?php echo $_SESSION['message'] ?>
             </div>
         </div>

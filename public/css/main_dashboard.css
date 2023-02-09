@@ -12,6 +12,7 @@ body{
     font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
+    overflow-x:hidden;
 }
 
 .page{

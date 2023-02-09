@@ -18,7 +18,7 @@
         <?php
         if (!empty($_SESSION['message'])) {
           
-            include_once 'error.php';
+            include_once 'success.php';
          
         } 
         ?>
