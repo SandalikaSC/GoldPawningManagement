@@ -12,7 +12,7 @@ body{
     font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
-    background-color:  #e8e6e6;
+    /* background-color:  #e8e6e6; */
     
 
 }
@@ -39,7 +39,7 @@ body{
     align-items: center;
     position: sticky;
     top: 0; 
-    background-color:  #e8e6e6;
+    /* background-color:  #e8e6e6; */
     backdrop-filter: blur(15px);
     z-index: 8;
 }
