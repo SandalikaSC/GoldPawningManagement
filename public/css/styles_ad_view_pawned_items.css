@@ -148,12 +148,34 @@ main .right-wrapper .payment-history .table-wrapper .title {
 main .right-wrapper .payment-history .table-wrapper .div-table {
     width: 100%;
     padding: 20px;
+    height: 250px;
 }
 
 main .right-wrapper .payment-history .table-wrapper .div-table table {
+    table-layout: fixed;
+    border-collapse: collapse;
     width: 100%;
+    padding: 10px;
+
 }
 
-main .right-wrapper .payment-history .table-wrapper .div-table table thead {
-    background: #ddd;
+main .right-wrapper .payment-history .table-wrapper .div-table thead tr {
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table thead td {
+    font-weight: 600;
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table td {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    color: #222;
+    text-align: center;
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table tr td:last-child {
+    display: flex;
+    align-items: center;
 }

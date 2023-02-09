@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                    <a href="<?php echo URLROOT; ?>/Lockers/show_lockers">
                         <span>
                             <img src="<?php echo URLROOT?>/img/locker-white.png">
                         </span>
