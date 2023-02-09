@@ -47,7 +47,7 @@
                         <div><img src="<?php echo URLROOT ?>/img/calender-white.png"" alt="" class=" icon">
                             <label for="">Date Joined</label>
                         </div>
-                        <label for="" class="icon-label"><?php echo date("d M Y", strtotime("2022/05/26"))?></label>
+                        <label for="" class="icon-label"><?php echo date("d M Y", strtotime($data['customer']->Created_date))?></label>
                     </div>
                 </div>
                 <form class="card-info">
