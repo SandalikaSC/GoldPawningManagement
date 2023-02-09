@@ -92,10 +92,10 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <td>Payment ID</td>
-                                        <td>Installment No</td>
-                                        <td>Paid Date</td>
-                                        <td>Paid Account</td>
+                                        <th>Payment ID</th>
+                                        <th>Installment No</th>
+                                        <th>Paid Date</th>
+                                        <th>Paid Account</th>
                                     </tr> 
                                 </thead>
                                 <tbody>

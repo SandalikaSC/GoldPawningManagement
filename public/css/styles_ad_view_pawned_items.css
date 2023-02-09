@@ -128,3 +128,32 @@ main .right-wrapper .due-payments .div-details .field label {
 main .right-wrapper .due-payments .div-details .field div {
     color: #ff0000;
 }
+
+main .right-wrapper .payment-history {
+    width: 500px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .right-wrapper .payment-history .table-wrapper {
+    width: 100%;
+}
+
+main .right-wrapper .payment-history .table-wrapper .title {
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table {
+    width: 100%;
+    padding: 20px;
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table table {
+    width: 100%;
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table table thead {
+    background: #ddd;
+}
