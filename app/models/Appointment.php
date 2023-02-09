@@ -132,4 +132,23 @@ class Appointment
         return $results;
 
     }
+    public function getAppointmentByDate($date)
+    {
+
+        $this->db->query("SELECT * from appointment,time_slot,user where appointment.slot_id=time_slot.slot_ID AND appointment.UserID=user.UserId AND appointment_date =:date order by time_slot.slot_ID;");
+
+        $this->db->bind(':date', $date); 
+        $results = $this->db->resultset();
+
+        return $results;
+
+    }
+    public function countAppointments($date)
+    {
+        $this->db->query('select count(Appointment_Id) as countAppointments from appointment where appointment_date =:date ;');
+        $this->db->bind(':date', $date); 
+        $result = $this->db->single();
+ 
+            return $result->countAppointments; 
+    }
 }

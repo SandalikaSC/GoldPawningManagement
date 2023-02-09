@@ -40,7 +40,7 @@
                             <label for="">Today Appointments</label>
                             <div class="info">
                                 <img src="<?php echo URLROOT ?>/img/icons8-appointment-64.png" alt="">
-                                <label for="">11</label>
+                                <label for=""><?= $data['countAppointment']?></label>
                             </div>
                         </div>
                     </div>
@@ -57,8 +57,9 @@
                             <label class="tag validA" for="">Valid</label>
                             <div class="action">
                                 <button class="cancel">cancel</button>
-                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button class="Allocate">Allocate</button></a>
-                            
+                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button
+                                        class="Allocate">Allocate</button></a>
+
                             </div>
                         </div>
                         <div class="validated-article">
@@ -67,8 +68,9 @@
                             <label class="tag invalidA" for="">Invalid</label>
                             <div class="action">
                                 <button class="cancel">cancel</button>
-                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button class="Allocate">Allocate</button></a>
-                            
+                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button
+                                        class="Allocate">Allocate</button></a>
+
                             </div>
                         </div>
                         <div class="validated-article">
@@ -77,27 +79,37 @@
                             <label class="tag validA" for="">Valid</label>
                             <div class="action">
                                 <button class="cancel">cancel</button>
-                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button class="Allocate">Allocate</button></a>
+                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button
+                                        class="Allocate">Allocate</button></a>
                             </div>
                         </div>
                     </div>
 
                 </div>
                 <div class="appo-info">
-                    <a href="<?php echo URLROOT ?>/Reservations"><button class="allocate">+ New Allocation</button></a> 
+                    <a href="<?php echo URLROOT ?>/Reservations"><button class="allocate">+ New Allocation</button></a>
                     <div class="app-list">
                         <h2> Today Appointments</h2>
+                        <?php if(empty($data['appointments'])):?>
+                        <label for="">No appointments Today</label>
+                        <?php else:?>
+                        <?php $id=1;?>
+                        <?php foreach ($data['appointments'] as $appointment): ?>
                         <div class="appointment">
 
-                            <label class="time" for="">9:00 - 9:15 A.M.</label>
+                            <label class="time" for=""><?= $appointment->time;?></label>
                             <div class="appo-content">
-                                <label for="">AP005</label>
-                                <label for=""> Mr.Lankshan Gamage</label>
+                                <label for=""><?= $appointment->Appointment_Id;?></label>
+                                <label for=""> <?= $appointment->First_Name." ".$appointment->Last_Name;?></label>
                                 <button class="Allocate">Take</button>
                             </div>
 
                         </div>
-                        <div class="appointment">
+
+                        <?php endforeach; ?>
+                        <?php endif ;?>
+
+                        <!-- <div class="appointment">
 
                             <label class="time" for="">9:00 - 9:15 A.M.</label>
                             <div class="appo-content">
@@ -136,7 +148,7 @@
                                 <button class="Allocate">Take</button>
                             </div>
 
-                        </div>
+                        </div> -->
 
                     </div>
 

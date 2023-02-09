@@ -7,20 +7,30 @@ class VKDashboard extends Controller
                         redirect('/Users');
                 }
                 $this->modelCustomer = $this->model('Customer');
+                $this->modelAppointment = $this->model('Appointment');
         }
 
         public function index()
         {
-                // $result = $this->Model->getAppointmentById($_SESSION['user_id']);
-                // $data = [
-                //         'appointments' => $result
+                $result = $this->modelAppointment->getAppointmentByDate(date("Y-m-d"));
+                $appointmentCount=$this->modelAppointment->countAppointments(date("Y-m-d"));
+                $data = [
+                        'appointments' => $result,
+                        'countAppointment' => $appointmentCount
 
-                // ];
+                ]; 
+                if (empty($result)) {
+                        $data['appointments'] = (array) null;
+                }
+                // foreach($data['appointments'] as $x){
+                //         echo $x->Appointment_Id;
+                //         echo $x->booked_Date;
+                //         echo $x->appointment_date;
+                //         echo $x->UserID;
+                //         echo $x->time;
 
-                // if (empty($result)) {
-                //         $data['appointments'] = (array) null;
                 // }
-                $this->view('VaultKeeper/vaultkeeperDash');
+                $this->view('VaultKeeper/vaultkeeperDash',$data);
         }
 
         public function Reservations()
