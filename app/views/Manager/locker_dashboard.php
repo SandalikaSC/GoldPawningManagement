@@ -78,9 +78,9 @@
                                     <tr>
                                         <th>Locker No</th>
                                         <th>Date</th>
-                                        <th>Customer Name</th>
                                         <th>Retrieve Date</th>
                                         <th>No of Items</th>
+                                        <th>Key Status</th>
                 
                                         <th>Action</th>
                                     </tr>
@@ -89,17 +89,69 @@
 
                                             <tr>
                                                 <td>LC001</td>
-                                                <td>2022/11/03</td>
-                                                <td>M.A.Thimeth Imesha</td>
-                                                <td>2023/11/03</td>
-                                                <td>2</td>
+                                                <td>2000/11/03</td>
+                                                <td>2001/01/03</td>
+                                                <td>1</td>
+                                                <td style="color:green;">Delivered</td>
                                                 
                                                 <td>
                                                     <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
                                             
                                                 </td>
                                             </tr>
-                             
+                                            
+                                            <tr>
+                                                <td>LC002</td>
+                                                <td>2001/03/20</td>
+                                                <td>2002/06/20</td>
+                                                <td>1</td>
+                                                <td style="color:green;">Delivered</td>
+                                                
+                                                <td>
+                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
+                                            
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>LC003</td>
+                                                <td>2001/04/02</td>
+                                                <td>2001/12/02</td>
+                                                <td>2</td>
+                                                <td style="color:green;">Delivered</td>
+                                                
+                                                <td>
+                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
+                                            
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>LC004</td>
+                                                <td>2002/05/12</td>
+                                                <td>2003/01/12</td>
+                                                <td>2</td>
+                                                <td style="color:green;">Delivered</td>
+                                                
+                                                <td>
+                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
+                                            
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>LC005</td>
+                                                <td>2003/07/30</td>
+                                                <td>2003/12/30</td>
+                                                <td>1</td>
+                                                <td style="color:green;">Delivered</td>
+                                                
+                                                <td>
+                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
+                                            
+                                                </td>
+                                            </tr>
 
                                 </tbody>
                             </table>

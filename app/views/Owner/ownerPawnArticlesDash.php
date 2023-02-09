@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/pawnedArticleDashboard.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/ownerPawnArticleDashboard.css">
 
 </head>
 
@@ -24,25 +24,25 @@
                 </div>
             </div>
             <div class="btn-set">
-                <a href="<?php echo URLROOT ?>/mgDashboard">
+                <a href="<?php echo URLROOT ?>/ownerDashboard">
                     <img src="<?php echo URLROOT ?>/img/dashboard.png" alt="">
                     <p>Dashboard</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgLocker">
+                <a href="<?php echo URLROOT ?>/ownerLocker">
                     <img src="<?php echo URLROOT ?>/img/locker.png" alt="">
                     <p>Locker</p>
                 </a>
-                <a class="dash" href="<?php echo URLROOT ?>/mgPawnArticles">
+                <a class="dash" href="<?php echo URLROOT?>/ownerPawnArticleDash">
                     <img src="<?php echo URLROOT ?>/img/golden_pawned_article.png" alt="">
                     <p>Pawned Articles</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgAuction">
+                <a href="<?php echo URLROOT ?>/ownerAuction">
                     <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
                     <p>Auction</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/staff">
+                <a href="#">
                     <img src="<?php echo URLROOT ?>/img/staff.png" alt="">
-                    <p>Staff</p>
+                    <p>Market</p>
                 </a>
             </div>
             <div class="lgout">

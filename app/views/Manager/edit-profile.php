@@ -106,11 +106,7 @@
                                 <div class="address field-value">
                                     <span name="address" id="address"><?php echo $data[0]->Line1 ?></span>
                                     <span name="address" id="address"><?php if($data[0]->Line2==NULL){echo "Not Available";}else{echo $data[0]->Line2;} ?></span>
-                                    <span name="address" id="address"><?php if (!empty($data[0]->Line3)) {
-                                          echo $data[0]->Line3;
-                                        } else {
-                                          echo "Not Available";
-                                        } ?></span>
+                                    <span name="address" id="address"><?php if($data[0]->Line3==NULL){echo "Not Available";}else{echo $data[0]->Line3;} ?></span>
 
                                 </div>
 

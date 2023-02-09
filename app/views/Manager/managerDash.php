@@ -196,7 +196,7 @@
                                 <div class="search">
 
                                     <div class="search-bar">
-                                        <input type="text" id="myInput" name="search_input" onkeyup="myFunction()" placeholder="Search the date" />
+                                        <input type="text" id="myInput" name="search_input" onkeyup="myFunction()" placeholder="DATE.." />
 
                                     </div>
 

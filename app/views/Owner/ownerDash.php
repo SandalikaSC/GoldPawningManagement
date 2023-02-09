@@ -30,23 +30,23 @@
                 </div>
             </div>
             <div class="btn-set">
-                <a class="dash" href="<?php echo URLROOT ?>/mgDashboard">
+                <a class="dash" href="<?php echo URLROOT ?>/ownerDashboard">
                     <img src="<?php echo URLROOT ?>/img/golden_dashboard.png" alt="">
                     <p>Dashboard</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgLocker">
+                <a href="<?php echo URLROOT ?>/ownerLocker">
                     <img src="<?php echo URLROOT ?>/img/locker.png" alt="">
                     <p>Locker</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgPawnArticles">
+                <a href="<?php echo URLROOT?>/ownerPawnArticleDash">
                     <img src="<?php echo URLROOT ?>/img/pawned.png" alt="">
                     <p>Pawned Articles</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgAuction">
+                <a href="<?php echo URLROOT ?>/ownerAuction">
                     <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
                     <p>Auction</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/staff">
+                <a href="#">
                     <img src="<?php echo URLROOT ?>/img/staff.png" alt="">
                     <p>Market</p>
                 </a>
@@ -63,7 +63,7 @@
                     </div>
                     <h1>Dashboard</h1>
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
                 <div class="dashboard-items">
@@ -195,13 +195,13 @@
                             </div>
 
                             <div class="graph complaint-sec">
-                                <!-- <canvas id="Chart"></canvas> -->
-                                <?php include_once '../Manager/viewComplaints.php'; ?>
+                               
+                                <?php include_once 'viewComplaints.php'; ?>
                             </div>
                         </div>
 
                     </div>
-                    <div class="pag">
+                    <!-- <div class="pag">
                         <div class="pagination">
                             <a href="#">&laquo;</a>
                             <a href="#">1</a>
@@ -209,7 +209,7 @@
                            
                             <a href="#">&raquo;</a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -224,16 +224,84 @@
     var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
 
     new Chart("myChart", {
-        type: "line",
+        type: "bar",
         data: {
             labels: xValues,
             datasets: [{
                 data: [10, 40, 30, 21, 50, 35, 90, 80, 90, 15, 100, 1],
-                borderColor: "#BB8A04",
+                backgroundColor: [
+                    'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+    
                 fill: false
             }, {
                 data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
-                borderColor: "black",
+                backgroundColor: [
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 99, 13, 0.2)',
+                'rgba(54, 16, 235, 0.2)',
+                'rgba(255, 206, 89, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+               
                 fill: false
             }]
         },
@@ -248,32 +316,5 @@
     });
 </script>
 
-<script>
-    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
-
-    new Chart("Chart", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
-                borderColor: "red",
-                fill: false
-            }, {
-                data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
-                borderColor: "blue",
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                display: false
-            }
-        }
-
-    });
-</script>
 
 </html>

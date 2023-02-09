@@ -8,6 +8,7 @@
     <style>
         .complaint-table{
             display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
@@ -17,7 +18,7 @@
         .complaint-set{
             display: flex;
             flex-direction: column;
-            min-width: 500px;
+            min-width: 1000px;
             /* align-items: center;
             justify-content: center; */
             border:1px solid black;
@@ -33,7 +34,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             /* border:1px solid black; */
-            float: left;
+            /* float: left; */
             padding:5px 0;
         }
         .cus-name{
@@ -86,45 +87,102 @@
     </style>
 </head>
 <body>
-    <?php 
-     if($data[2]!=0){
-    ?>
+    
     <div class="complaint-table">
-         <?php
-            foreach($data[2] as $row){      
-         ?>
+         
         <section class="complaint-set">
             <div class="cus-details">
                <div class="cus-name">
-                   <div class="name"><?php echo $row->CID?>)</div>
+                   <div class="name">15)</div>
                   <div class="from">From:</div>
-                  <div class="cus_id"><?php echo $row->UserID?></div>
+                  <div class="cus_id">CU002</div>
                </div>
-               <section class="date-time"><?php echo $row->Date?></section>
+               <section class="date-time">2023/02/23 09:12:34</section>
             </div>
             <div class="complaint">
-               <?php echo $row->Description?>
+               GOOD SYSTEM
             </div>
             <div class="btns">
                 <div>
-                    <button type="button" class="reply-btn" id="reply-btn" onclick="popup('<?php echo $row->UserID?>');">Reply</button>
+                    <button type="button" class="reply-btn" id="reply-btn" >Reply</button>
                 </div>
                 <div>
-                    <a class="delete-btn" href="<?php echo URLROOT?>/mgDashboard/removeComplaint/<?php echo $row->CID?>">Remove</a>
+                    <a class="delete-btn" href="#">Remove</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="complaint-set">
+            <div class="cus-details">
+               <div class="cus-name">
+                   <div class="name">15)</div>
+                  <div class="from">From:</div>
+                  <div class="cus_id">CU002</div>
+               </div>
+               <section class="date-time">2023/02/23 09:12:34</section>
+            </div>
+            <div class="complaint">
+               GOOD SYSTEM
+            </div>
+            <div class="btns">
+                <div>
+                    <button type="button" class="reply-btn" id="reply-btn" >Reply</button>
+                </div>
+                <div>
+                    <a class="delete-btn" href="#">Remove</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="complaint-set">
+            <div class="cus-details">
+               <div class="cus-name">
+                   <div class="name">15)</div>
+                  <div class="from">From:</div>
+                  <div class="cus_id">CU002</div>
+               </div>
+               <section class="date-time">2023/02/23 09:12:34</section>
+            </div>
+            <div class="complaint">
+               GOOD SYSTEM
+            </div>
+            <div class="btns">
+                <div>
+                    <button type="button" class="reply-btn" id="reply-btn" >Reply</button>
+                </div>
+                <div>
+                    <a class="delete-btn" href="#">Remove</a>
                 </div>
             </div>
         </section>
         
-        <?php  }
-    
-        ?>
+
+        
+        <section class="complaint-set">
+            <div class="cus-details">
+               <div class="cus-name">
+                   <div class="name">15)</div>
+                  <div class="from">From:</div>
+                  <div class="cus_id">CU002</div>
+               </div>
+               <section class="date-time">2023/02/23 09:12:34</section>
+            </div>
+            <div class="complaint">
+               GOOD SYSTEM
+            </div>
+            <div class="btns">
+                <div>
+                    <button type="button" class="reply-btn" id="reply-btn" >Reply</button>
+                </div>
+                <div>
+                    <a class="delete-btn" href="#">Remove</a>
+                </div>
+            </div>
+        </section>
+       
       
     </div>
-    <?php 
-        }else{
-            echo "No Complaints";
-           }
-    ?>
+   
 
 </body>
 <script>

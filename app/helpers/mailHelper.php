@@ -16,13 +16,16 @@ function sendMail($receiver, $email_Type, $code, $name)
         switch ($email_Type) {
             case "OTP":
                 $mail->Subject = "VOGUE OTP";
-                $mail->Body    = "Here is the OTP code $code";
+                $mail->Body    = $mail->Body    = "<div style='border: 2px solid #BB8A04;padding:10px 15px;border-radius:10px;'><center>
+                <h2>here is the <u>OTP</u>,</h2>
+                <h1 style='color:black;'> $code </h1></center>
+            </div>";
                 $mail->addAddress($receiver, $name);
                 break;
             case "send_reply":
                 $mail->Subject = "Reply For Complaint";
                 $mail->Body    = "$code";
-                $mail->addAddress($receiver, $name);
+                $mail->addAddress($receiver, $name); 
                 break;
             case "registration":
                 $link = "<a href='http://localhost/Vogue/Users/emailVerify/$code'>here</a>";
