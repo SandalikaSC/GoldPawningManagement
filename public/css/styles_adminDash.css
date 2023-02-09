@@ -206,6 +206,22 @@ main {
     grid-gap: 20px; */
 }
 
+.page-wrapper .div-quote {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.page-wrapper .div-quote div {
+    font-size: 30px;
+    padding: 30px 40px;
+    border-radius: 20px;
+    color: antiquewhite;
+    background-image: linear-gradient(to right, #bb8a04, #966e00, #bb8a04);
+}
+
 .cards {
     padding: 15px;
     display: flex;
@@ -275,115 +291,25 @@ main {
     font-size: 45px;
 }
 
-.table-wrapper {
-    display: flex;
-    grid-gap: 40px;
-    padding: 20px 30px;
-    height: 100%;
+.page-wrapper .div-income {
+    padding: 20px 60px;
 }
 
-.table-wrapper .table-container {
-    margin-bottom: 18px;
-    background: #fff;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);     */
-    height: 300px;  
-}
-
-.table-wrapper .table-container .table-title {
-    padding: 10px 20px;
-    height: 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 0 0 10px;
-}
-
-.table-wrapper .table-container .table-title h2 {
+.page-wrapper .div-income h2 {
     border-bottom: 2px solid #bb8a04;
     width: fit-content;
 }
 
-.table-wrapper .table-container .div-table-validated {
-    height: 80%;
-    overflow-x: auto;
-    padding: 10px;
-}
-
-.table-wrapper .table-container .div-table-appointments {
-    height: 60%;
-    overflow-x: auto;
-    padding: 10px;
-}
-
-table {
-    table-layout: fixed;
-    border-collapse: collapse;
-    width: 100%;
-    padding: 10px;
-}
-
-thead tr {
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-thead td {
-    font-weight: 600;
-}
-
-td {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    color: #222;
-    text-align: center;
-}
-
-tr td:last-child {
-    display: flex;
-    align-items: center;
-}
-
-.div-table-validated .btn-validated {
-    border: 2px solid #bb8a04;
-    padding: 5px 10px;
+.complaint-chart .chart{
+    padding: 50px;
+    background-color: white;
     border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
+    margin: 10px;
+
+    /* margin: auto; */
 }
 
-.div-table-validated .btn-pawn {
-    background: #bb8a04;
-    color: #000;
-}
 
-.div-table-validated .btn-cancel {
-    background: #fff;
-    color: #bb8a04;
-}
-
-.div-date {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-}
-
-.div-date label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-right: 20px;
-}
-
-.div-date input[type="date"] {
-    width: 200px;
-    border-radius: 20px;
-    padding: 5px 20px;
-    background: #c1c1c1;
-    border: 2px solid #c1c1c1;
-}
-
-.div-date input[type="date"]:hover,
-.div-date input[type="date"]:focus {
-    border-color: #bb8a04;
-}
 
 /* @media only screen and (max-width: 1270px) {
     .main-content {

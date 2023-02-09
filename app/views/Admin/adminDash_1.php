@@ -53,8 +53,8 @@
 
         <main> 
             <div class="page-wrapper">   
-                <div class="div-welcome">
-
+                <div class="div-quote">
+                    <div><i>We are friends in need when you're in urgent financial difficulties indeed.</i></div>
                 </div>     
                 <div class="cards">  
                     <div class="gold-rates">
@@ -105,12 +105,25 @@
                     </div>                    
                 </div>
 
+                <div class="div-income">
+                    <div class="title">
+                        <h2>Monthly Income</h2>
+                    </div>
+                    
+                </div>
+
+                
+
                      
             </div>
             
         </main>
     </div>
 </body>
+
+<script>
+    
+</script>
 </html>
 
 
