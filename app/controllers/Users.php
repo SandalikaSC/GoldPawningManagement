@@ -412,7 +412,7 @@ class Users extends Controller
         $this->view('Gold Appraiser/goldappDash');
         break;
       case "Vault Keeper":
-        $this->view('VaultKeeper/vaultkeeperDash');
+        redirect('/VKDashboard');
         break;
       case "Pawning Officer":
         // $this->view('PawnOfficer/pawnofficerDash');
