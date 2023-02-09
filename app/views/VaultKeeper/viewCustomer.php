@@ -58,28 +58,28 @@
 
                     <div class="card-grid">
                         <label for=""> Full Name</label>
-                        <label for=""> Sandalika Chamari</label>
+                        <label for=""><?= $data['customer']->First_Name." ".$data['customer']->Last_Name ;?></label>
 
                         <label for=""> NIC</label>
-                        <label for=""> 200064703151</label>
+                        <label for=""><?= $data['customer']->NIC;?></label>
                         <label for="">Phone No.</label>
-                        <label for="">0714456490</label>
+                        <label for=""><?= $data['customer']->phone;?></label>
                         <label for="">Address</label>
                         <div>
-                            <label for=""> Welladeniya</label>
-                            <label for=""> Midigama</label>
-                            <label for=""> Ahangama</label>
+                            <label for=""> <?= $data['customer']->Line1;?></label>
+                            <label for=""> <?= ($data['customer']->Line2===null)? "" :$data['customer']->Line2 ;?></label>
+                            <label for=""> <?= ($data['customer']->Line3==null || strtolower($data['customer']->Line3) == "null")? " " :$data['customer']->Line3 ;?></label>
                         </div>
                         <label for=""> Gender</label>
-                        <label for=""> Female</label>
+                        <label for=""><?= $data['customer']->Gender;?></label>
 
                     </div>
                     <hr>
                     <div class="card-grid">
                         <label for=""> Status</label>
-                        <div> <label class="tag green" for="">Active</label></div>
+                        <div> <label class="tag green" for=""> <?= ($data['customer']->Status==1)? "Active" :"Blocked" ;?></label></div>
                         <label for=""> Account Verification</label>
-                        <div> <label class="tag gold" for="">Verified</label></div>
+                        <div> <label class="tag gold" for=""> <?= ($data['customer']->verification_status==1)? "Verified" :"Not verified" ;?></label></div>
                     </div>
                     
 
