@@ -18,4 +18,15 @@
 
             $this->view('Admin/adminDash_1', $data);
         }
+
+        public function pawned_items() {
+            // Get pawned items
+            $pawned_items = $this->model('adminModel')->getPawnedItems();
+
+            $data = [
+                'pawned_items' => $pawned_items
+            ];
+
+            $this->view('Admin/pawnedItems_Admin', $data);
+        }
     }
