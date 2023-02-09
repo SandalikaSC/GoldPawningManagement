@@ -31,7 +31,7 @@
                         <h2>Article Details</h2>
                     </div>
                     <div class="div-image">
-                        <img src="<?php echo URLROOT?>/img/bracelet_01.jpg">
+                        <img src="<?php echo URLROOT?>/img/gold_bracelet.jpg">
                     </div>
                     <div class="div-details">
                         <div class="field">

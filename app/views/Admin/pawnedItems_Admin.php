@@ -111,7 +111,7 @@
                             
                             <?php foreach($data['pawned_items'] as $pawned_item) : ?>
                                 <tr class="table-body">
-                                    <td><img src="<?php echo URLROOT?>/img/bracelet_01.jpg"></td>
+                                    <td><img src="<?php echo URLROOT?>/img/gold_bracelet.jpg"></td>
                                     <td><?php echo $pawned_item->Pawn_Id; ?></td>
                                     <td><?php echo $pawned_item->userId; ?></td>
                                     <td><?php echo $pawned_item->Article_Id; ?></td>
