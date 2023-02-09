@@ -57,7 +57,8 @@
                             <label class="tag validA" for="">Valid</label>
                             <div class="action">
                                 <button class="cancel">cancel</button>
-                                <button class="Allocate">Allocate</button>
+                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button class="Allocate">Allocate</button></a>
+                            
                             </div>
                         </div>
                         <div class="validated-article">
@@ -66,7 +67,8 @@
                             <label class="tag invalidA" for="">Invalid</label>
                             <div class="action">
                                 <button class="cancel">cancel</button>
-                                <button class="Allocate">Allocate</button>
+                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button class="Allocate">Allocate</button></a>
+                            
                             </div>
                         </div>
                         <div class="validated-article">
@@ -75,7 +77,7 @@
                             <label class="tag validA" for="">Valid</label>
                             <div class="action">
                                 <button class="cancel">cancel</button>
-                                <button class="Allocate">Allocate</button>
+                                <a href="<?php echo URLROOT ?>/Reservations/AllocateLocker"><button class="Allocate">Allocate</button></a>
                             </div>
                         </div>
                     </div>

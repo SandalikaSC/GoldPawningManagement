@@ -59,7 +59,7 @@ body{
 }
 
 .vogue {
-    animation-name: logo;
+    /* animation-name: logo; */
     animation-duration:18s;
     width: 200px;
     animation-iteration-count: infinite;

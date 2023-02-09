@@ -177,7 +177,7 @@ body{
 }
 
 .vogue {
-    animation-name: logo;
+    /* animation-name: logo; */
     animation-duration:18s;
     width: 200px;
     animation-iteration-count: infinite;
@@ -299,12 +299,12 @@ tr:hover td{
 
 
 td a:nth-child(1){
-    text-decoration: none  ;
+    text-decoration: none;
     border: 2px solid #BB8A04;
-    color: black;
-    border-radius: 10px;
-    padding: 2px 12px; 
-    background-color: #BB8A04 ;
+    color: white;
+    border-radius: 20px;
+    padding: 2px 12px;
+    background-color: #BB8A04;
 }
 
 

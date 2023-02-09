@@ -6,10 +6,10 @@ class VKDashboard extends Controller
                 if (!isLoggedIn()) {
                         redirect('/Users');
                 }
-                // $this->Model = $this->model('Appointment');
+                $this->modelCustomer = $this->model('Customer');
         }
 
-        public function dashboard()
+        public function index()
         {
                 // $result = $this->Model->getAppointmentById($_SESSION['user_id']);
                 // $data = [
@@ -24,14 +24,24 @@ class VKDashboard extends Controller
         }
 
         public function Reservations()
-        {
-                $data = [];
+        {      
                 $this->view('VaultKeeper/Reservations');
         } 
         public function Customers()
         {
-                $data = [];
-                $this->view('VaultKeeper/Customers');
+                $result=$this->modelCustomer->getAllCustomers();
+                
+                $data = [
+                        'customers'=>$result
+                ];
+                if (empty($result)) {
+                        $data['customers'] = (array) null;
+                }
+                //  header("Content-type: image/jpeg");
+                // foreach ($data['customers'] as $customer) {
+                //         echo $customer->image;
+                // }
+                $this->view('VaultKeeper/Customers',$data);
         }
 
 }

@@ -33,12 +33,20 @@
   .customer-tbl tr:first-child{
     align-items: flex-start;
   }
-  .profile{
+  .profile-div{
     overflow: hidden;
+    width: 50%;
+    height: 50%;
+    border-radius: 100%;
+    /* border: 1px solid #bb8a04; */
   }
-  .pro-details,.name{
+  .pro-details{
     display: flex;
     justify-content: space-evenly;
+  }
+  .name{
+    display: flex;
+    justify-content: start;
   }
   .pro-details{
     flex-direction: column;
@@ -46,15 +54,18 @@
   }
   .pro-pic{
     border-radius: 100%;
-    width: 25%;
-    margin: auto;
+    width: 10%;
+    height: 25%;
+    margin: 1%;
+    /* margin: auto; */
+    border: 1px solid #bb8a04;
   }
  
 
   
 .content-table {
   border-collapse: collapse;
-  margin:  auto;
+  margin: 2% 12%;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

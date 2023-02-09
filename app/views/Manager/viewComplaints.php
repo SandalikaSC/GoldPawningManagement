@@ -71,18 +71,19 @@
         .btns .reply-btn{
             padding:3px 10px;
             margin-left: 0px;
-            color:blue;
-            border:1px solid blue;
+            /* color:#bb8a04; */
+            border:1px solid #bb8a04;
         }
 
-        .btns .delete-btn{
-            padding:2px 6px;
-            margin-left:10px;
-            border:1px solid red;
-            text-decoration: none;
-            color:red;
-            font-size: small;
-        }
+        .btns .delete-btn {
+    padding: 2px 6px;
+    margin-left: 10px;
+    border: 1px solid #bb8a04;
+    text-decoration: none;
+    color: #bb8a04;
+    font-size: small;
+    border-radius: 20px;
+}
     </style>
 </head>
 <body>

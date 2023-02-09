@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?php echo SITENAME ?></title>
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/cards_in_auction.css">
@@ -33,7 +34,7 @@
           <p>Dashboard</p>
         </a>
         <a href="<?php echo URLROOT ?>/mgLocker">
-          <img src="<?php echo URLROOT ?>/img/locker.png" alt="">
+          <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
           <p>Locker</p>
         </a>
         <a href="<?php echo URLROOT ?>/mgPawnArticles">

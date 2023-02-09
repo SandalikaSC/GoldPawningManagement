@@ -21,5 +21,17 @@ class Reservations extends Controller
         {
                 $this->view('VaultKeeper/LockerItemDetails');
         }
+        public function makePayment()
+        {
+                $this->view('VaultKeeper/makepayment');
+        }
+        public function releaseLocker()
+        {
+                $this->view('VaultKeeper/ReleaseLocker');
+        }
+        public function AllocateLocker()
+        {
+                $this->view('VaultKeeper/allocateLocker');
+        }
 
     }

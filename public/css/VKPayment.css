@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap'); 
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; 
+}
+ 
+
+/*  article */
+.wrapper{
+    flex-direction: column; 
+    overflow-y: scroll;
+} 
+.content,.pay-details,.payment{
+    display: flex; 
+    justify-content: space-evenly;
+    /* place-items: center center ; */
+}
+.back{
+    width: 40px;
+}  
+.content,.payment,.pay-details{
+flex-direction: column;
+/* width: 50%;   */
+}
+
+.content,.locker-details,.res-details,.card ,.nxt{
+    display: flex;
+    margin: 2% 5% ;
+    /* border: 1px solid rgba(30, 29, 29, 0.811) ; */
+}
+ 
+.card {
+    flex-direction: column;
+    padding: 2% 4%;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
+    border-radius: 20px;
+    margin: 1% auto;
+    /* width: 70%; */
+    margin: 0%;
+}
+ .details{
+    display: grid;
+    grid-template-columns:repeat(2,1fr);
+    justify-content: space-between;
+    /* border: 1px solid rgba(30, 29, 29, 0.811) ; */
+ }
+ .content h2{
+    
+        border-bottom: 2px solid #bb8a04;
+      
+ }
+ .content h4{
+    
+    font-size: 0.8rem;
+    color: grey;
+    font-style: italic;
+  
+}
+.item{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+ .article-details{
+    display: flex;
+    flex-direction: column;
+    padding: 2% 4%;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
+    border-radius: 20px;
+    margin: 1% auto;
+    /* width: 80%; */
+ }
+ .payment{
+background-color: #bb8a04;
+box-shadow: 0 2px 20px rgba(185, 149, 18, 0.456);
+color: white;
+/* width: 50%; */
+padding: 5%;
+margin: 5%;
+border-radius: 20px;
+justify-content: flex-start;
+}
+.payment h2{
+    border-bottom: white solid 2px;
+}
+ .Img{
+    width: 80%;
+    height: 50%;
+    overflow: hidden;
+ }
+ .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+ }
+ .sec{
+    display: flex;
+    justify-content: space-between;
+ }
+ .Due-pay{
+    font-weight: bold;
+    color: rgb(234, 37, 37);
+ }
+ .p-btn{
+    /* margin: 5%; */
+    border-radius: 20px;
+    padding :1% 6%;
+    border: #bb8a04 solid 1px ;
+    color: #bb8a04;
+    background-color: white;
+    margin-top: 5%;
+ }
+ .sec-btn{
+    display: flex;
+    justify-content: space-around;
+ }

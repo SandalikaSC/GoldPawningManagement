@@ -61,7 +61,7 @@ body{
 }
 
 .vogue {
-    animation-name: logo;
+    /* animation-name: logo; */
     animation-duration:18s;
     width: 200px;
     animation-iteration-count: infinite;
@@ -115,7 +115,10 @@ body{
 }
 
 .locker-des .locker-info .change-color{
-    color:green
+    color: white;
+    padding: 1% 6%;
+    background: #34b33499;
+    border-radius: 20px;
 }
 .locker-des .locker-info .field-name{
     display: flex;
@@ -131,10 +134,11 @@ body{
 .locker-des-with-header{
     display: flex;
     flex-direction: column;
-    border: 2px solid goldenrod;
-    border-radius: 10px;
-    padding:20px;
-    margin:20px;
+    border: 1px solid #bb8a04;
+    border-radius: 20px;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+    padding: 20px;
+    margin: 20px;
 }
 
 .locker-des-header{
@@ -227,10 +231,11 @@ body{
 
 /* Locker Items Table */
 .table{
-    border: 2px solid goldenrod;
-    border-radius: 10px;
-    margin:20px;
-    padding:10px;
+    border: 1px solid #bb8a04;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 10px;
+    box-shadow: 0 2px 20px #bb8a042b;
     
 }
 .table-section{
