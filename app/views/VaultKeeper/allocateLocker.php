@@ -1,6 +1,10 @@
 <?php require APPROOT . "/views/inc/header.php" ?>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/VKPayment.css'>
+=======
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/allocateLocker.css'>
+>>>>>>> Stashed changes
 =======
 <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/allocateLocker.css'>
 >>>>>>> Stashed changes
@@ -24,8 +28,11 @@
     </div>
     <div class="content">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
 =======
+=======
+>>>>>>> Stashed changes
         <div class="locker-item">
             <div class="jewellery-card">
                 <div class="jewellery-img">
@@ -55,19 +62,33 @@
             <!-- <div class="article-details"> -->
             <div class="info-div">
                 <h2 class="sub-title">
+<<<<<<< Updated upstream
                     Customer Details
                 </h2>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Customer Id</label>
                         <label class="jw-dt">CU001</label>
+=======
+                    Article Details
+                </h2>
+                <div class="jw-date">
+                    <div class="jw-date-name">
+                        <label>Article Id</label>
+                        <label class="jw-dt">AR1125</label>
+>>>>>>> Stashed changes
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
+<<<<<<< Updated upstream
                         <label>Customer Name</label>
                         <label class="jw-dt">Sandalika Chamari</label>
+=======
+                        <label>Estimate value</label>
+                        <label class="jw-dt">Rs 150,000</label>
+>>>>>>> Stashed changes
                     </div>
 
                 </div>
@@ -147,6 +168,9 @@
 
 
         </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </div>
     <?php require APPROOT . "/views/inc/footer.php" ?>
