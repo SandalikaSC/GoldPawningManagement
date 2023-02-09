@@ -29,4 +29,15 @@
 
             $this->view('Admin/pawnedItems_Admin', $data);
         }
+
+        public function pawnedItems_payments($id) {
+            // Get pawned item
+            $pawned_item = $this->model('adminModel')->getPawnItemById($id);
+
+            $data = [
+                'pawn_item' => $pawned_item
+            ];
+
+            $this->view('Admin/view_pawned_items', $data);
+        }
     }
