@@ -59,10 +59,10 @@
                             </div>
                         </td>
                         <td ><label class="tag green" for="">
-                        <?= $customer->UserId;?> </label> </td>
-                        <td>0714456490</td>
-                        <td >2022 Oct 15</td>
-                        <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/1" class="view">View</a></td>
+                        <?= ($customer->Status==1)? "Active" :"Blocked" ;?> </label> </td>
+                        <td><?= $customer->phone;?></td>
+                        <td ><?=date("d M Y", strtotime($customer->Created_date))?></td>
+                        <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/<?= $customer->UserId;?>" class="view">View</a></td>
                     </tr>
 
                     <?php endforeach; ?>

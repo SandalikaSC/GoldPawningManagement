@@ -24,12 +24,16 @@
             <div class="payment-invoice">
                 <div class="payment-info">
                     <div class="div-img">
-                        <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="profile-pic">
+                        <img src="<?php if(empty($data['customer']->image)){
+                                    echo URLROOT . "/img/profile_pic.png" ;
+                                }else{
+                                  echo  $data['customer']->image;
+                                    }?>" alt="" class="profile-pic">
 
                     </div>
-                    <h2 class="h2-txt amount">Sandalika Chamari</h2>
+                    <h2 class="h2-txt amount"><?= $data['customer']->First_Name." ".$data['customer']->Last_Name ;?></h2>
                     <div class="info-section">
-                        <label for="">Sandalikachamari@gmail.com</label>
+                        <label for=""><?= $data['customer']->email;?></label>
 
                     </div>
                     <!-- <div class="info-section">

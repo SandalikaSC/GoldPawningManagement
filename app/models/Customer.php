@@ -288,7 +288,7 @@ class Customer
         // get All the Customers
 
         public function getAllCustomers(){
-            $this->db->query('SELECT * from User where userId like "CU%";'); 
+            $this->db->query('SELECT * from User,phone where User.UserId=phone.userId AND user.userId like "CU%";'); 
            $results = $this->db->resultset();
         //    header("Content-type: image/jpeg");
    

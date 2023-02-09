@@ -170,9 +170,15 @@
         }
 
 
-public function getCustomer($id){
-    $this->view('VaultKeeper/viewCustomer');
-}
+        public function getCustomer($id){
+
+            $customers = $this->customerModel->getCustomerById($id);
+
+            $data = [
+                'customer' =>  $customers
+            ];
+              $this->view('VaultKeeper/viewCustomer',$data);
+        }
 
 
 
