@@ -26,7 +26,7 @@
                 
             </div>
             <div class="article">
-                <img src="<?php echo URLROOT ?>/img/nati-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="" class="article-pic">
+                <img src="<?php echo URLROOT ?>/img/nati-melnychuk-oO0JAOJhquk-unsplash.jpg" alt="" class="article-pic">
                 
             </div>
         </div>
@@ -75,7 +75,7 @@
         
         <div class="nxt">
             <a href=""><button>Release Locker</button></a>
-            <a href=""><button>Make Payment</button></a>
+            <a href="<?php echo URLROOT ?>/Reservations/makePayment"><button>Make Payment</button></a>
             
 
         </div>
