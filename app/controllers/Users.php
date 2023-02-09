@@ -420,7 +420,7 @@ class Users extends Controller
 
         break;
       case "Admin":
-        $this->view('Admin/adminDash');
+        $this->view('Admin/adminDash_1');
         break;
       case "Manager":
         $this->view('Manager/managerDash');
