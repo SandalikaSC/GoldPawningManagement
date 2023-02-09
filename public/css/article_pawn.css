@@ -203,3 +203,9 @@ form{
     display: flex;
     place-content: center;
 }
+..a-pay{
+    margin: 5% auto;
+    padding: 2% 10%;
+    background: #bb8a04;
+    border-radius: 20px;
+}
