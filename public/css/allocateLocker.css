@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('../css/article_locker.css');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; 
+}
+
+  
+
+
+/*  article */
+.wrapper{
+    flex-direction: column; 
+    overflow-y: scroll;
+}
+.content{
+    /* display: flex;
+    width: 100%;  */
+    /* justify-content: space-evenly; */
+    /* place-items: center center ; */
+
+}  
+.back{
+    width: 40px;
+}  
+.pay-header,.payment-content{
+ display: flex;
+ justify-content: space-between;
+}
+ 
+.pay-btn {
+    margin: auto;
+}
+.payments{
+    width: 90%;
+}
+.jewellery-card {
+    height: initial;
+    margin-top: 8% ;
+}
