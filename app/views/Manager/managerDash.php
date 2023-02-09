@@ -8,6 +8,7 @@
     <title><?php echo SITENAME ?></title>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mgmain_dashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mggold-rates.css">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 

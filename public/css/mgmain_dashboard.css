@@ -12,7 +12,7 @@ body{
     font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
-    background-color:  #e8e6e6;
+    /* background-color:  #e8e6e6; */
 
 }
 
@@ -154,7 +154,7 @@ body{
     top: 0; 
     /* background-color: rgba(255, 255, 255, 0.669); */
     backdrop-filter: blur(15px);
-    background-color:  #e8e6e6;
+    /* background-color:  #e8e6e6; */
 
     z-index: 8;
     /* margin-bottom: 20px; */
@@ -176,10 +176,10 @@ body{
 }
 
 .vogue {
-    animation-name: logo;
+    /* animation-name: logo; */
     animation-duration:18s;
     width: 200px;
-    animation-iteration-count: infinite;
+    /* animation-iteration-count: infinite; */
 }
 
 .right-side{
@@ -236,7 +236,7 @@ body{
     padding:20px;
     width: 200px;
     background-color: white;
-    box-shadow: 1px 5px 5px 0 black;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
     /* transition: top ease 0.5s; */
 
 }
@@ -297,8 +297,8 @@ body{
     float: left;
     /* border: 2px solid goldenrod;  */
      border-radius: 20px;
-     background-color: white;
-    box-shadow: 1px 5px 5px 0 black;
+     background-color: white; 
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
 
 }
 .complaint-chart .chart{
@@ -309,7 +309,7 @@ body{
     /* border: 2px solid goldenrod; */
     border-radius: 20px;
     margin-right: 10px;
-    box-shadow: 1px 5px 5px 0 black;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
 
 }
 
@@ -362,19 +362,19 @@ body{
 }
 
 input[type=text] {
-    width: 140px;
     box-sizing: border-box;
-    border: 2px solid #BB8A04;
-    border-radius: 4px;
-    font-size: 16px;
+    border: 1px solid #BB8A04;
+    border-radius: 20px;
+    font-size: 14px;
     background-color: white;
-    /* background-image: url('http://localhost/vogueMy/public/img/search-icon.png'); */
-    /* background-image: url('searchicon.png'); */
-    /* background-position: 10px 10px;  */
+    /* background-image: url(http://localhost/vogueMy/public/img/search-icon.png); */
+    /* background-image: url(searchicon.png); */
+    /* background-position: 10px 10px; */
     background-repeat: no-repeat;
-    padding: 15px 20px 15px 10px;
+    padding: 5% 7%;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
+    outline: none
   }
 
   input[type=text]:focus {
@@ -438,3 +438,12 @@ input[type=text] {
 
     
     
+.btns .reply-btn {
+    padding: 3px 10px;
+    margin-left: 0px;
+    color: white;
+    border: 1px solid #bb8a04;
+    background: #bb8a04;
+    border-radius: 20px;
+    outline: none;
+}

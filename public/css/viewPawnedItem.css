@@ -57,7 +57,7 @@ body{
 }
 
 .vogue {
-    animation-name: logo;
+    /* animation-name: logo; */
     animation-duration:18s;
     width: 200px;
     animation-iteration-count: infinite;
@@ -222,19 +222,23 @@ body{
 }
 
 .twobtns .auction-btn button{
-    padding:20px 30px;
+    padding: 20px 30px;
     margin-bottom: 30px;
     font-weight: bold;
     font-size: large;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #BB8A04;
+    color: white;
+    border: none;
 }
 
 .twobtns .email-btn button{
     padding:20px 45px;
     font-weight: bold;
     font-size: large;
-    border-radius: 10px;
+    color: white;
+    border: none;
+    border-radius: 20px;
     background-color: #BB8A04;
     
 }

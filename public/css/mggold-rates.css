@@ -9,7 +9,7 @@
            border-radius: 20px;
            /* border: 2px solid goldenrod; */
            font-family: 'Poppins';
-            box-shadow: 1px 5px 5px 0 black;
+           box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
         }
 
         .gold-rates{
