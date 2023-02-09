@@ -34,4 +34,14 @@
 
             return $results;
         }
+
+        // Get pawned article details using pawned item's Pawn_Id
+        public function getPawnItemById($id) {
+            $this->db->query('SELECT * FROM pawn INNER JOIN loan ON pawn.Pawn_Id=loan.Pawn_Id WHERE pawn.Pawn_Id = :id');
+            $this->db->bind(':id', $id);
+
+            $row = $this->db->single();
+
+            return $row;
+        }
     }

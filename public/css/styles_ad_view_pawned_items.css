@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: sans-serif;
+}
+
+.wrapper {
+    grid-gap: 20px;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.wrapper .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.header .title {
+    display: flex;
+    padding: 10px;
+}
+
+.header .title img {
+    height: 35px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.header .title h1 {
+    border-bottom: 3px solid #bb8a04;
+    height: fit-content;
+}
+
+.header .logo img {
+    width: 200px;
+    height: 60px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+main .left-wrapper,
+main .right-wrapper {
+    padding: 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+main .left-wrapper .article-details {
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    background: #ddd;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .title,
+main .left-wrapper .article-details .div-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main .title h2 {
+    border-bottom: 2px solid #bb8a04;
+    width: fit-content;
+}
+
+main .left-wrapper .article-details .div-image {
+    padding: 20px;
+}
+
+main .left-wrapper .article-details .div-image img {
+    width: 200px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+main .left-wrapper .article-details .div-details {
+    padding: 20px;
+}
+
+main .left-wrapper .article-details .div-details .field {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #cacaca;
+}
+
+main .left-wrapper .article-details .div-details .field label {
+    font-weight: 600;
+}
+
+main .right-wrapper .due-payments {
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    background: #e8d8ae;
+    border: 2px solid #bb8a04;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .right-wrapper .due-payments .div-details {
+    font-size: 26px;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+main .right-wrapper .due-payments .div-details .field {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+main .right-wrapper .due-payments .div-details .field label {
+    font-weight: 600;
+}
+
+main .right-wrapper .due-payments .div-details .field div {
+    color: #ff0000;
+}
+
+main .right-wrapper .payment-history {
+    width: 500px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .right-wrapper .payment-history .table-wrapper {
+    width: 100%;
+}
+
+main .right-wrapper .payment-history .table-wrapper .title {
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table {
+    width: 100%;
+    padding: 20px;
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table table {
+    width: 100%;
+}
+
+main .right-wrapper .payment-history .table-wrapper .div-table table thead {
+    background: #ddd;
+}

@@ -248,6 +248,11 @@ main {
     transform: translateY(-3px);
 }
 
+.right-content .tbl-details table .table-body img {
+    width: 150px;
+    padding: 10px 20px;
+}
+
 .right-content .tbl-details table th,
 .right-content .tbl-details table tr {
     font-size: 16px;
