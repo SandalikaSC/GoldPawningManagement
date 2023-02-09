@@ -283,4 +283,15 @@ class Customer
 
             return $results;
         }
+
+
+        // get All the Customers
+
+        public function getAllCustomers(){
+            $this->db->query('SELECT * from User where userId like "CU%";'); 
+           $results = $this->db->resultset();
+        //    header("Content-type: image/jpeg");
+   
+           return $results;
+        }
 }

@@ -34,23 +34,42 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php if(empty($data['customers'])):?>
+                            <label for=""  >No Customers yet</label>
+                <?php else:?>
+                    <?php $id=1;?>
+                    <?php foreach ($data['customers'] as $customer): ?>
+                      
                     <tr class="data">
-                        <td> 254</td>
-                        <td>CU001</td>
+                        <td><?= $id++;?></td>
+                        <td><?= $customer->UserId;?></td>
                         <td class="name">
-                            <div class="profile">
-                                <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic">
-                            </div>
+                            <!-- <div class="profile-div"> -->
+                            <!-- <img src="<?php echo URLROOT ?>/img/profile_pic.png" alt="" class="pro-pic"> -->
+                            <img src="<?php if(empty($customer->image)){
+                                    echo URLROOT . "/img/profile_pic.png" ;
+                                }else{
+                                  echo  $customer->image;
+                                    }?>
+                                    " alt="" class="pro-pic">
+                             
                             <div class="pro-details">
-                                <label>Sandalika Chamari</label>
-                                <label class="email">SandalikaChamari@gmail.com</label>
+                                <label><?= $customer->First_Name." ".$customer->Last_Name ;?></label>
+                                <label class="email"><?= $customer->email;?></label>
                             </div>
                         </td>
-                        <td ><label class="tag green" for="">Active</label> </td>
+                        <td ><label class="tag green" for="">
+                        <?= $customer->UserId;?> </label> </td>
                         <td>0714456490</td>
                         <td >2022 Oct 15</td>
                         <td><a href="<?php echo URLROOT ?>/Customers/getCustomer/1" class="view">View</a></td>
                     </tr>
+
+                    <?php endforeach; ?>
+                        <?php endif ;?>
+
+<!-- 
+
                     <tr class="data">
                         <td> 254</td>
                         <td>CU001</td>
@@ -122,7 +141,7 @@
                     
                       
                    
-                        
+                         -->
                     </tbody>
                 </table>
             </div>
