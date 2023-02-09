@@ -74,7 +74,7 @@
         </div>
         
         <div class="nxt">
-            <a href=""><button>Release Locker</button></a>
+            <a href="<?php echo URLROOT ?>/Reservations/releaseLocker"><button>Release Locker</button></a>
             <a href="<?php echo URLROOT ?>/Reservations/makePayment"><button>Make Payment</button></a>
             
 

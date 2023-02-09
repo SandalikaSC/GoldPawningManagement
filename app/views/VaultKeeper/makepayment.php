@@ -1,7 +1,7 @@
 <?php require APPROOT . "/views/inc/header.php" ?>
 <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/VKPayment.css'>
 <!-- <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_pawn.css'> -->
-<title>Vogue | Customer</title>
+<title>Vogue | Payment</title>
 </head>
 
 <body class="wrapper">
@@ -34,51 +34,55 @@
                 <h4>Choose items</h4>
                 <div class="item">
                     <label for="">
-                       Choose
-                     </label>
-                     <label for="">
+                        Choose
+                    </label>
+                    <label for="">
                         Article
-                     </label>
-                     <label for="">
+                    </label>
+                    <label for="">
                         Installment
-                     </label>
-                     <label for="">
+                    </label>
+                    <label for="">
                         Due Pay
-                     </label>
-                     <label for="">
+                    </label>
+                    <label for="">
                         Total
-                     </label>
+                    </label>
                 </div>
-              
+
                 <div class="item">
                     <div><input type="checkbox" id="1" name="vehicle1" value="Bike">
-                    </div> <div class="Img">
-                     <img class="vogue" src="<?php echo URLROOT ?>/img/nati-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="logo">
-                     </div>
-                     <label for="">
+                    </div>
+                    <div class="Img">
+                        <img class="vogue" src="<?php echo URLROOT ?>/img/nati-melnychuk-Ki7TPcA9204-unsplash.jpg"
+                            alt="logo">
+                    </div>
+                    <label for="">
                         Rs.5000
-                     </label>
-                     <label for="">
+                    </label>
+                    <label for="">
                         Rs.1200
-                     </label>
-                     <label for="">
+                    </label>
+                    <label for="">
                         Rs.6200
-                     </label>
+                    </label>
                 </div>
                 <div class="item">
                     <div><input type="checkbox" id="1" name="vehicle1" value="Bike">
-                    </div> <div class="Img">
-                     <img class="vogue" src="<?php echo URLROOT ?>/img/nati-melnychuk-oO0JAOJhquk-unsplash.jpg" alt="logo">
-                     </div>
-                     <label for="">
+                    </div>
+                    <div class="Img">
+                        <img class="vogue" src="<?php echo URLROOT ?>/img/nati-melnychuk-oO0JAOJhquk-unsplash.jpg"
+                            alt="logo">
+                    </div>
+                    <label for="">
                         Rs.5000
-                     </label>
-                     <label for="">
+                    </label>
+                    <label for="">
                         Rs.1200
-                     </label>
-                     <label for="">
+                    </label>
+                    <label for="">
                         Rs.6200
-                     </label>
+                    </label>
                 </div>
             </form>
         </div>
@@ -95,9 +99,9 @@
                 <label class="Tot-pay" for="Total">Rs. 6200.00</label>
             </div>
             <div class=" sec-btn">
-               <a   class="p-btn cancel">Cancel</button></a> 
-               <a  class="p-btn pay">Pay</button></a>  
-              </div>
+                <a class="p-btn cancel">Cancel</button></a>
+                <a class="p-btn pay">Pay</button></a>
+            </div>
         </div>
 
     </div>
