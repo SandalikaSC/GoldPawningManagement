@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                    <a href="<?php echo URLROOT; ?>/Admin/view_staff">
                         <span>
                             <img src="<?php echo URLROOT?>/img/staff_white.png">
                         </span>
@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                    <a href="<?php echo URLROOT; ?>/Admin/view_gold_market">
                         <span>
                             <img src="<?php echo URLROOT?>/img/market_white.png">
                         </span>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/Admin/AdminDash">
+                    <a href="<?php echo URLROOT ?>/Goldprices/index">
                         <span>
                             <img src="<?php echo URLROOT?>/img/goldprice_white.png">
                         </span>
