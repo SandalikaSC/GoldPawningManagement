@@ -40,4 +40,16 @@
 
             $this->view('Admin/view_pawned_items', $data);
         }
+
+        public function view_staff() {
+            $data = [];
+
+            $this->view('Admin/staff', $data);
+        }
+
+        public function view_gold_market() {
+            $data = [];
+
+            $this->view('Admin/gold_market', $data);
+        }
     }
