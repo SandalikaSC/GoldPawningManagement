@@ -114,6 +114,10 @@ flex-direction: column;
    color: rgba(30, 29, 29, 0.811);
    border: 1px solid rgba(30, 29, 29, 0.811) ;
   }
+  .gold{
+    color: rgba(170, 153, 9, 0.811);
+    border: 1px solid  rgba(170, 153, 9, 0.811) ;
+   }
   .tag-del{
      
     border-radius: 20px;
