@@ -67,7 +67,7 @@
                         <label for="">Address</label>
                         <div>
                             <label for=""> <?= $data['customer']->Line1;?></label>
-                            <label for=""> <?= ($data['customer']->Line2===null)? "" :$data['customer']->Line2 ;?></label>
+                            <label for=""> <?= ($data['customer']->Line2===null || strtolower($data['customer']->Line2) == "null")? "" :$data['customer']->Line2 ;?></label>
                             <label for=""> <?= ($data['customer']->Line3==null || strtolower($data['customer']->Line3) == "null")? " " :$data['customer']->Line3 ;?></label>
                         </div>
                         <label for=""> Gender</label>

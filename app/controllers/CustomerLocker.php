@@ -28,4 +28,9 @@ class CustomerLocker extends Controller
            
 
         }
+        public function viewLockerPay()
+        {
+            $this->view('Customer/locker_pay');
+        
+        }
     }

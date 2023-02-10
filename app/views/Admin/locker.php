@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_pawned_items_admin.css">
-    <title>Vogue Pawn | Pawned Items</title>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_locker.css">
+    <title>Vogue Pawn | Locker</title>
 </head>
 <body>
     <input type="checkbox" id="side-toggle">
@@ -27,7 +27,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/Admin/pawned_items" class="active">
+                    <a href="<?php echo URLROOT; ?>/Admin/pawned_items">
                         <span>
                             <img src="<?php echo URLROOT?>/img/pawned.png">
                         </span>
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/Lockers/show_lockers">
+                    <a href="<?php echo URLROOT; ?>/Lockers/show_lockers" class="active">
                         <span>
                             <img src="<?php echo URLROOT?>/img/locker-white.png">
                         </span>
@@ -84,7 +84,7 @@
                         <img src="<?php echo URLROOT . '/img/menu_bar_black.png'; ?>">
                     </span>
                 </label>   
-                <h1>Pawned Articles</h1> 
+                <h1>Locker</h1> 
             </div>
                     
             <img src="<?php echo URLROOT . '/img/logo_name.png'; ?>">
@@ -93,7 +93,7 @@
         <main>
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" placeholder="Enter Article ID">
+                    <input type="text" placeholder="Enter Locker Number">
                     <a href="#">
                     <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
                     </a>                
@@ -102,23 +102,22 @@
                     <table cellspacing="0">
                         <tbody>
                             <tr>
-                                <th></th>
-                                <th>Pawn ID</th>
-                                <th>Customer ID</th>
-                                <th>Article ID</th>
-                                <th>Full Loan Amount</th>
+                                <th>No</th>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Due Date</th>
+                                <th>No of Items</th>
+                                <th>Key Status</th>
                             </tr>
-                            
-                            <?php foreach($data['pawned_items'] as $pawned_item) : ?>
-                                <tr class="table-body">
-                                    <td><img src="<?php echo URLROOT?>/img/gold_bracelet.jpg"></td>
-                                    <td><?php echo $pawned_item->Pawn_Id; ?></td>
-                                    <td><?php echo $pawned_item->userId; ?></td>
-                                    <td><?php echo $pawned_item->Article_Id; ?></td>
-                                    <td><?php echo 'Rs. '.$pawned_item->Amount; ?></td>
-                                    <td><a href="<?php echo URLROOT; ?>/admin/pawnedItems_payments/<?php echo $pawned_item->Pawn_Id; ?>" class="view btn">View</a></td>                            
-                                </tr>
-                            <?php endforeach; ?>
+                            <tr class="tbl-body">
+                                <td>LC001</td>
+                                <td>2022/11/03</td>
+                                <td>M.A. Thimeth Imesha</td>
+                                <td>2022/05/03</td>
+                                <td>2</td>
+                                <td class="key-status">Delivered</td>
+                                <td><a href="<?php echo URLROOT; ?>/Lockers/view_locker" class="btn">View</a></td>
+                            </tr>
                             
                         </tbody>
                     </table>

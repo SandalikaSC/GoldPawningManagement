@@ -94,9 +94,10 @@
 
 
             </div>
+                <a class="a-pay"  href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay" method="get">
+                <button class="pay-btn">Pay</button>
 
-            <button class="pay-btn">Pay</button>
-
+                </a>
 
             <!-- </div> -->
 

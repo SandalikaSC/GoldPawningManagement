@@ -104,9 +104,7 @@
                                         <td>3</td>
                                         <td>2022/12/28</td>
                                         <td>Rs. 5000.00</td>
-                                    </tr>
-            
-                                    
+                                    </tr>                                   
                                 </tbody>
                             </table>
                         </div>

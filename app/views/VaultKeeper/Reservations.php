@@ -54,6 +54,32 @@
                                         <button class="view">View</button>
                                     </a></td>
                             </tr>
+                            <tr class="data">
+                                <td> 08</td>
+                                <td>CU005</td>
+                                <td>
+                                    Nadee Darshika
+                                </td>
+
+                                <td>01</td>
+                                <td><label class="tag-del gold" for="">Pending</label></td>
+                                <td><a href="<?php echo URLROOT ?>/Reservations/ViewReservation">
+                                        <button class="view">View</button>
+                                    </a></td>
+                            </tr>
+                            <tr class="data">
+                                <td> 11</td>
+                                <td>CU004</td>
+                                <td>
+                                    Anjalee Neelika
+                                </td>
+
+                                <td>01</td>
+                                <td><label class="tag-del black" for="">Deliverd</label></td>
+                                <td><a href="<?php echo URLROOT ?>/Reservations/ViewReservation">
+                                        <button class="view">View</button>
+                                    </a></td>
+                            </tr>
 
                         </tbody>
                     </table>
