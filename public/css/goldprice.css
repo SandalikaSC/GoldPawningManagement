@@ -153,10 +153,10 @@
     background-color: var(--clr-white, white);   
 }
 
-.btnGroup > .#bb8a04Btn{
+/* .btnGroup > .#bb8a04Btn{
     background-color: var(--clr-secondary, #bb8a04);
     color: var(--clr-white, white);
-}
+} */
 
 .btnGroup > .btn:hover {
     background: #bb8a04;
