@@ -119,11 +119,11 @@
 
                         // Redirect to successful message                        
                         flash('register', 'Customer registered successfully', 'success');
-                        // redirect('customers/register_customer');
-                        $this->view('PawnOfficer/register_customer');
+                        redirect('/customers/register_customer');
+                        // $this->view('PawnOfficer/register_customer', $data);
                     } else {
                         flash('register', 'Registration failed. Something went wrong', 'invalid');
-                        $this->view('PawnOfficer/register_customer');
+                        $this->view('PawnOfficer/register_customer', $data);                        
                     }
                 } else {
                     // Load view with errors
