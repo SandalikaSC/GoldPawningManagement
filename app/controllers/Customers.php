@@ -276,6 +276,7 @@
             $this->view('PawnOfficer/customer_view_more', $data);
         }
 
+
         public function getCustomer($id){
 
             $customers = $this->customerModel->getCustomerById($id);
@@ -284,6 +285,5 @@
                 'customer' =>  $customers
             ];
               $this->view('VaultKeeper/viewCustomer',$data);
-        }
-        
+        }        
     }
