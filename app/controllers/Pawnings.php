@@ -72,47 +72,25 @@
 
                 // Init data
                 $data = [
-                    'full_name' => trim($_POST['full_name']),
-                    'nic' => trim($_POST['nic']),
-                    'phone_no' => trim($_POST['phone_no']),
-                    'email' => trim($_POST['email']),
+                    'full_name' => '',
+                    'nic' => '',
+                    'phone_no' => '',
+                    'email' => '',
                     'file' => trim($_POST['file']),
-                    'full_name_err' => '',
-                    'nic_err' => '',
-                    'phone_no_err' => '',
-                    'email_err' => '',
+                    'type' => '',
                     'file_err' => '',
+                    'type_err' => '',
                 ];
 
                 // Validate email
-                if(empty($data['email'])) {
-                    $data['email_err'] = 'Please enter email';
-                } else {
-
-                }
-
-                // Validate name
-                if(empty($data['first_name'])) {
-                    $data['first_name_err'] = 'Please enter name';
-                }
-
-                // Validate NIC
-                if(empty($data['nic'])) {
-                    $data['nic_err'] = 'Please enter NIC';
-                } else {
-                    
-                }
-
-                // Validate phone
-                if(empty($data['phone_no'])) {
-                    $data['phone_no_err'] = 'Please enter a working phone number';
-                }
+                if(empty($data['file']) || $data['file'] == 'Image') {
+                    $data['file_err'] = 'Please insert the article image';
+                } 
 
                 // When there are no errors
-                if(empty($data['email_err']) && empty($data['full_name_err']) && empty($data['nic_err']) && empty($data['phone_no_err'])) {
+                if(empty($data['file_err'])) {
                     // Register customer
-                    // redirect('pawnings/new_pawning');                   
-                    
+                    // redirect('pawnings/new_pawning');
                 } else {
                     // Load view with errors
                     $this->view('PawnOfficer/new_pawning', $data);
@@ -126,11 +104,13 @@
                     'phone_no' => '',
                     'email' => '',
                     'file' => '',
+                    'type' => '',
                     'full_name_err' => '',
                     'nic_err' => '',
                     'phone_no_err' => '',
                     'email_err' => '',
                     'file_err' => '',
+                    'type_err' => '',
                 ];
 
                 // Load view
