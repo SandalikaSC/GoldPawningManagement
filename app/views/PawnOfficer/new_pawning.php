@@ -11,7 +11,6 @@
 <body> 
     
     <div class="wrapper">
-        <img src="<?php echo URLROOT . '/img/add_file.svg'?>" class="bcg-img">
         <div class="header">
             <div class="title">
                 <a href="<?php echo URLROOT; ?>/pawningOfficerDashboard/dashboard">
@@ -25,83 +24,88 @@
                 <img src="<?php echo URLROOT . '/img/logo_name.png'; ?>">
             </div>
         </div>
-        <div class="form-container">
-            <div class="customer-details form-wrapper">
-                <h2 class="form-header">Customer Details</h2>
-                <form action="" method="post">
-                    <div class="fields-container">
-                        <label for="full-name">Full Name<sup>*</sup></label>
-                        <div class="div-input">                        
-                            <input type="text" name="full_name" class="<?php echo (!empty($data['full_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['full_name']; ?>"  placeholder="Full Name">
-                        </div> 
-                    </div> 
-
-                    <div class="fields-container">
-                        <label for="full-name">NIC<sup>*</sup></label>
-                        <div class="div-input">                        
-                            <input type="text" name="nic" class="<?php echo (!empty($data['nic_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['nic']; ?>"  placeholder="NIC">
-                        </div> 
-                    </div> 
-
-                    <div class="fields-container">
-                        <label for="full-name">Phone Number<sup>*</sup></label>
-                        <div class="div-input">                        
-                            <input type="text" name="phone_no" class="<?php echo (!empty($data['phone_no_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['phone_no']; ?>"  placeholder="Phone Number">
-                        </div> 
-                    </div>
-
-                    <div class="fields-container">
-                        <label for="full-name">Email<sup>*</sup></label>
-                        <div class="div-input">                        
-                            <input type="text" name="email" class="<?php echo (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['email']; ?>"  placeholder="Email">
-                        </div> 
+        
+        <main>
+            <div class="details-container">
+                <div class="left-wrapper">                
+                    <div>
+                        <div class="form-title">
+                            <h2>Customer Details</h2>
+                        </div>
+                        <div class="field-container">
+                            <label>Full Name</label>
+                            <div>Anjalee Neelika</div>
+                        </div>
+                        <div class="field-container">
+                            <label>NIC</label>
+                            <div>199985510370</div>
+                        </div>
+                        <div class="field-container">
+                            <label>Phone Number</label>
+                            <div>0713577800</div>
+                        </div>
+                        <div class="field-container">
+                            <label>Email</label>
+                            <div>anjaleeneelika456@gmail.com</div>
+                        </div>
                     </div>                    
-                </form>
-            </div>
+                </div>
+                <div class="right-wrapper">
+                    <form action="<?php echo URLROOT; ?>/pawnings/new_pawning" method="post">
+                        <div class="form-divider article-details">
+                            <div class="form-title">
+                                <h2>Article Details</h2>
+                            </div>
+                            <div class="field-container">
+                                <label for="article-type">Article Type<sup>*</sup></label>
+                                <div>
+                                    <select name="type" id="type">
+                                        <option selected disabled>Choose a type</option>
+                                        <option name="gold-bar">Gold Bar</option>
+                                        <option name="necklace">Necklace</option>
+                                        <option name="earings">Earings</option>
+                                        <option name="bracelet">Bracelet</option>
+                                        <option name="ring">Ring</option>
+                                        <option name="other">Other</option>
+                                    </select class="<?php echo (!empty($data['type_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['type']; ?>">
+                                    <span class="invalid-feedback"><?php echo $data['type_err']; ?></span>     
+                                </div>
+                            </div>
+                            <div class="field-container">
+                                <label for="article-image">Image of the Article<sup>*</sup></label>
+                                <div class="file-container">
+                                    <input type="file" name="file" class="<?php echo (!empty($data['file_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['file']; ?>"  id="real-file" hidden="hidden">
+                                    <span id="custom-text">Image</span>
+                                    <button type="button" id="custom-button">Choose</button>
+                                </div>                     
+                            </div>
+                        </div>
+                        
+                        <div class="form-divider loan-details">
+                            <div class="form-title">
+                                <h2>Loan Details</h2>
+                            </div>
+                            <div class="field-container">
+                                <label>Payment Method</label>
+                                <div class="pay-method">                        
+                                    <label>
+                                        <input type="radio" name="pay-method" value="Fixed" checked> Fixed
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="pay-method" value="Partial"> Partial
+                                    </label>
+                                </div>  
+                            </div>
+                        </div>
 
-            <div class="article-details form-wrapper">
-                <h2 class="form-header">Article Details</h2>
-                <form action="" method="post">
-                    <div class="fields-container">
-                        <label for="type">Type<sup>*</sup></label>
-                        <div class="div-input">                        
-                            <select name="type" id="type">
-                                <option selected disabled>Choose a type</option>
-                                <option name="jewelry">Jewelry</option>
-                            </select>
-                        </div>                        
-                    </div>
-                    <div class="fields-container">
-                        <label for="image">Image<sup>*</sup></label>
-                        <div class="file-container">
-                            <input type="file" name="file" class="<?php echo (!empty($data['file_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['file']; ?>"  id="real-file" hidden="hidden">
-                            <span id="custom-text">Image</span>
-                            <button type="button" id="custom-button">Choose</button>
-                        </div>                        
-                    </div>
-                </form>
+                        <div class="div-btn">
+                            <input type="submit" value="Send to Validate">
+                        </div>
+                    </form>
+                </div>
             </div>
-
-        </div>
-        <div class="form-container">
-            <div class="payment-method form-wrapper">
-                <h2 class="form-header">Payment Method</h2>
-                <form action="" method="post">
-                    <div class="fields-container">                        
-                        <label for="method">
-                            <input type="radio" name="method" value="Fixed" checked> Fixed
-                        </label>
-                        <label for="method">
-                            <input type="radio" name="method" value="Partial"> Partial
-                        </label>                        
-                    </div>
-                </form>
-            </div>
-
-            <div class="buttons">
-                <a href="#" class="validation-send">Send to Validate</a>
-            </div>
-        </div>            
+        </main>
+                  
     </div>
     
     <script type="text/javascript">
