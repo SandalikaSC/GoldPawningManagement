@@ -70,6 +70,11 @@
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+                $type = '';
+                if(isset($_POST['Type'])) {
+                     $type = ($_POST['Type']);
+                }
+                
                 // Init data
                 $data = [
                     'full_name' => '',
@@ -77,20 +82,48 @@
                     'phone_no' => '',
                     'email' => '',
                     'file' => trim($_POST['file']),
-                    'type' => '',
+                    'type' => $type,
                     'file_err' => '',
                     'type_err' => '',
                 ];
 
-                // Validate email
-                if(empty($data['file']) || $data['file'] == 'Image') {
+
+                if(!empty($data['file'])) {
+                    if(!empty($_FILES['file']['name'])) {
+                        $fileName = basename($_FILES['file']['name']);
+                        $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+    
+                        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+                        if(in_array($fileType, $allowTypes)) {
+                            $image = $_FILES['file']['tmp_name'];
+                            $imgContent = addslashes(file_get_contents($image));
+                            $data['file'] = $imgContent;
+                        } else {
+                            $data['file_err'] = 'Only JPG, JPEG, PNG & GIF files are allowed';
+                        }
+                    }
+                } else {
                     $data['file_err'] = 'Please insert the article image';
                 } 
 
+                if(empty($data['type']) || ($data['type'] == 'Choose a type')) {
+                    $data['type_err'] = 'Please choose an article type';
+                }
+
+
                 // When there are no errors
-                if(empty($data['file_err'])) {
-                    // Register customer
-                    // redirect('pawnings/new_pawning');
+                if(empty($data['file_err']) && empty($data['type_err'])) {
+                    // Save article details
+                    $success = $this->model("Pawning")->addArticle($data);
+
+                    if($success) {
+                        flash('register', 'Article details have saved successfully. Article will be sent to validate.', 'success');
+                        redirect('/pawnings/new_pawning');
+                    } else {
+                        flash('register', 'Article details have saved successfully. Article will be sent to validate.', 'invalid');
+                        $this->view('PawnOfficer/new_pawning', $data);    
+                    }
+                    
                 } else {
                     // Load view with errors
                     $this->view('PawnOfficer/new_pawning', $data);
@@ -105,10 +138,6 @@
                     'email' => '',
                     'file' => '',
                     'type' => '',
-                    'full_name_err' => '',
-                    'nic_err' => '',
-                    'phone_no_err' => '',
-                    'email_err' => '',
                     'file_err' => '',
                     'type_err' => '',
                 ];

@@ -23,4 +23,35 @@
 
             return $row;
         }
+
+        public function getLastArticleId() {
+            $sql = 'SELECT Article_Id FROM article ORDER BY Article_Id DESC LIMIT 1';
+            $this->db->query($sql);
+            $result = $this->db->single();
+
+            if(empty($result)) {
+                return 'A000';
+            } else {
+                return $result->Article_Id;
+            }
+        }
+
+        // Add Article
+        public function addArticle($data) {
+            $article_id = $this->getLastArticleId();
+            ++$article_id;
+
+            $this->db->query('INSERT INTO article (Article_Id, Type, image, Rate_Id) VALUES(:article_id, :type, :image, :rate_id)');
+
+            $this->db->bind(':article_id', $article_id);
+            $this->db->bind(':type', $data['type']);
+            $this->db->bind(':image', $data['file']);
+            $this->db->bind(':rate_id', 1);
+
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }

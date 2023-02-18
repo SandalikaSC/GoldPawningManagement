@@ -24,6 +24,8 @@
                 <img src="<?php echo URLROOT . '/img/logo_name.png'; ?>">
             </div>
         </div>
+
+        <div class="msg-flash"><?php echo flash('register'); ?></div>
         
         <main>
             <div class="details-container">
@@ -59,14 +61,14 @@
                             <div class="field-container">
                                 <label for="article-type">Article Type<sup>*</sup></label>
                                 <div>
-                                    <select name="type" id="type">
+                                    <select name="Type" id="type">
                                         <option selected disabled>Choose a type</option>
-                                        <option name="gold-bar">Gold Bar</option>
-                                        <option name="necklace">Necklace</option>
-                                        <option name="earings">Earings</option>
-                                        <option name="bracelet">Bracelet</option>
-                                        <option name="ring">Ring</option>
-                                        <option name="other">Other</option>
+                                        <option name="Gold Bar">Gold Bar</option>
+                                        <option name="Necklace">Necklace</option>
+                                        <option name="Earings">Earings</option>
+                                        <option name="Bracelet">Bracelet</option>
+                                        <option name="Ring">Ring</option>
+                                        <option name="Other">Other</option>
                                     </select class="<?php echo (!empty($data['type_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['type']; ?>">
                                     <span class="invalid-feedback"><?php echo $data['type_err']; ?></span>     
                                 </div>
@@ -75,9 +77,10 @@
                                 <label for="article-image">Image of the Article<sup>*</sup></label>
                                 <div class="file-container">
                                     <input type="file" name="file" class="<?php echo (!empty($data['file_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['file']; ?>"  id="real-file" hidden="hidden">
-                                    <span id="custom-text">Image</span>
+                                    <span id="custom-text" name="custom-text">Image</span>
                                     <button type="button" id="custom-button">Choose</button>
-                                </div>                     
+                                </div>   
+                                <span class="invalid-feedback"><?php echo $data['file_err']; ?></span>                      
                             </div>
                         </div>
                         
@@ -99,7 +102,7 @@
                         </div>
 
                         <div class="div-btn">
-                            <input type="submit" value="Send to Validate">
+                            <input type="submit" name="submit" value="Send to Validate">
                         </div>
                     </form>
                 </div>
