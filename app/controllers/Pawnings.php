@@ -83,6 +83,7 @@
                     'email' => '',
                     'file' => trim($_POST['file']),
                     'type' => $type,
+                    'payment_method' => trim($_POST['pay-method']),
                     'file_err' => '',
                     'type_err' => '',
                 ];
@@ -138,6 +139,7 @@
                     'email' => '',
                     'file' => '',
                     'type' => '',
+                    'payment_method' => '',
                     'file_err' => '',
                     'type_err' => '',
                 ];
