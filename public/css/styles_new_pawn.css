@@ -48,7 +48,7 @@
 
 main {
     width: 100%;
-    height: calc(100vh - 85px);
+    height: calc(100vh - 150px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,6 +172,7 @@ main .details-container .right-wrapper .article-details .file-container {
     border: 2px solid #faebd7;
     height: 35px;
     background: #faebd7;
+    border-radius: 20px;
 }
 
 main .details-container .right-wrapper .article-details .file-container {
@@ -183,4 +184,36 @@ main .details-container .right-wrapper .article-details .file-container {
 main .details-container .right-wrapper .loan-details .pay-method {
     display: flex;
     justify-content: space-evenly;
+}
+
+main .details-container .right-wrapper .field-container .is-invalid {
+    border-color: #f00;
+}
+
+main .details-container .right-wrapper .field-container .invalid-feedback {
+    color: #f00;
+    font-size: 12px;
+}
+
+.invalid {
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(255, 14, 14);
+    background: rgb(255 199 199);
+    margin: auto;
+    font-size: 1vw;
+}
+
+.success {
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: #836000;
+    background: #f9dc8b;
+    margin: auto;
+}
+
+.msg-flash {
+    margin-bottom: 10px;
 }
