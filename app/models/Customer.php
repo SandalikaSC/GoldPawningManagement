@@ -154,6 +154,7 @@ class Customer
             return false;
         }
     }
+    
     public function findUserByNic($nic)
     {
         $this->db->query('SELECT UserId FROM user WHERE NIC = :nic');
@@ -169,6 +170,7 @@ class Customer
             return false;
         }
     }
+
     public function deleteUser($email)
     {
         $userid = $this->findUserIDByEmail($email);
