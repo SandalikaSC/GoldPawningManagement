@@ -29,27 +29,34 @@
         
         <main>
             <div class="details-container">
-                <div class="left-wrapper">                
+                <div class="left-wrapper">               
                     <div>
-                        <div class="form-title">
-                            <h2>Customer Details</h2>
-                        </div>
-                        <div class="field-container">
-                            <label>Full Name</label>
-                            <div>Anjalee Neelika</div>
-                        </div>
-                        <div class="field-container">
-                            <label>NIC</label>
-                            <div>199985510370</div>
-                        </div>
-                        <div class="field-container">
-                            <label>Phone Number</label>
-                            <div>0713577800</div>
-                        </div>
-                        <div class="field-container">
-                            <label>Email</label>
-                            <div>anjaleeneelika456@gmail.com</div>
-                        </div>
+                        <form action = "<?php echo URLROOT; ?>/pawnings/find_customer" method = "POST">
+                            <div class="div-search">
+                                <input type="text" name="nic" placeholder="Enter Customer NIC">
+                                <input type="submit" value="Search">
+                            </div>  
+                            <div class="form-title">
+                                <h2>Customer Details</h2>
+                            </div>
+                            <div class="field-container">
+                                <label>Full Name</label>
+                                <div>Anjalee Neelika</div>
+                            </div>
+                            <div class="field-container">
+                                <label>NIC</label>
+                                <div>199985510370</div>
+                            </div>
+                            <div class="field-container">
+                                <label>Phone Number</label>
+                                <div>0713577800</div>
+                            </div>
+                            <div class="field-container">
+                                <label>Email</label>
+                                <div>anjaleeneelika456@gmail.com</div>
+                            </div>                          
+                        </form> 
+                        
                     </div>                    
                 </div>
                 <div class="right-wrapper">

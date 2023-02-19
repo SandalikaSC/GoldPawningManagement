@@ -63,6 +63,34 @@
             $this->view('PawnOfficer/renew_pawn', $data);
         }
 
+        public function find_customer() {
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Process form
+
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'nic_err' => '',
+                    'customer' => '' 
+                ];
+
+                $nic = $_POST['nic'];
+
+                $customer = $this->pawningModel->findCustomerByNic($nic);
+
+                if($customer) {
+                    $data = ['customer' => $customer];
+                } else {
+                    $data['nic_err'] = 'Customer not found';
+                    flash('register', $data['nic_err'], 'invalid');
+                    $this->view('PawnOfficer/new_pawning', $data);
+                }
+            }
+
+            return $data;
+        }
+
         public function new_pawning() {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process form
@@ -97,8 +125,8 @@
                         $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                         if(in_array($fileType, $allowTypes)) {
                             $image = $_FILES['file']['tmp_name'];
-                            $imgContent = addslashes(file_get_contents($image));
-                            $data['file'] = $imgContent;
+                            $imgContent = addslashes(file_get_contents($image));                            ;
+                            $data['file'] = base64_encode($imgContent);
                         } else {
                             $data['file_err'] = 'Only JPG, JPEG, PNG & GIF files are allowed';
                         }

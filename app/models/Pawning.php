@@ -36,6 +36,32 @@
             }
         }
 
+        public function findCustomerByNic($nic) {
+            $this->db->query('SELECT UserId FROM user WHERE NIC = :nic && type = "Customer"');
+            // Bind value
+            $this->db->bind(':nic', $nic);
+
+            $row = $this->db->single();
+
+            // Check row
+            if ($this->db->rowCount() > 0) {
+                $customer = $this->getCustomerByNIC($nic);
+                // return $row->UserId;
+                return $customer;
+            } else {
+                return false;
+            }
+        }
+
+        public function getCustomerByNIC($nic) {
+            $this->db->query('SELECT * FROM user INNER JOIN phone ON user.UserId=phone.userId WHERE user.NIC = :nic');
+            $this->db->bind(':nic', $nic);
+
+            $row = $this->db->single();
+
+            return $row;
+        } 
+
         // Add Article
         public function addArticle($data) {
             $article_id = $this->getLastArticleId();
