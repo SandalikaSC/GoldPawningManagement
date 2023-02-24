@@ -433,18 +433,29 @@ class Users extends Controller
   {
      
     if(isset($_POST["email"])){
+      $email=trim($_POST["email"]);
         $result=$this->userModel->getUserByEmail($_POST["email"]);
         if(empty($result)){ 
           flash('register', "You are not registered with Us.", 'invalid');
-          $this->view('pages/userLogin');
+          $data['success']=0;
 
         }    
         else if($result->verification_status==="0"){
           flash('register', "You are not verified your email yet.", 'invalid');
-          $this->view('pages/userLogin');
+          $data['success']=0;
         }else if(!empty($result) && $result->verification_status==="1"){
           $_SESSION['OTP']=$this->randomPassword();
-          $data['success']=1;
+
+          $status = sendMail($email, "OTP", $_SESSION['OTP'], "VOGUE");
+          if ($status) {
+            $data['success']=1;
+            
+            
+          } else {
+            $data['success']=0;
+            flash('register', "Fail to send OTP check your connection", 'invalid');
+             
+          } 
           echo json_encode($data);
         }
 
@@ -452,6 +463,24 @@ class Users extends Controller
     }
    
   }
+
+  public function verifyOTP(){
+    if(isset($_GET["otp"])){
+      $otp=$_GET["otp"];
+        if($_SESSION['OTP']==$otp){
+          $data['success']=1;
+
+        }else{
+          $data['success']=0;
+        }
+
+        echo json_encode($data);
+    }
+
+
+  }
+
+
    //to generate a OTP number
    private function randomPassword()
    {

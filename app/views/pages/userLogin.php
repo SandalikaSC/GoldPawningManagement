@@ -1,10 +1,10 @@
-<?php require APPROOT."/views/inc/header.php"?>
+<?php require APPROOT . "/views/inc/header.php" ?>
 <title>Vogue | Login</title>
 <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/login.css'>
 </head>
 
 <body>
-    <!-- <?php require APPROOT."/views/inc/notification.php"?> -->
+    <!-- <?php require APPROOT . "/views/inc/notification.php" ?> -->
     <div class="log-container center">
 
         <div class="login">
@@ -17,15 +17,12 @@
                 <br>
 
                 <p class="p">EMAIL</p>
-                <input type="email" name="email"
-                    class=" <?php echo (!empty($data['email_err'])) ? 'is-invalid' : 'input'; ?>"
-                    value="<?php echo $data['email']; ?>" />
+                <input type="email" name="email" class=" <?php echo (!empty($data['email_err'])) ? 'is-invalid' : 'input'; ?>" value="<?php echo $data['email']; ?>" />
                 <span class="invalid-feedback">
                     <?php echo $data['email_err']; ?>
                 </span>
                 <p class="p">PASSWORD</p>
-                <input class=" <?php echo (!empty($data['password_err'])) ? 'is-invalid' : 'input'; ?>"
-                    value="<?php echo $data['password']; ?>" type="password" name="password" />
+                <input class=" <?php echo (!empty($data['password_err'])) ? 'is-invalid' : 'input'; ?>" value="<?php echo $data['password']; ?>" type="password" name="password" />
                 <span class="invalid-feedback">
                     <?php echo $data['password_err']; ?>
                 </span>
@@ -63,13 +60,12 @@
                 <br>
 
                 <p class="p">OTP</p>
-                <input type="email" name="otp" id="otp" class="input" value="" />
+                <input type="text" name="otp" id="otp" class="input" value="" />
                 <span class="invalid-feedback">
 
                 </span>
-                <p class="p back">Cancel</p>
-
-                <input type="button" name="ConfirmOTP" onclick="" value="Confirm OTP" class="button">
+                <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
+                <input type="button" name="ConfirmOTP" onclick="OTPverify()" value="Confirm OTP" class="button">
 
             </form>
         </div>
@@ -88,43 +84,81 @@
 
     <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
     <script>
-    var forget = document.getElementsByClassName('forget')[0];
-    var forgetPw = document.getElementsByClassName('forget-pw')[0];
-    var form = document.getElementsByClassName('form')[0];
-
-    forget.addEventListener('click', function() {
-        forgetPw.style.display = forgetPw.style.display === 'none' ? 'flex' : 'none';
-        form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
-    });
-    var back = document.getElementsByClassName('back')[0];
-
-    back.addEventListener('click', function() {
-        form.style.display = form.style.display === 'none' ? 'flex' : 'none';
-        forgetPw.style.display = forgetPw.style.display === 'flex' ? 'none' : 'flex';
-    });
-
-    function checkEmail() {
-
-        var email = document.getElementById("otpemail").value;
+        var forget = document.getElementsByClassName('forget')[0];
+        var forgetPw = document.getElementsByClassName('forget-pw')[0];
+        var form = document.getElementsByClassName('form')[0];
         var otp = document.getElementsByClassName('otp')[0];
-        $.ajax({
-            type: "POST",
-            url: "<?= URLROOT?>/Users/checkEmail",
-            data: {
-                email: email
-            },
-            dataType: "JSON",
-            success: function(resp) {
-                if (resp.success == 1) {
-                    form.style.display ='none';
-                    forgetPw.style.display ='none';
-                    otp.style.display ='flex'; 
-                }
 
-            },
-            error: function(resp) {
-                //   console.log(resp.name);
-            }
+        forget.addEventListener('click', function() {
+            forgetPw.style.display =  'flex';
+            form.style.display = 'none';
         });
-    }
+
+
+        var back = document.getElementsByClassName('back');
+
+        back.addEventListener('click', function() {
+            form.style.display =  'flex';
+            forgetPw.style.display = 'none';
+            otp.style.display = 'none';
+        });
+
+        function checkEmail() {
+
+            var email = document.getElementById("otpemail").value;
+            var otp = document.getElementsByClassName('otp')[0];
+            $.ajax({
+                type: "POST",
+                url: "<?= URLROOT ?>/Users/checkEmail",
+                data: {
+                    email: email
+                },
+                dataType: "JSON",
+                success: function(resp) {
+                    if (resp.success == 1) {
+                        form.style.display = 'none';
+                        forgetPw.style.display = 'none';
+                        otp.style.display = 'flex';
+                    } else if (resp.success == 0) {
+                        form.style.display = 'flex';
+                        forgetPw.style.display = 'none';
+                        otp.style.display = 'none';
+                    }
+
+                },
+                error: function(resp) {
+                    //   console.log(resp.name);
+                }
+            });
+        }
+            function OTPverify() {
+                var otp = document.getElementById("otp").value; 
+                $.ajax({
+                    type: "GET",
+                    url: "<?= URLROOT ?>/Users/verifyOTP",
+    
+                    data: {
+                        otp: otp
+                    },
+                    dataType: "JSON",
+                    success: function(resp) {
+                        if (resp.success == 1) {
+                            // form.style.display = 'flex';
+                            // forgetPw.style.display = 'none';
+                            // otp.style.display = 'none';
+                           console.log(1);
+                        } else if (resp.success == 0) {
+                            // form.style.display = 'none';
+                            // forgetPw.style.display = 'none';
+                            // otp.style.display = 'flex';
+                            console.log(0);
+                        }
+
+                    },
+                    error: function(resp) {
+                        //   console.log(resp.name);
+                    }
+                });
+            }
+        
     </script>
