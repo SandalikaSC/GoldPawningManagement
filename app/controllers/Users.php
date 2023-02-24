@@ -433,10 +433,11 @@ class Users extends Controller
   {
      
     if(isset($_POST["email"])){
+      $email=trim($_POST["email"]);
         $result=$this->userModel->getUserByEmail($_POST["email"]);
         if(empty($result)){ 
           flash('register', "You are not registered with Us.", 'invalid');
-          $this->view('pages/userLogin');
+          $data['success']=0;
 
         }    
         else if($result->verification_status==="0"){
@@ -444,7 +445,17 @@ class Users extends Controller
           $this->view('pages/userLogin');
         }else if(!empty($result) && $result->verification_status==="1"){
           $_SESSION['OTP']=$this->randomPassword();
-          $data['success']=1;
+
+          $status = sendMail($email, "OTP", $_SESSION['OTP'], "VOGUE");
+          if ($status) {
+            $data['success']=1;
+            
+            
+          } else {
+            $data['success']=0;
+            flash('register', "Fail to send OTP check your connection", 'invalid');
+             
+          } 
           echo json_encode($data);
         }
 
