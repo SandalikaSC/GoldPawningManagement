@@ -442,7 +442,7 @@ class Users extends Controller
         }    
         else if($result->verification_status==="0"){
           flash('register', "You are not verified your email yet.", 'invalid');
-          $this->view('pages/userLogin');
+          $data['success']=0;
         }else if(!empty($result) && $result->verification_status==="1"){
           $_SESSION['OTP']=$this->randomPassword();
 
@@ -463,6 +463,24 @@ class Users extends Controller
     }
    
   }
+
+  public function verifyOTP(){
+    if(isset($_GET["otp"])){
+      $otp=$_GET["otp"];
+        if($_SESSION['OTP']==$otp){
+          $data['success']=1;
+
+        }else{
+          $data['success']=0;
+        }
+
+        echo json_encode($data);
+    }
+
+
+  }
+
+
    //to generate a OTP number
    private function randomPassword()
    {

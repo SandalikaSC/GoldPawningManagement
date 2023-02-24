@@ -64,7 +64,7 @@
                 <span class="invalid-feedback">
 
                 </span>
-                <p class="p back">Back to login</p>
+                <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
                 <input type="button" name="ConfirmOTP" onclick="OTPverify()" value="Confirm OTP" class="button">
 
             </form>
@@ -132,9 +132,9 @@
             });
         }
             function OTPverify() {
-                var otp = document.getElementById("otpemail").value; 
+                var otp = document.getElementById("otp").value; 
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     url: "<?= URLROOT ?>/Users/verifyOTP",
     
                     data: {
@@ -143,14 +143,15 @@
                     dataType: "JSON",
                     success: function(resp) {
                         if (resp.success == 1) {
-                            form.style.display = 'flex';
-                            forgetPw.style.display = 'none';
-                            otp.style.display = 'none';
-                           
+                            // form.style.display = 'flex';
+                            // forgetPw.style.display = 'none';
+                            // otp.style.display = 'none';
+                           console.log(1);
                         } else if (resp.success == 0) {
-                            form.style.display = 'none';
-                            forgetPw.style.display = 'none';
-                            otp.style.display = 'flex';
+                            // form.style.display = 'none';
+                            // forgetPw.style.display = 'none';
+                            // otp.style.display = 'flex';
+                            console.log(0);
                         }
 
                     },
