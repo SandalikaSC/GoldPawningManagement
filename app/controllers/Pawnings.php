@@ -81,8 +81,20 @@
                     'email_err' => ''
                 ];
 
+                
+
                 if(empty($data['nic'])) {
                     $data['nic_err'] = 'Please enter customer NIC';
+                } else {
+                    $customer = $this->pawningModel->getCustomerByNIC($data['nic']);
+
+                    if($customer) {
+                        if(($customer->email) != ($data['email'])) {
+                            $data['email_err'] = 'Customer does not have an account for this email';
+                        }
+                    } else {
+                        $data['nic_err'] = 'A customer with this NIC has not registered with us'; 
+                    }
                 }
 
                 if(empty($data['email'])) {
@@ -97,7 +109,7 @@
                     $data['image_err'] = 'Please insert the article image';
                 }
 
-                if(empty($data['type_err']) && empty($data['image_err'])) {
+                if(empty($data['type_err']) && empty($data['image_err']) && empty($data['nic_err']) && empty($data['email_err'])) {
                     $success = $this->pawningModel->addArticle($data);
 
                     if($success) {
