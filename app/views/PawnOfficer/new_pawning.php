@@ -76,9 +76,9 @@
                             <label for="article-image">Article Image<sup>*</sup></label>
                             <div>
                                 <div class="choose-image">
-                                    <input type="file" name="image" id="image" class="<?php echo (!empty($data['image_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['image']; ?>" hidden>
+                                    <input type="file" name="image" id="image" hidden>
                                     <input type="hidden" id="imageData" name="image">
-                                    <span id="img-name">Choose an image</span>
+                                    <span id="img-name" class="<?php echo (!empty($data['image_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['image']; ?>">Choose an image</span>
                                     <button type="button" id="choose">Choose</button>                                
                                 </div>
                                 <span class="invalid-feedback"><?php echo $data['image_err']; ?></span> 
