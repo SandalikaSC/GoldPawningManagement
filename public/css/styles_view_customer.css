@@ -303,7 +303,7 @@ main {
     }
 
     #side-toggle ~ .sidebar {
-        top: 85px;
+        top: 75px;
     }
 }
 

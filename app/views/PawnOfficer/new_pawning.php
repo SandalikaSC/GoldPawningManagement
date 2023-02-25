@@ -28,89 +28,67 @@
         <div class="msg-flash"><?php echo flash('register'); ?></div>
         
         <main>
-            <div class="details-container">
-                <div class="left-wrapper">               
-                    <div>
-                        <form action = "<?php echo URLROOT; ?>/pawnings/find_customer" method = "POST">
-                            <div class="div-search">
-                                <input type="text" name="nic" placeholder="Enter Customer NIC">
-                                <input type="submit" value="Search">
-                            </div>  
-                            <div class="form-title">
-                                <h2>Customer Details</h2>
-                            </div>
-                            <div class="field-container">
-                                <label>Full Name</label>
-                                <div>Anjalee Neelika</div>
-                            </div>
-                            <div class="field-container">
-                                <label>NIC</label>
-                                <div>199985510370</div>
-                            </div>
-                            <div class="field-container">
-                                <label>Phone Number</label>
-                                <div>0713577800</div>
-                            </div>
-                            <div class="field-container">
-                                <label>Email</label>
-                                <div>anjaleeneelika456@gmail.com</div>
-                            </div>                          
-                        </form> 
-                        
-                    </div>                    
+            <div class="form-container">
+                <div class="left-wrapper">
+                    <img src="<?php echo URLROOT?>/img/alex-azabache-y2ErhoE92KA-unsplash.jpg">
                 </div>
+
                 <div class="right-wrapper">
-                    <form action="<?php echo URLROOT; ?>/pawnings/new_pawning" method="post">
-                        <div class="form-divider article-details">
-                            <div class="form-title">
-                                <h2>Article Details</h2>
-                            </div>
-                            <div class="field-container">
-                                <label for="article-type">Article Type<sup>*</sup></label>
-                                <div>
-                                    <select name="Type" id="type">
-                                        <option selected disabled>Choose a type</option>
-                                        <option name="Gold Bar">Gold Bar</option>
-                                        <option name="Necklace">Necklace</option>
-                                        <option name="Earings">Earings</option>
-                                        <option name="Bracelet">Bracelet</option>
-                                        <option name="Ring">Ring</option>
-                                        <option name="Other">Other</option>
-                                    </select class="<?php echo (!empty($data['type_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['type']; ?>">
-                                    <span class="invalid-feedback"><?php echo $data['type_err']; ?></span>     
-                                </div>
-                            </div>
-                            <div class="field-container">
-                                <label for="article-image">Image of the Article<sup>*</sup></label>
-                                <div class="file-container">
-                                    <input type="file" name="file" class="<?php echo (!empty($data['file_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['file']; ?>"  id="real-file" hidden="hidden">
-                                    <span id="custom-text" name="custom-text">Image</span>
-                                    <button type="button" id="custom-button">Choose</button>
-                                </div>   
-                                <span class="invalid-feedback"><?php echo $data['file_err']; ?></span>                      
-                            </div>
+                    <form action="<?php echo URLROOT; ?>/pawnings/new_pawning" method="POST" enctype="multipart/form-data">
+                        <div class="title">
+                            <h2>Customer Details</h2>
                         </div>
-                        
-                        <div class="form-divider loan-details">
-                            <div class="form-title">
-                                <h2>Loan Details</h2>
-                            </div>
-                            <div class="field-container">
-                                <label>Payment Method</label>
-                                <div class="pay-method">                        
-                                    <label>
-                                        <input type="radio" name="pay-method" value="Fixed" checked> Fixed
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="pay-method" value="Partial"> Partial
-                                    </label>
-                                </div>  
+                        <div class="field-container">
+                            <label for="nic">NIC<sup>*</sup></label>
+                            <div>
+                                <input type="text" name="nic" id="nic" placeholder="Enter customer NIC" class="<?php echo (!empty($data['nic_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['nic']; ?>">
+                                <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span> 
+                            </div>  
+                        </div>
+                        <div class="field-container div-email">
+                            <label for="email">Email<sup>*</sup></label>
+                            <div>
+                                <input type="text" name="email" id="email" placeholder="Enter customer email" class="<?php echo (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['email']; ?>">
+                                <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>   
                             </div>
                         </div>
 
-                        <div class="div-btn">
-                            <input type="submit" name="submit" value="Send to Validate">
+                        <div class="title">
+                            <h2>Article Details</h2>
                         </div>
+                        <div class="field-container">
+                            <label for="type">Article Type<sup>*</sup></label>
+                            <div>
+                                <select name="type" id="type" class="<?php echo (!empty($data['type_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['type']; ?>">
+                                    <option selected disabled>Choose a type</option>
+                                    <option value="Gold Bar">Gold Bar</option>
+                                    <option value="Necklace">Necklace</option>
+                                    <option value="Earings">Earings</option>
+                                    <option value="Bracelet">Bracelet</option>
+                                    <option value="Ring">Ring</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span class="invalid-feedback"><?php echo $data['type_err']; ?></span>   
+                            </div>                            
+                        </div>
+
+                        <div class="field-container">
+                            <label for="article-image">Article Image<sup>*</sup></label>
+                            <div>
+                                <div class="choose-image">
+                                    <input type="file" name="image" id="image" class="<?php echo (!empty($data['image_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['image']; ?>" hidden>
+                                    <input type="hidden" id="imageData" name="image">
+                                    <span id="img-name">Choose an image</span>
+                                    <button type="button" id="choose">Choose</button>                                
+                                </div>
+                                <span class="invalid-feedback"><?php echo $data['image_err']; ?></span> 
+                            </div>                                                
+                        </div>
+
+                        <div class="div-submit">
+                            <input type="submit" class="btn-submit" value="Send to Validate">
+                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -119,12 +97,26 @@
     </div>
     
     <script type="text/javascript">
-        const realFileBtn = document.getElementById("real-file");
-        const customBtn = document.getElementById("custom-button");
-        const customTxt = document.getElementById("custom-text");
+        let realFileBtn = document.getElementById('image');
+        const customBtn = document.getElementById("choose");
+        const customTxt = document.getElementById("img-name");
+        let save = document.getElementById('btn-submit');
+        let image = '';
 
-        customBtn.addEventListener("click", function() {
+        customBtn.addEventListener('click', function() {
             realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", () => {
+            file = realFileBtn.files[0];
+            if(file) {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(file);
+                fileReader.addEventListener('load', () => {
+                    image = fileReader.result;
+                    document.getElementById('imageData').value = image;
+                });
+            }
         });
 
         realFileBtn.addEventListener("change", function() {
@@ -134,6 +126,8 @@
                   customTxt.innerHTML = "Image";
             }
         });
+
+        
     </script>
 
 </body>
