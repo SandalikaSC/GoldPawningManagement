@@ -383,7 +383,7 @@ tr td:last-child {
     border-color: #bb8a04;
 }
 
-/* @media only screen and (max-width: 1270px) {
+/*@media only screen and (max-width: 1270px) {
     .main-content {
         margin-left: 0;
     }
@@ -415,7 +415,7 @@ tr td:last-child {
     .recent-grid {
         grid-template-columns: 55% 45%;
     }
-}
+}*/
 
 @media only screen and (max-width: 800px) {
     #side-toggle ~ .main-content header {
@@ -427,18 +427,6 @@ tr td:last-child {
         top: 75px;
     }
 }
-
-@media only screen and (max-width: 790px) {
-    .recent-grid {
-        grid-template-columns: 100%;
-    }
-}
-
-@media only screen and (max-width: 670px) {
-    .cards {
-        grid-template-columns: 100%;
-    }
-} */
 
 
 

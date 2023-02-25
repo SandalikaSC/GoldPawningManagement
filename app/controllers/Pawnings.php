@@ -63,113 +63,67 @@
             $this->view('PawnOfficer/renew_pawn', $data);
         }
 
-        public function find_customer() {
-            if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // Process form
-
-                // Sanitize POST data
-                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-                $data = [
-                    'nic_err' => '',
-                    'customer' => '' 
-                ];
-
-                $nic = $_POST['nic'];
-
-                $customer = $this->pawningModel->findCustomerByNic($nic);
-
-                if($customer) {
-                    $data = ['customer' => $customer];
-                } else {
-                    $data['nic_err'] = 'Customer not found';
-                    flash('register', $data['nic_err'], 'invalid');
-                    $this->view('PawnOfficer/new_pawning', $data);
-                }
-            }
-
-            return $data;
-        }
-
         public function new_pawning() {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process form
 
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-                $type = '';
-                if(isset($_POST['Type'])) {
-                     $type = ($_POST['Type']);
-                }
                 
-                // Init data
                 $data = [
-                    'full_name' => '',
-                    'nic' => '',
-                    'phone_no' => '',
-                    'email' => '',
-                    'file' => trim($_POST['file']),
-                    'type' => $type,
-                    'payment_method' => trim($_POST['pay-method']),
-                    'file_err' => '',
+                    'nic' => trim($_POST['nic']),
+                    'email' => trim($_POST['email']),
+                    'type' => trim($_POST['type']),
+                    'image' => trim($_POST['image']),
                     'type_err' => '',
+                    'image_err' => '',
+                    'nic_err' => '',
+                    'email_err' => ''
                 ];
 
-
-                if(!empty($data['file'])) {
-                    if(!empty($_FILES['file']['name'])) {
-                        $fileName = basename($_FILES['file']['name']);
-                        $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-    
-                        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-                        if(in_array($fileType, $allowTypes)) {
-                            $image = $_FILES['file']['tmp_name'];
-                            $imgContent = addslashes(file_get_contents($image));                            ;
-                            $data['file'] = base64_encode($imgContent);
-                        } else {
-                            $data['file_err'] = 'Only JPG, JPEG, PNG & GIF files are allowed';
-                        }
-                    }
-                } else {
-                    $data['file_err'] = 'Please insert the article image';
-                } 
-
-                if(empty($data['type']) || ($data['type'] == 'Choose a type')) {
-                    $data['type_err'] = 'Please choose an article type';
+                if(empty($data['nic'])) {
+                    $data['nic_err'] = 'Please enter customer NIC';
                 }
 
+                if(empty($data['email'])) {
+                    $data['email_err'] = 'Please enter customer email';
+                }
 
-                // When there are no errors
-                if(empty($data['file_err']) && empty($data['type_err'])) {
-                    // Save article details
-                    $success = $this->model("Pawning")->addArticle($data);
+                if(empty($data['type'])) {
+                    $data['type_err'] = 'Please choose a type';
+                }
+
+                if(empty($data['image'])) {
+                    $data['image_err'] = 'Please insert the article image';
+                }
+
+                if(empty($data['type_err']) && empty($data['image_err'])) {
+                    $success = $this->pawningModel->addArticle($data);
 
                     if($success) {
-                        flash('register', 'Article details have saved successfully. Article will be sent to validate.', 'success');
+                        // Redirect to successful message                        
+                        flash('register', 'Article added successfully', 'success');
                         redirect('/pawnings/new_pawning');
+                        $this->view('PawnOfficer/register_customer', $data);
                     } else {
-                        flash('register', 'Article details have saved successfully. Article will be sent to validate.', 'invalid');
-                        $this->view('PawnOfficer/new_pawning', $data);    
+                        flash('register', 'Something went wrong', 'invalid');
+                        $this->view('PawnOfficer/new_pawning', $data);                        
                     }
-                    
                 } else {
-                    // Load view with errors
                     $this->view('PawnOfficer/new_pawning', $data);
                 }
 
             } else {
                 //Init data
                 $data = [
-                    'full_name' => '',
                     'nic' => '',
-                    'phone_no' => '',
                     'email' => '',
-                    'file' => '',
                     'type' => '',
-                    'payment_method' => '',
-                    'file_err' => '',
+                    'image' => '',
                     'type_err' => '',
+                    'image_err' => '',
+                    'nic_err' => '',
+                    'email_err' => ''
                 ];
 
                 // Load view
