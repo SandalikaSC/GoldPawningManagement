@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/AdminDash.css'>
+    <title>Gold market</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/admarket.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/headerAdmin.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/base.css'>
      
@@ -16,7 +16,7 @@
 
 <!-- navbar -->
 <nav>
-    <h1>Dashboard</h1>
+    <h1>Gold market</h1>
     <img width="100" src="<?php echo URLROOT ?>/img/FULLlogo.png" class="logo" alt="logo">
 </nav>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="link">                    
-            <a class="active" href="<?php echo URLROOT ?>/index.php">
+            <a href="<?php echo URLROOT ?>/adDashboard/index">
                 <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/home-gold.png"> 
                 <p>Dashboard</p>
             </a>
@@ -51,7 +51,7 @@
                 <p>Staff</p>
             </a>
             
-            <a href="<?php echo URLROOT ?>/admarket/index">
+            <a class="active" href="<?php echo URLROOT ?>/market/index">
                 <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/payment.png">
                 <p>Market</p>
             </a>
@@ -64,50 +64,67 @@
         <div class="sidebar_footer">
             <a href="../mgLogout.php">Logout</a>
         </div>
-    </aside>
+ </aside>
 
-<!-- hero -->
-<div class="hero">
-    <div class="left">
-        <p>We are friends in need when,</p>
-        <p>You're in urgent financial difficulities indeed.</p>
+
+<!-- h1,h2-->
+    <div class="h1">
+       <div class="h0" >
+        <p>Home</p>
+       </div>
+        <p>/ Gold Price Today in Sri Lanka</p>
     </div>
-    <div class="right">
-        <div class="circle">
-            <h2>24%</h2>
-            <h3>Interest</h3>
-        </div>
+    <br>
+    <div class="h2">
+        <h1>Gold Price Today in Sri Lanka</h1>
     </div>
-</div>
-
-
-<!-- four cards -->
-
-<div class="cardWrapper">
-    <div class="card">
-        <p>24K</p>
-        <p>|</p>
-        <p>Rs. 106,000/-</p>
+    <br>
+    <div class="h3">
+        <p>22 Carat 8 Grams (1 pawn) Gold price today in sri Lanka is Rs. 154,150 as on 5th November 2022 . You can buy 22 carot 1 gram of gold rate is Rs. 168,200.</p>
     </div>
-    <div class="card">
-        <p>23K</p>
-        <p>|</p>
-        <p>Rs. 96,200/-</p>
+    <br>
+    <div class="h4">
+        <table>
+            <tr>
+                <th>Gold Unit</th>
+                <th>Gold Price</th>
+            </tr>
+            
+            <tr>
+                <td>Gold Ounce</td>
+                <td>Rs. 595,883.00</td>
+            </tr>
+            <tr>
+                <td>24 Carot 1 Gram</td>
+                <td>Rs. 21,020.00</td>
+            </tr>
+            <tr>
+                <td>24 Carot 8 Grams (8 pawn)</td>
+                <td>Rs. 168,200.00</td>
+            </tr>
+            <tr>
+                <td>22 Carot 1 Gram</td>
+                <td>Rs. 19,270.00</td>
+            </tr>
+            <tr>
+                <td>22 Carot 8 Grams (8 pawn)</td>
+                <td>Rs. 154,150.00</td>
+            </tr>
+            <tr>
+                <td>21 Carot 1 Gram</td>
+                <td>Rs. 18,400.00</td>
+            </tr>
+            <tr>
+                <td>21 Carot 8 Grams (8 pawn)</td>
+                <td>Rs. 147,150.00</td>
+            </tr>
+        </table>
     </div>
-    <div class="card">
-        <p>22K</p>
-        <p>|</p>
-        <p>Rs. 92,000/-</p>
-    </div>
-    <div class="card">
-        <p>21K</p>
-        <p>|</p>
-        <p>Rs. 87,000/-</p>
-    </div>
-</div>
 
 
 
-</div>
+
+
+
 </body>
 </html>
