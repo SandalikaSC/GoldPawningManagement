@@ -1,14 +1,17 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/AdminDash.css'>
+    <title>pawnarticales</title>
+ 
     <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/headerAdmin.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/base.css'>
-     
+  
+
 </head>
 <body>
 
@@ -16,9 +19,10 @@
 
 <!-- navbar -->
 <nav>
-    <h1>Dashboard</h1>
-    <img width="100" src="<?php echo URLROOT ?>/img/FULLlogo.png" class="logo" alt="logo">
+    <h1>pawnarticales</h1>
+    <img width="100" src="<?php echo URLROOT ?>/img/logo.png" class="logo" alt="logo">
 </nav>
+
 
 
 <!-- sidebar -->
@@ -27,11 +31,11 @@
             <div class="profile_image">
                 <img width="100" src="<?php echo URLROOT ?>/img/profile.jpg" alt="profile">
             </div>
-         <!--   <p><?php echo $_SESSION['user_name']; ?></p>-->
+            <p><?php echo $_SESSION['user_name']; ?></p>
         </div>
 
         <div class="link">                    
-            <a class="active" href="<?php echo URLROOT ?>/index.php">
+            <a class="active" href="<?php echo URLROOT ?>/adDashboard/index">
                 <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/home-gold.png"> 
                 <p>Dashboard</p>
             </a>
@@ -62,52 +66,6 @@
             </a>
         </div>
         <div class="sidebar_footer">
-            <a href="../mgLogout.php">Logout</a>
+            <a href="<?php echo URLROOT ?>/logout.php">Logout</a>
         </div>
     </aside>
-
-<!-- hero -->
-<div class="hero">
-    <div class="left">
-        <p>We are friends in need when,</p>
-        <p>You're in urgent financial difficulities indeed.</p>
-    </div>
-    <div class="right">
-        <div class="circle">
-            <h2>24%</h2>
-            <h3>Interest</h3>
-        </div>
-    </div>
-</div>
-
-
-<!-- four cards -->
-
-<div class="cardWrapper">
-    <div class="card">
-        <p>24K</p>
-        <p>|</p>
-        <p>Rs. 106,000/-</p>
-    </div>
-    <div class="card">
-        <p>23K</p>
-        <p>|</p>
-        <p>Rs. 96,200/-</p>
-    </div>
-    <div class="card">
-        <p>22K</p>
-        <p>|</p>
-        <p>Rs. 92,000/-</p>
-    </div>
-    <div class="card">
-        <p>21K</p>
-        <p>|</p>
-        <p>Rs. 87,000/-</p>
-    </div>
-</div>
-
-
-
-</div>
-</body>
-</html>

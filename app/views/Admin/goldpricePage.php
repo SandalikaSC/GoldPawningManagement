@@ -1,7 +1,4 @@
- 
-
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +18,7 @@
 <!-- navbar -->
 <nav>
     <h1>Gold Price</h1>
-    <img width="48" src="./img/logo.png" class="logo" alt="logo">
+    <img width="100" src="<?php echo URLROOT ?>/img/logo.png" class="logo" alt="logo">
 </nav>
 
 
@@ -30,44 +27,44 @@
 <aside class="sidebar">
         <div class="sidebar_header">
             <div class="profile_image">
-                <img width="100" src="img/profile.jpg" alt="profile">
+                <img width="100" src="<?php echo URLROOT ?>/img/profile.jpg" alt="profile">
             </div>
             <p><?php echo $_SESSION['user_name']; ?></p>
         </div>
 
         <div class="link">                    
-            <a href="./index.php">
-                <img width="24" class="page-btn-img" src="./img/home.png"> 
+            <a class="active" href="<?php echo URLROOT ?>/adDashboard/index">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/home-gold.png"> 
                 <p>Dashboard</p>
             </a>
             
-            <a href="./pawnarticales.php">
-            <img width="24" class="page-btn-img" src="./img/articale.png"> 
+            <a href="<?php echo URLROOT ?>/adpawnarticale/index">
+            <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/articale.png"> 
                 <p>Pawn Articles</p>
             </a>
 
-            <a href="./locker.php">
-                <img width="24" class="page-btn-img" src="./img/locker.png">
+            <a href="<?php echo URLROOT ?>adlocker/index">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/locker1.png">
                 <p>Locker</p>
             </a>
 
-            <a href="./staff.php">
-                <img width="24" class="page-btn-img" src="./img/staff.png">
+            <a href="<?php echo URLROOT ?>/adstaff/index">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/staff1.png">
                 <p>Staff</p>
             </a>
             
-            <a href="./market.php">
-                <img width="24" class="page-btn-img" src="./img/payment.png">
+            <a href="<?php echo URLROOT ?>/admarket/index">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/payment.png">
                 <p>Market</p>
             </a>
 
-            <a class="active" href="./goldprice.php">
-                <img width="24" class="page-btn-img" src="./img/goldprice.png">
+            <a href="<?php echo URLROOT ?>/Goldprices/index">
+                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/goldprice.png">
                 <p>Gold Price</p>
             </a>
         </div>
         <div class="sidebar_footer">
-            <a href="./logout.php">Logout</a>
+            <a href="<?php echo URLROOT ?>/logout.php">Logout</a>
         </div>
     </aside>
 
@@ -91,7 +88,7 @@
 
                 <form  action="<?php echo URLROOT?>/Goldprices/selectRate/<?php echo $goldrate->Rate_Id?>" method="GET">
                     <button class="editIcon" type="submit" name="edit" value="<?php echo $goldrate->Rate_Id?>">
-                        <img width="24" src="./img/edit-white.png" alt="edit">
+                        <img width="24" src="<?php echo URLROOT ?>/img/edit-white.png" alt="edit">
                     </button>
                 </form>
             </div>
@@ -114,7 +111,7 @@
 
                 <div id="form" class="formWrapper">
                 <div class="formIcon">
-                    <img width="32" src="./img/edit.png" alt="edit">
+                    <img width="32" src="<?php echo URLROOT ?>/img/edit.png" alt="edit">
                 </div>
                 <form action="<?php echo URLROOT?>/Goldprices/editRate" method="POST">
                     <div class="inputField">
