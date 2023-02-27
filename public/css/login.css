@@ -161,7 +161,7 @@ body{
     font-size: 1vw;
  
 }
-.forget-pw,.otp{
+.forget-pw,.otp,.set-pw{
     height: 60%;
     position: absolute;
     /* display: flex;  */
