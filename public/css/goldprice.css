@@ -24,11 +24,20 @@
     border-radius: 20px;
 }
 .cardWrapper > .card > h2 {
+<<<<<<< HEAD
     margin-top: 30px;
 }
 .cardWrapper > .card > p {
     margin: 5px 0;
     color: var(--clr-primary, rgb(224, 222, 214));
+=======
+    margin-top: 40px;
+    color: antiquewhite;
+}
+.cardWrapper > .card > p {
+    margin: 5px 0;
+    color: var(--clr-primary, #bb8a04);
+>>>>>>> 7fff66737879cddbbfefec9215412112b77b861d
 }
 
 
@@ -43,8 +52,13 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
+<<<<<<< HEAD
     background-color: rgb(245, 242, 242);
     color: var(--clr-primary, gold);
+=======
+    background-color: white;
+    color: var(--clr-primary, #bb8a04);
+>>>>>>> 7fff66737879cddbbfefec9215412112b77b861d
     font-weight:700;
     font-size:1.5rem;
     border: 3px solid var(--clr-secondary, black);
@@ -59,7 +73,7 @@
     display: grid;
     place-items: center;
     background-color: rgb(223, 27, 27);
-    color: var(--clr-primary, gold);
+    color: var(--clr-primary, #bb8a04);
     font-weight:700;
     font-size:1.5rem;
     border: none;
@@ -97,7 +111,11 @@
     gap: 10px;
     padding: 70px 20px;
     border-radius: 20px;
+<<<<<<< HEAD
     border: 2px solid var(--clr-primary, rgb(239, 212, 10));
+=======
+    border: 2px solid var(--clr-primary, #bb8a04);
+>>>>>>> 7fff66737879cddbbfefec9215412112b77b861d
 }
 
 .inputField {
@@ -144,17 +162,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--clr-primary, gold);
+    border: 1px solid var(--clr-primary, #bb8a04);
     min-width: 200px;
     padding: 0.7rem 1rem;
     border-radius: 30px;
-    color: var(--clr-primary, gold);
+    color: var(--clr-primary, #bb8a04);
     background-color: var(--clr-white, white);   
 }
 
-.btnGroup > .goldBtn{
-    background-color: var(--clr-secondary, gold);
+/* .btnGroup > .#bb8a04Btn{
+    background-color: var(--clr-secondary, #bb8a04);
     color: var(--clr-white, white);
+} */
+
+.btnGroup > .btn:hover {
+    background: #bb8a04;
+    color: #fff;
 }
 
 
@@ -170,7 +193,7 @@
     place-items: center;
     background-color: rgb(239, 229, 229);
     z-index: 10;
-    color: var(--clr-primary, gold);
+    color: var(--clr-primary, #bb8a04);
     font-weight:700;
     font-size:1.5rem;
     border: 3px solid var(--clr-secondary, black);
