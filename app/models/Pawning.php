@@ -25,14 +25,14 @@
         }
 
         public function getLastArticleId() {
-            $sql = 'SELECT Article_Id FROM article ORDER BY Article_Id DESC LIMIT 1';
+            $sql = 'SELECT id FROM validation_articles ORDER BY id DESC LIMIT 1';
             $this->db->query($sql);
             $result = $this->db->single();
 
             if(empty($result)) {
                 return 'A000';
             } else {
-                return $result->Article_Id;
+                return $result->id;
             }
         }
 
@@ -67,12 +67,14 @@
             $article_id = $this->getLastArticleId();
             ++$article_id;
 
-            $this->db->query('INSERT INTO article (Article_Id, Type, image, Rate_Id) VALUES(:article_id, :type, :image, :rate_id)');
+            $this->db->query('INSERT INTO validation_articles (id, article_type, customer, image, pawn_officer, gold_appraiser) VALUES(:article_id, :type, :customer, :image, :pawn_officer, :gold_appraiser)');
 
             $this->db->bind(':article_id', $article_id);
             $this->db->bind(':type', $data['type']);
             $this->db->bind(':image', $data['image']);
-            $this->db->bind(':rate_id', 1);
+            $this->db->bind(':pawn_officer', $data['pawn_officer']);
+            $this->db->bind(':customer', $data['customer']);
+            $this->db->bind(':gold_appraiser', 'GA001');
 
             if($this->db->execute()) {
                 return true;

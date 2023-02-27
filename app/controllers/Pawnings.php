@@ -75,6 +75,8 @@
                     'email' => trim($_POST['email']),
                     'type' => trim($_POST['type']),
                     'image' => trim($_POST['image']),
+                    'customer' => '',
+                    'pawn_officer' => $_SESSION['user_id'],
                     'type_err' => '',
                     'image_err' => '',
                     'nic_err' => '',
@@ -91,6 +93,8 @@
                     if($customer) {
                         if(($customer->email) != ($data['email'])) {
                             $data['email_err'] = 'Customer does not have an account for this email';
+                        } else {
+                            $data['customer'] = $customer->UserId;
                         }
                     } else {
                         $data['nic_err'] = 'A customer with this NIC has not registered with us'; 
@@ -132,6 +136,8 @@
                     'email' => '',
                     'type' => '',
                     'image' => '',
+                    'customer' => '',
+                    'pawn_officer' => '',
                     'type_err' => '',
                     'image_err' => '',
                     'nic_err' => '',
