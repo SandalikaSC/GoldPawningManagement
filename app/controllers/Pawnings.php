@@ -120,7 +120,7 @@
                         // Redirect to successful message                        
                         flash('register', 'Article added successfully', 'success');
                         redirect('/pawnings/new_pawning');
-                        $this->view('PawnOfficer/register_customer', $data);
+                        // $this->view('PawnOfficer/register_customer', $data);
                     } else {
                         flash('register', 'Something went wrong', 'invalid');
                         $this->view('PawnOfficer/new_pawning', $data);                        
