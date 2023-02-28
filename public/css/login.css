@@ -161,7 +161,7 @@ body{
     font-size: 1vw;
  
 }
-.forget-pw,.otp,.set-pw{
+.forget-pw,.otp{
     height: 60%;
     position: absolute;
     /* display: flex;  */
@@ -180,4 +180,16 @@ body{
  .h3{
     font-size: 1rem;
     text-align: center;
+ }
+ .wrapper,.set-pw{
+    display: flex;
+    flex-direction: column;
+ }
+ .set-pw{
+   border: solid 1px #bb8a04;
+   padding: 5% ;
+   margin: 5% 30%;
+ }
+ .set-pw input,.p{
+    margin: 2% auto;
  }

@@ -460,18 +460,14 @@ class Users extends Controller
 
   public function verifyOTP()
   {
-    if (isset($_GET["otp"])) {
-      $otp = $_GET["otp"];
+    if (isset($_POST["otp"])) {
+      $otp = $_POST["otp"];
       if ($_SESSION['OTP'] == $otp) {
-        // $data['success']=1;
-        echo (1);
-      } else {
-        echo (0 );
-        // $data['success']=0;
-        // flash('otp', "Wrong OTP. Try again", 'invalid');
-      }
-
-      // echo json_encode($data);
+        unset($_SESSION['OTP']);
+        $this->view('pages/changePassword');
+      } else { 
+        redirect('/Users');
+      } 
     }
   }
 

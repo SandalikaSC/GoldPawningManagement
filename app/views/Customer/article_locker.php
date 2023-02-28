@@ -31,7 +31,7 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Due Date</label>
-                            <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05"))?></label>
+                            <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05")) ?></label>
                         </div>
 
                     </div>
@@ -94,10 +94,10 @@
 
 
             </div>
-                <a class="a-pay"  href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay" method="get">
+            <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay" method="get">
                 <button class="pay-btn">Pay</button>
 
-                </a>
+            </a>
 
             <!-- </div> -->
 
@@ -177,7 +177,7 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Due Date</label>
-                            <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05"))?></label>
+                            <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05")) ?></label>
                         </div>
 
                     </div>

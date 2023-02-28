@@ -52,7 +52,7 @@
                 <input type="button" name="sendEmail" onclick="checkEmail()" value="Send Email" class="button">
 
             </form>
-            <form class="otp center" id="otp-section">
+            <form class="otp center" method="POST" id="otp-section" action="<?php echo URLROOT ?>/Users/verifyOTP">
 
 
                 <img alt="logo" src="<?php echo URLROOT ?>/img/logo.png" class="logo center ">
@@ -68,34 +68,10 @@
 
                 </span>
                 <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
-                <input type="button" name="ConfirmOTP" onclick="OTPverify()" value="Confirm OTP" class="button">
+                <button type="submit" name="ConfirmOTP"  value="Confirm OTP" class="button">Confirm OTP</button>
 
             </form>
-            <form class="set-pw center">
-
-
-                <img alt="logo" src="<?php echo URLROOT ?>/img/logo.png" class="logo center ">
-                <h2 class="h2">Change Password</h2>
-                <!-- <br> <?php flash('password'); ?> -->
-
-                <br>
-
-                <p class="p">Current password</p>
-                <input type="text" name="current-pw" id="current-pw" class="input" value="" />
-                <span class="invalid-feedback" id="current-pw-err"> </span>
-                <p class="p">New password</p>
-                <input type="text" name="new-pw" id="new-pw" class="input" value="" />
-                <span class="invalid-feedback" id="new-pw-err"> </span>
-                <p class="p">Confirm password</p>
-                <input type="text" name="confirm-pw" id="confirm-pw" class="input" value="" />
-                <span class="invalid-feedback" id="confirm-pw-err"> </span>
-
-
-
-                <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
-                <input type="button" name="Reset-Password" onclick="" value="Reset Password" class="button">
-
-            </form>
+            
         </div>
         <img src="<?php echo URLROOT ?>/img/loginImg.svg" class="login-Img">
         <div class="reg-section">
@@ -161,17 +137,5 @@
             }
         });
     }
-
-    function OTPverify() {
-        // var otp = document.getElementsByClassName('otp')[0];
-        $.ajax({
-            type: "GET",
-            url: "<?= URLROOT ?>/Users/verifyOTP",
-
-            data: {
-                otp: otp
-            },
-            dataType: "JSON" 
-        });
-    }
+ 
     </script>
