@@ -43,52 +43,86 @@
 }
 
 main {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-main .left-wrapper {
-    /* background: #dbdbdb; */
-    padding: 60px 20px 20px 100px;
-}
-
-main .left-wrapper h2 {
-    border-bottom: 2px solid #bb8a04;
-    width: fit-content;
-}
-
-main .left-wrapper .item-details {
-    padding: 10px 30px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 50px;
-    border-bottom: 2px solid #dddddd;
 }
 
-main .left-wrapper .item-details .field {
+main .main-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    width: 80%;
+}
+
+main .left-wrapper,
+main .right-wrapper {
     display: flex;
-    justify-content: space-between;
-    padding: 5px 0;
-    width: 300px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-main .left-wrapper .item-details .field label {
-    font-weight: 600;
+main .left-wrapper .div-details {    
+    background: #bb8a04;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
-main .left-wrapper .item-details img {
+main .left-wrapper .div-details .article-details,
+main .left-wrapper .div-details .due-payment {
+    padding: 20px;
+    background: #faebd7;
+    border-radius: 20px;
+    width: 100%;
+}
+
+main .left-wrapper .div-details .article-details .article-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+} 
+
+main .left-wrapper .div-details .article-details .article-image img {
     width: 200px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 5px -1px, rgba(0, 0, 0, 0.3) 0px 5px 5px -1px;
     margin: 20px;
 }
 
-main .left-wrapper .due-payment {
-    padding: 20px 30px;
+main .left-wrapper .div-details .article-details .field-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
 }
 
-main .left-wrapper .due-payment div {
+main .left-wrapper .div-details .article-details .field-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+main .left-wrapper .div-details .article-details .field-container label {
+    font-weight: 600;
+}
+
+main .left-wrapper .div-details .due-payment {
+    margin-top: 20px;
+}
+
+main .left-wrapper .div-details .due-payment h2 {
+    border-bottom: 2px solid #bb8a04;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+main .left-wrapper .div-details .due-payment div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,15 +144,18 @@ main .left-wrapper .due-payment div .amount {
 main .right-wrapper {
     padding: 20px;
     height: 100%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    border-radius: 20px;
 }
 
 main .right-wrapper .full-amount {
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     padding: 20px;
-    margin: 0 30px 50px;    
+    margin: 20px;    
     background: #e4e4e4;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 20px;
@@ -136,7 +173,7 @@ main .right-wrapper .full-amount .amount {
 }
 
 main .right-wrapper .table-container {
-    margin: 30px;
+    margin: 20px;
     background: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);    
     height: 300px;  
@@ -196,12 +233,11 @@ tr td:last-child {
 
 .right-wrapper .btn-container {
     width: 100%;
-    padding: 0 30px;
 }
 
 .right-wrapper .btn-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
