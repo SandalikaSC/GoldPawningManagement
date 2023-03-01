@@ -1,6 +1,10 @@
 <?php
 class Staff extends Controller
 {
+  public function __construct()
+  {
+    flashMessage();
+  }
   public function index($msg = null)  //viewing staff dashboard function
   {
     isLoggedIn();
@@ -68,22 +72,23 @@ class Staff extends Controller
     ++$id;
     if ($staffMem->rowCount() > 0 or $NIC->rowCount()>0 or $phone->rowCount()>0) {
       if($staffMem->rowCount() > 0 and $NIC->rowCount()>0  and $phone->rowCount()>0){
-        redirect('/staff/addNew/NIC,_email_and_Phone_Number_already_Exists');
+        flashMessage("NIC, Email and Phone Number already Exists");
       }
       else if($staffMem->rowCount() > 0 and $NIC->rowCount()>0){
-        redirect('/staff/addNew/Email_and_NIC_already_Exist');
+        flashMessage("Email and NIC already exist");
       } else if($staffMem->rowCount() > 0 and $phone->rowCount()>0){
-        redirect('/staff/addNew/Email_and_Phone_Number_already_Exist');
+        flashMessage("Email and Phone number already exist");
       } else if($NIC->rowCount() > 0 and $phone->rowCount()>0){
-        redirect('/staff/addNew/NIC_and_Phone_Number_already_Exist');
+        flashMessage("NIC and Phone number already exist");
       }
       else if($NIC->rowCount()>0){
-        redirect('/staff/addNew/NIC_already_Exists');
+        flashMessage("NIC already exists");
       }else if($staffMem->rowCount() > 0){
-        redirect('/staff/addNew/Email_already_Exists');
+        flashMessage("Email already exists");
       }else if($phone->rowCount() > 0){
-        redirect('/staff/addNew/Phone_Number_already_Exists');
+        flashMessage("Phone number already exist");
       }
+      redirect('/staff/addNew');
     } else {
       $staffMem = $this->model("staffModel");
       $result = $staffMem->addStaffMember($id,$_POST['fName'], $_POST['lName'], $_POST['gender'], $_POST['nic'], $_POST['dob'], $_POST['lane1'], $_POST['lane2'], $_POST['lane3'], $_POST['mob-no'], $_POST['mob-no2'], $_POST['email'], $_POST['role'], $_POST['image'], $hash);
@@ -93,11 +98,11 @@ class Staff extends Controller
         if($abc == null){
           $staffMem = $this->model("staffModel");
           $staffMem->deleteStaffMember($id);
-          redirect('/staff/index/unsuccess');
-
+          flashMessage("Network Error Occurd..");
+          redirect('/staff/addNew');
         }else{
-          redirect('/staff/index/success');
-        }
+          redirect('/staff/index/success');        
+        }    
 
       } else {
         redirect('/staff/addNew');
@@ -138,6 +143,10 @@ class Staff extends Controller
       redirect("staff/index/delsuccess");
     }
   }
-
+  
+  
+  
  
 }
+
+

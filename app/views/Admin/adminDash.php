@@ -27,31 +27,31 @@
             <div class="profile_image">
                 <img width="100" src="<?php echo URLROOT ?>/img/profile.jpg" alt="profile">
             </div>
-         <!--   <p><?php echo $_SESSION['user_name']; ?></p>-->
+            <p><?php echo $_SESSION['user_name']; ?></p>
         </div>
 
         <div class="link">                    
-            <a class="active" href="<?php echo URLROOT ?>/index.php">
+            <a class="active" href="./index.php">
                 <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/home-gold.png"> 
                 <p>Dashboard</p>
             </a>
             
-            <a href="<?php echo URLROOT ?>/adpawnarticale/index">
+            <a href="./pawnarticales.php">
             <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/articale.png"> 
                 <p>Pawn Articles</p>
             </a>
 
-            <a href="<?php echo URLROOT ?>adlocker/index">
+            <a href="./locker.php">
                 <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/locker1.png">
                 <p>Locker</p>
             </a>
 
-            <a href="<?php echo URLROOT ?>/adstaff/index">
+            <a href="./staff.php">
                 <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/staff1.png">
                 <p>Staff</p>
             </a>
             
-            <a href="<?php echo URLROOT ?>/admarket/index">
+            <a href="./market.php">
                 <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/payment.png">
                 <p>Market</p>
             </a>
@@ -62,7 +62,7 @@
             </a>
         </div>
         <div class="sidebar_footer">
-            <a href="../mgLogout.php">Logout</a>
+            <a href="./logout.php">Logout</a>
         </div>
     </aside>
 

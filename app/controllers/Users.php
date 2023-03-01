@@ -60,7 +60,6 @@ class Users extends Controller
         if ($loggedInUser) {
           // Create Session
           $this->createUserSession($loggedInUser);
-
         } else {
           $data['password_err'] = 'Password incorrect';
 
@@ -71,8 +70,6 @@ class Users extends Controller
         // Load view with errors
         $this->view('pages/userLogin', $data);
       }
-
-
     } else {
       // Init data
       $data = [
@@ -87,7 +84,7 @@ class Users extends Controller
     }
   }
 
-  
+
   public function signUp()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -135,7 +132,6 @@ class Users extends Controller
         $data['lname_err'] = 'Require field';
       } else if (!preg_match("/^[a-zA-Z]+$/", $data['lname'])) {
         $data['lname_err'] = 'Invalid';
-
       }
       $nicValid = $this->isNicValid($data['nic']);
       // Validate nic
@@ -154,7 +150,7 @@ class Users extends Controller
       $diff = abs(strtotime($data['dob']) - strtotime(date("Y-m-d")));
       $years = floor($diff / (365 * 60 * 60 * 24));
       if (!empty($data['nic']) && $years < 18) {
-         $data['nic_err'] = '-You must be at least 18 years old to register.';
+        $data['nic_err'] = '-You must be at least 18 years old to register.';
       }
       // Validate address
       if (empty($data['address1']) && empty($data['address2']) && empty($data['address3'])) {
@@ -171,23 +167,17 @@ class Users extends Controller
         $data['email_err'] = 'Invalid';
       } else if (!isValidEmail($data['email'])) { //check email deliverable or disposable one
         $data['email_err'] = 'Invalid';
-
       } else {
         // Check email
         if ($this->userModel->findUserByEmail($data['email'])) {
           $data['email_err'] = 'is already exist';
         }
-
       }
       if ($this->userModel->findUserByPhoneNo($data['mobile'], $data['home'])) {
         $data['contact_err'] = 'is already exist';
-
-
       }
       if ($this->userModel->findUserByNic($data['nic'])) {
         $data['nic_err'] = 'is already exist';
-
-
       }
 
       // Validate Password
@@ -231,7 +221,7 @@ class Users extends Controller
         $verification_code = $this->userModel->register($data);
 
         if ($verification_code) {
-          
+
           $status = sendMail($data['email'], "registration", $verification_code, "VOGUE");
           if ($status) {
 
@@ -246,8 +236,6 @@ class Users extends Controller
           flash('register', 'Registration Failed Try again', 'invalid');
           redirect('/Users/login');
         }
-
-
       } else {
         // Load view with errors
         $this->view('pages/userSignUp', $data);
@@ -277,8 +265,6 @@ class Users extends Controller
       ];
       $this->view('pages/userSignUp', $data);
     }
-
-
   }
   public function CalculateDOB($nic)
   {
@@ -340,7 +326,6 @@ class Users extends Controller
         $month = "02";
       }
       return "$year-$month-$day";
-
     }
   }
 
@@ -378,7 +363,6 @@ class Users extends Controller
     }
 
     return $result;
-
   }
 
 
@@ -398,7 +382,6 @@ class Users extends Controller
       ];
       $this->view('pages/EmailVerify', $data);
     }
-
   }
   public function createUserSession($user)
   {
@@ -423,38 +406,97 @@ class Users extends Controller
         redirect('/Admin/AdminDash');
         break;
       case "Manager":
-        $this->view('Manager/managerDash');
+
+        redirect('/mgDashboard');
+        // $this->view('Manager/managerDash');
         break;
       case "Gold Appraiser":
-        $this->view('Gold Appraiser/goldappDash');
+        $this->view('GoldAppraiser/goldappDash');
         break;
       case "Vault Keeper":
-        $this->view('VaultKeeper/vaultkeeperDash');
+        redirect('/VKDashboard');
         break;
       case "Pawning Officer":
         // $this->view('PawnOfficer/pawnofficerDash');
         redirect('/pawningOfficerDashboard/dashboard');
         break;
       case "Owner":
-        $this->view('Owner/ownerDash');
+        $staff = $this->model("staffModel");
+        $result = $staff->loadProfilePicture($_SESSION['user_email']);
+        $_SESSION['profile_pic'] = $result->image;
+        $_SESSION['mg_name'] = $result->Name;
+        redirect('/ownerDashboard');
         break;
-
     }
+  }
+  public function checkEmail()
+  {
+
+    if (isset($_POST["email"])) {
+      $email = trim($_POST["email"]);
+      $result = $this->userModel->getUserByEmail($_POST["email"]);
+      if (empty($result)) {
+        flash('register', "You are not registered with Us.", 'invalid');
+        $data['success'] = 0;
+      } else if ($result->verification_status === "0") {
+        flash('register', "You are not verified your email yet.", 'invalid');
+        $data['success'] = 0;
+      } else if (!empty($result) && $result->verification_status === "1") {
+        $_SESSION['OTP'] = $this->randomPassword();
+
+        $status = sendMail($email, "OTP", $_SESSION['OTP'], "VOGUE");
+        if ($status) {
+          $data['success'] = 1;
+        } else {
+          $data['success'] = 0;
+          flash('register', "Fail to send OTP check your connection", 'invalid');
+        }
+        echo json_encode($data);
+      }
+
+      // $data['name']="sandalika";
+    }
+  }
+
+  public function verifyOTP()
+  {
+    if (isset($_POST["otp"])) {
+      $otp = $_POST["otp"];
+      if ($_SESSION['OTP'] == $otp) {
+        unset($_SESSION['OTP']);
+        $this->view('pages/changePassword');
+      } else { 
+        redirect('/Users');
+      } 
+    }
+  }
 
 
+  //to generate a OTP number
+  private function randomPassword()
+  {
+    $alphabet = '1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 6; $i++) {
+      $n = rand(0, $alphaLength);
+      $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
   }
 
   public function logout()
   {
-    if($this->userModel->setLastSeen($_SESSION['user_id'])){
+    if ($this->userModel->setLastSeen($_SESSION['user_id'])) {
       unset($_SESSION['user_id']);
       unset($_SESSION['user_email']);
       unset($_SESSION['user_name']);
+      unset($_SESSION['profile_pic']);
+      unset($_SESSION['mg_name']);
       session_destroy();
-  
+
       redirect('/Users');
     }
-    
   }
 
   public function isLoggedIn()
@@ -465,5 +507,4 @@ class Users extends Controller
       return false;
     }
   }
-
 }
