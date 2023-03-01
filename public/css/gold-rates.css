@@ -1,16 +1,18 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        
+        
         .inside-page{
+            font-family: 'Poppins';
             display: flex;
             align-items: center;
             justify-content: center;
-            /* background-color: gray; */
     
         }
         .gold-rates{
             display: flex;
             border-radius: 10px;
             margin-top: 10px;
-            /* background-color: #E5E5E5; */
             margin-bottom: 20px;
         }
 

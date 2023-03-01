@@ -110,19 +110,19 @@ class staffModel extends Database
         $this->bind(10, $dob);
 
         if ($line1 == "") {
-            $this->bind(11, "Empty");
+            $this->bind(11, NULL);
         } else {
             $this->bind(11, $line1);
         }
 
         if ($line2 == "") {
-            $this->bind(12, "Empty");
+            $this->bind(12, NULL);
         } else {
             $this->bind(12, $line2);
         }
 
         if ($line3 == "") {
-            $this->bind(13, "Empty");
+            $this->bind(13, NULL);
         } else {
             $this->bind(13, $line3);
         }
@@ -163,7 +163,7 @@ class staffModel extends Database
 
     public function viewStaffMember($id)
     {
-        $sql=" select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date,user.Created_By, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
+        $sql="select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date,user.Created_By,user.last_edit, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
         $this->query($sql);
         $this->bind(1, $id);
         $result = $this->resultSet();
@@ -207,50 +207,66 @@ class staffModel extends Database
 
     }
 
-    public function setPersonalDetails($id,$fName, $lName, $gender, $dob, $line1, $line2, $line3, $mob, $mob2, $image){
+    public function setPersonalInfo($id,$fName, $lName, $gender, $line1, $line2, $line3, $mob, $mob2, $image){
         // $sql = 'insert into user(First_Name, Last_Name, Gender, DOB, Line1, Line2, Line3, image) values (?,?,?,?,?,?,?,?) where userId=?';
-        $sql='update user set First_Name=?,Last_Name=?,Gender=?,DOB=?,Line1=?,Line2=?,Line3=?,image=? where userId=?;'
+        $sql='update user set First_Name=?,Last_Name=?,Gender=?,Line1=?,Line2=?,Line3=?,image=? where userId=?';
         $this->query($sql);
-
+        
+        $this->bind(8, $id);
         $this->bind(1, $fName);
         $this->bind(2, $lName);
         $this->bind(3, $gender);
-        $this->bind(4, $dob);
         
-        if ($line1 == "Not Available") {
-            $this->bind(5, "Empty");
+        
+        if ($line1 == "") {
+            $this->bind(4,NULL);
         } else {
-            $this->bind(5, $line1);
+            $this->bind(4, $line1);
         }
         
-        if ($line2 == "Not Available") {
-            $this->bind(6, "Empty");
+        if ($line2 == "") {
+            $this->bind(5, NULL);
         } else {
-            $this->bind(6, $line2);
+            $this->bind(5, $line2);
         }
         
-        if ($line3 == "Not Available") {
-            $this->bind(7, "Empty");
+        if ($line3 == "") {
+            $this->bind(6, NULL);
         } else {
-            $this->bind(7, $line3);
+            $this->bind(6, $line3);
         }
         
-        $this->bind(8, $image);
-        $this->bind(9, $id);
+        $this->bind(7, $image);
         
         $result=$this->execute();
+
         if ($result) {
               $result1='';
             if (!empty($mob2)) {
-                $sql1 = 'update phone set (phone) (:userId,:mobile),(:userId,:home);';
-                $this->query($sql1);
+                $sql='select phone from phone where userId=?';
+                $this->query($sql);
+                $this->bind(1, $id);
+                $bothNum=$this->resultSet();
 
-                $this->bind(":userId", $id);
-                $this->bind(":mobile", $mob);
-                $this->bind(":home", $mob2);
-                $result1=$this->execute();
+
+                // print_r($bothNum);
+                $sql1 = 'update phone set phone=? where userId=? and phone=?';
+                $this->query($sql1);
+                $this->bind(1, $mob);
+                $this->bind(2, $id);
+                $this->bind(3, $bothNum[1]->phone);
+                $mobileNumber=$this->execute();
+
+                $sql2 = 'update phone set phone=? where userId=? and phone=?';
+                $this->query($sql2);
+                $this->bind(1, $mob2);
+                $this->bind(2, $id);
+                $this->bind(3, ($bothNum[0])->phone);
+                $additionalNumber=$this->execute();
+                  
+                  $result1='1';
             } else {
-                $sql1 = 'update phone set phone=:mobile where userId=:userId;';
+                $sql1 = 'update phone set phone=:mobile where userId=:userId';
                 $this->query($sql1);
 
                 $this->bind(":mobile", $mob);

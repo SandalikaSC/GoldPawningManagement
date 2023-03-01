@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
@@ -111,8 +112,8 @@
     <div class="confirm-delete-box">
         <p>Confirm Delete?</p>
         <div class="no-yes-btns">
-            <a href="<?php echo URLROOT ?>/staff_dashboard" class="no-btn">No</a>
-            <a href="<?php echo URLROOT ?>/staff_dashboard" class="yes-btn">Yes</a>
+            <a href="<?php echo URLROOT ?>/staff/viewStaffMember/<?php echo $data[0]->UserId ?>" class="no-btn">No</a>
+            <a href="<?php echo URLROOT ?><?php echo URLROOT ?>/staff/deleteEmployee/<?php echo $data[0]->UserId ?>" class="yes-btn">Yes</a>
         </div>
 
     </div>

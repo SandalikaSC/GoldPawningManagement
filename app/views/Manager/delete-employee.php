@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME?></title>
@@ -11,6 +12,7 @@
 
 <body>
     <div class="page">
+        
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
@@ -28,7 +30,7 @@
                     <p>Dashboard</p>
                 </a>
                 <a href="<?php echo URLROOT ?>/mgLocker">
-                    <img src="<?php echo URLROOT ?>/img/locker.png" alt="">
+                    <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
                     <p>Locker</p>
                 </a>
                 <a href="<?php echo URLROOT ?>/mgPawnArticles">
@@ -45,7 +47,7 @@
                 </a>
             </div>
             <div class="lgout">
-                <a href="<?php echo URLROOT ?>/mgLogout">Logout</a>
+                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
             </div>
         </div>
         <div class="right">
@@ -58,7 +60,7 @@
                         <?php echo $data[0]->UserId ?>
                     </h1>
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="content-of-view-page">
                 <!--  -->

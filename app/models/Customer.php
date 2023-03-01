@@ -154,6 +154,7 @@ class Customer
             return false;
         }
     }
+    
     public function findUserByNic($nic)
     {
         $this->db->query('SELECT UserId FROM user WHERE NIC = :nic');
@@ -169,6 +170,7 @@ class Customer
             return false;
         }
     }
+
     public function deleteUser($email)
     {
         $userid = $this->findUserIDByEmail($email);
@@ -238,7 +240,7 @@ class Customer
             $this->db->bind(':gender', $data['gender']);
             $this->db->bind(':type', "Customer");
             $this->db->bind(':email', $data['email']);
-            $this->db->bind(':verification_status', 0);
+            $this->db->bind(':verification_status', 1);
             $this->db->bind(':password', $hashed_password);
             $this->db->bind(':status', 0);
             $this->db->bind(':created_by', $data['created_by']);
@@ -266,6 +268,14 @@ class Customer
 
             return $row;
         }  
+        public function getUserByEmail($email) {
+            $this->db->query('SELECT * FROM user WHERE email = :email');
+            $this->db->bind(':email', $email);
+
+            $row = $this->db->single();
+
+            return $row;
+        }  
 
 
         public function getCustomer() {
@@ -274,5 +284,16 @@ class Customer
             $results = $this->db->resultSet();
 
             return $results;
+        }
+
+
+        // get All the Customers
+
+        public function getAllCustomers(){
+            $this->db->query('SELECT * from User,phone where User.UserId=phone.userId AND user.userId like "CU%";'); 
+           $results = $this->db->resultset();
+        //    header("Content-type: image/jpeg");
+   
+           return $results;
         }
 }

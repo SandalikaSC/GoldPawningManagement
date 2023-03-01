@@ -171,40 +171,31 @@ main {
     min-height: calc(100vh - 85px);
 }
 
-.page-wrapper .top-div {
+.page-wrapper {
+    
+}
+
+.cards {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cards {
-    width: fit-content;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
 .gold-rates {
     width: 260px;
-    height: 100px;
+    height: 80px;
     padding: 10px;
     margin: 20px;
     background: #fff;
     color: #bb8a04;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.background-img {
-    width: 400px;
-    height: 200px;
-    background-image: url("../img/discount.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.page-wrapper .bottom-div {
+.page-wrapper .bottom-div {    
     padding: 20px 40px 5px; 
 }
 
@@ -214,12 +205,13 @@ main {
 }
 
 .page-wrapper .bottom-div .article-details {
+    height: 400px;
     width: 100%;
-    height: 300px;
     overflow-y: scroll;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .page-wrapper .bottom-div .article-details-card {
@@ -244,6 +236,21 @@ main {
 
 .page-wrapper .bottom-div .article-details-card div {
     margin-bottom: 10px;
+}
+
+.page-wrapper .bottom-div .article-details-card .div-btn {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-wrapper .bottom-div .article-details-card .div-btn a {
+    background: #bb8a04;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 20px;
 }
 
 /* @media only screen and (max-width: 1270px) {

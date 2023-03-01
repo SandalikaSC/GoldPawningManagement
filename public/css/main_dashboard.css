@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
 
 *{
     margin:0;
@@ -6,9 +9,10 @@
 }
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
+    overflow-x:hidden;
 }
 
 .page{
@@ -55,8 +59,8 @@ body{
 }
 
 .page .left .profile .profile-pic img{
-    width:100px;
-    height:100px;
+    width:150px;
+    height:150px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -169,7 +173,7 @@ body{
 }
 
 .vogue {
-    animation-name: logo;
+    /* animation-name: logo; */
     animation-duration:18s;
     width: 200px;
     animation-iteration-count: infinite;

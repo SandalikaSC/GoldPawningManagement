@@ -11,7 +11,7 @@ window.onload = function () {
 function func() {
     let dashboard_btn = document.getElementById("title");
     var txt = dashboard_btn.innerHTML;
-    console.log(txt);
+    // console.log(txt);
     switch (txt) {
         case "Appointments":
             document.getElementById("appointment").classList.add("dash");

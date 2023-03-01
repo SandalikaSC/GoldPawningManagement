@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('../css/Pawn-pay.css');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif; 
+}
+
+  
+
+
+/*  article */
+.wrapper{
+    flex-direction: column; 
+    overflow-y: scroll;
+} 
+.back{
+    width: 40px;
+} 
+.payment-info{
+    position: relative;
+}
+.profile-pic{
+    /* height: 50%;
+    width: 50%; */
+    border-radius: 100%;
+    border: 2px solid #bb8a04;
+    width: 100%;
+}
+.div-img{
+    border-radius: 100%;
+    /* border: 1px solid #bb8a04; */
+    /* height: 50%; */
+    width: 50%;
+    overflow: hidden;
+    
+}
+.card-info hr{
+    background-color: #bb8a04;
+    height: 2px;
+}
+.tag{
+    color: white;
+    border-radius: 20px;
+    padding: 2% 10%;
+    font-size: 1rem;
+  }
+  .green{
+    background-color: rgba(71, 219, 71, 0.811);
+  }
+  .gold{
+    background-color: #bb8a04ce;
+  }

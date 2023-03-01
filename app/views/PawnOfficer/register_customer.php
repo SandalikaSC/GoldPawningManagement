@@ -53,13 +53,13 @@
                     </div> 
                     <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span>                   
                 </div>
-                <div class="form-wrap">
+                <!-- <div class="form-wrap">
                     <label>Date of Birth</label>
                     <div class="fullname">
                         <input type="date" name="dob" class="<?php echo (!empty($data['dob_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['dob']; ?>">
                     </div>      
                     <span class="invalid-feedback"><?php echo $data['dob_err']; ?></span>              
-                </div>
+                </div> -->
                 <div class="form-wrap">
                     <label>Gender</label>
                     <div class="gender">                        

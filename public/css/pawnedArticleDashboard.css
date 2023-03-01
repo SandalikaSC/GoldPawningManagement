@@ -1,0 +1,403 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins';
+    display: flex;
+    overflow-y: hidden;
+}
+
+.page{
+    display:flex;
+    width: 100%;
+    height:100vh;
+}
+
+.left{
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 20px 10px;
+    border-radius: 0 25px 25px 0;
+    position: relative;
+    transition: all 0.7s ease;
+    overflow-y: hidden;
+    z-index: 7;
+}
+
+.hide{
+   display: none;
+}
+
+.profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile p{
+    padding-top: 10px;
+}
+
+.page .left .profile .profile-pic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page .left .profile .profile-pic img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+.btn-set .dash{
+    border: 2px solid #BB8A04;
+    background-color: white;
+}
+
+.btn-set .dash p{
+    color:#BB8A04;
+}
+
+.btn-set .staf p{
+    color: #BB8A04;
+
+}
+
+.btn-set .staf{
+    border: 2px solid #BB8A04;
+    background-color: white;
+}
+
+.btn-set a{
+    padding: 10px 20px;
+    background-color: #212121;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+.btn-set a img{
+    width:40px;
+    padding-right: 15px;
+}
+
+
+.page .left .profile .name{
+    color: white ;
+}
+
+.btn-set p{
+    color: white;
+}
+
+.btn-set a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.btn-set a:hover{
+    opacity: 0.5;
+}
+
+.left .lgout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left .lgout a{
+    text-decoration: none;
+    font: bold;
+    color: #BB8A04;
+    font-size: large;
+    border: 2px solid #BB8A04;
+    padding: 5px 50px;
+    border-radius: 20px;
+}
+
+
+
+
+.right{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    position:relative;
+}
+
+.right-heading{
+    padding: 15px 15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    position: sticky;
+    top: 0; 
+    background-color: rgba(255, 255, 255, 0.669);
+    backdrop-filter: blur(15px);
+    z-index: 8;
+    
+}
+
+.right-side h1{
+    border-bottom: 2px solid #BB8A04;
+    margin: 0 20px;
+}
+
+.right-side .backbtn img{
+    height: 40px;
+    width:50px;
+ }
+
+@keyframes logo {
+    0%   {transform: rotateY(0);}
+    50%  {transform: rotateY(360deg);}
+    100%  {transform: rotateY(0);}
+    /* 100% {transform: rotateZ(0);} */
+}
+
+.vogue {
+    /* animation-name: logo; */
+    animation-duration:18s;
+    width: 200px;
+    animation-iteration-count: infinite;
+}
+
+.right-side{
+    display: flex;
+}
+
+
+.bars img{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.bars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    cursor: pointer;
+}
+
+
+
+/* for search bar */
+.search{
+    display: flex;
+    margin: 30px;
+} 
+
+ input[type=text] {
+    width: 140px;
+    box-sizing: border-box;
+    border: 2px solid #BB8A04;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('http://localhost/vogueMy/public/img/search-icon.png');
+    background-repeat: no-repeat;
+    padding: 12px 20px 15px 50px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    width: 200%;
+  }
+
+.search-bar>input::placeholder {
+    color: rgba(82, 82, 82, 0.608);
+}
+
+
+
+
+
+
+
+
+
+
+
+.table{
+    margin:0 10px 0 10px;
+}
+
+/* locker table */
+.table-section{
+    height:520px;
+    overflow: auto;
+    padding: 0 5px 10px 5px;
+    
+}
+
+table{
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+#myTable img{
+    width:100px;
+}
+
+tbody img{
+    width:20px;
+    height:40px;
+}
+
+thead th{
+    position: sticky;
+    top: 0;
+    background-color: #f6f9fc;
+    color: black;
+    font-size: 15px;
+    padding:20px;
+}
+
+th,td{
+    padding: 10px 20px;
+    word-break: break-all;
+    text-align: center;
+}
+
+button{
+    padding: 10px;
+}
+
+
+
+tr:hover td{
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+    transition:all 0.5s;
+    
+}
+
+
+td a:nth-child(1){
+    text-decoration: none;
+    border: 2px solid #BB8A04;
+    color: white;
+    border-radius: 20px;
+    padding: 2px 12px;
+    background-color: #BB8A04;
+}
+
+
+::-webkit-scrollbar{
+    height:5px;
+    width:5px;
+}
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb{
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+
+
+
+
+@media screen and (max-width:1076px) {
+    .vogue {
+        animation: none;
+        width: 100px;
+    }
+    .right-side h1{
+        font-size: large;
+        margin: 0 10px ;
+    }
+
+    .right-side .backbtn img{
+        height: 30px;
+        width:40px;
+     }
+     
+    .left{
+        height: 94vh;
+        z-index: 60;
+        position: absolute;
+        margin-top: 55px;
+        border-radius: 0;
+    }
+ 
+    .right{
+        padding-left: 15px;
+    }
+
+    .bars img{
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+    
+}
+
+@media screen and (max-width:670px) {
+    .vogue {
+        animation: none;
+        width: 100px;
+    }
+    .right-side h1{
+        font-size: large;
+        margin: 0 10px ;
+    }
+
+
+    .left{
+        height: 94vh;
+        z-index: 60;
+        position: absolute;
+        margin-top: 55px;
+        border-radius: 0;
+    }
+ 
+    .right{
+        padding-left: 15px;
+    }
+
+    .bars img{
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+    
+}
+
+
+
+
+.profile-hidden{
+    filter:brightness(50%);
+    cursor:pointer;
+}
+
+.hidden{
+    display:none;
+}

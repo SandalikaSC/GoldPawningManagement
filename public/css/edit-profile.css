@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
 *{
     margin:0;
     padding:0;
@@ -5,8 +8,7 @@
 }
 
 body{
-    font:bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
 }
@@ -15,6 +17,8 @@ body{
     display:flex;
     width: 100%;
     height:100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .right{
@@ -55,7 +59,7 @@ body{
 }
 
 .vogue {
-    animation-name: logo;
+    /* animation-name: logo; */
     animation-duration:18s;
     width: 200px;
     animation-iteration-count: infinite;
@@ -80,41 +84,47 @@ body{
 
 
 /* with respect to the form */
+.content-edit-profile-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
 .all{
     display: flex;
-    margin-left: 70px;
+    /* margin-left: 70px; */
 } 
 .section_left{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     border-right: 2px solid #B47D00;
+    /* align-items: center; */
+    justify-content: space-evenly;
   
   }
   
   
   .big-form{
       display: flex;
-      align-items: center;
-      justify-content: center;
       border: 2px solid #B47D00;
       border-radius: 20px;
       position: relative;
-      padding:80px 10px 10px 20px;
-      margin-bottom: 60px;
-      margin-top: 80px;
+      padding:100px 10px 10px 10px;
+      /* margin-bottom: 60px; */
+      margin-top: 50px;
   }
   
   .big-form .profile-pic{
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
       object-fit: cover;
       border: 2px solid #B47D00;
       border-radius: 50%;
       position: absolute;
       z-index: 2;
 
-      left: 360px;
+      left: 365px;
       top: -80px;
   }
 
@@ -127,6 +137,7 @@ body{
   .section_right{
       display: flex;
       flex-direction: column;
+    
   }
   
   .form-group{
@@ -137,10 +148,9 @@ body{
      
   }
   
-  .form-group span{
+  .form-group .field-value{
       display: flex;
-      justify-content: center;
-      align-items: center;
+       margin-left: 20px;
        width: 250px;
        box-sizing: border-box;
   }
@@ -151,28 +161,35 @@ body{
     margin: 0;
 }
 
-.form-group .address span{
+/* .form-group .address span{
       padding:0;
 
-  }
+  } */
 
   
-  .two-btns{
+  .three-btns{
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      /* align-items: center;
-      justify-content: center; */
-      margin-top: 70px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 150px;
       margin-left: 50px;
+      
   }
   
-  .two-btns .edit_profile{
-    width: 200px;
+  .three-btns .edit-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+  }
+  .edit-profile a{
     font-weight: 500;
     font-size: large;
     margin: 10px ;
-    padding: 5px 40px;
+    padding: 3px 45px;
     background-color: #B47D00;
     border-radius: 20px;
     border: 4px solid #B47D00;
@@ -180,8 +197,14 @@ body{
     text-decoration: none;
   }
   
-  .two-btns .edit_password{
-      width: 200px;
+  .three-btns .edit-password{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+      /* width: 200px; */
+    }
+    
+    .edit-password button{
       font-weight: 500;
       font-size: large;
       margin: 10px ;
@@ -191,19 +214,27 @@ body{
       border: 4px solid #B47D00;
       color: white;
       text-decoration: none;
+
   }
   
-  .two-btns .edit_email{
-    width: 200px;
+  .three-btns .edit-email{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 200px; */
+}
+
+.edit-email button{
     font-weight: 500;
     font-size: large;
     margin: 10px ;
-    padding: 5px 35px;
+    padding: 5px 50px;
     background-color: #B47D00;
     border-radius: 20px;
     border: 4px solid #B47D00;
     color: white;
     text-decoration: none;
+    
 }
 
 

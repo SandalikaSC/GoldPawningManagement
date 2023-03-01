@@ -6,6 +6,9 @@
   /* font-family: "Poppins", sans-serif; */
 }
 
+body{
+    overflow: hidden;
+}
  
 .center {
     margin: auto;
@@ -66,8 +69,9 @@
 .form{
     height: 80%;
     position: absolute;
-    display: flex;
-    flex-direction: column;
+    display: flex; 
+    flex-direction: column; 
+    /* display: none; */
 }
  .login-Img{ 
      width: 35%;  
@@ -157,3 +161,36 @@
     font-size: 1vw;
  
 }
+.forget-pw,.otp{
+    height: 60%;
+    position: absolute;
+    /* display: flex;  */
+    flex-direction: column;
+    display: none;
+}
+.p{
+    cursor: pointer;
+}
+.p:hover{
+    color: #f2b81b;
+    font-weight: 300;
+
+}
+ 
+ .h3{
+    font-size: 1rem;
+    text-align: center;
+ }
+ .wrapper,.set-pw{
+    display: flex;
+    flex-direction: column;
+ }
+ .set-pw{
+   border: solid 2px #bb8a04;
+   border-radius: 20px;
+   padding: 5% ;
+   margin: 5% 30%;
+ }
+ .set-pw input,.p{
+    margin: 2% auto;
+ }

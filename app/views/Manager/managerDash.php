@@ -8,12 +8,22 @@
     <title><?php echo SITENAME ?></title>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mgmain_dashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mggold-rates.css">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
 </head>
 
-<body>
+<body>  
     <div class="page">
+        <?php include_once 'sendReplyForm.php';?>
+
+        <?php
+        if (!empty($_SESSION['message'])) {
+          
+            include_once 'success.php';
+         
+        } 
+        ?>
+
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
@@ -26,7 +36,7 @@
 
                 </div>
                 <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
+                    <p><?php echo $_SESSION['user_name']?></p>
                 </div>
             </div>
             <div class="btn-set">
@@ -63,59 +73,147 @@
                     </div>
                     <h1>Dashboard</h1>
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
+                <div class="dashboard-items">
+                    <div class="item-count">
+                        <div class="count-card">
+                            <div class="card-topic">
+                                <div class="name">Customer</div>
+                                <div class="card-logo">
+                                    <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
+                                </div>
 
-                
+                            </div>
+                            <div class="vk-count">85</div>
+                        </div>
+                        <div class="count-card">
+                            <div class="card-topic">
+                                <div class="name">Employee</div>
+                                <div class="card-logo">
+                                    <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
+                                </div>
+                            </div>
+                            <div class="count">
+                                <div class="vk-count">
+                                    <div class="vk">VK:</div>
+                                    <div class="vk-c">10</div>
+                                </div>
+                                <div class="vk-count">
+                                    <div class="vk">GA:</div>
+                                    <div class="vk-c">10</div>
+                                </div>
+                                <div class="vk-count">
+                                    <div class="vk">ST:</div>
+                                    <div class="vk-c">10</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="count-card">
+                            <div class="card-topic">
+                                <div class="name">Pawned Article</div>
+                                <div class="card-logo">
+                                    <img src="<?php echo URLROOT ?>/img/golden_pawned_article.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="vk-count">500</div>
+                        </div>
+                        <div class="count-card">
+                            <div class="card-topic">
+                                <div class="name">Auction Article</div>
+                                <div class="card-logo">
+                                    <img src="<?php echo URLROOT ?>/img/golden_auction.png" alt="">
+                                </div>
+                            </div>
+                            <div class="vk-count">60</div>
+                        </div>
+                        <div class="count-card">
+                            <div class="card-topic">
+                                <div class="name">Locker</div>
+                                <div class="card-logo">
+                                    <img src="<?php echo URLROOT ?>/img/golden_locker.png" alt="">
+                                </div>
+                            </div>
+                            <div class="alloc-not-count lc-card">
+                                <div class="count">
+                                    <div class="vk-count">10</div>
+                                    <div class="vk-count">Out Of</div>
+                                    <div class="vk-count">100</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="current-gold-rates">
-                        <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large; font-weight: 600;">Gold Rates</label>
+                        <div class="topic-gold-rates">
+                            <label>Gold Rates</label>
+                        </div>
+
                         <div class="gold-rates">
                             <div class="col1">
                                 <div class="gold-rate-card">
-                                    <label><?php echo $data[0]->Karatage ?>K</label>
-                                    <p><?php echo $data[0]->Price ?></p>
+                                    <label><?php echo $data[0][0]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][0]->Price ?></p>
                                 </div>
                                 <div class="gold-rate-card">
-                                    <label><?php echo $data[1]->Karatage ?>K</label>
-                                    <p><?php echo $data[1]->Price ?></p>
-                                </div>
-                            </div>
-                            <div class="col2">
-                                <div class="gold-rate-card">
-                                    <label><?php echo $data[2]->Karatage ?>K</label>
-                                    <p><?php echo $data[2]->Price ?></p>
-                                </div>
-                                <div class="gold-rate-card">
-                                    <label><?php echo $data[3]->Karatage ?>K</label>
-                                    <p><?php echo $data[3]->Price ?></p>
+                                    <label><?php echo $data[0][1]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][1]->Price ?></p>
                                 </div>
                             </div>
                             <div class="col3">
                                 <div class="loan-interest">
-                                    <label for="">24%</label>
+                                    <label><?php echo $data[1]->Interest_Rate ?>%</label>
                                     <p>Interest</p>
+                                </div>
+                            </div>
+                            <div class="col2">
+                                <div class="gold-rate-card">
+                                    <label><?php echo $data[0][2]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][2]->Price ?></p>
+                                </div>
+                                <div class="gold-rate-card">
+                                    <label><?php echo $data[0][3]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][3]->Price ?></p>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                
-                <div class="complaint-chart">
-                    <div class="chart">
-                        <label class="gold-rate-topic" style="color: black; border-bottom: 2px solid #BB8A04; font-size: large;font-weight: 600;">Income and Expenditure</label>
-                        <div class="graph" style="width:100%;">
-                            <canvas id="myChart"></canvas>
+
+                    <div class="complaint-chart">
+                        <div class="chart">
+                            <div class="topic-income">
+                                <label>Income and Expenditure</label>
+                            </div>
+
+                            <div class="graph">
+                                <canvas id="myChart"></canvas>
+                            </div>
                         </div>
-                    </div>
-                    <div class="complaint">
-                        <label class="gold-rate-topic" style="color: black; margin-bottom:20px; border-bottom: 2px solid #BB8A04; font-size: large;font-weight: 600;">Income and Expenditure</label>
-                        <div class="graph" style="width:100%;">
-                            <canvas id="Chart"></canvas>
+                        <div class="complaint-tab">
+                            <div class="topic">
+                                <label>Complaints</label>
+                                <div class="search">
+
+                                    <div class="search-bar">
+                                        <input type="text" id="myInput" name="search_input" onkeyup="myFunction()" placeholder="DATE.." />
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id="myDiv" class="graph complaint-sec">
+            
+                                <?php include_once 'viewComplaints.php'; ?>
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
+
 
             </div>
         </div>
@@ -131,12 +229,12 @@
         data: {
             labels: xValues,
             datasets: [{
-                data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
-                borderColor: "red",
+                data: [10, 40, 30, 21, 50, 35, 90, 80, 90, 15, 100, 1],
+                borderColor: "#BB8A04",
                 fill: false
             }, {
                 data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
-                borderColor: "blue",
+                borderColor: "black",
                 fill: false
             }]
         },
@@ -151,32 +249,25 @@
     });
 </script>
 
+
 <script>
-    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
-
-    new Chart("Chart", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120],
-                borderColor: "red",
-                fill: false
-            }, {
-                data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
-                borderColor: "blue",
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                display: false
-            }
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    di = document.getElementById("myDiv");
+    li = di.getElementsByTagName("section");
+    for (i = 0; i < li.length; i++) {
+        a=li[i];
+        // a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
         }
-
-    });
+    }
+}
 </script>
 
 </html>

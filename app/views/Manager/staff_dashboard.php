@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo SITENAME ?></title>
+    <title><?php echo SITENAME ?></title><link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/staff_dashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/staff_table.css">
 </head>
@@ -13,7 +13,8 @@
 <body>
     <?php
        if (!empty($data[1] && $data[1] == 'success')) {
-           include_once URLROOT.'/Manager/add-success.php';
+        //    include_once URLROOT.'/Manager/add-success.php';
+            include_once 'add-success.php';
         } elseif (!empty($data[1] && $data[1] == 'delsuccess')) {
             include_once 'del-success.php';
         } else if (!empty($data[1] && $data[1] == 'unsuccess')) {
@@ -60,7 +61,7 @@
                 </a>
             </div>
             <div class="lgout">
-                <a href="<?php echo URLROOT ?>/mgLogout">Logout</a>
+                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
             </div>
         </div>
         <div class="right">
@@ -74,7 +75,7 @@
                     </h1>
                     <a href="<?php echo URLROOT ?>/mgDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="inside-page">
                 <div class="add-new-and-search">

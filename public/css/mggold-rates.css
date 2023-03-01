@@ -1,50 +1,51 @@
 
-        /* .inside-page{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-    
-        } */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+      
 
         .current-gold-rates{
            background-color: white ;
-           padding:20px;
-           margin: 20px;
+           padding:10px;
            border-radius: 20px;
-
+           /* border: 2px solid goldenrod; */
+           font-family: 'Poppins';
+           box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
         }
+
         .gold-rates{
             display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 10px;
-            margin-top: 10px;
-            /* background-color: #E5E5E5; */
-            margin-bottom: 20px;
+        
         }
 
         .gold-rates .col1{
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
         }
-
+        
         .gold-rates .col2{
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
         }
-
+        
         .gold-rates .col3{
             display: flex;
+            /* margin: 0 30px; */
             justify-content: center;
             align-items: center;
         }
         .gold-rate-card{
             display: flex;
+            flex-direction: column;
             align-items: center;
             max-width: 300px;
             border: 2px solid #c39823;
             border-radius: 10px;
             background-color: #FFE499;
-            padding: 20px;
-            margin:20px 30px;
+            padding: 5px 10px;
+            margin: 0 25px;
         }
 
         .col3 .loan-interest{
@@ -52,9 +53,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 150px;
-            height: 150px;
-            padding: 60px;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
             margin: 0 20px; 
             border: 2px solid #c39823;
             border-radius: 100%;
@@ -62,26 +63,26 @@
         }
 
         .gold-rate-card label{
-            font-size: x-large;
+            font-size: large;
             font-weight: 600;
             padding: 0 10px;
-            border-right: 4px solid #c39823;
+            border-bottom: 4px solid #c39823;
         }
 
         .gold-rate-card p{
-            font-size: x-large;
+            font-size: large;
             font-weight: 600;
             padding: 5px 10px;
         }
 
         .loan-interest label{
-            font-size: x-large;
+            font-size: large;
             font-weight: 600;
             
         }
 
         .loan-interest p{
-            font-size: x-large;
+            font-size: large;
             font-weight: 600; 
         }
     

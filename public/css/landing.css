@@ -224,7 +224,10 @@ body {
   position: relative;
   background-color: white;
   box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
-
+  opacity: 0.9;
+  position: fixed;
+  width: 100vw;
+  z-index: 11  ;
 }
 
 .site-header__start {
@@ -290,6 +293,7 @@ body {
   display: block;
   padding: 0.5rem 2rem
 }
+ 
 .active{
   border: 2px solid #bb8a04;
     border-radius: 1em;
@@ -365,7 +369,7 @@ body {
   position: relative;
   z-index: 3;
   padding: 5rem 9rem 0 0;
-  text-align: right;
+  text-align: right;  
 }
 
 .sectiontopic {
@@ -743,3 +747,198 @@ b{
   flex-direction: column;
   justify-content: space-evenly; 
 }
+
+  
+
+
+
+ 
+.accordion{
+  padding: 4% 15% 4%;
+}
+
+.accordion .accordion-item {
+  
+  padding:1%; 
+  
+} 
+.accordion h2 {
+  position: relative; 
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: #d9b654; 
+}
+.accordion h2:hover, .accordion h2:focus {
+  cursor: pointer; 
+}
+.accordion h2:hover::after, .accordion h2:focus::after {
+  cursor: pointer; 
+}
+.accordion h2 .accordion-title {
+  padding: 1em 1.5em 1em 0;
+}
+.accordion h2 .icon {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid;
+  border-radius: 22px;
+  margin:2%;
+}
+ 
+.accordion h2 .icon::before {
+  display: block;
+  position: absolute;
+  content: "";
+  top: 9px;
+  left: 5px;
+  width: 10px;
+  height: 2px;
+  background: currentColor;
+}
+.accordion h2 .icon::after {
+  display: block;
+  position: absolute;
+  content: "";
+  top: 5px;
+  left: 9px;
+  width: 2px;
+  height: 10px;
+  background: currentColor;
+} 
+.accordion h2[aria-expanded=true] .icon::after {
+  width: 0;
+}
+.accordion h2[aria-expanded=true] + .accordion-content {
+  opacity: 1;
+  max-height: 0%;
+  transition: all 200ms linear;
+  will-change: opacity, max-height;
+}
+.accordion .accordion-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 200ms linear, max-height 200ms linear;
+  will-change: opacity, max-height;
+  border: 1px solid #bb8a04;
+ 
+}
+.accordion .accordion-content p {
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0px;
+  margin-top: 10px;
+  padding: 2% 3%;
+  /* font-family: 'Open Sans', sans-serif; */
+}
+.question{
+  /* border: 1px solid black; */
+    padding: 2%;
+
+}
+.sub-title{
+  font-size: 2rem;
+  text-align: center; 
+}
+.sec-sub-title{
+  font-size: 1rem;
+  color: #777;
+  text-align: center;
+  margin-top: 2%;
+   font-weight: 100;
+  
+} 
+
+
+.contact-section{
+  display: flex;
+  display: flex;
+    margin: 2% 0 0 0; 
+    /* background-image: linear-gradient(to right, rgb(255, 255, 255), #bb8a04); */
+    /* border: 1px solid black;   */
+    justify-content: space-around; 
+    background-image: url('../img/tahlia-doyle-i1B8PtxYmoY-unsplash.jpg');
+}
+
+.contact-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.contact-form{
+  display: flex;
+    flex-direction: column;
+    margin: 3% 0;
+    background: white;
+    padding: 3%;
+    border-radius: 45px;
+    border: 1px solid #bb8a04;
+}
+.txt-small{
+  padding: 15% 0;
+}
+
+
+
+
+.form-name {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  ;
+}
+.phone {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.name-input {
+  padding: 4%;
+  border-radius: 10px;
+  margin: 6%;
+  border: solid gray 1px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+.name-input:focus {
+  border: solid 2px #bb8a04;
+  /* height: 20%; */
+}
+
+.info {
+  display: flex; 
+}
+
+.info-lablel {
+  color: gray;
+  padding: 5% 0 5% 5%;
+}
+
+.submit-btn {
+  background: #bb8a04;
+  border-radius: 20px;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 3% 30% 3% 30%;
+  /* margin: auto;*/
+  cursor: pointer;
+}
+.contactUS{
+  width: 25%;
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 45%;
+}   
+/* span{
+  color: red;
+  font-size: 0.8em;
+  margin: auto;
+} */

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
@@ -14,14 +15,16 @@
 </head>
 
 <body>
+    
     <?php
-    if ($data == 'success') {
-        include_once 'errorEmailChanged.php';
-    } else if ($data == 'failed') {
-        include_once "errorEmailChangeFailure.php";
-    } else if ($data == 'emailExist') {
-        include_once 'errorEmailExist.php';
-    }
+    // if ($data == 'success') {
+    //     include_once 'errorEmailChanged.php';
+    // } else if ($data == 'failed') {
+    //     include_once "errorEmailChangeFailure.php";
+    // } else if ($data == 'emailExist') {
+    //     include_once 'errorEmailExist.php';
+    // }
+    
 
     include_once "authentication-for-editprofile.php";
     include_once "manualSetEmail.php";
@@ -30,6 +33,13 @@
     include_once "messagePasswordChangeFailure.php";
     ?>
     <div class="page">
+       <?php
+        if (!empty($_SESSION['message'])) {
+          
+            include_once 'error.php';
+         
+        } 
+        ?>
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
@@ -38,12 +48,10 @@
                         My Profile
                     </h1>
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/Panem Finance Inc 3.png" alt="logo">
+                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
-            <div class="content-add-new-page">
-                <div id="abc">
-
-                </div>
+            <div class="content-edit-profile-page">
+             
                 <div class="all">
                     <section class="big-form">
                         <section class="section_left">
@@ -56,84 +64,145 @@
 
 
                             <div class="form-group">
-                                <label for="fName"><b>First Name:</b></label>
-                                <span name="fName" id="fName"><?php echo $data[0]->First_Name ?></span>
+                                <div class="field-label">
+                                    <label for="fName"><b>First Name :</b></label>
+                                </div>
+                                 <div class="field-value">
+                                     <span name="fName" id="fName"><?php echo $data[0]->First_Name ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="lName"><b>Last Name:</b></label>
-                                <span name="lName" id="lName"><?php echo $data[0]->Last_Name ?></span>
+                                <div class="field-label">
+                                    <label for="lName"><b>Last Name :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="lName" id="lName"><?php echo $data[0]->Last_Name ?></span>
+                                </div>
+
                             </div>
 
                             <div class="form-group">
-                                <label for="nic"><b>NIC:</b></label>
-                                <span name="nic" id="nic"><?php echo $data[0]->NIC ?></span>
+                                <div class="field-label">
+                                    <label for="nic"><b>NIC :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="nic" id="nic"><?php echo $data[0]->NIC ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="dob"><b>Date of Birth:</b></label>
-                                <span name="dob" id="dob"><?php echo $data[0]->DOB ?></span>
+                                <div class="field-label">
+                                    <label for="dob"><b>Date of Birth :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="dob" id="dob"><?php echo $data[0]->DOB ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="address"><b>Address:</b></label>
-                                <div class="address">
+                                <div class="field-label">
+                                    <label for="address"><b>Address :</b></label>
+                                </div>
+                                <div class="address field-value">
                                     <span name="address" id="address"><?php echo $data[0]->Line1 ?></span>
-                                    <span name="address" id="address"><?php if($data[0]->Line2==null){echo "Not Available";}else{echo $data[0]->Line2;} ?></span>
-                                    <span name="address" id="address"><?php if (!empty($data[0]->Line3)) {
-                                          echo $data[0]->Line3;
-                                        } else {
-                                          echo "Not Available";
-                                        } ?></span>
+                                    <span name="address" id="address"><?php if($data[0]->Line2==NULL){echo "Not Available";}else{echo $data[0]->Line2;} ?></span>
+                                    <span name="address" id="address"><?php if($data[0]->Line3==NULL){echo "Not Available";}else{echo $data[0]->Line3;} ?></span>
 
                                 </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="email"><b>Email:</b></label>
-                                <span name="email" id="email"><?php echo $data[0]->email ?></span>
+                                <div class="field-label">
+                                    <label for="email"><b>Email :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="email" id="email"><?php echo $data[0]->email ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="gender"><b>Gender:</b></label>
-                                <span name="gender" id="gender"><?php echo $data[0]->Gender ?></span>
+                                <div class="field-label">
+                                    <label for="gender"><b>Gender :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="gender" id="gender"><?php echo $data[0]->Gender ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="mob-no"><b>Mobile Number1:</b></label>
+                                <div class="field-label">
+                                    <label for="mob-no"><b>Mobile Number1 :</b></label>
+                                </div>
+                                <div class="field-value">
                                 <span name="mob-no" id="mob-no"><?php if (!empty($data[0]) && !empty($data[1])) {
                                           echo $data[1]->phone;
                                         } else if (!empty($data[0]) && empty($data[1])) {
                                           echo $data[0]->phone;
                                         } ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="home-no"><b>Additional Number:</b></label>
+                                <div class="field-label">
+                                    <label for="home-no"><b>Additional Number :</b></label>
+                                </div>
+                                <div class="field-value">
                                 <span name="mob-no2" id="mob-no2"><?php if (!empty($data[0]) && !empty($data[1])) {
                                           echo $data[0]->phone;
                                         } else if (!empty($data[0]) && empty($data[1])) {
                                           echo "Not Available";
                                         } ?></span>
+                                </div>
+
                             </div>
 
 
                         </section>
                         <section class="section_right">
                             <div class="form-group">
-                                <label for="created_on"><b>Created On:</b></label>
-                                <span name="created_on" id="created_on"><?php echo $data[0]->Created_date ?></span>
+                                <div class="field-label">
+                                    <label for="created_on"><b>Created On :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="created_on" id="created_on"><?php echo $data[0]->Created_date ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="created_by"><b>Created By:</b></label>
-                                <span name="created_by" id="created_by"><?php if($data[0]->Created_By==null){echo "Not Available";}else{echo $data[0]->Created_By;} ?></span>
+                                <div class="field-label">
+                                    <label for="created_by"><b>Created By :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="created_by" id="created_by"><?php if($data[0]->Created_By==null){echo "Not Available";}else{echo $data[0]->Created_By;} ?></span>
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <label for="last_edit"><b>Last Edit:</b></label>
-                                <span name="last_edit" id="last_edit">2022/10/11</span>
+                                <div class="field-label">
+                                    <label for="last_edit"><b>Last Edit :</b></label>
+                                </div>
+                                <div class="field-value">
+                                    <span name="last_edit" id="last_edit"><?php echo $data[0]->last_edit ?></span>
+                                </div>
+
                             </div>
 
                         </section>
                         <img src="<?php echo URLROOT ?>/img/onEditPage.png" alt="avatar" class="avatar">
                     </section>
 
-                    <div class="two-btns">
-                        <a href="<?php echo URLROOT ?>/mgEditProfile/editProfileDetails" class="edit_profile">Edit Profile</a>
-                        <button id="edit_email" class="edit_email">Edit Email</button>
-                        <button id="edit_password" class="edit_email">Edit Password</button>
+                    <div class="three-btns">
+                        <div class="edit-profile">
+                            <a href="<?php echo URLROOT ?>/mgEditProfile/editProfileDetails">Edit Profile</a>
+                        </div>
+                        <div class="edit-email">
+                            <button id="edit_email">Edit Email</button>
+                        </div>
+                        <div  class="edit-password">
+                            <button id="edit_password">Edit Password</button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -156,9 +225,9 @@
 
     otpbtn.addEventListener('click', () => {
         fetch('<?php echo URLROOT ?>/mgEditProfile/sendOTP')
-            .then(res => res.text())
-            .then(data => data.slice(27))
-            .then((data => JSON.parse(data)))
+            .then(data => data.json())
+            // .then(data => data.slice(27))
+            // .then((data => JSON.parse(data)))
             .then(data => {
                 if (data.msg == "ok") {
                     otpbtn.style.display = "none";
@@ -188,9 +257,9 @@
                 method: "post",
                 body: formData
             })
-            .then(res => res.text())
-            .then(data => data.slice(27))
-            .then(data => JSON.parse(data))
+            .then(data => data.json())
+            // .then(data => data.slice(27))
+            // .then(data => JSON.parse(data))
             .then(data => {
                 if (data.msg == "ok") {
                     popupform.style.display = "none";
@@ -225,11 +294,13 @@
                 method: "post",
                 body: formData
             })
-            .then(res => res.text())
-            .then(data => data.slice(27))
-            .then(data => JSON.parse(data))
+            .then(data => data.json())
+            // .then(data => data.slice(27))
+            // .then(data => JSON.parse(data))
             .then(data => {
-                if (data.msg == "ok") {
+                console.log(data.msg);
+                if (data.msg === 1) {
+                    
                     passwordChangeForm.style.display = "none";
                     document.getElementById('password-changed-message-box').style.display = "flex";
                 } else {
@@ -243,9 +314,14 @@
             })
     })
 
-    let donebtn = document.getElementById('done-btn');
+    let donebtn = document.getElementById('donebtn');
     donebtn.addEventListener('click', () => {
-        location.reload();
+        location.reload(true);
+    })
+
+    let Donebtn = document.getElementById('done-btn');
+    Donebtn.addEventListener('click', () => {
+        location.reload(true);
     })
 </Script>
 

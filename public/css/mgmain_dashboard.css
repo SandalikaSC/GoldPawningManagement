@@ -1,4 +1,7 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
 *{
     margin:0;
     padding:0;
@@ -6,9 +9,12 @@
 }
 
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
+    overflow-x:hidden;
+    background-color:  #e8e6e6;
+
 }
 
 .page{
@@ -55,8 +61,8 @@ body{
 }
 
 .page .left .profile .profile-pic img{
-    width:100px;
-    height:100px;
+    width:150px;
+    height:150px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -147,8 +153,10 @@ body{
     align-items: center;
     position: sticky;
     top: 0; 
-    background-color: rgba(255, 255, 255, 0.669);
+    /* background-color: rgba(255, 255, 255, 0.669); */
     backdrop-filter: blur(15px);
+    background-color:  #e8e6e6;
+
     z-index: 8;
     /* margin-bottom: 20px; */
 }
@@ -190,6 +198,9 @@ body{
 }
 
 .bars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 100;
     cursor: pointer;
 }
@@ -197,43 +208,183 @@ body{
 
 .inside-page{
     display: flex;
-    /* min-width: 100%; */
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color:  #ccc;
     align-items: center;
     justify-content: center;
-    /* margin: auto; */
-    /* padding:60px; */
-    height: 100vh;
-    /* overflow-x:hidden; */
-   
+    margin: auto;
+    flex-wrap: wrap;
 }
+
+
+.dashboard-items{
+    display: flex;
+    flex-direction: column;
+}
+
+.item-count{
+    display:flex;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: space-between;
+    width: 100%;
+
+}
+.count-card{
+    display: flex;
+    flex-direction: column;
+    margin:0 0 10px 0;
+    /* border: 1px solid #BB8A04; */
+    border-radius: 10px;
+    padding:20px;
+    width: 200px;
+    background-color: white;
+    box-shadow: 1px 5px 5px 0 black;
+    /* transition: top ease 0.5s; */
+
+}
+
+.count-card:hover{
+    margin-top: -10;
+}
+
+/* .lc-card{
+    margin-right: 0;
+} */
+
+.card-topic{
+  display: flex;
+  justify-content: space-between;
+  /* margin-bottom: 10px;   */
+}
+
+.vk-count{
+    font-style: oblique;
+}
+
+.card-topic .name{
+    font-weight: bold;
+}
+
+
+.count{
+    display: flex;
+}
+
+.vk-count{
+    display: flex;
+    margin:5px;
+}
+
+
+
+
 
 .complaint-chart{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* margin: auto; */
+    margin-top: 10px;
+    
 
 }
-
-.complaint-chart .complaint{
-    padding: 50px;
+.chart{
+    display: flex;
     background-color: white;
-    margin: 10px;
-    border-radius: 20px;
 }
 
+.complaint-chart .complaint-tab{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    float: left;
+    /* border: 2px solid goldenrod;  */
+     border-radius: 20px;
+     background-color: white;
+    box-shadow: 1px 5px 5px 0 black;
+
+}
 .complaint-chart .chart{
-    padding: 50px;
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    float: left;
+    /* border: 2px solid goldenrod; */
     border-radius: 20px;
-    margin: 10px;
+    margin-right: 10px;
+    box-shadow: 1px 5px 5px 0 black;
 
-    /* margin: auto; */
 }
 
+.topic-income{
+   display: flex;
+   /* align-items: center; */
+   justify-content: space-around;
+   padding:10px;
+   /* border-bottom: 1px solid goldenrod; */
+   font-weight: bold;
+   font-size: large;
+   margin-bottom: 5px;
+}
+
+.topic-gold-rates{
+    display: flex;
+    font-weight: bold;
+    font-size: large;
+    margin-left:10px;
+}
+
+.topic{
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-around;
+    /* padding:3px; */
+    /* border-bottom: 1px solid goldenrod; */
+    font-weight: bold;
+    font-size: large;
+    margin-bottom: 5px;
+ }
+
+.topic .search{
+    display: flex;
+}
+
+.graph{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    width: 520px;
+    height:220px;
+}
+
+.complaint-tab .complaint-sec{
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
+input[type=text] {
+    width: 140px;
+    box-sizing: border-box;
+    border: 2px solid #BB8A04;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    /* background-image: url('http://localhost/vogueMy/public/img/search-icon.png'); */
+    /* background-image: url('searchicon.png'); */
+    /* background-position: 10px 10px;  */
+    background-repeat: no-repeat;
+    padding: 15px 20px 15px 10px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    width: 100%;
+  }
+
+.search-bar>input::placeholder {
+    color: rgba(82, 82, 82, 0.608);
+}
 
 @media screen and (max-width:670px) {
     .vogue {

@@ -23,4 +23,63 @@
 
             return $row;
         }
+
+        public function getLastArticleId() {
+            $sql = 'SELECT id FROM validation_articles ORDER BY id DESC LIMIT 1';
+            $this->db->query($sql);
+            $result = $this->db->single();
+
+            if(empty($result)) {
+                return 'A000';
+            } else {
+                return $result->id;
+            }
+        }
+
+        // public function findCustomerByNic($nic) {
+        //     $this->db->query('SELECT UserId FROM user WHERE NIC = :nic ');
+        //     // Bind value
+        //     $this->db->bind(':nic', $nic);
+
+        //     $row = $this->db->single();
+
+            
+        // }
+
+        public function getCustomerByNIC($nic) {
+            $this->db->query('SELECT * FROM user INNER JOIN phone ON user.UserId=phone.userId WHERE user.NIC = :nic && type = "Customer"');
+            $this->db->bind(':nic', $nic);
+
+            $row = $this->db->single();
+
+            // Check row
+            if ($row) {
+                $customer = $row;
+                // return $row->UserId;
+                return $customer;
+            } else {
+                return false;
+            }
+        } 
+
+        // Add Article
+        public function addArticle($data) {
+            $article_id = $this->getLastArticleId();
+            ++$article_id;
+
+            $this->db->query('INSERT INTO validation_articles (id, article_type, customer, image, pawn_officer, gold_appraiser) VALUES(:article_id, :type, :customer, :image, :pawn_officer, :gold_appraiser)');
+
+            $this->db->bind(':article_id', $article_id);
+            $this->db->bind(':type', $data['type']);
+            $this->db->bind(':image', $data['image']);
+            $this->db->bind(':pawn_officer', $data['pawn_officer']);
+            $this->db->bind(':customer', $data['customer']);
+            $this->db->bind(':gold_appraiser', 'GA001');
+
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
