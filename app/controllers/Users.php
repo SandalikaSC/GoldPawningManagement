@@ -460,15 +460,16 @@ class Users extends Controller
 
   public function verifyOTP()
   {
-    if (isset($_POST["otp"])) {
-      $otp = $_POST["otp"];
-      if ($_SESSION['OTP'] == $otp) {
-        unset($_SESSION['OTP']);
-        $this->view('pages/changePassword');
-      } else { 
-        redirect('/Users');
-      } 
-    }
+    $this->view('pages/changePassword');
+    // if (isset($_POST["otp"])) {
+    //   $otp = $_POST["otp"];
+    //   if ($_SESSION['OTP'] == $otp) {
+    //     unset($_SESSION['OTP']);
+    //     $this->view('pages/changePassword');
+    //   } else { 
+    //     redirect('/Users');
+    //   } 
+    // }
   }
 
 
