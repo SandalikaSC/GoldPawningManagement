@@ -16,7 +16,7 @@
     </div>
 
     <form class="set-pw center">
- 
+
         <p class="p">Current password</p>
         <input type="password" name="current-pw" id="current-pw" class="input" value="" />
         <span class="invalid-feedback" id="current-pw-err"> </span>
@@ -30,10 +30,25 @@
 
 
         <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
-        <input type="button" name="Reset-Password" onclick="" value="Reset Password" class="button">
+        <input type="button" name="Reset-Password" onclick="confirmPaswsword()" value="Reset Password" class="button">
 
     </form>
+    <script>
+        function confirmPaswsword() {
+            document.getElementById("new-pw-err").innerHTML = "";
+            document.getElementById("confirm-pw-err").innerHTML = "";
+            var password = document.getElementById('new-pw').value;
+            var confirmpassword = document.getElementById('confirm-pw').value;
+            if (password === "") {
+                document.getElementById("new-pw-err").innerHTML = "Please enter password";
+            } else if (confirmpassword === "") { 
+                document.getElementById("confirm-pw-err").innerHTML = "Please confirm password";
+            } else if (password !== confirmpassword) {
+                document.getElementById("confirm-pw").value = ""; 
+            }
 
+            // console.log(password + " " + confirmpassword);
+
+        }
+    </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>
-
-    

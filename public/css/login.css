@@ -186,7 +186,8 @@ body{
     flex-direction: column;
  }
  .set-pw{
-   border: solid 1px #bb8a04;
+   border: solid 2px #bb8a04;
+   border-radius: 20px;
    padding: 5% ;
    margin: 5% 30%;
  }
