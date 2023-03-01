@@ -1,6 +1,3 @@
-<<<<<<< HEAD
- <!DOCTYPE html>
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +87,6 @@
 
 
 <!DOCTYPE html>
->>>>>>> 7fff66737879cddbbfefec9215412112b77b861d
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -110,13 +106,8 @@
  navbar -->
 <!-- <nav>
     <h1>Gold Price</h1>
-<<<<<<< HEAD
-    <img width="100" src="<?php echo URLROOT ?>/img/logo.png" class="logo" alt="logo">
-</nav>
-=======
     <img width="48" src="./img/logo.png" class="logo" alt="logo">
 </nav> -->
->>>>>>> 7fff66737879cddbbfefec9215412112b77b861d
 
 
 
@@ -124,64 +115,48 @@
 <!-- <aside class="sidebar">
         <div class="sidebar_header">
             <div class="profile_image">
-                <img width="100" src="<?php echo URLROOT ?>/img/profile.jpg" alt="profile">
+                <img width="100" src="img/profile.jpg" alt="profile">
             </div>
             <p><?php echo $_SESSION['user_name']; ?></p>
         </div>
 
         <div class="link">                    
-            <a class="active" href="<?php echo URLROOT ?>/adDashboard/index">
-                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/home-gold.png"> 
+            <a href="./index.php">
+                <img width="24" class="page-btn-img" src="./img/home.png"> 
                 <p>Dashboard</p>
             </a>
             
-            <a href="<?php echo URLROOT ?>/adpawnarticale/index">
-            <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/articale.png"> 
+            <a href="./pawnarticales.php">
+            <img width="24" class="page-btn-img" src="./img/articale.png"> 
                 <p>Pawn Articles</p>
             </a>
 
-            <a href="<?php echo URLROOT ?>adlocker/index">
-                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/locker1.png">
+            <a href="./locker.php">
+                <img width="24" class="page-btn-img" src="./img/locker.png">
                 <p>Locker</p>
             </a>
 
-            <a href="<?php echo URLROOT ?>/adstaff/index">
-                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/staff1.png">
+            <a href="./staff.php">
+                <img width="24" class="page-btn-img" src="./img/staff.png">
                 <p>Staff</p>
             </a>
             
-            <a href="<?php echo URLROOT ?>/admarket/index">
-                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/payment.png">
+            <a href="./market.php">
+                <img width="24" class="page-btn-img" src="./img/payment.png">
                 <p>Market</p>
             </a>
 
-            <a href="<?php echo URLROOT ?>/Goldprices/index">
-                <img width="24" class="page-btn-img" src="<?php echo URLROOT ?>/img/goldprice.png">
+            <a class="active" href="./goldprice.php">
+                <img width="24" class="page-btn-img" src="./img/goldprice.png">
                 <p>Gold Price</p>
             </a>
         </div>
         <div class="sidebar_footer">
-            <a href="<?php echo URLROOT ?>/logout.php">Logout</a>
+            <a href="./logout.php">Logout</a>
         </div>
     </aside>  -->
 
 
-<<<<<<< HEAD
-
-            <div class="card">
-                <div class="karat">
-                    <p><?php echo $goldrate->Karatage?>K</p>
-                </div>
-                <h2>Rs.<?php echo $goldrate->Price?>/-</h2>
-                <p>Last Update</p>
-                <p><?php echo $goldrate->Last_Edit?></p>
-
-                <form  action="<?php echo URLROOT?>/Goldprices/selectRate/<?php echo $goldrate->Rate_Id?>" method="GET">
-                    <button class="editIcon" type="submit" name="edit" value="<?php echo $goldrate->Rate_Id?>">
-                        <img width="24" src="<?php echo URLROOT ?>/img/edit-white.png" alt="edit">
-                    </button>
-                </form>
-=======
     <div class="main-content">
         <header>
             <div class="page-title">
@@ -191,7 +166,6 @@
                     </span>
                 </label>   
                 <h1>Gold Prices</h1> 
->>>>>>> 7fff66737879cddbbfefec9215412112b77b861d
             </div>
                     
             <img src="<?php echo URLROOT . '/img/logo_name.png'; ?>">
@@ -214,30 +188,11 @@
                         <p>Last Update</p>
                         <p><?php echo $goldrate->Last_Edit?></p>
 
-<<<<<<< HEAD
-                <div id="form" class="formWrapper">
-                <div class="formIcon">
-                    <img width="32" src="<?php echo URLROOT ?>/img/edit.png" alt="edit">
-                </div>
-                <form action="<?php echo URLROOT?>/Goldprices/editRate" method="POST">
-                    <div class="inputField">
-                        <label>Karat</label>
-                        <input type="number" name="Karat" placeholder="Karat" value="<?php echo $data['editRate']->Karatage ?>" readonly />
-                    </div>
-                    <div class="inputField">
-                        <label>Current Price</label>
-                        <input type="number" name="currentPrice" placeholder="Current Price" value="<?php echo $data['editRate']->Price ?>" readonly/>
-                    </div>
-                    <div class="inputField">
-                        <label>New Price</label>
-                        <input type="text" name="newPrice" placeholder="New Price" required />
-=======
                         <form  action="<?php echo URLROOT?>/Goldprices/selectRate/<?php echo $goldrate->Rate_Id?>" method="GET">
                             <button class="editIcon" type="submit" name="edit" value="<?php echo $goldrate->Rate_Id?>">
                                 <img width="24" src="<?php echo URLROOT?>/img/edit-white.png" alt="edit">
                             </button>
                         </form>
->>>>>>> 7fff66737879cddbbfefec9215412112b77b861d
                     </div>
 
 

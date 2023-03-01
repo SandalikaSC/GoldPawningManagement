@@ -49,13 +49,13 @@
                 <input type="button" name="sendEmail" onclick="checkEmail()" value="Send Email" class="button">
 
             </form>
-            <form class="otp center">
+            <form class="otp center" method="POST" id="otp-section" action="<?php echo URLROOT ?>/Users/verifyOTP">
 
 
                 <img alt="logo" src="<?php echo URLROOT ?>/img/logo.png" class="logo center ">
                 <h2 class="h2">Welcome,</h2>
-                <h2 class="h3">We have sent the OTP to your email.</h2>
-                <!-- <br> <?php flash('email'); ?> -->
+                <h2 class="h3 otp-msg">We have sent the OTP to your email.</h2>
+                <br> <?php flash('otp'); ?>
 
                 <br>
 
@@ -65,9 +65,10 @@
 
                 </span>
                 <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
-                <input type="button" name="ConfirmOTP" onclick="OTPverify()" value="Confirm OTP" class="button">
+                <button type="submit" name="ConfirmOTP" value="Confirm OTP" class="button">Confirm OTP</button>
 
             </form>
+
         </div>
         <img src="<?php echo URLROOT ?>/img/loginImg.svg" class="login-Img">
         <div class="reg-section">
@@ -87,10 +88,12 @@
         var forget = document.getElementsByClassName('forget')[0];
         var forgetPw = document.getElementsByClassName('forget-pw')[0];
         var form = document.getElementsByClassName('form')[0];
-        var otp = document.getElementsByClassName('otp')[0];
+        var otp_section = document.getElementsByClassName('otp')[0];
+        var set_pw = document.getElementsByClassName('set-pw')[0];
+
 
         forget.addEventListener('click', function() {
-            forgetPw.style.display =  'flex';
+            forgetPw.style.display = 'flex';
             form.style.display = 'none';
         });
 
@@ -98,67 +101,41 @@
         var back = document.getElementsByClassName('back');
 
         back.addEventListener('click', function() {
-            form.style.display =  'flex';
+            form.style.display = 'flex';
             forgetPw.style.display = 'none';
-            otp.style.display = 'none';
+            otp_section.style.display = 'none';
         });
 
         function checkEmail() {
+            form.style.display = 'none';
+            forgetPw.style.display = 'none';
+            otp_section.style.display = 'flex';
 
-            var email = document.getElementById("otpemail").value;
-            var otp = document.getElementsByClassName('otp')[0];
-            $.ajax({
-                type: "POST",
-                url: "<?= URLROOT ?>/Users/checkEmail",
-                data: {
-                    email: email
-                },
-                dataType: "JSON",
-                success: function(resp) {
-                    if (resp.success == 1) {
-                        form.style.display = 'none';
-                        forgetPw.style.display = 'none';
-                        otp.style.display = 'flex';
-                    } else if (resp.success == 0) {
-                        form.style.display = 'flex';
-                        forgetPw.style.display = 'none';
-                        otp.style.display = 'none';
-                    }
 
-                },
-                error: function(resp) {
-                    //   console.log(resp.name);
-                }
-            });
+            // var email = document.getElementById("otpemail").value;
+            // // var otp = document.getElementsByClassName('otp')[0];
+            // $.ajax({
+            //     type: "POST",
+            //     url: "<?= URLROOT ?>/Users/checkEmail",
+            //     data: {
+            //         email: email
+            //     },
+            //     dataType: "JSON",
+            //     success: function(resp) {
+            //         if (resp.success == 1) {
+            //             form.style.display = 'none';
+            //             forgetPw.style.display = 'none';
+            //             otp_section.style.display = 'flex';
+            //         } else if (resp.success == 0) {
+            //             form.style.display = 'flex';
+            //             forgetPw.style.display = 'none';
+            //             otp_section.style.display = 'none';
+            //         }
+
+            //     },
+            //     error: function(resp) {
+            //         //   console.log(resp.name);
+            //     }
+            // });
         }
-            function OTPverify() {
-                var otp = document.getElementById("otp").value; 
-                $.ajax({
-                    type: "GET",
-                    url: "<?= URLROOT ?>/Users/verifyOTP",
-    
-                    data: {
-                        otp: otp
-                    },
-                    dataType: "JSON",
-                    success: function(resp) {
-                        if (resp.success == 1) {
-                            // form.style.display = 'flex';
-                            // forgetPw.style.display = 'none';
-                            // otp.style.display = 'none';
-                           console.log(1);
-                        } else if (resp.success == 0) {
-                            // form.style.display = 'none';
-                            // forgetPw.style.display = 'none';
-                            // otp.style.display = 'flex';
-                            console.log(0);
-                        }
-
-                    },
-                    error: function(resp) {
-                        //   console.log(resp.name);
-                    }
-                });
-            }
-        
     </script>

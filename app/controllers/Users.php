@@ -406,7 +406,7 @@ class Users extends Controller
         redirect('/Admin/AdminDash');
         break;
       case "Manager":
-       
+
         redirect('/mgDashboard');
         // $this->view('Manager/managerDash');
         break;
@@ -421,78 +421,71 @@ class Users extends Controller
         redirect('/pawningOfficerDashboard/dashboard');
         break;
       case "Owner":
-        $staff=$this->model("staffModel");
-        $result=$staff->loadProfilePicture($_SESSION['user_email']);
-        $_SESSION['profile_pic']=$result->image;
-        $_SESSION['mg_name']=$result->Name;
+        $staff = $this->model("staffModel");
+        $result = $staff->loadProfilePicture($_SESSION['user_email']);
+        $_SESSION['profile_pic'] = $result->image;
+        $_SESSION['mg_name'] = $result->Name;
         redirect('/ownerDashboard');
         break;
     }
   }
   public function checkEmail()
   {
-     
-    if(isset($_POST["email"])){
-      $email=trim($_POST["email"]);
-        $result=$this->userModel->getUserByEmail($_POST["email"]);
-        if(empty($result)){ 
-          flash('register', "You are not registered with Us.", 'invalid');
-          $data['success']=0;
 
-        }    
-        else if($result->verification_status==="0"){
-          flash('register', "You are not verified your email yet.", 'invalid');
-          $data['success']=0;
-        }else if(!empty($result) && $result->verification_status==="1"){
-          $_SESSION['OTP']=$this->randomPassword();
+    if (isset($_POST["email"])) {
+      $email = trim($_POST["email"]);
+      $result = $this->userModel->getUserByEmail($_POST["email"]);
+      if (empty($result)) {
+        flash('register', "You are not registered with Us.", 'invalid');
+        $data['success'] = 0;
+      } else if ($result->verification_status === "0") {
+        flash('register', "You are not verified your email yet.", 'invalid');
+        $data['success'] = 0;
+      } else if (!empty($result) && $result->verification_status === "1") {
+        $_SESSION['OTP'] = $this->randomPassword();
 
-          $status = sendMail($email, "OTP", $_SESSION['OTP'], "VOGUE");
-          if ($status) {
-            $data['success']=1;
-            
-            
-          } else {
-            $data['success']=0;
-            flash('register', "Fail to send OTP check your connection", 'invalid');
-             
-          } 
-          echo json_encode($data);
+        $status = sendMail($email, "OTP", $_SESSION['OTP'], "VOGUE");
+        if ($status) {
+          $data['success'] = 1;
+        } else {
+          $data['success'] = 0;
+          flash('register', "Fail to send OTP check your connection", 'invalid');
         }
+        echo json_encode($data);
+      }
 
       // $data['name']="sandalika";
     }
-   
   }
 
-  public function verifyOTP(){
-    if(isset($_GET["otp"])){
-      $otp=$_GET["otp"];
-        if($_SESSION['OTP']==$otp){
-          $data['success']=1;
+  public function verifyOTP()
+  {
+ 
+    $this->view('pages/changePassword');
+    // if (isset($_POST["otp"])) {
+    //   $otp = $_POST["otp"];
+    //   if ($_SESSION['OTP'] == $otp) {
+    //     unset($_SESSION['OTP']);
+    //     $this->view('pages/changePassword');
+    //   } else { 
+    //     redirect('/Users');
+    //   } 
+    // } 
+  }
 
-        }else{
-          $data['success']=0;
-        }
 
-        echo json_encode($data);
+  //to generate a OTP number
+  private function randomPassword()
+  {
+    $alphabet = '1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 6; $i++) {
+      $n = rand(0, $alphaLength);
+      $pass[] = $alphabet[$n];
     }
-
-
+    return implode($pass); //turn the array into a string
   }
-
-
-   //to generate a OTP number
-   private function randomPassword()
-   {
-       $alphabet = '1234567890';
-       $pass = array(); //remember to declare $pass as an array
-       $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-       for ($i = 0; $i < 6; $i++) {
-           $n = rand(0, $alphaLength);
-           $pass[] = $alphabet[$n];
-       }
-       return implode($pass); //turn the array into a string
-   }
 
   public function logout()
   {

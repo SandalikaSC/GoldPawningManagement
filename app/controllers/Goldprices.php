@@ -41,7 +41,7 @@ class Goldprices extends Controller
                         $editRate=$this->Model->getRate($rateid);
                         $data = [
                                 'goldrates' => $result ,
-                                'editRate'=>$editRate,
+                                'editRate'=>$editRate
                        
                         ];
                         if (empty($result)) {
@@ -72,12 +72,12 @@ class Goldprices extends Controller
                                 'newprice'=>trim($_POST['newPrice']) 
                        
                         ];  
-                       $result = $this->Model->EditGoldRate($data); 
-                      /*  if($result){
+                        $result = $this->Model->EditGoldRate($data); 
+                        if($result){
                                echo "updated";
                               }else{
                                   echo"not";
-                              }*/
+                              }
         }
         
 
