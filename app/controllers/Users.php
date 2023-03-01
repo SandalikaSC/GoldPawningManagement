@@ -460,6 +460,7 @@ class Users extends Controller
 
   public function verifyOTP()
   {
+ 
     $this->view('pages/changePassword');
     // if (isset($_POST["otp"])) {
     //   $otp = $_POST["otp"];
@@ -469,7 +470,7 @@ class Users extends Controller
     //   } else { 
     //     redirect('/Users');
     //   } 
-    // }
+    // } 
   }
 
 
