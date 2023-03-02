@@ -16,10 +16,9 @@
     </div>
 
     <form class="set-pw center">
+    <?php flash('changePw'); ?>
 
-        <p class="p">Current password</p>
-        <input type="password" name="current-pw" id="current-pw" class="input" value="" />
-        <span class="invalid-feedback" id="current-pw-err"> </span>
+        
         <p class="p">New password</p>
         <input type="password" name="new-pw" id="new-pw" class="input" value="" />
         <span class="invalid-feedback" id="new-pw-err"> </span>
@@ -30,9 +29,10 @@
 
 
         <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
-        <input type="button" name="Reset-Password" onclick="confirmPaswsword()" value="Reset Password" class="button">
+        <button type="button" name="Reset-Password" onclick="confirmPaswsword()" value="" class="button">Reset Password</button>
 
     </form>
+    <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
     <script>
         function confirmPaswsword() {
             document.getElementById("new-pw-err").innerHTML = "";
@@ -41,13 +41,28 @@
             var confirmpassword = document.getElementById('confirm-pw').value;
             if (password === "") {
                 document.getElementById("new-pw-err").innerHTML = "Please enter password";
-            } else if (confirmpassword === "") { 
+            } else if (confirmpassword === "") {
                 document.getElementById("confirm-pw-err").innerHTML = "Please confirm password";
             } else if (password !== confirmpassword) {
-                document.getElementById("confirm-pw").value = ""; 
+                document.getElementById("confirm-pw-err").value = "Passwords do not match";
+            } else {
+               
+                $.ajax({
+                    type: "POST",
+                    url: "<?= URLROOT ?>/Users/changepassword",
+                    data: { 
+                        new_pw: password
+                    },
+                    dataType: "JSON",
+                    success: function(resp) { 
+
+                    },
+                    error: function(resp) {
+                        //   console.log(resp.name);
+                    }
+                });
             }
 
-            // console.log(password + " " + confirmpassword);
 
         }
     </script>
