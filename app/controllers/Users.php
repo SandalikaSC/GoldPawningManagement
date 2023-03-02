@@ -431,7 +431,7 @@ class Users extends Controller
   }
   public function changepassword()
   {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST["new_pw"])) {
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
       $new =  $_POST['new_pw'];
@@ -477,18 +477,16 @@ class Users extends Controller
   }
 
   public function verifyOTP()
-  {
-
-    $this->view('pages/changePassword');
-    // if (isset($_POST["otp"])) {
-    //   $otp = $_POST["otp"];
-    //   if ($_SESSION['OTP'] == $otp) {
-    //     unset($_SESSION['OTP']);
-    //     $this->view('pages/changePassword');
-    //   } else { 
-    //     redirect('/Users');
-    //   } 
-    // } 
+  { 
+    if (isset($_POST["otp"])) {
+      $otp = $_POST["otp"];
+      if ($_SESSION['OTP'] == $otp) {
+        unset($_SESSION['OTP']);
+        $this->view('pages/changePassword');
+      } else { 
+        redirect('/Users');
+      } 
+    } 
   }
 
 

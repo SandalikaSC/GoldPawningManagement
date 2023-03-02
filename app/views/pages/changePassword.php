@@ -16,9 +16,9 @@
     </div>
 
     <form class="set-pw center">
-    <?php flash('changePw'); ?>
+        <?php flash('changePw'); ?>
 
-        
+
         <p class="p">New password</p>
         <input type="password" name="new-pw" id="new-pw" class="input" value="" />
         <span class="invalid-feedback" id="new-pw-err"> </span>
@@ -43,26 +43,31 @@
                 document.getElementById("new-pw-err").innerHTML = "Please enter password";
             } else if (confirmpassword === "") {
                 document.getElementById("confirm-pw-err").innerHTML = "Please confirm password";
-            } else if (password !== confirmpassword) {
-                document.getElementById("confirm-pw-err").value = "Passwords do not match";
             } else {
-               
-                $.ajax({
-                    type: "POST",
-                    url: "<?= URLROOT ?>/Users/changepassword",
-                    data: { 
-                        new_pw: password
-                    },
-                    dataType: "JSON",
-                    success: function(resp) { 
+                if (password === confirmpassword) {
+ 
+                    $.ajax({
+                        type: "POST",
+                        url: "<?= URLROOT ?>/Users/changepassword",
+                        data: {
+                            new_pw: password
+                        },
+                        dataType: "JSON",
+                        success: function(resp) {
 
-                    },
-                    error: function(resp) {
-                        //   console.log(resp.name);
-                    }
-                });
+                        },
+                        error: function(resp) {
+                            //   console.log(resp.name);
+                        }
+                    });
+
+                } else {
+                    alert("NOT MATCH");
+                    document.getElementById("confirm-pw-err").innerHTML = "Passwords do not match";
+                }
+
+
             }
-
 
         }
     </script>

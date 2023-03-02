@@ -107,35 +107,35 @@
         });
 
         function checkEmail() {
-            form.style.display = 'none';
-            forgetPw.style.display = 'none';
-            otp_section.style.display = 'flex';
+            // form.style.display = 'none';
+            // forgetPw.style.display = 'none';
+            // otp_section.style.display = 'flex';
 
 
-            // var email = document.getElementById("otpemail").value;
-            // // var otp = document.getElementsByClassName('otp')[0];
-            // $.ajax({
-            //     type: "POST",
-            //     url: "<?= URLROOT ?>/Users/checkEmail",
-            //     data: {
-            //         email: email
-            //     },
-            //     dataType: "JSON",
-            //     success: function(resp) {
-            //         if (resp.success == 1) {
-            //             form.style.display = 'none';
-            //             forgetPw.style.display = 'none';
-            //             otp_section.style.display = 'flex';
-            //         } else if (resp.success == 0) {
-            //             form.style.display = 'flex';
-            //             forgetPw.style.display = 'none';
-            //             otp_section.style.display = 'none';
-            //         }
+            var email = document.getElementById("otpemail").value; 
+            $.ajax({
+                type: "POST",
+                url: "<?= URLROOT ?>/Users/checkEmail",
+                data: {
+                    email: email
+                },
+                dataType: "JSON",
+                success: function(resp) {
+                    if (resp.success == 1) {
+                        form.style.display = 'none';
+                        forgetPw.style.display = 'none';
+                        otp_section.style.display = 'flex';
+                    } else if (resp.success == 0) {
+                        // form.style.display = 'flex';
+                        // forgetPw.style.display = 'none';
+                        // otp_section.style.display = 'none';
+                        alert("no email");
+                    }
 
-            //     },
-            //     error: function(resp) {
-            //         //   console.log(resp.name);
-            //     }
-            // });
+                },
+                error: function(resp) {
+                    //   console.log(resp.name);
+                }
+            });
         }
     </script>
