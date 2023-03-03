@@ -43,14 +43,13 @@ main {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    height: calc(100vh - 100px);
+    padding: 20px;
 }
 
 main .main-wrapper {
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     width: 80%;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 main .main-wrapper .left-wrapper,
@@ -59,6 +58,7 @@ main .main-wrapper .right-wrapper {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 main .main-wrapper .left-wrapper {
