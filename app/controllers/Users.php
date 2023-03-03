@@ -429,6 +429,23 @@ class Users extends Controller
         break;
     }
   }
+  public function changepassword()
+  {
+    if (isset($_POST["new_pw"])) {
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      $new =  $_POST['new_pw'];
+      $status = $this->usermodel->changepassword($_SESSION['email'], $new);
+      if ($status) {
+        flash("register", "Password changed successfully", "success");
+        redirect('/Users');
+      }else{
+        flash("changePw", "Something went wrong try again", "invalid");
+        $this->view('pages/changePassword');
+      }
+ 
+    }
+  }
   public function checkEmail()
   {
 
@@ -446,6 +463,7 @@ class Users extends Controller
 
         $status = sendMail($email, "OTP", $_SESSION['OTP'], "VOGUE");
         if ($status) {
+          $_SESSION['email'] = $email;
           $data['success'] = 1;
         } else {
           $data['success'] = 0;
@@ -459,18 +477,16 @@ class Users extends Controller
   }
 
   public function verifyOTP()
-  {
- 
-    $this->view('pages/changePassword');
-    // if (isset($_POST["otp"])) {
-    //   $otp = $_POST["otp"];
-    //   if ($_SESSION['OTP'] == $otp) {
-    //     unset($_SESSION['OTP']);
-    //     $this->view('pages/changePassword');
-    //   } else { 
-    //     redirect('/Users');
-    //   } 
-    // } 
+  { 
+    if (isset($_POST["otp"])) {
+      $otp = $_POST["otp"];
+      if ($_SESSION['OTP'] == $otp) {
+        unset($_SESSION['OTP']);
+        $this->view('pages/changePassword');
+      } else { 
+        redirect('/Users');
+      } 
+    } 
   }
 
 
