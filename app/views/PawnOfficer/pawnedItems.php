@@ -75,14 +75,17 @@
                 </div>
                 <div class="tbl-details">
                     <table cellspacing="0">
-                        <tbody>
+                        <thead>
                             <tr>
                                 <th>Pawn ID</th>
                                 <th>Customer ID</th>
                                 <th>Article ID</th>
                                 <th>Full Loan Amount</th>
+                                <th></th>
                             </tr>
-                            
+                        </thead>                          
+                        
+                        <tbody>
                             <?php foreach($data['pawned_items'] as $pawned_item) : ?>
                                 <tr class="table-body">
                                     <td><?php echo $pawned_item->Pawn_Id; ?></td>
@@ -91,9 +94,9 @@
                                     <td><?php echo 'Rs. '.$pawned_item->Amount; ?></td>
                                     <td><a href="<?php echo URLROOT; ?>/pawnings/payment_details/<?php echo $pawned_item->Pawn_Id; ?>" class="view btn">View</a></td>                            
                                 </tr>
-                            <?php endforeach; ?>
-                            
+                            <?php endforeach; ?>                            
                         </tbody>
+
                     </table>
                 </div>
                 
