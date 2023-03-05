@@ -51,7 +51,7 @@ main .right-content {
 
 main .left-content .article-details {
     width: 400px;
-    background: #ddd;
+    background: #bb8a04;
     padding: 20px;
     border-radius: 25px;
 }
@@ -138,20 +138,31 @@ main .right-content .form-wrapper form .btn-container {
     
 }
 
-main .right-content .form-wrapper form .btn-container a {
+main .right-content .form-wrapper form .btn-container .btn-submit {
     width: 100%;
     background: #bb8a04;
     color: #fff;
+    font-size: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 12px;
     border-radius: 5px;
+    border: none;
     margin: 10px 0;
-    text-decoration: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 5px -1px, rgba(0, 0, 0, 0.3) 0px 5px 5px -1px;
 }
 
-main .right-content .form-wrapper form .btn-container a:hover {
+main .right-content .form-wrapper form .btn-container .btn-submit:hover {
     transform: translateY(-5px);
+}
+
+.invalid-feedback {
+    color: #ff0000;
+    font-size: 12px;
+    left: 20px;
+}
+
+.is-invalid {
+    border: 1px solid #ff0000;
 }

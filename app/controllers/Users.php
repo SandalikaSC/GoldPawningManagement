@@ -411,7 +411,7 @@ class Users extends Controller
         // $this->view('Manager/managerDash');
         break;
       case "Gold Appraiser":
-        $this->view('GoldAppraiser/goldappDash');
+        redirect('/goldAppraiser/dashboard');
         break;
       case "Vault Keeper":
         redirect('/VKDashboard');
