@@ -28,20 +28,20 @@
             <div class="left-content">
                 <div class="article-details">
                     <div class="div-img">
-                        <img src="<?php echo URLROOT?>/img/ring1.jpg">
+                        <img src="<?php echo $data['article_details']->image; ?>">
                     </div>
                     <div class="div-details">
                         <div class="field">
-                            <label>Article ID</label>
-                            <div>AR001</div>
+                            <label>Validation ID</label>
+                            <div><?php echo $data['article_details']->id; ?></div>
                         </div>
                         <div class="field">
                             <label>Customer ID</label>
-                            <div>C0001</div>
+                            <div><?php echo $data['article_details']->customer; ?></div>
                         </div>
                         <div class="field">
                             <label>Type</label>
-                            <div>Jewelry</div>
+                            <div><?php echo $data['article_details']->article_type; ?></div>
                         </div>
                     </div>
                 </div>
@@ -53,20 +53,20 @@
                     <div class="form-title">
                         <h2>Validation Details</h2>
                     </div>
-                    <form action="" method="post">
+                    <form action="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $data['article_details']->id; ?>" method="post">
                         <div class="field-wrapper">
                             <label>Weight (g)<sup>*</sup></label>
                             <div class="input-wrapper">
-                                <input type="text" name="amount" placeholder="Weight">
+                                <input type="text" name="weight" placeholder="Weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>">
                             </div>
-                            <span class="invalid-feedback"></span>
+                            <span class="invalid-feedback"><?php echo $data['weight_err']; ?></span>
                         </div>
                         <div class="field-wrapper">
                             <label>Karats<sup>*</sup></label>
                             <div class="input-wrapper">
-                                <input type="text" name="karats" placeholder="Karats">
+                                <input type="text" name="karats" placeholder="Karats" class="<?php echo (!empty($data['karats_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['karats']; ?>">
                             </div>
-                            <span class="invalid-feedback"></span>
+                            <span class="invalid-feedback"><?php echo $data['karats_err']; ?></span>
                         </div>
                         <div class="field-wrapper">
                             <label>Estimated Value (Rs.)<sup>*</sup></label>
@@ -87,7 +87,7 @@
                             </div> 
                         </div>                         
                         <div class="btn-container">
-                            <a href="" class="btn-submit">Submit</a>
+                            <input type="submit" class="btn-submit">
                         </div>
                     </form>
                 </div>

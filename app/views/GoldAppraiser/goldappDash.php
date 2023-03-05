@@ -108,60 +108,17 @@
                 <div class="bottom-div">
                     <h2>Articles to be Validated</h2>
                     <div class="article-details">
-                        <div class="article-details-card">
-                            <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                            <div><label>Article ID: </label>AR001</div>
-                            <div><label>Customer ID: </label>CS0021</div>
-                            <div><label>Type: </label>Jewelry</div>
-                            <div class="div-btn">
-                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
+                        <?php foreach($data['articles_to_validate'] as $article_to_validate) : ?>
+                            <div class="article-details-card">
+                                <img src="<?php echo $article_to_validate->image; ?>">
+                                <div><label>Validation ID: </label><?php echo $article_to_validate->id; ?></div>
+                                <div><label>Customer ID: </label><?php echo $article_to_validate->customer; ?></div>
+                                <div><label>Type: </label><?php echo $article_to_validate->article_type; ?></div>
+                                <div class="div-btn">
+                                    <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $article_to_validate->id; ?>">Validate</a>
+                                </div>
                             </div>
-                        </div> 
-                        <div class="article-details-card">
-                            <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                            <div><label>Article ID: </label>AR001</div>
-                            <div><label>Customer ID: </label>CS0021</div>
-                            <div><label>Type: </label>Jewelry</div>
-                            <div class="div-btn">
-                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
-                            </div>
-                        </div> 
-                        <div class="article-details-card">
-                            <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                            <div><label>Article ID: </label>AR001</div>
-                            <div><label>Customer ID: </label>CS0021</div>
-                            <div><label>Type: </label>Jewelry</div>
-                            <div class="div-btn">
-                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
-                            </div>
-                        </div> 
-                        <div class="article-details-card">
-                            <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                            <div><label>Article ID: </label>AR001</div>
-                            <div><label>Customer ID: </label>CS0021</div>
-                            <div><label>Type: </label>Jewelry</div>
-                            <div class="div-btn">
-                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
-                            </div>
-                        </div> 
-                        <div class="article-details-card">
-                            <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                            <div><label>Article ID: </label>AR001</div>
-                            <div><label>Customer ID: </label>CS0021</div>
-                            <div><label>Type: </label>Jewelry</div>
-                            <div class="div-btn">
-                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
-                            </div>
-                        </div> 
-                        <div class="article-details-card">
-                            <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                            <div><label>Article ID: </label>AR001</div>
-                            <div><label>Customer ID: </label>CS0021</div>
-                            <div><label>Type: </label>Jewelry</div>
-                            <div class="div-btn">
-                                <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles">Validate</a>
-                            </div>
-                        </div>                        
+                        <?php endforeach; ?>                     
                     </div>
                 </div>
 
