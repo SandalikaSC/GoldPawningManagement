@@ -490,10 +490,14 @@ class Users extends Controller
       $otp = $_POST["otp"];
       if ($_SESSION['OTP'] == $otp) {
         unset($_SESSION['OTP']);
-        $this->view('pages/changePassword');
-      } else {
-        redirect('/Users');
+        $data['success']=1;
+        
+      }  else {
+        notification("otp","OTP is incorrect","red");
+        $data['success']=0;
+       
       }
+      echo json_encode($data);
     }
   }
 
