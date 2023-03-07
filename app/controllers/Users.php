@@ -443,6 +443,8 @@ class Users extends Controller
         flash("changePw", "Something went wrong try again", "invalid");
         $this->view('pages/changePassword');
       }
+    }else{
+      $this->view('pages/changePassword');
     }
   }
   public function checkEmail()
@@ -491,7 +493,7 @@ class Users extends Controller
       if ($_SESSION['OTP'] == $otp) {
         unset($_SESSION['OTP']);
         $data['success']=1;
-        
+        // $this->view('pages/changePassword');
       }  else {
         notification("otp","OTP is incorrect","red");
         $data['success']=0;

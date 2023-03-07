@@ -160,7 +160,7 @@
                             
                         } 
                         if (resp.success == 1) {
-                            alert("hari");
+                          window.location='<?= URLROOT ?>/Users/changepassword';
 
                         }   
 
