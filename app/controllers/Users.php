@@ -439,11 +439,10 @@ class Users extends Controller
       if ($status) {
         flash("register", "Password changed successfully", "success");
         redirect('/Users');
-      }else{
+      } else {
         flash("changePw", "Something went wrong try again", "invalid");
         $this->view('pages/changePassword');
       }
- 
     }
   }
   public function checkEmail()
@@ -452,12 +451,18 @@ class Users extends Controller
     if (isset($_POST["email"])) {
       $email = trim($_POST["email"]);
       $result = $this->userModel->getUserByEmail($_POST["email"]);
+      
       if (empty($result)) {
-        flash('register', "You are not registered with Us.", 'invalid');
+        // flash('register', "You are not registered with Us.", 'invalid');
+        notification("login","You are not registered with Us.","red");
         $data['success'] = 0;
+        // redirect('/Users/login');
       } else if ($result->verification_status === "0") {
-        flash('register', "You are not verified your email yet.", 'invalid');
+        // flash('register', "You are not verified your email yet.", 'invalid');
+        notification("login","You are not verified your email yet.","red");
         $data['success'] = 0;
+        // redirect('/Users/login');
+
       } else if (!empty($result) && $result->verification_status === "1") {
         $_SESSION['OTP'] = $this->randomPassword();
 
@@ -467,26 +472,29 @@ class Users extends Controller
           $data['success'] = 1;
         } else {
           $data['success'] = 0;
-          flash('register', "Fail to send OTP check your connection", 'invalid');
+          // flash('register', "Fail to send OTP check your connection", 'invalid');
+          notification("login","Fail to send OTP check your connection","red");
+          // redirect('/Users/login');
         }
-        echo json_encode($data);
+       
       }
 
+      echo json_encode($data);
       // $data['name']="sandalika";
     }
   }
 
   public function verifyOTP()
-  { 
+  {
     if (isset($_POST["otp"])) {
       $otp = $_POST["otp"];
       if ($_SESSION['OTP'] == $otp) {
         unset($_SESSION['OTP']);
         $this->view('pages/changePassword');
-      } else { 
+      } else {
         redirect('/Users');
-      } 
-    } 
+      }
+    }
   }
 
 
