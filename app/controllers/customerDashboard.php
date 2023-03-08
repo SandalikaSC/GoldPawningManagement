@@ -7,18 +7,30 @@ class customerDashboard extends Controller
                         redirect('/Users');
                 }
                 $this->Model = $this->model('Appointment');
+                $this->goldModel = $this->model('goldprice');
+                $this->interestModel = $this->model('interest');
         }
 
         public function dashboard()
         {
                 $result = $this->Model->getAppointmentById($_SESSION['user_id']);
-                $data = [
-                        'appointments' => $result
+                $result2 = $this->goldModel->getGoldRates();
+                $result3 = $this->interestModel->getInterest();
 
+                $data = [
+                        'appointments' => $result,
+                        'goldRates' =>array_slice($result2, 2),
+                        'interest' => $result3
                 ];
 
                 if (empty($result)) {
                         $data['appointments'] = (array) null;
+                }
+                if (empty($result2)) {
+                        $data['goldRates'] = (array) null;
+                }
+                if (empty($result3)) {
+                        $data['interest'] = (array) null;
                 }
                 $this->view('Customer/customerDash', $data);
         }
