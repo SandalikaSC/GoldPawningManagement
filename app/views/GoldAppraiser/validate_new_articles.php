@@ -58,6 +58,7 @@
                             <label>Weight (g)<sup>*</sup></label>
                             <div class="input-wrapper">
                                 <input type="text" name="weight" placeholder="Weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>">
+                                
                             </div>
                             <span class="invalid-feedback"><?php echo $data['weight_err']; ?></span>
                         </div>
