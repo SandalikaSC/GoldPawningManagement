@@ -159,8 +159,15 @@ body{
      
   }
 
+  .form-group-with-err{
+    display: flex;
+    flex-direction: column;
+  }
   
-  
+  .form-group-with-err .err small{
+    display: flex;
+    text-align: center;
+  }
   .form-group{
       display: flex;
       flex-wrap: wrap;
@@ -254,3 +261,6 @@ body{
 .hidden{
     display:none;
 }
+
+
+

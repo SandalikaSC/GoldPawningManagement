@@ -3,7 +3,7 @@ class mgEditProfile extends controller
 {
     public function __construct()
    {
-    flashMessage();
+     flashMessage();
    }
 
     public function index($alert = null)
@@ -116,11 +116,13 @@ class mgEditProfile extends controller
         $result = $staffMem->setPersonalInfo($_SESSION['user_id'], $_POST['fName'], $_POST['lName'], $_POST['gender'], $_POST['lane1'], $_POST['lane2'], $_POST['lane3'], $_POST['mob-no'], $_POST['mob-no2'], $_POST['image']);
 
         if ($result) {
+            echo "done";
             flashMessage("Personal Details Updated");
-            redirect('/mgEditProfile/editProfileDetails');
+            
         } else {
-            flashMessage("Personal Details Updated");
-            redirect('/mgEditProfile/editProfileDetails');
+            echo "fail";
+            flashMessage("Personal Details not Updated");
+            
         }
     }
 }

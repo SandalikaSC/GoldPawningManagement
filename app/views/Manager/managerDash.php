@@ -8,20 +8,19 @@
     <title><?php echo SITENAME ?></title>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mgmain_dashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mggold-rates.css">
-    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
-<body>  
+<body>
     <div class="page">
-        <?php include_once 'sendReplyForm.php';?>
+        <?php include_once 'sendReplyForm.php'; ?>
 
         <?php
         if (!empty($_SESSION['message'])) {
-          
+
             include_once 'success.php';
-         
-        } 
+        }
         ?>
 
         <div class="left" id="panel">
@@ -36,7 +35,7 @@
 
                 </div>
                 <div class="name">
-                    <p><?php echo $_SESSION['user_name']?></p>
+                    <p><?php echo $_SESSION['user_name'] ?></p>
                 </div>
             </div>
             <div class="btn-set">
@@ -86,7 +85,8 @@
                                 </div>
 
                             </div>
-                            <div class="vk-count">85</div>
+                            <div class="vk-count"><?php if ($data[4][0]->customers) echo $data[4][0]->customers;
+                                                    else echo 0; ?></div>
                         </div>
                         <div class="count-card">
                             <div class="card-topic">
@@ -98,15 +98,18 @@
                             <div class="count">
                                 <div class="vk-count">
                                     <div class="vk">VK:</div>
-                                    <div class="vk-c">10</div>
+                                    <div class="vk-c"><?php if ($data[4][1]->vault_keepers) echo $data[4][1]->vault_keepers;
+                                                        else echo 0; ?></div>
                                 </div>
                                 <div class="vk-count">
                                     <div class="vk">GA:</div>
-                                    <div class="vk-c">10</div>
+                                    <div class="vk-c"><?php if ($data[4][2]->gold_appraisers) echo $data[4][2]->gold_appraisers;
+                                                        else echo 0; ?></div>
                                 </div>
                                 <div class="vk-count">
-                                    <div class="vk">ST:</div>
-                                    <div class="vk-c">10</div>
+                                    <div class="vk">PO:</div>
+                                    <div class="vk-c"><?php if ($data[4][3]->pawning_officers) echo $data[4][3]->pawning_officers;
+                                                        else echo 0; ?></div>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +121,8 @@
                                 </div>
                             </div>
 
-                            <div class="vk-count">500</div>
+                            <div class="vk-count"><?php if ($data[4][4]->pawn_articles) echo $data[4][4]->pawn_articles;
+                                                    else echo 0; ?></div>
                         </div>
                         <div class="count-card">
                             <div class="card-topic">
@@ -127,7 +131,8 @@
                                     <img src="<?php echo URLROOT ?>/img/golden_auction.png" alt="">
                                 </div>
                             </div>
-                            <div class="vk-count">60</div>
+                            <div class="vk-count"><?php if ($data[4][5]->auction_articles) echo $data[4][5]->auction_articles;
+                                                    else echo 0; ?></div>
                         </div>
                         <div class="count-card">
                             <div class="card-topic">
@@ -138,7 +143,8 @@
                             </div>
                             <div class="alloc-not-count lc-card">
                                 <div class="count">
-                                    <div class="vk-count">10</div>
+                                    <div class="vk-count"><?php if ($data[4][6]->lockers) echo $data[4][6]->lockers;
+                                                            else echo 0; ?></div>
                                     <div class="vk-count">Out Of</div>
                                     <div class="vk-count">100</div>
                                 </div>
@@ -157,9 +163,10 @@
                                     <p><?php echo $data[0][0]->Price ?></p>
                                 </div>
                                 <div class="gold-rate-card">
-                                    <label><?php echo $data[0][1]->Karatage ?>K</label>
-                                    <p><?php echo $data[0][1]->Price ?></p>
+                                    <label><?php echo $data[0][2]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][2]->Price ?></p>
                                 </div>
+
                             </div>
                             <div class="col3">
                                 <div class="loan-interest">
@@ -169,13 +176,14 @@
                             </div>
                             <div class="col2">
                                 <div class="gold-rate-card">
-                                    <label><?php echo $data[0][2]->Karatage ?>K</label>
-                                    <p><?php echo $data[0][2]->Price ?></p>
+                                    <label><?php echo $data[0][4]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][4]->Price ?></p>
                                 </div>
                                 <div class="gold-rate-card">
-                                    <label><?php echo $data[0][3]->Karatage ?>K</label>
-                                    <p><?php echo $data[0][3]->Price ?></p>
+                                    <label><?php echo $data[0][5]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][5]->Price ?></p>
                                 </div>
+
                             </div>
                         </div>
 
@@ -204,8 +212,8 @@
                                 </div>
                             </div>
 
-                            <div id="myDiv" class="graph complaint-sec">
-            
+                            <div class="graph complaint-sec">
+
                                 <?php include_once 'viewComplaints.php'; ?>
                             </div>
                         </div>
@@ -222,6 +230,40 @@
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 <script>
+    // Initialize the arrays
+    var monthsIncome = [];
+    var amountsIncome = [];
+    var monthsExpen = [];
+    var amountsExpen = [];
+
+    var incomes = parseFloat('<?php echo $data[3][0]; ?>');
+    var expenses =  parseFloat('<?php echo $data[3][1]; ?>');
+    console.log(expenses);
+    console.log(incomes);
+
+    // Store the income and expense month and total amount in separate arrays
+    if (incomes.length > 0) {
+        for (var i = 0; i < incomes.length; i++) {
+            var month = incomes[i].Month;
+            var totalIncome = incomes[i].totalIncome;
+            monthsIncome.push(month);
+            amountsIncome.push(totalIncome);
+        }
+    }
+
+    if (expenses.length > 0) {
+        for (var i = 0; i < expenses.length; i++) {
+            var month = expenses[i].Month;
+            var totalExpense = expenses[i].totalExpen;
+            monthsExpen.push(month);
+            amountsExpen.push(totalExpense);
+        }
+    }
+
+    console.log(monthsIncome);
+    console.log(amountsIncome);
+
+
     var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
 
     new Chart("myChart", {
@@ -230,10 +272,12 @@
             labels: xValues,
             datasets: [{
                 data: [10, 40, 30, 21, 50, 35, 90, 80, 90, 15, 100, 1],
+                // data: amountsIncome,
                 borderColor: "#BB8A04",
                 fill: false
             }, {
                 data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
+                // data: amountsExpen,
                 borderColor: "black",
                 fill: false
             }]
@@ -249,25 +293,36 @@
     });
 </script>
 
-
 <script>
-function myFunction() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    di = document.getElementById("myDiv");
-    li = di.getElementsByTagName("section");
-    for (i = 0; i < li.length; i++) {
-        a=li[i];
-        // a = li[i].getElementsByTagName("a")[0];
-        txtValue = a.textContent || a.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
+    function myFunction() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        di = document.getElementById("myDiv");
+        li = di.getElementsByTagName("section");
+        nonCount = 0;
+        for (i = 0; i < li.length; i++) {
+            a = li[i];
+            // a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                nonCount++;
+                li[i].style.display = "none";
+            }
+        }
+        if (nonCount == li.length ) {
+            document.getElementById('tfoot').innerHTML = "<div style='text-align:center;'>No Complaints </div>";
+            nonCount = 0;
         } else {
-            li[i].style.display = "none";
+            document.getElementById('tfoot').innerHTML = "";
         }
     }
-}
 </script>
+
+
+
+
 
 </html>

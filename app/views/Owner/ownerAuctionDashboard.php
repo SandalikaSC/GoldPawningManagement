@@ -96,37 +96,9 @@
                         </div>
                     </div>
 
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="<?php echo URLROOT ?>/img/2.png" alt="Jewelry" style="width:200px;height:200px;">
-                            </div>
-                            <div class="flip-card-back">
-                                <h1>A008</h1>
-                                <p>Jewelry</p>
-                                <p>20K</p>
-                                <p>50g</p>
-                                 <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
+              
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="<?php echo URLROOT ?>/img/3.png" alt="Jewelry" style="width:200px;height:200px;">
-                            </div>
-                            <div class="flip-card-back">
-                                <h1>A108</h1>
-                                <p>Jewelry</p>
-                                <p>20K</p>
-                                <p>100g</p>
-                                 <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
-
-                            </div>
-                        </div>
-                    </div>
+                  
 
                     <div class="flip-card">
                         <div class="flip-card-inner">

@@ -18,7 +18,7 @@
                     <a href="<?php echo URLROOT ?>/mgAuction" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
-                        Auction Item
+                    Viewing Article:  <?php if(!empty($data[0]->Article_Id))echo $data[0]->Article_Id; else echo "Not Available";?> 
                     </h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
@@ -30,36 +30,36 @@
                             Article Details
                         </div>
                         <div class="article-image">
-                            <img src="<?php echo URLROOT ?>/img/bracelet.png" alt="">
+                            <img src="<?php echo $data[0]->image?>" alt="">
                         </div>
                         <div class="article-des">
                             <div class="article-info">
                                 <div class="field-name">Customer ID</div>
-                                <div class="field-value">CU002</div>
+                                <div class="field-value"><?php if(!empty($data[1]->userId))echo $data[1]->userId; else echo "Not Available";?></div>
                             </div>
                             <div class="article-info">
                                 <div class="field-name">Article ID</div>
-                                <div class="field-value">A006</div>
+                                <div class="field-value"><?php if(!empty($data[0]->Article_Id))echo $data[0]->Article_Id; else echo "Not Available";?></div>
                             </div>
                             <div class="article-info">
                                 <div class="field-name">Pawned Date</div>
-                                <div class="field-value">2022/11/03</div>
+                                <div class="field-value"><?php if(!empty($data[1]->Pawn_Date))echo $data[1]->Pawn_Date; else echo "Not Available";?></div>
                             </div>
                             <div class="article-info">
                                 <div class="field-name">Due Date</div>
-                                <div class="field-value">2023/11/03</div>
+                                <div class="field-value"><?php if(!empty($data[1]->End_Date))echo $data[1]->End_Date; else echo "Not Available";?></div>
                             </div>
                             <div class="article-info">
                                 <div class="field-name">Full Loan Amount</div>
-                                <div class="field-value">Rs.120,000/=</div>
+                                <div class="field-value"><?php if(!empty($data[0]->Estimated_Value))echo 'Rs. '.$data[0]->Estimated_Value.'/='; else echo "Not Available";?></div>
                             </div>
                             <div class="article-info">
                                 <div class="field-name">Registerd By</div>
-                                <div class="field-value">PO008</div>
+                                <div class="field-value"><?php if(!empty($data[1]->Officer_Id))echo $data[1]->Officer_Id; else echo "Not Available";?></div>
                             </div>
                             <div class="article-info">
                                 <div class="field-name">Validated By</div>
-                                <div class="field-value">VK010</div>
+                                <div class="field-value"><?php if(!empty($data[1]->Appraiser_Id))echo $data[1]->Appraiser_Id; else echo "Not Available";?></div>
                             </div>
                         </div>
                     </div>
@@ -70,78 +70,33 @@
                             </div>
                             <div class="table">
                                 <div class="table-section">
-                                  
-                                        <table id="myTable">
-                                            <thead>
-                                                <tr>
-                                                    <th>Payment ID</th>
-                                                    <th>Installment</th>
-                                                    <th>Paid Date</th>
-                                                    <th>Paid Amount</th>
-                                
-                                                </tr>
-                                            </thead>
+                                    <?php if(!empty($data[2])){?>
+                                    <table id="myTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Payment ID</th>
+                                                <th>Installment</th>
+                                                <th>Paid Amount</th>
+                                                <th>Paid Date</th>
+                                                
+                                            </tr>
+                                        </thead>
                                             <tbody>
-            
+                                              <?php foreach($data[2] as $row){?>
                                           
                                                 <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
+                                                    <td><?php echo $row->PID?></td>
+                                                    <td>Rs.5000.00</td>
+                                                    <td>Rs.<?php echo $row->Amount?>/=</td>
+                                                    <td><?php echo $row->Date?></td>
                                                 
                                                 </tr>
-                                                <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
-                                                
-                                                </tr>
-                                                <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
-                                                
-                                                </tr>
-                                                <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
-                                                
-                                                </tr>
-                                                <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
-                                                
-                                                </tr>
-                                                <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
-                                                
-                                                </tr>
-                                                <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
-                                                
-                                                </tr>
-                                                <tr>
-                                                    <td>PD1956</td>
-                                                    <td>03</td>
-                                                    <td>2022/09/30</td>
-                                                    <td>Rs.5,000.00</td>
-                                                
-                                                </tr>
+                                              <?php }?>
                                             </tbody>
-                                        </table>
+                                    </table>
+                                            <?php }else{
+                                                echo "<p style='display:flex;justify-content:center; margin-top:20px;'>Not Available</P>";
+                                            }?>
                         
                                 </div>
                             </div>
@@ -153,11 +108,11 @@
                             <div class="amount-and-due-date">
                                 <div class="data-field">
                                     <div class="field">Amount :</div>
-                                    <div class="value">Rs.5,000.00</div>
+                                    <div class="value"><?php if(!empty($data[0])){?> Rs.<?php echo $data[0]->Estimated_Value-$data[3]?>/=<?php }else echo "Not Available";?></div>
                                 </div>
                                 <div class="data-field">
                                     <div class="field">Due Date :</div>
-                                    <div class="value">2022/10/31</div> 
+                                    <div class="value"><?php if(!empty($data[1]->End_Date))echo $data[1]->End_Date; else echo "Not Available";?></div> 
                                 </div>
                             </div>
                         </div>

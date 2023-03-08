@@ -194,13 +194,13 @@
 
                     <div class="three-btns">
                         <div class="edit-profile">
-                            <a href="<?php echo URLROOT ?>/mgEditProfile/editProfileDetails">Edit Profile</a>
+                            <a href="<?php echo URLROOT ?>/mgEditProfile/editProfileDetails">Profile</a>
                         </div>
                         <div class="edit-email">
-                            <button id="edit_email">Edit Email</button>
+                            <button id="edit_email">Email</button>
                         </div>
                         <div  class="edit-password">
-                            <button id="edit_password">Edit Password</button>
+                            <button id="edit_password">Password</button>
                         </div>
 
                     </div>
@@ -226,8 +226,6 @@
     otpbtn.addEventListener('click', () => {
         fetch('<?php echo URLROOT ?>/mgEditProfile/sendOTP')
             .then(data => data.json())
-            // .then(data => data.slice(27))
-            // .then((data => JSON.parse(data)))
             .then(data => {
                 if (data.msg == "ok") {
                     otpbtn.style.display = "none";
@@ -258,8 +256,6 @@
                 body: formData
             })
             .then(data => data.json())
-            // .then(data => data.slice(27))
-            // .then(data => JSON.parse(data))
             .then(data => {
                 if (data.msg == "ok") {
                     popupform.style.display = "none";

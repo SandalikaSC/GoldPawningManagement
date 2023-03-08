@@ -184,7 +184,7 @@ body{
     flex-direction: column;
     /* border: 2px solid goldenrod; */
     border-radius: 10px;
-    margin: 30px;
+    margin: 0 30px;
     padding: 20px;
     background-color: #FFE499;
     box-shadow: 1px 5px 15px 0 black;
@@ -255,9 +255,10 @@ body{
 
 /* with respect to the table */
 .table-section{
+    min-width: 800px;
     padding: 0 5px 5px 5px;
     overflow: scroll;
-    height:200px;
+    height:300px;
     overflow-x: hidden;
     /* overflow-y: hidden; */
     

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
+  <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?php echo SITENAME ?></title>
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/cards_in_auction.css">
@@ -74,112 +74,92 @@
       <div class="inside-page">
         <div class="search">
           <div class="search-bar">
-            <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search...">
-            <img src="<?php echo URLROOT ?>/img/search-icon.png" alt="search-icon">
+            <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Search.." />
+
           </div>
         </div>
 
-      
-        <div class="auction-page-row">
-          
-          <div class="auction-page-column">
-            <div class="card">
-                <img src="<?php echo URLROOT ?>/img/1.png" alt="gold-bar" />
-              <div class="details">
-                
-                <h3>No: A103 </h3>
-                <p>Type: Jewelry </p>
-                <p>Karatage: 20K</p>
-                <p>Weight: 40.68g</p>
-              </div>
-            </div>
-            <div class="card-view-btn">
-              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
-            </div>
-          </div> 
-
-          <div class="auction-page-column">
-            <div class="card">
-                <img src="<?php echo URLROOT ?>/img/2.png" alt="gold-bar" />
-              <div class="details">
-                
-                <h3>No: A111</h3>
-                <p>Type: Jewelry </p>
-                <p>Karatage: 22K</p>
-                <p>Weight: 100.34g</p>
-              </div>
-            </div>
-            <div class="card-view-btn">
-              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
-            </div>
-          </div> 
-
-          <div class="auction-page-column">
-            <div class="card">
-                <img src="<?php echo URLROOT ?>/img/3.png" alt="gold-bar" />
-              <div class="details">
-                
-                <h3>No: A230</h3>
-                <p>Type: Jewelry</p>
-                <p>Karatage: 24K</p>
-                <p>Weight: 68.23g</p>
-              </div>
-            </div>
-            <div class="card-view-btn">
-              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
-            </div>
-          </div> 
-
-          <div class="auction-page-column">
-            <div class="card">
-                <img src="<?php echo URLROOT ?>/img/4.png" alt="gold-bar" />
-              <div class="details">
-                
-                <h3>No: A170 </h3>
-                <p>Type: Jewelry </p>
-                <p>Karatage: 22K</p>
-                <p>Weight: 230g</p>
-              </div>
-            </div>
-            <div class="card-view-btn">
-              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
-            </div>
-          </div> 
-
-          <div class="auction-page-column">
-            <div class="card">
-                <img src="<?php echo URLROOT ?>/img/5.png" alt="gold-bar" />
-              <div class="details">
-                
-                <h3>No: A053 </h3>
-                <p>Type: Jewelry</p>
-                <p>Karatage: 24K</p>
-                <p>Weight: 68g</p>
-              </div>
-            </div>
-            <div class="card-view-btn">
-              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
-            </div>
-          </div> 
 
 
-          <div class="auction-page-column">
-            <div class="card">
-                <img src="<?php echo URLROOT ?>/img/6.png" alt="gold-bar" />
-              <div class="details">
-                
-                <h3>No: A123 </h3>
-                <p>Type: Jewelry</p>
-                <p>Karatage: 24K</p>
-                <p>Weight: 70g</p>
+
+        <div class="filter-and-article">
+          <?php if (!empty($data)) { ?>
+            <div id="myDiv" class="auction-page-row">
+              <?php foreach ($data as $row) { ?>
+                <section class="auction-page-column">
+                  <div class="card">
+                    <img src="<?php echo $row->image ?>" alt="gold-bar" />
+                    <div class="details">
+
+                      <p>No: <?php echo $row->Article_Id ?></p>
+                      <p>Type: <?php echo $row->Type ?></p>
+                      <p>Karatage: <?php echo $row->Karatage ?>K</p>
+                      <p>Weight: <?php echo $row->Weight ?>g</p>
+                    </div>
+                  </div>
+                  <div class="card-view-btn">
+                    <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem/<?php echo $row->Article_Id ?>">View</a>
+                  </div>
+                </section>
+              <?php } ?>
+
+              <div id="tfoot"></div>
+            </div>
+          <?php } else {
+            echo "<p style='display:flex;justify-content:center;margin-top:40px;'>No Auction Items Found</P>";
+          } ?>
+
+          <div class="outer-filter">
+            <form action="<?php echo URLROOT ?>/mgAuction/filter" method="POST">
+              <div class="filter" id="filter-section">
+                <div class="ul">
+                  <div class="li">
+                    <label for="created-date">min Date:</label>
+                    <input type="date" id="created-date" name="created-date">
+                  </div>
+                  <div class="li">
+                    <label for="end-date">Max Date:</label>
+                    <input type="date" id="end-date" name="end-date">
+                  </div>
+                  <div class="li">
+                    <label for="karatage">Karatage:</label>
+                    <select id="karatage" name="karatage">
+                      <option value="">Select Karatage</option>
+                      <option value="10">18k</option>
+                      <option value="14">20k</option>
+                      <option value="18">22k</option>
+                      <option value="22">24k</option>
+                    </select>
+                  </div>
+                  <div class="li">
+                    <label for="type">Type:</label>
+                    <select id="type" name="type">
+                      <option value="">Select Type</option>
+                      <option value="ring">Ring</option>
+                      <option value="bracelet">Bracelet</option>
+                      <option value="necklace">Necklace</option>
+                      <option value="earrings">Earrings</option>
+                    </select>
+                  </div>
+                  <div class="li">
+                    <label for="min-weight">Min Weight (g):</label>
+                    <input type="number" id="min-weight" name="min-weight" step="0.01">
+                  </div>
+                  <div class="li">
+                    <label for="max-weight">Max Weight (g):</label>
+                    <input type="number" id="max-weight" name="max-weight" step="0.01">
+                  </div>
+                </div>
+
+                <button type="submit" id="filter-button">Filter</button>
+                <a class="filter-cancel-button" href="<?php echo URLROOT ?>/mgAuction/index">Cancel</a>
               </div>
-            </div>
-            <div class="card-view-btn">
-              <a href="<?php echo URLROOT ?>/mgAuction/viewAuctionItem">View</a>
-            </div>
-          </div> 
-          
+            </form>
+
+
+          </div>
         </div>
+
 
       </div>
     </div>
@@ -190,5 +170,49 @@
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 
+
+<script>
+
+  function searchItems() {
+    var input, filter, td1,td2,td3,td4, i, nonCount,txtValue1,txtValue2,txtValue3,txtValue4;
+    input = document.getElementById("search_input");
+    filter = input.value.toUpperCase();
+    ele = document.getElementById("myDiv");
+    row = ele.getElementsByTagName("section");
+    nonCount = 0;
+    for (i = 0; i < row.length; i++) {
+        td1= row[i].getElementsByTagName("p")[0];
+        td2= row[i].getElementsByTagName("p")[1];
+        td3= row[i].getElementsByTagName("p")[2];
+        td4= row[i].getElementsByTagName("p")[3];
+
+        if (td1 || td2 || td3 ||td4) {
+            txtValue1 = td1.textContent || td1.innerText;
+            txtValue2 = td2.textContent || td2.innerText;
+            txtValue3 = td3.textContent || td3.innerText;
+            txtValue4 = td4.textContent || td4.innerText;
+
+            // txtValue1 = td1.innerText;
+            // txtValue2 = td2.innerText;
+            // txtValue3 = td3.innerText;
+            // txtValue4 =  td4.innerText;
+           
+            if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1 || txtValue4.toUpperCase().indexOf(filter) > -1) {
+                row[i].style.display = "";
+            } else {
+                row[i].style.display = "none";
+                nonCount++;
+            }
+        }
+    }
+    if(nonCount==row.length){
+        document.getElementById('tfoot').innerHTML="<div style='text-align:center;margin-top:30px;'>No Matched Data </div>";
+        nonCount=0;
+    }
+    else{
+        document.getElementById('tfoot').innerHTML="";
+    }
+}
+</script>
 
 </html>

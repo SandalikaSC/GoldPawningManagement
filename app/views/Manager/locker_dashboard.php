@@ -69,6 +69,20 @@
                         <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
 
                     </div>
+                    <div class="locker-summary">
+                        <div class="locker-sum-1">
+                            <div class="topic-label">Total</div>
+                            <div class="no">100</div>
+                        </div>
+                        <div class="locker-sum-1">
+                            <div class="topic-label">Allocated</div>
+                            <div class="no">20</div>
+                        </div>
+                        <div class="locker-sum-1">
+                            <div class="topic-label">Remaining</div>
+                            <div class="no">80</div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="table">

@@ -88,10 +88,12 @@ body{
 .left-box{
     display: flex;
     flex-direction: column;
-    border: 2px solid goldenrod;
+    /* border: 2px solid goldenrod; */
     border-radius: 10px;
     padding:20px;
     margin: 30px;
+    box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);  
+
 }
 
 .article-details-topic{
@@ -153,10 +155,12 @@ body{
 .right-box .top-box-of-right-box{
     display: flex;
     flex-direction: column;
-    border: 2px solid goldenrod;
+    /* border: 2px solid goldenrod; */
     border-radius: 10px;
     padding:20px;
     margin: 30px;
+    box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);  
+
     
 }
 
@@ -174,11 +178,13 @@ body{
 .right-box .bottom-box-of-right-box{
     display: flex;
     flex-direction: column;
-    border: 2px solid goldenrod;
+    /* border: 2px solid goldenrod; */
     border-radius: 10px;
-    margin: 30px;
+    margin: 10px 30px;
     padding: 20px;
     background-color: #FFE499;
+    box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);  
+
 }
 
 .right-box .bottom-box-of-right-box .due-payments-topic{
@@ -190,6 +196,12 @@ body{
     font-size: x-large;
     padding-bottom: 5px;
      
+}
+
+.right-box .bottom-box-of-right-box .with-two-btns{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .right-box .bottom-box-of-right-box .amount-and-due-date{
@@ -217,13 +229,13 @@ body{
 
 .twobtns{
     display:flex;
-    flex-direction: column;
-    margin: auto;
+    /* flex-direction: column; */
 }
 
 .twobtns .auction-btn button{
-    padding: 20px 30px;
-    margin-bottom: 30px;
+    padding: 10px 30px;
+    text-decoration: none;
+    margin-right: 5px;
     font-weight: bold;
     font-size: large;
     border-radius: 20px;
@@ -233,7 +245,8 @@ body{
 }
 
 .twobtns .email-btn button{
-    padding:20px 45px;
+    padding:10px 45px;
+    text-decoration: none;
     font-weight: bold;
     font-size: large;
     color: white;
@@ -270,9 +283,10 @@ body{
 
 /* with respect to the table */
 .table-section{
+    min-width: 800px;
     padding: 0 5px 5px 5px;
     overflow: scroll;
-    height:200px;
+    height:250px;
     overflow-x: hidden;
     /* overflow-y: hidden; */
     

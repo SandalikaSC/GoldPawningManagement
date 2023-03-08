@@ -35,7 +35,7 @@
 
                 </div>
                 <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
+                    <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
                 </div>
             </div>
             <div class="btn-set">
@@ -98,14 +98,17 @@
                     <div class="table-section">
                         <?php
                         if ($data[0] != 0) {
+                            $i=1;
                         ?>
                             <table id="myTable">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
+                                        <th>photo</th>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Role</th>
-                                        <th>Date</th>
+                                        <th>Created Date/Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -115,6 +118,8 @@
                                 foreach ($data[0] as $row) {
                                     echo "
                                             <tr>
+                                                <td>" . $i . ".</td>
+                                                <td><img src=".$row->image."></td>
                                                 <td>" . $row->UserId . "</td>
                                                 <td>" . $row->Name . "</td>
                                                 <td>" . $row->Role . "</td>
@@ -124,6 +129,7 @@
                                                     <a href='" . URLROOT . "/staff/confirmDelete/" . $row->UserId . "' class='delete'>Delete</a>
                                                 </td>
                                             </tr>";
+                                            $i++;
                                 }
                             } else {
                                 echo "<center>NO Matched Data</center>";
