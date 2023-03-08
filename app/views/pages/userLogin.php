@@ -5,6 +5,7 @@
 
 <body>
     <!-- <?php require APPROOT . "/views/inc/notification.php" ?> -->
+    <?php notification("login"); ?>
     <div class="log-container center">
 
         <div class="login">
@@ -35,37 +36,34 @@
 
                 <img alt="logo" src="<?php echo URLROOT ?>/img/logo.png" class="logo center ">
                 <h2 class="h2">Forget Password?</h2>
-                <!-- <br> <?php flash('email'); ?> -->
+                
 
                 <br>
 
                 <p class="p">EMAIL</p>
-                <input type="email" name="otpemail" id="otpemail" class="input" value="" />
-                <span class="invalid-feedback">
-
+                <input type="email" name="otpemail" id="otpemail" class="input">
+                <span class="invalid-feedback" id="otp-email-err">
                 </span>
                 <p class="p back">Back to login</p>
 
                 <input type="button" name="sendEmail" onclick="checkEmail()" value="Send Email" class="button">
 
             </form>
-            <form class="otp center" method="POST" id="otp-section" action="<?php echo URLROOT ?>/Users/verifyOTP">
+            <form class="otp center" method="POST" id="otp-section"  >
 
 
                 <img alt="logo" src="<?php echo URLROOT ?>/img/logo.png" class="logo center ">
                 <h2 class="h2">Welcome,</h2>
                 <h2 class="h3 otp-msg">We have sent the OTP to your email.</h2>
-                <br> <?php flash('otp'); ?>
-
-                <br>
+                 
 
                 <p class="p">OTP</p>
-                <input type="text" name="otp" id="otp" class="input" value="" />
-                <span class="invalid-feedback">
+                <input type="text" name="otp" id="otp" class="input" >
+                <span class="invalid-feedback" id="otp-err">
 
                 </span>
                 <a class="p back" href="<?php echo URLROOT ?>/Users/login">Back to login</a>
-                <button type="submit" name="ConfirmOTP" value="Confirm OTP" class="button">Confirm OTP</button>
+                <input type="submit" name="ConfirmOTP" value="Confirm OTP" class="button" onclick="verifyOTP()"></input>
 
             </form>
 
@@ -104,38 +102,71 @@
             form.style.display = 'flex';
             forgetPw.style.display = 'none';
             otp_section.style.display = 'none';
+            <?php flash('register', "", 'invalid');
+            ?>
         });
 
-        function checkEmail() {
-            // form.style.display = 'none';
-            // forgetPw.style.display = 'none';
-            // otp_section.style.display = 'flex';
+        function checkEmail() { 
+            var email = document.getElementById('otpemail').value;
+ 
+            if (email == '') {
+                document.getElementById("otp-email-err").innerHTML = "Please fill this field";
+            } else {
+               
 
+                $.ajax({
+                    type: "POST",
+                    url: "<?= URLROOT ?>/Users/checkEmail",
+                    data: {
+                        email: email
+                    },
+                    dataType: "JSON",
+                    success: function(resp) {
+                        if (resp.success == 1) {
+                            form.style.display = 'none';
+                            forgetPw.style.display = 'none';
+                            otp_section.style.display = 'flex';
 
-            var email = document.getElementById("otpemail").value; 
-            $.ajax({
-                type: "POST",
-                url: "<?= URLROOT ?>/Users/checkEmail",
-                data: {
-                    email: email
-                },
-                dataType: "JSON",
-                success: function(resp) {
-                    if (resp.success == 1) {
-                        form.style.display = 'none';
-                        forgetPw.style.display = 'none';
-                        otp_section.style.display = 'flex';
-                    } else if (resp.success == 0) {
-                        // form.style.display = 'flex';
-                        // forgetPw.style.display = 'none';
-                        // otp_section.style.display = 'none';
-                        alert("no email");
+                        } else if (resp.success == 0) {
+                            location.reload();
+
+                        }
+
+                    },
+                    error: function(resp) {
+                        //   console.log(resp.name);
                     }
+                });
+            }
 
-                },
-                error: function(resp) {
-                    //   console.log(resp.name);
-                }
-            });
+        }
+
+        function verifyOTP() { 
+            var otp = document.getElementById('otp').value;
+            event.preventDefault()
+            if (otp == '') {
+                console.log("empty");
+                document.getElementById("otp-err").innerHTML = "Please fill this field";
+            } else { 
+                $.ajax({
+                    type: "POST",
+                    url: "<?= URLROOT ?>/Users/verifyOTP",
+                    data: {
+                        otp: otp
+                    },
+                    dataType: "JSON",
+                    success: function(resp) {
+                        if (resp.success == 0) { 
+                            
+                        } 
+                        if (resp.success == 1) {
+                          window.location='<?= URLROOT ?>/Users/changepassword';
+
+                        }   
+
+                    }
+                });
+            }
+
         }
     </script>
