@@ -14,18 +14,11 @@ class CustomerLocker extends Controller
 
     public function index()
     {
-        $pawning = $this->reservationModel->getReservationByUserID($_SESSION['user_id']);
+        $allocation = $this->reservationModel->getReservationByUserID($_SESSION['user_id']);
         $data = [
-            'reservation' => $pawning
-        ];
-        if (empty($pawning)) {
-            $data['interest'] = (array) null;
-        }
-
-
-
-
-        $this->view('Customer/locker');
+            'reservation' => $allocation
+        ];  
+        $this->view('Customer/locker', $data);
     }
     public function viewLockerArticle()
     {
