@@ -7,14 +7,24 @@ class CustomerPawn extends Controller
                 if (!isLoggedIn()) {
                         redirect('/Users');
                 }
+                $this->customerPawnModel = $this->model('Pawning');
+
                 // $this->Model = $this->model('Appointment');
 
         }
-
+        
 
         public function index()
         {
-            $this->view('Customer/pawnArticles');
+            $pawning=$this->customerPawnModel->getPawnByUserID($_SESSION['user_id']);
+            $data = [
+                    'pawnings'=>$pawning
+            ];
+            if (empty($pawning)) {
+                    $data['interest'] = (array) null;
+            } 
+
+            $this->view('Customer/pawnArticles',$data);
 
         }
         public function viewPawnArticle($id)

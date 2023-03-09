@@ -82,4 +82,21 @@
                 return false;
             }
         }
+
+
+
+
+
+        //customer pawning
+
+
+        public function getPawnByUserID($userId) {
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON article.Article_Id=pawn.Article_Id where userId=:userid');
+            $this->db->bind(':userid', $userId);
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
+
+
     }

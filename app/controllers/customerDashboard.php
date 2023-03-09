@@ -41,9 +41,9 @@ class customerDashboard extends Controller
                 $this->view('Customer/locker');
         }
         public function pawnArticles()
-        {
-                $data = [];
-                $this->view('Customer/pawnArticles');
+        { 
+                redirect('/CustomerPawn');
+               
         }
         public function ContactUs()
         {
