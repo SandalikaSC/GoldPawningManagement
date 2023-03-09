@@ -66,7 +66,7 @@
 
 
                         </div>
-                        <a href="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle"  > <button class="v-btn">View</button></a>
+                        <a href="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle/<?= $pawn->Pawn_Id?>"> <button class="v-btn">View</button></a>
 
                     </div>
 
