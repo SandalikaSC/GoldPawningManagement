@@ -98,10 +98,11 @@
             return $results;
         }
         public function goldLoanDetails($id) {
-            $this->db->query('SELECT * FROM pawn INNER JOIN loan ON pawn.Pawn_Id=loan.Pawn_Id WHERE pawn.Pawn_Id = :id');
+            $this->db->query(' SELECT * FROM pawn  JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id
+                             JOIN   article ON article.Article_Id=pawn.Article_Id where pawn.Pawn_Id=:id ');
             $this->db->bind(':id', $id);
 
-            $row = $this->db->single();
+            $row =$this->db->single();
 
             return $row;
         }
