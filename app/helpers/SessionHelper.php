@@ -75,15 +75,7 @@ function notification($name = '', $message = '', $class = 'gold')
       
       <div class="'.$class .' progress" ></div>
   </div>
-  <script src="'.URLROOT.'/js/notification.js"></script>';
-
-
-
-
-
-
-
-
+  <script src="'.URLROOT.'/js/notification.js"></script>'; 
       unset($_SESSION[$name]);
       unset($_SESSION[$name . '_class']);
     }

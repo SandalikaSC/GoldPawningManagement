@@ -8,7 +8,9 @@ class CustomerLocker extends Controller
             redirect('/Users');
         }
         $this->reservationModel = $this->model('reservation');
-
+        $this->articleModel = $this->model('article');
+        $this->deliveryModel = $this->model('delivery'); 
+        $this->lockerModel = $this->model('Locker');
     }
 
 
@@ -20,14 +22,23 @@ class CustomerLocker extends Controller
         ];  
         $this->view('Customer/locker', $data);
     }
-    public function viewLockerArticle()
+    public function viewLockerArticle($reserveId)
     {
-        $this->view('Customer/article_locker');
-        // if($id==1){
-        //     $this->view('Customer/ ');
-        // }else if($id==2){
-        //     $this->view('Customer/ ');
-        // }
+        $reservation=$this->reservationModel->getReservation($reserveId);
+        $article=$this->articleModel->getArticleById($reservation->Article_Id);
+        $delivery=$this->deliveryModel->getDeliveryByReserveId($reserveId);
+        $locker=$this->lockerModel->getLockerById($reservation->lockerNo);
+
+
+        $data=[
+            'reservation'=>$reservation,
+            'article'=>$article,
+            'delivery'=>$delivery,
+            'locker'=>$locker
+
+        ];
+
+        $this->view('Customer/article_locker',$data);  
 
 
     }

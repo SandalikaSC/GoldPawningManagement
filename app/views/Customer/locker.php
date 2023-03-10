@@ -18,7 +18,7 @@
             </div>
             <div class="locker-page">
                 <?php foreach ($data['reservation'] as $reservation) : ?>
-                    <a  href="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle"  class="jewellery-card no-link-style ">
+                    <a  href="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle/<?= $reservation->Allocate_Id ?>"  class="jewellery-card no-link-style ">
                         <div class="jewellery-img">
                             <div class="locker-no">
                                 <h2 class="no"><?= str_pad($reservation->lockerNo, 2, '0', STR_PAD_LEFT) ?></h2>

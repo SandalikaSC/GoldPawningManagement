@@ -14,6 +14,12 @@ class reservation
 
         return $results;
     }
+    public function getReservation($reserveId) {
+        $this->db->query('SELECT * FROM reserves where Allocate_ID=:allocate');
+        $this->db->bind(':allocate', $reserveId);
+        $results = $this->db->single();
 
+        return $results;
+    }
 }
 ?>
