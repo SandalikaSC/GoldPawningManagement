@@ -17,7 +17,62 @@
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="pawn-page">
-                <div class="jewellery-card">
+                <?php foreach ($data['pawnings'] as $pawn) : ?>
+
+
+                    <div class="jewellery-card">
+                        <div class="jewellery-img">
+                             <?php 
+                             $finfo = finfo_open();
+                             $imageType = finfo_buffer($finfo, $pawn->image, FILEINFO_MIME_TYPE);
+                             finfo_close($finfo);
+                             
+                             // Set header as image type 
+                             
+                             
+                             ?>
+
+                        
+                            <img src="<?php if(empty($pawn->image)){
+                                    echo URLROOT . "/img/images.jpg" ;
+                                }else{
+                                  echo  "data:image/.'$imageType'.;charset=utf8;base64,".base64_encode($pawn->image);
+                                    }?>
+                                    " alt="" class="jw-img">
+                        </div>
+                        <div class="jw-details">
+                            <div class="jw-date">
+                                <div class="jw-date-name">
+                                    <label>Due Date</label>
+                                    <label class="jw-dt"><?php echo date("d M Y", strtotime($pawn->End_Date)) ?></label>
+                                </div>
+
+                            </div>
+                            <div class="jw-date-name">
+
+                                <label>Status</label>
+                                <label class="status 
+                                <?php if($pawn->Status=='Pawned'){
+                                     echo "tag-pending";
+                                    }elseif ($pawn->Status=='Overdue') {
+                                        echo "tag-overdue";
+                                    }else{
+                                        echo "tag-auctioned";
+
+                                    }?>"><?= $pawn->Status?></label>
+                            </div>
+
+
+
+
+                        </div>
+                        <a href="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle/<?= $pawn->Pawn_Id?>"> <button class="v-btn">View</button></a>
+
+                    </div>
+
+
+                <?php endforeach; ?>
+                <!-- <div class="jewellery-card">
                     <div class="jewellery-img">
                         <img class="jw-img" src="<?php echo URLROOT ?>/img/images.jpg">
                     </div>
@@ -25,7 +80,7 @@
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Due Date</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2024/01/03"))?></label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2024/01/03")) ?></label>
                             </div>
 
                         </div>
@@ -50,7 +105,7 @@
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Due Date</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/12/03"))?></label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/12/03")) ?></label>
                             </div>
 
                         </div>
@@ -76,7 +131,7 @@
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Due Date</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05"))?></label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05")) ?></label>
                             </div>
 
                         </div>
@@ -101,7 +156,7 @@
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Due Date</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/11/03"))?></label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/11/03")) ?></label>
                             </div>
 
                         </div>
@@ -117,10 +172,10 @@
                     </div>
                     <form action="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle/2" method="POST"> <button class="v-btn" >View</button></form>
                    
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     <script src="<?php echo URLROOT ?>/js/sideMenu.js"></script>
 
-        <?php require APPROOT . "/views/inc/footer.php" ?>
+    <?php require APPROOT . "/views/inc/footer.php" ?>

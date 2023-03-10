@@ -6,7 +6,7 @@
 
 <body class="wrapper">
 
-
+<?php notification("forgetPassword"); ?>
     <div class="right-heading">
         <div class="right-side">
 
@@ -16,8 +16,8 @@
     </div>
 
     <form class="set-pw center">
-        <?php flash('changePw'); ?>
-
+        
+    <?php flash('forget'); ?>
 
         <p class="p">New password</p>
         <input type="password" name="new-pw" id="new-pw" class="input" value="" />
@@ -44,8 +44,9 @@
             } else if (confirmpassword === "") {
                 document.getElementById("confirm-pw-err").innerHTML = "Please confirm password";
             } else {
-                if (password === confirmpassword) {
- 
+                if (password === confirmpassword) { 
+
+                    
                     $.ajax({
                         type: "POST",
                         url: "<?= URLROOT ?>/Users/changepassword",
@@ -54,15 +55,19 @@
                         },
                         dataType: "JSON",
                         success: function(resp) {
+                                if(resp.success==1){
+                                    window.location='<?= URLROOT ?>/Users/login';
+                                }else{
+                                    location.reload();
 
+                                } 
                         },
                         error: function(resp) {
-                            //   console.log(resp.name);
+                            location.reload();
                         }
                     });
 
-                } else {
-                    alert("NOT MATCH");
+                } else { 
                     document.getElementById("confirm-pw-err").innerHTML = "Passwords do not match";
                 }
 

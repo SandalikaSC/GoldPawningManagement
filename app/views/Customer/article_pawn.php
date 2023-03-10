@@ -29,9 +29,18 @@
         </div> -->
         <div class="article">
 
-            <div class="jewellery-img">
-                <img class="jw-img" src="<?php echo URLROOT ?>/img/lum3n-esAis38NHT8-unsplash.jpg">
-
+            <div class="jewellery-img"> 
+                <?php 
+                             $finfo = finfo_open();
+                             $imageType = finfo_buffer($finfo, $data['goldLoan']->image, FILEINFO_MIME_TYPE);
+                             finfo_close($finfo); 
+                             ?> 
+                            <img src="<?php if(empty($data['goldLoan']->image)){
+                                    echo URLROOT . "/img/lum3n-esAis38NHT8-unsplash.jpg" ;
+                                }else{
+                                  echo  "data:image/.'$imageType'.;charset=utf8;base64,".base64_encode($data['goldLoan']->image);
+                                    }?>
+                                    " alt="" class="jw-img">
 
             </div>
             <div class="article-info">
@@ -42,14 +51,14 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Article Id</label>
-                            <label class="jw-dt">AR1125</label>
+                            <label class="jw-dt"><?= $data['goldLoan']->Article_Id ?></label>
                         </div>
 
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Estimate value</label>
-                            <label class="jw-dt">Rs 150,000</label>
+                            <label class="jw-dt"><?= $data['goldLoan']->Estimated_Value ?> </label>
                         </div>
 
                     </div>
@@ -57,28 +66,35 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Pawned Date</label>
-                            <label class="jw-dt">2022/11/03</label>
+                            <label class="jw-dt"><?= date("d M Y", strtotime($data['goldLoan']->Pawn_Date)) ?></label>
                         </div>
 
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Due Date</label>
-                            <label class="jw-dt">2023/11/03</label>
+                            <label class="jw-dt"><?=   date("d M Y", strtotime($data['goldLoan']->End_Date))?></label>
                         </div>
 
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Loan Amount</label>
-                            <label class="jw-dt">Rs 112,500</label>
+                            <label class="jw-dt"><?= $data['goldLoan']->Amount ?></label>
                         </div>
 
                     </div>
                     <div class="jw-date-name">
 
                         <label>Status</label>
-                        <label class="status tag-overdue">Overdue</label>
+                        <label class="status <?php if($data['goldLoan']->Status=='Pawned'){
+                                     echo "tag-pending";
+                                    }elseif ($data['goldLoan']->Status=='Overdue') {
+                                        echo "tag-overdue";
+                                    }else{
+                                        echo "tag-auctioned";
+
+                                    }?>"> <?= $data['goldLoan']->Status ?></label>
                     </div>
                 </div>
                 <div class="due-payment info-div">
@@ -88,24 +104,21 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Interest</label>
-                            <label class="jw-dt">27%</label>
+                            <label class="jw-dt"> <?= $data['goldLoan']->Interest ?></label>
                         </div>
 
                     </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Interest Amount</label>
-                            <label class="jw-dt">Rs 22,250</label>
-                        </div>
 
-                    </div>
+                    <?php if ($data['goldLoan']->Repay_Method=='fixed') :?>
+                    
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Due Interest</label>
-                            <label class="jw-dt">Rs 10,250</label>
+                            <label class="jw-dt"><?= number_format((double) $data['goldLoan']->Amount * $data['goldLoan']->Interest/100, 2)?></label>
                         </div>
 
                     </div>
+                    <?php endif;?>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Due Loan</label>
@@ -157,7 +170,13 @@
             </div>
            
             <form action="<?php echo URLROOT ?>/CustomerPawn/makePayment" method="get">
-            <button class="pay-btn">Renew</button>
+            <button type="button"  class="pay-btn"><?php 
+            if ($data['goldLoan']->Status=='Pawned') {
+                echo "Pay";
+            }else if ($data['goldLoan']->Status=='Overdue') {
+                echo "Renew";
+            } 
+            ?></button>
             </form>
 
         </div>

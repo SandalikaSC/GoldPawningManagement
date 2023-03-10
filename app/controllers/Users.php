@@ -5,6 +5,7 @@ class Users extends Controller
   {
 
     $this->userModel = $this->model('Customer');
+    $this->allUserModel = $this->model('UserModel');
   }
 
   public function index()
@@ -432,18 +433,33 @@ class Users extends Controller
   public function changepassword()
   {
     if (isset($_POST["new_pw"])) {
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
       $new =  $_POST['new_pw'];
-      $status = $this->usermodel->changepassword($_SESSION['email'], $new);
-      if ($status) {
-        flash("register", "Password changed successfully", "success");
-        redirect('/Users');
-      } else {
-        flash("changePw", "Something went wrong try again", "invalid");
-        $this->view('pages/changePassword');
-      }
-    }else{
+
+      // Validate Password
+      $uppercase = preg_match('@[A-Z]@',  $new);
+      $lowercase = preg_match('@[a-z]@',  $new);
+      $number = preg_match('@[0-9]@',  $new);
+      $specialChars = preg_match('@[^\w]@',  $new);
+
+       if (!$uppercase || !$lowercase || !$number || !$specialChars) {
+        flash("forget", "Must contain least one uppercase, lowercase, special character and a number", "invalid");
+          $data['success'] = 0; 
+      } elseif (strlen($new) < 6) {
+        flash("forget", "Must be at least 6 characters", "invalid");
+        $data['success'] = 0;  
+      }else{ 
+        $status = $this->allUserModel->changepassword($_SESSION['email'], $new);
+        if ($status) {
+          notification("login", "Password Changed Successfully", "gold");  
+          $data['success'] = 1;
+        } else {
+          notification("forgetPassword", "Something went wrong. Try again", "red");
+          $data['success'] = 0;
+        }
+      } 
+
+      echo json_encode($data);
+    } else {
       $this->view('pages/changePassword');
     }
   }
@@ -453,15 +469,15 @@ class Users extends Controller
     if (isset($_POST["email"])) {
       $email = trim($_POST["email"]);
       $result = $this->userModel->getUserByEmail($_POST["email"]);
-      
+
       if (empty($result)) {
         // flash('register', "You are not registered with Us.", 'invalid');
-        notification("login","You are not registered with Us.","red");
+        notification("login", "You are not registered with Us.", "red");
         $data['success'] = 0;
         // redirect('/Users/login');
       } else if ($result->verification_status === "0") {
         // flash('register', "You are not verified your email yet.", 'invalid');
-        notification("login","You are not verified your email yet.","red");
+        notification("login", "You are not verified your email yet.", "red");
         $data['success'] = 0;
         // redirect('/Users/login');
 
@@ -475,10 +491,9 @@ class Users extends Controller
         } else {
           $data['success'] = 0;
           // flash('register', "Fail to send OTP check your connection", 'invalid');
-          notification("login","Fail to send OTP check your connection","red");
+          notification("login", "Fail to send OTP check your connection", "red");
           // redirect('/Users/login');
         }
-       
       }
 
       echo json_encode($data);
@@ -492,12 +507,11 @@ class Users extends Controller
       $otp = $_POST["otp"];
       if ($_SESSION['OTP'] == $otp) {
         unset($_SESSION['OTP']);
-        $data['success']=1;
+        $data['success'] = 1;
         // $this->view('pages/changePassword');
-      }  else {
-        notification("otp","OTP is incorrect","red");
-        $data['success']=0;
-       
+      } else {
+        notification("otp", "OTP is incorrect", "red");
+        $data['success'] = 0;
       }
       echo json_encode($data);
     }
