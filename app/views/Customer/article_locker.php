@@ -23,9 +23,23 @@
             <div class="jewellery-card">
                 <div class="jewellery-img">
                     <div class="locker-no">
-                        <h2 class="no">01</h2>
-                    </div>
-                    <img class="jw-img" src="<?php echo URLROOT ?>/img/harper-sunday-I89WziXZdVc-unsplash.jpg">
+                        <h2 class="no"><?= str_pad($data['locker']->lockerNo, 2, '0', STR_PAD_LEFT)?></h2>
+                    </div> 
+                    <?php
+                            $finfo = finfo_open();
+                            $imageType = finfo_buffer($finfo,$data['article']->image, FILEINFO_MIME_TYPE);
+                            finfo_close($finfo);
+
+                            ?> 
+                            <img src="<?php if ($data['article']->image) {
+                                            echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg";
+                                        } else {
+                                            echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['article']->image);
+                                        } ?>
+                                    " alt="" class="jw-img">
+
+
+
                 </div>
                 <div class="jw-details">
                     <div class="jw-date">
