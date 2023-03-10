@@ -116,12 +116,33 @@ main .right-content .form-wrapper form .field-wrapper .input-wrapper {
     margin-top: 5px;
 }
 
+main .right-content .form-wrapper form .field-wrapper .wrapper-weight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 main .right-content .form-wrapper form .field-wrapper .input-wrapper input {
     width: 100%;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+main .right-content .form-wrapper form .field-wrapper .div-error {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+main .right-content .form-wrapper form .field-wrapper .input-wrapper select  {
+    width: 150%;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-left: 10px;
 }
 
 main .right-content .form-wrapper form .field-wrapper .status {
