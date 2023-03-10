@@ -55,24 +55,32 @@
                     </div>
                     <form action="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $data['article_details']->id; ?>" method="post">
                         <div class="field-wrapper">
-                            <label>Weight (g)<sup>*</sup></label>
-                            <div class="input-wrapper">
-                                <input type="text" name="weight" placeholder="Weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>">
+                            <label>Weight<sup>*</sup></label>
+                            <div class="input-wrapper wrapper-weight">
+                                <input type="text" name="weight" id="weight" placeholder="Weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>">                                
+
+                                <select name="unit" id="unit">
+                                    <option value="" class="default">Choose weight unit</option>
+                                    <option value="ounce">Troy ounce</option>
+                                    <option value="grams">gram</option>
+                                </select>
                                 
                             </div>
-                            <span class="invalid-feedback"><?php echo $data['weight_err']; ?></span>
+                            <div class="div-error">
+                                <span class="invalid-feedback"><?php echo $data['weight_err']; ?></span>                               
+                            </div>                            
                         </div>
                         <div class="field-wrapper">
                             <label>Karats<sup>*</sup></label>
                             <div class="input-wrapper">
-                                <input type="text" name="karats" placeholder="Karats" class="<?php echo (!empty($data['karats_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['karats']; ?>">
+                                <input type="text" name="karats" id="karats" placeholder="Karats" class="<?php echo (!empty($data['karats_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['karats']; ?>">
                             </div>
                             <span class="invalid-feedback"><?php echo $data['karats_err']; ?></span>
                         </div>
                         <div class="field-wrapper">
                             <label>Estimated Value (Rs.)<sup>*</sup></label>
                             <div class="input-wrapper">
-                                <input type="text" name="estimated-value" placeholder="Estimated Value">
+                                <input type="text" name="estimated-value" id="estimated-value" placeholder="Estimated Value" readonly>
                             </div>
                             <span class="invalid-feedback"></span>
                         </div>
@@ -97,7 +105,13 @@
     </div>
     
     <script>
-
+        $(document).ready(function() {
+            $('#karats').keyup(function() {
+                var karats = $("input[name='karats']").val();
+                var weight = $("input[name='weight']").val();  
+                var unit = $('#unit').val();
+            });
+        });
     </script>
  
 </html>
