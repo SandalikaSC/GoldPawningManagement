@@ -73,7 +73,7 @@
                         <div class="field-wrapper">
                             <label>Carats<sup>*</sup></label>
                             <div class="input-wrapper">
-                                <input type="text" name="karats" id="karats" class="<?php echo (!empty($data['karats_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['karats']; ?>" placeholder="Carats">
+                                <input type="text" name="carats" id="carats" class="<?php echo (!empty($data['karats_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['karats']; ?>" placeholder="Carats">
                             </div>
                             <span class="invalid-feedback"><?php echo $data['karats_err']; ?></span>
                         </div>
@@ -109,12 +109,12 @@
             $('input').keyup(function() {
                 // Get input weight of the article
                 var weight = parseFloat($('#weight').val());
-                // Get input karat value of the article
-                var karats = parseFloat($('#karats').val());
+                // Get input carat value of the article
+                var carats = parseFloat($('#carats').val());
                 // the unit of weight
                 var unit = $('#unit').val();
 
-                // Variable to store the gold price per 8g according to the karat value that retrieved from the db 
+                // Variable to store the gold price per 8g according to the carat value that retrieved from the db 
                 var gold_price = 0.00;
                 // Final value of the article
                 var estimated_value = 0.00;
@@ -122,11 +122,11 @@
                 // Get the gold rates array retrieved from db using PHP
                 var gold_rates = <?php echo json_encode($data['gold_rates'])?>;
 
-                // When the karat value is entered
-                if(karats) {
+                // When the carat value is entered
+                if(carats) {
                     for(var i = 0; i < gold_rates.length; i++){
-                        // Get gold price according to karat value
-                        if(gold_rates[i]['Karatage'] == karats) {
+                        // Get gold price according to carat value
+                        if(gold_rates[i]['Karatage'] == carats) {
                             gold_price = gold_rates[i]['Price'];
                         }
                     }
@@ -134,7 +134,7 @@
 
                 // When the weight unit has chosen
                 if(unit) {
-                    // Get the gold price of 1g of the given karatage
+                    // Get the gold price of 1g of the given caratage
                     var gram_price = gold_price / 8;
 
                     /* If the weight unit is 'Troy ounce'.
@@ -147,10 +147,10 @@
                     var pure_gold_price = weight * gram_price;
 
                     // Calculate the value of the gold article
-                    estimated_value = (pure_gold_price * karats / 24).toFixed(2);
+                    estimated_value = (pure_gold_price * carats / 24).toFixed(2);
                 }
 
-                if(weight && karats && unit) {
+                if(weight && carats && unit) {
                     $('#estimated-value').attr('value', estimated_value);
                 }                
             });
