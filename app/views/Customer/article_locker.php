@@ -36,10 +36,7 @@
                                         } else {
                                             echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['article']->image);
                                         } ?>
-                                    " alt="" class="jw-img">
-
-
-
+                                    " alt="" class="jw-img"> 
                 </div>
                 <div class="jw-details">
                     <div class="jw-date">
