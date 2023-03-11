@@ -108,28 +108,45 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('input').keyup(function() {
+                // Get input weight of the article
                 var weight = parseFloat($('#weight').val());
+                // Get input karat value of the article
                 var karats = parseFloat($('#karats').val());
+                // the unit of weight
                 var unit = $('#unit').val();
+
+                // Variable to store the gold price per 8g according to the karat value that retrieved from the db 
                 var gold_price = 0.00;
+                // Final value of the article
                 var estimated_value = 0.00;
                 
+                // Get the gold rates array retrieved from db using PHP
                 var gold_rates = <?php echo json_encode($data['gold_rates'])?>;
+
+                // When the karat value is entered
                 if(karats) {
                     for(var i = 0; i < gold_rates.length; i++){
+                        // Get gold price according to karat value
                         if(gold_rates[i]['Karatage'] == karats) {
                             gold_price = gold_rates[i]['Price'];
                         }
                     }
                 }
 
+                // When the weight unit has chosen
                 if(unit) {
+                    // Get the gold price of 1g of the given karatage
                     var gram_price = gold_price / 8;
+
+                    /* If the weight unit is 'Troy ounce'.
+                       1 Troy ounce is approximately equal to 31g
+                       Here the troy ounce value will be converted into grams*/
                     if(unit === "ounce") {
                         weight = weight * 31;
                     }
 
                     var pure_gold_price = weight * gram_price;
+
                     estimated_value = (pure_gold_price * karats / 24).toFixed(2);
                 }
 
