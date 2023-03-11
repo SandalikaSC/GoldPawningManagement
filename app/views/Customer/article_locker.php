@@ -23,33 +23,69 @@
             <div class="jewellery-card">
                 <div class="jewellery-img">
                     <div class="locker-no">
-                        <h2 class="no"><?= str_pad($data['locker']->lockerNo, 2, '0', STR_PAD_LEFT)?></h2>
-                    </div> 
+                        <h2 class="no"><?= str_pad($data['locker']->lockerNo, 2, '0', STR_PAD_LEFT) ?></h2>
+                    </div>
                     <?php
-                            $finfo = finfo_open();
-                            $imageType = finfo_buffer($finfo,$data['article']->image, FILEINFO_MIME_TYPE);
-                            finfo_close($finfo);
+                    $finfo = finfo_open();
+                    $imageType = finfo_buffer($finfo, $data['article']->image, FILEINFO_MIME_TYPE);
+                    finfo_close($finfo);
 
-                            ?> 
-                            <img src="<?php if ($data['article']->image) {
-                                            echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg";
-                                        } else {
-                                            echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['article']->image);
-                                        } ?>
-                                    " alt="" class="jw-img"> 
+                    ?>
+                    <img src="<?php if (empty($data['article']->image)) {
+                                    echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg";
+                                } else {
+                                    echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['article']->image);
+                                } ?>
+                                    " alt="" class="jw-img">
                 </div>
                 <div class="jw-details">
                     <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Due Date</label>
-                            <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05")) ?></label>
-                        </div>
 
-                    </div>
-                    <div class="jw-date-name">
+                        <?php if ($data['reservation']->Retrive_status !== 1) : ?>
 
-                        <label>Status</label>
-                        <label class="status tag-pending">Pending</label>
+
+                            <?php $interval = date_diff(date_create($data['reservation']->Retrieve_Date), date_create());
+                            $days_diff = $interval->days * ($interval->invert ? -1 : 1);
+
+                            ?>
+                            <div class="jw-date-name">
+                                <label>Reserved till</label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Retrieve_Date)) ?></label>
+                            </div>
+                            <div class="jw-date-name">
+
+                                <label>Remaining</label>
+                                <label class="jw-dt">
+                                    <?php echo ($days_diff < 0 ? -1 * $days_diff . " days"  : $days_diff . " days ago"); ?>
+
+                                </label>
+                            </div>
+                            <?php if ($days_diff > 0) : ?>
+                                <div class="jw-date-name">
+                                    <label class="status tag-overdue">Overdue</label>
+                                </div>
+
+                            <?php endif; ?>
+                        <?php else : ?>
+                            <div class="jw-date-name">
+                                <label>Reserved</label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Date)) ?></label>
+                            </div>
+                            <div class="jw-date-name">
+                                <label>Retrieved </label>
+                                <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Deallocated_Date)) ?></label>
+                            </div>
+
+
+                            <div class="jw-date-name">
+                                <label class="status tag-auctioned">Retrieved</label>
+                            </div>
+
+
+
+
+                        <?php endif; ?>
+
                     </div>
                 </div>
 

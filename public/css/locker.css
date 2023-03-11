@@ -103,7 +103,7 @@
   .tag-pending {
     background-color: #bb8a048c;
   } 
-  .tag-auctioned {
+  .tag-auctioned,.tag-retrieved{
     background-color: #0000007d;
   }
   
