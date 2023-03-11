@@ -73,7 +73,7 @@
                                 <th>Article ID</th>
                                 <th>Type</th>
                                 <th>Weight (g)</th>
-                                <th>Karatage</th>
+                                <th>Caratage</th>
                                 <th>Estimated Value (Rs.)</th>
                             </tr>
                         </thead>

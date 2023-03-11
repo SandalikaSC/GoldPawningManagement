@@ -26,7 +26,84 @@
         </div>
 
         <main>
-            <div class="left-content">
+            <div class="div-validation">
+                <div class="article-details">
+                    <div class="div-img">
+                        <img src="<?php echo $data['article_details']->image; ?>">
+                    </div>
+                    <div class="div-details">
+                        <div class="field">
+                            <h1 class="type"><?php echo $data['article_details']->article_type; ?></h1>
+                            <!-- <label>Type</label>
+                            <div><?php echo $data['article_details']->article_type; ?></div> -->
+                        </div>
+                        <div class="field">
+                            <label>Validation ID</label>
+                            <div><?php echo $data['article_details']->id; ?></div>
+                        </div>
+                        <div class="field">
+                            <label>Customer ID</label>
+                            <div><?php echo $data['article_details']->customer; ?></div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="form-wrapper">
+                    <div class="form-title">
+                        <h2>Validation Details</h2>
+                    </div>
+                    <form action="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $data['article_details']->id; ?>" method="post">
+                        <div class="field-wrapper">
+                            <label>Weight<sup>*</sup></label>
+                            <div class="input-wrapper wrapper-weight">
+                                <input type="text" name="weight" id="weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>" placeholder="Weight">                                
+
+                                <select name="unit" id="unit">
+                                    <option value="" class="default">Choose weight unit</option>
+                                    <option value="ounce">Troy ounce</option>
+                                    <option value="gram">gram</option>
+                                </select>
+                                
+                            </div>
+                            <div class="div-error">
+                                <span class="invalid-feedback"><?php echo $data['weight_err']; ?></span>                               
+                            </div>                            
+                        </div>
+                        <div class="field-wrapper">
+                            <label>Carats<sup>*</sup></label>
+                            <div class="input-wrapper">
+                                <input type="text" name="karats" id="karats" class="<?php echo (!empty($data['karats_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['karats']; ?>" placeholder="Carats">
+                            </div>
+                            <span class="invalid-feedback"><?php echo $data['karats_err']; ?></span>
+                        </div>
+                        <div class="field-wrapper">
+                            <label>Estimated Value (Rs.)<sup>*</sup></label>
+                            <div class="input-wrapper">
+                                <input type="text" name="estimated-value" id="estimated-value" placeholder="Estimated Value" disabled />
+                            </div>
+                            <span class="invalid-feedback"></span>
+                        </div>
+                        <div class="field-wrapper">
+                            <label>Validation Status</label>
+                            <div class="status">                        
+                                <label>
+                                    <input type="radio" name="status" value="Valid" checked> Valid
+                                </label>
+                                <label>
+                                    <input type="radio" name="status" value="Invalid"> Invalid
+                                </label>
+                            </div> 
+                        </div>                         
+                        <div class="btn-container">
+                            <input type="submit" class="btn-submit" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            
+            <!-- <div class="left-content">
                 <div class="article-details">
                     <div class="div-img">
                         <img src="<?php echo $data['article_details']->image; ?>">
@@ -48,8 +125,8 @@
                 </div>
 
                 
-            </div>
-            <div class="right-content">                
+            </div> -->
+            <!-- <div class="right-content">                
                 <div class="form-wrapper">
                     <div class="form-title">
                         <h2>Validation Details</h2>
@@ -101,7 +178,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </main>
     </div>
     
@@ -147,6 +224,7 @@
 
                     var pure_gold_price = weight * gram_price;
 
+                    // Calculate the value of the gold article
                     estimated_value = (pure_gold_price * karats / 24).toFixed(2);
                 }
 
