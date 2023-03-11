@@ -28,11 +28,13 @@
 
         public function validate_articles($id) {
             $article = $this->goldAppraiserModel->getArticleByID($id);
+            $gold_rates = $this->goldAppraiserModel->getGoldRates();
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
                 $data = [
+                    'gold_rates' => $gold_rates,
                     'article_details' => $article,
                     'weight' => trim($_POST['weight']),
                     'karats' => trim($_POST['karats']),
@@ -64,6 +66,7 @@
 
             } else {
                 $data = [
+                    'gold_rates' => $gold_rates,
                     'article_details' => $article,
                     'weight' => '',
                     'karats' => '',
