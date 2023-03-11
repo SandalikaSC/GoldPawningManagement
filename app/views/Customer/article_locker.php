@@ -1,6 +1,5 @@
 <?php require APPROOT . "/views/inc/header.php" ?>
-<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_locker.css'>
-<!-- <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_pawn.css'> -->
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_locker.css'> 
 <title>Vogue | Locker Article</title>
 </head>
 
@@ -101,14 +100,28 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Article Id</label>
-                        <label class="jw-dt">AR1125</label>
+                        <label class="jw-dt"><?=  $data['article']->Article_Id?></label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Estimate value</label>
-                        <label class="jw-dt">Rs 150,000</label>
+                        <label class="jw-dt"><?= 'Rs.'.$data['article']->Estimated_Value?></label>
+                    </div>
+
+                </div>
+                <div class="jw-date">
+                    <div class="jw-date-name">
+                        <label>Karatage</label>
+                        <label class="jw-dt"><?= 'Rs.'.$data['article']->Karatage?></label>
+                    </div>
+
+                </div>
+                <div class="jw-date">
+                    <div class="jw-date-name">
+                        <label>Weight</label>
+                        <label class="jw-dt"><?=  $data['article']->Weight.' g'?></label>
                     </div>
 
                 </div>
@@ -124,16 +137,23 @@
 
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label>Reservatoin Date</label>
-                        <label class="jw-dt">2022/11/03</label>
+                        <label>Reservation Date</label>
+                        <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Date)) ?></label>
                     </div>
 
                 </div>
 
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label>Installment</label>
-                        <label class="jw-dt">Rs 12,500</label>
+                        <label>Reserving Interest</label>
+                        <label class="jw-dt"><?php echo   $data['interest']->Interest_Rate .'%' ?></label>
+                    </div>
+
+                </div>
+                <div class="jw-date">
+                    <div class="jw-date-name">
+                        <label>Monthly Installment</label>
+                        <label class="jw-dt"><?php echo  'Rs. '.$data['reservation']->allocation_fee ?></label>
                     </div>
 
                 </div>
@@ -141,15 +161,17 @@
 
 
             </div>
-            <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay" method="get">
-                <button class="pay-btn">Pay</button>
-
-            </a>
+           
 
             <!-- </div> -->
 
         </div>
+        
         <div class="item-payments">
+        <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay" method="get">
+                <button class="pay-btn">Pay</button>
+
+            </a>
             <!-- <div class="payment-history"> -->
             <div class="payments his-div">
                 <h2 class="sub-title">

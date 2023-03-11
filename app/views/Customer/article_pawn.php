@@ -133,6 +133,17 @@
             </div>
         </div>
         <div class="payment-history">
+            
+        <form action="<?php echo URLROOT ?>/CustomerPawn/makePayment" method="get">
+            <button type="button"  class="pay-btn"><?php 
+            if ($data['goldLoan']->Status=='Pawned') {
+                echo "Pay";
+            }else if ($data['goldLoan']->Status=='Overdue') {
+                echo "Renew";
+            } 
+            ?></button>
+            </form>
+
             <div class="payments his-div">
             <h2 class="sub-title">
                 Payment History </h2>
@@ -169,16 +180,6 @@
             </div>
             </div>
            
-            <form action="<?php echo URLROOT ?>/CustomerPawn/makePayment" method="get">
-            <button type="button"  class="pay-btn"><?php 
-            if ($data['goldLoan']->Status=='Pawned') {
-                echo "Pay";
-            }else if ($data['goldLoan']->Status=='Overdue') {
-                echo "Renew";
-            } 
-            ?></button>
-            </form>
-
         </div>
     </div>
     <script>
