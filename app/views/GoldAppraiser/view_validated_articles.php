@@ -67,36 +67,29 @@
                 </div>
                 <div class="tbl-details">
                     <table cellspacing="0">
-                        <tbody>
+                        <thead>
                             <tr>
                                 <th></th>
                                 <th>Article ID</th>
-                                <th>Customer ID</th>
                                 <th>Type</th>
-                                <th>Weight</th>
-                                <th>Karats</th>
-                                <th>Estimated Values</th>
+                                <th>Weight (g)</th>
+                                <th>Karatage</th>
+                                <th>Estimated Value (Rs.)</th>
                             </tr>
-                            
-                            <!-- <?php foreach($data['customers'] as $customer) : ?>
-                                <tr class="table-body">
-                                    <td><?php echo $customer->UserId; ?></td>
-                                    <td><?php echo $customer->First_Name . ' ' . $customer->Last_Name; ?></td>
-                                    <td><?php echo $customer->phone; ?></td>
-                                    <td><?php echo $customer->email; ?></td>
-                                    <td><a href="<?php echo URLROOT; ?>/customers/customer_view_more/<?php echo $customer->UserId; ?>" class="view btn">View</a></td>                            
-                                </tr>
-                            <?php endforeach; ?> -->
+                        </thead>
 
-                            <tr class="table-body">
-                                <td><img src="<?php echo URLROOT?>/img/ring1.jpg"></td>
-                                <td>A001</td>
-                                <td>CS0021</td>
-                                <td>Jewelry</td>
-                                <td>25g</td>
-                                <td>24</td>
-                                <td>Rs. 105000.00</td>
-                            </tr>
+                        <tbody>
+                            <?php foreach ($data['validated_articles'] as $validated_article) : ?>
+                                <tr class="table-body">
+                                    <!-- <td><img src="<?php echo $validated_article->image; ?>"></td> -->
+                                    <td></td>
+                                    <td><?php echo $validated_article->Article_Id; ?></td>
+                                    <td><?php echo $validated_article->Type; ?></td>
+                                    <td><?php echo $validated_article->Weight; ?></td>
+                                    <td><?php echo $validated_article->Karatage; ?></td>
+                                    <td><?php echo $validated_article->Estimated_Value; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>                

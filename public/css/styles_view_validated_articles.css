@@ -212,10 +212,11 @@ main {
 }
 
 .right-content .tbl-details {
-    padding: 40px 0;
-    margin-bottom: 30px;
+    margin: 30px 0;
+    height: calc(100vh - 250px);
     display: flex;
     justify-content: center;
+    overflow-y: auto;
 }
 
 .right-content .tbl-details table {
