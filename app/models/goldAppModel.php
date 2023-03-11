@@ -34,6 +34,10 @@
         }
 
         public function validateNewArticles($data) {
+            
+        }
+
+        public function getGoldRates() {
             $this->db->query('SELECT * FROM gold_rate');
             
             $results = $this->db->resultSet();
