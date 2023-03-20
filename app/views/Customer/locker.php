@@ -18,7 +18,9 @@
             </div>
             <div class="locker-page">
                 <?php foreach ($data['reservation'] as $reservation) : ?>
-                    <a  href="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle/<?= $reservation->Allocate_Id ?>"  class="jewellery-card no-link-style ">
+
+
+                    <a href="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle/<?= $reservation->Allocate_Id ?>" class="jewellery-card no-link-style ">
                         <div class="jewellery-img">
                             <div class="locker-no">
                                 <h2 class="no"><?= str_pad($reservation->lockerNo, 2, '0', STR_PAD_LEFT) ?></h2>
@@ -43,31 +45,54 @@
                         </div>
                         <div class="jw-details">
                             <div class="jw-date">
-                                <div class="jw-date-name">
-                                    <label>Reserved till</label>
-                                    <label class="jw-dt"><?php echo date("d M Y", strtotime($reservation->Retrieve_Date)) ?></label>
-                                </div>
+
+                                <?php if ($reservation->Retrive_status !== 1) : ?>
 
 
-                                <?php
-                                $interval = date_diff(date_create($reservation->Retrieve_Date), date_create());
-                                $days_diff = $interval->days * ($interval->invert ? -1 : 1);
-                               
-                                ?>
-                                <div class="jw-date-name">
-                                    <label>Remaining</label>
-                                    <label class="jw-dt">
-                                        <?php echo   ($days_diff < 0 ?-1* $days_diff . " days ago" : $days_diff . " days"); ?>
+                                    <?php $interval = date_diff(date_create($reservation->Retrieve_Date), date_create());
+                                    $days_diff = $interval->days * ($interval->invert ? -1 : 1);
 
-                                    </label>
-                                </div>
-                                <?php if ($days_diff<0) : ?>
+                                    ?>
                                     <div class="jw-date-name">
-                                        <label class="status tag-overdue">Overdue</label>
+                                        <label>Reserved till</label>
+                                        <label class="jw-dt"><?php echo date("d M Y", strtotime($reservation->Retrieve_Date)) ?></label>
+                                    </div>
+                                    <div class="jw-date-name">
+
+                                        <label>Remaining</label>
+                                        <label class="jw-dt">
+                                            <?php echo ($days_diff < 0 ? -1 * $days_diff ." days"  : $days_diff ." days ago" ); ?>
+
+                                        </label>
+                                    </div>
+                                    <?php if ($days_diff > 0) : ?>
+                                        <div class="jw-date-name">
+                                            <label class="status tag-overdue">Overdue</label>
+                                        </div>
+
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <div class="jw-date-name">
+                                        <label>Reserved</label>
+                                        <label class="jw-dt"><?php echo date("d M Y", strtotime($reservation->Date)) ?></label>
+                                    </div>
+                                    <div class="jw-date-name">
+                                        <label>Retrieved </label>
+                                        <label class="jw-dt"><?php echo date("d M Y", strtotime($reservation->Deallocated_Date)) ?></label>
                                     </div>
 
+                                    
+                                    <div class="jw-date-name">
+                                        <label class="status tag-retrieved">Retrieved</label>
+                                    </div>
+ 
+
+
+
                                 <?php endif; ?>
-                            </div> 
+
+
+                            </div>
                         </div>
                         <!-- <form action="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle" method="POST"> <button  class="v-btn">View</button>
                         </form> -->

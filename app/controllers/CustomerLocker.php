@@ -11,6 +11,7 @@ class CustomerLocker extends Controller
         $this->articleModel = $this->model('article');
         $this->deliveryModel = $this->model('delivery'); 
         $this->lockerModel = $this->model('Locker');
+        $this->interestModel = $this->model('interest');
     }
 
 
@@ -28,13 +29,15 @@ class CustomerLocker extends Controller
         $article=$this->articleModel->getArticleById($reservation->Article_Id);
         $delivery=$this->deliveryModel->getDeliveryByReserveId($reserveId);
         $locker=$this->lockerModel->getLockerById($reservation->lockerNo);
+        $interest=$this->interestModel->getAllocationInterest();
 
 
         $data=[
             'reservation'=>$reservation,
             'article'=>$article,
             'delivery'=>$delivery,
-            'locker'=>$locker
+            'locker'=>$locker,
+            'interest'=> $interest
 
         ];
 
@@ -44,6 +47,6 @@ class CustomerLocker extends Controller
     }
     public function viewLockerPay()
     {
-        $this->view('Customer/locker_pay');
+        $this->view('Customer/pawnpaydetails');
     }
 }

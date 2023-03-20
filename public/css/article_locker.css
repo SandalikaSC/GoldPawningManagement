@@ -155,7 +155,7 @@
 
 
 .info-div{
-    /* margin-top: 10%; */
+    margin-top: 5%;
     padding: 3%;
     display: flex;
     flex-direction: column;
@@ -228,6 +228,8 @@
     justify-content:space-evenly ;
 }
 .item-payments{
+    display: flex;
+    flex-direction: column;
     width: 40%;
 }
 
@@ -242,7 +244,7 @@
 }
 .a-pay{
     margin: 5% auto;
-    padding: 2% 10%;
+    padding: 2% 22%;
     background: #bb8a04;
     border-radius: 20px;
 }
