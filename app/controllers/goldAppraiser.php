@@ -39,7 +39,7 @@
                     'weight' => trim($_POST['weight']),
                     'karats' => trim($_POST['karats']),
                     'unit' => trim($_POST['unit']),
-                    // 'estimated_value' => trim($_POST['estimated-value']),
+                    'estimated_value' => trim($_POST['estimated-value']),
                     'validation_status' => trim($_POST['status']),
                     'weight_err' => '',
                     'karats_err' => '',
