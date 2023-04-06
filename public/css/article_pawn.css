@@ -64,7 +64,7 @@
 .payment-history{
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    /* justify-content:space-around; */
     place-items: center;
     width: 40%;
     /* height: 70%;
@@ -200,10 +200,11 @@
 }
 
 form{
+    margin: 5% auto;
     display: flex;
     place-content: center;
 }
-..a-pay{
+.a-pay{
     margin: 5% auto;
     padding: 2% 10%;
     background: #bb8a04;
