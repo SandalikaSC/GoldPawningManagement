@@ -38,132 +38,160 @@
 }
 
 main {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 30px 30px;
+    
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
 }
 
-main .left-content,
-main .right-content {
+main .div-validation {
+    width: 500px;
+    background: #bb8a04;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .div-validation .article-details {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-main .left-content .article-details {
-    width: 400px;
-    background: #bb8a04;
     padding: 20px;
     border-radius: 25px;
 }
 
-main .left-content .article-details .div-img {
-    width: 100%;
+main .div-validation .article-details .div-img {
+    width: 50%;
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-main .left-content .article-details .div-img img {
-    width: 250px;
+main .div-validation .article-details .div-img img {
+    width: 100%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 5px -1px, rgba(0, 0, 0, 0.3) 0px 5px 5px -1px;
 }
 
-main .left-content .article-details .div-details {
+main .div-validation .article-details .div-details {
     width: 100%;
-    padding: 20px 40px;
+    padding: 20px;
+    height: fit-content;
 }
 
-main .left-content .article-details .div-details .field {
+main .div-validation .article-details .div-details .field {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
-main .left-content .article-details .div-details .field label {
+main .div-validation .article-details .div-details .type {
+    color: #faebd7;
+    margin: 8px 0;
+}
+
+main .div-validation .article-details .div-details .field label {
+    font-size: 14px;
     font-weight: 600;
 }
 
-main .right-content .form-wrapper {
-    background: #fff;
-    width: 450px;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    margin: 30px 0;
+main .div-validation .article-details .div-details .field div div {
+    margin-top: 5px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
 }
 
-main .right-content .form-wrapper .form-title {
+main .div-validation .form-wrapper {
+    background: #fff;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+main .div-validation .form-wrapper .form-title {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ddd;
+    /* background: #ddd; */
     padding: 15px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
 }
 
-main .right-content .form-wrapper form {
+main .div-validation .form-wrapper form {
     padding: 0px 50px 30px;
 }
 
-main .right-content .form-wrapper form .field-wrapper {
-    margin-top: 20px;
+main .div-validation .form-wrapper form .field-wrapper {
+    margin-bottom: 20px;
 }
 
-main .right-content .form-wrapper form .field-wrapper label sup {
+main .div-validation .form-wrapper form .field-wrapper label {
+    font-size: 14px;
+}
+
+main .div-validation .form-wrapper form .field-wrapper label sup {
     color: #ff0000;
 }
 
-main .right-content .form-wrapper form .field-wrapper .input-wrapper {
+main .div-validation .form-wrapper form .field-wrapper .input-wrapper {
     margin-top: 5px;
 }
 
-main .right-content .form-wrapper form .field-wrapper .wrapper-weight {
+main .div-validation .form-wrapper form .field-wrapper .wrapper-weight {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-main .right-content .form-wrapper form .field-wrapper .input-wrapper input {
+main .div-validation .form-wrapper form .field-wrapper .input-wrapper input {
     width: 100%;
     padding: 10px 20px;
     font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    border: none;
+    border-bottom: 2px solid #ddd;
 }
 
-main .right-content .form-wrapper form .field-wrapper .div-error {
+main .div-validation .form-wrapper form .field-wrapper .div-error {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-main .right-content .form-wrapper form .field-wrapper .input-wrapper select  {
-    width: 150%;
+main .div-validation .form-wrapper form .field-wrapper .input-wrapper select  {
+    width: 120%;
     padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-left: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    margin-left: 20px;
 }
 
-main .right-content .form-wrapper form .field-wrapper .status {
-    margin: 5px 0 20px;
+main .div-validation .form-wrapper form .field-wrapper .status {
+    margin: 10px 0;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-main .right-content .form-wrapper form .btn-container {
+main .div-validation .form-wrapper form .field-wrapper .status label {
+    font-size: 16px;
+}
+
+main .div-validation .form-wrapper form .btn-container {
     width: 100%;
     display: flex;
     justify-content: center;
     
 }
 
-main .right-content .form-wrapper form .btn-container .btn-submit {
+main .div-validation .form-wrapper form .btn-container .btn-submit {
     width: 100%;
     background: #bb8a04;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,7 +202,7 @@ main .right-content .form-wrapper form .btn-container .btn-submit {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 5px -1px, rgba(0, 0, 0, 0.3) 0px 5px 5px -1px;
 }
 
-main .right-content .form-wrapper form .btn-container .btn-submit:hover {
+main .div-validation .form-wrapper form .btn-container .btn-submit:hover {
     transform: translateY(-5px);
 }
 
@@ -185,5 +213,5 @@ main .right-content .form-wrapper form .btn-container .btn-submit:hover {
 }
 
 .is-invalid {
-    border: 1px solid #ff0000;
+    border-color: #ff0000;
 }

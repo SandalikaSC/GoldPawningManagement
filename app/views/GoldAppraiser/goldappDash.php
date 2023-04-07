@@ -66,7 +66,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>24 KARATS</h4>
+                                <h4>24 CARATS</h4>
                                 <h2>Rs. 102000.00</h2>
                             </div>                                
                         </div>
@@ -76,7 +76,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>22 KARATS</h4>
+                                <h4>22 CARATS</h4>
                                 <h2>Rs. 90000.00</h2>
                             </div>                                
                         </div>
@@ -86,7 +86,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>20 KARATS</h4>
+                                <h4>20 CARATS</h4>
                                 <h2>Rs. 78000.00</h2>
                             </div>                                
                         </div>
@@ -96,7 +96,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>18 KARATS</h4>
+                                <h4>18 CARATS</h4>
                                 <h2>Rs. 66000.00</h2>
                             </div>                                
                         </div>                        
