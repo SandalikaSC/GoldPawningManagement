@@ -60,9 +60,9 @@
                                 <input type="text" name="weight" id="weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>" placeholder="Weight">                                
 
                                 <select name="unit" id="unit">
-                                    <option value="" class="default">Choose weight unit</option>
-                                    <option value="ounce">Troy ounce</option>
-                                    <option value="gram">gram</option>
+                                    <option value="" <?php if($data['unit'] == '') echo 'selected'; else '';?> disabled>Choose weight unit</option>
+                                    <option value="ounce" <?php if($data['unit'] == 'ounce') echo 'selected'; else '';?> >ounce</option>
+                                    <option value="gram" <?php if($data['unit'] == 'gram') echo 'selected'; else '';?> >gram</option>
                                 </select>
                                 
                             </div>
@@ -77,10 +77,12 @@
                             </div>
                             <span class="invalid-feedback"><?php echo $data['karats_err']; ?></span>
                         </div>
+                        
                         <div class="field-wrapper">
                             <label>Estimated Value (Rs.)<sup>*</sup></label>
-                            <div class="input-wrapper">
-                                <input type="text" name="estimated-value" id="estimated-value" placeholder="Estimated Value" disabled />
+                            <div class="input-wrapper div-value">
+                                <input type="text" name="estimated-value" id="estimated-value" value="<?php echo $data['estimated_value']; ?>" placeholder="Estimated Value" disabled />
+                                <input type="submit" class="btn-calc" name="calculate" value="Calculate">
                             </div>
                             <span class="invalid-feedback"></span>
                         </div>
@@ -96,7 +98,7 @@
                             </div> 
                         </div>                         
                         <div class="btn-container">
-                            <input type="submit" class="btn-submit" value="Save">
+                            <input type="submit" class="btn-submit" name="save" value="Save">
                         </div>
                     </form>
                 </div>
@@ -105,56 +107,56 @@
     </div>
     
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('input').keyup(function() {
-                // Get input weight of the article
-                var weight = parseFloat($('#weight').val());
-                // Get input carat value of the article
-                var carats = parseFloat($('#carats').val());
-                // the unit of weight
-                var unit = $('#unit').val();
+        // $(document).ready(function() {
+        //     $('input').keyup(function() {
+        //         // Get input weight of the article
+        //         var weight = parseFloat($('#weight').val());
+        //         // Get input carat value of the article
+        //         var carats = parseFloat($('#carats').val());
+        //         // the unit of weight
+        //         var unit = $('#unit').val();
 
-                // Variable to store the gold price per 8g according to the carat value that retrieved from the db 
-                var gold_price = 0.00;
-                // Final value of the article
-                var estimated_value = 0.00;
+        //         // Variable to store the gold price per 8g according to the carat value that retrieved from the db 
+        //         var gold_price = 0.00;
+        //         // Final value of the article
+        //         var estimated_value = 0.00;
                 
-                // Get the gold rates array retrieved from db using PHP
-                var gold_rates = <?php echo json_encode($data['gold_rates'])?>;
+        //         // Get the gold rates array retrieved from db using PHP
+        //         var gold_rates = <?php echo json_encode($data['gold_rates'])?>;
 
-                // When the carat value is entered
-                if(carats) {
-                    for(var i = 0; i < gold_rates.length; i++){
-                        // Get gold price according to carat value
-                        if(gold_rates[i]['Karatage'] == carats) {
-                            gold_price = gold_rates[i]['Price'];
-                        }
-                    }
-                }
+        //         // When the carat value is entered
+        //         if(carats) {
+        //             for(var i = 0; i < gold_rates.length; i++){
+        //                 // Get gold price according to carat value
+        //                 if(gold_rates[i]['Karatage'] == carats) {
+        //                     gold_price = gold_rates[i]['Price'];
+        //                 }
+        //             }
+        //         }
 
-                // When the weight unit has chosen
-                if(unit) {
-                    // Get the gold price of 1g of the given caratage
-                    var gram_price = gold_price / 8;
+        //         // When the weight unit has chosen
+        //         if(unit) {
+        //             // Get the gold price of 1g of the given caratage
+        //             var gram_price = gold_price / 8;
 
-                    /* If the weight unit is 'Troy ounce'.
-                       1 Troy ounce is approximately equal to 31g
-                       Here the troy ounce value will be converted into grams*/
-                    if(unit === "ounce") {
-                        weight = weight * 31;
-                    }
+        //             /* If the weight unit is 'Troy ounce'.
+        //                1 Troy ounce is approximately equal to 31g
+        //                Here the troy ounce value will be converted into grams*/
+        //             if(unit === "ounce") {
+        //                 weight = weight * 31;
+        //             }
 
-                    var pure_gold_price = weight * gram_price;
+        //             var pure_gold_price = weight * gram_price;
 
-                    // Calculate the value of the gold article
-                    estimated_value = (pure_gold_price * carats / 24).toFixed(2);
-                }
+        //             // Calculate the value of the gold article
+        //             estimated_value = (pure_gold_price * carats / 24).toFixed(2);
+        //         }
 
-                if(weight && carats && unit) {
-                    $('#estimated-value').attr('value', estimated_value);
-                }                
-            });
-        });
+        //         if(weight && carats && unit) {
+        //             $('#estimated-value').attr('value', estimated_value);
+        //         }                
+        //     });
+        // });
     </script>
  
 </html>
