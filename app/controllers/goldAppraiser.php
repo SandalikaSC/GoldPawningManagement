@@ -43,7 +43,7 @@
                     'article_details' => $article,
                     'weight' => trim($_POST['weight']),
                     'karats' => trim($_POST['carats']),
-                    'unit' => trim($_POST['unit']),
+                    'unit' => $_POST['unit'],
                     'estimated_value' => '',
                     'validation_status' => '',
                     'weight_err' => '',
@@ -61,31 +61,56 @@
                 foreach($data['gold_rates'] as $rates) : 
                     if($carats == $rates->Karatage) {
                         $carat_value = $rates->Price;
-                    }
+                    } 
                 endforeach;
+                if(!$carat_value) {
+                    $data['karats_err'] = "Enter valid carat value";
+                }
 
                 if($unit) {
                     $gram_price = $carat_value / 8;
 
                     if($unit == "ounce") {
-                        $weight = $weight * 31;
+                        $weight = (float)$weight * 31;
                     }
 
-                    $pure_gold_price = $weight * $gram_price;
+                    $pure_gold_price = (float)$weight * $gram_price;
 
-                    $estimate_value = $pure_gold_price * $carats / 24;
+                    $estimate_value = $pure_gold_price * (float)$carats / 24;
                     $estimate_value = number_format($estimate_value,  2, '.', '');
                 } 
 
-                $data['estimated_value'] = $estimate_value; 
+                
+                if(empty($data['weight']) && empty($data['unit'])) {
+                    $data['weight_err'] = "Please enter the article weight and weight unit";
+                } elseif(empty($data['unit'])) {
+                    $data['weight_err'] = "Please enter a unit";
+                } elseif(empty($data['weight'])) {
+                    $data['weight_err'] = "Please enter the article weight";
+                }
 
-                if(isset($_POST['calculate'])) {
+                if(empty($data['karats'])) {
+                    $data['karats_err'] = "Please enter the carat value";
+                }
+
+                if(empty($data['weight_err']) && empty($data['karats_err'])) {
+                    $data['estimated_value'] = $estimate_value; 
+                    if(isset($_POST['calculate'])) {
+                        $this->view('GoldAppraiser/validate_new_articles', $data);
+                    }
+
+                    if(isset($_POST['save'])) {
+                        $data['validation_status'] = trim($_POST['status']);
+                        redirect('/goldAppraiser/dashboard');
+                        // $this->view('GoldAppraiser/validate_new_articles', $data);
+                    }
+                } else {
+                    // Load view with errors
                     $this->view('GoldAppraiser/validate_new_articles', $data);
                 }
-                if(isset($_POST['save'])) {
-                    redirect('/goldAppraiser/dashboard');
-                    // $this->view('GoldAppraiser/validate_new_articles', $data);
-                }
+
+                
+                
 
                 // if(isset($_POST['calculate'])) {
                 //     // $data = [
