@@ -52,8 +52,8 @@
                     // 'estimated_value_err' => '',
                 ];
 
-                $weight = $data['weight'];
-                $carats = $data['karats'];
+                $weight = (float)$data['weight'];
+                $carats = (float)$data['karats'];
                 $carat_value = 0.00;
                 $unit = $data['unit'];
                 $estimate_value = 0.00;
@@ -71,12 +71,12 @@
                     $gram_price = $carat_value / 8;
 
                     if($unit == "ounce") {
-                        $weight = (float)$weight * 31;
+                        $weight = $weight * 31;
                     }
 
-                    $pure_gold_price = (float)$weight * $gram_price;
+                    $pure_gold_price = $weight * $gram_price;
 
-                    $estimate_value = $pure_gold_price * (float)$carats / 24;
+                    $estimate_value = $pure_gold_price * $carats / 24;
                     $estimate_value = number_format($estimate_value,  2, '.', '');
                 } 
 
@@ -101,9 +101,18 @@
 
                     if(isset($_POST['save'])) {
                         $data['validation_status'] = trim($_POST['status']);
-                        redirect('/goldAppraiser/dashboard');
-                        // $this->view('GoldAppraiser/validate_new_articles', $data);
+
+                        $validation_success = $this->model("goldAppModel")->validateNewArticles($data);
+
+                        if($validation_success) {
+                            flash('validation_success', 'Article validation succeeded', 'success');
+                            $this->view('GoldAppraiser/validate_new_articles', $data);
+                        } else {
+                            flash('validation_success', 'Validation was not succeeded. Something went wrong', 'invalid');
+                            $this->view('GoldAppraiser/validate_new_articles', $data);
+                        }
                     }
+                
                 } else {
                     // Load view with errors
                     $this->view('GoldAppraiser/validate_new_articles', $data);
