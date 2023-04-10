@@ -39,7 +39,8 @@ class Customer
             return $result->UserID;
         }
     }
-    // Regsiter user
+    
+    // Register user
     public function register($data)
     {
         $userid = $this->getLastUserId("Customer");
