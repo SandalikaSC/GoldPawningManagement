@@ -25,6 +25,8 @@
             </div>
         </div>
 
+        <div class="msg-flash"><?php echo flash('validation_success'); ?></div>
+
         <main>
             <div class="div-validation">
                 <div class="article-details">
