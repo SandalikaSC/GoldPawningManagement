@@ -51,11 +51,78 @@ main {
 
 main .main-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: repeat(2, 1fr);
     width: 80%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
-main .left-wrapper,
+main .main-wrapper .left-wrapper {
+    background: #bb8a04;
+    width: 100%;
+    height: calc(100vh - 150px);
+    padding: 30px;
+}
+
+main .main-wrapper .left-wrapper .div-details {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-gap: 20px;
+    margin-bottom: 30px;
+}
+
+main .main-wrapper .left-wrapper .div-details .article-image {
+    display: flex;
+    align-items: center;
+}
+
+main .main-wrapper .left-wrapper .div-details .article-image img {
+    width: 100%;
+    min-width: 150px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .main-wrapper .left-wrapper .div-details .article-details {
+    padding: 20px;
+}
+
+main .main-wrapper .left-wrapper .div-details .article-details .div-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+main .main-wrapper .left-wrapper .div-details .article-details .div-row .field-container {
+    width: 100px;
+}
+
+main .main-wrapper .left-wrapper .div-details .article-details .div-row .field-container label {
+    font-size: 11px;
+    font-weight: 550;
+    color: #faebd7;
+}
+
+main .main-wrapper .left-wrapper .div-details .article-details .div-row .field-container div {
+    color: #faebd7;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+main .main-wrapper h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+main .main-wrapper .right-wrapper {
+    background: #faebd7;
+    width: 100%;
+    height: calc(100vh - 150px);
+    padding: 20px;
+}
+
+/* main .left-wrapper,
 main .right-wrapper {
     display: flex;
     justify-content: center;
@@ -263,9 +330,9 @@ tr td:last-child {
     color: #bb8a04;
     border-color: #bb8a04;
     background: #fff;
-}
+} */
 
-@media only screen and (max-width: 1145px) {
+/* @media only screen and (max-width: 1145px) {
     .payment-history h2,
     .payments-amount h2 {
         font-size: 22px;
@@ -314,4 +381,4 @@ tr td:last-child {
         font-size: 15px;
         padding: 10px 0;
     }
-}
+} */
