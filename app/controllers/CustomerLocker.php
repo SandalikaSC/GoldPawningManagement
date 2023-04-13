@@ -45,8 +45,28 @@ class CustomerLocker extends Controller
 
 
     }
-    public function viewLockerPay()
-    {
-        $this->view('Customer/pawnpaydetails');
+    public function viewLockerPay($allocate_Id)
+    { 
+        
+        $reservation=$this->reservationModel->getReservation($allocate_Id);
+        $article=$this->articleModel->getArticleById($reservation->Article_Id);
+        $interest=$this->interestModel->getAllocationInterest();
+        $fineRate=$this->interestModel->getFine();
+
+        $interval = date_diff(date_create($reservation->Retrieve_Date), date_create());
+        $duedays=$interval->days;
+
+         
+        $data=[
+            'reservationId'=>$reservation->Allocate_Id,
+            'installement'=>$reservation->allocation_fee,
+            'articleId'=>$reservation->Article_Id,
+            'articleImg'=>$article->image,
+            'duedays'=>$duedays,
+            'fineRate'=>$fineRate,
+            'interest'=> $interest
+
+        ];
+        $this->view('Customer/pawnpaydetails',$data);
     }
 }

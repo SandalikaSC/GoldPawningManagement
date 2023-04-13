@@ -1,0 +1,9 @@
+@import url('VKPayment.css');
+@import url('article_locker.css');
+
+.jewellery-img {
+    width: 60%;
+    height: 70%;
+    overflow: hidden;
+    margin: auto;
+}
