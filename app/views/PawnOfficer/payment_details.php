@@ -59,21 +59,81 @@
                     </div>
 
                     <div class="due-payments">
-                        <h2>Due Payments</h2>             
-                        <div>
-                            <label>Due Amount</label>
-                            <div class="amount"><?php echo 'Rs. 5000.00'; ?></div>
-                        </div>
-                        <div>
-                            <label>Due Date</label>
-                            <div class="due-date warning"><?php echo '2023/01/31'; ?></div>
-                        </div>
+                        <h2>Due Payments</h2>  
+                        <div class="payment-details">
+                            <div class="field-container">
+                                <label>TO PAY</label>
+                                <div class="amount"><?php echo 'Rs. 5000.00'; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>BEFORE</label>
+                                <div class="due-date warning"><?php echo '2023/01/31'; ?></div>
+                            </div>
+                        </div>                           
                     </div>
-
                 </div>
 
                 <div class="right-wrapper">
+                    <div class="div-full-loan">
+                        <h2>Full Loan Amount</h2>
+                        <div class="loan-amount">
+                            Rs. 100000.00
+                        </div>
+                    </div>
 
+                    <h2>Payment History</h2>
+
+                    <div class="payment-history">                         
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                        <div class="payment-history-details">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+        
+                    </div>
                 </div>
 
                 <!-- <div class="left-wrapper">   
