@@ -114,7 +114,7 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Karatage</label>
-                        <label class="jw-dt"><?= 'Rs.'.$data['article']->Karatage?></label>
+                        <label class="jw-dt"><?=  $data['article']->Karatage.'K'?></label>
                     </div>
 
                 </div>
@@ -168,7 +168,7 @@
         </div>
         
         <div class="item-payments">
-        <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay" method="get">
+        <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservation']->Allocate_Id?>" method="get">
                 <button class="pay-btn">Pay</button>
 
             </a>
