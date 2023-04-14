@@ -9,7 +9,7 @@
     <div class="">
         <div class="right-heading">
             <div class="right-side">
-                <a href="<?php echo URLROOT ?>/VKDashboard/Reservations" id="back">
+                <a href="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle/<?= $data['reservationId'] ?>" id="back">
                     <img class="back" src="<?php echo URLROOT ?>/img/back.png" alt="back">
                 </a>
                 <h1 id="title">Make Payment </h1>
@@ -39,35 +39,35 @@
                                     " alt="" class="jw-img">
                         <!-- <img src="<?php echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg"; ?> " alt="" class="jw-img"> -->
                     </div>
-                    <div class="info-div">
+                    <div class="info-div info-div-pay-info ">
                         <h2 class="sub-title">
                             Article Details
                         </h2>
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Reservation Id</label>
-                                <label class="jw-dt"><?= $data['reservationId']?></label>
+                                <label class="jw-dt"><?= $data['reservationId'] ?></label>
                             </div>
 
                         </div>
                         <div class="jw-date">
-                        <div class="jw-date-name">
+                            <div class="jw-date-name">
                                 <label>Article Id</label>
-                                <label class="jw-dt"><?= $data['articleId']?></label>
+                                <label class="jw-dt"><?= $data['articleId'] ?></label>
                             </div>
 
                         </div>
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Reserved interest</label>
-                                <label class="jw-dt"><?= $data['interest']->Interest_Rate.'%' ?></label>
+                                <label class="jw-dt"><?= $data['interest']->Interest_Rate . '%' ?></label>
                             </div>
 
                         </div>
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Monthly installement</label>
-                                <label class="jw-dt"><?= 'Rs. '.$data['installement'] ?></label>
+                                <label class="jw-dt"><?= 'Rs. ' . $data['installement'] ?></label>
                             </div>
 
                         </div>
@@ -75,9 +75,23 @@
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Fine Rate</label>
-                                <label class="jw-dt"><?= 'Rs. ' .$data['fineRate']->Interest_Rate .' per day' ?></label>
+                                <label class="jw-dt"><?= 'Rs. ' . $data['fineRate']->Interest_Rate . ' per day' ?></label>
                             </div>
 
+                        </div>
+                        <h2 class="sub-title">
+                            Want to extend reservation ?
+                        </h2>
+
+                        <div class="jw-date-name option-radio">
+                            <input type="radio" name="accept-offers" id="yes-button" class="hidden radio-label">
+                            <label for="yes-button" class="button-label">
+                                <h1>Yes</h1>
+                            </label>
+                            <input type="radio" name="accept-offers" id="no-button" class="hidden radio-label" checked>
+                            <label for="no-button" class="button-label">
+                                <h1>No</h1>
+                            </label>
                         </div>
 
 
@@ -85,61 +99,78 @@
                     </div>
                 </div>
             </div>
-            <!-- <form class="article-details">
-                <h2>This payment is for</h2>
-                <h4>Choose items</h4>
-                <div class="item">
-                    <label for="">
-                        Choose
-                    </label>
-                    <label for="">
-                        Article
-                    </label>
-                    <label for="">
-                        Installment
-                    </label>
-                    <label for="">
-                        Due Pay
-                    </label>
-                    <label for="">
-                        Total
-                    </label>
-                </div>
+            <div class="details">
+                <div class="info-div">
+                    <h2 class="sub-title">
+                      Extend Duration
+                    </h2>
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label>Reserve locker till</label>
+                            <input type="date" name="date" id="date" class="datechooser" value="">
+                        </div>
 
-                <div class="item">
-                    <div><input type="checkbox" id="1" name="vehicle1" value="Bike">
                     </div>
-                    <div class="Img">
-                        <img class="vogue" src="<?php echo URLROOT ?>/img/nati-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="logo">
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label>Extend payment</label>
+                            <label class="jw-dt"><?= $data['reservationId'] ?></label>
+                        </div>
+
                     </div>
-                    <label for="">
-                        Rs.5000
-                    </label>
-                    <label for="">
-                        Rs.1200
-                    </label>
-                    <label for="">
-                        Rs.6200
-                    </label>
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label> </label>
+                            <button type="button" name="date" id="date" class="btn-extend" value="Extend">Extend</button>
+                        </div>
+
+                    </div>
+                     
+
                 </div>
-                <div class="item">
-                    <div><input type="checkbox" id="1" name="vehicle1" value="Bike">
+                <div class="info-div">
+                    <h2 class="sub-title">
+                       Retrive Appointment
+                    </h2>
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label>Reservation Id</label>
+                            <label class="jw-dt"><?= $data['reservationId'] ?></label>
+                        </div>
+
                     </div>
-                    <div class="Img">
-                        <img class="vogue" src="<?php echo URLROOT ?>/img/nati-melnychuk-oO0JAOJhquk-unsplash.jpg" alt="logo">
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label>Article Id</label>
+                            <label class="jw-dt"><?= $data['articleId'] ?></label>
+                        </div>
+
                     </div>
-                    <label for="">
-                        Rs.5000
-                    </label>
-                    <label for="">
-                        Rs.1200
-                    </label>
-                    <label for="">
-                        Rs.6200
-                    </label>
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label>Reserved interest</label>
+                            <label class="jw-dt"><?= $data['interest']->Interest_Rate . '%' ?></label>
+                        </div>
+
+                    </div>
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label>Monthly installement</label>
+                            <label class="jw-dt"><?= 'Rs. ' . $data['installement'] ?></label>
+                        </div>
+
+                    </div>
+
+                    <div class="jw-date">
+                        <div class="jw-date-name">
+                            <label>Fine Rate</label>
+                            <label class="jw-dt"><?= 'Rs. ' . $data['fineRate']->Interest_Rate . ' per day' ?></label>
+                        </div>
+
+                    </div>
+
                 </div>
-            </form>
-        </div> -->
+            </div>
             <div class="payment">
                 <h2>
                     Payment Details

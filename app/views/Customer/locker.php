@@ -61,7 +61,7 @@
 
                                         <label>Remaining</label>
                                         <label class="jw-dt">
-                                            <?php echo ($days_diff < 0 ? -1 * $days_diff ." days"  : $days_diff ." days ago" ); ?>
+                                            <?php echo ($days_diff < 0 ? -1 * $days_diff . " days"  : $days_diff . " days ago"); ?>
 
                                         </label>
                                     </div>
@@ -81,11 +81,11 @@
                                         <label class="jw-dt"><?php echo date("d M Y", strtotime($reservation->Deallocated_Date)) ?></label>
                                     </div>
 
-                                    
+
                                     <div class="jw-date-name">
                                         <label class="status tag-retrieved">Retrieved</label>
                                     </div>
- 
+
 
 
 
