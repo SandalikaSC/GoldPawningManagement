@@ -84,11 +84,11 @@
                         </h2>
 
                         <div class="jw-date-name option-radio">
-                            <input type="radio" name="accept-offers" id="yes-button" class="hidden radio-label">
+                            <input type="radio" name="accept-offers" id="yes-button" value="1" class="hidden radio-label">
                             <label for="yes-button" class="button-label">
                                 <h1>Yes</h1>
                             </label>
-                            <input type="radio" name="accept-offers" id="no-button" class="hidden radio-label" checked>
+                            <input type="radio" name="accept-offers" id="no-button" value="2" class="hidden radio-label" checked>
                             <label for="no-button" class="button-label">
                                 <h1>No</h1>
                             </label>
@@ -100,9 +100,9 @@
                 </div>
             </div>
             <div class="details">
-                <div class="info-div">
+                <div class="info-div" id="extend">
                     <h2 class="sub-title">
-                      Extend Duration
+                        Extend Duration
                     </h2>
                     <div class="jw-date">
                         <div class="jw-date-name">
@@ -125,12 +125,12 @@
                         </div>
 
                     </div>
-                     
+
 
                 </div>
-                <div class="info-div">
+                <div class="info-div" id="appointment">
                     <h2 class="sub-title">
-                       Retrive Appointment
+                        Retrive Appointment
                     </h2>
                     <div class="jw-date">
                         <div class="jw-date-name">
@@ -190,4 +190,25 @@
             </div>
 
         </div>
+        <script>
+            const yes = document.getElementById("yes-button");
+            const no = document.getElementById("no-button");
+
+            function handleOptionSelected(event) {
+                // Get the selected value
+                const selectedValue = event.target.value;
+
+                // Perform some action based on the selected value
+                if (selectedValue === "1") {
+                    // $("#extend").addClass("disabledbutton");
+                    alert("yes");
+                } else if (selectedValue === "2") {
+                    // $("#appointment").addClass("disabledbutton");
+                    alert("no");
+                }
+            }
+
+            yes.addEventListener("click", handleOptionSelected);
+            no.addEventListener("click", handleOptionSelected);
+        </script>
         <?php require APPROOT . "/views/inc/footer.php" ?>

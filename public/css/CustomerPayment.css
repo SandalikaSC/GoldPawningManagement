@@ -17,6 +17,10 @@
        
     
 }
+.disabledbutton {
+  pointer-events: none;
+  opacity: 0.9;
+}
 .datechooser:hover{
     border: 2px solid #bb8a04;
 }
