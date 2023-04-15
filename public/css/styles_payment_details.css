@@ -227,3 +227,88 @@ main .main-wrapper .div-buttons .navigate-btns {
     background: #bb8a04;
     transform: translateY(-3px);
 }
+
+@media only screen and (max-width: 425px) {
+    .header .title h1 {
+        width: fit-content;
+    }
+
+    .header .logo img {
+        width: 150px;
+        height: 45px;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .header .title h1 {
+       font-size: 24px;
+    }
+
+    .header .logo img {
+        width: 120px;
+        height: 38px;
+    }
+
+    .div-payment-details {
+        width: 300px;
+    }
+
+    main .main-wrapper .div-payment-details .div-no-history .no-history-img img {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 315px) {
+    .header .title img {
+        height: 25px;
+        margin-right: 10px;
+    }
+
+    main .main-wrapper .div-article-details {
+        padding: 20px;
+        min-width: 250px;
+    }
+
+    main .main-wrapper .div-article-details .field-container label {
+        margin-right: 20px;
+    }
+
+    main .main-wrapper .div-buttons {
+        width: 250px;
+    }
+
+    main .main-wrapper .div-buttons h2 {
+        font-size: 22px;
+    }
+
+    main .main-wrapper .div-buttons .div-full-loan {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 285px) {
+    .header .logo img {
+        width: 100px;
+        height: 32px;
+    }
+}
+
+@media only screen and (max-width: 255px) {
+    .header .title {
+        margin: 0px;
+        padding-right: 10px;
+    }
+    .header .title h1 {
+        font-size: 22px;
+    }
+
+    main .main-wrapper .div-article-details .div-img img {
+        width: 150px;
+    }
+
+    main .main-wrapper .div-article-details {
+        width: 200px;
+        padding: 10px;
+        margin: 10px;
+    }
+}

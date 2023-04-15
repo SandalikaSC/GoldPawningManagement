@@ -26,7 +26,7 @@
         </div>
 
         <main>
-            <div class="main-wrapper">
+            <!-- <div class="main-wrapper">
                 <div class="left-wrapper">   
                     <div class="div-details">
                         <div class="article-details">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
         </main>        
     </div>

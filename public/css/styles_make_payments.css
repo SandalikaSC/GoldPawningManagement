@@ -60,7 +60,7 @@ main {
     flex-wrap: wrap;
 }
 
-main .main-wrapper {
+/* main .main-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 80%;
@@ -268,4 +268,4 @@ main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-save:hover 
     main .right-wrapper .form-wrapper {
         width: 100%;
     }
-}
+} */
