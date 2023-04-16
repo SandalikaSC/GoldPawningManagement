@@ -88,7 +88,7 @@
                             <label for="yes-button" class="button-label">
                                 <h1>Yes</h1>
                             </label>
-                            <input type="radio" name="accept-offers" id="no-button" value="2" class="hidden radio-label" checked>
+                            <input type="radio" name="accept-offers" id="no-button" value="2" class="hidden radio-label">
                             <label for="no-button" class="button-label">
                                 <h1>No</h1>
                             </label>
@@ -99,8 +99,8 @@
                     </div>
                 </div>
             </div>
-            <div class="details">
-                <div class="info-div" id="extend">
+           
+                <div class="info-div choise-div" id="extend">
                     <h2 class="sub-title">
                         Extend Duration
                     </h2>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
-                            <label> </label>
+                            <label class="err" id=extend-err"> fefew</label>
                             <button type="button" name="date" id="date" class="btn-extend" value="Extend">Extend</button>
                         </div>
 
@@ -128,7 +128,7 @@
 
 
                 </div>
-                <div class="info-div" id="appointment">
+                <div class="info-div choise-div" id="appointment">
                     <h2 class="sub-title">
                         Retrive Appointment
                     </h2>
@@ -155,22 +155,15 @@
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
-                            <label>Monthly installement</label>
-                            <label class="jw-dt"><?= 'Rs. ' . $data['installement'] ?></label>
+                        <label class="err" id=extend-err"> fefew</label>
+                        <button type="button" name="date" id="date" class="btn-extend" value="Extend">Add</button>
                         </div>
 
                     </div>
-
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Fine Rate</label>
-                            <label class="jw-dt"><?= 'Rs. ' . $data['fineRate']->Interest_Rate . ' per day' ?></label>
-                        </div>
-
-                    </div>
+ 
 
                 </div>
-            </div>
+            
             <div class="payment">
                 <h2>
                     Payment Details
@@ -194,21 +187,20 @@
             const yes = document.getElementById("yes-button");
             const no = document.getElementById("no-button");
 
-            function handleOptionSelected(event) {
-                // Get the selected value
-                const selectedValue = event.target.value;
+            document.getElementById("appointment").classList.add("disabledbutton");
+            document.getElementById("extend").classList.add("disabledbutton");
+            yes.addEventListener("click", function(event) {
+                document.getElementById("extend").classList.add("flexbutton");
+                document.getElementById("extend").classList.remove("disabledbutton");
+                document.getElementById("appointment").classList.add("disabledbutton");
+                document.getElementById("appointment").classList.remove("flexbutton");
+            });
 
-                // Perform some action based on the selected value
-                if (selectedValue === "1") {
-                    // $("#extend").addClass("disabledbutton");
-                    alert("yes");
-                } else if (selectedValue === "2") {
-                    // $("#appointment").addClass("disabledbutton");
-                    alert("no");
-                }
-            }
-
-            yes.addEventListener("click", handleOptionSelected);
-            no.addEventListener("click", handleOptionSelected);
+            no.addEventListener("click", function(event) {
+                document.getElementById("appointment").classList.add("flexbutton");
+                document.getElementById("appointment").classList.remove("disabledbutton");
+                document.getElementById("extend").classList.add("disabledbutton");
+                document.getElementById("extend").classList.remove("flexbutton");
+            });
         </script>
         <?php require APPROOT . "/views/inc/footer.php" ?>

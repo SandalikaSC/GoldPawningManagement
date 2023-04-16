@@ -17,9 +17,22 @@
        
     
 }
+.err{
+  color: red;
+  font-size: 2vh;
+}
+.choise-div {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 2%;
+}
 .disabledbutton {
-  pointer-events: none;
-  opacity: 0.9;
+   display: none;
+}
+.flexbutton {
+  display: flex;
 }
 .datechooser:hover{
     border: 2px solid #bb8a04;
