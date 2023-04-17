@@ -107,21 +107,21 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Reserve locker till</label>
-                        <input type="date" name="date" id="extenddate" class="datechooser" value="">
+                        <input type="date" name="date" id="extenddate" class="datechooser" value="" onchange="checkDate()">
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Extend payment</label>
-                        <label class="jw-dt"><?= $data['reservationId'] ?></label>
+                        <label class="jw-dt" id="extend-payment-box">Rs. 00.00</label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label class="err" id=extend-err"> <?= $data['retrieve_Date'] ?></label>
-                        <button type="button" name="date" id="date" class="btn-extend" onclick="updateExtendPaymnet()" value="Extend">Extend</button>
+                        <label class="err" id="extend-err"> </label>
+                        <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="updateExtendPaymnet()" value="Extend">Extend</button>
                     </div>
 
                 </div>
@@ -156,8 +156,8 @@
 
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label class="err" id=extend-err"> </label>
-                        <button type="button" name="date" id="date" class="btn-extend" value="Extend" onclick="updatefinePaymnet()">Add</button>
+                        <label class="err" id="appointment-err"> * </label>
+                        <button type="button" name="date" id="addAppointment" class="btn-extend" value="Extend" onclick="updatefinePaymnet()">Add</button>
                     </div>
 
                 </div>
@@ -223,39 +223,87 @@
                 document.getElementById("extend").classList.remove("flexbutton");
             });
 
+            function checkDate() {
+                var selectedDate = document.getElementById("extenddate").value;
+                selectedDate = new Date(selectedDate);
+                const currentDate = new Date();
+
+                // Compare the two dates
+                if (selectedDate <= currentDate) {
+                    document.getElementById("extend-err").textContent = "Invalid Date selected";
+                    document.getElementById("btnExtend").disabled = true;
+                    document.getElementById("extend-payment-box").textContent = "Rs . 00.00";
+                    document.getElementById("fine_pay").textContent = "Rs .00.00";
+                    document.getElementById("total_pay").textContent = "Rs .00.00";
+                    document.getElementById("extend_pay").textContent = "Rs .00.00";
+                } else {
+
+                    document.getElementById("extend-err").textContent = "";
+                    document.getElementById("btnExtend").disabled = false;
+                    var retrieve = '<?= $data['retrieve_Date'] ?>';
+                    var result = getMonthsAndDays(retrieve, selectedDate);
+                    extend = result.months * <?= $data['installement'] ?> + <?= $data['installement'] / 30.44 ?> * result.days;
+                    document.getElementById("extend-payment-box").textContent = "Rs ." + extend.toFixed(2);
+                    fine = 0;
+                    total = fine + extend;
+                    document.getElementById("fine_pay").textContent = "Rs ." + fine.toFixed(2);
+                    document.getElementById("total_pay").textContent = "Rs ." + total.toFixed(2);
+                    document.getElementById("extend_pay").textContent = "Rs ." + extend.toFixed(2);
+
+                }
+
+            }
 
             function handleDateSelection() {
 
                 var selectedDate = document.getElementById("appointment_date").value;
+                selectedDate = new Date(selectedDate);
+                const currentDate = new Date();
 
-                $.ajax({
-                    type: "POST",
-                    url: "<?= URLROOT ?>/CustomerLocker/getTimeSlots",
-                    data: {
-                        date: selectedDate
-                    },
-                    dataType: "JSON",
-                    success: function(response) {
-                        var parentElement = document.getElementById("time-slots");
-                        while (parentElement.firstChild) {
-                            parentElement.removeChild(parentElement.firstChild);
-                        }
-
-                        response.forEach(function(item) {
-
-                            var newElement = '<div class="selector-item">' +
-                                '<input type="radio" value="' + item.slotID + ' "id="' + item.slotID + '" name="selector" class="selector-item_radio" checked>' +
-                                '<label  for="' + item.slotID + '" class="selector-item_label">' + item.time + '</label>' +
-                                '</div>';
-                            $("#time-slots").append(newElement);
-                        });
-
-
-                    },
-                    error: function(xhr, status, error) {
-                        console.log("Error: " + error);
+                // Compare the two dates
+                if (selectedDate <= currentDate) {
+                    var parentElement = document.getElementById("time-slots");
+                    while (parentElement.firstChild) {
+                        parentElement.removeChild(parentElement.firstChild);
                     }
-                });
+                    document.getElementById("appointment-err").textContent = "Invalid Date selected";
+                    document.getElementById("addAppointment").disabled = true;
+                    document.getElementById("fine_pay").textContent = "Rs .00.00";
+                    document.getElementById("total_pay").textContent = "Rs .00.00";
+                    document.getElementById("extend_pay").textContent = "Rs .00.00";
+                } else {
+                    document.getElementById("appointment-err").textContent = "";
+                    document.getElementById("addAppointment").disabled = false;
+                    $.ajax({
+                        type: "POST",
+                        url: "<?= URLROOT ?>/CustomerLocker/getTimeSlots",
+                        data: {
+                            date: selectedDate
+                        },
+                        dataType: "JSON",
+                        success: function(response) {
+                            var parentElement = document.getElementById("time-slots");
+                            while (parentElement.firstChild) {
+                                parentElement.removeChild(parentElement.firstChild);
+                            }
+                            response.forEach(function(item) {
+
+                                var newElement = '<div class="selector-item">' +
+                                    '<input type="radio" value="' + item.slotID + ' "id="' + item.slotID + '" name="selector" class="selector-item_radio" checked>' +
+                                    '<label  for="' + item.slotID + '" class="selector-item_label">' + item.time + '</label>' +
+                                    '</div>';
+                                $("#time-slots").append(newElement);
+                            });
+
+
+                        },
+                        error: function(xhr, status, error) {
+                            console.log("Error: " + error);
+                        }
+                    });
+                }
+
+
             }
 
             function updatefinePaymnet() {
@@ -290,10 +338,10 @@
                 var selectedDate = document.getElementById("extenddate").value;
                 var retrieve = '<?= $data['retrieve_Date'] ?>';
 
-                var result = getMonthsAndDays(retrieve, selectedDate); 
-                extend = result.months * <?= $data['installement'] ?>+ <?= $data['installement']/30.44 ?>*result.days;
-                fine = 0; 
-                total = fine + extend; 
+                var result = getMonthsAndDays(retrieve, selectedDate);
+                extend = result.months * <?= $data['installement'] ?> + <?= $data['installement'] / 30.44 ?> * result.days;
+                fine = 0;
+                total = fine + extend;
                 document.getElementById("fine_pay").textContent = "Rs ." + fine.toFixed(2);
                 document.getElementById("total_pay").textContent = "Rs ." + total.toFixed(2);
                 document.getElementById("extend_pay").textContent = "Rs ." + extend.toFixed(2);
@@ -309,7 +357,7 @@
 
                 // Convert milliseconds to months and remaining days
                 const months = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 30.44));
-                const days = Math.floor(Math.floor(diffInMs / (1000 * 60 * 60 * 24)) % 30.44); 
+                const days = Math.floor(Math.floor(diffInMs / (1000 * 60 * 60 * 24)) % 30.44);
                 // Return the result as an object
                 return {
                     months,
