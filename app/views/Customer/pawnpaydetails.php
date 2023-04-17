@@ -182,18 +182,16 @@
                     <label class="Tot-pay" id="total_pay" for="Total"> Rs. <?= number_format($data['duedays'] * $data['fineRate']->Interest_Rate, 2); ?></label>
                 </div>
                 <div class=" sec-btn">
-                    <a class="p-btn ">Cancel</button></a>
-                    <a class="p-btn ">Pay</button></a>
+                    <a class="p-btn " href="">Cancel </a>
+                    <button class="p-btn " onclick="paymentGatway()">Pay</button>
                 </div>
             </div>
 
         </div>
         <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
         <script>
             var fine, total, extend = 0;
-
-
-
 
             var today = new Date();
             var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
@@ -272,6 +270,7 @@
                     document.getElementById("total_pay").textContent = "Rs .00.00";
                     document.getElementById("extend_pay").textContent = "Rs .00.00";
                 } else {
+                    updatefinePaymnet();
                     document.getElementById("appointment-err").textContent = "";
                     document.getElementById("addAppointment").disabled = false;
                     $.ajax({
@@ -363,6 +362,73 @@
                     months,
                     days
                 };
+            }
+            // payment
+
+
+            function paymentGatway() {
+                $.ajax({
+                    type: "GET",
+                    url: "<?= URLROOT ?>/PaymentGateway/pay",
+                    data: {
+                        reservation:<?= $data['reservationId'] ?>,
+                        amount:total 
+
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        // Payment completed. It can be a successful failure.
+                        payhere.onCompleted = function onCompleted(orderId) {
+                            console.log("Payment completed. OrderID:" + orderId);
+                            // Note: validate the payment and show success or failure page to the customer
+                        };
+
+                        // Payment window closed
+                        payhere.onDismissed = function onDismissed() {
+                            // Note: Prompt user to pay again or show an error page
+                            console.log("Payment dismissed");
+                        };
+
+                        // Error occurred
+                        payhere.onError = function onError(error) {
+                            // Note: show an error page
+                            console.log("Error:" + error);
+                        };
+                       
+                        // Put the payment variables here
+                        var payment = {
+                            "sandbox": true,
+                            "merchant_id": response.merchant_id, // Replace your Merchant ID
+                            "return_url": "<?= URLROOT ?>/CustomerLocker/viewLockerArticle/<?= $data['reservationId'] ?>", // Important
+                            "cancel_url": "", // Important
+                            "notify_url": "http://sample.com/notify",
+                            "order_id": response.order_id,
+                            "items": response.items,
+                            "amount": response.amount,
+                            "currency": response.currency,
+                            "hash": response.hash, // *Replace with generated hash retrieved from backend
+                            "first_name": response.first_name,
+                            "last_name": response.last_name,
+                            "email": response.email,
+                            "phone": response.phone,
+                            "address": response.address,
+                            "city": response.city,
+                            "country": response.country,
+                            "delivery_address": response.delivery_address,
+                            "delivery_city": response.delivery_city,
+                            "delivery_country": response.delivery_country,
+                            "custom_1": "",
+                            "custom_2": ""
+                        };
+
+                        // Show the payhere.js popup, when "PayHere Pay" is clicked 
+                            payhere.startPayment(payment);
+                       
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(response);
+                    }
+                });
             }
         </script>
         <?php require APPROOT . "/views/inc/footer.php" ?>

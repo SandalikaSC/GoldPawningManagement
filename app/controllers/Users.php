@@ -391,7 +391,9 @@ class Users extends Controller
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     $_SESSION['user_fname'] = $user->First_Name;
     $_SESSION['user_lname'] = $user->Last_Name;
-    $_SESSION['user_phone'] = $user->Last_Name;
+    $_SESSION['user_phone'] = $user->phone;
+    $_SESSION['user_address'] = $user->Line1.' '.$user->Line2.' '.$user->Line3;  
+
     $_SESSION['image'] = $user->image;
     switch ($user->type) {
       case "Customer":
@@ -538,7 +540,11 @@ class Users extends Controller
       unset($_SESSION['user_email']);
       unset($_SESSION['user_name']);
       unset($_SESSION['profile_pic']);
-      unset($_SESSION['mg_name']);
+      unset($_SESSION['mg_name']); 
+      unset($_SESSION['user_fname'] );
+      unset($_SESSION['user_lname']  );
+      unset($_SESSION['user_phone'] );
+      unset($_SESSION['user_address']  );
       session_destroy();
 
       redirect('/Users');

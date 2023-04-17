@@ -93,7 +93,8 @@ class Customer
 
     public function login($email, $password)
     {
-        $this->db->query('SELECT * FROM user WHERE email = :email');
+        // $this->db->query('SELECT * FROM user WHERE email = :email');
+        $this->db->query('SELECT * FROM user,phone WHERE user.UserId=phone.userId AND email =:email LIMIT 1;');
         $this->db->bind(':email', $email);
 
         $row = $this->db->single();
