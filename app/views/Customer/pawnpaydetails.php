@@ -107,7 +107,7 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Reserve locker till</label>
-                        <input type="date" name="date" id="date" class="datechooser" value="">
+                        <input type="date" name="date" id="extenddate" class="datechooser" value="">
                     </div>
 
                 </div>
@@ -120,8 +120,8 @@
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label class="err" id=extend-err"> fefew</label>
-                        <button type="button" name="date" id="date" class="btn-extend" value="Extend">Extend</button>
+                        <label class="err" id=extend-err"> <?= $data['retrieve_Date'] ?></label>
+                        <button type="button" name="date" id="date" class="btn-extend" onclick="updateExtendPaymnet()" value="Extend">Extend</button>
                     </div>
 
                 </div>
@@ -157,7 +157,7 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label class="err" id=extend-err"> </label>
-                        <button type="button" name="date" id="date" class="btn-extend" value="Extend" onclick="updatePaymnet()">Add</button>
+                        <button type="button" name="date" id="date" class="btn-extend" value="Extend" onclick="updatefinePaymnet()">Add</button>
                     </div>
 
                 </div>
@@ -179,7 +179,7 @@
                 </div>
                 <div class="sec">
                     <label for="Total">Total Pay</label>
-                    <label class="Tot-pay"  id="total_pay" for="Total">Rs. 6200.00</label>
+                    <label class="Tot-pay" id="total_pay" for="Total"> Rs. <?= number_format($data['duedays'] * $data['fineRate']->Interest_Rate, 2); ?></label>
                 </div>
                 <div class=" sec-btn">
                     <a class="p-btn ">Cancel</button></a>
@@ -190,6 +190,11 @@
         </div>
         <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
         <script>
+            var fine, total, extend = 0;
+
+
+
+
             var today = new Date();
             var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
             var year = tomorrow.getFullYear();
@@ -253,7 +258,7 @@
                 });
             }
 
-            function updatePaymnet() {
+            function updatefinePaymnet() {
                 var selectedDate = document.getElementById("appointment_date").value;
                 var today = new Date();
 
@@ -267,8 +272,49 @@
                 var differenceDays = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
 
 
-                
+                fine = (differenceDays + <?= $data['duedays'] ?>) * <?= $data['fineRate']->Interest_Rate ?>;
+                extend = 0;
 
+
+                total = fine + extend;
+
+
+
+                document.getElementById("fine_pay").textContent = "Rs ." + fine.toFixed(2);
+                document.getElementById("total_pay").textContent = "Rs ." + total.toFixed(2);
+                document.getElementById("extend_pay").textContent = "Rs ." + extend.toFixed(2);
+
+            }
+
+            function updateExtendPaymnet() {
+                var selectedDate = document.getElementById("extenddate").value;
+                var retrieve = '<?= $data['retrieve_Date'] ?>';
+
+                var result = getMonthsAndDays(retrieve, selectedDate); 
+                extend = result.months * <?= $data['installement'] ?>+ <?= $data['installement']/30.44 ?>*result.days;
+                fine = 0; 
+                total = fine + extend; 
+                document.getElementById("fine_pay").textContent = "Rs ." + fine.toFixed(2);
+                document.getElementById("total_pay").textContent = "Rs ." + total.toFixed(2);
+                document.getElementById("extend_pay").textContent = "Rs ." + extend.toFixed(2);
+
+            }
+
+            function getMonthsAndDays(start, end) {
+                const date1 = new Date(start);
+                const date2 = new Date(end);
+
+                // Get the number of milliseconds between the two dates
+                const diffInMs = Math.abs(date2 - date1);
+
+                // Convert milliseconds to months and remaining days
+                const months = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 30.44));
+                const days = Math.floor(Math.floor(diffInMs / (1000 * 60 * 60 * 24)) % 30.44); 
+                // Return the result as an object
+                return {
+                    months,
+                    days
+                };
             }
         </script>
         <?php require APPROOT . "/views/inc/footer.php" ?>

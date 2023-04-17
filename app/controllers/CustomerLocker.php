@@ -53,13 +53,16 @@ class CustomerLocker extends Controller
         $fineRate = $this->interestModel->getFine();
         $tomorrow = new DateTime('tomorrow');
         $tomorrowFormatted = $tomorrow->format('Y-m-d');
-        $timeSlots = $this->appointment->getSlotsNotIn($tomorrowFormatted); 
+        $timeSlots = $this->appointment->getSlotsNotIn($tomorrowFormatted);
         $interval = date_diff(date_create($reservation->Retrieve_Date), date_create());
         $duedays = $interval->days;
 
+        $dateObject = date_create($reservation->Retrieve_Date);
+        $retrieve = $dateObject->format('Y-m-d');
 
         $data = [
             'reservationId' => $reservation->Allocate_Id,
+            'retrieve_Date' => $retrieve,
             'installement' => $reservation->allocation_fee,
             'articleId' => $reservation->Article_Id,
             'articleImg' => $article->image,
@@ -73,13 +76,12 @@ class CustomerLocker extends Controller
     }
     public function getTimeSlots()
     {
-     
+
         if (isset($_POST["date"])) {
             $date =  $_POST["date"];
-            $data = $this->appointment->getSlotsNotIn($date);   
-      
-            echo json_encode($data);
-          }
+            $data = $this->appointment->getSlotsNotIn($date);
 
+            echo json_encode($data);
+        }
     }
 }
