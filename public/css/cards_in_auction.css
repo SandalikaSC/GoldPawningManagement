@@ -294,20 +294,20 @@ input[type=text] {
   }
   
     .auction-page-row{
-        min-width: 900px;
         overflow-y: scroll;
         height: 580px;
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        flex: 4;
+        /* justify-content: center; */
     }
 
   
   
   .auction-page-column .card img {
-    width: 150px;
-    height: 100px;
+    width: 120px;
+    height: 70px;
     object-fit: cover;
     border-radius: 10px;
     
@@ -326,7 +326,7 @@ input[type=text] {
     justify-content: center;
      padding: 30px 0;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);
 
   }
@@ -342,7 +342,7 @@ input[type=text] {
 
   .card-view-btn{  
     position: absolute;
-    top: 290px;
+    top: 250px;
     left: 43px;
     
   }
@@ -371,44 +371,28 @@ input[type=text] {
 
 .filter-and-article {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 
 
 /* filter css */
 
          .outer-filter{
+            margin-top: 18px;
             overflow-y: hidden;
-            min-width: 250px;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+            flex: 1;
+
          }
 
 
-          .input-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-          }
-
-          .input-group label {
-            margin-right: 20px;
-            font-weight: bold;
-            color: #333;
-          }
-
-          .input-group input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            flex: 1;
-          }
 
           /* Styles for filter section */
           #filter-section {
             background-color: #fff;
-            border: 1px solid #ccc;
+            /* border: 1px solid #ccc; */
             border-radius: 5px;
-            padding: 20px;
+            padding: 10px;
             box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
           }
           
@@ -424,7 +408,11 @@ input[type=text] {
           }
 
           #filter-section .ul .li {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+          }
+          #filter-section .ul .li input,#filter-section .ul .li select {
+            padding:10px;
+            border-radius: 5px;
           }
 
           #filter-section button {

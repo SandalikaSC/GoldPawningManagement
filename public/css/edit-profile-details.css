@@ -168,6 +168,7 @@ body{
     display: flex;
     text-align: center;
   }
+  
   .form-group{
       display: flex;
       flex-wrap: wrap;

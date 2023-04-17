@@ -25,7 +25,8 @@
 
         </div>
         <div class="name">
-          <p><?php echo $_SESSION['user_name'] ?></p>
+          <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
+
         </div>
       </div>
       <div class="btn-set">
@@ -106,7 +107,7 @@
               <div id="tfoot"></div>
             </div>
           <?php } else {
-            echo "<p style='display:flex;justify-content:center;margin-top:40px;'>No Auction Items Found</P>";
+            echo "<p style='display:flex;justify-content:center;align-items:center;margin-top:40px;'>No Auction Items Found</P>";
           } ?>
 
           <div class="outer-filter">
@@ -125,10 +126,10 @@
                     <label for="karatage">Karatage:</label>
                     <select id="karatage" name="karatage">
                       <option value="">Select Karatage</option>
-                      <option value="10">18k</option>
-                      <option value="14">20k</option>
-                      <option value="18">22k</option>
-                      <option value="22">24k</option>
+                      <option value="18">18k</option>
+                      <option value="20">20k</option>
+                      <option value="22">22k</option>
+                      <option value="24">24k</option>
                     </select>
                   </div>
                   <div class="li">
@@ -172,47 +173,40 @@
 
 
 <script>
-
   function searchItems() {
-    var input, filter, td1,td2,td3,td4, i, nonCount,txtValue1,txtValue2,txtValue3,txtValue4;
+    var input, filter, td1, td2, td3, td4, i, nonCount, txtValue1, txtValue2, txtValue3, txtValue4;
     input = document.getElementById("search_input");
     filter = input.value.toUpperCase();
     ele = document.getElementById("myDiv");
     row = ele.getElementsByTagName("section");
     nonCount = 0;
     for (i = 0; i < row.length; i++) {
-        td1= row[i].getElementsByTagName("p")[0];
-        td2= row[i].getElementsByTagName("p")[1];
-        td3= row[i].getElementsByTagName("p")[2];
-        td4= row[i].getElementsByTagName("p")[3];
+      td1 = row[i].getElementsByTagName("p")[0];
+      td2 = row[i].getElementsByTagName("p")[1];
+      td3 = row[i].getElementsByTagName("p")[2];
+      td4 = row[i].getElementsByTagName("p")[3];
 
-        if (td1 || td2 || td3 ||td4) {
-            txtValue1 = td1.textContent || td1.innerText;
-            txtValue2 = td2.textContent || td2.innerText;
-            txtValue3 = td3.textContent || td3.innerText;
-            txtValue4 = td4.textContent || td4.innerText;
+      if (td1 || td2 || td3 || td4) {
+        txtValue1 = td1.textContent || td1.innerText;
+        txtValue2 = td2.textContent || td2.innerText;
+        txtValue3 = td3.textContent || td3.innerText;
+        txtValue4 = td4.textContent || td4.innerText;
 
-            // txtValue1 = td1.innerText;
-            // txtValue2 = td2.innerText;
-            // txtValue3 = td3.innerText;
-            // txtValue4 =  td4.innerText;
-           
-            if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1 || txtValue4.toUpperCase().indexOf(filter) > -1) {
-                row[i].style.display = "";
-            } else {
-                row[i].style.display = "none";
-                nonCount++;
-            }
+        if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1 || txtValue4.toUpperCase().indexOf(filter) > -1) {
+          row[i].style.display = "";
+        } else {
+          row[i].style.display = "none";
+          nonCount++;
         }
+      }
     }
-    if(nonCount==row.length){
-        document.getElementById('tfoot').innerHTML="<div style='text-align:center;margin-top:30px;'>No Matched Data </div>";
-        nonCount=0;
+    if (nonCount == row.length) {
+      document.getElementById('tfoot').innerHTML = "<div style='display:flex;justify-content:center;align-items:center;text-align:center;margin-top:30px;margin-left:100px;'>No Auction Items Found </div>";
+      nonCount = 0;
+    } else {
+      document.getElementById('tfoot').innerHTML = "";
     }
-    else{
-        document.getElementById('tfoot').innerHTML="";
-    }
-}
+  }
 </script>
 
 </html>

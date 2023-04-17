@@ -11,51 +11,15 @@
 
 <body>
   <div class="page">
-    <div class="left" id="panel">
-      <div class="profile">
-        <div class="profile-pic">
-          <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "//img/image 1.png";} ?>" id="profileImg" alt=""></a>
-          <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
-
-        </div>
-        <div class="name">
-          <p><?php echo $_SESSION['user_name'] ?></p>
-        </div>
-      </div>
-      <div class="btn-set">
-        <a href="<?php echo URLROOT ?>/mgDashboard">
-          <img src="<?php echo URLROOT ?>/img/dashboard.png" alt="">
-          <p>Dashboard</p>
-        </a>
-        <a href="<?php echo URLROOT ?>/mgLocker">
-          <img src="<?php echo URLROOT ?>/img/locker.png" alt="">
-          <p>Locker</p>
-        </a>
-        <a href="<?php echo URLROOT ?>/mgPawnArticles">
-          <img src="<?php echo URLROOT ?>/img/pawned.png" alt="">
-          <p>Pawned Articles</p>
-        </a>
-        <a href="<?php echo URLROOT ?>/mgAuction">
-          <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
-          <p>Auction</p>
-        </a>
-        <a class="staf" href="<?php echo URLROOT ?>/staff">
-          <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
-          <p>Staff</p>
-        </a>
-      </div>
-      <div class="lgout">
-        <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
-      </div>
-    </div>
     <div class="right">
       <div class="right-heading">
         <div class="right-side">
-          <div class="bars" id="bars">
-            <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
+          <div class="back" >
+            <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+
           </div>
           <h1>
-            <?php echo $data[0]->UserId ?>
+            Viewing Emp ID: <?php echo $data[0]->UserId ?>
           </h1>
         </div>
         <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
@@ -100,8 +64,16 @@
               </div>
               <div class="form-group tooltip">
                 <label for="lane2"><b>Address Lane 2:</b></label>
-                <input disabled value="<?php if($data[0]->Line2==null){echo "Not Available";}else{echo $data[0]->Line2;} ?>" type="text" name="lane2" id="lane2">
-                <span class="tooltiptext"><?php if($data[0]->Line2==null){echo "Not Available";}else{echo $data[0]->Line2;} ?></span>
+                <input disabled value="<?php if ($data[0]->Line2 == null) {
+                                          echo "Not Available";
+                                        } else {
+                                          echo $data[0]->Line2;
+                                        } ?>" type="text" name="lane2" id="lane2">
+                <span class="tooltiptext"><?php if ($data[0]->Line2 == null) {
+                                            echo "Not Available";
+                                          } else {
+                                            echo $data[0]->Line2;
+                                          } ?></span>
               </div>
               <div class="form-group tooltip">
                 <label for="lane3"><b>Address Lane 3:</b></label>
@@ -170,8 +142,16 @@
                 </div>
                 <div class="form-group tooltip">
                   <label for="created_by"><b>Created By:</b></label>
-                  <input class="data" type="text" disabled value="<?php if($data[0]->Created_By==null){echo "Not Available";}else{echo $data[0]->Created_By;} ?>" name="created_by" id="created_by">
-                  <span class="tooltiptext"><?php if($data[0]->Created_By==null){echo "Not Available";}else{echo $data[0]->Created_By;} ?></span>
+                  <input class="data" type="text" disabled value="<?php if ($data[0]->Created_By == null) {
+                                                                    echo "Not Available";
+                                                                  } else {
+                                                                    echo $data[0]->Created_By;
+                                                                  } ?>" name="created_by" id="created_by">
+                  <span class="tooltiptext"><?php if ($data[0]->Created_By == null) {
+                                              echo "Not Available";
+                                            } else {
+                                              echo $data[0]->Created_By;
+                                            } ?></span>
                 </div>
               </div>
               <div class="single-btn">
@@ -187,7 +167,6 @@
     </div>
   </div>
 </body>
-<script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 
 

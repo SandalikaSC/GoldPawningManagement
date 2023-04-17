@@ -12,13 +12,8 @@
 
 <body>
     <?php
-       if (!empty($data[1] && $data[1] == 'success')) {
-        //    include_once URLROOT.'/Manager/add-success.php';
-            include_once 'add-success.php';
-        } elseif (!empty($data[1] && $data[1] == 'delsuccess')) {
+       if(!empty($data[1] == 'delsuccess')) {
             include_once 'del-success.php';
-        } else if (!empty($data[1] && $data[1] == 'unsuccess')) {
-            include_once 'mgNetworkError.php';
         }
         ?>
     
@@ -119,7 +114,9 @@
                                     echo "
                                             <tr>
                                                 <td>" . $i . ".</td>
-                                                <td><img src=".$row->image."></td>
+                                                <td><img src= 'if (!empty(".$row->image.")) {".$row->image."}else {
+                                                    ".URLROOT." /img/image 1.png}';
+                                                  }></td>
                                                 <td>" . $row->UserId . "</td>
                                                 <td>" . $row->Name . "</td>
                                                 <td>" . $row->Role . "</td>
@@ -153,3 +150,4 @@
 
 
 </html>
+

@@ -88,12 +88,9 @@
 
                     <div class="search-bar">
                         <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
-
                     </div>
-
                     <div>
                         <?php include_once 'pawnArticleFilter.php' ?>
-
                     </div>
 
                     <div class="twobtns">
@@ -107,8 +104,6 @@
                         <div id="warningBtn" class="warning-btn"><a href="#">
                                 <span>Send Warnings</span>
                                 <?php if (!empty($data[2])) { ?> <span class='badge'><?php echo $data[2]; ?></span> <?php } ?>
-
-
                             </a>
                         </div>
                        

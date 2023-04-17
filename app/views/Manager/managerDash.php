@@ -9,11 +9,24 @@
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mgmain_dashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/mggold-rates.css">
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/loading.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
+
+    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:10;">
+        <section class="whole">
+            <div class="loading-box">
+                <p>please Wait...</p>
+                <img src="<?php echo URLROOT ?>/img/loading.gif" alt="">
+            </div>
+        </section>
+    </div>
+
     <div class="page">
+
+
         <?php include_once 'sendReplyForm.php'; ?>
 
         <?php
@@ -35,7 +48,7 @@
 
                 </div>
                 <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
+                    <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
                 </div>
             </div>
             <div class="btn-set">
@@ -237,7 +250,7 @@
     var amountsExpen = [];
 
     var incomes = parseFloat('<?php echo $data[3][0]; ?>');
-    var expenses =  parseFloat('<?php echo $data[3][1]; ?>');
+    var expenses = parseFloat('<?php echo $data[3][1]; ?>');
     console.log(expenses);
     console.log(incomes);
 
@@ -312,7 +325,7 @@
                 li[i].style.display = "none";
             }
         }
-        if (nonCount == li.length ) {
+        if (nonCount == li.length) {
             document.getElementById('tfoot').innerHTML = "<div style='text-align:center;'>No Complaints </div>";
             nonCount = 0;
         } else {

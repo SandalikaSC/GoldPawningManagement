@@ -6,25 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
-    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/add_employee.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/loading.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/addSuccess.css">
 </head>
 
 <body>
+
+    <section style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:99;" id="success-form">
+        <div class="whole">
+            <div class="add-success-box">
+                <p>Added Successfully</p>
+                <a class="done-btn" href="<?php echo URLROOT ?>/staff">Done</a>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:50;">
+        <section class="whole">
+            <div class="loading-box">
+                <p>please Wait...</p>
+                <img src="<?php echo URLROOT ?>/img/loading.gif" alt="">
+            </div>
+        </section>
+    </div>
     <div class="page">
 
         <?php
         if (!empty($_SESSION['message'])) {
-          
+
             include_once 'error.php';
-         
-        } 
+        }
         ?>
 
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
-                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "/public/img/image 1.png";} ?>" id="profileImg" alt=""></a>
+                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
+                                                                                echo $_SESSION['image'];
+                                                                            } else {
+                                                                                echo URLROOT . "/public/img/image 1.png";
+                                                                            } ?>" id="profileImg" alt=""></a>
                     <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
 
                 </div>
@@ -62,7 +86,7 @@
             <div class="right-heading">
                 <div class="right-side">
                     <div class="bars" id="bars">
-                         <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
+                        <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
                     </div>
                     <h1>
                         Add New
@@ -170,7 +194,40 @@
 
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 
+<script>
+    let regibtn = document.getElementById("registerbtn");
+    let pleaseWait = document.getElementById("pleaseWait");
+    let successmsg = document.getElementById("success-form");
+    regibtn.addEventListener('click', () => {
+            pleaseWait.style.display = "block";
 
+            // Send the fetch request
+            fetch(`<?php echo URLROOT ?>/staff/setStaffMember`)
+
+                .then(response => response.json())
+                .then(response => {
+                    // Handle the response from the server
+
+                    if (response.msg == "failed") {
+                        location.reload(true);
+
+                    } else {
+                        // location.reload(true);
+                        pleaseWait.style.display = "none";
+                        successmsg.style.display = "block";
+                    }
+
+                })
+                .catch(error => {
+                    // Handle the error
+                    console.error(error);
+                    location.reload(true);
+
+                });
+        }
+
+    )
+</script>
 
 
 </html>

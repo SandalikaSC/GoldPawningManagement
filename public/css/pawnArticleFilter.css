@@ -1,0 +1,125 @@
+
+    /* Default styles for input groups */
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .input-group label {
+      margin-right: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .input-group input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      flex: 1;
+    }
+
+    /* Styles for dropdown button */
+    #filter-dropdown-button {
+      padding: 10px;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #filter-dropdown-button:hover {
+      background-color: #444;
+    }
+
+    .filter-cancel-button {
+      padding: 7px 8px;
+      background-color: #222;
+      text-decoration: none;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .filter-cancel-button a:hover {
+      background-color: #444;
+    }
+
+    /* Styles for filter section */
+    #filter-section {
+      display: none;
+      position: absolute;
+      z-index: 100;
+      top: 160px;
+      left: 250px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #filter-section.visible {
+      display: block;
+    }
+
+    #filter-section ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #filter-section ul li {
+      display: flex;
+      flex-direction: column;
+      min-width: 150px;
+      margin-bottom: 10px;
+    }
+
+    #filter-section ul li input,  #filter-section ul li select{
+      padding: 5px;
+      border-radius: 10px;
+    }
+
+    #filter-section button {
+      padding: 10px 20px;
+      background-color: #222;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    #filter-section button:hover {
+      background-color: #444;
+    }
+
+    @media screen and (max-width: 600px) {
+
+      /* Styles for small screens */
+      #filter-section {
+        position: static;
+        margin-top: 20px;
+      }
+
+      .input-group {
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        margin-bottom: 5px
+      }
+    }

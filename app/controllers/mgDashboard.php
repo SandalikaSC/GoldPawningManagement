@@ -50,26 +50,30 @@ class mgDashboard extends controller
 
   public function sendReplyForComplaints()
   {
-    if (isset($_POST["text-area"])) {
+    if (!empty($_POST["text-area"])) {
       $complaint = $this->model('UserModel');
       $res = $complaint->getUserEmail($_POST['cusId']);
 
       if ($res) {
         $abc = sendMail($res->email, "send_reply", $_POST['text-area'], "Vogue Pawn");
         if ($abc == null) {
-          //   $staffMem = $this->model("staffModel");
-          //   $staffMem->deleteStaffMember($id);
+          echo "failed";
           flashMessage("Network Error Occurd..");
-          redirect('/mgDashboard');
+          
         } else {
+          echo "done";
           flashMessage("Successfully Sent..");
-          redirect('/mgDashboard');
+          
         }
       } else {
-        redirect('/mgDashboard');
+          echo "failed";
+          flashMessage("This Customer couldn't find");
+       
       }
     } else {
-      redirect('/mgDashboard');
+      echo "failed";
+      flashMessage("Please type again the reply");
+
     }
   }
 
@@ -107,5 +111,10 @@ class mgDashboard extends controller
       }
     }
 
+  }
+
+  public function updateStatusOfComplaints($cid){
+    $obj = $this->model('mgDashboardModel');
+    $result= $obj->updateStatus($cid);
   }
 }

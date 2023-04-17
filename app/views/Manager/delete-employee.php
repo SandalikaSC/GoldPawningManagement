@@ -57,7 +57,7 @@
                         <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
                     </div>
                     <h1>
-                        <?php echo $data[0]->UserId ?>
+                        <?php echo $data[0]->UserId ?> 
                     </h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">

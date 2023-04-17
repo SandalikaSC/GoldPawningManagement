@@ -274,6 +274,16 @@ body{
       justify-content: space-between;
       align-items: center;
   }
+
+  .form-group-with-err{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group-with-err .err small{
+    display: flex;
+    text-align: center;
+  }
   
   .form-group input, .form-group select {
       padding: 7px;

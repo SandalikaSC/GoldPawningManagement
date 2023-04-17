@@ -18,12 +18,11 @@ class MgDashboardModel extends Database{
     }
 
     public function loadComplaints(){
-        $sql = 'select CID,Date,Description,UserID from complaint order by CID desc';
+        // $sql = 'select CID,Date,Description,UserID,Status from complaint order by CID desc';
+        $sql='select c.CID,c.Date,c.Description,c.UserID,c.Status,concat(u.First_Name," ",u.Last_Name) as Name,u.image from complaint c inner join user u on c.UserID=u.UserId order by c.Date';
         $this->query($sql);
         $result = $this->resultSet();
         return $result;
-
-
 
     }
 
@@ -80,5 +79,14 @@ class MgDashboardModel extends Database{
         $LC=$this->single();
 
         return array($CUS,$VK,$GA,$PO,$PAWN,$AUC,$LC);
+    }
+
+
+    public function updateStatus($cid){
+        $sql = "update complaint set Status=1 where CID=?";
+        $this->query($sql);
+        $this->bind(1,$cid);
+        $result=$this->execute();
+        return $result;
     }
 }
