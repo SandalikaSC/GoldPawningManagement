@@ -60,7 +60,100 @@ main {
     flex-wrap: wrap;
 }
 
-/* main .main-wrapper {
+main .main-div-container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+main h2 {
+    font-size: 24px;
+    border-bottom: 2px solid #bb8a04;
+    width: fit-content;    
+}
+
+main .main-div-container .left-wrapper,
+main .main-div-container .right-wrapper {
+    width: 100%;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+main .main-div-container .left-wrapper {
+    background: #bb8a04;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+main .main-div-container .left-wrapper .div-article-details {
+    width: 100%;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-img img {
+    max-width: 200px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details {
+    padding: 0 40px;
+    margin-bottom: 30px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details .field-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details .field-container div {
+    font-size: 18px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details .field-container label {
+    font-weight: 600;
+    margin-right: 30px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .loan-details {
+    text-align: center;
+    margin-top: 20px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .loan-details label {
+    font-size: 18px;
+    color: rgb(94, 24, 24);
+    font-weight: 600;
+    font-style: italic;
+}
+
+main .main-div-container .left-wrapper .div-article-details .loan-details .amount {
+    font-size: 40px;
+    font-weight: 600;
+    color: #faebd7;
+    font-style: italic;
+}
+
+main .main-div-container .right-wrapper {
+    background: #faebd7;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+
+
+/* main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 80%;
@@ -102,7 +195,7 @@ main .left-wrapper .div-details .article-details .article-image img {
     margin: 20px;
 }
 
-main .left-wrapper .div-details .article-details .field-container {
+main .left-wrapper .div-details .article-details .div-details .field-container {
     width: 80%;
     display: flex;
     justify-content: space-between;
@@ -118,7 +211,7 @@ main .left-wrapper .div-details .article-details .field-wrapper {
     flex-wrap: wrap;
 }
 
-main .left-wrapper .div-details .article-details .field-container label {
+main .left-wrapper .div-details .article-details .div-details .field-container label {
     font-weight: 600;
 }
 
