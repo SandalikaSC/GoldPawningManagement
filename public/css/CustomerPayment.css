@@ -1,5 +1,6 @@
 @import url('VKPayment.css');
 @import url('article_locker.css'); 
+@import url('appointment.css'); 
 
 .jewellery-img {
     width: 60%;
@@ -12,10 +13,31 @@
         width: 35%;
         outline: none;
         border: 1px solid gray;
-        padding: 5px;
+        padding: 5px; 
     
-       
-    
+}
+
+.selector-item {
+  margin: 3% 0;
+}
+ 
+.time-slots{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+.selector-item_label{ 
+    border-radius: 50px;
+    padding: 2% 15% 2% 15%; 
+    transform: translateY(-2px);
+  border: #6f6e6e 1px solid;
+}
+.content {
+  display: flex;
+  width: inherit;
+}
+.cancel {
+  
+  padding: inherit;  
 }
 .err{
   color: red;
@@ -66,7 +88,7 @@
 }
 
 .red {
-  background: #D91E18;
+  background: #ff8480;
   color: #efefef;
 }
 
