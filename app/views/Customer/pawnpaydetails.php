@@ -191,7 +191,8 @@
         <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
         <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
         <script>
-            var fine, total, extend = 0;
+            var fine, extend = 0;
+            var total = document.getElementById("total_pay").textContent.trim();
 
             var today = new Date();
             var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
@@ -368,7 +369,10 @@
 
             function paymentGatway() {
                 var extenddate;
-                var appointment
+                var appointment;
+                let appointment_id; 
+                
+
                 const selected = document.querySelector('input[name="accept-offers"]:checked').value;
                 if (selected == 2) {
                     extenddate = null;
@@ -383,10 +387,30 @@
                     extenddate = document.getElementById("extenddate").value;
 
                 }
-                var total = document.getElementById("total_pay").textContent.trim();
-                const num = parseFloat(total.replace(/,/g, '').replace(/Rs\. /g, ''));
-                total = num.toFixed(2);
 
+                if (selected == 2) {
+                    $.ajax({
+                        type: "GET",
+                        url: "<?= URLROOT ?>/PaymentGateway/addAppointment",
+                        data: {
+                            appointment: appointment
+                        },
+                        dataType: "JSON",
+                        success: function(response) {
+                            if (response) {
+                                appointment_id = response; // assign appointment_id value
+
+                            } else {
+                                document.getElementById("appointment-err").textContent = "Appointment Date and time is not available";
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log("Error: " + error);
+                        }
+                    });
+
+                }
+                
 
                 var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object 
                 xhr.onreadystatechange = function() { // set the callback function
@@ -400,64 +424,62 @@
                             amount: object['amount'],
                             order_id: object['order_id'],
                             allocate_Id: <?= $data['reservationId'] ?>
+                        }; 
+                        // Payment completed.It can be a successful failure.
+                        payhere.onCompleted = function onCompleted(orderId) {
+                            //    alert("Payment completed. OrderID:" + object["order_id"]);
+                            // Note: validate the payment and show success or failure page to the customer
+                            saveDetails(payment, extenddate, appointment);
                         };
-                        saveDetails(payment, extenddate, appointment);
 
-                        // Payment completed. It can be a successful failure.
-                        // payhere.onCompleted = function onCompleted(orderId) {
-                        //     //    alert("Payment completed. OrderID:" + object["order_id"]);
-                        //     // Note: validate the payment and show success or failure page to the customer
-                        //     saveDetails(object['amount'],extenddate,appointment);
-                        // };
+                        // Payment window closed
+                        payhere.onDismissed = function onDismissed() {
+                            // Note: Prompt user to pay again or show an error page
+                            // alert("Payment dismissed");
+                            DeleteAppointment(appointment_id);
+                        };
 
-                        // // Payment window closed
-                        // payhere.onDismissed = function onDismissed() {
-                        //     // Note: Prompt user to pay again or show an error page
-                        //     // alert("Payment dismissed");
-                        // };
+                        // Error occurred
+                        payhere.onError = function onError(error) {
+                            // Note: show an error page
+                            DeleteAppointment(appointment_id);
+                        };
 
-                        // // Error occurred
-                        // payhere.onError = function onError(error) {
-                        //     // Note: show an error page
-                        //     alert("Error:" + error);
-                        // };
+                        // Put the payment variables here
+                        var payment = {
+                            "sandbox": true,
+                            "merchant_id": object['merchant_id'], // Replace your Merchant ID
+                            "return_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
+                            "cancel_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
+                            "notify_url": "",
+                            "order_id": object['order_id'],
+                            "items": object['items'],
+                            "amount": object['amount'],
+                            "currency": object['currency'],
+                            "hash": object['hash'], // *Replace with generated hash retrieved from backend
+                            "first_name": object['first_name'],
+                            "last_name": object['last_name'],
+                            "email": object['email'],
+                            "phone": object['phone'],
+                            "address": object['address'],
+                            "city": "Colombo",
+                            "country": "Sri Lanka",
+                            "delivery_address": "No. 46, Galle road, Kalutara South",
+                            "delivery_city": "Kalutara",
+                            "delivery_country": "Sri Lanka",
+                            "custom_1": "",
+                            "custom_2": ""
+                        };
 
-                        // // Put the payment variables here
-                        // var payment = {
-                        //     "sandbox": true,
-                        //     "merchant_id": object['merchant_id'], // Replace your Merchant ID
-                        //     "return_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
-                        //     "cancel_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
-                        //     "notify_url": "",
-                        //     "order_id": object['order_id'],
-                        //     "items": object['items'],
-                        //     "amount": object['amount'],
-                        //     "currency": object['currency'],
-                        //     "hash": object['hash'], // *Replace with generated hash retrieved from backend
-                        //     "first_name": object['first_name'],
-                        //     "last_name": object['last_name'],
-                        //     "email": object['email'],
-                        //     "phone": object['phone'],
-                        //     "address": object['address'],
-                        //     "city": "Colombo",
-                        //     "country": "Sri Lanka",
-                        //     "delivery_address": "No. 46, Galle road, Kalutara South",
-                        //     "delivery_city": "Kalutara",
-                        //     "delivery_country": "Sri Lanka",
-                        //     "custom_1": "",
-                        //     "custom_2": ""
-                        // };
+                        // Show the payhere.js popup, when "PayHere Pay" is clicked
 
-                        // // Show the payhere.js popup, when "PayHere Pay" is clicked
-
-                        // payhere.startPayment(payment);
+                        payhere.startPayment(payment);
 
                     }
                 };
 
                 xhr.open("POST", "<?= URLROOT ?>/PaymentGateway/pay/<?= $data['reservationId'] ?>/" + total, true); // set the request method and URL
                 xhr.send();
-
 
             }
 
@@ -474,7 +496,25 @@
                     },
                     dataType: "JSON",
                     success: function(response) {
-                       alert(response); // handle the result returned by the PHP function
+                        window.location = '<?= URLROOT ?>/CustomerLocker/viewLockerArticle/' + response;
+                    }
+                });
+
+
+            }
+
+            function DeleteAppointment(appointment) {
+
+
+                $.ajax({
+                    type: "GET",
+                    url: "<?= URLROOT ?>/PaymentGateway/deleteAppointment",
+                    data: {
+                        appointment: appointment
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+
                     }
                 });
 

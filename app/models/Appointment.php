@@ -57,7 +57,7 @@ class Appointment
             // Execute
             if ($this->db->execute()) {
 
-                return true;
+                return $appointmentId;
 
             } else {
                 return false;

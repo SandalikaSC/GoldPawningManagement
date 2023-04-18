@@ -1,10 +1,11 @@
 <?php require APPROOT . "/views/inc/header.php" ?>
-<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_locker.css'> 
+<link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_locker.css'>
 <title>Vogue | Locker Article</title>
 </head>
 
 <body class="wrapper">
-
+    <?php notification("extend");
+    notification("appointment"); ?>
     <div class="">
         <div class="right-heading">
             <div class="right-side">
@@ -100,28 +101,28 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Article Id</label>
-                        <label class="jw-dt"><?=  $data['article']->Article_Id?></label>
+                        <label class="jw-dt"><?= $data['article']->Article_Id ?></label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Estimate value</label>
-                        <label class="jw-dt"><?= 'Rs.'.$data['article']->Estimated_Value?></label>
+                        <label class="jw-dt"><?= 'Rs.' . $data['article']->Estimated_Value ?></label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Karatage</label>
-                        <label class="jw-dt"><?=  $data['article']->Karatage.'K'?></label>
+                        <label class="jw-dt"><?= $data['article']->Karatage . 'K' ?></label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Weight</label>
-                        <label class="jw-dt"><?=  $data['article']->Weight.' g'?></label>
+                        <label class="jw-dt"><?= $data['article']->Weight . ' g' ?></label>
                     </div>
 
                 </div>
@@ -146,14 +147,14 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Reserving Interest</label>
-                        <label class="jw-dt"><?php echo   $data['interest']->Interest_Rate .'%' ?></label>
+                        <label class="jw-dt"><?php echo   $data['interest']->Interest_Rate . '%' ?></label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Monthly Installment</label>
-                        <label class="jw-dt"><?php echo  'Rs. '.$data['reservation']->allocation_fee ?></label>
+                        <label class="jw-dt"><?php echo  'Rs. ' . $data['reservation']->allocation_fee ?></label>
                     </div>
 
                 </div>
@@ -161,17 +162,23 @@
 
 
             </div>
-           
+
 
             <!-- </div> -->
 
         </div>
-        
-        <div class="item-payments">
-        <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservation']->Allocate_Id?>" method="get">
-                <button class="pay-btn">Pay</button>
 
-            </a>
+        <div class="item-payments">
+
+            <?php $interval = date_diff(date_create($data['reservation']->Retrieve_Date), date_create());
+            $days_diff = $interval->days * ($interval->invert ? -1 : 1);
+            if ($days_diff > 0 && $data['reservation']->Retrive_status !== 1) : ?>
+                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservation']->Allocate_Id ?>" method="get">
+                    <button class="pay-btn">Pay</button>
+
+                </a>
+            <?php endif; ?>
+
             <!-- <div class="payment-history"> -->
             <div class="payments his-div">
                 <h2 class="sub-title">

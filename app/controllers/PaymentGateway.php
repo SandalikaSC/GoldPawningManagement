@@ -8,7 +8,7 @@ class PaymentGateway extends Controller
         if (!isLoggedIn()) {
             redirect('/Users');
         }
-        $this->reservationModel = $this->model('reservation');  
+        $this->reservationModel = $this->model('reservation');
         $this->appointment = $this->model('Appointment');
         $this->payment = $this->model('payment');
     }
@@ -32,13 +32,13 @@ class PaymentGateway extends Controller
         $data['hash'] = strtoupper(md5(
             merchant_id .
                 $order_id .
-                number_format($amount, 2, '.', '')  .
+                number_format($amount, 2, '.', '') .
                 $currency .
                 strtoupper(md5(merchant_secret))
         ));
         $data['merchant_id'] = merchant_id;
         $data['order_id'] = $order_id;
-        $data['amount'] =  $amount;
+        $data['amount'] =  number_format($amount, 2, '.', '');
         $data['currency'] = $currency;
         $data['merchant_secret'] = merchant_secret;
         $data['items'] = "Reservation " . $reservation;
@@ -58,21 +58,35 @@ class PaymentGateway extends Controller
     }
     public function AddDetails()
     {
- 
+
         $amount = $_GET['payment']['amount'];
         $reservationId = $_GET['payment']['allocate_Id'];
         $order_id = $_GET['payment']['order_id'];
-        $status = $this->payment->addOnlineLockerPayment($amount,$reservationId,$order_id);
+        $status = $this->payment->addOnlineLockerPayment($amount, $reservationId, $order_id);
 
-        if ($status) {
-            if (empty($_GET['extend'])) {
-               
-            }else{
-                
+        if ($status) { 
+            
+            if (!empty($_GET['extend'])) {
+                $status = $this->reservationModel->lockerExtend($_GET['extend'], $reservationId);
+                notification("extend", "Reservation extended successfully", "gold");  
+            }  else{
+                notification("appointment", "New appointment added successfully", "gold");  
             }
-          
         }
+        echo json_encode($reservationId);
+        
+    }
+    public function addAppointment(){
+        $data['date'] = $_GET['appointment']['appointment_Date'];
+        $data['time_slots']= $_GET['appointment']['slot_Id'];
+        $data['reasonID']=6;
+        $appointment = $this->appointment->addAppointment($data);
 
+        echo json_encode($appointment);
+    }
+    public function deleteAppointment(){
+        $appointment= $_GET['appointment'];
+        $status = $this->appointment->cancelAppointment($appointment);
         echo json_encode($status);
     }
 }
