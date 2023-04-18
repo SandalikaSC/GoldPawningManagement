@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class PaymentGateway extends Controller
 {
@@ -8,12 +8,9 @@ class PaymentGateway extends Controller
         if (!isLoggedIn()) {
             redirect('/Users');
         }
-        $this->reservationModel = $this->model('reservation');
-        $this->articleModel = $this->model('article');
-        $this->deliveryModel = $this->model('delivery');
-        $this->lockerModel = $this->model('Locker');
-        $this->interestModel = $this->model('interest');
+        $this->reservationModel = $this->model('reservation');  
         $this->appointment = $this->model('Appointment');
+        $this->payment = $this->model('payment');
     }
 
 
@@ -25,63 +22,57 @@ class PaymentGateway extends Controller
     //     ];
     //     $this->view('Customer/locker', $data);
     // }
-    public function pay(){
+    public function pay($reservation, $amount)
+    {
 
-        $data=[
-            'merchant_id' => "1222949",
-            'order_id' => uniqid(),
-            'amount' => number_format( $_POST["amount"],2,".",""),
-            'currency' => "LKR", 
-            'merchant_secret' => merchant_secret,
-            'items' => "Reservation ".$_POST["reservation"],
-            'first_name' => $_SESSION['user_fname'],
-            'last_name' =>  $_SESSION['user_lname'],
-            'email' => $_SESSION['user_email'],
-            'phone' => $_SESSION['user_phone'],
-            'address' => $_SESSION['user_address'],
-            'city' => " ",
-            'country' => "Sri Lanka",
-            'delivery_address' => "VoguePawn",
-            'delivery_city' => "Colombo",
-            'delivery_country' => "Sri Lanka" 
-        ];
+        $order_id = uniqid();
+        $currency = "LKR";
+
+        $data = [];
+        $data['hash'] = strtoupper(md5(
+            merchant_id .
+                $order_id .
+                number_format($amount, 2, '.', '')  .
+                $currency .
+                strtoupper(md5(merchant_secret))
+        ));
+        $data['merchant_id'] = merchant_id;
+        $data['order_id'] = $order_id;
+        $data['amount'] =  $amount;
+        $data['currency'] = $currency;
+        $data['merchant_secret'] = merchant_secret;
+        $data['items'] = "Reservation " . $reservation;
+        $data['first_name'] = $_SESSION['user_fname'];
+        $data['last_name'] = $_SESSION['user_lname'];
+        $data['email'] = $_SESSION['user_email'];
+        $data['phone'] = $_SESSION['user_phone'];
+        $data['address'] = $_SESSION['user_address'];
+        $data['city'] = "Colombo";
+        $data['country'] = "Sri Lanka";
+        $data['delivery_address'] = "VoguePawn";
+        $data['delivery_city'] = "Colombo";
+        $data['delivery_country'] = "Sri Lanka";
 
 
-        $data['hash'] =
-         strtoupper(
-            md5 (
-                $data=['merchant_id'] . 
-                $data['order_id']  . 
-                number_format( $_POST["amount"],2,".","")  . 
-                $data['currency'] .  
-                strtoupper(md5(merchant_secret)) 
-            ) 
-            );
         echo json_encode($data);
     }
+    public function AddDetails()
+    {
+ 
+        $amount = $_GET['payment']['amount'];
+        $reservationId = $_GET['payment']['allocate_Id'];
+        $order_id = $_GET['payment']['order_id'];
+        $status = $this->payment->addOnlineLockerPayment($amount,$reservationId,$order_id);
+
+        if ($status) {
+            if (empty($_GET['extend'])) {
+               
+            }else{
+                
+            }
+          
+        }
+
+        echo json_encode($status);
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
