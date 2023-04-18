@@ -93,7 +93,7 @@
                                 <span class="invalid-feedback"></span>
                             </div>
                             
-                            <div class="field-wrapper">
+                            <div class="div-button">
                                 <input type="submit" class="btn-save" name="save" value="Save">
                             </div>
                         </form>

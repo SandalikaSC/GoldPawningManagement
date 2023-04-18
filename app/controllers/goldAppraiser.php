@@ -39,6 +39,7 @@
 
                 $data = [
                     'validation_id' => $id,
+                    'gold_appraiser' => $_SESSION['user_id'],
                     'gold_rates' => $gold_rates,
                     'article_details' => $article,
                     'weight' => trim($_POST['weight']),
@@ -182,6 +183,7 @@
             } else {
                 $data = [
                     'validation_id' => $id,
+                    'gold_appraiser' => $_SESSION['user_id'],
                     'gold_rates' => $gold_rates,
                     'article_details' => $article,
                     'weight' => '',

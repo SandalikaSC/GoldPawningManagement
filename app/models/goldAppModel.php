@@ -45,10 +45,9 @@
             return $results;
         }
 
-        public function updateStatus($articleId, $appraiser_id) {
-            $this->db->query('UPDATE validation_articles SET status=1, gold_appraiser=:appraiser_id WHERE id=:article_id;');
-            $this->db->bind(':appraiser_id', $appraiser_id);
-            $this->db->bind(':article_id', $articleId);
+        public function updateStatus($validation_id) {
+            $this->db->query('UPDATE validation_articles SET status=2 WHERE id=:validation_id;');
+            $this->db->bind(':validation_id', $validation_id);
         }
 
         // Get last article id from article table
@@ -71,8 +70,10 @@
             // New article ID
             ++$article_id;
 
-            $this->db->query('UPDATE validation_articles SET validation_status=:validation_status, karatage=:karatage, weight=:weight, estimated_value=:estimated_value WHERE id=:validation_id;');
+            $this->db->query('UPDATE validation_articles SET status=:status, gold_appraiser=:gold_appraiser, validation_status=:validation_status, karatage=:karatage, weight=:weight, estimated_value=:estimated_value WHERE id=:validation_id;');
 
+            $this->db->bind(':status', 1);
+            $this->db->bind(':gold_appraiser', $data['gold_appraiser']);
             if($data['validation_status'] == 'Valid') {
                 $this->db->bind(':validation_status', 1);
             } else {
