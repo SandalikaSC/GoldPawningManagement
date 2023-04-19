@@ -23,10 +23,28 @@ class reservation
     }
     public function lockerExtend($date,$reservationId)
     {
-        $this->db->query('UPDATE `reserves` SET Retrieve_Date = :newdate WHERE Allocate_Id = :Allocate_Id');
+        $this->db->query('UPDATE `reserves` SET Retrieve_Date = :newdate, finePaidTill=:finePaidTill WHERE Allocate_Id = :Allocate_Id');
 
             // Bind values 
             $this->db->bind(':newdate', $date);
+            $this->db->bind(':finePaidTill', NULL);
+            $this->db->bind(':Allocate_Id', $reservationId); 
+
+            // Execute
+            if ($this->db->execute()) {
+
+                return true;
+
+            } else {
+                return false;
+            } 
+    }
+    public function updateFinePaid($date,$reservationId)
+    {
+        $this->db->query('UPDATE `reserves` SET finePaidTill=:finePaidTill WHERE Allocate_Id = :Allocate_Id');
+
+            // Bind values  
+            $this->db->bind(':finePaidTill', $date);
             $this->db->bind(':Allocate_Id', $reservationId); 
 
             // Execute

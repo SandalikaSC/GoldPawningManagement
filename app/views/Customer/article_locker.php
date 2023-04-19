@@ -61,6 +61,13 @@
                                 </label>
                             </div>
                             <?php if ($days_diff > 0) : ?>
+                                <?php if (!empty($data['reservation']->finePaidTill)) : ?>
+                                    <div class="jw-date-name">
+                                        <label>Fine Paid till</label>
+                                        <label class="jw-dt"><?php echo $data['reservation']->finePaidTill ?></label>
+                                    </div>
+
+                                <?php endif; ?>
                                 <div class="jw-date-name">
                                     <label class="status tag-overdue">Overdue</label>
                                 </div>
@@ -172,7 +179,8 @@
 
             <?php $interval = date_diff(date_create($data['reservation']->Retrieve_Date), date_create());
             $days_diff = $interval->days * ($interval->invert ? -1 : 1);
-            if ($days_diff > 0 && $data['reservation']->Retrive_status !== 1) : ?>
+            if ($days_diff > 0 && $data['reservation']->Retrive_status !== 1 && (empty($data['reservation']->finePaidTill) || date('Y-m-d')>$data['reservation']->finePaidTill )): ?>
+
                 <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservation']->Allocate_Id ?>" method="get">
                     <button class="pay-btn">Pay</button>
 

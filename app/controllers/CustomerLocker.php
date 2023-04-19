@@ -63,6 +63,7 @@ class CustomerLocker extends Controller
         $data = [
             'reservationId' => $reservation->Allocate_Id,
             'retrieve_Date' => $retrieve,
+            'finePaidTill' => $reservation->finePaidTill,
             'installement' => $reservation->allocation_fee,
             'articleId' => $reservation->Article_Id,
             'articleImg' => $article->image,

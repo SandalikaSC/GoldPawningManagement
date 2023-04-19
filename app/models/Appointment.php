@@ -41,15 +41,14 @@ class Appointment
         if ($status) {
             $appointmentId = $this->getId();
             ++$appointmentId;
-            $this->db->query('INSERT INTO appointment (Appointment_Id,booked_date,appointment_date,status, slot_Id, UserID, Reason_ID) 
-                                VALUES(:Appointment_Id,:booked_date,:appointment_date,:status,:slot_Id,:UserID,:Reason_ID)');
+            $this->db->query('INSERT INTO appointment (Appointment_Id,appointment_date,status, slot_Id, UserID, Reason_ID) 
+                                VALUES(:Appointment_Id,:appointment_date,:status,:slot_Id,:UserID,:Reason_ID)');
 
             // Bind values
 
             $this->db->bind(':Appointment_Id', $appointmentId);
             $this->db->bind(':appointment_date', $data['date']);
-            $this->db->bind(':status', 1);
-            $this->db->bind(':booked_date', Date("Y-m-d h:i:sa"));
+            $this->db->bind(':status', 1); 
             $this->db->bind(':slot_Id', $data['time_slots']);
             $this->db->bind(':UserID', $_SESSION['user_id']);
             $this->db->bind(':Reason_ID', $data['reasonID']);
