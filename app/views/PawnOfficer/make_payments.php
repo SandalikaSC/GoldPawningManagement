@@ -26,7 +26,86 @@
         </div>
 
         <main>
-            <div class="main-wrapper">
+            <div class="main-div-container">
+                <div class="left-wrapper">
+                    <div class="div-article-details">
+                        <div class="div-img">
+                            <img src="<?php echo URLROOT . '/img/1.png'; ?>" alt="article image">
+                        </div>
+                        <div class="div-details">
+                            <div class="field-container">
+                                <label>ARTICLE ID</label>
+                                <div><?php echo $data['pawn_item']->Article_Id; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>CUSTOMER ID</label>
+                                <div><?php echo $data['pawn_item']->userId; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>PAWNED DATE</label>
+                                <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>END DATE</label>
+                                <div><?php echo $data['pawn_item']->End_Date; ?></div>
+                            </div>
+                        </div>
+
+                        <div class="loan-details">
+                            <label>Full Loan Amount</label>
+                            <div class="amount"><?php echo 'Rs. ' . $data['pawn_item']->Amount; ?></div>
+                        </div>
+                        <div class="loan-details">
+                            <label>Remaining Loan Amount</label>
+                            <div class="amount"><?php echo 'Rs. 92000.00'; ?></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+
+                <div class="right-wrapper">
+                    <div class="new-payment">
+                        <div class="div-form-title">
+                            <h2>Payment Details</h2>
+                        </div>
+                        
+                        <form action="" method="post">
+                            <div class="field-wrapper">
+                                <label>Amount (Rs.)<sup>*</sup></label>
+                                <div class="input-wrapper">
+                                    <input type="text" name="amount" placeholder="Amount">
+                                </div>
+                                <span class="invalid-feedback"></span>
+                            </div>
+                            <div class="field-wrapper">
+                                <label>Date<sup>*</sup></label>
+                                <div class="input-wrapper">
+                                    <input type="date" name="date">
+                                </div>
+                                <span class="invalid-feedback"></span>
+                            </div>
+                            <div class="field-wrapper">
+                                <label>Fine (Rs.)</label>
+                                <div class="input-wrapper">
+                                    <input type="text" name="fine" placeholder="Fine">
+                                </div>
+                                <span class="invalid-feedback"></span>
+                            </div>
+                            
+                            <div class="div-button">
+                                <input type="submit" class="btn-save" name="save" value="Save">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                
+            </div>
+            
+            
+
+            <!-- <div class="main-wrapper">
                 <div class="left-wrapper">   
                     <div class="div-details">
                         <div class="article-details">
@@ -106,7 +185,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
         </main>        
     </div>

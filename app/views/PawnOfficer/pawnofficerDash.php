@@ -186,18 +186,21 @@
                                     <tr>
                                         <td>Article ID</td>
                                         <td>Estimated Value</td>
+                                        <td>Validation Status</td>
                                     </tr> 
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>AR001</td>
                                         <td>Rs. 150,000/-</td>
+                                        <td>Valid</td>
                                         <td><a href="<?php echo URLROOT; ?>/customers/confirm_pawn" class="btn-validated btn-pawn">Pawn</a></td>
                                         <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
                                     </tr>
                                     <tr>
                                         <td>AR001</td>
                                         <td>Rs. 150,000/-</td>
+                                        <td>Invalid</td>
                                         <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
                                         <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
                                     </tr>
