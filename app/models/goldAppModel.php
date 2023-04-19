@@ -29,7 +29,7 @@
 
         // Get the details of validated articles
         public function getValidatedArticles() {
-            $this->db->query('SELECT * FROM article');
+            $this->db->query('SELECT * FROM validation_articles WHERE status = 1');
             
             $results = $this->db->resultSet();
 
@@ -70,6 +70,7 @@
             // New article ID
             ++$article_id;
 
+            // Update the validation_articles table
             $this->db->query('UPDATE validation_articles SET status=:status, gold_appraiser=:gold_appraiser, validation_status=:validation_status, karatage=:karatage, weight=:weight, estimated_value=:estimated_value WHERE id=:validation_id;');
 
             $this->db->bind(':status', 1);
@@ -85,33 +86,48 @@
             $this->db->bind(':estimated_value', $data['estimated_value']);
             $this->db->bind(':validation_id', $data['validation_id']);   
 
-
             if ($this->db->execute()) {
-                $this->db->query('INSERT INTO article (Article_Id, Estimated_Value, Karatage, Weight, Type, Karatage_Price, Rate_Id, image) 
-                              VALUES(:article_id, :estimated_value, :karatage, :weight, :type, :karatage_price, :rate_id, :image)');
-
-                $this->db->bind(':article_id', $article_id);
-                $this->db->bind(':estimated_value', $data['estimated_value']);
-                $this->db->bind(':karatage', $data['karats']);
-                $this->db->bind(':weight', $data['weight']);
-                $this->db->bind(':type', $data['article_details']->article_type);     
-
-                foreach($data['gold_rates'] as $rates) : 
-                    if($data['karats'] == $rates->Karatage) {
-                        $this->db->bind(':karatage_price', $rates->Price);
-                        $this->db->bind(':rate_id', $rates->Rate_Id);
-                    } 
-                endforeach;
-                    
-                $this->db->bind(':image', $data['article_details']->image);
-
-                if ($this->db->execute()) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return true;
             } else {
                 return false;
             }
+
+            // Article details will be inserted into the article table if it is valid
+            // Else it will not be added to the article table, will only update the validation_articles table
+            // if($data['validation_status'] == 'Valid') {
+            //     if ($this->db->execute()) {                    
+            //         $this->db->query('INSERT INTO article (Article_Id, Estimated_Value, Karatage, Weight, Type, Karatage_Price, Rate_Id, image) 
+            //                     VALUES(:article_id, :estimated_value, :karatage, :weight, :type, :karatage_price, :rate_id, :image)');
+
+            //         $this->db->bind(':article_id', $article_id);
+            //         $this->db->bind(':estimated_value', $data['estimated_value']);
+            //         $this->db->bind(':karatage', $data['karats']);
+            //         $this->db->bind(':weight', $data['weight']);
+            //         $this->db->bind(':type', $data['article_details']->article_type);     
+
+            //         foreach($data['gold_rates'] as $rates) : 
+            //             if($data['karats'] == $rates->Karatage) {
+            //                 $this->db->bind(':karatage_price', $rates->Price);
+            //                 $this->db->bind(':rate_id', $rates->Rate_Id);
+            //             } 
+            //         endforeach;
+                        
+            //         $this->db->bind(':image', $data['article_details']->image);
+
+            //         if ($this->db->execute()) {
+            //             return true;
+            //         } else {
+            //             return false;
+            //         }
+            //     } else {
+            //         return false;
+            //     }
+            // } else {
+            //     if ($this->db->execute()) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // }
         }
     }
