@@ -62,8 +62,7 @@ class PaymentGateway extends Controller
 
         $amount = $_GET['payment']['amount'];
         $reservationId = $_GET['allocate_Id'];
-        $order_id = $_GET['payment']['order_id'];
-        $finePaidTill=$_GET['appointment']['appointment_Date'];
+        $order_id = $_GET['payment']['order_id']; 
         $status = $this->payment->addOnlineLockerPayment($amount, $reservationId, $order_id);
 
         if ($status) { 
@@ -72,7 +71,7 @@ class PaymentGateway extends Controller
                 $status = $this->reservationModel->lockerExtend($_GET['extend'], $reservationId);
                 notification("extend", "Reservation extended successfully", "gold");  
             }  else{
-
+                $finePaidTill=$_GET['appointment']['appointment_Date'];
                 $status = $this->reservationModel->updateFinePaid($finePaidTill, $reservationId);
                 notification("appointment", "New appointment added successfully", "gold");  
             }
