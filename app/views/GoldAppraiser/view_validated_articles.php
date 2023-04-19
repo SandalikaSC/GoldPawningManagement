@@ -96,16 +96,6 @@
                                     <td><?php echo $validated_article->gold_appraiser; ?></td>
                                 </tr>
                             <?php endforeach; ?>
-                            <tr class="table-body">
-                                    <td><img src=""></td>
-                                    <td><?php echo 465; ?></td>
-                                    <td><?php echo "earings"; ?></td>
-                                    <td><?php echo 356; ?></td>
-                                    <td><?php echo 13; ?></td>
-                                    <td><?php echo 35; ?></td>
-                                    <td><?php echo 37; ?></td>
-                                    <td><?php echo "ge87"; ?></td>
-                                </tr>
                         </tbody>
                     </table>
                 </div>                

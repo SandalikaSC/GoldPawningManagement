@@ -182,15 +182,31 @@
                         </div>
                         <div class="div-table-validated">
                             <table>
-                                <thead>
-                                    <tr>
-                                        <td>Article ID</td>
-                                        <td>Estimated Value</td>
-                                        <td>Validation Status</td>
-                                    </tr> 
-                                </thead>
-                                <tbody>
-                                    <tr>
+                                <?php if(empty($data['validated_articles'])) : ?>
+                                    <div class="no-articles">No validated articles</div>
+                                <?php else : ?> 
+                                    
+                                        <thead>
+                                            <tr>
+                                                <td>Validation ID</td>
+                                                <td>Estimated Value (Rs. )</td>
+                                                <td>Validation Status</td>
+                                            </tr> 
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($data['validated_articles'] as $validated_article) : ?>
+                                                <tr>
+                                                    <td><?php echo $validated_article->id;?></td>
+                                                    <td><?php echo $validated_article->estimated_value;?></td>
+                                                    <td><?php echo ($validated_article->validation_status) ? 'Valid' : 'Invalid';?></td>
+                                                    <td><a href="<?php echo URLROOT; ?>/customers/confirm_pawn" class="btn-validated btn-pawn">Pawn</a></td>
+                                                    <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                <?php endif; ?>
+                            </table>
+                                    <!-- <tr>
                                         <td>AR001</td>
                                         <td>Rs. 150,000/-</td>
                                         <td>Valid</td>
@@ -203,10 +219,10 @@
                                         <td>Invalid</td>
                                         <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
                                         <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
-                                    </tr>
+                                    </tr> -->
                                     
-                                </tbody>
-                            </table>
+                                
+                            
                         </div>                            
                     </div>
                 </div>     

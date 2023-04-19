@@ -98,21 +98,26 @@
                     $data['estimated_value'] = $estimate_value; 
                     if(isset($_POST['calculate'])) {
                         $this->view('GoldAppraiser/validate_new_articles', $data);
-                    }
+                    }                    
 
                     if(isset($_POST['save'])) {
-                        $data['validation_status'] = trim($_POST['status']);
+                        $data['validation_status'] = trim($_POST['status']);                        
 
-                        $validation_success = $this->model("goldAppModel")->validateNewArticles($data);
-
-                        if($validation_success) {
-                            flash('validation_success', 'Article validation succeeded', 'success');
-                            $this->view('GoldAppraiser/validate_new_articles', $data);
+                        if(empty($data['article_details']) || $data['article_details']->status == "1") {
+                            flash('validation_success', 'Already validated', 'invalid');
+                            $this->view('GoldAppraiser/validate_new_articles', $data);                            
                         } else {
-                            flash('validation_success', 'Validation was not succeeded. Something went wrong', 'invalid');
-                            $this->view('GoldAppraiser/validate_new_articles', $data);
+                            $validation_success = $this->model("goldAppModel")->validateNewArticles($data);
+
+                            if($validation_success) {
+                                flash('validation_success', 'Article validation succeeded', 'success');
+                                $this->view('GoldAppraiser/validate_new_articles', $data);
+                            } else {
+                                flash('validation_failed', 'Validation was not succeeded. Something went wrong', 'invalid');
+                                $this->view('GoldAppraiser/validate_new_articles', $data);
+                            }
                         }
-                    }
+                    }                                       
                 
                 } else {
                     // Load view with errors

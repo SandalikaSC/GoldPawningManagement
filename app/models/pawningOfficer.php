@@ -38,6 +38,10 @@
         }
 
         public function getValidatedArticles() {
-            
+            $this->db->query('SELECT * FROM validation_articles WHERE status = 1;');
+
+            $results = $this->db->resultSet();
+
+            return $results;
         }
     }

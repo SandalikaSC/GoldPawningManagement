@@ -63,8 +63,8 @@
 
                                 <select name="unit" id="unit">
                                     <option value="" <?php if($data['unit'] == '') echo 'selected'; else '';?> disabled>Choose weight unit</option>
-                                    <option value="ounce" <?php if($data['unit'] == 'ounce') echo 'selected'; else '';?> >ounce</option>
                                     <option value="gram" <?php if($data['unit'] == 'gram') echo 'selected'; else '';?> >gram</option>
+                                    <option value="ounce" <?php if($data['unit'] == 'ounce') echo 'selected'; else '';?> >ounce</option>
                                 </select>
                                 
                             </div>
