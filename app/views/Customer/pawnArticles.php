@@ -52,14 +52,20 @@
 
                                 <label>Status</label>
                                 <label class="status 
-                                <?php if($pawn->Status=='Pawned'){
+                                <?php 
+                                $status=$pawn->Status;
+                                if (strtotime($pawn->End_Date) < time()) {
+                                    $status='Overdue';
+                                  } 
+                                
+                                if( $status=='Pawned'){
                                      echo "tag-pending";
-                                    }elseif ($pawn->Status=='Overdue') {
+                                    }elseif ( $status=='Overdue') {
                                         echo "tag-overdue";
                                     }else{
                                         echo "tag-auctioned";
 
-                                    }?>"><?= $pawn->Status?></label>
+                                    }?>"><?=  $status?></label>
                             </div>
 
 

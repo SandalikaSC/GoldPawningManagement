@@ -13,6 +13,11 @@ class interest
             $row = $this->db->single(); 
             return $row;
     }
+    public function getPawnInterest(){
+        $this->db->query('SELECT * FROM interest where interest_ID=1');  
+            $row = $this->db->single(); 
+            return $row;
+    }
     public function getAllocationInterest(){
         $this->db->query('SELECT * FROM interest where interest_ID=2');  
             $row = $this->db->single(); 
