@@ -67,7 +67,7 @@
             $article_id = $this->getLastArticleId();
             ++$article_id;
 
-            $this->db->query('INSERT INTO validation_articles (id, article_type, customer, image, pawn_officer, gold_appraiser) VALUES(:article_id, :type, :customer, :image, :pawn_officer, :gold_appraiser)');
+            $this->db->query('INSERT INTO validation_articles (id, article_type, customer, image, pawn_officer_or_vault_keeper, gold_appraiser) VALUES(:article_id, :type, :customer, :image, :pawn_officer, :gold_appraiser)');
 
             $this->db->bind(':article_id', $article_id);
             $this->db->bind(':type', $data['type']);
@@ -83,7 +83,16 @@
             }
         }
 
+        // Get validation details of a article by using the validation ID
+        public function getValidationDetailsByID($id) {
+            $this->db->query('SELECT * FROM validation_articles WHERE id=:id;');
 
+            $this->db->bind(':id', $id);
+            
+            $row = $this->db->single();
+
+            return $row;
+        }
 
 
 
@@ -97,6 +106,7 @@
 
             return $results;
         }
+
         public function goldLoanDetails($id) {
             $this->db->query(' SELECT * FROM pawn  JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id
                              JOIN   article ON article.Article_Id=pawn.Article_Id where pawn.Pawn_Id=:id ');

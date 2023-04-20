@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vogue Pawn | Confirm Pawn</title>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_confirm_pawn.css">
 </head>
 <body>
@@ -16,14 +16,19 @@
                     <img src="<?php echo URLROOT . '/img/back-arrow.png'; ?>">
                 </a>
                 
-                <h1>New Pawning</h1>
+                <h1>Confirm Pawning</h1>
             </div>
             
             <div class="logo">
                 <img src="<?php echo URLROOT . '/img/logo_name.png'; ?>">
             </div>
         </div>
-        <div class="form-container">
+
+        <main>
+
+        </main>
+
+        <!-- <div class="form-container">
             <div class="payment-validate">
                 <div class="customer-details form-wrapper">
                     <h2 class="form-header">Customer Details</h2>
@@ -143,7 +148,7 @@
                     <a href="#" class="cancel">Cancel</a>
                 </div>
             </div>            
-        </div>          
+        </div>           -->
     </div>
 
     <script type="text/javascript">

@@ -38,7 +38,7 @@
     height: 60px;
 }
 
-.wrapper .form-container {
+/* .wrapper .form-container {
     margin: 10px 20px;
     display: flex;
     justify-content: space-evenly;
@@ -196,4 +196,4 @@
 .buttons-container .pawn:hover, .buttons-container .cancel:hover {
     background-color: #000;
     transform: translateY(-5px);
-}
+} */

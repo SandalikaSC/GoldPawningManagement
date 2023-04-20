@@ -63,6 +63,17 @@
             $this->view('PawnOfficer/renew_pawn', $data);
         }
 
+        public function confirm_pawn($id) {
+            // Get validation details of the article
+            $validation_details = $this->pawningModel->getValidationDetailsByID($id);
+
+            $data = [
+                'validation_details' => $validation_details,
+            ];
+
+            $this->view('PawnOfficer/confirmPawn');
+        }
+
         public function new_pawning() {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process form

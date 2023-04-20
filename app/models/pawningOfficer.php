@@ -38,7 +38,7 @@
         }
 
         public function getValidatedArticles() {
-            $this->db->query('SELECT * FROM validation_articles WHERE status = 1;');
+            $this->db->query('SELECT * FROM validation_articles WHERE status = 1 AND pawn_officer_or_vault_keeper LIKE "PO%";');
 
             $results = $this->db->resultSet();
 
