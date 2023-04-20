@@ -24,7 +24,7 @@ class CustomerPawn extends Controller
 
 
 
-        
+
         $data = [
             'pawnings' => $pawning
         ];
@@ -67,11 +67,17 @@ class CustomerPawn extends Controller
         $paid = $this->paymentmodel->paidAmount($pawn_id); 
         $payment=$this->paymentmodel->getPawnPayments($pawn_id);
         $pawnInterest=$this->interestModel->getPawnInterest()->Interest_Rate;
+
+        $status=$pawning->Status;
+        if (strtotime($pawning->End_Date) < time()) {
+            $status='Overdue';
+          } 
         $data = [
             'pawning' => $pawning,
             'loan'=>$loan,
             'article'=>$article,
             'payment'=>$payment,
+            'status'=>$status,
             'pawnInterest'=>$pawnInterest,
             'paid'=>$paid->Paid
         ];
