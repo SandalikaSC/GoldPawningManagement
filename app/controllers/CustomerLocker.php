@@ -13,6 +13,7 @@ class CustomerLocker extends Controller
         $this->lockerModel = $this->model('Locker');
         $this->interestModel = $this->model('interest');
         $this->appointment = $this->model('Appointment');
+        $this->paymentmodel = $this->model('payment');
     }
 
 
@@ -31,13 +32,14 @@ class CustomerLocker extends Controller
         $delivery = $this->deliveryModel->getDeliveryByReserveId($reserveId);
         $locker = $this->lockerModel->getLockerById($reservation->lockerNo);
         $interest = $this->interestModel->getAllocationInterest();
-
+        $payment = $this->paymentmodel->getReservationPayments($reserveId);
 
         $data = [
             'reservation' => $reservation,
             'article' => $article,
             'delivery' => $delivery,
             'locker' => $locker,
+            'payment' => $payment,
             'interest' => $interest
 
         ];
@@ -73,7 +75,7 @@ class CustomerLocker extends Controller
             'interest' => $interest
 
         ];
-        $this->view('Customer/pawnpaydetails', $data);
+        $this->view('Customer/lockerpaydetails', $data);
     }
     public function getTimeSlots()
     {

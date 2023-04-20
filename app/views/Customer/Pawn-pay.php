@@ -21,52 +21,7 @@
     </div>
     <div class="page">
 
-        <div class="payment-invoice">
-            <div class="payment-info">
-                <h2 class="h2-txt amount">Rs. 5600.00</h2>
-                <div class="info-section">
-                    <label for="">Interest amount</label>
-                    <label for="">Rs. 1600.00</label>
-                </div>
-                <div class="info-section">
-                    <label for="">Loan Amount</label>
-                    <label for="">Rs. 4000.00</label>
-                </div>
-                <div class="info-section">
-                    <hr>
-                </div>
-                <div class="info-section">
-                    <div><img src="<?php echo URLROOT ?>/img/calender-white.png"" alt="" class=" icon">
-                        <label for="">Next Pay Date</label>
-                    </div>
-                    <label for="" class="icon-label"><?php echo date("d M Y", strtotime("2024/01/03"))?></label>
-                </div>
-            </div>
-            <form class="card-info">
-                <h2>
-                    Payment Details
-                </h2>
-                <label for="">
-                    Credit Card
-                </label>
-                <input type="text" class="card-no">
-                <div class="card-grid">
-                    <label for="">
-                        Expiration Date
-                    </label>
-                    <label for="">
-                        Code CVV
-                    </label>
-                    <input type="date" class="card-no">
-                    <input type="password" class="card-no">
-                </div>
-                <label for="">
-                    Name
-                </label>
-                <input type="text" class="card-no">
-                <button class="pay">Pay Rs. 5600</button>
-            </form>
-        </div>
+        
     </div>
     <script>
 

@@ -12,7 +12,7 @@ class CustomerPawn extends Controller
     }
    
 
-
+ 
     public function index()
     {
         $pawning = $this->customerPawnModel->getPawnByUserID($_SESSION['user_id']);

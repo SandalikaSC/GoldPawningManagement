@@ -29,5 +29,12 @@ class payment
                 return false;
             } 
     }
+    public function getReservationPayments($reserveId)
+    {
+        $this->db->query('SELECT * FROM payment where allocate_Id=:allocate_Id');
+        $this->db->bind(':allocate_Id', $reserveId);
+        $results = $this->db->resultset(); 
+        return $results;
+    }
 }
 ?>
