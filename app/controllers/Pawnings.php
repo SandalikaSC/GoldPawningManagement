@@ -67,11 +67,40 @@
             // Get validation details of the article
             $validation_details = $this->pawningModel->getValidationDetailsByID($id);
 
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'validation_details' => $validation_details,
+                    'customer_name' => trim($_POST['name']),
+                    'nic' => trim($_POST['nic']),
+                    'email' => trim($_POST['email']),
+                    'phone' => trim($_POST['email']),
+                    'full_loan' => trim($_POST['full-loan']),
+                    'payment_method' => trim($_POST['payment-method']),
+                    'customer_name_err' => '',
+                    'nic_err' => '',
+                    'email_err' => '',
+                    'full_loan_err' => ''
+                ];
+            }
+
             $data = [
                 'validation_details' => $validation_details,
+                'customer_name' => '',
+                'nic' => '',
+                'email' => '',
+                'phone' => '',
+                'full_loan' => '',
+                'payment_method' => '',
+                'customer_name_err' => '',
+                'nic_err' => '',
+                'email_err' => '',
+                'full_loan_err' => ''
             ];
 
-            $this->view('PawnOfficer/confirmPawn');
+            $this->view('PawnOfficer/confirmPawn', $data);
         }
 
         public function new_pawning() {

@@ -25,7 +25,100 @@
         </div>
 
         <main>
+            <div class="main-div-container">
+                <div class="validation-details">
+                    <div class="article-img">
+                        <img src="<?php echo $data['validation_details']->image; ?>" alt="Article Image">
+                    </div>
+                    <div class="div-details">
+                        <div class="div-field left-field">
+                            <label>ARTICLE TYPE</label>
+                            <div><?php echo $data['validation_details']->article_type; ?></div>
+                        </div>
+                        <div class="div-field right-field">
+                            <label>WEIGHT</label>
+                            <div><?php echo $data['validation_details']->weight . 'g'; ?></div>
+                        </div>
+                        <div class="div-field left-field">
+                            <label>CARATS</label>
+                            <div><?php echo $data['validation_details']->karatage; ?></div>
+                        </div>
+                        <div class="div-field right-field">
+                            <label>VALIDATION STATUS</label>
+                            <div><?php echo ($data['validation_details']->validation_status) ? "Valid" : "Invalid" ; ?></div>
+                        </div>
+                        <div class="estimated-value">
+                            <div class="div-field">
+                                <label>ESTIMATED VALUE</label>
+                                <div><?php echo 'Rs. ' . $data['validation_details']->estimated_value; ?></div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
 
+                <div class="pawning-details">
+                    <form action="">
+                        <div class="div-title">
+                            <h2>Details for Pawning</h2>
+                        </div>
+
+                        <div class="main-input-container">
+                            <div class="input-container">
+                                <label>Customer Name<sup>*</sup></label>
+                                <div>
+                                    <input type="text" name="name" class="input-field <?php echo (!empty($data['customer_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['customer_name']; ?>" placeholder="Name">
+                                </div>                            
+                            </div>
+
+                            <div class="input-container">
+                                <label>NIC<sup>*</sup></label>
+                                <div>
+                                    <input type="text" name="nic" class="input-field <?php echo (!empty($data['nic_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['nic']; ?>" placeholder="NIC">
+                                </div>                            
+                            </div>
+
+                            <div class="input-container">
+                                <label>Email<sup>*</sup></label>
+                                <div>
+                                    <input type="text" name="email" class="input-field <?php echo (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['email']; ?>" placeholder="Email">
+                                </div>                            
+                            </div>
+
+                            <div class="input-container">
+                                <label>Phone Number</label>
+                                <div>
+                                    <input type="text" name="phone" class="input-field" placeholder="Phone Number">
+                                </div>                            
+                            </div>
+
+                            <div class="input-container">
+                                <label>Full Loan Amount (Rs. )<sup>*</sup></label>
+                                <div>
+                                    <input type="text" name="full-loan" class="input-field <?php echo (!empty($data['full_loan_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['full_loan']; ?>" placeholder="Full Loan Amount">
+                                </div>                            
+                            </div>
+
+                            <div class="input-container">
+                                <label>Loan Payment Method</label>
+                                <div class="payment-method">                        
+                                    <label>
+                                        <input type="radio" name="payment-method" value="Fixed" checked> Fixed
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="payment-method" value="Diminishing"> Diminishing
+                                    </label>
+                                </div>                            
+                            </div>
+                        </div>  
+
+                        <div class="div-buttons">
+                            <input type="submit" value="Pawn">
+                            <input type="submit" value="Cancel">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
         </main>
 
         <!-- <div class="form-container">
@@ -152,21 +245,7 @@
     </div>
 
     <script type="text/javascript">
-        const realFileBtn = document.getElementById("real-file");
-        const customBtn = document.getElementById("custom-button");
-        const customTxt = document.getElementById("custom-text");
-
-        customBtn.addEventListener("click", function() {
-            realFileBtn.click();
-        });
-
-        realFileBtn.addEventListener("change", function() {
-            if(realFileBtn.value) {
-                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-            } else {
-                  customTxt.innerHTML = "Image";
-            }
-        });
+        
     </script>
 
 </body>

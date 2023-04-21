@@ -14,7 +14,7 @@
 .wrapper .header {
     display: flex;
     justify-content: space-between;
-    padding: 10px 10px 0;
+    padding: 10px 10px;
 }
 
 .header .title {
@@ -36,6 +36,193 @@
 .header .logo img {
     width: 200px;
     height: 60px;
+}
+
+main {
+    width: 100vw;
+    height: calc(100vh - 85px);
+}
+
+main .main-div-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+main .main-div-container .validation-details {
+    width: 350px;
+    background: #bb8a04;
+    padding: 30px;
+    margin: 30px 0 30px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .main-div-container .validation-details .article-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+main .main-div-container .validation-details .article-img img {
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+main .main-div-container .validation-details .div-details {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+main .main-div-container .validation-details .div-details .div-field {
+    width: 50%;
+    margin-top: 10px;
+}
+
+main .main-div-container .validation-details .div-details .right-field {
+    text-align: right;
+}
+
+main .main-div-container .validation-details .div-details .left-field {
+    text-align: left;
+}
+
+main .main-div-container .validation-details .div-details .estimated-value {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main .main-div-container .validation-details .div-details .estimated-value .div-field {
+    width: fit-content;
+    margin-top: 20px;
+    text-align: center;
+}
+
+main .main-div-container .validation-details .div-details .div-field label {
+    font-size: 12px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+main .main-div-container .validation-details .div-details .div-field div {
+    font-size: 18px;
+    color: #faebd7;
+    font-weight: 600;
+}
+
+main .main-div-container .validation-details .div-details .estimated-value .div-field label {
+    font-size: 18px;
+    color: #800000;
+}
+
+main .main-div-container .validation-details .div-details .estimated-value .div-field div {
+    font-size: 36px;
+}
+
+main .main-div-container .pawning-details {
+    background: #faebd7;
+    padding: 30px;
+    width: 450px;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .main-div-container .pawning-details .div-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+main .main-div-container .pawning-details .div-title h2 {
+    border-bottom: 2px solid #bb8a04;
+}
+
+main .main-div-container .pawning-details form {
+    padding: 0 30px;
+}
+
+main .main-div-container .pawning-details form .main-input-container {
+    margin-bottom: 20px;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container {
+    width: 100%;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container label sup {
+    color: #f00;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container div {
+    width: 100%;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container div input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container div input::placeholder {
+    font-size: 15px;
+}
+
+main .main-div-container .pawning-details form .div-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+main .main-div-container .pawning-details form .div-buttons input[type="submit"] {
+    background: #bb8a04;
+    padding: 7px;
+    width: 120px;
+    font-size: 18px;
+    font-style: italic;
+    border-radius: 10px;
+    border: 2px solid #bb8a04;
+    color: #faebd7;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+main .main-div-container .pawning-details form .div-buttons input[type="submit"]:hover {
+    opacity: 0.8;
+    transform: translateY(-3px);
+    border-color: #846102;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container .payment-method {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container .payment-method input[type="radio"] {
+    width: 12px;
+    margin-right: 10px;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container .payment-method label {
+    display: flex;
+    margin: 0 40px 0 20px;
+    font-weight: 400;
 }
 
 /* .wrapper .form-container {
