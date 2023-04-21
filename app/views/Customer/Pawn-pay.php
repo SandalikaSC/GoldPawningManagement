@@ -100,15 +100,18 @@
                             </h2>
 
                             <div class="jw-date-name option-radio">
-                                <input type="radio" name="accept-offers" id="yes-button" value="1" class="hidden radio-label">
+                                <input type="radio" name="repawn" id="yes-button" value="1" class="hidden radio-label" checked>
                                 <label for="yes-button" class="button-label">
                                     <h1>Yes</h1>
                                 </label>
-                                <input type="radio" name="accept-offers" id="no-button" value="2" class="hidden radio-label" checked>
+                                <input type="radio" name="repawn" id="no-button" value="2" class="hidden radio-label">
                                 <label for="no-button" class="button-label">
                                     <h1>No</h1>
                                 </label>
                             </div>
+
+
+
                         <?php else : ?>
                             <h2 class="sub-title">
                                 Calculate Payment
@@ -138,7 +141,7 @@
                                 <div class="jw-date">
                                     <div class="jw-date-name">
                                         <label>Enter Amount</label>
-                                        <input type="text" id="diminishing_amount" class="jw-dt inputf">
+                                        <input type="text" id="diminishing_amount" class="jw-dt inputf" value="1000">
                                     </div>
 
                                 </div>
@@ -166,6 +169,8 @@
 
 
                         <?php endif; ?>
+
+
                         <div class="jw-date" id="retrieveRadio">
 
                             <label class=" ">
@@ -183,27 +188,43 @@
                                         Safe Locker
                                     </label>
                                 </div>
-
-
                             </div>
                         </div>
-                        <!-- <div id="retrieveRadio" class="jw-date-name option-radio">
-                            <label class=" ">
-                                Method of retrieval ?
-                            </label>
-                            <input type="radio" name="retrieval" id="visit-button" value="1" class=" ">
-                            <label for="yes-button" class=" ">
-                                Visit Shop
-                            </label>
-                            <input type="radio" name="retrieval" id="locker-button" value="2" class=" " checked>
-                            <label for="no-button" class=" ">
-                                Safe Locker
-                            </label>
-                        </div> -->
+                        <div class="info-div  " id="Repawn_details">
+                            <h2 class="sub-title">
+                                Pawn Renewal
+                            </h2>
+                            <div class="jw-date">
+                                <div class="jw-date-name">
+                                    <label>Pawn Renew till</label>
+                                    <label id="repawnTill"><?php echo date('Y-m-d', strtotime(date('Y-m-d') . ' +1 year')) ?></label>
+                                </div>
+                            </div>
+                            <div class="jw-date">
+                                <div class="jw-date-name">
+                                    <label>Interest to be paid</label>
+                                    <label id="repawnTill">
+                                        
+                                    <?php if ($data['loan']->Repay_Method == 'fixed') {
+                                         echo 'Rs '.$data['loan']->Amount *($data['loan']->Interest+100)/100-$data['principle'];
+                                    } ?></label>
+                                </div>
+                            </div>
+                            <div class="jw-date">
+                                <div class="jw-date-name">
+                                    <label>Principle to be paid</label>
+                                    <label id="repawnTill"><?php  echo 'Rs '.$data['loan']->Amount-$data['principle']?></label>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
                 </div>
+
             </div>
-            <div class="info-div choise-div" id="extend">
+
+            <!-- <div class="info-div choise-div" id="extend">
                 <h2 class="sub-title">
                     Article Retrieval
                 </h2>
@@ -223,15 +244,22 @@
                     <div class="jw-date-name">
                         <label class="err" id="extend-err"> </label>
                         <!-- <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="updateExtendPaymnet()" value="Extend">Extend</button> -->
-                    </div>
-                </div>
-            </div>
         </div>
+    </div>
+    </div>
+    -->
+    </div>
     </div>
     <script>
         let installmentPayAmount = 0;
         var retrieveRadio = document.getElementById("retrieveRadio");
         retrieveRadio.style.display = "none";
+        let repayMethod = "<?= $data['loan']->Repay_Method ?>";
+
+        let Repawn_details = document.getElementById("Repawn_details");
+        Repawn_details.style.display = "none";
+
+        let Repawn_date = document.getElementById("repawnTill");
 
         function installmentPay() {
             // Get the value of the number input field
@@ -246,27 +274,50 @@
             }
 
         }
-        var numbeinstallments = document.getElementById("noInstallments")
-        numbeinstallments.addEventListener("input", installmentPay());
+        if ('<?= $data['status'] ?>' != 'Overdue') {
 
-        var diminishing_amount = document.getElementById("diminishing_amount");
-        diminishing_amount.addEventListener("input", function() {
-            document.getElementById("dim_err").innerHTML="";
-
-            var dimEnterAmount = diminishing_amount.value;
-            if (/^\d+$/.test(dimEnterAmount)) {
-
-                
-
+            if (repayMethod == 'fixed') {
+                var numbeinstallments = document.getElementById("noInstallments")
+                numbeinstallments.addEventListener("input", installmentPay());
             } else {
-                //disable pay btn
+                var diminishing_amount = document.getElementById("diminishing_amount");
 
-                document.getElementById("dim_err").innerHTML="Invalid Payment Amount";
+                diminishing_amount.addEventListener("input", function() {
+                    document.getElementById("dim_err").innerHTML = "";
+
+                    var dimEnterAmount = diminishing_amount.value;
+                    if (/^\d+$/.test(dimEnterAmount) && dimEnterAmount > 0) {
+
+
+                    } else {
+                        //disable pay btn
+
+                        document.getElementById("dim_err").innerHTML = "Invalid Payment Amount";
+                    }
+                });
+
             }
+        } else {
+            Repawn_details.style.display = "flex";
 
+        }
 
+        //overdue repawn option choosen
+        const yes = document.getElementById("yes-button");
+        const no = document.getElementById("no-button");
+        yes.addEventListener("click", function(event) {
+            //disable pay btn
+            //document.getElementById("btn").style.display = 'none'; 
+            retrieveRadio.style.display = "none";
+            Repawn_details.style.display = "flex";
+            repawnTill.innerHTML = "Invalid Payment Amount";
+        });
 
-
+        no.addEventListener("click", function(event) {
+            //disable pay btn
+            //document.getElementById("btn").style.display = 'none'; 
+            retrieveRadio.style.display = "flex";
+            Repawn_details.style.display = "none";
         });
     </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>

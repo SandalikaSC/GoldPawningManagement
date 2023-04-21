@@ -51,5 +51,13 @@ class payment
 
         return $row;
     }
+    public function paidPrincipleAmount($id) {
+        $this->db->query(' SELECT sum(Principle_Amount)  as PaidPrinciple FROM payment where Pawn_Id=:id ');
+        $this->db->bind(':id', $id);
+
+        $row =$this->db->single();
+
+        return $row;
+    }
 }
 ?>

@@ -14,6 +14,7 @@ class CustomerPawn extends Controller
         $this->loanModel = $this->model('loan');
         $this->appointment = $this->model('Appointment');
         $this->paymentmodel = $this->model('payment');
+        $this->lockermodel = $this->model('Locker');
     }
 
 
@@ -36,6 +37,7 @@ class CustomerPawn extends Controller
     }
     public function viewPawnArticle($pawn_id)
     {
+        
         $pawning = $this->customerPawnModel->goldLoanDetails($pawn_id);
         $paid = $this->paymentmodel->paidAmount($pawn_id);
         $interestAmount=$pawning->Amount *$pawning->Interest/100;
@@ -60,11 +62,16 @@ class CustomerPawn extends Controller
         $this->view('Customer/article_pawn', $data);
     }
     public function makePayment($pawn_id)
-    { 
+    { $locker = $this->lockermodel->AvailableCustomerArticles($_SESSION['user_id']);
+
+        if (empty($locker)) {
+             $locker=$this->lockermodel->getAvailableLocker();
+        }
         $pawning = $this->customerPawnModel->getPawnById($pawn_id);
         $article = $this->articleModel->getArticleById($pawning->Article_Id);
         $loan = $this->loanModel->getLoanByPawnId($pawn_id); 
         $paid = $this->paymentmodel->paidAmount($pawn_id); 
+        $principle= $this->paymentmodel->paidPrincipleAmount($pawn_id); 
         $payment=$this->paymentmodel->getPawnPayments($pawn_id);
         $pawnInterest=$this->interestModel->getPawnInterest()->Interest_Rate;
 
@@ -74,12 +81,14 @@ class CustomerPawn extends Controller
           } 
         $data = [
             'pawning' => $pawning,
+            'locker' => $locker,
             'loan'=>$loan,
             'article'=>$article,
             'payment'=>$payment,
             'status'=>$status,
             'pawnInterest'=>$pawnInterest,
-            'paid'=>$paid->Paid
+            'paid'=>$paid->Paid,
+            'principle'=>$principle->PaidPrinciple
         ];
 
         $this->view('Customer/Pawn-pay', $data);
