@@ -66,21 +66,24 @@
                             <div class="input-container">
                                 <label>Customer Name<sup>*</sup></label>
                                 <div>
-                                    <input type="text" name="name" class="input-field <?php echo (!empty($data['customer_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['customer_name']; ?>" placeholder="Name">
-                                </div>                            
+                                    <input type="text" name="name" class="input-field <?php echo (!empty($data['customer_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['customer_name']; ?>" placeholder="Name">                                      
+                                </div> 
+                                <span class="invalid-feedback"><?php echo $data['customer_name_err']; ?></span>                            
                             </div>
 
                             <div class="input-container">
                                 <label>NIC<sup>*</sup></label>
                                 <div>
-                                    <input type="text" name="nic" class="input-field <?php echo (!empty($data['nic_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['nic']; ?>" placeholder="NIC">
-                                </div>                            
+                                    <input type="text" name="nic" class="input-field <?php echo (!empty($data['nic_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['nic']; ?>" placeholder="NIC"> 
+                                </div>    
+                                <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span>                         
                             </div>
 
                             <div class="input-container">
                                 <label>Email<sup>*</sup></label>
                                 <div>
                                     <input type="text" name="email" class="input-field <?php echo (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['email']; ?>" placeholder="Email">
+                                    <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>  
                                 </div>                            
                             </div>
 
@@ -95,7 +98,8 @@
                                 <label>Full Loan Amount (Rs. )<sup>*</sup></label>
                                 <div>
                                     <input type="text" name="full-loan" class="input-field <?php echo (!empty($data['full_loan_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['full_loan']; ?>" placeholder="Full Loan Amount">
-                                </div>                            
+                                </div>   
+                                <span class="invalid-feedback"><?php echo $data['full_loan_err']; ?></span>                          
                             </div>
 
                             <div class="input-container">
@@ -113,7 +117,7 @@
 
                         <div class="div-buttons">
                             <input type="submit" value="Pawn">
-                            <input type="submit" value="Cancel">
+                            <!-- <input type="submit" value="Cancel"> -->
                         </div>
                     </form>
                 </div>

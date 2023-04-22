@@ -225,6 +225,16 @@ main .main-div-container .pawning-details form .main-input-container .input-cont
     font-weight: 400;
 }
 
+.is-invalid {
+    border-color: #ff0000;
+}
+
+.invalid-feedback {
+    color: #ff0000;
+    font-size: 12px;
+    left: 20px;
+}
+
 /* .wrapper .form-container {
     margin: 10px 20px;
     display: flex;

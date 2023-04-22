@@ -84,6 +84,30 @@
                     'email_err' => '',
                     'full_loan_err' => ''
                 ];
+
+                if(empty($data['customer_name'])) {
+                    $data['customer_name_err'] = "Please enter the customer name";
+                }
+
+                if(empty($data['nic'])) {
+                    $data['nic_err'] = "Please enter the customer NIC";
+                }
+
+                if(empty($data['email'])) {
+                    $data['email_err'] = "Please enter the customer email";
+                }
+
+                if(empty($data['full_loan'])) {
+                    $data['full_loan_err'] = "Please enter the full loan amount customer decided";
+                }   
+                
+                // if(isset($_POST['Pawn'])) {
+                    if(empty($data['customer_name_err']) && empty($data['nic_err']) && empty($data['email_err']) && empty($data['full_loan_err'])) {
+
+                    } else {
+                        $this->view('PawnOfficer/confirmPawn', $data);
+                    }
+                // } 
             }
 
             $data = [
