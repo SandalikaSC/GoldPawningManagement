@@ -15,6 +15,7 @@ class CustomerPawn extends Controller
         $this->appointment = $this->model('Appointment');
         $this->paymentmodel = $this->model('payment');
         $this->lockermodel = $this->model('Locker');
+        $this->reservationModel = $this->model('reservation');
     }
 
 
@@ -62,7 +63,8 @@ class CustomerPawn extends Controller
         $this->view('Customer/article_pawn', $data);
     }
     public function makePayment($pawn_id)
-    { $locker = $this->lockermodel->AvailableCustomerArticles($_SESSION['user_id']);
+    { 
+        $locker = $this->lockermodel->AvailableCustomerArticles($_SESSION['user_id']);
 
         if (empty($locker)) {
              $locker=$this->lockermodel->getAvailableLocker();
@@ -74,7 +76,14 @@ class CustomerPawn extends Controller
         $principle= $this->paymentmodel->paidPrincipleAmount($pawn_id); 
         $payment=$this->paymentmodel->getPawnPayments($pawn_id);
         $pawnInterest=$this->interestModel->getPawnInterest()->Interest_Rate;
+        $reserveInterest=$this->interestModel->getAllocationInterest()->Interest_Rate;
+        $delivery=$this->interestModel->getdelivaryRate()->Interest_Rate;
 
+        $locker = $this->lockermodel->AvailableCustomerArticles($_SESSION['user_id']);
+
+        if (empty($locker)) {
+             $locker=$this->lockermodel->getAvailableLocker();
+        }
 
         $tomorrow = new DateTime('tomorrow');
         $tomorrowFormatted = $tomorrow->format('Y-m-d');
@@ -88,10 +97,13 @@ class CustomerPawn extends Controller
             'pawning' => $pawning,
             'locker' => $locker,
             'loan'=>$loan,
+            'locker'=>$locker,
             'article'=>$article,
             'payment'=>$payment,
             'status'=>$status,
             'pawnInterest'=>$pawnInterest,
+            'reserveInterest'=>$reserveInterest,
+            'delivery'=>$delivery,
             'paid'=>$paid->Paid,
             'principle'=>$principle->PaidPrinciple,
             'timeslot'=>$timeSlots

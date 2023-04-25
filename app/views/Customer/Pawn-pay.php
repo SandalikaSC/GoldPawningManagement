@@ -247,10 +247,10 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label class="err" id="extend-err"> </label>
-                       <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="" value="Extend">Extend</button> 
+                        <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="" value="Extend">Extend</button>
                     </div>
                 </div>
-             </div>
+            </div>
 
             <div class="info-div choise-div" id="appointment_sec">
                 <h2 class="sub-title">
@@ -352,6 +352,12 @@
         var retrieveRadio = document.getElementById("retrieveRadio");
         retrieveRadio.style.display = "none";
         let repayMethod = "<?= $data['loan']->Repay_Method ?>";
+
+
+        //radio buttions
+        //method of retrieval
+
+        var retrieval = document.getElementById("retrieval");
 
 
 
@@ -486,13 +492,16 @@
             pay_btn.style.display = 'none'; //disable pay btn
             //document.getElementById("btn").style.display = 'none'; 
             notRepawnPay()
-            appointment_sec.style.display = "flex";
+           
             retrieveRadio.style.display = "flex";
             Repawn_details.style.display = "none";
-            if (condition) {
-                
-            }
-            ReserveLocker_sec.style.display = "none";
+            var radio = document.getElementById("locker-button");
+            if (radio.checked) {
+                ReserveLocker_sec.style.display = "flex";
+            } else {
+                appointment_sec.style.display = "flex";
+            }  
+            
 
 
         });
