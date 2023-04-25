@@ -178,13 +178,13 @@
                             </label>
 
                             <div class="jw-date-name">
-                                <div><input type="radio" name="retrieval" id="visit-button" value="1" class=" ">
-                                    <label for="yes-button" class=" ">
+                                <div><input type="radio" name="retrieval" id="visit-button" value="1" class=" " checked>
+                                    <label for="visit-button" class=" ">
                                         Visit Shop
                                     </label>
                                 </div>
-                                <div><input type="radio" name="retrieval" id="locker-button" value="2" class=" " checked>
-                                    <label for="no-button" class=" ">
+                                <div><input type="radio" name="retrieval" id="locker-button" value="2" class=" ">
+                                    <label for="locker-button" class=" ">
                                         Safe Locker
                                     </label>
                                 </div>
@@ -204,16 +204,20 @@
                                 <div class="jw-date-name">
                                     <label>Interest to be paid</label>
                                     <label id="repawnTill">
-                                        
-                                    <?php if ($data['loan']->Repay_Method == 'fixed') {
-                                         echo 'Rs '.$data['loan']->Amount *($data['loan']->Interest+100)/100-$data['principle'];
-                                    } ?></label>
+
+                                        <?php if ($data['loan']->Repay_Method == 'fixed') {
+                                            echo 'Rs ' . $data['loan']->Amount * ($data['loan']->Interest + 100) / 100 - $data['paid'];
+                                        } else {
+                                            echo 'Rs ' . ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
+                                        } ?>
+
+                                    </label>
                                 </div>
                             </div>
                             <div class="jw-date">
                                 <div class="jw-date-name">
                                     <label>Principle to be paid</label>
-                                    <label id="repawnTill"><?php  echo 'Rs '.$data['loan']->Amount-$data['principle']?></label>
+                                    <label id="repawnTill"><?php echo 'Rs ' . $data['loan']->Amount - $data['principle'] ?></label>
                                 </div>
                             </div>
 
@@ -224,56 +228,207 @@
 
             </div>
 
-            <!-- <div class="info-div choise-div" id="extend">
+            <div class="info-div choise-div" id="ReserveLocker_sec">
                 <h2 class="sub-title">
-                    Article Retrieval
+                    Locker Reservation
                 </h2>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Reserve locker till</label>
-                        <input type="date" name="date" id="extenddate" class="datechooser" value="" onchange="checkDate()">
+                        <input type="date" name="date" id="extenddate" class="datechooser" value="" onchange="">
                     </div>
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label>Extend payment</label>
-                        <label class="jw-dt" id="extend-payment-box">Rs. 00.00</label>
+                        <label>Available lockers</label>
+                        <label class="jw-dt" id="locker-payment">Rs. 00.00</label>
                     </div>
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label class="err" id="extend-err"> </label>
-                        <!-- <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="updateExtendPaymnet()" value="Extend">Extend</button> -->
+                       <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="" value="Extend">Extend</button> 
+                    </div>
+                </div>
+             </div>
+
+            <div class="info-div choise-div" id="appointment_sec">
+                <h2 class="sub-title">
+                    Retrive Appointment
+                </h2>
+                <div class="jw-date">
+                    <div class="jw-date-name">
+                        <label>Appointment Date</label>
+                        <input type="date" name="date" id="appointment_date" class="datechooser" value="" onchange="appointmentDateSelection()">
+                    </div>
+
+                </div>
+                <div class="jw-date">
+                    <div class="jw-date-name time-slots" id="time-slots">
+
+                        <?php foreach ($data['timeslot'] as $timeslot) : ?>
+                            <div class=" selecotr-item">
+                                <input type="radio" value="<?php echo $timeslot->slotID ?>" id=<?php echo $timeslot->slotID ?> name="selector" class=" selector-item_radio" checked>
+                                <label for=<?php echo $timeslot->slotID ?> class="selector-item_label">
+                                    <?php echo $timeslot->time ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                </div>
+
+                <div class="jw-date">
+                    <div class="jw-date-name">
+                        <label class="err" id="appointment-err"> * </label>
+                        <!-- <button type="button" name="date" id="addAppointment" class="btn-extend" value="Extend" onclick="updatefinePaymnet()">Add</button> -->
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
         </div>
+        <div class="payment">
+            <div class="sec pay">
+                <label class="pay_title">
+                    Payment Details
+                </label>
+                <label class="pay_title" id="total_pay">
+                    00.00
+                </label>
+            </div>
+
+            <div class="sec">
+                <label for="Due">Interest Pay</label>
+                <label class="Tot-pay" id="Interest_pay" for="Total">
+                    <?php if ($data['status'] == 'Overdue') {
+                        if ($data['loan']->Repay_Method == 'fixed') {
+                            echo $data['loan']->Amount * ($data['loan']->Interest + 100) / 100 - $data['paid'];
+                        } else {
+                            echo ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
+                        }
+                    } elseif ($data['loan']->Repay_Method == 'fixed') {
+                        echo   $data['loan']->Amount * $data['loan']->Interest / 100 / 12;
+                    } else {
+                        echo "00.00";
+                    }
+
+                    ?>
+
+                </label>
+            </div>
+            <div class="sec">
+                <label for="Total">Principle Pay</label>
+                <label class="Tot-pay" id="Principle_pay" for="Total">
+
+                    <?php if ($data['loan']->Repay_Method == 'fixed'  && $data['status'] != 'Overdue') {
+                        echo $data['loan']->Amount / 12;
+                    } else {
+                        echo '00.00';
+                    } ?> </label>
+            </div>
+            <div class="sec">
+                <label for=" ">locker Reservation Pay</label>
+                <label class="Tot-pay" id="locker_pay" for=" ">0 </label>
+            </div>
+            <div class="sec">
+                <label for=" ">Delivery Pay</label>
+                <label class="Tot-pay" id="Delivery_pay" for=" ">0 </label>
+            </div>
+            <div class=" sec-btn">
+                <a class="p-btn " href="">Cancel </a>
+                <button class="p-btn " id="p-btn" onclick="">Pay</button>
+            </div>
+        </div>
+
     </div>
-    </div>
-    -->
-    </div>
-    </div>
+    <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
     <script>
         let installmentPayAmount = 0;
         var retrieveRadio = document.getElementById("retrieveRadio");
         retrieveRadio.style.display = "none";
         let repayMethod = "<?= $data['loan']->Repay_Method ?>";
 
+
+
+        //page sections
         let Repawn_details = document.getElementById("Repawn_details");
         Repawn_details.style.display = "none";
+        let appointment_sec = document.getElementById("appointment_sec");
+        appointment_sec.style.display = "none";
+        let ReserveLocker_sec = document.getElementById("ReserveLocker_sec");
+        ReserveLocker_sec.style.display = "none";
 
         let Repawn_date = document.getElementById("repawnTill");
 
-        function installmentPay() {
-            // Get the value of the number input field
-            var numbeinstallments = document.getElementById("noInstallments").value;
-            installmentPayAmount = <?= $data['loan']->monthly_installement ?> * numbeinstallments;
-            document.getElementById("amountInstallment").innerHTML = 'Rs ' + parseFloat(installmentPayAmount.toFixed(2));
 
-            if (numbeinstallments == document.getElementById("noInstallments").max) {
-                retrieveRadio.style.display = "flex";
+
+
+
+
+        //payment section labels
+
+        let interest_label = document.getElementById("Interest_pay");
+        let principle_label = document.getElementById("Principle_pay");
+        let total_label = document.getElementById("total_pay");
+        let delivery_label = document.getElementById("Delivery_pay");
+        let locker_label = document.getElementById("locker_pay");
+
+        //payment categories
+
+        let interestpayment = 0;
+        let principlepayment = 0;
+        let deliverypayment = 0;
+        let lockerpayment = 0;
+
+        // set payment values
+        interestpayment =
+            <?php if ($data['status'] == 'Overdue') {
+                if ($data['loan']->Repay_Method == 'fixed') {
+                    echo $data['loan']->Amount * ($data['loan']->Interest + 100) / 100 - $data['paid'];
+                } else {
+                    echo ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
+                }
+            } elseif ($data['loan']->Repay_Method == 'fixed') {
+                echo   $data['loan']->Amount * $data['loan']->Interest / 100 / 12;
             } else {
-                retrieveRadio.style.display = "none";
+                echo 0;
             }
 
+            ?>;
+        principlepayment =
+            <?php if ($data['status'] != 'Overdue') {
+                if ($data['loan']->Repay_Method == 'fixed') {
+                    echo $data['loan']->Amount / 12;
+                }
+            } else {
+                echo 0;
+            }  ?>;
+
+        //set payment labels
+
+        interest_label.innerHTML = interestpayment;
+        principle_label.innerHTML = principlepayment;
+
+
+        //set total paymnt
+        let total_payment = (interestpayment + principlepayment + deliverypayment + lockerpayment).toFixed(2);
+        total_label.innerHTML = 'Rs ' + total_payment;
+
+
+        //paybutton
+
+        let pay_btn = document.getElementById('p-btn');
+
+        let pwnStatus = '<?php echo $data['status'] ?>';
+        if (pwnStatus != 'Overdue') {
+            pay_btn.style.display = 'none';
         }
+
         if ('<?= $data['status'] ?>' != 'Overdue') {
 
             if (repayMethod == 'fixed') {
@@ -302,22 +457,178 @@
 
         }
 
+        // set appointment date input default
+
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        // Format the date as yyyy-mm-dd (required by the date input)
+        var formattedDate = tomorrow.toISOString().substring(0, 10);
+
+        // Set the date input value to tomorrow's date
+        document.getElementById("appointment_date").value = formattedDate;
+
         //overdue repawn option choosen
         const yes = document.getElementById("yes-button");
         const no = document.getElementById("no-button");
         yes.addEventListener("click", function(event) {
-            //disable pay btn
+            pay_btn.style.display = 'flex'; // pay btn
             //document.getElementById("btn").style.display = 'none'; 
+            RenewPay();
             retrieveRadio.style.display = "none";
             Repawn_details.style.display = "flex";
+            appointment_sec.style.display = "none";
+            ReserveLocker_sec.style.display = "none";
             repawnTill.innerHTML = "Invalid Payment Amount";
         });
 
         no.addEventListener("click", function(event) {
-            //disable pay btn
+            pay_btn.style.display = 'none'; //disable pay btn
             //document.getElementById("btn").style.display = 'none'; 
+            notRepawnPay()
+            appointment_sec.style.display = "flex";
             retrieveRadio.style.display = "flex";
             Repawn_details.style.display = "none";
+            if (condition) {
+                
+            }
+            ReserveLocker_sec.style.display = "none";
+
+
         });
+        //method of retrieval
+        const app = document.getElementById("visit-button");
+        const lockerReserve = document.getElementById("locker-button");
+        app.addEventListener("click", function(event) {
+            pay_btn.style.display = 'flex'; // pay btn 
+            RenewPay();
+            ReserveLocker_sec.style.display = "none";
+            appointment_sec.style.display = "flex";
+        });
+
+        lockerReserve.addEventListener("click", function(event) {
+            pay_btn.style.display = 'none'; //disable pay btn 
+            lockerpayments();
+            appointment_sec.style.display = "none";
+            ReserveLocker_sec.style.display = "flex";
+
+        });
+        //reservev a locker
+        function lockerpayments() {
+
+
+        }
+        //set payment laybels when ourdue
+        function notRepawnPay() {
+            interestpayment = parseFloat(
+                <?php
+                if ($data['loan']->Repay_Method == 'fixed') {
+                    echo $data['loan']->Amount * $data['loan']->Interest / 100 - ($data['paid'] - $data['principle']);
+                } else {
+                    echo ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
+                }
+                ?>);
+            principlepayment = parseFloat(<?php echo $data['loan']->Amount - $data['principle']; ?>);
+
+            //set payment labels 
+            interest_label.innerHTML = interestpayment;
+            principle_label.innerHTML = principlepayment;
+
+
+            //set total paymnt
+            let total_payment = (interestpayment + principlepayment + deliverypayment + lockerpayment).toFixed(2);
+            total_label.innerHTML = 'Rs ' + total_payment;
+
+        }
+
+        function RenewPay() {
+            interestpayment =
+                <?php if ($data['status'] == 'Overdue') {
+                    if ($data['loan']->Repay_Method == 'fixed') {
+                        echo $data['loan']->Amount * ($data['loan']->Interest + 100) / 100 - $data['paid'];
+                    } else {
+                        echo ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
+                    }
+                }
+                ?>;
+
+            //set payment labels
+            principlepayment = 0
+            interest_label.innerHTML = interestpayment;
+            principle_label.innerHTML = principlepayment;
+
+
+            //set total paymnt
+            let total_payment = (interestpayment + principlepayment + deliverypayment + lockerpayment).toFixed(2);
+            total_label.innerHTML = 'Rs ' + total_payment;
+
+        }
+
+        function installmentPay() {
+            // Get the value of the number input field
+            var numbeinstallments = document.getElementById("noInstallments").value;
+            installmentPayAmount = <?= $data['loan']->monthly_installement ?> * numbeinstallments;
+            document.getElementById("amountInstallment").innerHTML = 'Rs ' + parseFloat(installmentPayAmount.toFixed(2));
+
+            if (numbeinstallments == document.getElementById("noInstallments").max) {
+                retrieveRadio.style.display = "flex";
+            } else {
+                retrieveRadio.style.display = "none";
+            }
+
+        }
+
+        function appointmentDateSelection() {
+            document.getElementById("appointment-err").textContent = "";
+            // document.getElementById("extend-err").textContent = "";
+            var selectedDate = document.getElementById("appointment_date").value;
+            selectedDate = new Date(selectedDate);
+            const currentDate = new Date();
+
+            // Compare the two dates
+            if (selectedDate <= currentDate) {
+                var parentElement = document.getElementById("time-slots");
+                while (parentElement.firstChild) {
+                    parentElement.removeChild(parentElement.firstChild);
+                }
+                document.getElementById("appointment-err").textContent = "Invalid Date selected";
+                pay_btn.style.display = 'none';
+                // set payment labels to 0
+
+            } else {
+
+                document.getElementById("appointment-err").textContent = "";
+                pay_btn.style.display = 'flex';
+                $.ajax({
+                    type: "POST",
+                    url: "<?= URLROOT ?>/CustomerPawn/getTimeSlots",
+                    data: {
+                        date: selectedDate
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        var parentElement = document.getElementById("time-slots");
+                        while (parentElement.firstChild) {
+                            parentElement.removeChild(parentElement.firstChild);
+                        }
+                        response.forEach(function(item) {
+
+                            var newElement = '<div class="selector-item">' +
+                                '<input type="radio" value="' + item.slotID + ' "id="' + item.slotID + '" name="selector" class="selector-item_radio" checked>' +
+                                '<label  for="' + item.slotID + '" class="selector-item_label">' + item.time + '</label>' +
+                                '</div>';
+                            $("#time-slots").append(newElement);
+                        });
+
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            }
+
+
+        }
     </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>

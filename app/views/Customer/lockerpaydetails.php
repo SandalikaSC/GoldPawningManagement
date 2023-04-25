@@ -225,13 +225,13 @@
             var payment_status = false;
             let fine = <?php
                         if (empty($data['finePaidTill'])) {
-                            echo number_format($data['duedays'] * $data['fineRate']->Interest_Rate, 2);
+                            echo $data['duedays'] * $data['fineRate']->Interest_Rate;
                         } else {
                             $date1 = new DateTime('today');
                             $date2 = DateTime::createFromFormat('Y-m-d', $data['finePaidTill']);
                             $interval = $date2->diff($date1);
                             $fineAmount = $interval->days * $data['fineRate']->Interest_Rate;
-                            echo number_format($fineAmount, 2);
+                            echo $fineAmount;
                         }
                         ?>;
             let paidfine = <?php
@@ -242,7 +242,7 @@
                                 $date2 = DateTime::createFromFormat('Y-m-d', $data['finePaidTill']);
                                 $interval = $date2->diff($date1);
                                 $fineAmount = $interval->days * $data['fineRate']->Interest_Rate;
-                                echo number_format($fineAmount, 2);
+                                echo  $fineAmount;
                             }
                             ?>;
             var total = document.getElementById("total_pay").textContent.trim();

@@ -75,6 +75,11 @@ class CustomerPawn extends Controller
         $payment=$this->paymentmodel->getPawnPayments($pawn_id);
         $pawnInterest=$this->interestModel->getPawnInterest()->Interest_Rate;
 
+
+        $tomorrow = new DateTime('tomorrow');
+        $tomorrowFormatted = $tomorrow->format('Y-m-d');
+        $timeSlots = $this->appointment->getSlotsNotIn($tomorrowFormatted);
+
         $status=$pawning->Status;
         if (strtotime($pawning->End_Date) < time()) {
             $status='Overdue';
@@ -88,9 +93,20 @@ class CustomerPawn extends Controller
             'status'=>$status,
             'pawnInterest'=>$pawnInterest,
             'paid'=>$paid->Paid,
-            'principle'=>$principle->PaidPrinciple
+            'principle'=>$principle->PaidPrinciple,
+            'timeslot'=>$timeSlots
         ];
 
         $this->view('Customer/Pawn-pay', $data);
+    }
+    public function getTimeSlots()
+    {
+
+        if (isset($_POST["date"])) {
+            $date =  $_POST["date"];
+            $data = $this->appointment->getSlotsNotIn($date);
+
+            echo json_encode($data);
+        }
     }
 }
