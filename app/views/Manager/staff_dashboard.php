@@ -99,7 +99,6 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>photo</th>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Role</th>
@@ -114,9 +113,6 @@
                                     echo "
                                             <tr>
                                                 <td>" . $i . ".</td>
-                                                <td><img src= 'if (!empty(".$row->image.")) {".$row->image."}else {
-                                                    ".URLROOT." /img/image 1.png}';
-                                                  }></td>
                                                 <td>" . $row->UserId . "</td>
                                                 <td>" . $row->Name . "</td>
                                                 <td>" . $row->Role . "</td>

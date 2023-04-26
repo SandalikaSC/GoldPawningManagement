@@ -37,12 +37,12 @@ class pawnArticleModel extends Database
         return array($result, $result1, $result2);
     }
 
-    public function pawnToAuction($pawnid)
+    public function pawnToAuction($pawnid,$auction_date)
     {
         $sql = 'update pawn set Status=?,auctioned_date=? where Pawn_Id=?';
         $this->query($sql);
         $this->bind(1, "Auction");
-        $this->bind(2, time());
+        $this->bind(2, $auction_date);
         $this->bind(3, $pawnid);
         $result = $this->execute();
     }

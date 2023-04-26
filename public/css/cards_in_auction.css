@@ -203,6 +203,7 @@
 /* for search bar */
 .search{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 8px 50px;
     overflow-y: hidden;
@@ -211,17 +212,29 @@
     z-index: 8;
 } 
 
+.filter-open button{
+           padding: 10px 20px;
+            background-color: #222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
 
 input[type=text] {
     width: 200px;
     box-sizing: border-box;
     border: 2px solid black;
     border-radius: 20px;
-    font-size: 25px;
+    font-size: 20px;
     background-color: black;
     color:white;
     background-repeat: no-repeat;
-    padding: 10px 20px 12px 50px;
+    padding: 8px 20px 8px 20px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
   }
@@ -234,8 +247,8 @@ input[type=text] {
 
 
 
-
-@media screen and (max-width:670px) {
+/* 730 */
+@media screen and (max-width:1188px) {
     .vogue {
         animation: none;
         width: 100px;
@@ -269,12 +282,7 @@ input[type=text] {
         border-radius: 5px;
     }
 
-    .auction-page-row{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-    }
+    /*  */
 
 }
 
@@ -285,9 +293,9 @@ input[type=text] {
 
   /* Float four auction-page-columns side by side */
   .auction-page-column {
-    width: 200px;
-    padding: 0 5px;
-    margin:20px;
+    width: 160px;
+    /* padding: 0 2px; */
+    margin:5px 15px 5px 15px;
     position: relative;
     transition: top ease 0.5s;
 
@@ -300,21 +308,22 @@ input[type=text] {
         flex-wrap: wrap;
         align-items: flex-start;
         flex: 4;
+        margin-left: 20px;
         /* justify-content: center; */
     }
 
   
   
   .auction-page-column .card img {
-    width: 120px;
-    height: 70px;
+    width: 130px;
+    height: 80px;
     object-fit: cover;
     border-radius: 10px;
     
   }
   
   .card p{
-    padding: 5px 0;
+    padding: 2px 0;
     font-weight: 600;
   }
 
@@ -342,8 +351,8 @@ input[type=text] {
 
   .card-view-btn{  
     position: absolute;
-    top: 250px;
-    left: 43px;
+    top: 240px;
+    left: 21px;
     
   }
   .card-view-btn a {
@@ -378,11 +387,13 @@ input[type=text] {
 /* filter css */
 
          .outer-filter{
-            margin-top: 18px;
             overflow-y: hidden;
+            right: 0;
             box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
             flex: 1;
-
+            min-width: 230px;
+            max-width: 230px;
+            /* margin-top: 50px; */
          }
 
 
@@ -393,7 +404,7 @@ input[type=text] {
             /* border: 1px solid #ccc; */
             border-radius: 5px;
             padding: 10px;
-            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2); */
           }
           
           .li{
@@ -408,14 +419,21 @@ input[type=text] {
           }
 
           #filter-section .ul .li {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
           }
           #filter-section .ul .li input,#filter-section .ul .li select {
             padding:10px;
+            font-size: large;
             border-radius: 5px;
           }
-
+          
+          .button-set{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+          }
           #filter-section button {
+            /* width:100%; */
             padding: 10px 20px;
             background-color: #222;
             color: #fff;
@@ -432,7 +450,8 @@ input[type=text] {
           }
           
           .filter-cancel-button{
-                padding: 7px 8px;
+                /* width:100%; */
+                padding: 7px 0px;
                 background-color: #222;
                 text-decoration: none;
                 color: #fff;
@@ -444,12 +463,39 @@ input[type=text] {
                 box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
           }
 
-          .filter-cancel-button:hover {
-            background-color: #444;
-            }
+.filter-cancel-button:hover {
+   background-color: #444;
+}
           
+@media screen and (max-width:820px){
+  .auction-page-column {
+    
+    margin:10px 10px 10px 0;  
 
+  }
+  
+    .auction-page-row{
+        margin-left: 20px;
+        
+    }
+}
 
+ @media screen and (max-width:440px){
+  .outer-filter{
+    position: absolute;
+    z-index: 10;
+    right:0;
+ }
+
+ .search{
+  display: flex;
+  flex-direction: column;
+} 
+
+.filter-open button{
+  margin-top: 10px;
+}
+ }
 
   .hide{
     display: none;

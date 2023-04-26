@@ -6,7 +6,7 @@ class staffModel extends Database
 {
     public function getStaffMember()
     {
-        $sql = 'select UserId,image,concat(First_Name," ",Last_Name) as Name, type as Role, Created_date as Date from user where UserId not like "MG%"  AND UserId not like "CU%" AND UserId not like "AD%" AND UserId not like "OW%"';
+        $sql = 'select UserId,concat(First_Name," ",Last_Name) as Name, type as Role, Created_date as Date from user where UserId not like "MG%"  AND UserId not like "CU%" AND UserId not like "AD%" AND UserId not like "OW%"';
         $this->query($sql);
         $result = $this->resultSet();
         if ($this->rowCount() > 0) {

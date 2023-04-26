@@ -176,6 +176,10 @@
                                     <p><?php echo $data[0][0]->Price ?></p>
                                 </div>
                                 <div class="gold-rate-card">
+                                    <label><?php echo $data[0][1]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][1]->Price ?></p>
+                                </div>
+                                <div class="gold-rate-card">
                                     <label><?php echo $data[0][2]->Karatage ?>K</label>
                                     <p><?php echo $data[0][2]->Price ?></p>
                                 </div>
@@ -188,6 +192,10 @@
                                 </div>
                             </div>
                             <div class="col2">
+                                <div class="gold-rate-card">
+                                    <label><?php echo $data[0][3]->Karatage ?>K</label>
+                                    <p><?php echo $data[0][3]->Price ?></p>
+                                </div>
                                 <div class="gold-rate-card">
                                     <label><?php echo $data[0][4]->Karatage ?>K</label>
                                     <p><?php echo $data[0][4]->Price ?></p>
@@ -212,25 +220,29 @@
                                 <canvas id="myChart"></canvas>
                             </div>
                         </div>
-                        <div class="complaint-tab">
-                            <div class="topic">
-                                <label>Complaints</label>
-                                <div class="search">
+                        <div class="add-note">
+                            <?php include_once 'mgAddNote.php'; ?>
+                        </div>
 
-                                    <div class="search-bar">
-                                        <input type="text" id="myInput" name="search_input" onkeyup="myFunction()" placeholder="DATE.." />
+                    </div>
 
-                                    </div>
+                    <div class="complaint-tab">
+                        <div class="topic">
+                            <label>Complaints</label>
+                            <div class="search">
+
+                                <div class="search-bar">
+                                    <input type="text" id="myInput" name="search_input" onkeyup="myFunction()" placeholder="DATE.." />
 
                                 </div>
-                            </div>
 
-                            <div class="graph complaint-sec">
-
-                                <?php include_once 'viewComplaints.php'; ?>
                             </div>
                         </div>
 
+                        <div class="complaint-sec">
+
+                            <?php include_once 'viewComplaints.php'; ?>
+                        </div>
                     </div>
 
                 </div>
@@ -243,40 +255,6 @@
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 <script>
-    // Initialize the arrays
-    var monthsIncome = [];
-    var amountsIncome = [];
-    var monthsExpen = [];
-    var amountsExpen = [];
-
-    var incomes = parseFloat('<?php echo $data[3][0]; ?>');
-    var expenses = parseFloat('<?php echo $data[3][1]; ?>');
-    console.log(expenses);
-    console.log(incomes);
-
-    // Store the income and expense month and total amount in separate arrays
-    if (incomes.length > 0) {
-        for (var i = 0; i < incomes.length; i++) {
-            var month = incomes[i].Month;
-            var totalIncome = incomes[i].totalIncome;
-            monthsIncome.push(month);
-            amountsIncome.push(totalIncome);
-        }
-    }
-
-    if (expenses.length > 0) {
-        for (var i = 0; i < expenses.length; i++) {
-            var month = expenses[i].Month;
-            var totalExpense = expenses[i].totalExpen;
-            monthsExpen.push(month);
-            amountsExpen.push(totalExpense);
-        }
-    }
-
-    console.log(monthsIncome);
-    console.log(amountsIncome);
-
-
     var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
 
     new Chart("myChart", {

@@ -3,61 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo SITENAME?></title>
+    <title><?php echo SITENAME ?></title>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/delete-employee.css">
 </head>
 
 <body>
     <div class="page">
-        
-        <div class="left" id="panel">
-            <div class="profile">
-                <div class="profile-pic">
-                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "/img/image 1.png";} ?>" id="profileImg" alt=""></a>
-                    <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
-
-                </div>
-                <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
-                </div>
-            </div>
-            <div class="btn-set">
-                <a href="<?php echo URLROOT ?>/mgDashboard">
-                    <img src="<?php echo URLROOT ?>/img/dashboard.png" alt="">
-                    <p>Dashboard</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgLocker">
-                    <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
-                    <p>Locker</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgPawnArticles">
-                    <img src="<?php echo URLROOT ?>/img/pawned.png" alt="">
-                    <p>Pawned Articles</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgAuction">
-                    <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
-                    <p>Auction</p>
-                </a>
-                <a class="staf" href="<?php echo URLROOT ?>/staff">
-                    <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
-                    <p>Staff</p>
-                </a>
-            </div>
-            <div class="lgout">
-                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
-            </div>
-        </div>
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
-                    <div class="bars" id="bars">
-                        <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
+                    <div class="back">
+                        <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+
                     </div>
                     <h1>
-                        <?php echo $data[0]->UserId ?> 
+                        Viewing Employee: <i><?php echo $data[0]->UserId ?></i>
                     </h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
@@ -102,8 +65,16 @@
                             </div>
                             <div class="form-group tooltip">
                                 <label for="lane2"><b>Address Lane 2:</b></label>
-                                <input disabled value="<?php echo $data[0]->Line2 ?>" type="text" name="lane2" id="lane2">
-                                <span class="tooltiptext"><?php echo $data[0]->Line2 ?></span>
+                                <input disabled value="<?php if (!empty($data[0]->Line2)) {
+                                                            echo $data[0]->Line2;
+                                                        } else {
+                                                            echo "Not Available";
+                                                        } ?>" type="text" name="lane2" id="lane2">
+                                <span class="tooltiptext"><?php if (!empty($data[0]->Line2)) {
+                                                            echo $data[0]->Line2;
+                                                        } else {
+                                                            echo "Not Available";
+                                                        } ?></span>
                             </div>
                             <div class="form-group tooltip">
                                 <label for="lane3"><b>Address Lane 3:</b></label>
@@ -170,9 +141,12 @@
                                     <span class="tooltiptext"><?php echo $data[0]->Created_date ?></span>
                                 </div>
                             </div>
+                            <div>
+                                <h3>Are You Sure You Want To Delete <i><?php echo $data[0]->UserId ?></i> ?</h3>
+                            </div>
                             <div class="two-btns">
-                                <a href="<?php echo URLROOT ?>/staff/index" class="cancelbtn">Cancel</a>
-                                <a href="<?php echo URLROOT ?>/staff/deleteEmployee/<?php echo $data[0]->UserId ?>" class="deletebtn">Delete</a>
+                                <a href="<?php echo URLROOT ?>/staff/index" class="cancelbtn">No</a>
+                                <a href="<?php echo URLROOT ?>/staff/deleteEmployee/<?php echo $data[0]->UserId ?>" class="deletebtn">Yes</a>
                             </div>
                         </section>
                     </section>

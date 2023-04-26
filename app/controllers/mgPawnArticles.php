@@ -154,8 +154,10 @@ class mgPawnArticles extends controller
                $useremail = null;
 
                if (sendMail($email->email, "pawn_to_auction", $sms, "V O G U E")) {
+                  $today = date('Y-m-d'); // Get today's date
+                  $auction_date = date('Y-m-d', strtotime($today . ' + 7 days')); // Add 7 days to today's date
                   $auction = $this->model("pawnArticleModel");
-                  $row = $auction->pawnToAuction($row->Pawn_Id);
+                  $row = $auction->pawnToAuction($row->Pawn_Id, $auction_date);
                   $auction = null;
                } else {
                   $flag = 1;
@@ -184,7 +186,7 @@ class mgPawnArticles extends controller
 
    public function addOneByOneToAuction($pawnid, $End_Date, $userId)
    {
-     var_dump($pawnid);
+      var_dump($pawnid);
       if (!($this->dateCompare($End_Date, 14))) {
          $pawn1 = $this->model("pawnArticleModel")->checkStatus($pawnid);
          if ($pawn1) {
@@ -196,7 +198,9 @@ class mgPawnArticles extends controller
             $email = $useremail->findUserEmail($userId);
             $sms = "Your Article was added to Auction";
             if (sendMail($email->email, "pawn_to_auction", $sms, "V O G U E")) {
-               $pawn2 = $this->model("pawnArticleModel")->pawnToAuction($pawnid);
+               $today = date('Y-m-d'); // Get today's date
+               $auction_date = date('Y-m-d', strtotime($today . ' + 7 days'));
+               $pawn2 = $this->model("pawnArticleModel")->pawnToAuction($pawnid,$auction_date);
                echo "DONE";
                flashMessage("Added to Auction Successfully");
             } else {
@@ -238,10 +242,9 @@ class mgPawnArticles extends controller
             echo "DONE";
             flashMessage("Warning Sent Successfully");
          }
-      }else{
+      } else {
          echo "DONE";
          flashMessage("Warning Sent Successfully");
-
       }
    }
 
@@ -259,8 +262,8 @@ class mgPawnArticles extends controller
       $maxWeight = isset($_POST['max-weight']) ? floatval($_POST['max-weight']) : '';
 
       $pawn = $this->model("pawnArticleModel");
-      $res = $pawn->filter($minPrice, $maxPrice, $createdDate, $endDate,$karatage,$type,$minWeight,$maxWeight);
-      
+      $res = $pawn->filter($minPrice, $maxPrice, $createdDate, $endDate, $karatage, $type, $minWeight, $maxWeight);
+
       if ($res) {
          isLoggedIn();
          $pawn = $this->model("pawnArticleModel");
@@ -285,7 +288,6 @@ class mgPawnArticles extends controller
          $this->view("/Manager/pawnArticle_Dashboard", array($res, $count, $noOfEmails));
       } else {
          $this->view("/Manager/pawnArticle_Dashboard");
-
       }
    }
 }

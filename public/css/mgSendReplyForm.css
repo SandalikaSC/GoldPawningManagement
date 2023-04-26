@@ -7,12 +7,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width:100%;
     height: 100%;
     backdrop-filter: blur(10px);
     z-index: 10;
-
-
 }
 
 .entire-complaint-reply {
@@ -22,6 +20,7 @@
 }
 
 .content-reply-complaint {
+    width:400px; 
     background-color: white;
     display: flex;
     /* border: 2px solid goldenrod; */
@@ -30,6 +29,7 @@
     box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
 
 }
+
 
 
 .complaint-reply-group {

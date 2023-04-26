@@ -115,7 +115,8 @@ body{
 }
 
 .btn-set a:hover{
-    opacity: 0.5;
+    /* opacity: 0.5; */
+    transform: scale(1.1);
 }
 
 .left .lgout{
@@ -179,6 +180,7 @@ body{
 
 .right-side{
     display: flex;
+    align-items: center;
 }
 
 
@@ -202,8 +204,9 @@ body{
 .search{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
-    margin: 30px;
+    margin: 10px 20px 10px 20px;
 }
 
 .locker-summary{
@@ -219,9 +222,13 @@ body{
     align-items: center;
     border: 2px solid #BB8A04;
     border-radius: 5px;
-    padding:10px;
+    padding:10px 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 
+}
+
+.locker-sum-1:hover{
+    transform: scale(1.1);
 }
 
 .locker-sum-1 .topic-label{
@@ -234,19 +241,19 @@ input[type=text] {
     width: 10rem;
     /* box-sizing: border-box; */
     border-radius: 20px;
-    font-size: 25px;
+    font-size: 20px;
     color:white;
     background-color: black;
     /* background-image: url(http://localhost/vogueMy/public/img/search-icon.png); */
     background-repeat: no-repeat;
-    padding: 12px 20px 15px 25px;
+    padding: 10px 20px 10px 20px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
 
   }
 
-  input[type=text]:focus {
+  input[type=text]:hover {
     width: 100%;
   }
 
@@ -259,7 +266,7 @@ input[type=text] {
 
 
 
-@media screen and (max-width:1076px) {
+@media screen and (max-width:1188px) {
     .vogue {
         animation: none;
         width: 100px;
@@ -341,11 +348,11 @@ input[type=text] {
 
 /* locker dashboard cards */
 
-        .card-set {
+    .card-set {
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
-        margin: 20px;
+        margin: 5px;
       }
       .lc-card {
         font-family: 'Montserrat','sans-serif';
@@ -353,10 +360,14 @@ input[type=text] {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 30px;
-        padding: 20px;
+        margin: 10px;
+        padding: 10px;
         border-radius: 10px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .lc-card:hover{
+        transform: scale(1.1);
       }
 
       .lc-no {
@@ -431,5 +442,34 @@ input[type=text] {
 
       .hover-des-field .key {
         color: green;
+      }
+
+
+
+      @media screen and (max-width:607px){
+          .search{
+            flex-direction: column;
+            justify-content: space-around;
+          }
+
+          .locker-summary{
+            margin-top: 10px;
+          }
+      }
+
+
+      @media screen and (max-width:450px){
+         
+          .locker-summary{
+            margin-top: 10px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .locker-sum-1{
+            margin-top: 10px;
+
+          }
       }
 

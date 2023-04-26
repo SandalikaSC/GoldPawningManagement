@@ -24,7 +24,7 @@
 
     </section>
 
-    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:50;">
+    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;z-index:50;">
         <section class="whole">
             <div class="loading-box">
                 <p>please Wait...</p>
@@ -41,57 +41,16 @@
         }
         ?>
 
-        <div class="left" id="panel">
-            <div class="profile">
-                <div class="profile-pic">
-                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
-                                                                                echo $_SESSION['image'];
-                                                                            } else {
-                                                                                echo URLROOT . "/public/img/image 1.png";
-                                                                            } ?>" id="profileImg" alt=""></a>
-                    <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
-
-                </div>
-                <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
-                </div>
-            </div>
-            <div class="btn-set">
-                <a href="<?php echo URLROOT ?>/mgDashboard">
-                    <img src="<?php echo URLROOT ?>/img/dashboard.png" alt="">
-                    <p>Dashboard</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgLocker">
-                    <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
-                    <p>Locker</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgPawnArticles">
-                    <img src="<?php echo URLROOT ?>/img/pawned.png" alt="">
-                    <p>Pawned Articles</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgAuction">
-                    <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
-                    <p>Auction</p>
-                </a>
-                <a class="staf" href="<?php echo URLROOT ?>/staff">
-                    <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
-                    <p>Staff</p>
-                </a>
-            </div>
-            <div class="lgout">
-                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
-            </div>
-        </div>
+        
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
                     <div class="bars" id="bars">
-                        <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
+                        <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                     </div>
                     <h1>
-                        Add New
+                        Add New Employee
                     </h1>
-                    <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
@@ -173,9 +132,12 @@
                                     <input type="radio" id="role3" name="role" value="Vault Keeper" required /> <label>Vault Keeper </label>
                                 </div>
                             </div>
+                            <div>
+                                <h3><b>You Need To Add ?</b></h3>
+                            </div>
                             <div class="two-btns">
-                                <a href="<?php echo URLROOT ?>/staff/index" class="cancelbtn">Cancel</a>
-                                <button type="submit" id="registerbtn" class="registerbtn button-visibility">Add New</button>
+                                <a href="<?php echo URLROOT ?>/staff/index" class="cancelbtn">No</a>
+                                <button type="submit" id="registerbtn" class="registerbtn button-visibility">Yes</button>
                             </div>
                         </section>
                     </section>

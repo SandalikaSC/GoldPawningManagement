@@ -1,28 +1,27 @@
 
         .complaint-table {
             display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
             margin: auto;
+            
         }
 
         .complaint-set {
             display: flex;
             flex-direction: column;
-            min-width: 500px;
-            /* align-items: center;
-            justify-content: center; */
+            justify-content: space-between;
             border: 1px solid black;
             border-radius: 10px;
             padding: 10px;
             margin: 6px 0;
             box-shadow: 5px 5px #888888;
+            float: left;
         }
 
         .cus-details {
             display: flex;
-            /* align-items: center; */
+            align-items: center;
             flex-wrap: wrap;
             justify-content: space-between;
             /* border:1px solid black; */
@@ -31,11 +30,10 @@
         }
 
         .cus-name {
-            display: inline-flex;
+             display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            /* align-items: center; */
-            /* justify-content: space-between; */
-            /* margin-right: 100px; */
 
         }
 

@@ -142,12 +142,13 @@ body{
     flex: auto;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: hidden;
     position:relative;
+    overflow-x: hidden;
 }
 
 .right-heading{
-    padding: 15px 15px 0 15px;
+    padding: 5px 15px 0 15px;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -186,6 +187,7 @@ body{
 
 .right-side{
     display: flex;
+    align-items: center;
 }
 
 
@@ -204,12 +206,17 @@ body{
 }
 
 
+.search-filter{
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* for search bar */
 .search{
     display: flex;
     justify-content: space-between;
-    margin:20px 0 20px 0px;
+    margin:5px 0 5px 0px;
     padding: 8px 30px;
    
 } 
@@ -220,14 +227,14 @@ body{
     align-items: center;
 }
 
-.auction-btn a{
+.auction-btn button{
     background-color: #BB8A04;
     color: white;
     margin-right: 14px;
     font-weight: bold;
     font-size: large;
     text-decoration: none;
-    padding: 15px 30px;
+    padding: 10px 25px;
     position: relative;
     display: inline-block;
     border-radius: 20px;
@@ -238,7 +245,7 @@ body{
    opacity: 0.2;
   } */
   
-  .auction-btn a .badge {
+  .auction-btn button .badge {
     position: absolute;
     top: -10px;
     right: -10px;
@@ -251,14 +258,14 @@ body{
 
 
 
-  .warning-btn a{
+  .warning-btn button{
     background-color: #BB8A04;
     color: white;
     margin-right: 10px;
     font-weight: bold;
     font-size: large;
     text-decoration: none;
-    padding: 15px 30px;
+    padding: 10px 25px;
     position: relative;
     display: inline-block;
     border-radius: 20px;
@@ -267,7 +274,7 @@ body{
   
   
   
-  .warning-btn a .badge {
+  .warning-btn button .badge {
     position: absolute;
     top: -10px;
     right: -10px;
@@ -311,7 +318,9 @@ body{
 
 
 
-
+.filter-set{
+    display: flex;
+}
 
 
 
@@ -319,14 +328,15 @@ body{
 
 
 .table{
-     margin:0 10px 0 10px;
+     margin:5px 10px 0 10px;
 
 }
 
 /* locker table */
 .table-section{
     height:520px;
-    overflow: auto;
+    overflow-y:scroll;
+    overflow-x: hidden;
     padding: 0 5px 10px 5px;
     
 }
@@ -355,8 +365,12 @@ thead th{
     padding:20px;
 }
 
-th,td{
-    padding: 10px 20px;
+thead th{
+    padding:5px;
+}
+
+td{
+    padding: 10px 10px;
     word-break: break-all;
     text-align: center;
 }
@@ -371,6 +385,7 @@ tr:hover td{
     background-color: #f1f1f1;
     transform: scale(1.02);
     transition:all 0.5s;
+    z-index: 20;
     
 }
 
@@ -416,7 +431,7 @@ td a:nth-child(1){
 
 
 
-@media screen and (max-width:1076px) {
+@media screen and (max-width:1188px) {
     .vogue {
         animation: none;
         width: 100px;
@@ -448,37 +463,39 @@ td a:nth-child(1){
         height: 20px;
         border-radius: 5px;
     }
+
+    .right-heading{
+        padding: 15px 15px 0 15px;
+        
+    }
     
 }
 
-@media screen and (max-width:670px) {
-    .vogue {
-        animation: none;
-        width: 100px;
+@media screen and (max-width:1038px){
+    .table-section{
+        overflow-y:scroll;
+        overflow-x: scroll;
+        
     }
-    .right-side h1{
-        font-size: large;
-        margin: 0 10px ;
+}
+
+@media screen and (max-width:638px) {
+    .search{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-
-    .left{
-        height: 94vh;
-        z-index: 60;
-        position: absolute;
-        margin-top: 55px;
-        border-radius: 0;
-    }
- 
-    .right{
-        padding-left: 15px;
+    .search-bar{
+        margin-bottom: 10px;
     }
 
-    .bars img{
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
+    .filter-set{
+        margin-bottom: 10px;
     }
+
+    
     
 }
 

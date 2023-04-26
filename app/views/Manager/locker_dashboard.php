@@ -25,7 +25,7 @@
 
                 </div>
                 <div class="name">
-                    <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
+                    <p><b><i>Hi...</i></b><?php echo $_SESSION['user_name'] ?></p>
 
                 </div>
             </div>

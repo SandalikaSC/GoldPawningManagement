@@ -78,6 +78,10 @@
             <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Search.." />
 
           </div>
+
+          <div class="filter-open">
+            <button type="button" id="filter-button">Filter</button>
+          </div>
         </div>
 
 
@@ -110,7 +114,7 @@
             echo "<p style='display:flex;justify-content:center;align-items:center;margin-top:40px;'>No Auction Items Found</P>";
           } ?>
 
-          <div class="outer-filter">
+          <div id="outer-filter" class="outer-filter">
             <form action="<?php echo URLROOT ?>/mgAuction/filter" method="POST">
               <div class="filter" id="filter-section">
                 <div class="ul">
@@ -152,8 +156,10 @@
                   </div>
                 </div>
 
-                <button type="submit" id="filter-button">Filter</button>
-                <a class="filter-cancel-button" href="<?php echo URLROOT ?>/mgAuction/index">Cancel</a>
+                <div class="button-set">
+                  <button type="submit" id="filter-button">Filter</button>
+                  <button onclick="clearInputs()" class="filter-cancel-button">Clear</button>
+                </div>
               </div>
             </form>
 
@@ -207,6 +213,34 @@
       document.getElementById('tfoot').innerHTML = "";
     }
   }
+</script>
+
+<script>
+  let maxDate = document.getElementById('end-date');
+  let minDate = document.getElementById('created-date');
+  let karat = document.getElementById('karatage');
+  let type = document.getElementById('type');
+  let minWeight = document.getElementById('min-weight');
+  let maxWeight = document.getElementById('max-weight');
+
+  function clearInputs() {
+    maxDate.value = "";
+    minDate.value = "";
+    karat.value = "";
+    type.value = "";
+    minWeight.value = "";
+    maxWeight.value = "";
+
+  }
+</script>
+
+<script>
+
+let hideBtn=document.getElementById('filter-button');
+
+hideBtn.addEventListener('click',()=>{
+  document.getElementById("outer-filter").classList.toggle('hidden');
+})
 </script>
 
 </html>

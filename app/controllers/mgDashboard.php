@@ -30,10 +30,14 @@ class mgDashboard extends controller
 
     $count = $this->model('mgDashboardModel');
     $countArr = $count->countAll();
+
+    $today = date("Y-m-d");
+    $note = $this->model('mgDashboardModel')->viewNote($_SESSION['user_id'],$today);
+   
     // var_dump($resultArr);
   
 
-    $this->view("/Manager/managerDash", array($result1, $result2, $result3,$resultArr,$countArr));
+    $this->view("/Manager/managerDash", array($result1, $result2, $result3,$resultArr,$countArr,$note));
   }
 
 

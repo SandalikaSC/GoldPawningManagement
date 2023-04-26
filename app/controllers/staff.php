@@ -95,7 +95,7 @@ class Staff extends Controller
         echo json_encode(array("msg" => "failed"));
         flashMessage("Phone number already exist");
       }
-      // redirect('/staff/addNew');
+      
     } else {
       $staffMem = $this->model("staffModel");
       $result = $staffMem->addStaffMember($id,$_POST['fName'], $_POST['lName'], $_POST['gender'], $_POST['nic'], $_POST['dob'], $_POST['lane1'], $_POST['lane2'], $_POST['lane3'], $_POST['mob-no'], $_POST['mob-no2'], $_POST['email'], $_POST['role'], $_POST['image'], $hash);
@@ -110,6 +110,7 @@ class Staff extends Controller
           // redirect('/staff/addNew');
         }else{
           echo json_encode(array("msg" => "success"));
+          flashMessage("Successfully Added");
           // redirect('/staff/index/success');        
         }    
 
