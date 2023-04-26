@@ -240,16 +240,23 @@
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label>Available lockers</label>
+                        <label>Reservation Payment</label>
                         <label class="jw-dt" id="locker-payment">Rs. 00.00</label>
                     </div>
                 </div>
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label class="err" id="extend-err"> </label>
-                        <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="" value="Extend">Extend</button>
+                <div class="locker_set">
+                    <div class="set">
+                        <h3>My Available Lockers</h3>
+
+                    </div>
+                    <div class="set">
+                        <h3>Other</h3>
                     </div>
                 </div>
+
+
+
+
             </div>
 
             <div class="info-div choise-div" id="appointment_sec">
@@ -492,7 +499,7 @@
             pay_btn.style.display = 'none'; //disable pay btn
             //document.getElementById("btn").style.display = 'none'; 
             notRepawnPay()
-           
+
             retrieveRadio.style.display = "flex";
             Repawn_details.style.display = "none";
             var radio = document.getElementById("locker-button");
@@ -500,8 +507,8 @@
                 ReserveLocker_sec.style.display = "flex";
             } else {
                 appointment_sec.style.display = "flex";
-            }  
-            
+            }
+
 
 
         });
