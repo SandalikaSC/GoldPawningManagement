@@ -79,6 +79,7 @@
                     'phone' => trim($_POST['email']),
                     'full_loan' => trim($_POST['full-loan']),
                     'payment_method' => trim($_POST['payment-method']),
+                    'pawn_officer' => $_SESSION['user_id'],
                     'customer_name_err' => '',
                     'nic_err' => '',
                     'email_err' => '',
@@ -100,7 +101,22 @@
                 if(empty($data['full_loan'])) {
                     $data['full_loan_err'] = "Please enter the full loan amount customer decided";
                 }   
-                
+
+                $customer = $this->pawningModel->getCustomerByEmail($data['email']);
+
+                if(!($customer)) {
+                    $data['email_err'] = "Customer has not registered with us";
+                }
+
+                if($customer->NIC) {
+                    $data['nic_err'] = "Entered NIC is not matched with the registered NIC";
+                }
+
+                if(($data['full_loan']) > ($data['validation_details']->estimated_value)) {
+                    $data['full_loan_err'] = "Full loan must not exceed the estimated value of the article";
+                }
+
+                 
                 // if(isset($_POST['Pawn'])) {
                     if(empty($data['customer_name_err']) && empty($data['nic_err']) && empty($data['email_err']) && empty($data['full_loan_err'])) {
 
@@ -118,6 +134,7 @@
                 'phone' => '',
                 'full_loan' => '',
                 'payment_method' => '',
+                'pawn_officer' => $_SESSION['user_id'],
                 'customer_name_err' => '',
                 'nic_err' => '',
                 'email_err' => '',
@@ -178,7 +195,7 @@
                 }
 
                 if(empty($data['type_err']) && empty($data['image_err']) && empty($data['nic_err']) && empty($data['email_err'])) {
-                    $success = $this->pawningModel->addArticle($data);
+                    $success = $this->pawningModel->addArticleToValidate($data);
 
                     if($success) {
                         // Redirect to successful message                        

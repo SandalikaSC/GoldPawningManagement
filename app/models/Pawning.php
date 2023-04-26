@@ -24,17 +24,6 @@
             return $row;
         }
 
-        public function getLastArticleId() {
-            $sql = 'SELECT id FROM validation_articles ORDER BY id DESC LIMIT 1';
-            $this->db->query($sql);
-            $result = $this->db->single();
-
-            if(empty($result)) {
-                return 'A000';
-            } else {
-                return $result->id;
-            }
-        }
 
         // public function findCustomerByNic($nic) {
         //     $this->db->query('SELECT UserId FROM user WHERE NIC = :nic ');
@@ -63,13 +52,9 @@
         } 
 
         // Add Article
-        public function addArticle($data) {
-            $article_id = $this->getLastArticleId();
-            ++$article_id;
+        public function addArticleToValidate($data) {
+            $this->db->query('INSERT INTO validation_articles (article_type, customer, image, pawn_officer_or_vault_keeper, gold_appraiser) VALUES(:type, :customer, :image, :pawn_officer, :gold_appraiser)');
 
-            $this->db->query('INSERT INTO validation_articles (id, article_type, customer, image, pawn_officer_or_vault_keeper, gold_appraiser) VALUES(:article_id, :type, :customer, :image, :pawn_officer, :gold_appraiser)');
-
-            $this->db->bind(':article_id', $article_id);
             $this->db->bind(':type', $data['type']);
             $this->db->bind(':image', $data['image']);
             $this->db->bind(':pawn_officer', $data['pawn_officer']);
@@ -92,6 +77,68 @@
             $row = $this->db->single();
 
             return $row;
+        }
+
+
+        // Get customer details by using email
+        public function getCustomerByEmail($email) {
+            $this->db->query('SELECT * FROM user WHERE email=:email and type="Customer";');
+            $this->db->bind(':email', $email);
+            
+            $row = $this->db->single();
+
+            return $row;
+        }
+
+
+        // Get last article id
+        public function getLastArticleId() {
+            $sql = 'SELECT Article_Id FROM article ORDER BY Article_Id DESC LIMIT 1';
+            $this->db->query($sql);
+            $result = $this->db->single();
+
+            if(empty($result)) {
+                return 'A000';
+            } else {
+                return $result;
+            }
+        }
+
+        // Get carat price by using the carat value
+        public function getCaratValue($carats) {
+            $this->db->query('SELECT * FROM gold_rate WHERE Karatage = :carats');
+
+            $this->db->bind(':carats', $carats);
+
+            $row = $this->db->single();
+
+            return $row;
+        }
+
+        // Register Article
+        public function registerArticle($data) {
+            $article_id = $this->getLastArticleId();
+            ++$article_id;
+
+            $gold_rates_details = $this->getCaratValue($data['validation_details']->karatage);
+
+            $this->db->query('INSERT INTO article (Article_Id, Estimated_Value, Karatage, Weight, Type, Karatage_Price, Rate_Id, image) VALUES(:article_id, :estimated_value, :karatage, :weight, :type, :karatage_price, :rate_id, :image)');
+
+            $this->db->bind(':article_id', $article_id);
+            $this->db->bind(':estimated_value', $data['validation_details']->estimated_value);
+            $this->db->bind(':karatage', $data['validation_details']->karatage);
+            $this->db->bind(':weight', $data['validation_details']->weight);
+            $this->db->bind(':type', $data['validation_details']->karatage);
+            $this->db->bind(':rate_id', $gold_rates_details->Rate_Id);
+            $this->db->bind(':karatage_price', $gold_rates_details->Price);
+            $this->db->bind(':image', $data['validation_details']->karatage);
+
+
+            if($this->db->execute()) {
+                $this->db->query('INSERT INTO pawn (Status, Pawn_Date, End_Date, auctioned_date, Article_Id, userId, Appraiser_Id, Officer_Id) VALUES(:status, :pawn_date, :)');
+            } else {
+                return false;
+            }
         }
 
 

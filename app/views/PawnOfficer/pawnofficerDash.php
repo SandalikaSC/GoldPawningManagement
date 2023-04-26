@@ -189,7 +189,7 @@
                                         <thead>
                                             <tr>
                                                 <td>Validation ID</td>
-                                                <td>Estimated Value (Rs. )</td>
+                                                <td>Estimated Value</td>
                                                 <td>Validation Status</td>
                                             </tr> 
                                         </thead>
@@ -197,7 +197,7 @@
                                             <?php foreach ($data['validated_articles'] as $validated_article) : ?>
                                                 <tr>
                                                     <td><?php echo $validated_article->id;?></td>
-                                                    <td><?php echo $validated_article->estimated_value;?></td>
+                                                    <td><?php echo 'Rs. ' . $validated_article->estimated_value;?></td>
                                                     <td><?php echo ($validated_article->validation_status) ? 'Valid' : 'Invalid';?></td>
                                                     <td><a href="<?php echo URLROOT; ?>/pawnings/confirm_pawn/<?php echo $validated_article->id; ?>" class="btn-validated btn-pawn">Pawn</a></td>
                                                     <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
