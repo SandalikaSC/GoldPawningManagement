@@ -29,5 +29,35 @@ class payment
                 return false;
             } 
     }
+    public function getReservationPayments($reserveId)
+    {
+        $this->db->query('SELECT * FROM payment where allocate_Id=:allocate_Id');
+        $this->db->bind(':allocate_Id', $reserveId);
+        $results = $this->db->resultset(); 
+        return $results;
+    }
+    public function getPawnPayments($pawnid)
+    {
+        $this->db->query('SELECT * FROM payment where Pawn_Id=:pawnid');
+        $this->db->bind(':pawnid', $pawnid);
+        $results = $this->db->resultset(); 
+        return $results;
+    }
+    public function paidAmount($id) {
+        $this->db->query(' SELECT sum(Amount)  as Paid FROM payment where Pawn_Id=:id ');
+        $this->db->bind(':id', $id);
+
+        $row =$this->db->single();
+
+        return $row;
+    }
+    public function paidPrincipleAmount($id) {
+        $this->db->query(' SELECT sum(Principle_Amount)  as PaidPrinciple FROM payment where Pawn_Id=:id ');
+        $this->db->bind(':id', $id);
+
+        $row =$this->db->single();
+
+        return $row;
+    }
 }
 ?>
