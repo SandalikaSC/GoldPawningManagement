@@ -1,9 +1,175 @@
 @import url('VKPayment.css');
-@import url('article_locker.css');
+@import url('article_locker.css'); 
+@import url('appointment.css'); 
 
 .jewellery-img {
     width: 60%;
     height: 70%;
     overflow: hidden;
     margin: auto;
+}
+.datechooser{ 
+        border-radius: 10px;
+        width: 35%;
+        outline: none;
+        border: 1px solid gray;
+        padding: 5px; 
+    
+}
+
+.selector-item {
+  margin: 3% 0;
+}
+ 
+.time-slots{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+.selector-item_label{ 
+    border-radius: 50px;
+    padding: 2% 15% 2% 15%; 
+    transform: translateY(-2px);
+  border: #6f6e6e 1px solid;
+}
+.content {
+  display: flex;
+  width: inherit;
+}
+.cancel {
+  
+  padding: inherit;  
+}
+.err{
+  color: red;
+  font-size: 2vh;
+}
+.choise-div {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 2%;
+}
+.disabledbutton {
+   display: none;
+}
+.flexbutton {
+  display: flex;
+}
+.datechooser:hover{
+    border: 2px solid #bb8a04;
+}
+.btn-extend {
+    border-radius: 30px;
+    width: 35%;
+    outline: none;
+    border: 1px solid #bb8a04;
+    padding: 5px;
+    color: white;
+    background: #bb8a04;
+    cursor: pointer;
+}
+.details{
+    place-items: center;
+}
+.option-radio { 
+    justify-content: center;
+}
+.info-div-pay-info { 
+    box-shadow: none;
+}
+.dark {
+  color: #292929;
+}
+
+.light {
+  background: #efefef;
+  color: #292929;
+}
+
+.red {
+  background: #ff8480;
+  color: #efefef;
+}
+
+.green {
+  background: #2ECC71;
+  color: #efefef;
+}
+ 
+.font-stack {
+  font-family: "Lato", sans-serif;
+}
+
+.small {
+  max-width: 40em;
+}
+
+* {
+  box-sizing: border-box;
+}
+ 
+.button-wrap {
+  position: relative;
+  text-align: center;
+  top: 50%;
+  margin-top: -2.5em;
+}
+
+@media (max-width: 40em) {
+  .button-wrap {
+    margin-top: -1.5em;
+  }
+}
+
+.button-label {
+  display: inline-block;
+  padding: 1em 2em;
+  margin: 0.5em;
+  cursor: pointer;
+  border-radius: 0.25em;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
+  transition: 0.3s;
+  user-select: none;
+}
+
+.button-label h1 {
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+}
+
+.button-label:hover {
+  background: darken(#efefef, 10%);
+  color: darken(#292929, 10%);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
+}
+
+.button-label:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
+}
+
+#yes-button:checked + .button-label {
+  background: #2ECC71;
+  color: #efefef;
+}
+
+#yes-button:checked + .button-label:hover {
+  background: darken(#2ECC71, 5%);
+  color: darken(#efefef, 5%);
+}
+
+#no-button:checked + .button-label {
+  background: #D91E18;
+  color: #efefef;
+}
+
+#no-button:checked + .button-label:hover {
+  background: darken(#D91E18, 5%);
+  color: darken(#efefef, 5%);
+}
+ 
+
+.hidden {
+  display: none;
 }

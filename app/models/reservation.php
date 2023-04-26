@@ -21,5 +21,22 @@ class reservation
 
         return $results;
     }
+    public function lockerExtend($date,$reservationId)
+    {
+        $this->db->query('UPDATE `reserves` SET Retrieve_Date = :newdate WHERE Allocate_Id = :Allocate_Id');
+
+            // Bind values 
+            $this->db->bind(':newdate', $date);
+            $this->db->bind(':Allocate_Id', $reservationId); 
+
+            // Execute
+            if ($this->db->execute()) {
+
+                return true;
+
+            } else {
+                return false;
+            } 
+    }
 }
 ?>
