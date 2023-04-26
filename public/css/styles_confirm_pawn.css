@@ -226,7 +226,7 @@ main .main-div-container .pawning-details form .main-input-container .input-cont
 }
 
 .is-invalid {
-    border-color: #ff0000;
+    border: 1px solid #ff0000;
 }
 
 .invalid-feedback {

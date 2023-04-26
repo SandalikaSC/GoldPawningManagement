@@ -93,14 +93,14 @@
 
         // Get last article id
         public function getLastArticleId() {
-            $sql = 'SELECT Article_Id FROM article ORDER BY Article_Id DESC LIMIT 1';
+            $sql = 'SELECT Article_Id FROM article ORDER BY Article_Id DESC';
             $this->db->query($sql);
             $result = $this->db->single();
 
             if(empty($result)) {
                 return 'A000';
             } else {
-                return $result;
+                return $result->Article_Id;
             }
         }
 
@@ -115,8 +115,8 @@
             return $row;
         }
 
-        // Register Article
-        public function registerArticle($data) {
+        // Pawn Article
+        public function pawnArticle($data) {
             $article_id = $this->getLastArticleId();
             ++$article_id;
 
@@ -128,14 +128,60 @@
             $this->db->bind(':estimated_value', $data['validation_details']->estimated_value);
             $this->db->bind(':karatage', $data['validation_details']->karatage);
             $this->db->bind(':weight', $data['validation_details']->weight);
-            $this->db->bind(':type', $data['validation_details']->karatage);
+            $this->db->bind(':type', $data['validation_details']->article_type);
             $this->db->bind(':rate_id', $gold_rates_details->Rate_Id);
             $this->db->bind(':karatage_price', $gold_rates_details->Price);
             $this->db->bind(':image', $data['validation_details']->karatage);
 
-
             if($this->db->execute()) {
-                $this->db->query('INSERT INTO pawn (Status, Pawn_Date, End_Date, auctioned_date, Article_Id, userId, Appraiser_Id, Officer_Id) VALUES(:status, :pawn_date, :)');
+                if($this->db->execute()) {
+                    $deleted_article = $this->deleteValidatedArticle($data['validation_details']->id);
+                    return $deleted_article;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+
+
+            // if($this->db->execute()) {
+            //     $this->db->query('INSERT INTO pawn (Status, Pawn_Date, End_Date, Article_Id, userId, Appraiser_Id, Officer_Id) VALUES(:status, :pawn_date, :end_date, :article_id, :user_id, :appraiser_id, :officer_id)');
+
+            //     $this->db->bind(':status', 'Pawned');
+            //     $this->db->bind(':pawn_date', date('Y-m-d H:i:s'));
+            //     $this->db->bind(':end_date', date('d-m-Y', strtotime('+1 year')));      
+            //     $this->db->bind(':article_id', $article_id);
+            //     $this->db->bind(':user_id', $data['validation_details']->customer);
+            //     $this->db->bind(':appraiser_id', $data['validation_details']->gold_appraiser);
+            //     $this->db->bind(':officer_id', $data['pawn_officer']);  
+
+            //     if($this->db->execute()) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+                
+            //     // if($this->db->execute()) {
+            //     //     $deleted_article = $this->deleteValidatedArticle($data['validation_details']->id);
+            //     //     return $deleted_article;
+            //     // } else {
+            //     //     return false;
+            //     // }
+            // } else {
+            //     return false;
+            // }
+        }
+
+
+        // Delete a record from validation_articles table using id
+        public function deleteValidatedArticle($id) {
+            $this->db->query('DELETE FROM validation_articles WHERE id=:id;');
+
+            $this->db->bind(':id', $id);
+
+            if ($this->db->execute()) {
+                return true;
             } else {
                 return false;
             }

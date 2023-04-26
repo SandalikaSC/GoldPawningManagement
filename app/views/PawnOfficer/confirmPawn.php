@@ -26,6 +26,7 @@
 
         <main>
             <div class="main-div-container">
+                <div class="msg-flash"><?php echo flash('register'); ?></div>
                 <div class="validation-details">
                     <div class="article-img">
                         <img src="<?php echo $data['validation_details']->image; ?>" alt="Article Image">
@@ -57,7 +58,7 @@
                 </div>
 
                 <div class="pawning-details">
-                    <form action="">
+                    <form action="<?php echo URLROOT; ?>/Pawnings/confirm_pawn/<?php echo $data['validation_details']->id; ?>" method="post">
                         <div class="div-title">
                             <h2>Details for Pawning</h2>
                         </div>
@@ -66,17 +67,17 @@
                             <div class="input-container">
                                 <label>Customer Name<sup>*</sup></label>
                                 <div>
-                                    <input type="text" name="name" class="input-field <?php echo (!empty($data['customer_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['customer_name']; ?>" placeholder="Name">                                      
-                                </div> 
-                                <span class="invalid-feedback"><?php echo $data['customer_name_err']; ?></span>                            
+                                    <input type="text" name="name" class="input-field <?php echo (!empty($data['customer_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['customer_name']; ?>" placeholder="Name">         
+                                    <span class="invalid-feedback"><?php echo $data['customer_name_err']; ?></span>                               
+                                </div>                                                           
                             </div>
 
                             <div class="input-container">
                                 <label>NIC<sup>*</sup></label>
                                 <div>
                                     <input type="text" name="nic" class="input-field <?php echo (!empty($data['nic_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['nic']; ?>" placeholder="NIC"> 
-                                </div>    
-                                <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span>                         
+                                    <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span> 
+                                </div>                            
                             </div>
 
                             <div class="input-container">
@@ -97,9 +98,9 @@
                             <div class="input-container">
                                 <label>Full Loan Amount (Rs. )<sup>*</sup></label>
                                 <div>
-                                    <input type="text" name="full-loan" class="input-field <?php echo (!empty($data['full_loan_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['full_loan']; ?>" placeholder="Full Loan Amount">
-                                </div>   
-                                <span class="invalid-feedback"><?php echo $data['full_loan_err']; ?></span>                          
+                                    <input type="text" name="full-loan" class="input-field <?php echo (!empty($data['full_loan_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['full_loan']; ?>" placeholder="Full Loan Amount">   
+                                    <span class="invalid-feedback"><?php echo $data['full_loan_err']; ?></span>
+                                </div>                          
                             </div>
 
                             <div class="input-container">

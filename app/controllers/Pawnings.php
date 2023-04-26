@@ -104,12 +104,12 @@
 
                 $customer = $this->pawningModel->getCustomerByEmail($data['email']);
 
-                if(!($customer)) {
+                if(empty($customer)) {
                     $data['email_err'] = "Customer has not registered with us";
-                }
-
-                if($customer->NIC) {
-                    $data['nic_err'] = "Entered NIC is not matched with the registered NIC";
+                } else {
+                    if($customer->NIC != $data['nic']) {
+                        $data['nic_err'] = "Entered NIC is not matched with the registered NIC";
+                    }
                 }
 
                 if(($data['full_loan']) > ($data['validation_details']->estimated_value)) {
@@ -118,30 +118,45 @@
 
                  
                 // if(isset($_POST['Pawn'])) {
-                    if(empty($data['customer_name_err']) && empty($data['nic_err']) && empty($data['email_err']) && empty($data['full_loan_err'])) {
-
-                    } else {
-                        $this->view('PawnOfficer/confirmPawn', $data);
-                    }
+                    // if($data['validation_details']) {
+                        if(empty($data['customer_name_err']) && empty($data['nic_err']) && empty($data['email_err']) && empty($data['full_loan_err'])) {
+                            $pawn_article = $this->pawningModel->pawnArticle($data);
+    
+                            if($pawn_article) {
+                                redirect('/pawningOfficerDashboard/dashboard');
+                            } else {
+                                flash('register', 'Something went wrong. Please try again.', 'invalid');
+                                $this->view('PawnOfficer/confirmPawn', $data); 
+                            }
+                        } else {
+                            $this->view('PawnOfficer/confirmPawn', $data);
+                        }
+                    // } else {
+                    //     flash('register', 'Article cannot be pawned since it is not valid', 'invalid');
+                    //     $this->view('PawnOfficer/confirmPawn', $data);  
+                    // }
+                    
                 // } 
+            } else {
+                $data = [
+                    'validation_details' => $validation_details,
+                    'customer_name' => '',
+                    'nic' => '',
+                    'email' => '',
+                    'phone' => '',
+                    'full_loan' => '',
+                    'payment_method' => '',
+                    'pawn_officer' => $_SESSION['user_id'],
+                    'customer_name_err' => '',
+                    'nic_err' => '',
+                    'email_err' => '',
+                    'full_loan_err' => ''
+                ];
+    
+                $this->view('PawnOfficer/confirmPawn', $data);
             }
 
-            $data = [
-                'validation_details' => $validation_details,
-                'customer_name' => '',
-                'nic' => '',
-                'email' => '',
-                'phone' => '',
-                'full_loan' => '',
-                'payment_method' => '',
-                'pawn_officer' => $_SESSION['user_id'],
-                'customer_name_err' => '',
-                'nic_err' => '',
-                'email_err' => '',
-                'full_loan_err' => ''
-            ];
-
-            $this->view('PawnOfficer/confirmPawn', $data);
+           
         }
 
         public function new_pawning() {
