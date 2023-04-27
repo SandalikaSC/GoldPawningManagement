@@ -66,6 +66,7 @@
         public function confirm_pawn($id) {
             // Get validation details of the article
             $validation_details = $this->pawningModel->getValidationDetailsByID($id);
+            $customer = $this->pawningModel->getCustomerByID($validation_details->customer);
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Sanitize POST data
@@ -73,44 +74,16 @@
 
                 $data = [
                     'validation_details' => $validation_details,
-                    'customer_name' => trim($_POST['name']),
-                    'nic' => trim($_POST['nic']),
-                    'email' => trim($_POST['email']),
-                    'phone' => trim($_POST['email']),
+                    'customer_details' => $customer,
                     'full_loan' => trim($_POST['full-loan']),
                     'payment_method' => trim($_POST['payment-method']),
                     'pawn_officer' => $_SESSION['user_id'],
-                    'customer_name_err' => '',
-                    'nic_err' => '',
-                    'email_err' => '',
                     'full_loan_err' => ''
                 ];
 
-                if(empty($data['customer_name'])) {
-                    $data['customer_name_err'] = "Please enter the customer name";
-                }
-
-                if(empty($data['nic'])) {
-                    $data['nic_err'] = "Please enter the customer NIC";
-                }
-
-                if(empty($data['email'])) {
-                    $data['email_err'] = "Please enter the customer email";
-                }
-
                 if(empty($data['full_loan'])) {
                     $data['full_loan_err'] = "Please enter the full loan amount customer decided";
-                }   
-
-                $customer = $this->pawningModel->getCustomerByEmail($data['email']);
-
-                if(empty($customer)) {
-                    $data['email_err'] = "Customer has not registered with us";
-                } else {
-                    if($customer->NIC != $data['nic']) {
-                        $data['nic_err'] = "Entered NIC is not matched with the registered NIC";
-                    }
-                }
+                }                
 
                 if(($data['full_loan']) > ($data['validation_details']->estimated_value)) {
                     $data['full_loan_err'] = "Full loan must not exceed the estimated value of the article";
@@ -119,7 +92,7 @@
                  
                 // if(isset($_POST['Pawn'])) {
                     // if($data['validation_details']) {
-                        if(empty($data['customer_name_err']) && empty($data['nic_err']) && empty($data['email_err']) && empty($data['full_loan_err'])) {
+                        if(empty($data['full_loan_err'])) {
                             $pawn_article = $this->pawningModel->pawnArticle($data);
     
                             if($pawn_article) {
@@ -140,16 +113,10 @@
             } else {
                 $data = [
                     'validation_details' => $validation_details,
-                    'customer_name' => '',
-                    'nic' => '',
-                    'email' => '',
-                    'phone' => '',
+                    'customer_details' => $customer,
                     'full_loan' => '',
                     'payment_method' => '',
                     'pawn_officer' => $_SESSION['user_id'],
-                    'customer_name_err' => '',
-                    'nic_err' => '',
-                    'email_err' => '',
                     'full_loan_err' => ''
                 ];
     

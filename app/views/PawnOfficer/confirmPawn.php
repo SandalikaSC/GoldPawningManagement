@@ -65,33 +65,32 @@
 
                         <div class="main-input-container">
                             <div class="input-container">
-                                <label>Customer Name<sup>*</sup></label>
+                                <label>Customer Name</label>
                                 <div>
-                                    <input type="text" name="name" class="input-field <?php echo (!empty($data['customer_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['customer_name']; ?>" placeholder="Name">         
-                                    <span class="invalid-feedback"><?php echo $data['customer_name_err']; ?></span>                               
+                                    <input type="text" name="name" class="input-field" placeholder="<?php echo $data['customer_details']->First_Name . ' ' . $data['customer_details']->Last_Name; ?>" disabled> 
+                                    <!-- <div><?php echo $data['customer_details']->First_Name ?></div> -->
                                 </div>                                                           
                             </div>
 
                             <div class="input-container">
-                                <label>NIC<sup>*</sup></label>
+                                <label>NIC</label>
                                 <div>
-                                    <input type="text" name="nic" class="input-field <?php echo (!empty($data['nic_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['nic']; ?>" placeholder="NIC"> 
-                                    <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span> 
+                                    <input type="text" name="nic" class="input-field" placeholder="<?php echo $data['customer_details']->NIC; ?>" disabled> 
+                                    
                                 </div>                            
                             </div>
 
                             <div class="input-container">
-                                <label>Email<sup>*</sup></label>
+                                <label>Email</label>
                                 <div>
-                                    <input type="text" name="email" class="input-field <?php echo (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['email']; ?>" placeholder="Email">
-                                    <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>  
+                                    <input type="text" name="email" class="input-field" placeholder="<?php echo $data['customer_details']->email; ?>" disabled>                                     
                                 </div>                            
                             </div>
 
                             <div class="input-container">
                                 <label>Phone Number</label>
                                 <div>
-                                    <input type="text" name="phone" class="input-field" placeholder="Phone Number">
+                                    <input type="text" name="phone" class="input-field" placeholder="<?php echo $data['customer_details']->phone; ?>" disabled>
                                 </div>                            
                             </div>
 
