@@ -6,29 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
-    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/pawnedArticleDashboard.css">
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/loading.css">
-
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/ownerPawnArticleDashboard.css">
 
 </head>
 
 <body>
-    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:99;">
-        <section class="whole">
-            <div class="loading-box">
-                <p>please Wait...</p>
-                <img src="<?php echo URLROOT ?>/img/loading.gif" alt="">
-            </div>
-        </section>
-    </div>
     <div class="page">
-        <?php
-        if (!empty($_SESSION['message'])) {
-
-            include_once 'error.php';
-        }
-        ?>
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
@@ -45,25 +28,25 @@
                 </div>
             </div>
             <div class="btn-set">
-                <a href="<?php echo URLROOT ?>/mgDashboard">
+                <a href="<?php echo URLROOT ?>/ownerDashboard">
                     <img src="<?php echo URLROOT ?>/img/dashboard.png" alt="">
                     <p>Dashboard</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgLocker">
+                <a href="<?php echo URLROOT ?>/ownerLocker">
                     <img src="<?php echo URLROOT ?>/img/locker.png" alt="">
                     <p>Locker</p>
                 </a>
-                <a class="dash" href="<?php echo URLROOT ?>/mgPawnArticles">
+                <a class="dash" href="<?php echo URLROOT ?>/ownerPawnArticleDash">
                     <img src="<?php echo URLROOT ?>/img/golden_pawned_article.png" alt="">
                     <p>Pawned Articles</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgAuction">
+                <a href="<?php echo URLROOT ?>/ownerAuction">
                     <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
                     <p>Auction</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/staff">
+                <a href="#">
                     <img src="<?php echo URLROOT ?>/img/staff.png" alt="">
-                    <p>Staff</p>
+                    <p>Market</p>
                 </a>
             </div>
             <div class="lgout">
@@ -77,40 +60,31 @@
                         <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
                     </div>
                     <h1>Pawned Articles</h1>
-                    <a href="<?php echo URLROOT ?>/mgDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                    <a href="<?php echo URLROOT ?>/ownerDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                    <div class="notifi">
+                        <?php if (!empty($data[1])) { ?> <span class='badge'><?php echo $data[1]; ?></span> <?php } ?>                    
+                    </div>
+                    <div>
+                        <?php if (!empty($data[2])) { ?> <span class='badge'><?php echo $data[2]; ?></span> <?php } ?>
+                    </div>
+                    
+                </div>
+                <div class="search">
+
+                    <div class="search-bar">
+                        <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Enter Article ID..">
+                        <img src="<?php echo URLROOT ?>/img/searchicon.gif" alt="search-icon">
+                    </div>
+                    <div class="filter-set">
+                        <button id="filter-dropdown-button">Filter</button>
+                    </div>
+                    <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
 
                 </div>
-                <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
-
             <div class="inside-page">
                 <div class="search-filter">
-                    <div class="search">
 
-                        <div class="search-bar">
-                            <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
-                        </div>
-                        <div class="filter-set">
-                                <button id="filter-dropdown-button">Filter</button>
-                        </div>
-
-                        <div class="twobtns">
-                            <div id="auctionBtn" class="auction-btn"><button>
-                                    <span>Add to Auction</span>
-                                    <?php if (!empty($data[1])) { ?> <span class='badge'><?php echo $data[1]; ?></span> <?php } ?>
-                                </button>
-                            </div>
-
-
-                            <div id="warningBtn" class="warning-btn"><button>
-                                    <span>Send Warnings</span>
-                                    <?php if (!empty($data[2])) { ?> <span class='badge'><?php echo $data[2]; ?></span> <?php } ?>
-                                </button>
-                            </div>
-
-                        </div>
-
-                    </div>
                     <div class="filter-sec">
                         <?php include_once 'pawnArticleFilter.php' ?>
                     </div>
@@ -147,7 +121,7 @@
                                                         <td>" . $row->End_Date . "</td>
                                                         <td>Rs. " . $row->Estimated_Value . "/=</td>
                                                         <td>
-                                                            <a href='" . URLROOT . "/mgPawnArticles/viewPawnedItem/" . $row->Article_Id . "' class='" . (($this->dateCompare($row->End_Date, 0) and $row->WarningTwo==0) ? '' : (($this->dateCompare($row->End_Date, 14) and $row->Status=="Pawned") ? 'passEndDate' : 'passRedeemedDate')) . "'>View</a>
+                                                            <a href='" . URLROOT . "/ownerPawnArticleDash/viewPawnedItem/" . $row->Article_Id . "' class='" . (($this->dateCompare($row->End_Date, 0)) ? '' : (($this->dateCompare($row->End_Date, 14)) ? 'passEndDate' : 'passRedeemedDate')) . "'>View</a>
                                                             
                                                         </td>
                                                     </tr>";
@@ -170,67 +144,7 @@
 </body>
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
+<script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 
-<script src="<?php echo URLROOT ?>/js/pawnedArticleDashboardSearch.js"></script>
-
-<script>
-    const URL = "<?php echo URLROOT ?>";
-    let auctionBtn = document.getElementById("auctionBtn");
-    let pleaseWait = document.getElementById("pleaseWait");
-
-
-    auctionBtn.onclick = () => {
-        pleaseWait.style.display = "block";
-        fetch(`${URL}/mgPawnArticles/addToAuction`)
-            .then(response => response.text())
-            .then(data => {
-                // pleaseWait.style.display = "none";  
-                location.reload(true);
-            })
-            .catch(e => {
-                // pleaseWait.style.display = "none";   
-                console.log(e);
-                location.reload(true);
-            });
-    }
-</script>
-
-
-<script>
-    let warningBtn = document.getElementById("warningBtn");
-    let wait = document.getElementById("pleaseWait");
-
-
-    warningBtn.onclick = () => {
-        wait.style.display = "block";
-        fetch(`${URL}/mgPawnArticles/sendWarningEmails`)
-            .then(response => response.text())
-            .then(data => {
-                // pleaseWait.style.display = "none";  
-                location.reload(true);
-            })
-            .catch(e => {
-                // pleaseWait.style.display = "none";   
-                console.log(e);
-                location.reload(true);
-            });
-    }
-</script>
-
-<script>
-
-    let inputClean=document.getElementById('filter-clear-inputs');
-    inputClean.addEventListener('click',()=>{
-        document.getElementById('end-date').value = "";
-        document.getElementById('created-date').value = "";
-        document.getElementById('karatage').value = "";
-        document.getElementById('type').value = "";
-        document.getElementById('min-weight').value = "";
-        document.getElementById('max-weight').value = "";
-
-    })
-
-  
-</script>
 
 </html>

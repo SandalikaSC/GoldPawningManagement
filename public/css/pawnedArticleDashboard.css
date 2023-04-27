@@ -179,10 +179,7 @@ body{
 }
 
 .vogue {
-    /* animation-name: logo; */
-    animation-duration:18s;
     width: 200px;
-    animation-iteration-count: infinite;
 }
 
 .right-side{
@@ -241,9 +238,7 @@ body{
     border: none;
   }
   
-  /* .auction-btn a:hover {
-   opacity: 0.2;
-  } */
+  
   
   .auction-btn button .badge {
     position: absolute;

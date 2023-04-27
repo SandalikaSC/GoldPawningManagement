@@ -15,10 +15,10 @@
             <div class="right-heading">
                 <div class="right-side">
                    
-                    <a href="<?php echo URLROOT ?>/mgAuction" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                    <a href="<?php echo URLROOT ?>/ownerAuction" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
-                    Viewing Article:  <?php if(!empty($data[0]->Article_Id))echo $data[0]->Article_Id; else echo "Not Available";?> 
+                    Viewing Article: <i><?php if(!empty($data[0]->Article_Id))echo $data[0]->Article_Id; else echo "Not Available";?></i>  
                     </h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">

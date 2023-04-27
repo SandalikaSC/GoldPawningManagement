@@ -75,12 +75,12 @@
       <div class="inside-page">
         <div class="search">
           <div class="search-bar">
-            <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Search.." />
+            <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Enter Article ID.." />
 
           </div>
 
           <div class="filter-open">
-            <button type="button" id="filter-button">Filter</button>
+            <button type="button" id="filter-open">Filter</button>
           </div>
         </div>
 
@@ -93,13 +93,17 @@
               <?php foreach ($data as $row) { ?>
                 <section class="auction-page-column">
                   <div class="card">
-                    <img src="<?php echo $row->image ?>" alt="gold-bar" />
+                    <img src="<?php if (!empty($row->image)) {
+                                echo $row->image;
+                              } else {
+                                echo URLROOT . "/img/1.png";
+                              } ?>" alt="gold-bar" />
                     <div class="details">
 
-                      <p>No: <?php echo $row->Article_Id ?></p>
-                      <p>Type: <?php echo $row->Type ?></p>
-                      <p>Karatage: <?php echo $row->Karatage ?>K</p>
-                      <p>Weight: <?php echo $row->Weight ?>g</p>
+                      <p><?php echo $row->Article_Id ?></p>
+                      <p><?php echo $row->Type ?></p>
+                      <p><?php echo $row->Karatage ?> K</p>
+                      <p><?php echo $row->Weight ?>g</p>
                     </div>
                   </div>
                   <div class="card-view-btn">
@@ -119,11 +123,15 @@
               <div class="filter" id="filter-section">
                 <div class="ul">
                   <div class="li">
-                    <label for="created-date">min Date:</label>
+                    <label for="auction-date">Auction Date:</label>
+                    <input type="date" id="auction-date" name="auction-date">
+                  </div>
+                  <div class="li">
+                    <label for="created-date">Min Pawned Date:</label>
                     <input type="date" id="created-date" name="created-date">
                   </div>
                   <div class="li">
-                    <label for="end-date">Max Date:</label>
+                    <label for="end-date">Max Pawned Date:</label>
                     <input type="date" id="end-date" name="end-date">
                   </div>
                   <div class="li">
@@ -131,7 +139,9 @@
                     <select id="karatage" name="karatage">
                       <option value="">Select Karatage</option>
                       <option value="18">18k</option>
+                      <option value="19">19k</option>
                       <option value="20">20k</option>
+                      <option value="21">21k</option>
                       <option value="22">22k</option>
                       <option value="24">24k</option>
                     </select>
@@ -140,6 +150,7 @@
                     <label for="type">Type:</label>
                     <select id="type" name="type">
                       <option value="">Select Type</option>
+                      <option value="Jewelry">Jewelry</option>
                       <option value="ring">Ring</option>
                       <option value="bracelet">Bracelet</option>
                       <option value="necklace">Necklace</option>
@@ -158,12 +169,10 @@
 
                 <div class="button-set">
                   <button type="submit" id="filter-button">Filter</button>
-                  <button onclick="clearInputs()" class="filter-cancel-button">Clear</button>
+                  <button type="button" id="input-clear" class="filter-cancel-button">Clear</button>
                 </div>
               </div>
             </form>
-
-
           </div>
         </div>
 
@@ -176,7 +185,22 @@
 </body>
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
+<script>
+  const searchInput = document.querySelector('#search_input');
 
+  searchInput.addEventListener('input', () => {
+    const regex = /^A\d{4}$/; // regular expression to match a capital A followed by 4 digits between 0 and 9
+    const userInput = searchInput.value;
+
+    if (!regex.test(userInput)) {
+      searchInput.value = userInput.replace(/[^A\d]/g, ''); // replace any non-matching characters with an empty string
+    }
+
+    if (userInput.length > 5) {
+      searchInput.value = userInput.slice(0, 5); // truncate the input value to a maximum length of 5 characters
+    }
+  });
+</script>
 
 <script>
   function searchItems() {
@@ -197,7 +221,7 @@
         txtValue2 = td2.textContent || td2.innerText;
         txtValue3 = td3.textContent || td3.innerText;
         txtValue4 = td4.textContent || td4.innerText;
-
+  
         if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1 || txtValue4.toUpperCase().indexOf(filter) > -1) {
           row[i].style.display = "";
         } else {
@@ -216,31 +240,25 @@
 </script>
 
 <script>
-  let maxDate = document.getElementById('end-date');
-  let minDate = document.getElementById('created-date');
-  let karat = document.getElementById('karatage');
-  let type = document.getElementById('type');
-  let minWeight = document.getElementById('min-weight');
-  let maxWeight = document.getElementById('max-weight');
+  let inputClear = document.getElementById('input-clear');
+  inputClear.addEventListener('click', () => {
+    document.getElementById('auction-date').value = "";
+    document.getElementById('end-date').value = "";
+    document.getElementById('created-date').value = "";
+    document.getElementById('karatage').value = "";
+    document.getElementById('type').value = "";
+    document.getElementById('min-weight').value = "";
+    document.getElementById('max-weight').value = "";
 
-  function clearInputs() {
-    maxDate.value = "";
-    minDate.value = "";
-    karat.value = "";
-    type.value = "";
-    minWeight.value = "";
-    maxWeight.value = "";
-
-  }
+  })
 </script>
 
 <script>
+  let hideBtn = document.getElementById('filter-open');
 
-let hideBtn=document.getElementById('filter-button');
-
-hideBtn.addEventListener('click',()=>{
-  document.getElementById("outer-filter").classList.toggle('hidden');
-})
+  hideBtn.addEventListener('click', () => {
+    document.getElementById("outer-filter").classList.toggle('visible');
+  })
 </script>
 
 </html>

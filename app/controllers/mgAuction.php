@@ -29,6 +29,7 @@ class mgAuction extends controller
 
    public function filter()
    {
+      $auctionDate=isset($_POST['auction-date']) ? $_POST['auction-date'] : '';
       $firstDate = isset($_POST['created-date']) ? $_POST['created-date'] : '';
       $secondDate = isset($_POST['end-date']) ? $_POST['end-date'] : '';
       $karatage = isset($_POST['karatage']) ? $_POST['karatage'] : '';
@@ -37,7 +38,7 @@ class mgAuction extends controller
       $maxWeight = isset($_POST['max-weight']) ? floatval($_POST['max-weight']) : '';
 
       $auction = $this->model("auctionArticleModel");
-      $res = $auction->filter( $firstDate, $secondDate,  $karatage,  $type,$minWeight,$maxWeight);
+      $res = $auction->filter($auctionDate, $firstDate, $secondDate,  $karatage,  $type,$minWeight,$maxWeight);
 
       if($res){
          isLoggedIn();

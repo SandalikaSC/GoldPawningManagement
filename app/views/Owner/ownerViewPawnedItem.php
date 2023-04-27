@@ -8,38 +8,17 @@
     <title><?php echo SITENAME ?></title>
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/viewPawnedItem.css">
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/loading.css">
 </head>
 
 <body>
 
-    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:99;">
-        <section class="whole">
-            <div class="loading-box">
-                <p>please Wait...</p>
-                <img src="<?php echo URLROOT ?>/img/loading.gif" alt="">
-            </div>
-        </section>
-    </div>
-
     <div class="page">
-        <?php include_once 'sendWarningForm.php'; ?>
 
-
-        <?php
-        if (!empty($_SESSION['message'])) {
-
-            include_once 'error.php';
-        }
-        ?>
 
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
-                    <!-- <div class="bars" id="bars">
-                         <img src="./img/icons8-bars-48.png" alt="bars">
-                    </div> -->
-                    <a href="<?php echo URLROOT ?>/mgPawnArticles" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                    <a href="<?php echo URLROOT ?>/ownerPawnArticleDash" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
                         Viewing Article: <?php echo $data[0]->Article_Id ?>
@@ -144,10 +123,6 @@
                                         <div class="value"><?php echo $data[1]->End_Date ?></div>
                                     </div>
                                 </div>
-                                <div class="twobtns">
-                                    <div class="auction-btn" ><button type="button" id="auction-btn">Add to Auction</button></div>
-                                    <div class="email-btn" ><button type="button" id="warning-btn">Send Warning</button></div>
-                                </div>
 
                             </div>
                         </div>
@@ -160,64 +135,6 @@
     </div>
 </body>
 
-<script>
-    let auctionBtn = document.getElementById("auction-btn");
-    let wait = document.getElementById("pleaseWait");
-    const URL = "<?php echo URLROOT ?>";
 
-    auctionBtn.addEventListener('click',()=>{
-        wait.style.display = "block";
-        let pawnId = '<?php echo $data[1]->Pawn_Id ?>';
-        let endDate = '<?php echo $data[1]->End_Date ?>';
-        let articleId = '<?php echo $data[0]->Article_Id ?>';
-        let userId = '<?php echo $data[1]->userId ?>';
-
-        fetch(`${URL}/mgPawnArticles/addOneByOneToAuction/${pawnId}/${endDate}/${userId}`)
-            .then(response => response.text())
-            .then(response => {
-                console.log(response);
-                
-                window.location.href = `${URL}/mgPawnArticles/viewPawnedItem/${articleId}`;
-            })
-            .catch(e => {
-                console.log(e);
-                window.location.href = `${URL}/mgPawnArticles/viewPawnedItem/${articleId}`;
-                // location.reload(true);
-            });
-
-    })
-    
-
-
-    let warningBtn = document.getElementById("warning-btn");
-    warningBtn.onclick = () => {
-        wait.style.display = "block";
-        let endDate = '<?php echo $data[1]->End_Date ?>';
-        let articleId = '<?php echo $data[0]->Article_Id ?>';
-        let userId = '<?php echo $data[1]->userId ?>';
-        let pawn_id='<?php echo $data[1]->Pawn_Id ?>';
-        let warning1='<?php echo $data[1]->WarningOne ?>';
-        let warning2='<?php echo $data[1]->WarningTwo ?>';
-
-        fetch(`${URL}/mgPawnArticles/sendOneByOneWarning/${userId}/${endDate}/${pawn_id}/${warning1}/${warning2}`)
-            .then(response => response.text())
-            .then(data => {
-                console.log(data);
-                // location.reload(`${URL}/mgPawnArticles`);
-                window.location.href = `${URL}/mgPawnArticles/viewPawnedItem/${articleId}`;
-            })
-            .catch(e => {
-                console.log(e);
-                window.location.href = `${URL}/mgPawnArticles/viewPawnedItem/${articleId}`;
-                // location.reload(true);
-            });
-    }
-
-
-
-
-
-   
-</script>
 
 </html>

@@ -3,7 +3,7 @@ class pawnArticleModel extends Database
 {
     public function loadPawnArticles()
     {
-        $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.Article_Id,p.userId from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "p%" AND  p.Status like "P%"';
+        $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.Article_Id,p.userId,p.WarningOne,p.WarningTwo from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "p%" AND  p.Status like "P%"';
         $this->query($sql);
         $result = $this->resultSet();
 
@@ -16,13 +16,12 @@ class pawnArticleModel extends Database
 
     public function viewPawnArticle($id)
     {
-
         $sql = 'select Article_Id,Estimated_Value,Karatage,Weight,Type,image from article where Article_Id=?';
         $this->query($sql);
         $this->bind(1, $id);
         $result = $this->single();
 
-        $sql1 = 'select Pawn_Id,Pawn_Date,Redeemed_Date,End_Date,Article_Id,userId,Appraiser_Id,Officer_Id,auctioned_date from pawn where Article_Id=?';
+        $sql1 = 'select Pawn_Id,Pawn_Date,Redeemed_Date,End_Date,Article_Id,userId,Appraiser_Id,Officer_Id,auctioned_date,WarningOne,WarningTwo from pawn where Article_Id=?';
         $this->query($sql1);
         $this->bind(1, $id);
         $result1 = $this->single();
@@ -73,8 +72,10 @@ class pawnArticleModel extends Database
 
     public function filter($min_price, $max_price, $created_date, $end_date, $karatage, $type, $minWeight, $maxWeight)
     {
+        // $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.Article_Id,p.userId,p.WarningOne,p.WarningTwo from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "p%" AND  p.Status like "P%"';
 
-        $sql = 'SELECT a.Article_Id, a.Estimated_Value, a.Karatage, a.Weight, a.Type, a.image, p.Pawn_Id, p.Pawn_Date, p.Redeemed_Date, p.End_Date, p.userId 
+
+        $sql = 'SELECT a.Article_Id, a.Estimated_Value, a.Karatage, a.Weight, a.Type, a.image, p.Pawn_Id,p.Status,p.Pawn_Date, p.Redeemed_Date, p.End_Date, p.userId,p.WarningOne,p.WarningTwo 
         FROM article a 
         INNER JOIN pawn p 
         ON a.Article_Id = p.Article_Id 
@@ -123,6 +124,25 @@ class pawnArticleModel extends Database
             return $result;
         } else {
             return 0;
+        }
+    }
+
+    public function updateStatus($pawnid,$days){
+
+        if($days==30){
+            $sql = 'update pawn set WarningOne=? where Pawn_Id=?';
+            $this->query($sql);
+            $this->bind(1, 1);
+            $this->bind(2, $pawnid);
+            $result = $this->execute();
+
+        }else{
+            $sql = 'update pawn set WarningTwo=? where Pawn_Id=?';
+            $this->query($sql);
+            $this->bind(1, 1);
+            $this->bind(2, $pawnid);
+            $result = $this->execute();
+
         }
     }
 

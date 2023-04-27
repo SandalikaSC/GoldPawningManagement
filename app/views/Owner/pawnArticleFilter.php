@@ -12,7 +12,7 @@
 <body>
   
 
-  <form action="<?php echo URLROOT ?>/mgPawnArticles/filter" method="POST">
+  <form action="<?php echo URLROOT ?>/ownerPawnArticleDash/filter" method="POST">
     <div class="filter" id="filter-section">
       <ul>
         <div class="two-field">
@@ -28,11 +28,11 @@
         </div>
         <div class="two-field">
           <li>
-            <label for="created-date">min Date:</label>
+            <label for="created-date">Min Pawned Date:</label>
             <input type="date" id="created-date" name="created-date">
           </li>
           <li>
-            <label for="end-date">Max Date:</label>
+            <label for="end-date">Max Pawned Date:</label>
             <input type="date" id="end-date" name="end-date">
           </li>
 
@@ -75,7 +75,7 @@
         <div class="two-btns">
   
           <button type="submit" id="filter-button">Filter</button>
-          <button type="button" id="filter-clear-inputs" class="filter-cancel-button">Clear</button>
+          <button type="button" onclick="clearInputs()" class="filter-cancel-button">Clear</button>
   
         </div>
       </ul>

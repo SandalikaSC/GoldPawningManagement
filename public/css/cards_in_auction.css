@@ -157,11 +157,8 @@
  }
 
 
-.vogue {
-    animation-name: logo;
-    animation-duration:18s;
+.vogue {   
     width: 200px;
-    animation-iteration-count: infinite;
 }
 
 .right-side{
@@ -387,6 +384,7 @@ input[type=text] {
 /* filter css */
 
          .outer-filter{
+           display: none;
             overflow-y: hidden;
             right: 0;
             box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
@@ -419,10 +417,10 @@ input[type=text] {
           }
 
           #filter-section .ul .li {
-            margin-bottom: 10px;
+            margin-bottom: 4px;
           }
           #filter-section .ul .li input,#filter-section .ul .li select {
-            padding:10px;
+            padding:8px;
             font-size: large;
             border-radius: 5px;
           }
@@ -497,7 +495,7 @@ input[type=text] {
 }
  }
 
-  .hide{
+.hide{
     display: none;
  }
 
@@ -508,6 +506,10 @@ input[type=text] {
 
 .hidden{
     display:none;
+}
+
+.visible{
+   display: block;
 }
 
 

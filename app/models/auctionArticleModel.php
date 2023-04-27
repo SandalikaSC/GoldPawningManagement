@@ -40,12 +40,16 @@ class auctionArticleModel extends Database
     }
 
 
-    public function filter($firstDate, $secondDate, $karatage, $type, $minWeight, $maxWeight)
+    public function filter($auctionDate,$firstDate, $secondDate, $karatage, $type, $minWeight, $maxWeight)
     {
 
         // Build the query based on the submitted form data
-        $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.Article_Id,p.userId from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "a%" AND  p.Status like "A%"';
+        $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.auctioned_date,p.Article_Id,p.userId from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "a%" AND  p.Status like "A%"';
 
+        if (!empty($auctionDate)) {
+
+            $sql .= " AND p.auctioned_date = '$auctionDate'";
+        }
         if (!empty($firstDate)) {
 
             $sql .= " AND p.Pawn_Date >= '$firstDate'";
