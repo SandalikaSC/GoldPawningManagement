@@ -76,7 +76,7 @@
                             <label for="article-image">Article Image<sup>*</sup></label>
                             <div>
                                 <div class="choose-image">
-                                    <input type="file" name="image" id="image" hidden>
+                                    <input type="file" name="image-file" id="image-file" hidden>
                                     <input type="hidden" id="imageData" name="image">
                                     <span id="img-name" >Choose an image</span>
                                     <button type="button" id="choose">Choose</button>                                
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="div-submit">
-                            <input type="submit" class="btn-submit" value="Send to Validate">
+                            <input type="submit" id="submit-button" class="btn-submit" value="Send to Validate">
                         </div>
                         
                     </form>
@@ -97,10 +97,10 @@
     </div>
     
     <script type="text/javascript">
-        let realFileBtn = document.getElementById('image');
+        let realFileBtn = document.getElementById('image-file');
         const customBtn = document.getElementById("choose");
         const customTxt = document.getElementById("img-name");
-        let save = document.getElementById('btn-submit');
+        let save = document.getElementById('submit-button');
         let image = '';
 
         customBtn.addEventListener('click', function() {
@@ -126,7 +126,6 @@
                   customTxt.innerHTML = "Image";
             }
         });
-
         
     </script>
 

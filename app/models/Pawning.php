@@ -7,7 +7,7 @@
         }
 
         public function getPawnedItems() {
-            $this->db->query('SELECT * FROM pawn INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id;');
 
             $results = $this->db->resultSet();
 
@@ -24,6 +24,12 @@
             return $row;
         }
 
+        public function getArticles() {
+            $this->db->query('SELECT * FROM article;');
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
 
         // public function findCustomerByNic($nic) {
         //     $this->db->query('SELECT UserId FROM user WHERE NIC = :nic ');
@@ -140,7 +146,7 @@
             $this->db->bind(':type', $data['validation_details']->article_type);
             $this->db->bind(':rate_id', $gold_rates_details->Rate_Id);
             $this->db->bind(':karatage_price', $gold_rates_details->Price);
-            $this->db->bind(':image', $data['validation_details']->karatage);
+            $this->db->bind(':image', $data['validation_details']->image);
 
             if($this->db->execute()) {
                 $this->db->query('INSERT INTO pawn (Status, Pawn_Date, End_Date, Article_Id, userId, Appraiser_Id, Officer_Id) VALUES(:status, :pawn_date, :end_date, :article_id, :user_id, :appraiser_id, :officer_id);');

@@ -195,7 +195,8 @@
                                         </thead>
                                         <tbody>
                                             <?php foreach ($data['validated_articles'] as $validated_article) : ?>
-                                                <tr>
+                                                
+                                                <tr>                                                    
                                                     <td><?php echo $validated_article->id;?></td>
                                                     <td><?php echo 'Rs. ' . $validated_article->estimated_value;?></td>
                                                     <td><?php echo ($validated_article->validation_status) ? 'Valid' : 'Invalid';?></td>
