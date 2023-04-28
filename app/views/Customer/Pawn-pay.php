@@ -26,20 +26,11 @@
                 <h2>Payment Details </h2>
                 <div class="details">
                     <div class="jewellery-img">
-
-                        <?php
-                        $finfo = finfo_open();
-                        $imageType = finfo_buffer($finfo, $data['article']->image, FILEINFO_MIME_TYPE);
-                        finfo_close($finfo);
-
-                        ?>
-                        <img src="<?php if (empty($data['article']->image)) {
-                                        echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg";
-                                    } else {
-                                        echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['article']->image);
-                                    } ?>
-                                    " alt="" class="jw-img">
-                        <!-- <img src="<?php echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg"; ?> " alt="" class="jw-img"> -->
+                        <img class="jw-img" src="<?php if (!empty($data['article']->image)) {
+                                                        echo $data['article']->image;
+                                                    } else {
+                                                        echo URLROOT . "/img/lum3n-esAis38NHT8-unsplash.jpg";
+                                                    } ?>" alt="">
                     </div>
                     <div class="info-div info-div-pay-info ">
 
@@ -116,9 +107,9 @@
                             <h2 class="sub-title">
                                 Calculate Payment
                             </h2>
-                            <?php if ($data['loan']->Repay_Method == 'fixed') : ?>
+                            <?php if ($data['loan']->Repay_Method == 'Fixed') : ?>
                                 <?php
-                                $toPayInst = 12 - $data['paid'] / $data['loan']->monthly_installement;
+                                $toPayInst = 12 - $data['paid'] / $data['loan']->monthly_installment;
                                 ?>
 
                                 <div class="jw-date">
@@ -131,7 +122,7 @@
                                 <div class="jw-date">
                                     <div class="jw-date-name">
                                         <label>Paying Amount</label>
-                                        <label id="amountInstallment" class="jw-dt"><?= 'Rs ' .  $data['loan']->monthly_installement  ?></label>
+                                        <label id="amountInstallment" class="jw-dt"><?= 'Rs ' .  $data['loan']->monthly_installment	  ?></label>
                                     </div>
 
                                 </div>
@@ -205,7 +196,7 @@
                                     <label>Interest to be paid</label>
                                     <label id="repawnTill">
 
-                                        <?php if ($data['loan']->Repay_Method == 'fixed') {
+                                        <?php if ($data['loan']->Repay_Method == 'Fixed') {
                                             echo 'Rs ' . $data['loan']->Amount * ($data['loan']->Interest + 100) / 100 - $data['paid'];
                                         } else {
                                             echo 'Rs ' . ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
@@ -244,19 +235,24 @@
                         <label class="jw-dt" id="locker-payment">Rs. 00.00</label>
                     </div>
                 </div>
-                <div class="locker_set">
-                    <div class="set">
+
+                <div class="set">
+                    <?php if (!empty($data['mylockers'])) : ?>
                         <h3>My Available Lockers</h3>
+                        <div class="jw-date-name option-radio">
+                            <?php foreach ($data['mylockers'] as $locker) : ?>
 
-                    </div>
-                    <div class="set">
-                        <h3>Other</h3>
-                    </div>
+                                <input type="radio" name="locker" id="<?= $locker->lockerNo ?>" value="<?= $locker->lockerNo ?>" class="hidden radio-label">
+                                <label for="<?= $locker->lockerNo ?>" class="button-label">
+                                    <h1><?= $locker->lockerNo ?></h1>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-
-
-
-
+                <div class="set">
+                    <h3>Other</h3>
+                </div>
             </div>
 
             <div class="info-div choise-div" id="appointment_sec">
@@ -378,11 +374,6 @@
 
         let Repawn_date = document.getElementById("repawnTill");
 
-
-
-
-
-
         //payment section labels
 
         let interest_label = document.getElementById("Interest_pay");
@@ -413,14 +404,18 @@
             }
 
             ?>;
+
         principlepayment =
             <?php if ($data['status'] != 'Overdue') {
                 if ($data['loan']->Repay_Method == 'fixed') {
                     echo $data['loan']->Amount / 12;
+                } else {
+                    echo 0;
                 }
             } else {
                 echo 0;
-            }  ?>;
+            }
+            ?>;
 
         //set payment labels
 
@@ -480,48 +475,54 @@
 
         // Set the date input value to tomorrow's date
         document.getElementById("appointment_date").value = formattedDate;
+        if ('<?= $data['status'] ?>' == 'Overdue') {
+            //overdue repawn option choosen
+            const yes = document.getElementById("yes-button");
+            const no = document.getElementById("no-button");
+            yes.addEventListener("click", function(event) {
+                pay_btn.style.display = 'flex'; // pay btn 
+                RenewPay();
+                retrieveRadio.style.display = "none";
+                Repawn_details.style.display = "flex";
+                appointment_sec.style.display = "none";
+                ReserveLocker_sec.style.display = "none";
+                repawnTill.innerHTML = "Invalid Payment Amount";
+            });
 
-        //overdue repawn option choosen
-        const yes = document.getElementById("yes-button");
-        const no = document.getElementById("no-button");
-        yes.addEventListener("click", function(event) {
-            pay_btn.style.display = 'flex'; // pay btn
-            //document.getElementById("btn").style.display = 'none'; 
-            RenewPay();
-            retrieveRadio.style.display = "none";
-            Repawn_details.style.display = "flex";
-            appointment_sec.style.display = "none";
-            ReserveLocker_sec.style.display = "none";
-            repawnTill.innerHTML = "Invalid Payment Amount";
-        });
+            no.addEventListener("click", function(event) {
 
-        no.addEventListener("click", function(event) {
-            pay_btn.style.display = 'none'; //disable pay btn
-            //document.getElementById("btn").style.display = 'none'; 
-            notRepawnPay()
+                notRepawnPay()
 
-            retrieveRadio.style.display = "flex";
-            Repawn_details.style.display = "none";
-            var radio = document.getElementById("locker-button");
-            if (radio.checked) {
-                ReserveLocker_sec.style.display = "flex";
-            } else {
-                appointment_sec.style.display = "flex";
-            }
+                retrieveRadio.style.display = "flex";
+                Repawn_details.style.display = "none";
+                var radio = document.getElementById("locker-button");
+                if (radio.checked) {
+                    ReserveLocker_sec.style.display = "flex";
+                    pay_btn.style.display = 'none'; //disable pay btn
+                } else {
+                    appointment_sec.style.display = "flex";
+                    pay_btn.style.display = 'flex';
+                }
 
 
 
-        });
+            });
+
+
+        }
+
         //method of retrieval
         const app = document.getElementById("visit-button");
         const lockerReserve = document.getElementById("locker-button");
+
+        //appointment clicked
         app.addEventListener("click", function(event) {
             pay_btn.style.display = 'flex'; // pay btn 
             RenewPay();
             ReserveLocker_sec.style.display = "none";
             appointment_sec.style.display = "flex";
         });
-
+        //lockerReserve clicked
         lockerReserve.addEventListener("click", function(event) {
             pay_btn.style.display = 'none'; //disable pay btn 
             lockerpayments();
@@ -544,7 +545,7 @@
                     echo ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
                 }
                 ?>);
-            principlepayment = parseFloat(<?php echo $data['loan']->Amount - $data['principle']; ?>);
+            principlepayment = parseFloat(<?php echo $data['loan']->Amount - $data['principle'] ?>);
 
             //set payment labels 
             interest_label.innerHTML = interestpayment;
@@ -565,6 +566,8 @@
                     } else {
                         echo ($data['loan']->Amount  - $data['principle']) * $data['loan']->Interest / 100;
                     }
+                } else {
+                    echo 0;
                 }
                 ?>;
 
@@ -583,7 +586,7 @@
         function installmentPay() {
             // Get the value of the number input field
             var numbeinstallments = document.getElementById("noInstallments").value;
-            installmentPayAmount = <?= $data['loan']->monthly_installement ?> * numbeinstallments;
+            installmentPayAmount = parseFloat('<?php echo $data['loan']->monthly_installment; ?>') * numbeinstallments;
             document.getElementById("amountInstallment").innerHTML = 'Rs ' + parseFloat(installmentPayAmount.toFixed(2));
 
             if (numbeinstallments == document.getElementById("noInstallments").max) {

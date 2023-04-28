@@ -14,7 +14,7 @@ class Reservations extends Controller
 
         public function index()
         {
-                $this->view('VaultKeeper/newAllocation');
+                
 
         }
         public function ViewReservation()

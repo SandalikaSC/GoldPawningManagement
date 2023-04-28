@@ -87,7 +87,7 @@
 
                 </div>
                 <div class="appo-info">
-                    <a href="<?php echo URLROOT ?>/Reservations"><button class="allocate">+ New Allocation</button></a>
+                    <a href="<?php echo URLROOT ?>/LockerValidation"><button class="allocate">+ New Allocation</button></a>
                     <div class="app-list">
                         <h2> Today Appointments</h2>
                         <?php if(empty($data['appointments'])):?>
