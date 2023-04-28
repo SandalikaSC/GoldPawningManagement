@@ -115,141 +115,48 @@
                             </div>
                         </div>  
 
+                        <!-- <div class="div-buttons">
+                            <button type="submit" class="btn-pawn">Pawn</button>
+                            <input type="submit" value="Pawn" onclick="openPopup()"> 
+                            <input type="submit" value="Cancel">  
+                        </div> -->
+
+                        <!-- <div class="popup" id="popup">
+                            <div class="div-message">
+                                <div class="msg">Confirm article pawning?</div>
+                                <div class="div-buttons">
+                                    <div><input type="submit" class="button btn-confirm" value="Confirm"></div> 
+                                    <div><a class="button btn-confirm" href="">Confirm</a></div>
+                                    <div><a class="button btn-cancel" href="">Cancel</a></div>                         
+                                </div>
+                                
+                            </div>
+                        </div> -->
+
                         <div class="div-buttons">
-                            <input type="submit" value="Pawn">
-                            <!-- <input type="submit" value="Cancel"> -->
+                            <?php if($data['validation_details']->validation_status) : ?>
+                                <input type="submit" value="Pawn"> 
+                            <?php else : ?>
+                                <input type="submit" value="Dismiss"> 
+                            <?php endif; ?>
+                            <input type="submit" value="Cancel"> 
                         </div>
                     </form>
+                    
                 </div>
             </div>
+
+            
             
         </main>
-
-        <!-- <div class="form-container">
-            <div class="payment-validate">
-                <div class="customer-details form-wrapper">
-                    <h2 class="form-header">Customer Details</h2>
-                    <form action="" method="post">
-                        <div class="fields-container">
-                            <label for="full-name">Full Name<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <input type="text" placeholder="Full Name">
-                            </div> 
-                        </div> 
-    
-                        <div class="fields-container">
-                            <label for="full-name">NIC<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <input type="text" placeholder="NIC">
-                            </div> 
-                        </div> 
-    
-                        <div class="fields-container">
-                            <label for="full-name">Phone Number<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <input type="text" placeholder="Phone Number">
-                            </div> 
-                        </div>
-    
-                        <div class="fields-container">
-                            <label for="full-name">Email<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <input type="text" placeholder="Email">
-                            </div> 
-                        </div>                    
-                    </form>
-                </div>
-
-                <div class="article-details form-wrapper">
-                    <h2 class="form-header">Article Details</h2>
-                    <form action="" method="post">
-                        <div class="fields-container">
-                            <label for="type">Type<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <select name="type" id="type">
-                                    <option selected disabled>Choose a type</option>
-                                    <option name="jewelry">Jewelry</option>
-                                </select>
-                            </div>                        
-                        </div>
-                        <div class="fields-container">
-                            <label for="image">Image<sup>*</sup></label>
-                            <div class="file-container">
-                                <input type="file" id="real-file" hidden="hidden">
-                                <span id="custom-text">Image</span>
-                                <button type="button" id="custom-button">Choose</button>
-                            </div>                        
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-
-            <div class="payment-validate">
-                <div class="payment-method">
-                    <h2 class="form-header">Payment Method</h2>
-                    <form action="" method="post">
-                        <div class="fields-container">                        
-                            <label for="method">
-                                <input type="radio" name="method" value="Fixed" checked> Fixed
-                            </label>
-                            <label for="method">
-                                <input type="radio" name="method" value="Partial"> Partial
-                            </label>                        
-                        </div>
-                    </form>
-                </div>
-
-                <div class="validation-details">
-                    <h2 class="form-header">Validation Details</h2>
-                    <form action="" method="post">
-                        <div class="fields-container">
-                            <label for="full-name">Weight<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <input type="text" placeholder="Weight">
-                            </div> 
-                        </div> 
-    
-                        <div class="fields-container">
-                            <label for="full-name">Karats<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <input type="text" placeholder="Karats">
-                            </div> 
-                        </div> 
-    
-                        <div class="fields-container">
-                            <label for="full-name">Estimated Value<sup>*</sup></label>
-                            <div class="div-input">                        
-                                <input type="text" placeholder="Estimated Value">
-                            </div> 
-                        </div>                   
-                    </form>
-                </div>      
-                
-                <div class="payment-method">
-                    <h2 class="form-header">Validation Status</h2>
-                    <form action="" method="post">
-                        <div class="fields-container">                        
-                            <label for="method">
-                                <input type="radio" name="method" value="Valid" checked> Valid
-                            </label>
-                            <label for="method">
-                                <input type="radio" name="method" value="Invalid"> Invalid
-                            </label>                        
-                        </div>
-                    </form>
-                </div>
-    
-                <div class="buttons-container">
-                    <a href="#" class="pawn">Pawn</a>
-                    <a href="#" class="cancel">Cancel</a>
-                </div>
-            </div>            
-        </div>           -->
     </div>
 
     <script type="text/javascript">
-        
+        // let popup = document.getElementById("popup");
+
+        // function openPopup() {
+        //     popup.classList.add("open-popup");
+        // }
     </script>
 
 </body>

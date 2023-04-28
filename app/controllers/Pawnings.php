@@ -89,18 +89,40 @@
                     $data['full_loan_err'] = "Full loan must not exceed the estimated value of the article";
                 }
 
-                 
+                // if(isset($_POST['Pawn']))  {
+                //     if(empty($data['full_loan_err'])) {
+                //         if(isset($_POST['Confirm'])) {
+                //             $pawn_article = $this->pawningModel->pawnArticle($data);
+
+                //             if($pawn_article) {
+                //                 redirect('/pawningOfficerDashboard/dashboard');
+                //             } else {
+                //                 flash('register', 'Something went wrong. Please try again.', 'invalid');
+                //                 $this->view('PawnOfficer/confirmPawn', $data); 
+                //             }
+                //         }
+                //     } else {
+                //         $this->view('PawnOfficer/confirmPawn', $data);
+                //     }
+                // }
                 // if(isset($_POST['Pawn'])) {
-                    // if($data['validation_details']) {
+                //     if($data['validation_details']->validation_status) {
                         if(empty($data['full_loan_err'])) {
-                            $pawn_article = $this->pawningModel->pawnArticle($data);
+                            if(isset($_POST['Pawn'])) {
+                                if($data['validation_details']->validation_status) {
+                                    $pawn_article = $this->pawningModel->pawnArticle($data);
     
-                            if($pawn_article) {
-                                redirect('/pawningOfficerDashboard/dashboard');
-                            } else {
-                                flash('register', 'Something went wrong. Please try again.', 'invalid');
-                                $this->view('PawnOfficer/confirmPawn', $data); 
-                            }
+                                    if($pawn_article) {
+                                        redirect('/pawningOfficerDashboard/dashboard');
+                                    } else {
+                                        flash('register', 'Something went wrong. Please try again.', 'invalid');
+                                        $this->view('PawnOfficer/confirmPawn', $data); 
+                                    }
+                                } else {
+                                    flash('register', 'Article cannot be pawned since it is not valid', 'invalid');
+                                    $this->view('PawnOfficer/confirmPawn', $data); 
+                                }
+                            }                            
                         } else {
                             $this->view('PawnOfficer/confirmPawn', $data);
                         }

@@ -177,6 +177,17 @@ main .main-div-container .pawning-details form .main-input-container .input-cont
     border: 1px solid #ddd;
 }
 
+main .main-div-container .pawning-details form .main-input-container .input-container div input:disabled {
+    background: none;
+    border: none;
+}
+
+main .main-div-container .pawning-details form .main-input-container .input-container div input:disabled::placeholder {
+    color: #bb8a04;
+    font-size: 16px;
+    font-style: italic;
+}
+
 main .main-div-container .pawning-details form .main-input-container .input-container div input::placeholder {
     font-size: 15px;
 }
@@ -225,6 +236,76 @@ main .main-div-container .pawning-details form .main-input-container .input-cont
     font-weight: 400;
 }
 
+/* .popup {
+    width: 500px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup .div-message {
+    border-radius: 20px;
+    border: 2px solid #bb8a04;
+    width: fit-content;
+    padding: 30px;
+    background: #fff;
+    margin: 20px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.popup .div-message .div-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.popup .div-message .msg{
+    font-size: 30px;
+    color: #bb8a04;
+    font-weight: 550;
+}
+
+.popup .div-message .div-buttons .button {
+    background: #bb8a04;
+    padding: 8px;
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #faebd7;
+    border: 2px solid #bb8a04;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.popup .div-message .div-buttons .button:hover {
+    opacity: 0.8;
+    border-color: #846102;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.popup .div-message .div-buttons .btn-cancel {
+    background: #faebd7;
+    color: #bb8a04;
+} */
+
 .is-invalid {
     border: 1px solid #ff0000;
 }
@@ -235,162 +316,3 @@ main .main-div-container .pawning-details form .main-input-container .input-cont
     left: 20px;
 }
 
-/* .wrapper .form-container {
-    margin: 10px 20px;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.wrapper .form-wrapper {
-    padding: 15px 30px;
-    width: 100%;
-    border: 2px solid #bb8a04;
-    border-radius: 20px;
-    height: fit-content;
-    margin-bottom: 10px;
-}
-
-.wrapper .form-container .form-header {
-    width: fit-content;
-    border-bottom: 3px solid #bb8a04;
-    margin-bottom: 20px;
-}
-
-.wrapper .form-container .form-wrapper sup {
-    color: #ff0000;
-}
-
-.fields-container {
-    margin-bottom: 15px;
-    height: fit-content;
-}
-
-.fields-container label {
-    font-weight: 600;
-}
-
-.fields-container input,
-.fields-container select {
-    margin-top: 3px;
-    width: 100%;
-    padding: 10px 20px;
-    border-radius: 15px;
-    border: none;
-    font-size: 0.9rem;
-    background: #fff7e2;
-}
-
-.fields-container select {
-    margin-top: 5px;
-}
-
-.fields-container input::-webkit-input-placeholder {
-    font-size: 0.9rem;
-}
-
-.fields-container option {
-    padding: 10px 20px;
-}
-
-#custom-button {
-    padding: 6px 10px;
-    color: white;
-    background: #000;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    top: 5px;
-}
-
-#custom-button:hover {
-    background: #bb8a04;
-}
-
-#custom-text {
-    margin-left: 10px;
-    font-family: sans-serif;
-    color: rgb(136, 136, 136);
-}
-
-.fields-container .file-container {
-    margin-top: 3px;
-    width: 100%;
-    padding: 5px 20px;
-    border-radius: 15px;
-    border: none;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff7e2;
-}
-
-.fields-container label[for="method"] {
-    display: flex;
-    justify-content: center;
-    grid-gap: 20px;
-}
-
-.article-details {
-    height: fit-content;
-}
-
-.payment-validate {
-    width: 30%;
-}
-
-.payment-method {
-    padding: 15px 30px;
-    width: 100%;
-    border: 2px solid #bb8a04;
-    border-radius: 20px;
-    height: fit-content;
-    margin-bottom: 10px;
-}
-
-.payment-method .fields-container {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.validation-details {
-    padding: 15px 30px;
-    width: 100%;
-    border: 2px solid #bb8a04;
-    border-radius: 20px;
-    height: fit-content;
-    margin-bottom: 10px;
-}
-
-.buttons-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.buttons-container .pawn, .buttons-container .cancel {
-    padding: 10px 0;
-    background: #bb8a04;
-    text-decoration: none;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 600;
-    width: 35%;
-    border-radius: 25px;
-    text-align: center;
-    border: 2px solid #bb8a04;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease 0s;
-}
-
-.buttons-container .cancel {
-    background: #fff;
-    color: #bb8a04;
-}
-
-.buttons-container .pawn:hover, .buttons-container .cancel:hover {
-    background-color: #000;
-    transform: translateY(-5px);
-} */

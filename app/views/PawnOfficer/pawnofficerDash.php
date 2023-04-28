@@ -200,8 +200,8 @@
                                                     <td><?php echo $validated_article->id;?></td>
                                                     <td><?php echo 'Rs. ' . $validated_article->estimated_value;?></td>
                                                     <td><?php echo ($validated_article->validation_status) ? 'Valid' : 'Invalid';?></td>
-                                                    <td><a href="<?php echo URLROOT; ?>/pawnings/confirm_pawn/<?php echo $validated_article->id; ?>" class="btn-validated btn-pawn">Pawn</a></td>
-                                                    <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                                    <td><a href="<?php echo URLROOT; ?>/pawnings/confirm_pawn/<?php echo $validated_article->id; ?>" class="btn-validated btn-pawn">View</a></td>
+                                                    <!-- <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td> -->
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
