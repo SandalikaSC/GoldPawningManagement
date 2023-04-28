@@ -16,8 +16,7 @@
         }
 
         public function getInterestRates() {
-            $this->db->query('SELECT Interest_Rate FROM interest ORDER BY Last_Edit DESC LIMIT 1;');
-            $this->db->query('SELECT * FROM interest');
+            $this->db->query('SELECT * FROM interest WHERE interest_ID = 1;');
 
             $row = $this->db->single();
             if ($this->db->rowCount() > 0) {
@@ -38,6 +37,10 @@
         }
 
         public function getValidatedArticles() {
-            
+            $this->db->query('SELECT * FROM validation_articles WHERE status = 1 AND pawn_officer_or_vault_keeper LIKE "PO%";');
+
+            $results = $this->db->resultSet();
+
+            return $results;
         }
     }

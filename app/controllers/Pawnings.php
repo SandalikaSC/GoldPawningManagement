@@ -63,6 +63,91 @@
             $this->view('PawnOfficer/renew_pawn', $data);
         }
 
+        public function confirm_pawn($id) {
+            // Get validation details of the article
+            $validation_details = $this->pawningModel->getValidationDetailsByID($id);
+            $customer = $this->pawningModel->getCustomerByID($validation_details->customer);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'validation_details' => $validation_details,
+                    'customer_details' => $customer,
+                    'full_loan' => trim($_POST['full-loan']),
+                    'payment_method' => trim($_POST['payment-method']),
+                    'pawn_officer' => $_SESSION['user_id'],
+                    'full_loan_err' => ''
+                ];
+
+                if(empty($data['full_loan'])) {
+                    $data['full_loan_err'] = "Please enter the full loan amount customer decided";
+                }                
+
+                if(($data['full_loan']) > ($data['validation_details']->estimated_value)) {
+                    $data['full_loan_err'] = "Full loan must not exceed the estimated value of the article";
+                }
+
+                // if(isset($_POST['Pawn']))  {
+                //     if(empty($data['full_loan_err'])) {
+                //         if(isset($_POST['Confirm'])) {
+                //             $pawn_article = $this->pawningModel->pawnArticle($data);
+
+                //             if($pawn_article) {
+                //                 redirect('/pawningOfficerDashboard/dashboard');
+                //             } else {
+                //                 flash('register', 'Something went wrong. Please try again.', 'invalid');
+                //                 $this->view('PawnOfficer/confirmPawn', $data); 
+                //             }
+                //         }
+                //     } else {
+                //         $this->view('PawnOfficer/confirmPawn', $data);
+                //     }
+                // }
+                // if(isset($_POST['Pawn'])) {
+                //     if($data['validation_details']->validation_status) {
+                        if(empty($data['full_loan_err'])) {
+                            if(isset($_POST['Pawn'])) {
+                                if($data['validation_details']->validation_status) {
+                                    $pawn_article = $this->pawningModel->pawnArticle($data);
+    
+                                    if($pawn_article) {
+                                        redirect('/pawningOfficerDashboard/dashboard');
+                                    } else {
+                                        flash('register', 'Something went wrong. Please try again.', 'invalid');
+                                        $this->view('PawnOfficer/confirmPawn', $data); 
+                                    }
+                                } else {
+                                    flash('register', 'Article cannot be pawned since it is not valid', 'invalid');
+                                    $this->view('PawnOfficer/confirmPawn', $data); 
+                                }
+                            }                            
+                        } else {
+                            $this->view('PawnOfficer/confirmPawn', $data);
+                        }
+                    // } else {
+                    //     flash('register', 'Article cannot be pawned since it is not valid', 'invalid');
+                    //     $this->view('PawnOfficer/confirmPawn', $data);  
+                    // }
+                    
+                // } 
+            } else {
+                $data = [
+                    'validation_details' => $validation_details,
+                    'customer_details' => $customer,
+                    'full_loan' => '',
+                    'payment_method' => '',
+                    'pawn_officer' => $_SESSION['user_id'],
+                    'full_loan_err' => ''
+                ];
+    
+                $this->view('PawnOfficer/confirmPawn', $data);
+            }
+
+           
+        }
+
         public function new_pawning() {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process form
@@ -114,7 +199,7 @@
                 }
 
                 if(empty($data['type_err']) && empty($data['image_err']) && empty($data['nic_err']) && empty($data['email_err'])) {
-                    $success = $this->pawningModel->addArticle($data);
+                    $success = $this->pawningModel->addArticleToValidate($data);
 
                     if($success) {
                         // Redirect to successful message                        

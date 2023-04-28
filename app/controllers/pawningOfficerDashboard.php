@@ -10,12 +10,14 @@
             $gold_rates = $this->model('pawningOfficer')->getGoldRates();
             $interest = $this->model('pawningOfficer')->getInterestRates();           
             $appointments = $this->model('pawningOfficer')->getAppointments();
+            $validated_articles = $this->model('pawningOfficer')->getValidatedArticles();
 
             $data = [
                 'title' => 'Dashboard',
                 'gold_rates' => $gold_rates,
                 'interest' => $interest,
-                'appointments' => $appointments
+                'appointments' => $appointments,
+                'validated_articles' => $validated_articles
             ];
 
             $this->view('PawnOfficer/pawnofficerDash', $data);

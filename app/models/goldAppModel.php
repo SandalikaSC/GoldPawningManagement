@@ -35,7 +35,7 @@
 
             return $results;
         }
-
+        
         // Get gold rates from the database
         public function getGoldRates() {
             $this->db->query('SELECT * FROM gold_rate');
@@ -70,6 +70,11 @@
             // New article ID
             ++$article_id;
 
+            $weight = $data['weight'];
+            if($data['unit'] == 'ounce') {
+                $weight = $weight * 31;
+            }
+
             // Update the validation_articles table
             $this->db->query('UPDATE validation_articles SET status=:status, gold_appraiser=:gold_appraiser, validation_status=:validation_status, karatage=:karatage, weight=:weight, estimated_value=:estimated_value WHERE id=:validation_id;');
 
@@ -82,7 +87,7 @@
             }
 
             $this->db->bind(':karatage', $data['karats']);
-            $this->db->bind(':weight', $data['weight']);
+            $this->db->bind(':weight', $weight);
             $this->db->bind(':estimated_value', $data['estimated_value']);
             $this->db->bind(':validation_id', $data['validation_id']);   
 

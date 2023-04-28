@@ -108,17 +108,24 @@
                 <div class="bottom-div">
                     <h2>Articles to be Validated</h2>
                     <div class="article-details">
-                        <?php foreach($data['articles_to_validate'] as $article_to_validate) : ?>
-                            <div class="article-details-card">
-                                <img src="<?php echo $article_to_validate->image; ?>">
-                                <div><label>Validation ID: </label><?php echo $article_to_validate->id; ?></div>
-                                <div><label>Customer ID: </label><?php echo $article_to_validate->customer; ?></div>
-                                <div><label>Type: </label><?php echo $article_to_validate->article_type; ?></div>
-                                <div class="div-btn">
-                                    <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $article_to_validate->id; ?>">Validate</a>
-                                </div>
+                        <?php if(empty($data['articles_to_validate'])) : ?>
+                            <div class="no-articles">
+                                <img src="<?php echo URLROOT?>/img/no-payment-history.svg" alt="No Article Found">
+                                <div>No Articles to be Validated</div>
                             </div>
-                        <?php endforeach; ?>                     
+                        <?php else : ?>
+                            <?php foreach($data['articles_to_validate'] as $article_to_validate) : ?>
+                                <div class="article-details-card">
+                                    <img src="<?php echo $article_to_validate->image; ?>">
+                                    <div><label>Validation ID: </label><?php echo $article_to_validate->id; ?></div>
+                                    <div><label>Customer ID: </label><?php echo $article_to_validate->customer; ?></div>
+                                    <div><label>Type: </label><?php echo $article_to_validate->article_type; ?></div>
+                                    <div class="div-btn">
+                                        <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $article_to_validate->id; ?>">Validate</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
 
