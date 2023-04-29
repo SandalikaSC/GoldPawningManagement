@@ -7,20 +7,61 @@ class LockerValidation extends Controller
         if (!isLoggedIn()) {
             redirect('/Users');
         }
-        // $this->Model = $this->model('Appointment');
-
+        $this->customerModel = $this->model('Customer');
     }
     public function index()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Process form 
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        }else{
+    { 
+        if (isset($_POST['appointment_allocation'])) {
 
-            $this->view('VaultKeeper/newAllocation');
+            $data = [
+                'customerId' => '',
+                'name' => '',
+                'phone' => '',
+                'nic' => '',                
+                'image' => "",
+                'appointment' => ''
+
+            ];
+            $this->view('VaultKeeper/newAllocation', $data);
+        } else {
+            $data = [
+                'customerId' => '',
+                'name' => '',
+                'phone' => '',
+                'nic' => '',
+                'image' => "",
+                'appointment' => ''
+
+            ];
+            $this->view('VaultKeeper/newAllocation', $data);
         }
-       
+    }
+    public function validation($appointment)
+    {
+        if (!empty($_POST['id']) && !empty($_POST['image'])) {
+            
+        } else {
+            notification('validation',"Please fill require fields",'red');
+            if ($appointment==0) {
+                $appointment=null;
+            }
+            $data = [
+                'customerId' => $_POST['id'],
+                'name' => $_POST['name'],
+                'phone' => $_POST['phone'],
+                'nic' => $_POST['nic'],
+                'image' => $_POST['image'],
+                'appointment' => $appointment
+
+            ];
+            $this->view('VaultKeeper/newAllocation', $data);
+        }
+    }
+    public function getCustomer()
+    {
+
+        $customer = $this->customerModel->getCustomerByIdNIC($_GET["customerid"]);
+
+        echo json_encode($customer);
     }
 }
-?>

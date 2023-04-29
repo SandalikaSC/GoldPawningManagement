@@ -87,7 +87,7 @@
 
                 </div>
                 <div class="appo-info">
-                    <a href="<?php echo URLROOT ?>/LockerValidation"><button class="allocate">+ New Allocation</button></a>
+                    <form action="<?php echo URLROOT ?>/LockerValidation" method="post"><button  type="submit" name="new_allocation" class="allocate">+ New Allocation</button></form>
                     <div class="app-list">
                         <h2> Today Appointments</h2>
                         <?php if(empty($data['appointments'])):?>
@@ -95,16 +95,16 @@
                         <?php else:?>
                         <?php $id=1;?>
                         <?php foreach ($data['appointments'] as $appointment): ?>
-                        <div class="appointment">
+                        <form action="<?php echo URLROOT ?>/LockerValidation" method="Post" class="appointment">
 
                             <label class="time" for=""><?= $appointment->time;?></label>
                             <div class="appo-content">
                                 <label for=""><?= $appointment->Appointment_Id;?></label>
                                 <label for=""> <?= $appointment->First_Name." ".$appointment->Last_Name;?></label>
-                                <button class="Allocate">Take</button>
+                                <button type="submit" name="appointment_allocation" class="Allocate">Take</button>
                             </div>
 
-                        </div>
+                        </form>
 
                         <?php endforeach; ?>
                         <?php endif ;?>

@@ -97,3 +97,12 @@ input,select,option{
     justify-content: space-around;
     padding: 2% 14%
 }
+
+.error {
+    align-self: center;
+    color: #fd4d4d;
+    padding: 1% 17%;
+    /* border: 1px solid;
+    border-radius: 11px; */
+    /* background: #ffd9d9a8; */
+}

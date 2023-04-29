@@ -18,31 +18,44 @@
         </div>
 
     </div>
-    <form class="content">
+    <?php notification('validation') ?>
+    <form class="content" method="Post" action="<?php echo URLROOT ?>/LockerValidation/validation/<?php if (!empty($data['appointment'])) {
+                                                                                                        echo $data['appointment'];
+                                                                                                    } else {
+                                                                                                        echo "0";
+                                                                                                    } ?>">
         <div class="validation-img">
-            <div class="search-container" method="post" action="<?php echo URLROOT ?>/LockerValidation/getCustomer">
-                <input type="text" name="" id="search" placeholder="Enter CustomerId or NIC">
-                <button  class="search-icon" id="searchbtn"></button>
-            </div>
+            <?php if (empty($data['appointment'])) : ?>
+                <div class="search-container" method="post" action="<?php echo URLROOT ?>/LockerValidation/getCustomer">
+                    <input type="text" name="" id="search" placeholder="Enter CustomerId or NIC">
+                    <button type="button" class="search-icon" id="searchbtn" onclick="searchCustomer()"></button>
+                </div>
+            <?php else : ?>
+                <div class="search-container" method="post" action="<?php echo URLROOT ?>/LockerValidation/getCustomer">
+                    <input type="text" name="appointment" id="appointment" value="<?php echo $data['appointment'] ?>"   readonly>
+                     
+                </div>
+            <?php endif; ?>
+            <span class="error" id="error"></span>
             <img src="<?php echo URLROOT ?>/img/Web search-cuate.svg" alt="">
         </div>
         <div class="cus-details">
             <h2>Customer Details</h2>
             <div class="info-section">
                 <label for="id">Customer Id</label>
-                <input type="text" name="id" id="id" readonly>
+                <input type="text" name="id" id="id" value="<?= $data['customerId'] ?>" readonly>
             </div>
             <div class="info-section">
                 <label for="fname">Name</label>
-                <input type="text" name="fname" id="fname" readonly>
+                <input type="text" name="name" id="fname" value="<?= $data['name'] ?>" readonly>
             </div>
             <div class="info-section">
                 <label for="Phone">Phone Number</label>
-                <input type="text" name="Phone" id="Phone" readonly>
+                <input type="text" name="phone" id="Phone" value="<?= $data['phone'] ?>" readonly>
             </div>
             <div class="info-section">
                 <label for="NIC">NIC</label>
-                <input type="text" name="NIC" id="NIC" readonly>
+                <input type="text" name="nic" id="NIC" value="<?= $data['nic'] ?>" readonly>
             </div>
         </div>
         <div class="article-details">
@@ -64,11 +77,10 @@
             <div class="info-section">
                 <label for="img">Article Image</label>
                 <input type="file" name="img" id="img">
+                <input type="hidden" id="imageData" name="image">
             </div>
             <!-- <div class="info-section" > -->
-            <a href="" id="validation_btn" class="btn">Validation</a>
-
-            <!-- </div> -->
+            <button type="submit" id="validation_btn" class="btn">Validation</button>
 
         </div>
 
@@ -78,5 +90,103 @@
 
 
     </div>
-    <script src='<?php echo URLROOT ?>/js/Vk_newallocation.js'></script>
+    <script>
+        let validation_btn = document.getElementById("validation_btn");
+        const fileInput = document.getElementById('img');
+
+        var searchid = document.getElementById('search');
+        var error = document.getElementById('error');
+        var id = document.getElementById('id');
+
+        // image set
+        let imageChooser = document.getElementById('img');
+        let image = '';
+        imageChooser.addEventListener('change', () => {
+            file = imageChooser.files[0];
+            if (file) {
+                const fileReader = new FileReader(); //create an object using FileReader class
+                fileReader.readAsDataURL(file);
+                fileReader.addEventListener('load', () => {
+                    image = fileReader.result;
+                    // document.getElementById('profile-pic').src = image;
+                    document.getElementById('imageData').value = image;
+                })
+            }
+        })
+
+
+        validation_btn.addEventListener('click', function(event) {
+            // $.ajax({
+            //     type: "POST",
+            //     url: "<?= URLROOT ?>/CustomerPawn/getTimeSlots",
+            //     data: {
+            //         date: selectedDate
+            //     },
+            //     dataType: "JSON",
+            //     success: function(response) {
+
+
+            //     },
+            //     error: function(xhr, status, error) {
+            //         console.log("Error: " + error);
+            //     }
+            // });
+
+
+
+        });
+        if ('<?php echo $data['appointment'] ?>' == '') {
+            searchid.addEventListener('change', function(event) {
+                error.innerHTML = '';
+                document.getElementById('id').value = "";
+                document.getElementById('fname').value = "";
+                document.getElementById('Phone').value = "";
+                document.getElementById('NIC').value = "";
+
+
+            });
+        }
+        // Define the searchCustomer function
+        function searchCustomer() {
+
+            var customerid = searchid.value;
+
+            // Define a regular expression to match
+            var regex = /^([Cc][Uu]\d+|\d{12}|\d{10}[Vv])$/;
+            // Test if the customer ID matches the regular expression
+            if (regex.test(customerid)) {
+                // Convert the customer ID to uppercase
+                searchid.value = customerid.toUpperCase();
+
+                $.ajax({
+                    type: "GET",
+                    url: "<?= URLROOT ?>/LockerValidation/getCustomer",
+                    data: {
+                        customerid: customerid
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        if (!response || response.length === 0) {
+                            error.innerHTML = '*Not Registered as a customer';
+
+                        } else {
+                            document.getElementById('id').value = response.UserId;
+                            document.getElementById('fname').value = response.First_Name + " " + response.Last_Name;
+                            document.getElementById('Phone').value = response.phone;
+                            document.getElementById('NIC').value = response.NIC;
+
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            } else {
+
+                error.innerHTML = '*Invalid Details';
+
+            }
+
+        }
+    </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>
