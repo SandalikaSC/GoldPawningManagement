@@ -7,7 +7,7 @@
         }
 
         public function getPawnedItems() {
-            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id;');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Status = "Pawned";');
 
             $results = $this->db->resultSet();
 
@@ -16,7 +16,7 @@
 
         // Get customer details using pawned item's Pawn_Id
         public function getPawnItemById($id) {
-            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Pawn_Id = :id');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Pawn_Id = :id AND pawn.Status = "Pawned"');
             $this->db->bind(':id', $id);
 
             $row = $this->db->single();

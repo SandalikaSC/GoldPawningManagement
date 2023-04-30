@@ -6,6 +6,7 @@
             }
 
             $this->customerModel = $this->model('Customer');
+            $this->pawningModel = $this->model('Pawning');
         }
 
         public function index() {
@@ -258,9 +259,11 @@
         public function customer_view_more($id) {
             // Get customer
             $customers = $this->customerModel->getCustomerById($id);
+            $pawned_items = $this->pawningModel->getPawnByUserID($id);
 
             $data = [
-                'customers' => $customers
+                'customers' => $customers,
+                'pawns' => $pawned_items
             ];
 
             $this->view('PawnOfficer/customer_view_more', $data);
@@ -276,7 +279,6 @@
             ];
               $this->view('VaultKeeper/viewCustomer',$data);
         }
-
-
+        
 
     }

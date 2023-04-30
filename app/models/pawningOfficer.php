@@ -29,7 +29,10 @@
         public function getAppointments() {
             $this->db->query('SELECT * FROM appointment LEFT JOIN time_slot
                               ON appointment.slot_Id = time_slot.slot_ID JOIN reason
-                              ON reason.Reason_ID = appointment.Reason_ID');
+                              ON reason.Reason_ID = appointment.Reason_ID WHERE 
+                              reason.Reason_ID = 1 AND
+                              appointment.appointment_date > CURDATE()
+                              ;');
 
             $results = $this->db->resultSet();
 
