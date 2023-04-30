@@ -174,3 +174,8 @@ background-color: #bb8a04b3;
     background-color:#bb8a04 ;
     border: none;
 }
+.readonly{
+    outline: none;
+    border: none;
+    text-align: center;
+}

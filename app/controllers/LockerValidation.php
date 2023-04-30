@@ -8,18 +8,21 @@ class LockerValidation extends Controller
             redirect('/Users');
         }
         $this->customerModel = $this->model('Customer');
+        $this->appointmentModel = $this->model('Appointment');
     }
     public function index()
-    { 
+    {
         if (isset($_POST['appointment_allocation'])) {
+            $appointment = $this->appointmentModel->getAppointmentByAppId($_POST['appointment_id']);
+            $customer = $this->customerModel->getCustomerById($appointment->UserID);
 
             $data = [
-                'customerId' => '',
-                'name' => '',
-                'phone' => '',
-                'nic' => '',                
+                'customerId' => $customer->UserId,
+                'name' => $customer->First_Name . ' ' . $customer->Last_Name,
+                'phone' => $customer->phone,
+                'nic' => $customer->NIC,
                 'image' => "",
-                'appointment' => ''
+                'appointment' => $_POST['appointment_id']
 
             ];
             $this->view('VaultKeeper/newAllocation', $data);
@@ -40,10 +43,15 @@ class LockerValidation extends Controller
     {
         if (!empty($_POST['id']) && !empty($_POST['image'])) {
             
+
+
+
+
+
         } else {
-            notification('validation',"Please fill require fields",'red');
-            if ($appointment==0) {
-                $appointment=null;
+            notification('validation', "Please fill require fields", 'red');
+            if ($appointment == 0) {
+                $appointment = null;
             }
             $data = [
                 'customerId' => $_POST['id'],
@@ -55,7 +63,7 @@ class LockerValidation extends Controller
 
             ];
             $this->view('VaultKeeper/newAllocation', $data);
-        }
+        }  
     }
     public function getCustomer()
     {

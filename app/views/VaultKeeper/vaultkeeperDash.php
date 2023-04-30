@@ -97,9 +97,9 @@
                         <?php foreach ($data['appointments'] as $appointment): ?>
                         <form action="<?php echo URLROOT ?>/LockerValidation" method="Post" class="appointment">
 
-                            <label class="time" for=""><?= $appointment->time;?></label>
+                            <label class="time" for=""><?= $appointment->time;?></label> 
                             <div class="appo-content">
-                                <label for=""><?= $appointment->Appointment_Id;?></label>
+                                <input type="text" name="appointment_id" readonly value="<?= $appointment->Appointment_Id;?>" class="readonly"></input>
                                 <label for=""> <?= $appointment->First_Name." ".$appointment->Last_Name;?></label>
                                 <button type="submit" name="appointment_allocation" class="Allocate">Take</button>
                             </div>
