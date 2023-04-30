@@ -258,6 +258,12 @@
 
             return $row;
         }
+        public function getPawnById($Id) {
+            $this->db->query('SELECT * FROM pawn where Pawn_Id=:Pawn_Id');
+            $this->db->bind(':Pawn_Id', $Id);
+            $row = $this->db->single();;
 
+            return $row;
+        }
 
     }

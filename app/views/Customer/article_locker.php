@@ -61,6 +61,13 @@
                                 </label>
                             </div>
                             <?php if ($days_diff > 0) : ?>
+                                <?php if (!empty($data['reservation']->finePaidTill)) : ?>
+                                    <div class="jw-date-name">
+                                        <label>Fine Paid till</label>
+                                        <label class="jw-dt"><?php echo $data['reservation']->finePaidTill ?></label>
+                                    </div>
+
+                                <?php endif; ?>
                                 <div class="jw-date-name">
                                     <label class="status tag-overdue">Overdue</label>
                                 </div>
@@ -172,7 +179,8 @@
 
             <?php $interval = date_diff(date_create($data['reservation']->Retrieve_Date), date_create());
             $days_diff = $interval->days * ($interval->invert ? -1 : 1);
-            if ($days_diff > 0 && $data['reservation']->Retrive_status !== 1) : ?>
+            if ($days_diff > 0 && $data['reservation']->Retrive_status !== 1 && (empty($data['reservation']->finePaidTill) || date('Y-m-d') > $data['reservation']->finePaidTill)) : ?>
+
                 <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservation']->Allocate_Id ?>" method="get">
                     <button class="pay-btn">Pay</button>
 
@@ -185,34 +193,21 @@
                     Payment History </h2>
                 <div class="payments">
                     <div class="pay-header">
-                        <label>Pay ID</label>
-                        <label>Inst No</label>
+                        <label>Pay ID</label> 
                         <label>Paid Date</label>
-                        <label> Amount</label>
+                        <label> Amount</label> 
+                        <label> Type</label> 
 
                     </div>
-                    <div class="payment-content">
-                        <label>PD1956</label>
-                        <label>03</label>
-                        <label>2022/09/30 09:53 A.M.</label>
-                        <label>Rs. 5000</label>
+                    <?php foreach ($data['payment'] as $paymnet) : ?>
+                        <div class="payment-content">
+                            <label><?= $paymnet->PID ?></label> 
+                            <label><?= date("Y-m-d", strtotime($paymnet->Date)) ?></label>
+                            <label><?= 'Rs. '.$paymnet->Amount ?></label>
+                            <label><?= trim($paymnet->Type) ?></label>
 
-                    </div>
-                    <div class="payment-content">
-                        <label>PD1866</label>
-                        <label>02</label>
-                        <label>2022/09/30 09:53 A.M.</label>
-                        <label>Rs.25000</label>
-
-                    </div>
-                    <div class="payment-content">
-                        <label>PD1096</label>
-                        <label>01</label>
-                        <label>2022/09/30 09:53 A.M.</label>
-                        <label>Rs. 15000</label>
-
-                    </div>
-
+                        </div> 
+                    <?php endforeach; ?>
                 </div>
             </div>
 

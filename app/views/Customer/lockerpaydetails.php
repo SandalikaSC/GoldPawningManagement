@@ -79,6 +79,13 @@
                             </div>
 
                         </div>
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Fine Paid till</label>
+                                <label class="jw-dt"><?php echo $data['finePaidTill'] ?></label>
+                            </div>
+
+                        </div>
                         <h2 class="sub-title">
                             Want to extend reservation ?
                         </h2>
@@ -121,7 +128,7 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label class="err" id="extend-err"> </label>
-                        <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="updateExtendPaymnet()" value="Extend">Extend</button>
+                        <!-- <button type="button" name="date" id="btnExtend" class="btn-extend" onclick="updateExtendPaymnet()" value="Extend">Extend</button> -->
                     </div>
 
                 </div>
@@ -157,7 +164,7 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label class="err" id="appointment-err"> * </label>
-                        <button type="button" name="date" id="addAppointment" class="btn-extend" value="Extend" onclick="updatefinePaymnet()">Add</button>
+                        <!-- <button type="button" name="date" id="addAppointment" class="btn-extend" value="Extend" onclick="updatefinePaymnet()">Add</button> -->
                     </div>
 
                 </div>
@@ -171,7 +178,19 @@
                 </h2>
                 <div class="sec">
                     <label for="Due">Due Pay</label>
-                    <label class="Due-pay" id="fine_pay" for="Total"> Rs. <?= number_format($data['duedays'] * $data['fineRate']->Interest_Rate, 2); ?></label>
+                    <label class="Due-pay" id="fine_pay" for="Total">
+                        <?php
+                        if (empty($data['finePaidTill'])) {
+                            echo 'Rs.' . number_format($data['duedays'] * $data['fineRate']->Interest_Rate, 2);
+                        } else {
+                            $date1 = new DateTime('today');
+                            $date2 = DateTime::createFromFormat('Y-m-d', $data['finePaidTill']);
+                            $interval = $date2->diff($date1);
+                            $fineAmount = $interval->days * $data['fineRate']->Interest_Rate;
+                            echo 'Rs. ' . number_format($fineAmount, 2);
+                        }
+                        ?>
+                    </label>
                 </div>
                 <div class="sec">
                     <label for="Total">Extend Pay</label>
@@ -179,11 +198,21 @@
                 </div>
                 <div class="sec">
                     <label for="Total">Total Pay</label>
-                    <label class="Tot-pay" id="total_pay" for="Total"> Rs. <?= number_format($data['duedays'] * $data['fineRate']->Interest_Rate, 2); ?></label>
+                    <label class="Tot-pay" id="total_pay" for="Total"> <?php
+                                                                        if (empty($data['finePaidTill'])) {
+                                                                            echo 'Rs.' . number_format($data['duedays'] * $data['fineRate']->Interest_Rate, 2);
+                                                                        } else {
+                                                                            $date1 = new DateTime('today');
+                                                                            $date2 = DateTime::createFromFormat('Y-m-d', $data['finePaidTill']);
+                                                                            $interval = $date2->diff($date1);
+                                                                            $fineAmount = $interval->days * $data['fineRate']->Interest_Rate;
+                                                                            echo 'Rs. ' . number_format($fineAmount, 2);
+                                                                        }
+                                                                        ?> </label>
                 </div>
                 <div class=" sec-btn">
                     <a class="p-btn " href="">Cancel </a>
-                    <button class="p-btn " onclick="paymentGatway()">Pay</button>
+                    <button class="p-btn " id="btn" onclick="paymentGatway()">Pay</button>
                 </div>
             </div>
 
@@ -191,7 +220,31 @@
         <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
         <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
         <script>
-            var fine, extend = 0;
+            document.getElementById("btn").style.display = 'none';
+            let extend = 0;
+            var payment_status = false;
+            let fine = <?php
+                        if (empty($data['finePaidTill'])) {
+                            echo $data['duedays'] * $data['fineRate']->Interest_Rate;
+                        } else {
+                            $date1 = new DateTime('today');
+                            $date2 = DateTime::createFromFormat('Y-m-d', $data['finePaidTill']);
+                            $interval = $date2->diff($date1);
+                            $fineAmount = $interval->days * $data['fineRate']->Interest_Rate;
+                            echo $fineAmount;
+                        }
+                        ?>;
+            let paidfine = <?php
+                            if (empty($data['finePaidTill'])) {
+                                echo 0;
+                            } else {
+                                $date1 = new DateTime('today');
+                                $date2 = DateTime::createFromFormat('Y-m-d', $data['finePaidTill']);
+                                $interval = $date2->diff($date1);
+                                $fineAmount = $interval->days * $data['fineRate']->Interest_Rate;
+                                echo  $fineAmount;
+                            }
+                            ?>;
             var total = document.getElementById("total_pay").textContent.trim();
 
             var today = new Date();
@@ -209,6 +262,7 @@
 
             document.getElementById("extend").classList.add("disabledbutton");
             yes.addEventListener("click", function(event) {
+                document.getElementById("btn").style.display = 'none';
                 document.getElementById("extend").classList.add("flexbutton");
                 document.getElementById("extend").classList.remove("disabledbutton");
                 document.getElementById("appointment").classList.add("disabledbutton");
@@ -216,6 +270,7 @@
             });
 
             no.addEventListener("click", function(event) {
+                document.getElementById("btn").style.display = 'none';
                 document.getElementById("appointment").classList.add("flexbutton");
                 document.getElementById("appointment").classList.remove("disabledbutton");
                 document.getElementById("extend").classList.add("disabledbutton");
@@ -223,6 +278,9 @@
             });
 
             function checkDate() {
+                document.getElementById("appointment-err").textContent = "";
+                document.getElementById("extend-err").textContent = "";
+                document.getElementById("btn").style.display = 'none';
                 var selectedDate = document.getElementById("extenddate").value;
                 selectedDate = new Date(selectedDate);
                 const currentDate = new Date();
@@ -230,7 +288,6 @@
                 // Compare the two dates
                 if (selectedDate <= currentDate) {
                     document.getElementById("extend-err").textContent = "Invalid Date selected";
-                    document.getElementById("btnExtend").disabled = true;
                     document.getElementById("extend-payment-box").textContent = "Rs . 00.00";
                     document.getElementById("fine_pay").textContent = "Rs .00.00";
                     document.getElementById("total_pay").textContent = "Rs .00.00";
@@ -238,7 +295,7 @@
                 } else {
 
                     document.getElementById("extend-err").textContent = "";
-                    document.getElementById("btnExtend").disabled = false;
+                    // document.getElementById("btnExtend").disabled = false;
                     var retrieve = '<?= $data['retrieve_Date'] ?>';
                     var result = getMonthsAndDays(retrieve, selectedDate);
                     extend = result.months * <?= $data['installement'] ?> + <?= $data['installement'] / 30.44 ?> * result.days;
@@ -248,13 +305,15 @@
                     document.getElementById("fine_pay").textContent = "Rs ." + fine.toFixed(2);
                     document.getElementById("total_pay").textContent = "Rs ." + total.toFixed(2);
                     document.getElementById("extend_pay").textContent = "Rs ." + extend.toFixed(2);
+                    document.getElementById("btn").style.display = 'flex';
 
                 }
 
             }
 
             function handleDateSelection() {
-
+                document.getElementById("appointment-err").textContent = "";
+                document.getElementById("extend-err").textContent = "";
                 var selectedDate = document.getElementById("appointment_date").value;
                 selectedDate = new Date(selectedDate);
                 const currentDate = new Date();
@@ -266,14 +325,14 @@
                         parentElement.removeChild(parentElement.firstChild);
                     }
                     document.getElementById("appointment-err").textContent = "Invalid Date selected";
-                    document.getElementById("addAppointment").disabled = true;
+                    document.getElementById("btn").style.display = 'none';
                     document.getElementById("fine_pay").textContent = "Rs .00.00";
                     document.getElementById("total_pay").textContent = "Rs .00.00";
                     document.getElementById("extend_pay").textContent = "Rs .00.00";
                 } else {
                     updatefinePaymnet();
                     document.getElementById("appointment-err").textContent = "";
-                    document.getElementById("addAppointment").disabled = false;
+                    document.getElementById("btn").style.display = 'flex';
                     $.ajax({
                         type: "POST",
                         url: "<?= URLROOT ?>/CustomerLocker/getTimeSlots",
@@ -320,7 +379,7 @@
                 var differenceDays = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
 
 
-                fine = (differenceDays + <?= $data['duedays'] ?>) * <?= $data['fineRate']->Interest_Rate ?>;
+                fine = (differenceDays + <?= $data['duedays'] ?>) * <?= $data['fineRate']->Interest_Rate ?> - paidfine;
                 extend = 0;
 
 
@@ -334,19 +393,19 @@
 
             }
 
-            function updateExtendPaymnet() {
-                var selectedDate = document.getElementById("extenddate").value;
-                var retrieve = '<?= $data['retrieve_Date'] ?>';
+            // function updateExtendPaymnet() {
+            //     var selectedDate = document.getElementById("extenddate").value;
+            //     var retrieve = '<?= $data['retrieve_Date'] ?>';
 
-                var result = getMonthsAndDays(retrieve, selectedDate);
-                extend = result.months * <?= $data['installement'] ?> + <?= $data['installement'] / 30.44 ?> * result.days;
-                fine = 0;
-                total = fine + extend;
-                document.getElementById("fine_pay").textContent = "Rs ." + fine.toFixed(2);
-                document.getElementById("total_pay").textContent = "Rs ." + total.toFixed(2);
-                document.getElementById("extend_pay").textContent = "Rs ." + extend.toFixed(2);
+            //     var result = getMonthsAndDays(retrieve, selectedDate);
+            //     extend = result.months * <?= $data['installement'] ?> + <?= $data['installement'] / 30.44 ?> * result.days;
+            //     fine = 0;
+            //     total = fine + extend;
+            //     document.getElementById("fine_pay").textContent = "Rs ." + fine.toFixed(2);
+            //     document.getElementById("total_pay").textContent = "Rs ." + total.toFixed(2);
+            //     document.getElementById("extend_pay").textContent = "Rs ." + extend.toFixed(2);
 
-            }
+            // }
 
             function getMonthsAndDays(start, end) {
                 const date1 = new Date(start);
@@ -367,11 +426,14 @@
             // payment
 
 
-            function paymentGatway() {
+
+            async function paymentGatway() {
+                payment_status = false;
                 var extenddate;
                 var appointment;
-                let appointment_id; 
-                
+                let appointment_id;
+                let allocate_Id = <?= $data['reservationId'] ?>;
+
 
                 const selected = document.querySelector('input[name="accept-offers"]:checked').value;
                 if (selected == 2) {
@@ -384,12 +446,13 @@
                     };
                 } else {
                     appointment = null;
+                    payment_status = true;
                     extenddate = document.getElementById("extenddate").value;
 
                 }
 
                 if (selected == 2) {
-                    $.ajax({
+                    await $.ajax({
                         type: "GET",
                         url: "<?= URLROOT ?>/PaymentGateway/addAppointment",
                         data: {
@@ -397,110 +460,118 @@
                         },
                         dataType: "JSON",
                         success: function(response) {
-                            if (response) {
+                            if (response != false) {
                                 appointment_id = response; // assign appointment_id value
+                                payment_status = true;
 
                             } else {
                                 document.getElementById("appointment-err").textContent = "Appointment Date and time is not available";
+                                payment_status = false;
+                                document.getElementById("btn").style.display = 'none';
+
                             }
+
                         },
                         error: function(xhr, status, error) {
                             console.log("Error: " + error);
                         }
                     });
+                }
+                // alert(payment_status);
+
+                if (payment_status) {
+                    var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object 
+                    xhr.onreadystatechange = function() { // set the callback function
+                        if (xhr.readyState == 4) {
+                            // handle the response
+
+                            var obj = xhr.responseText;
+
+                            object = JSON.parse(obj);
+                            var payment = {
+                                amount: object['amount'],
+                                order_id: object['order_id']
+                            };
+
+                            // Payment completed.It can be a successful failure.
+                            payhere.onCompleted = function onCompleted(orderId) {
+                                //    alert("Payment completed. OrderID:" + object["order_id"]);
+                                // Note: validate the payment and show success or failure page to the customer
+                                saveDetails(payment, extenddate, appointment, allocate_Id);
+                            };
+
+                            // Payment window closed
+                            payhere.onDismissed = function onDismissed() {
+                                // Note: Prompt user to pay again or show an error page
+                                // alert("Payment dismissed");
+                                DeleteAppointment(appointment_id);
+                            };
+
+                            // Error occurred
+                            payhere.onError = function onError(error) {
+                                // Note: show an error page
+                                DeleteAppointment(appointment_id);
+                            };
+
+                            // Put the payment variables here
+                            var payment = {
+                                "sandbox": true,
+                                "merchant_id": object['merchant_id'], // Replace your Merchant ID
+                                "return_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
+                                "cancel_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
+                                "notify_url": "",
+                                "order_id": object['order_id'],
+                                "items": object['items'],
+                                "amount": object['amount'],
+                                "currency": object['currency'],
+                                "hash": object['hash'], // *Replace with generated hash retrieved from backend
+                                "first_name": object['first_name'],
+                                "last_name": object['last_name'],
+                                "email": object['email'],
+                                "phone": object['phone'],
+                                "address": object['address'],
+                                "city": "Colombo",
+                                "country": "Sri Lanka",
+                                "delivery_address": "No. 46, Galle road, Kalutara South",
+                                "delivery_city": "Kalutara",
+                                "delivery_country": "Sri Lanka",
+                                "custom_1": "",
+                                "custom_2": ""
+                            };
+
+                            // Show the payhere.js popup, when "PayHere Pay" is clicked
+
+                            payhere.startPayment(payment);
+
+                        }
+                    };
+
+                    xhr.open("POST", "<?= URLROOT ?>/PaymentGateway/pay/<?= $data['reservationId'] ?>/" + total, true); // set the request method and URL
+                    xhr.send();
 
                 }
-                
-
-                var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object 
-                xhr.onreadystatechange = function() { // set the callback function
-                    if (xhr.readyState == 4) {
-                        // handle the response
-
-                        var obj = xhr.responseText;
-
-                        object = JSON.parse(obj);
-                        var payment = {
-                            amount: object['amount'],
-                            order_id: object['order_id'],
-                            allocate_Id: <?= $data['reservationId'] ?>
-                        }; 
-                        // Payment completed.It can be a successful failure.
-                        payhere.onCompleted = function onCompleted(orderId) {
-                            //    alert("Payment completed. OrderID:" + object["order_id"]);
-                            // Note: validate the payment and show success or failure page to the customer
-                            saveDetails(payment, extenddate, appointment);
-                        };
-
-                        // Payment window closed
-                        payhere.onDismissed = function onDismissed() {
-                            // Note: Prompt user to pay again or show an error page
-                            // alert("Payment dismissed");
-                            DeleteAppointment(appointment_id);
-                        };
-
-                        // Error occurred
-                        payhere.onError = function onError(error) {
-                            // Note: show an error page
-                            DeleteAppointment(appointment_id);
-                        };
-
-                        // Put the payment variables here
-                        var payment = {
-                            "sandbox": true,
-                            "merchant_id": object['merchant_id'], // Replace your Merchant ID
-                            "return_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
-                            "cancel_url": "<?= URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservationId'] ?>", // Important
-                            "notify_url": "",
-                            "order_id": object['order_id'],
-                            "items": object['items'],
-                            "amount": object['amount'],
-                            "currency": object['currency'],
-                            "hash": object['hash'], // *Replace with generated hash retrieved from backend
-                            "first_name": object['first_name'],
-                            "last_name": object['last_name'],
-                            "email": object['email'],
-                            "phone": object['phone'],
-                            "address": object['address'],
-                            "city": "Colombo",
-                            "country": "Sri Lanka",
-                            "delivery_address": "No. 46, Galle road, Kalutara South",
-                            "delivery_city": "Kalutara",
-                            "delivery_country": "Sri Lanka",
-                            "custom_1": "",
-                            "custom_2": ""
-                        };
-
-                        // Show the payhere.js popup, when "PayHere Pay" is clicked
-
-                        payhere.startPayment(payment);
-
-                    }
-                };
-
-                xhr.open("POST", "<?= URLROOT ?>/PaymentGateway/pay/<?= $data['reservationId'] ?>/" + total, true); // set the request method and URL
-                xhr.send();
-
             }
 
-            function saveDetails(payment, extenddate, appointment) {
-
-
+            function saveDetails(payment, extenddate, appointment, allocate_Id) {
                 $.ajax({
                     type: "GET",
                     url: "<?= URLROOT ?>/PaymentGateway/AddDetails",
                     data: {
                         payment: payment,
                         appointment: appointment,
-                        extend: extenddate
+                        extend: extenddate,
+                        allocate_Id: allocate_Id
                     },
                     dataType: "JSON",
                     success: function(response) {
+                        // alert('<?= URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
+
                         window.location = '<?= URLROOT ?>/CustomerLocker/viewLockerArticle/' + response;
                     }
                 });
 
 
+                // 
             }
 
             function DeleteAppointment(appointment) {
@@ -512,10 +583,7 @@
                     data: {
                         appointment: appointment
                     },
-                    dataType: "JSON",
-                    success: function(response) {
-
-                    }
+                    dataType: "JSON"
                 });
 
 
