@@ -203,7 +203,7 @@ main .main-div-container .pawning-details form .div-buttons {
 main .main-div-container .pawning-details form .div-buttons input[type="submit"] {
     background: #bb8a04;
     padding: 7px;
-    width: 120px;
+    width: 100px;
     font-size: 18px;
     font-style: italic;
     border-radius: 10px;

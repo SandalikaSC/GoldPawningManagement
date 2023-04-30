@@ -27,10 +27,77 @@
 
         <main>
             <div class="main-wrapper">
+                <div class="left-wrapper">
+                    <div class="div-article-details">                        
+                        <div class="div-img">
+                            <img src="<?php echo $data['pawn_item']->image; ?>" alt="article image">
+                        </div>
+                        <div class="div-details">
+                            <div class="field-container">
+                                <label>ARTICLE ID</label>
+                                <div><?php echo $data['pawn_item']->Article_Id; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>PAWNED ID</label>
+                                <div><?php echo $data['pawn_item']->Pawn_Id; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>CUSTOMER ID</label>
+                                <div><?php echo $data['pawn_item']->userId; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>PAYMENT METHOD</label>
+                                <div><?php echo $data['pawn_item']->Repay_Method; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>PAWNED DATE</label>
+                                <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>END DATE</label>
+                                <div><?php echo $data['pawn_item']->End_Date; ?></div>
+                            </div>
+                        </div>                        
+                    </div>
+
+                    <div class="loan-details">
+                        <div class="full-loan">
+                            <label>FULL LOAN AMOUNT</label>
+                            <div>Rs. <?php echo $data['pawn_item']->Amount; ?></div>
+                        </div>
+                        <div class="remaining-loan">
+                            <label>REMAINING TO PAY</label>
+                            <div>Rs. <?php echo $data['pawn_item']->Amount; ?></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-wrapper">
+                    <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                        <h2>Due Payments</h2>
+
+                        <!-- <div class="div-no-due"> 
+                            No Due Payments
+                        </div> -->
+
+                        <div class="div-due">
+                            <div class="div-container">
+                                <label>AMOUNT TO PAY</label>
+                                <div>Rs. 5000.00</div>
+                            </div>
+
+                            <div class="div-container">
+                                <label>BEFORE</label>
+                                <div>2023/04/11</div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <!-- <div class="main-wrapper">
 
                 <div class="div-article-details">
                     <div class="div-img">
-                        <img src="<?php echo URLROOT . '/img/1.png'; ?>" alt="article image">
+                        <img src="<?php echo $data['pawn_item']->image; ?>" alt="article image">
                     </div>
                     <div class="field-container">
                         <label>ARTICLE ID</label>
@@ -48,6 +115,10 @@
                         <label>END DATE</label>
                         <div><?php echo $data['pawn_item']->End_Date; ?></div>
                     </div>
+                    <div class="field-container">
+                        <label>PAYMENT METHOD</label>
+                        <div><?php echo $data['pawn_item']->Repay_Method; ?></div>
+                    </div>
                 </div>
                 
                 <div class="div-payment-details">
@@ -61,7 +132,7 @@
                         <div class="no-history-msg">
                             No Payment History
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="div-history-details">
                         <div class="payment-history">
@@ -93,23 +164,25 @@
                         </div>
                     </div> -->
 
-                    <h2>Due Payments</h2>
+                    <!-- <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                        <h2>Due Payments</h2> -->
 
-                    <!-- <div class="div-no-due">
-                        No Due Payments
-                    </div> -->
+                        <!-- <div class="div-no-due">
+                            No Due Payments
+                        </div> -->
 
-                    <div class="div-due">
-                        <div class="div-container">
-                            <label>AMOUNT TO PAY</label>
-                            <div>Rs. 5000.00</div>
+                        <!-- <div class="div-due">
+                            <div class="div-container">
+                                <label>AMOUNT TO PAY</label>
+                                <div>Rs. 5000.00</div>
+                            </div>
+
+                            <div class="div-container">
+                                <label>BEFORE</label>
+                                <div>2023/04/11</div>
+                            </div>
                         </div>
-
-                        <div class="div-container">
-                            <label>BEFORE</label>
-                            <div>2023/04/11</div>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="div-buttons">
@@ -141,7 +214,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
             
         </main>        
     </div>        
