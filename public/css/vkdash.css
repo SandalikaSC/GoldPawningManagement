@@ -39,9 +39,7 @@
     box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
 
 }
-.app-list h2{
-    /* margin: auto auto 5%; */
-}
+
 .appointment{
     margin: 1%;
     border-left: 3px solid #bb8a04;
@@ -99,12 +97,7 @@
     border-radius: 20px;
     margin: 1%;
 }
-.tag{
 
-}
-.valid{
-
-}
 .action{
     display: flex;
     justify-content: flex-end;

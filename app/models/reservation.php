@@ -21,6 +21,13 @@ class reservation
 
         return $results;
     }
+    public function countTodayAllocation() {
+        $this->db->query('SELECT count(Allocate_Id) as todayAllocation FROM reserves where Date=:Date');
+        $this->db->bind(':Date', date("Y-m-d"));
+        $result = $this->db->single();
+
+        return $result->todayAllocation;
+    }
     public function lockerExtend($date,$reservationId)
     {
         $this->db->query('UPDATE `reserves` SET Retrieve_Date = :newdate, finePaidTill=:finePaidTill WHERE Allocate_Id = :Allocate_Id');

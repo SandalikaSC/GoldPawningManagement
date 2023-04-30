@@ -107,6 +107,21 @@ class Appointment
             return false;
         }
     }
+    public function completeAppointment($appointmentId)
+    {
+        // Prepare Query
+        $this->db->query('UPDATE  appointment set Status=2 Where Appointment_Id= :id');
+
+        // Bind Values
+        $this->db->bind(':id', $appointmentId);
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function getAppointmentFromTo($data)
     {
 
@@ -125,7 +140,7 @@ class Appointment
     public function getAppointmentByDate($date)
     {
 
-        $this->db->query("SELECT * from appointment,time_slot,user where appointment.slot_id=time_slot.slot_ID AND appointment.UserID=user.UserId AND appointment_date =:date order by time_slot.slot_ID;");
+        $this->db->query("SELECT * from appointment,time_slot,user where appointment.slot_id=time_slot.slot_ID AND  appointment.UserID=user.UserId AND appointment_date =:date AND appointment.Status=1 order by time_slot.slot_ID;");
 
         $this->db->bind(':date', $date);
         $results = $this->db->resultset();

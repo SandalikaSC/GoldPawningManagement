@@ -198,7 +198,7 @@ class Customer
         $this->db->query('UPDATE User SET password=:password WHERE email= :email');
 
         // Bind Values
-        $this->db->bind(':password', $userid);
+        $this->db->bind(':password', $hashed_password);
         $this->db->bind(':email', $email);
         //Execute
         if ($this->db->execute()) {

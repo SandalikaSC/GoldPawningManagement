@@ -5,7 +5,10 @@
 
 <body>
     <div class="page">
-        <?php require APPROOT . "/views/VaultKeeper/components/sideMenu.php" ?>
+        <?php require APPROOT . "/views/VaultKeeper/components/sideMenu.php" ;
+         notification('VkDash');
+        
+        ?>
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
@@ -24,7 +27,7 @@
 
                             <div class="info">
                                 <img src="<?php echo URLROOT ?>/img/icons8-locker-64.png" alt="">
-                                <label for="">15</label>
+                                <label for=""><?php echo $data['lockers'] ?></label>
                             </div>
                         </div>
                         <div class="info-section">
@@ -32,7 +35,7 @@
                             <label for="">Today Allocation</label>
                             <div class="info">
                                 <img src="<?php echo URLROOT ?>/img/icons8-lockers-64.png" alt="">
-                                <label for="">05</label>
+                                <label for=""><?php echo $data['todayAllocation'] ?></label>
                             </div>
                         </div>
                         <div class="info-section">

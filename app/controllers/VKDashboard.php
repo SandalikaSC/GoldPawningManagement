@@ -8,13 +8,21 @@ class VKDashboard extends Controller
                 }
                 $this->modelCustomer = $this->model('Customer');
                 $this->modelAppointment = $this->model('Appointment');
+                $this->lockerModel = $this->model('Locker');
+                $this->ReservationModel = $this->model('reservation');
         }
 
         public function index()
         {
                 $result = $this->modelAppointment->getAppointmentByDate(date("Y-m-d"));
                 $appointmentCount=$this->modelAppointment->countAppointments(date("Y-m-d"));
+                $lockers=$this->lockerModel->countLockerAvailable();
+                $todayAllocation=$this->ReservationModel->countTodayAllocation();
+
                 $data = [
+                        'appointments' => $result,
+                        'lockers' => $lockers,
+                        'todayAllocation' => $todayAllocation,
                         'appointments' => $result,
                         'countAppointment' => $appointmentCount
 

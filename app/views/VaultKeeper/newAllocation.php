@@ -31,10 +31,11 @@
                     <button type="button" class="search-icon" id="searchbtn" onclick="searchCustomer()"></button>
                 </div>
             <?php else : ?>
-                <div class="search-container" method="post" action="<?php echo URLROOT ?>/LockerValidation/getCustomer">
-                    <input type="text" name="appointment" id="appointment" value="<?php echo $data['appointment'] ?>"   readonly>
-                     
-                </div>
+                 
+                    <label for="">Appointment Number</label>
+                    <input type="text" name="appointment" id="appointment" value="<?php echo $data['appointment'] ?>" readonly>
+
+                
             <?php endif; ?>
             <span class="error" id="error"></span>
             <img src="<?php echo URLROOT ?>/img/Web search-cuate.svg" alt="">
@@ -63,14 +64,14 @@
             <div class="info-section">
                 <label for="">Article type</label>
                 <select name="article_type">
-                    <option value="option1" selected>Ring</option>
-                    <option value="option2">Necklace</option>
-                    <option value="option3">Earing</option>
-                    <option value="option4">Gold Bar</option>
-                    <option value="option5">Biscuit</option>
-                    <option value="option6">Bracelet</option>
-                    <option value="option7">Anklet</option>
-                    <option value="option8">Brooche</option>
+                    <option value="Ring" <?php echo ($data['article_type'] == "Ring") ? 'selected' : '' ?>>Ring</option>
+                    <option value="Necklace" <?php echo ($data['article_type'] == "Necklace") ? 'selected' : '' ?>>Necklace</option>
+                    <option value="Earing" <?php echo ($data['article_type'] == "Earing") ? 'selected' : '' ?>>Earing</option>
+                    <option value="Gold Bar" <?php echo ($data['article_type'] == "Gold Bar") ? 'selected' : '' ?>>Gold Bar</option>
+                    <option value="Biscuit" <?php echo ($data['article_type'] == "Biscuit") ? 'selected' : '' ?>>Biscuit</option>
+                    <option value="Bracelet" <?php echo ($data['article_type'] == "Bracelet") ? 'selected' : '' ?>>Bracelet</option>
+                    <option value="Anklet" <?php echo ($data['article_type'] == "Anklet") ? 'selected' : '' ?>>Anklet</option>
+                    <option value="Brooche" <?php echo ($data['article_type'] == "Brooche") ? 'selected' : '' ?>>Brooche</option>
 
                 </select>
             </div>
