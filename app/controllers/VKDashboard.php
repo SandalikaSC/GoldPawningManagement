@@ -10,6 +10,7 @@ class VKDashboard extends Controller
                 $this->modelAppointment = $this->model('Appointment');
                 $this->lockerModel = $this->model('Locker');
                 $this->ReservationModel = $this->model('reservation');
+                $this->validationModel = $this->model('validateArticle');
         }
 
         public function index()
@@ -18,12 +19,14 @@ class VKDashboard extends Controller
                 $appointmentCount=$this->modelAppointment->countAppointments(date("Y-m-d"));
                 $lockers=$this->lockerModel->countLockerAvailable();
                 $todayAllocation=$this->ReservationModel->countTodayAllocation();
+                $validations=$this->validationModel->getValidateArticles();
 
                 $data = [
                         'appointments' => $result,
                         'lockers' => $lockers,
                         'todayAllocation' => $todayAllocation,
                         'appointments' => $result,
+                        'validations'=>$validations,
                         'countAppointment' => $appointmentCount
 
                 ]; 

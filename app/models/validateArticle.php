@@ -33,4 +33,9 @@ class validateArticle
             return false;
         }
     }
+    public function getValidateArticles() {
+        $this->db->query('SELECT * FROM validation_articles where pawn_officer_or_vault_keeper like "VK%" AND status=1;'); 
+        $results = $this->db->resultSet(); 
+        return $results;
+    }
 }
