@@ -25,11 +25,13 @@
                                                                                                         echo "0";
                                                                                                     } ?>">
         <div class="validation-img">
-            <?php if (empty($data['appointment'])) : ?>
+            <?php if (empty($data['appointment']) ) : 
+                if (empty($data['customerId'])):?>
                 <div class="search-container" method="post" action="<?php echo URLROOT ?>/LockerValidation/getCustomer">
                     <input type="text" name="" id="search" placeholder="Enter CustomerId or NIC">
                     <button type="button" class="search-icon" id="searchbtn" onclick="searchCustomer()"></button>
                 </div>
+                <?php endif; ?>
             <?php else : ?>
                  
                     <label for="">Appointment Number</label>
@@ -81,7 +83,12 @@
                 <input type="hidden" id="imageData" name="image">
             </div>
             <!-- <div class="info-section" > -->
-            <button type="submit" id="validation_btn" class="btn">Validation</button>
+            <div class="buttion-container">
+            <button type="submit" name="Add_another" class="btn sub"><h3>+ Add Another</h3></button>
+            <button type="submit" name="validation_btn" class="btn">Submit</button>
+            </div>
+            
+           
 
         </div>
 

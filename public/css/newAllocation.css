@@ -1,4 +1,4 @@
-.content.cus-details, .article-details,.info-section{
+.content.cus-details, .article-details,.info-section,.buttion-container{
     display: flex;
     /* justify-content: space-evenly; */
 }
@@ -105,4 +105,9 @@ input,select,option{
     /* border: 1px solid;
     border-radius: 11px; */
     /* background: #ffd9d9a8; */
+}
+.sub{
+    background-color: white;
+    color: #bb8a04;
+    border: 1px solid #bb8a04;
 }

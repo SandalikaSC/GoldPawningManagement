@@ -60,15 +60,29 @@ class LockerValidation extends Controller
                 'appointment' => $appointment
             ];
 
-            $status= $this->validationModel->addValidation($data);
+            $status = $this->validationModel->addValidation($data);
             if ($status) {
-                 if (!empty($data['appointment'])) {
-                    $this->appointmentModel->completeAppointment($data['appointment']);
-                 }
-                 notification('VkDash', "Article Sent to validation", 'gold');
-                 redirect('/VKDashboard');
-                 
-            }else{
+                if (isset($_POST['Add_another'])) {
+                    if (!empty($data['appointment'])) {
+                        $this->appointmentModel->completeAppointment($data['appointment']);
+                    }
+                    $data = [
+                        'customerId' => $_POST['id'],
+                        'name' => $_POST['name'],
+                        'phone' => $_POST['phone'],
+                        'nic' => $_POST['nic'],
+                        'article_type' => "Ring",
+                        'image' => "",
+                        'appointment' => $appointment
+                    ];
+                    notification('validation', "Article Added to the Validation", 'black');
+                    $this->view('VaultKeeper/newAllocation', $data);
+                } else {
+
+                    notification('VkDash', "Article Sent to validation", 'gold');
+                    redirect('/VKDashboard');
+                }
+            } else {
                 notification('validation', "Something went Wrong Try again", 'red');
                 $this->view('VaultKeeper/newAllocation', $data);
             }
@@ -86,7 +100,7 @@ class LockerValidation extends Controller
                 'image' => $_POST['image'],
                 'appointment' => $appointment
 
-            ]; 
+            ];
             $this->view('VaultKeeper/newAllocation', $data);
         }
     }

@@ -65,5 +65,15 @@ class VKDashboard extends Controller
                 $this->view('VaultKeeper/Customers',$data);
         }
 
+        public function loadnewValidation(){
+
+                $validations=$this->validationModel->getValidateArticles();
+
+                echo json_encode($validations);
+
+
+
+
+        }
+
 }
-?>

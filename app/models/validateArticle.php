@@ -9,7 +9,7 @@ class validateArticle
     }
 
     public function addValidation($data)
-{
+    {
         $this->db->query('INSERT INTO validation_articles (image,status,article_type, customer, pawn_officer_or_vault_keeper,gold_appraiser,validation_status) 
             VALUES(:image,:status,:article_type, :customer, :pawn_officer_or_vault_keeper,:gold_appraiser,:validation_status)');
 
@@ -20,8 +20,8 @@ class validateArticle
         $this->db->bind(':article_type', $data['article_type']);
         $this->db->bind(':customer', $data['customerId']);
         $this->db->bind(':gold_appraiser', 'GA001');
-        $this->db->bind(':pawn_officer_or_vault_keeper', $_SESSION['user_id']); 
-        $this->db->bind(':validation_status', 0); 
+        $this->db->bind(':pawn_officer_or_vault_keeper', $_SESSION['user_id']);
+        $this->db->bind(':validation_status', 0);
 
 
 
@@ -33,9 +33,11 @@ class validateArticle
             return false;
         }
     }
-    public function getValidateArticles() {
-        $this->db->query('SELECT * FROM validation_articles where pawn_officer_or_vault_keeper like "VK%" AND status=1;'); 
-        $results = $this->db->resultSet(); 
+    public function getValidateArticles()
+    {
+        $this->db->query('SELECT *, count(customer) as no_Articles FROM `validation_articles` WHERE pawn_officer_or_vault_keeper like "VK%" AND customer 
+        not in(select customer FROM validation_articles where pawn_officer_or_vault_keeper like "VK%" AND status= 0) GROUP by customer;');
+        $results = $this->db->resultSet();
         return $results;
     }
 }

@@ -88,9 +88,9 @@
     grid-template-columns: 1fr 2fr 3fr;
 }
 .validated-article{
-     
+    text-align: center;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     padding: 2% 6%;
     box-shadow: 0 2px 20px #61505059;
     border-radius: 20px;
@@ -177,4 +177,14 @@ background-color: #bb8a04b3;
     border-radius: 20px;
     margin: 1%;
     text-align: center;
+}
+.validated-article_title{
+      text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 2% 6%;
+    /* box-shadow: 0 2px 20px #61505059; */
+    /* border-radius: 20px; */
+    margin: 1%;
+    color: #3b3b3b87;
 }

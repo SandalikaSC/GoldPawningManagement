@@ -49,28 +49,41 @@
                     </div>
                     <div class="botton-section">
                         <h2>Validation Responses</h2>
-                        <?php if (empty($data['validations'])) : ?>
-                            <div class="centerLbl">
-                                <label class="">No Validated Articles</label>
-                            </div>
-                            <?php else :?>
-                               
+                        <div class="validated-article_title">
+                            <label for="">Customer</label>
+                            <label for="">Validated By</label>
+                            <label for="">Send By</label>
+                            <label for="">Articles</label>
 
-                            <?php foreach ($data['validations'] as $validation) : ?>
-                                <div class="validated-article">
-                                    <label for=""><?php echo $validation->customer ?></label>
-                                    <label for=""><?php echo $validation->gold_appraiser ?></label>
-                                    <label for=""><?php echo $validation->pawn_officer_or_vault_keeper ?></label>
+                        </div>
+                        <div id="validation_articles_div">
 
-                                    <div class="action">
-                                        <a class="Allocate" href="<?php echo URLROOT ?>/Reservations/AllocateLocker/<?php echo $validation->id ?>">View </a>
-
-                                    </div>
+                            <?php if (empty($data['validations'])) : ?>
+                                <div class="centerLbl">
+                                    <label class="">No Validated Articles</label>
                                 </div>
+                            <?php else : ?>
 
-                        <?php
-                            endforeach;
-                        endif; ?>
+
+                                <?php foreach ($data['validations'] as $validation) : ?>
+                                    <div class="validated-article">
+                                        <label for=""><?php echo $validation->customer ?></label>
+                                        <label for=""><?php echo $validation->gold_appraiser ?></label>
+                                        <label for=""><?php echo $validation->pawn_officer_or_vault_keeper ?></label>
+                                        <label for=""><?php echo $validation->no_Articles ?></label>
+
+                                        
+                                            <a class="Allocate" href="<?php echo URLROOT ?>/Reservations/AllocateLocker/<?php echo $validation->customer ?>">View </a>
+
+                                       
+                                    </div>
+
+                            <?php
+                                endforeach;
+                            endif; ?>
+
+                        </div>
+
 
 
 
@@ -149,5 +162,46 @@
         </div>
     </div>
     <script src="<?php echo URLROOT ?>/js/vksideMenu.js"></script>
+    <script>
+        // send an AJAX request to the server to check for new articles
+        function checkForNewArticles() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var newArticles = JSON.parse(this.responseText);
+                    updateArticleContainer(newArticles)
+                }
+            };
+            xhttp.open("GET", "<?php echo URLROOT ?>/VKDashboard/loadnewValidation", true);
+            xhttp.send();
+        }
+
+        function updateArticleContainer(newArticles) {
+            var articleContainer = document.getElementById("validation_articles_div");
+
+            // Remove all existing elements in the container
+            articleContainer.innerHTML = "";
+
+            // Add new elements to the container
+
+            var articleHtml;
+            if (newArticles === null) {
+                articleHtml = "<div class='centerLbl'><label>No Validated Articles</label> </div>";
+                articleContainer.insertAdjacentHTML('beforeend', articleHtml);
+            } else {
+                newArticles.forEach(function(article) {
+                    articleHtml = "<div class='validated-article'>" +
+                        "<label>" + article.customer + "</label>" +
+                        "<label>" + article.gold_appraiser + "</label>" +
+                        "<label>" + article.pawn_officer_or_vault_keeper + "</label>" +
+                        "<label>" + article.no_Articles + "</label>" +
+                        "<a class='Allocate' href='<?php echo URLROOT ?>/Reservations/AllocateLocker/"+article.customer+"'>View </a></div>";
+                    articleContainer.insertAdjacentHTML('beforeend', articleHtml);
+                });
+            }
+        }
+        // set a timer to check for new articles every 5 seconds
+        setInterval(checkForNewArticles, 5000);
+    </script>
 
     <?php require APPROOT . "/views/inc/footer.php" ?>
