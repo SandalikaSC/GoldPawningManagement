@@ -73,7 +73,7 @@
                                         <label for=""><?php echo $validation->no_Articles ?></label>
 
                                         
-                                            <a class="Allocate" href="<?php echo URLROOT ?>/Reservations/AllocateLocker/<?php echo $validation->customer ?>">View </a>
+                                            <a class="Allocate" href="<?php echo URLROOT ?>/AllocateLocker/<?php echo $validation->customer ?>">View </a>
 
                                        
                                     </div>
@@ -195,7 +195,7 @@
                         "<label>" + article.gold_appraiser + "</label>" +
                         "<label>" + article.pawn_officer_or_vault_keeper + "</label>" +
                         "<label>" + article.no_Articles + "</label>" +
-                        "<a class='Allocate' href='<?php echo URLROOT ?>/Reservations/AllocateLocker/"+article.customer+"'>View </a></div>";
+                        "<a class='Allocate' href='<?php echo URLROOT ?>/AllocateLocker/"+article.customer+"'>View </a></div>";
                     articleContainer.insertAdjacentHTML('beforeend', articleHtml);
                 });
             }

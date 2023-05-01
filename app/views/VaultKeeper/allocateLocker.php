@@ -21,78 +21,6 @@
 
     </div>
     <div class="content">
-        <div class="locker-item">
-            <div class="jewellery-card">
-                <div class="jewellery-img">
-
-                    <img class="jw-img" src="<?php echo URLROOT ?>/img/harper-sunday-I89WziXZdVc-unsplash.jpg">
-                </div>
-                <div class="jw-details">
-                    
-                    <div class="jw-date-name">
-
-                        <label>Status</label>
-                        <label class="status tag-pending">Valid</label>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-        <div class="item-payments">
-            <!-- <div class="payment-history"> -->
-            <div class="payments his-div">
-            <h2 class="sub-title">
-                    Article Details </h2>
-                <div class="payments">
-
-                    <div class="payment-content">
-                        <label>Karats</label>
-                        <label>22</label>
-
-
-                    </div>
-                    <div class="payment-content">
-                        <label>Weight</label>
-                        <label>0.500g</label>
-
-
-                    </div>
-                    <div class="payment-content">
-                        
-                        <label>Estimated Value</label>
-                            <label class="">Rs. 50000</label>
-
-                    </div>
-
-
-                </div>
-                <h2 class="sub-title">
-                    Locker Details </h2>
-                <div class="payments">
-
-                    <div class="payment-content">
-                        <label>Locker</label>
-                        <label>03</label>
-
-
-                    </div>
-                    <div class="payment-content">
-                        <label>No of Articles</label>
-                        <label>01</label>
-
-
-                    </div>
-
-
-                </div>
-
-                <button class="pay-btn">Allocate</button>
-            </div>
-
-
-        </div>
         <div class="item-details">
             <!-- <div class="article-details"> -->
             <div class="info-div">
@@ -102,46 +30,28 @@
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Customer Id</label>
-                        <label class="jw-dt">CU001</label>
+                        <label class="jw-dt"><?= $data['customer']->UserId ?></label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Customer Name</label>
-                        <label class="jw-dt">Sandalika Chamari</label>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-            <div class="due-payment info-div">
-                <h2 class="sub-title">
-                    Reservation Details
-                </h2>
-
-
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Reservation Date</label>
-                        <label class="jw-dt"><?= date("Y-m-d H:i")?></label>
-                    </div>
-
-                </div>
-
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Payment Amount</label>
-                        <label class="jw-dt">Rs 1500</label>
+                        <label class="jw-dt"><?= $data['customer']->First_Name . " " . $data['customer']->Last_Name ?></label>
                     </div>
 
                 </div>
                 <div class="jw-date">
                     <div class="jw-date-name">
-                        <label>next pay date</label>
-                        <label class="jw-dt">10 feb 2023</label>
+                        <label>NIC</label>
+                        <label class="jw-dt"><?= $data['customer']->NIC ?></label>
+                    </div>
+
+                </div>
+                <div class="jw-date">
+                    <div class="jw-date-name">
+                        <label>Phone</label>
+                        <label class="jw-dt"><?= $data['customer']->phone ?></label>
                     </div>
 
                 </div>
@@ -155,6 +65,123 @@
             <!-- </div> -->
 
         </div>
+        <div class="item-payments">
 
+            <div class="payments his-div">
+                <h2 class="sub-title">
+                    Invalid Articles </h2>
+                <?php
+                if (empty($data['invalidArticles'])) : ?>
+                    <div class=" article_display">
+                        <label>No Invalid Articles</label>
+                    </div>
+
+                <?php else : ?>
+                    <div class=" article_display title">
+
+                        <label>Article</label>
+                        <label>Type</label>
+
+                    </div>
+                    <?php foreach ($data['invalidArticles'] as $article) : ?>
+                        <div class=" article_display">
+
+                            <div class="jewellery-img">
+
+
+                                <img class="jw-img" src="<?php if (!empty($article->image)) {
+                                                                echo $article->image;
+                                                            } else {
+                                                                echo URLROOT . "/img/images.jpg";
+                                                            } ?>" alt="">
+
+                            </div>
+                            <label><?= $article->article_type ?></label>
+
+                        </div>
+                <?php endforeach;
+                endif; ?>
+            </div>
+
+
+        </div>
+    </div>
+    <?php if (!empty($data['validArticles'])) : ?>
+        <div class="row info-div">
+            <h2 class="topic">
+                Allocation information
+            </h2>
+            <h3 class="">
+                Available Lockers of <?= $data['customer']->UserId ?>
+            </h3>
+            <?php if (empty($data['CustomerLockers'])) : ?>
+
+                <label>Not Available</label>
+            <?php else : ?>
+                <div class="Locker_Allocation jw-dt">
+                  
+                    <label>Article</label>
+                    <label>Type</label>
+                    <label>Estimate Value</label>
+                    <label>Karatage</label>
+                    <label>Weight</label>
+                    <label>Locker</label>
+
+                </div>
+                <div class="Locker_Allocation">
+                  
+
+                    <div class="jewellery-img">
+                        <img class="jw-img" src="<?php if (!empty($data['AllocateMy']->image)) {
+                                                        echo $data['AllocateMy']->image;
+                                                    } else {
+                                                        echo URLROOT . "/img/images.jpg";
+                                                    } ?>" alt="">
+                    </div>
+
+                    <label><?= $data['AllocateMy']->article_type ?></label>
+                    <label> <?= $data['AllocateMy']->estimated_value ?></label>
+                    <label><?= $data['AllocateMy']->karatage . "K" ?></label>
+                    <label><?= $data['AllocateMy']->weight . "g" ?></label>
+                    <label class="locker_no"><?= $data['CustomerLockers']->lockerNo ?></label>
+
+                </div>
+
+            <?php endif; ?>
+            <h3 class="">
+                Other Lockers
+            </h3>
+            <?php if (empty($data['AvailableLockers'])) : ?>
+
+                <label>Not Available</label>
+            <?php else : ?>
+                 
+                <div class="Locker_Allocation">
+                  // foreach
+
+                    <div class="jewellery-img">
+                        <img class="jw-img" src="<?php if (!empty($data['validArticles']->image)) {
+                                                        echo $data['validArticles']->image;
+                                                    } else {
+                                                        echo URLROOT . "/img/images.jpg";
+                                                    } ?>" alt="">
+                    </div>
+
+                    <label><?= $data['validArticles']->article_type ?></label>
+                    <label> <?= $data['validArticles']->estimated_value ?></label>
+                    <label><?= $data['validArticles']->karatage . "K" ?></label>
+                    <label><?= $data['validArticles']->weight . "g" ?></label>
+                    <label class="locker_no"><?= $data['CustomerLockers']->lockerNo ?></label>
+
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+    <?php endif; ?>
+    <div class="row info-div">
+        <h2 class="topic">
+            Payment
+        </h2>
     </div>
     <?php require APPROOT . "/views/inc/footer.php" ?>

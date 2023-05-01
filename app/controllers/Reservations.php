@@ -29,9 +29,6 @@ class Reservations extends Controller
         {
                 $this->view('VaultKeeper/ReleaseLocker');
         }
-        public function AllocateLocker()
-        {
-                $this->view('VaultKeeper/allocateLocker');
-        }
+        
 
     }

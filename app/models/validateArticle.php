@@ -40,4 +40,21 @@ class validateArticle
         $results = $this->db->resultSet();
         return $results;
     }
+    public function getvalidArticles($customer)
+    {
+        $this->db->query('SELECT * FROM validation_articles where customer=:customer AND pawn_officer_or_vault_keeper like "VK%" AND validation_status= 1');
+        $this->db->bind(':customer', $customer);
+        $results = $this->db->resultset(); 
+        return $results;
+
+
+    }
+    public function getInvalidArticles($customer)
+    {
+
+        $this->db->query('SELECT * FROM validation_articles where customer=:customer AND pawn_officer_or_vault_keeper like "VK%" AND validation_status= 0');
+        $this->db->bind(':customer', $customer);
+        $results = $this->db->resultset(); 
+        return $results;
+    }
 }
