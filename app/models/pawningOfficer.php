@@ -46,4 +46,26 @@
 
             return $results;
         }
+
+        public function getRegisteredCustomers() {
+            $this->db->query('SELECT COUNT(*) AS no_of_customers FROM user WHERE UserId LIKE "CU%" AND Status=1;');
+
+            $row = $this->db->single();
+            if ($this->db->rowCount() > 0) {
+                return $row->no_of_customers;
+            } else {
+                return 0;
+            }
+        }
+
+        public function getPawnedItemsCount() {
+            $this->db->query('SELECT COUNT(*) AS pawned_items_count FROM pawn WHERE Status="Pawned";');
+
+            $row = $this->db->single();
+            if ($this->db->rowCount() > 0) {
+                return $row->pawned_items_count;
+            } else {
+                return 0;
+            }
+        }
     }

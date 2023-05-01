@@ -237,6 +237,14 @@
             return $row;
         }
 
+        public function getPawnByCustomerID($id) {
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON article.Article_Id=pawn.Article_Id WHERE userId=:customerId AND pawn.Status = "Pawned"; ');
+            $this->db->bind(':customerId', $id);
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
+
 
         //customer pawning
 

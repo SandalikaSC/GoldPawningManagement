@@ -96,7 +96,7 @@ main .main-wrapper .left-wrapper .div-article-details .div-details .field-contai
 
 main .main-wrapper .left-wrapper .div-article-details .div-details .field-container label {
     font-size: 12px;
-    color: #4d4d4d;
+    color: #737373;
     font-style: italic;
     font-weight: 600;
 }
@@ -173,7 +173,7 @@ main .main-wrapper .right-wrapper .full-side-wrapper h2 {
 
 main .main-wrapper .right-wrapper .full-side-wrapper .loan-details {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 main .main-wrapper .right-wrapper .full-side-wrapper .loan-details label {
@@ -184,7 +184,7 @@ main .main-wrapper .right-wrapper .full-side-wrapper .loan-details label {
 
 main .main-wrapper .right-wrapper .full-side-wrapper .loan-details div div {
     color: #745534;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: 600;
 }
 

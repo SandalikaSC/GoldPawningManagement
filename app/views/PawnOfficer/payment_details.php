@@ -108,12 +108,12 @@
                             </div>
                         </div>
                     
-                        <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                        <!-- <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
                             <div class="due-payments">
                                 <h2>Due Payments</h2>
-                                <!-- <div class="div-no-due"> 
+                                <div class="div-no-due"> 
                                     No Due Payments
-                                </div> -->
+                                </div> 
 
                                 <div class="div-due">
                                     <div class="div-container">
@@ -127,7 +127,7 @@
                                     </div>
                                 </div>
                             </div>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
 
                         <div class="payment-history">
                             <h2>Payment History</h2>

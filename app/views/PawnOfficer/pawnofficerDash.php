@@ -73,14 +73,14 @@
                             <h2>Customers</h2>
                             <img src="<?php echo URLROOT?>/img/gold_customers.png" alt="">
                         </div>                        
-                        <h1>80</h1>
+                        <h1><?php echo $data['no_of_customers']; ?></h1>
                     </div>
                     <div class="card-summary">
                         <div class="title">
                             <h2>Pawned Items</h2>
                             <img src="<?php echo URLROOT?>/img/golden_pawn_items.png" alt="">
                         </div>                        
-                        <h1>150</h1>
+                        <h1><?php echo $data['pawned_items']; ?></h1>
                     </div>
                 </div>
 

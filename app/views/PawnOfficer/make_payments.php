@@ -30,7 +30,7 @@
                 <div class="left-wrapper">
                     <div class="div-article-details">
                         <div class="div-img">
-                            <img src="<?php echo URLROOT . '/img/1.png'; ?>" alt="article image">
+                            <img src="<?php echo $data['pawn_item']->image; ?>" alt="article image">
                         </div>
                         <div class="div-details">
                             <div class="field-container">
@@ -81,17 +81,17 @@
                             <div class="field-wrapper">
                                 <label>Date<sup>*</sup></label>
                                 <div class="input-wrapper">
-                                    <input type="date" name="date">
+                                    <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" disabled>
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
-                            <div class="field-wrapper">
+                            <!-- <div class="field-wrapper">
                                 <label>Fine (Rs.)</label>
                                 <div class="input-wrapper">
                                     <input type="text" name="fine" placeholder="Fine">
                                 </div>
                                 <span class="invalid-feedback"></span>
-                            </div>
+                            </div> -->
                             
                             <div class="div-button">
                                 <input type="submit" class="btn-save" name="save" value="Save">
