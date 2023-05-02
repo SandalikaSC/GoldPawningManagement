@@ -24,7 +24,7 @@ body, html {
     width: 100vw;
     position: static;
     height: fit-content;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .header .title {
@@ -60,7 +60,9 @@ main {
     align-items: center;
     flex-wrap: wrap;
     width: 100vw;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 85px);
+    overflow-y: auto;
+    padding-top: 10px;
 }
 
 main .main-div-container {
@@ -174,7 +176,7 @@ main .main-div-container .right-wrapper .new-payment .div-form-title {
 }
 
 main .main-div-container .right-wrapper .new-payment form .field-wrapper {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 main .main-div-container .right-wrapper .new-payment form .field-wrapper label sup {
@@ -191,6 +193,7 @@ main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-
     padding: 10px 20px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    font-size: 16px;
 }
 
 main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-wrapper input::placeholder,
@@ -207,7 +210,7 @@ main .main-div-container .right-wrapper .new-payment form .div-button input {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #a17702;
+    border: 2px solid #a17702;
     background: #bb8a04;
     color: #faebd7;
     font-size: 18px;

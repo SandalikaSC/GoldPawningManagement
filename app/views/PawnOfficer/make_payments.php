@@ -49,6 +49,14 @@
                                 <label>END DATE</label>
                                 <div><?php echo $data['pawn_item']->End_Date; ?></div>
                             </div>
+                            <div class="field-container">
+                                <label>REPAY METHOD</label>
+                                <div><?php echo $data['pawn_item']->Repay_Method; ?></div>
+                            </div>
+                            <div class="field-container">
+                                <label>LAST PAYMENT DATE</label>
+                                <div><?php echo $data['pawn_item']->End_Date; ?></div>
+                            </div>                            
                         </div>
 
                         <div class="loan-details">
@@ -71,15 +79,32 @@
                         </div>
                         
                         <form action="" method="post">
+                            <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                                <div class="field-wrapper">
+                                    <label>Amount (Rs.)<sup>*</sup></label>
+                                    <div class="input-wrapper">
+                                        <input type="text" name="full-amount" value="<?php echo sprintf("%.2f", ceil($data['pawn_item']->monthly_installment)); ?>" disabled>
+                                    </div>
+                                    <span class="invalid-feedback"></span>
+                                </div>
+                            <?php else : ?>
+                                <div class="field-wrapper">
+                                    <label>Full Payment (Rs.)<sup>*</sup></label>
+                                    <div class="input-wrapper">
+                                        <input type="text" name="full-amount" class="<?php echo (!empty($data['first_name_err'])) ? 'is-invalid' : '' ?>" placeholder="Full Payment" value="">
+                                    </div>
+                                    <span class="invalid-feedback"></span>
+                                </div>
+                            <?php endif; ?>
                             <div class="field-wrapper">
-                                <label>Amount (Rs.)<sup>*</sup></label>
+                                <label>Covered Loan Amount (Rs.)</label>
                                 <div class="input-wrapper">
-                                    <input type="text" name="amount" placeholder="Amount">
+                                    <input type="text" name="loan-amount" value="" placeholder="0.00" disabled>
                                 </div>
                                 <span class="invalid-feedback"></span>
                             </div>
                             <div class="field-wrapper">
-                                <label>Date<sup>*</sup></label>
+                                <label>Date</label>
                                 <div class="input-wrapper">
                                     <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" disabled>
                                 </div>
@@ -94,7 +119,7 @@
                             </div> -->
                             
                             <div class="div-button">
-                                <input type="submit" class="btn-save" name="save" value="Save">
+                                <input type="submit" class="btn-save" name="save" value="Make Payment">
                             </div>
                         </form>
                     </div>

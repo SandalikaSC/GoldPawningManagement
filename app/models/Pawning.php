@@ -245,6 +245,14 @@
             return $results;
         }
 
+        public function getPaymentsByPawnID($id) {
+            $this->db->query('SELECT * FROM payment WHERE Pawn_Id=:pawn_id;');
+            $this->db->bind(':pawn_id', $id);
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
+
 
         //customer pawning
 

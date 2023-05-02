@@ -22,10 +22,21 @@
         public function payment_details($id) {
             // Get pawned item
             $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $payment_history = $this->pawningModel->getPaymentsByPawnID($id);
+
+            $paid_loan = 0.00;
 
             $data = [
-                'pawn_item' => $pawned_item
+                'pawn_item' => $pawned_item,
+                'payment_history' => $payment_history,
+                'remaining_loan' => '',
             ];
+
+            if(!empty($data['payment_history'])) {
+                foreach($data['payment_history'] as $payment_record) {
+                    $paid_loan = $paid_loan + $payment_record->Principle_Amount;
+                }
+            }
 
             $this->view('PawnOfficer/payment_details', $data);
         }
@@ -33,9 +44,11 @@
         public function make_payments($id) {
             // Get pawned item
             $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $payment_history = $this->pawningModel->getPaymentsByPawnID($id);
 
             $data = [
-                'pawn_item' => $pawned_item
+                'pawn_item' => $pawned_item,
+                'payment_history' => $payment_history
             ];
 
             $this->view('PawnOfficer/make_payments', $data);
