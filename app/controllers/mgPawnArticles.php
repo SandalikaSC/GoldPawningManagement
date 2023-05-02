@@ -77,7 +77,7 @@ class mgPawnArticles extends controller
       $pawn = $this->model("pawnArticleModel");
       $result = $pawn->viewPawnArticle($id);
       $sum = 0;
-      foreach ($result[2] as $row) {
+      foreach ($result[1] as $row) {
          $sum = $sum + $row->Amount;
       }
       $result[] = $sum;
@@ -185,8 +185,9 @@ class mgPawnArticles extends controller
 
    public function addOneByOneToAuction($pawnid, $End_Date, $userId)
    {
-      var_dump($pawnid);
-      if (!($this->dateCompare($End_Date, 14))) {
+      
+      $isComplete =$this->model("pawnArticleModel")->isCompleted($pawnid);
+      if (!($this->dateCompare($End_Date, 14)) and !$isComplete ) {
          $pawn1 = $this->model("pawnArticleModel")->checkStatus($pawnid);
          if ($pawn1) {
             echo "DONE";

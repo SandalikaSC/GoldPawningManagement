@@ -197,6 +197,13 @@ class staffModel extends Database
         return $result;
     }
 
+    public function getAllPasswords(){
+        $sql="select password from user";
+        $this->query($sql);
+        $passwords=$this->resultSet();
+        return $passwords;
+      }
+
 
     public function getUserPassword($email)
     {
@@ -239,8 +246,7 @@ class staffModel extends Database
 
         $this->bind(7, $image);
           
-        $datetime = new DateTime(); // create a new DateTime object with the current date and time
-        $timestamp = $datetime->getTimestamp(); // get the Unix timestamp for the current date and time
+        $timestamp = date('Y-m-d H:i:s'); // get the Unix timestamp for the current date and time
         $this->bind(8, $timestamp);
 
 
@@ -288,4 +294,7 @@ class staffModel extends Database
             return false;
         }
     }
+
+
+ 
 }

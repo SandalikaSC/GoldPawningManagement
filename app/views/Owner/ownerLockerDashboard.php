@@ -15,12 +15,16 @@
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
-                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "//img/image 1.png";} ?>" id="profileImg" alt=""></a>
+                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
+                                                                                echo $_SESSION['image'];
+                                                                            } else {
+                                                                                echo URLROOT . "//img/image 1.png";
+                                                                            } ?>" id="profileImg" alt=""></a>
                     <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
 
                 </div>
                 <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
+                    <p><b><i>Hi...</i></b><?php echo $_SESSION['user_name'] ?></p>
                 </div>
             </div>
             <div class="btn-set">
@@ -32,7 +36,7 @@
                     <img src="<?php echo URLROOT ?>/img/golden_locker.png" alt="">
                     <p>Locker</p>
                 </a>
-                <a href="<?php echo URLROOT?>/ownerPawnArticleDash">
+                <a href="<?php echo URLROOT ?>/ownerPawnArticleDash">
                     <img src="<?php echo URLROOT ?>/img/pawned.png" alt="">
                     <p>Pawned Articles</p>
                 </a>
@@ -56,7 +60,7 @@
                         <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
                     </div>
                     <h1>Locker</h1>
-                    <a href="<?php echo URLROOT ?>/mgDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                    <a href="<?php echo URLROOT ?>/ownerDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
@@ -65,104 +69,119 @@
                 <div class="search">
 
                     <div class="search-bar">
-                        <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
+                        <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search..." />
 
+                    </div>
+                    <div class="locker-summary">
+                        <div class="locker-sum-1">
+                            <div class="topic-label">Total</div>
+                            <div class="no">100</div>
+                        </div>
+                        <div class="locker-sum-1">
+                            <div class="topic-label">Allocated</div>
+                            <div class="no">20</div>
+                        </div>
+                        <div class="locker-sum-1">
+                            <div class="topic-label">Remaining</div>
+                            <div class="no">80</div>
+                        </div>
                     </div>
 
                 </div>
-                <div class="table">
-                    <div class="table-section">
-                       
-                            <table id="myTable">
-                                <thead>
-                                    <tr>
-                                        <th>Locker No</th>
-                                        <th>Date</th>
-                                        <th>Retrieve Date</th>
-                                        <th>No of Items</th>
-                                        <th>Key Status</th>
-                
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                            <tr>
-                                                <td>LC001</td>
-                                                <td>2000/11/03</td>
-                                                <td>2001/01/03</td>
-                                                <td>1</td>
-                                                <td style="color:green;">Delivered</td>
-                                                
-                                                <td>
-                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
-                                            
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td>LC002</td>
-                                                <td>2001/03/20</td>
-                                                <td>2002/06/20</td>
-                                                <td>1</td>
-                                                <td style="color:green;">Delivered</td>
-                                                
-                                                <td>
-                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
-                                            
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>LC003</td>
-                                                <td>2001/04/02</td>
-                                                <td>2001/12/02</td>
-                                                <td>2</td>
-                                                <td style="color:green;">Delivered</td>
-                                                
-                                                <td>
-                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
-                                            
-                                                </td>
-                                            </tr>
-
-
-                                            <tr>
-                                                <td>LC004</td>
-                                                <td>2002/05/12</td>
-                                                <td>2003/01/12</td>
-                                                <td>2</td>
-                                                <td style="color:green;">Delivered</td>
-                                                
-                                                <td>
-                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
-                                            
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>LC005</td>
-                                                <td>2003/07/30</td>
-                                                <td>2003/12/30</td>
-                                                <td>1</td>
-                                                <td style="color:green;">Delivered</td>
-                                                
-                                                <td>
-                                                    <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems" class='view'>View</a>
-                                            
-                                                </td>
-                                            </tr>
-
-                                </tbody>
-                            </table>
+                <div class="card-set">
+                    <div class="lc-card">
+                        <div class="lc-no">
+                            <p>LC001</p>
+                        </div>
+                        <div class="lc-img">
+                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems"><img class="nonstatic-img" src="<?php echo URLROOT ?>/img/ownerLoc.png" alt="locker" /></a>
+                            <img class="static-img" src="<?php echo URLROOT ?>/img/ownerLoc1.png" alt="locker" />
+                        </div>
+                        <div class="down-arrow">
+                            <a class="toggle-button">
+                                <img src="<?php echo URLROOT ?>/img/downArrow.png" />
+                            </a>
+                        </div>
+                        <div>
+                            <div id="myDropdown" class="hover-des drop-down hide">
+                                <div class="hover-des-field">
+                                    <div class="label">Date/Time</div>
+                                    <div class="element">2000/11/03</div>
+                                </div>
+                                <div class="hover-des-field">
+                                    <div class="label">Retrieve Date</div>
+                                    <div class="element">2010/11/03</div>
+                                </div>
+                                <div class="hover-des-field">
+                                    <div class="label">No of Item</div>
+                                    <div class="element">2</div>
+                                </div>
+                                <div class="hover-des-field">
+                                    <div class="label">Key</div>
+                                    <div class="element key">Delivered</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="lc-card">
+                        <div class="lc-no">
+                            <p>LC001</p>
+                        </div>
+                        <div class="lc-img">
+                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems"><img class="nonstatic-img" src="<?php echo URLROOT ?>/img/ownerLoc.png" alt="" /></a>
+                            <img class="static-img" src="<?php echo URLROOT ?>/img/ownerLoc1.png" alt="" />
+                        </div>
+                        <div class="down-arrow">
+                            <a class="toggle-button">
+                                <img src="<?php echo URLROOT ?>/img/downArrow.png" />
+                            </a>
+                        </div>
+                        <div>
+                            <div id="myDropdown" class="hover-des drop-down hide">
+                                <div class="hover-des-field">
+                                    <div class="label">Date/Time</div>
+                                    <div class="element">2000/11/03</div>
+                                </div>
+                                <div class="hover-des-field">
+                                    <div class="label">Retrieve Date</div>
+                                    <div class="element">2010/11/03</div>
+                                </div>
+                                <div class="hover-des-field">
+                                    <div class="label">No of Item</div>
+                                    <div class="element">2</div>
+                                </div>
+                                <div class="hover-des-field">
+                                    <div class="label">Key</div>
+                                    <div class="element key">Delivered</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
+
             </div>
         </div>
     </div>
 </body>
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
+<script>
+    let dropDowns = document.getElementsByClassName('drop-down');
+    let toggleBtn = document.getElementsByClassName('toggle-button');
 
+    for (let i = 0; i < toggleBtn.length; i++) {
+        toggleBtn[i].addEventListener('click', () => {
+            dropDowns[i].classList.toggle('hide');
+        });
+    }
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("hide");
+    }
+</script>
 
 </html>

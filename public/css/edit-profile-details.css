@@ -32,6 +32,7 @@ body{
     flex-direction: column;
     overflow-y: scroll;
     position:relative;
+    overflow-x: hidden;
 }
 
 .right-heading{
@@ -65,14 +66,13 @@ body{
 }
 
 .vogue {
-    /* animation-name: logo; */
-    animation-duration:18s;
+   
     width: 200px;
-    animation-iteration-count: infinite;
 }
 
 .right-side{
     display: flex;
+    align-items: center;
 }
 
 ::placeholder{
@@ -106,6 +106,8 @@ body{
   .section_right{
     display:flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding:15px;
     /* align-items: center;*/
     /* justify-content:space-around; */
@@ -113,6 +115,7 @@ body{
     border: 2px solid #B47D00;
     margin-bottom: 100px;
     background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     
   }
 
@@ -123,7 +126,11 @@ body{
     align-items: center;
     justify-content: center;
     padding: 10px;
-    font-size: x-large;
+}
+
+.profile-card-header label{
+      font-size: 40px;
+
   }
   
   .big-form{
@@ -132,8 +139,10 @@ body{
       border: 2px solid #B47D00;
       border-radius: 20px;
       /* position: relative; */
-      padding:10px 10px 0 10px;
+      padding:10px 10px 10px 10px;
       background-color: white;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
   }
 
   .image_input{
@@ -184,12 +193,19 @@ body{
       border: none;
       outline: none;
       margin-left: 50px;
-      width: 250px;
+      width: 300px;
+      font-size: large;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      
   }
 
 
   .form-group input:focus, .form-group select:focus{
       outline: none;
+  }
+
+  .form-group label{
+    font-size: large;
   }
 
   input[type="file"]::-webkit-file-upload-button {
@@ -199,6 +215,8 @@ body{
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: large;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
   
   .two-btns{
@@ -221,6 +239,10 @@ body{
       border-radius: 20px;
       text-decoration: none;
   }
+
+  .two-btns .cancelbtn:hover,.two-btns .updatebtn:hover{
+    transform:scale(1.1);
+  }
   
   .two-btns .updatebtn{
       font-weight: 500;
@@ -233,13 +255,54 @@ body{
       color: white;
   }
 
-  @media screen and (max-width: 900px) {
-    .section_right{
-        margin-bottom: 10px;
-        
+  @media screen and (max-width: 1188px) {
+    .section_left{
+        margin:0px;
+      
       }
   }
 
+  @media screen and (max-width: 658px){
+    .form-group{
+        flex-direction: column;
+        margin:5px 0;
+    }
+
+    .big-form{
+        padding:5px;
+        margin: 5px;
+    }
+
+    .form-group input, .form-group select {
+        margin-left: 0;
+        width: 300px;
+        font-size: medium;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        
+    }
+
+    .vogue {
+        width: 100px;
+    }
+
+    .right-side h1{
+        font-size: medium;
+        margin: 0 20px;
+    }
+
+    .profile-card-header label{
+        font-size: 25px;
+  
+    }
+  }
+
+
+  @media screen and (max-width: 317px){
+    .form-group input, .form-group select {
+        width: 250px;
+        
+    }
+  }
 
 .border-red{
     border: 2px solid rgb(181, 17, 17) !important;

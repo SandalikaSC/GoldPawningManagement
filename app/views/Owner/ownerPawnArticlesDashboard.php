@@ -61,13 +61,15 @@
                     </div>
                     <h1>Pawned Articles</h1>
                     <a href="<?php echo URLROOT ?>/ownerDashboard" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
-                    <div class="notifi">
-                        <?php if (!empty($data[1])) { ?> <span class='badge'><?php echo $data[1]; ?></span> <?php } ?>                    
-                    </div>
-                    <div>
-                        <?php if (!empty($data[2])) { ?> <span class='badge'><?php echo $data[2]; ?></span> <?php } ?>
-                    </div>
-                    
+                    <?php if (!empty($data[1])) { ?> <div class="notifi">
+                            <label>Auction</label>
+                            <span class='badge'><?php echo $data[1]; ?></span>
+                        </div><?php } ?>
+                    <?php if (!empty($data[2])) { ?> <div class="notifi">
+                            <label>Warnings</label>
+                            <span class='badge'><?php echo $data[2]; ?></span>
+                        </div><?php } ?>
+
                 </div>
                 <div class="search">
 
@@ -121,7 +123,7 @@
                                                         <td>" . $row->End_Date . "</td>
                                                         <td>Rs. " . $row->Estimated_Value . "/=</td>
                                                         <td>
-                                                            <a href='" . URLROOT . "/ownerPawnArticleDash/viewPawnedItem/" . $row->Article_Id . "' class='" . (($this->dateCompare($row->End_Date, 0)) ? '' : (($this->dateCompare($row->End_Date, 14)) ? 'passEndDate' : 'passRedeemedDate')) . "'>View</a>
+                                                            <a href='" . URLROOT . "/ownerPawnArticleDash/viewPawnedItem/" . $row->Article_Id . "' class='" . (($this->dateCompare($row->End_Date, 0) and $row->WarningTwo == 0) ? '' : (($this->dateCompare($row->End_Date, 14) and $row->Status == "Pawned") ? 'passEndDate' : 'passRedeemedDate')) . "'>View</a>
                                                             
                                                         </td>
                                                     </tr>";

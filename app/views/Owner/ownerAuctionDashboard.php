@@ -15,7 +15,7 @@
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
-                    <a href="#"><img src="<?php if (!empty($_SESSION['image'])) {
+                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
                                                 echo $_SESSION['image'];
                                             } else {
                                                 echo URLROOT . "/img/image 1.png";
