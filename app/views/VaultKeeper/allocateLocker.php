@@ -114,74 +114,238 @@
             <h3 class="">
                 Available Lockers of <?= $data['customer']->UserId ?>
             </h3>
-            <?php if (empty($data['CustomerLockers'])) : ?>
+            <?php if (empty($data['allocateMy'])) : ?>
 
                 <label>Not Available</label>
             <?php else : ?>
                 <div class="Locker_Allocation jw-dt">
-                  
+                    <label>Locker</label>
                     <label>Article</label>
                     <label>Type</label>
                     <label>Estimate Value</label>
                     <label>Karatage</label>
                     <label>Weight</label>
-                    <label>Locker</label>
+
 
                 </div>
-                <div class="Locker_Allocation">
-                  
+                <?php foreach ($data['allocateMy'] as $allocateMy) : ?>
+                    <div class="Locker_Allocation">
+                        <label class="locker_no"><?= $allocateMy->lockerNo ?></label>
+                        <div class="jewellery-img">
+                            <img class="jw-img" src="<?php if (!empty($allocateMy->image)) {
+                                                            echo $allocateMy->image;
+                                                        } else {
+                                                            echo URLROOT . "/img/images.jpg";
+                                                        } ?>" alt="">
+                        </div>
 
-                    <div class="jewellery-img">
-                        <img class="jw-img" src="<?php if (!empty($data['AllocateMy']->image)) {
-                                                        echo $data['AllocateMy']->image;
-                                                    } else {
-                                                        echo URLROOT . "/img/images.jpg";
-                                                    } ?>" alt="">
+                        <label><?= $allocateMy->article_type ?></label>
+                        <label> <?= $allocateMy->estimated_value ?></label>
+                        <label><?= $allocateMy->karatage . "K" ?></label>
+                        <label><?= $allocateMy->weight . "g" ?></label>
+
+
                     </div>
 
-                    <label><?= $data['AllocateMy']->article_type ?></label>
-                    <label> <?= $data['AllocateMy']->estimated_value ?></label>
-                    <label><?= $data['AllocateMy']->karatage . "K" ?></label>
-                    <label><?= $data['AllocateMy']->weight . "g" ?></label>
-                    <label class="locker_no"><?= $data['CustomerLockers']->lockerNo ?></label>
 
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <h3 class="">
+                Other Allocations
+            </h3>
+            <?php if (empty($data['AvailableLockers'])) : ?>
+                <div class="Locker_Allocation">
+                    <label>Lockers Not Available</label>
                 </div>
+            <?php else : ?>
+                <?php if (empty($data['reserve'])) : ?>
+                    <div class="Locker_Allocation">
+                        <label>No other reservations</label>
+                    </div>
+                    <?php else :
+                    $tempreserve = $data['reserve'];
+                    while (!empty($tempreserve)) :
+                        $allocation = array_shift($tempreserve); ?>
+                        <div class="Locker_Allocation">
+                            <div class="column">
+                                <label class="locker_no"><?= $allocation->lockerNo ?></label>
+                                <label for="">Duration</label>
+                                <select name="<?= $allocation->lockerNo ?>" class="selection" id="<?= $allocation->lockerNo ?>">
+                                    <option value="6" <?php echo ($allocation->duration == 6) ? 'selected' : '' ?>>06 Months</option>
+                                    <option value="12" <?php echo ($allocation->duration == 12) ? 'selected' : '' ?>>12 Months</option>
+
+
+                                </select>
+
+                            </div>
+
+                            <div class="jewellery-img">
+                                <img class="jw-img" src="<?php if (!empty($allocation->image)) {
+                                                                echo $allocation->image;
+                                                            } else {
+                                                                echo URLROOT . "/img/images.jpg";
+                                                            } ?>" alt="">
+                            </div>
+
+                            <label><?= $allocation->article_type ?></label>
+                            <label> <?= $allocation->estimated_value ?></label>
+                            <label><?= $allocation->karatage . "K" ?></label>
+                            <label><?= $allocation->weight . "g" ?></label>
+                        </div>
+                        <?php if (!empty($tempreserve)) :
+                            $allocation = array_shift($tempreserve);
+                        ?>
+                            <div class="Locker_Allocation">
+                                <label class=""></label>
+                                <div class="jewellery-img">
+                                    <img class="jw-img" src="<?php if (!empty($allocation->image)) {
+                                                                    echo $allocation->image;
+                                                                } else {
+                                                                    echo URLROOT . "/img/images.jpg";
+                                                                } ?>" alt="">
+                                </div>
+
+                                <label><?= $allocation->article_type ?></label>
+                                <label> <?= $allocation->estimated_value ?></label>
+                                <label><?= $allocation->karatage . "K" ?></label>
+                                <label><?= $allocation->weight . "g" ?></label>
+                            </div>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
+                <?php endif; ?>
 
             <?php endif; ?>
             <h3 class="">
-                Other Lockers
+                Lockers not Available for
             </h3>
-            <?php if (empty($data['AvailableLockers'])) : ?>
+            <?php
+            if (!empty($data['notreserve'])) :
 
-                <label>Not Available</label>
-            <?php else : ?>
-                 
-                <div class="Locker_Allocation">
-                  // foreach
+                foreach ($data['notreserve'] as $allocate) : ?>
+                    <div class="Locker_Allocation">
+                        <label class="locker_no"> </label>
+                        <div class="jewellery-img">
+                            <img class="jw-img" src="<?php if (!empty($allocate->image)) {
+                                                            echo $allocate->image;
+                                                        } else {
+                                                            echo URLROOT . "/img/images.jpg";
+                                                        } ?>" alt="">
+                        </div>
 
-                    <div class="jewellery-img">
-                        <img class="jw-img" src="<?php if (!empty($data['validArticles']->image)) {
-                                                        echo $data['validArticles']->image;
-                                                    } else {
-                                                        echo URLROOT . "/img/images.jpg";
-                                                    } ?>" alt="">
+                        <label><?= $allocate->article_type ?></label>
+                        <label> <?= $allocate->estimated_value ?></label>
+                        <label><?= $allocate->karatage . "K" ?></label>
+                        <label><?= $allocate->weight . "g" ?></label>
+
+
                     </div>
 
-                    <label><?= $data['validArticles']->article_type ?></label>
-                    <label> <?= $data['validArticles']->estimated_value ?></label>
-                    <label><?= $data['validArticles']->karatage . "K" ?></label>
-                    <label><?= $data['validArticles']->weight . "g" ?></label>
-                    <label class="locker_no"><?= $data['CustomerLockers']->lockerNo ?></label>
-
+                <?php endforeach; ?>
+            <?php else : ?>
+                <div class="Locker_Allocation">
+                    <label>Allocated All Articles</label>
                 </div>
-
-            <?php endif; ?>
-
+            <?php endif;
+            ?>
         </div>
     <?php endif; ?>
-    <div class="row info-div">
-        <h2 class="topic">
-            Payment
-        </h2>
+    <div class="row info-div payment">
+        <div class="sec pay">
+            <label class="pay_title">
+                Payment Details
+            </label>
+            <label class="pay_title" id="total_pay">
+                00.00
+            </label>
+        </div>
+
+        <div class="sec">
+            <label for="Total"> Already allocated Lockers</label>
+            <label class="Tot-pay" id="Total"> 0 </label>
+        </div>
+        <div class="sec">
+            <label for="Total">6 Months Allocations</label>
+            <label class="Tot-pay" id="6" for="Total"> 00.00 </label>
+        </div>
+        <div class="sec">
+            <label for="Total">12 Months Allocations</label>
+            <label class="Tot-pay" id="12" for="Total"> 00.00 </label>
+        </div>
+        <div class=" sec-btn">
+            <button class="p-btn " id="cancel" href="">Cancel </button>
+            <button class="p-btn " id="p-btn" onclick="">Pay</button>
+        </div>
     </div>
+
+    <div class="popup" id="popup">
+        <h2 class="sub-title">
+            Quit from locker allocation?</h2>
+        <div class="jw-date-name option-radio">
+            <input type="radio" name="accept-offers" id="yes-button" value="1" class="hidden radio-label">
+            <label for="yes-button" class="button-label">
+                <h1>Yes</h1>
+            </label>
+            <input type="radio" name="accept-offers" id="no-button" value="2" class="hidden radio-label" checked>
+            <label for="no-button" class="button-label">
+                <h1>No</h1>
+            </label>
+        </div>
+        <span>Warning: All validatated Article will be lost</span>
+    </div>
+    <script>
+        <?php $duration_json = json_encode($data['duration']); ?>
+        var duration = <?php echo $duration_json; ?>;
+        let selectors = document.getElementsByClassName('selection');
+        let selectorArray = Array.from(selectors);
+
+        let annualPay = <?php echo $data['allocationFee']; ?>;
+
+        // payment variables
+
+        let monthPay6 = duration.length * annualPay / 2.0;
+        let monthPay12 = 0;
+        let total = monthPay6 + monthPay12;
+        document.getElementById('6').innerHTML = monthPay6;
+        document.getElementById('12').innerHTML = monthPay12;
+        document.getElementById('total_pay').innerHTML = "Rs " + total;
+
+        // Add a change event listener to each selector element
+        selectorArray.forEach(function(selector) {
+            selector.addEventListener('change', function(event) {
+                // Get the locker number and selected duration value
+                var month6 = 0;
+                var month12 = 0;
+
+                for (let i = 0; i < duration.length; i++) {
+                    if (duration[i].locker == selector.id) {
+                        duration[i].duration = selector.value;
+                    }
+                    if (duration[i].duration == 6) {
+                        month6++;
+                    } else {
+                        month12++;
+                    }
+                    monthPay6 = month6 * annualPay / 2.0;
+                    monthPay12 = month12 * annualPay;
+                    total = monthPay6 + monthPay12;
+                    document.getElementById('6').innerHTML = monthPay6;
+                    document.getElementById('12').innerHTML = monthPay12;
+                    document.getElementById('total_pay').innerHTML = "Rs " + total;
+
+                }
+
+
+
+
+                // Perform any necessary actions with the locker number and duration
+
+            });
+        });
+        const cancelBtn = document.getElementById('cancel');
+        const popup = document.getElementById('popup');
+
+        cancelBtn.addEventListener('click', function() {
+            popup.classList.add('show-popup');
+        });
+    </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>

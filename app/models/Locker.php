@@ -19,7 +19,7 @@ class Locker
     {
         $this->db->query('SELECT  * FROM locker INNER JOIN reserves WHERE reserves.lockerNo=locker.lockerNo AND UserID=:userid AND No_of_Articles=1 AND Retrive_status!=1; ');
         $this->db->bind(':userid', $customerId);
-        $result = $this->db->single();
+        $result = $this->db->resultSet();
 
         return $result;
     }

@@ -122,7 +122,7 @@
                                 <div class="jw-date">
                                     <div class="jw-date-name">
                                         <label>Paying Amount</label>
-                                        <label id="amountInstallment" class="jw-dt"><?= 'Rs ' .  $data['loan']->monthly_installment	  ?></label>
+                                        <label id="amountInstallment" class="jw-dt"><?= 'Rs ' .  $data['loan']->monthly_installment      ?></label>
                                     </div>
 
                                 </div>
