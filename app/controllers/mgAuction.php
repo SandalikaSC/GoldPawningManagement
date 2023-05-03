@@ -13,13 +13,13 @@ class mgAuction extends controller
       // $this->view("/Manager/auction_dashboard");
    }
 
-   public function viewAuctionItem($id)
+   public function viewAuctionItem($article_id)
    {
       isLoggedIn();
       $auction = $this->model("auctionArticleModel");
-      $result = $auction->viewAuctionArticle($id);
+      $result = $auction->viewAuctionArticle($article_id);
       $sum = 0;
-      foreach ($result[2] as $row) {
+      foreach ($result[1] as $row) {
          $sum = $sum + $row->Amount;
       }
       $result[] = $sum;

@@ -26,7 +26,7 @@
                             <div class="cus_id"><?php echo $row->Name ?></div>
                             <div class="check-box"><input type="checkbox" <?php echo !empty($row->Status) ? "checked" : "" ?> disabled></div>
                         </div>
-                        <section class="date-time"><?php echo $row->Date ?></section>
+                        <div class="date-time"><?php echo $row->Date ?></div>
                     </div>
                     <div class="complaint">
                         <?php echo $row->Description ?>

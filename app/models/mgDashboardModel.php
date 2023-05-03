@@ -47,11 +47,11 @@ class MgDashboardModel extends Database
         $result2 = $this->resultSet();
 
 
-        if (!empty($result) and !empty($result2)) {
+        // if (!empty($result) and !empty($result2)) {
             return array($result, $result2);
-        } else {
-            return 0;
-        }
+        // } else {
+        //     return 0;
+        // }
     }
 
     public function deriveIncomeAndExpenInGivenYear($year)
@@ -68,11 +68,11 @@ class MgDashboardModel extends Database
         $result2 = $this->resultSet();
 
 
-        if (!empty($result) and !empty($result2)) {
+        // if (!empty($result) and !empty($result2)) {
             return array($result, $result2);
-        } else {
-            return 0;
-        }
+        // } else {
+        //     return 0;
+        // }
     }
 
 

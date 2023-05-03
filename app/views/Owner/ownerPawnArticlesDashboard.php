@@ -18,7 +18,7 @@
                     <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
                                                                                 echo $_SESSION['image'];
                                                                             } else {
-                                                                                echo URLROOT . "//img/image 1.png";
+                                                                                echo URLROOT . "/img/image 1.png";
                                                                             } ?>" id="profileImg" alt=""></a>
                     <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
 

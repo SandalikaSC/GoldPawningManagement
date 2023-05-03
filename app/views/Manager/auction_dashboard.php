@@ -81,6 +81,7 @@
 
           <div class="filter-open">
             <button type="button" id="filter-open">Filter</button>
+            <a class="filter-hide-button" href="<?php echo URLROOT?>/mgAuction">Cancel</a>
           </div>
         </div>
 
@@ -100,7 +101,7 @@
                               } ?>" alt="gold-bar" />
                     <div class="details">
 
-                      <p><?php echo $row->Article_Id ?></p>
+                      <p class="arti_id"><?php echo $row->Article_Id ?></p>
                       <p><?php echo $row->Type ?></p>
                       <p><?php echo $row->Karatage ?> K</p>
                       <p><?php echo $row->Weight ?>g</p>

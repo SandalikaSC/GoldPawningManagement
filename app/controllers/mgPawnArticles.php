@@ -93,7 +93,7 @@ class mgPawnArticles extends controller
 
       if ($result) {
          $flag = 0;
-         foreach ($result as $row) {
+         foreach ($result as $row){
             if ($this->dateCompareForEmail($row->End_Date, 30) and $row->WarningOne == 0) {
                $useremail = $this->model("pawnArticleModel");
                $email = $useremail->findUserEmail($row->userId);
@@ -154,10 +154,11 @@ class mgPawnArticles extends controller
                $useremail = null;
 
                if (sendMail($email->email, "pawn_to_auction", $sms, "V O G U E")) {
-                  $today = date('Y-m-d'); // Get today's date
-                  $auction_date = date('Y-m-d', strtotime($today . ' + 7 days')); // Add 7 days to today's date
+                  date_default_timezone_set('Asia/Colombo');
+                  $current_timestamp = date('H:i:s');
+                  $auction_date = date('Y-m-d H:i:s');
                   $auction = $this->model("pawnArticleModel");
-                  $row = $auction->pawnToAuction($row->Pawn_Id, $auction_date);
+                  $row = $auction->pawnToAuction($row->Pawn_Id, $auction_date,$current_timestamp);
                   $auction = null;
                } else {
                   $flag = 1;
@@ -199,9 +200,10 @@ class mgPawnArticles extends controller
             $sms = "Your Article was added to Auction";
             $sms = "Your Article was added to Auction";
             if (sendMail($email->email, "pawn_to_auction", $sms, "V O G U E")) {
-               $today = date('Y-m-d'); // Get today's date
-               $auction_date = date('Y-m-d', strtotime($today . ' + 7 days'));
-               $pawn2 = $this->model("pawnArticleModel")->pawnToAuction($pawnid, $auction_date);
+               date_default_timezone_set('Asia/Colombo');
+               $current_timestamp = date('H:i:s');
+               $auction_date = date('Y-m-d H:i:s');
+               $pawn2 = $this->model("pawnArticleModel")->pawnToAuction($pawnid, $auction_date,$current_timestamp);
                echo "DONE";
                flashMessage("Added to Auction Successfully");
             } else {
@@ -245,10 +247,7 @@ class mgPawnArticles extends controller
             echo "DONE";
             flashMessage("Warning Sent Successfully");
          }
-      // } else {
-      //    echo "DONE";
-      //    flashMessage("Warning Sent Successfully");
-      // }
+      
       }
    }
 

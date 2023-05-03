@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Note Taking App</title>
+    <title><?php echo SITENAME?></title>
     <style>
         .addNoteForm {
             /* margin: 20px 0; */
@@ -112,7 +112,7 @@
 </head>
 
 <body>
-    <form class="addNoteForm" id="addNoteForm" action="<?php echo URLROOT ?>/ownerDashboard/setNote" method="POST">
+    <form class="addNoteForm" id="addNoteForm" action="<?php echo URLROOT ?>/mgDashboard/setNote" method="POST">
         <div class="note-header">
             <div class="head-topic">NOTES</div>
             <div class="add-note">

@@ -19,7 +19,7 @@
             position: sticky;
             margin-bottom: 30px;
             width: 100%;
-          
+
         }
 
         nav {
@@ -285,8 +285,8 @@
                             <label>Income and Expenditure</label>
 
                             <select name="yearSelect" id="yearSelect">
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
+                                <option value=2023>2023</option>
+                                <option value=2022>2022</option>
                             </select>
 
                             <button onclick="downloadPDF()">PDF VERSION</button>
@@ -335,11 +335,19 @@
 
 
 
+    for (let i = 0; i < 12; i++) {
+        amountsIncome[i] = 0;
+    }
     // Store the income and expense month and total amount in separate arrays
     for (var i = 0; i < incomeData.length; i++) {
         var month = parseInt(incomeData[i].Month);
         amountsIncome[month - 1] = parseFloat(incomeData[i].totalIncome);
 
+    }
+
+
+    for (let i = 0; i < 12; i++) {
+        amountsExpen[i] = 0;
     }
 
     for (var i = 0; i < expenData.length; i++) {
@@ -349,13 +357,14 @@
     }
 
     var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
-
+    // myChart.update();
 
     new Chart("myChart", {
         type: "bar",
         data: {
             labels: xValues,
             datasets: [{
+                label: 'Monthly Income',
                 data: amountsIncome,
                 backgroundColor: [
                     'rgba(255, 99, 13, 0.2)',
@@ -390,6 +399,7 @@
 
                 fill: false
             }, {
+                label: 'Monthly Expenditure',
                 data: amountsExpen,
                 backgroundColor: [
                     'rgba(54, 16, 235, 0.2)',
@@ -428,6 +438,7 @@
             maintainAspectRatio: false,
             legend: {
                 display: true
+
             }
         }
 
@@ -450,9 +461,9 @@
 </script>
 
 <script>
-    const mySelect = document.getElementById("yearSelect");
+    let mySelect = document.getElementById("yearSelect");
     mySelect.addEventListener("change", function() {
-        const selectedValue = mySelect.value;
+        let selectedValue = mySelect.value;
         fetch(`<?php echo URLROOT ?>/ownerDashboard/loadChartData/${selectedValue}`)
             .then(response => response.json())
             .then(data => {
@@ -460,16 +471,24 @@
 
                 incomeData = data[0];
 
-                // console.log(incomeData);
+                for (let i = 0; i < 12; i++) {
+                    amountsIncome[i] = 0;
+                }
+
+
                 for (var i = 0; i < incomeData.length; i++) {
                     var month = parseInt(incomeData[i].Month);
                     amountsIncome[month - 1] = parseFloat(incomeData[i].totalIncome);
 
                 }
+                console.log(amountsIncome);
 
 
                 expenData = data[1];
-                // console.log(expenData);
+
+                for (let i = 0; i < 12; i++) {
+                    amountsExpen[i] = 0;
+                }
 
                 for (var i = 0; i < expenData.length; i++) {
                     var month = parseInt(expenData[i].Month);
@@ -477,6 +496,95 @@
 
                 }
 
+                console.log(amountsExpen);
+
+
+
+                new Chart("myChart", {
+                    type: "bar",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            label: 'Monthly Income',
+                            data: amountsIncome,
+                            backgroundColor: [
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)'
+
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)',
+                                'rgba(255, 99, 13, 0.2)'
+
+                            ],
+
+                            fill: false
+                        }, {
+                            label: 'Monthly Expenditure',
+                            data: amountsExpen,
+                            backgroundColor: [
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                                'rgba(54, 16, 235, 0.2)',
+                            ],
+
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: true
+                        }
+                    }
+
+
+
+                });
 
 
             })
@@ -559,14 +667,14 @@
 </script>
 
 <script>
-    let online  = <?php echo $data[4][7]->online_payments; ?>;
+    let online = <?php echo $data[4][7]->online_payments; ?>;
     let cash = <?php echo $data[4][8]->cash_payments; ?>;
-    let total=  <?php echo $data[4][9]->total_payments; ?>;
+    let total = <?php echo $data[4][9]->total_payments; ?>;
 
-    let online_percen=online*100/total;
-    let cash_percen=cash*100/total;
+    let online_percen = online * 100 / total;
+    let cash_percen = cash * 100 / total;
 
-    
+
 
     new Chart("myDonutChart", {
         type: 'doughnut',
@@ -574,7 +682,7 @@
             labels: [
                 'Online Payments',
                 'Cash payments'
-                
+
             ],
             datasets: [{
                 label: 'My First Dataset',
@@ -582,7 +690,7 @@
                 backgroundColor: [
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)'
-                    
+
                 ],
                 hoverOffset: 4
             }]
@@ -599,7 +707,7 @@
                 text: 'Percentage of Online and Cash Payments'
             }
         }
-        
+
 
     });
 </script>

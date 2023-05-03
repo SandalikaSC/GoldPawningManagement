@@ -17,6 +17,7 @@
             margin: 6px 0;
             box-shadow: 5px 5px #888888;
             float: left;
+            min-width: 1025px;
         }
 
         .cus-details {
@@ -92,4 +93,54 @@
 
         .check-box input {
             background-color: #2196F3;
+        }
+
+
+        @media screen and (max-width:1121px) {
+            .complaint-set {
+                min-width: 900px;
+            }
+        }
+
+
+        @media screen and (max-width:932px) {
+            .complaint-set {
+                min-width: 800px;
+            }
+        }
+
+        @media screen and (max-width:831px) {
+            .complaint-set {
+                min-width: 700px;
+            }
+        }
+
+        @media screen and (max-width:731px) {
+            .complaint-set {
+                min-width: 600px;
+            }
+        }
+
+        @media screen and (max-width:631px) {
+            .complaint-set {
+                min-width: 500px;
+            }
+        }
+
+        @media screen and (max-width:531px) {
+            .complaint-set {
+                min-width: 400px;
+            }
+        }
+
+        @media screen and (max-width:431px) {
+            .complaint-set {
+                min-width: 300px;
+            }
+        }
+
+        @media screen and (max-width:831px) {
+            .complaint-set {
+                min-width: 0;
+            }
         }

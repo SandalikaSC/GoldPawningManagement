@@ -197,12 +197,13 @@ class staffModel extends Database
         return $result;
     }
 
-    public function getAllPasswords(){
-        $sql="select password from user";
+    public function getAllPasswords()
+    {
+        $sql = "select password from user";
         $this->query($sql);
-        $passwords=$this->resultSet();
+        $passwords = $this->resultSet();
         return $passwords;
-      }
+    }
 
 
     public function getUserPassword($email)
@@ -245,9 +246,17 @@ class staffModel extends Database
         }
 
         $this->bind(7, $image);
-          
-        $timestamp = date('Y-m-d H:i:s'); // get the Unix timestamp for the current date and time
-        $this->bind(8, $timestamp);
+
+        // Set the timezone to Sri Lanka
+        date_default_timezone_set('Asia/Colombo');
+
+        // Get the current timestamp in Sri Lanka
+        $current_timestamp = time();
+
+        // Format the timestamp into a readable string
+        $formatted_timestamp = date('Y-m-d H:i:s', $current_timestamp);
+
+        $this->bind(8,$formatted_timestamp);
 
 
         $result = $this->execute();
@@ -294,7 +303,4 @@ class staffModel extends Database
             return false;
         }
     }
-
-
- 
 }

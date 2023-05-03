@@ -255,6 +255,28 @@
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 <script>
+
+
+    let amountsIncome = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let amountsExpen = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    let incomeData = <?php echo json_encode($data[3][0]); ?>;
+    let expenData = <?php echo json_encode($data[3][1]); ?>;
+
+
+
+    // Store the income and expense month and total amount in separate arrays
+    for (var i = 0; i < incomeData.length; i++) {
+        var month = parseInt(incomeData[i].Month);
+        amountsIncome[month - 1] = parseFloat(incomeData[i].totalIncome);
+
+    }
+
+    for (var i = 0; i < expenData.length; i++) {
+        var month = parseInt(expenData[i].Month);
+        amountsExpen[month - 1] = parseFloat(expenData[i].totalExpen);
+
+    }
     var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
 
     new Chart("myChart", {
@@ -262,12 +284,12 @@
         data: {
             labels: xValues,
             datasets: [{
-                data: [10, 40, 30, 21, 50, 35, 90, 80, 90, 15, 100, 1],
+                data: amountsIncome,
                 // data: amountsIncome,
                 borderColor: "#BB8A04",
                 fill: false
             }, {
-                data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
+                data: amountsExpen,
                 // data: amountsExpen,
                 borderColor: "black",
                 fill: false

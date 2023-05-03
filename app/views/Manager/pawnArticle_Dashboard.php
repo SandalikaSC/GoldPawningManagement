@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:99;">
+    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;z-index:99;">
         <section class="whole">
             <div class="loading-box">
                 <p>please Wait...</p>
@@ -91,7 +91,9 @@
                             <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
                         </div>
                         <div class="filter-set">
-                                <button id="filter-dropdown-button">Filter</button>
+                                <button type="button" id="filter-dropdown-button">Filter</button>
+                                <a class="filter-hide-button" href="<?php echo URLROOT?>/mgPawnArticles">Cancel</a>
+
                         </div>
 
                         <div class="twobtns">
@@ -173,6 +175,7 @@
 
 <script src="<?php echo URLROOT ?>/js/pawnedArticleDashboardSearch.js"></script>
 
+
 <script>
     const URL = "<?php echo URLROOT ?>";
     let auctionBtn = document.getElementById("auctionBtn");
@@ -232,5 +235,7 @@
 
   
 </script>
+
+
 
 </html>

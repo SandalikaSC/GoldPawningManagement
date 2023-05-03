@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/ownerViewComplaints.css">
-    
+
 </head>
 
 <body>
@@ -26,12 +26,12 @@
                             <div class="cus_id"><?php echo $row->Name ?></div>
                             <div class="check-box"><input type="checkbox" <?php echo !empty($row->Status) ? "checked" : "" ?> disabled></div>
                         </div>
-                        <section class="date-time"><?php echo $row->Date ?></section>
+                        <div class="date-time"><?php echo $row->Date ?></div>
                     </div>
                     <div class="complaint">
                         <?php echo $row->Description ?>
                     </div>
-                  
+
                 </section>
 
             <?php  }

@@ -131,6 +131,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: hidden;
 }
 
 .right-heading{
@@ -206,8 +207,30 @@
     overflow-y: hidden;
     position: relative;
     backdrop-filter: blur(15px);
-    z-index: 8;
+    /* z-index: 8; */
 } 
+
+.filter-open{
+  display: flex;
+  align-items: center;
+}
+
+.filter-hide-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 8px;
+  background-color: #222;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  margin-left: 5px;
+}
 
 .filter-open button{
            padding: 10px 20px;
@@ -279,6 +302,8 @@ input[type=text] {
         border-radius: 5px;
     }
 
+    
+
     /*  */
 
 }
@@ -330,7 +355,7 @@ input[type=text] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-     padding: 30px 0;
+     padding: 10px 0 30px 0;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);
@@ -346,9 +371,12 @@ input[type=text] {
     margin-bottom: 5px;
   }
 
+  .details .arti_id{
+    font-size: 20px;
+  }
   .card-view-btn{  
     position: absolute;
-    top: 240px;
+    top: 230px;
     left: 21px;
     
   }
@@ -368,9 +396,7 @@ input[type=text] {
 }
   
 .card-view-btn:hover {
-    animation-name: btn;
-    animation-duration:10s;
-    animation-iteration-count: infinite;
+    transform: scale(1.1);
 }
 
 
@@ -478,7 +504,7 @@ input[type=text] {
     }
 }
 
- @media screen and (max-width:440px){
+ @media screen and (max-width:458px){
   .outer-filter{
     position: absolute;
     z-index: 10;
@@ -490,9 +516,16 @@ input[type=text] {
   flex-direction: column;
 } 
 
-.filter-open button{
+.filter-open button,.filter-open a{
   margin-top: 10px;
 }
+
+
+.right{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
  }
 
 .hide{

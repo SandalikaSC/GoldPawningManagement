@@ -1,5 +1,20 @@
 
-  
+.filter-hide-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 8px;
+  background-color: #222;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  margin-left: 5px;
+}
 
     /* Styles for dropdown button */
     #filter-dropdown-button {
@@ -29,6 +44,7 @@
       cursor: pointer;
       transition: background-color 0.3s;
       box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+      /* margin-left: 5px; */
     }
 
     .filter-cancel-button a:hover {

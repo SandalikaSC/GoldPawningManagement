@@ -121,4 +121,14 @@ class mgDashboard extends controller
     $obj = $this->model('mgDashboardModel');
     $result= $obj->updateStatus($cid);
   }
+
+  public function setNote(){
+    if(isset($_POST['noteTitle']) AND isset($_POST['noteDate']) AND isset($_POST['noteContent'])){
+      isLoggedIn();
+      $note = $this->model('mgDashboardModel')->addNote($_SESSION['user_id'],$_POST['noteTitle'],$_POST['noteDate'],$_POST['noteContent']);
+      redirect("/mgDashboard/index");
+
+    }
+
+  }
 }

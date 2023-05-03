@@ -69,6 +69,11 @@ body{
     margin: auto;
 }
 
+
+.btn-set a:hover{
+    opacity: 0.5;
+}
+
 .btn-set .dash{
     border: 2px solid #BB8A04;
     background-color: white;
@@ -168,10 +173,7 @@ body{
 
 
 .vogue {
-    /* animation-name: logo; */
-    animation-duration:18s;
     width: 200px;
-    animation-iteration-count: infinite;
 }
 
 .right-side{
@@ -234,15 +236,15 @@ body{
 }
 
 input[type=text] {
-    width: 10rem;
-    /* box-sizing: border-box; */
+    width: 12rem;
+    box-sizing: border-box;
     border-radius: 20px;
     font-size: 20px;
     color:white;
     background-color: black;
     background-image: url(http://localhost/vogue/public/img/search-icon.png);
     background-repeat: no-repeat;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 10px 10px 50px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
@@ -250,7 +252,8 @@ input[type=text] {
   }
 
   input[type=text]:hover {
-    width: 100%;
+    width: 70%;
+    box-sizing: border-box;
   }
 
 .search-bar>input::placeholder {

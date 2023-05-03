@@ -35,7 +35,7 @@ class ownerDashboard extends controller{
   }
 
 
- public function loadChartData($year=null)
+ public function loadChartData($year)
   {
 
     isLoggedIn();
