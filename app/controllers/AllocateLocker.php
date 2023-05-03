@@ -87,39 +87,81 @@ class AllocateLocker extends Controller
         $alredyAllocate = $_POST['allocatemy'];
         $reserved = $_POST['reserved'];
         $duration = $_POST['duration'];
+        $notreserve = $_POST['notreserve'];
+        $invalidArticles = $_POST['invalidArticles'];
 
-        
-        //allocate already allocate locker artilces
-         
-            // foreach ($alredyAllocate as $allocation) {
 
-            //     $Rate = $this->rateingModel->getRateIdByKaratage($allocation['karatage']);
-            //     $article_id=$this->articleModel->addArticle($allocation,$Rate);
-            //     $this->LockerModel->updateLockerArticles($allocation['lockerNo']);
-            //     if (!empty($article_id)) {
-            //         $this->reservationModel->addLockerReserved($allocation, $article_id);
-            //     }
-            //     //delete validated
-            //     $this->validationModel->deleteValidation($allocation['id']); 
+        // allocate already allocate locker artilces
 
-            // }
+        foreach ($alredyAllocate as $allocation) {
 
-            foreach ($reserved as $allocation) {
+            $Rate = $this->rateingModel->getRateIdByKaratage($allocation['karatage']);
+            $article_id = $this->articleModel->addArticle($allocation, $Rate);
+            $this->LockerModel->updateLockerArticles($allocation['lockerNo'], "Not Available");
+            if (!empty($article_id)) {
+                $this->reservationModel->addLockerReserved($allocation, $article_id);
+            }
+            //delete validated
+            $this->validationModel->deleteValidation($allocation['id']);
+        }
 
-                // $Rate = $this->rateingModel->getRateIdByKaratage($allocation['karatage']);
-                // $article_id=$this->articleModel->addArticle($allocation,$Rate);
-                // $this->LockerModel->updateLockerArticles($allocation['lockerNo']);
-                // if (!empty($article_id)) {
-                //     $this->reservationModel->addLockerReserved($allocation, $article_id);
-                // }
+        $PreAlocker = 0;
+        foreach ($reserved as $allocation) {
+
+            $Rate = $this->rateingModel->getRateIdByKaratage($allocation['karatage']);
+            $article_id = $this->articleModel->addArticle($allocation, $Rate);
+            $locker = $allocation['lockerNo'];
+            if ($PreAlocker == $locker) {
+                $this->LockerModel->updateLockerArticles($allocation['lockerNo'], "Not Available");
+                $this->reservationModel->addLockerReserved($allocation, $article_id);
+            } else {
+                $this->LockerModel->updateLockerArticles($allocation['lockerNo'], "Available");
+                $PreAlocker = $locker;
+
+                //calculate locker duration send duration
+                $mothDuration = 0;
+                for ($i = 0; $i < count($duration); $i++) {
+                    if ($duration[$i]['locker'] == $allocation['lockerNo']) {
+                        $mothDuration = $duration[$i]['duration'];
+                    }
+                }
+                //calculate retrieve date
+                $today = new DateTime();
+                $future_date = $today->modify('+' . $mothDuration . ' months');
+                $retrieve = $future_date->format('Y-m-d');
+
+                $payment = $this->interestModel->getAllocationInterest()->Interest_Rate;
+
+                //calculate payment for duration
+                if ($mothDuration == 6) {
+                    $payment = $payment / 2.0;
+                }
+                //add new locker reservation
+                $this->reservationModel->addNewReservation($allocation, $article_id, $retrieve, $payment);
+
                 // //delete validated
-                // $this->validationModel->deleteValidation($allocation['id']); 
+                $this->validationModel->deleteValidation($allocation['id']);
+            }
+
+            //delete invalid articles from validation table
+            foreach ($notreserve as $article) {
+                $this->validationModel->deleteValidation($article['id']);
+
+            }
+
+            //delete Articles coudn't alloate from validation table
+            foreach ($invalidArticles as $article) {
+                $this->validationModel->deleteValidation($article['id']);
 
             }
 
 
-            echo json_encode(1);
-        
+
+        }
+
+
+        echo json_encode(1);
+
 
 
 

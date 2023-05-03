@@ -100,4 +100,30 @@ class reservation
             return false;
         }
     }
+    public function addNewReservation($data, $articleId,$retrieveDate,$payment)
+    {
+         
+        $this->db->query('INSERT INTO reserves(Retrieve_Date,Retrive_status,Article_Id,allocation_fee,lockerNo,UserID,Keeper_Id,appraiser_Id) 
+        VALUES(:Retrieve_Date,:Retrive_Status,:Article_Id,:allocation_fee,:lockerNo,:UserID,:Keeper_Id,:appraiser_Id )');
+
+        // Bind values
+
+        
+        $this->db->bind(':Retrieve_Date', $retrieveDate);
+        $this->db->bind(':Retrive_Status',0);
+        $this->db->bind(':Article_Id', $articleId);
+        $this->db->bind(':allocation_fee', $payment);
+        $this->db->bind(':lockerNo',  $data['lockerNo']);
+        $this->db->bind(':UserID', $data['customer']);
+        $this->db->bind(':Keeper_Id', $data['pawn_officer_or_vault_keeper']);
+        $this->db->bind(':appraiser_Id', $data['gold_appraiser']);
+
+        // Execute
+        if ($this->db->execute()) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

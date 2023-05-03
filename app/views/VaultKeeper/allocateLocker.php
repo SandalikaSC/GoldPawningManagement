@@ -405,6 +405,8 @@
                 data: {
                     allocatemy: <?= json_encode($data['allocateMy']) ?>,
                     reserved: <?= json_encode($data['reserve']) ?>,
+                    notreserve: <?= json_encode($data['notreserve']) ?>,
+                    invalidArticles: <?= json_encode($data['invalidArticles']) ?>,
                     duration: duration
                     // ,
                     // payment: payment
