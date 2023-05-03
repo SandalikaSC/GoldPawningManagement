@@ -180,8 +180,13 @@
 }
 
 .popup {
-    display: none; 
-    padding: 4em 5em;
+    width: 31%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 4% 2%;
+    display: none;
+    /* padding: 4em ; */
     border: 1px solid #bb8a04;
     border-radius: 20px;
     z-index: 199;
@@ -194,10 +199,11 @@
 }
 
 .show-popup {
-    display: block;
+    
+    display: flex;
 }
 
-span{
+span {
     color: gray;
     font-size: small;
 }
@@ -205,21 +211,21 @@ span{
 
 
 
- 
-  .button-wrap {
+
+.button-wrap {
     position: relative;
     text-align: center;
     top: 50%;
     margin-top: -2.5em;
-  }
-  
-  @media (max-width: 40em) {
+}
+
+@media (max-width: 40em) {
     .button-wrap {
-      margin-top: -1.5em;
+        margin-top: -1.5em;
     }
-  }
-  
-  .button-label {
+}
+
+.button-label {
     display: inline-block;
     padding: 1em 2em;
     margin: 0.5em;
@@ -228,46 +234,70 @@ span{
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
     transition: 0.3s;
     user-select: none;
-  }
-  
-  .button-label h1 {
+}
+
+.button-label h1 {
     font-size: 1em;
     font-family: "Lato", sans-serif;
-  }
-  
-  .button-label:hover {
+}
+
+.button-label:hover {
     background: darken(#efefef, 10%);
     color: darken(#292929, 10%);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
-  }
-  
-  .button-label:active {
+}
+
+.button-label:active {
     transform: translateY(2px);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
-  }
-  
-  #yes-button:checked + .button-label {
+}
+
+#yes-button:checked+.button-label {
     background: #2ECC71;
     color: #efefef;
-  }
-  
-  #yes-button:checked + .button-label:hover {
+}
+
+#yes-button:checked+.button-label:hover {
     background: darken(#2ECC71, 5%);
     color: darken(#efefef, 5%);
-  }
-  
-  #no-button:checked + .button-label {
+}
+
+#no-button:checked+.button-label {
     background: #D91E18;
     color: #efefef;
-  }
-  
-  #no-button:checked + .button-label:hover {
+}
+
+#no-button:checked+.button-label:hover {
     background: darken(#D91E18, 5%);
     color: darken(#efefef, 5%);
-  }
- 
+}
+
 
 .hidden {
     display: none;
+}
+
+button,
+a {
+cursor: pointer; 
+}
+.btn-confirm {
+    outline: none;
+    background: #bb8a04;
+    border: 1px solid #bb8a04;
+    color: white;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 1% 20%;
+    margin: 3%;
+}
+.btn-cancel {
+    background: #ececec;
+    border: 1px solid #bb8a04;
+    color: #979797;
+
+
+}
+.blur {
+    filter: blur(5px);
   }
-    

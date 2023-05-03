@@ -254,7 +254,7 @@
             <label class="pay_title">
                 Payment Details
             </label>
-            <label class="pay_title" id="total_pay">
+            <label class="pay_title amount" id="total_pay">
                 00.00
             </label>
         </div>
@@ -292,8 +292,27 @@
         </div>
         <span>Warning: All validatated Article will be lost</span>
     </div>
+    <div class="popup" id="payConfirmation">
+        <h2 class="sub-title">Reservation Confirmation
+        </h2>
+
+        <div class="">
+            <label class="">
+                Confirm Payment amount of
+            </label>
+            <label class=" amount" id="amount">
+                00.00
+            </label>
+        </div>
+
+
+
+        <button class="btn-confirm" id="confirmPay" onclick="">Confirm</button>
+        <button class="btn-confirm btn-cancel" id="cancelPay" href="">Cancel </button>
+
+    </div>
+    <?php $duration_json = json_encode($data['duration']); ?>
     <script>
-        <?php $duration_json = json_encode($data['duration']); ?>
         var duration = <?php echo $duration_json; ?>;
         let selectors = document.getElementsByClassName('selection');
         let selectorArray = Array.from(selectors);
@@ -308,6 +327,7 @@
         document.getElementById('6').innerHTML = monthPay6;
         document.getElementById('12').innerHTML = monthPay12;
         document.getElementById('total_pay').innerHTML = "Rs " + total;
+        document.getElementById('amount').innerHTML = "Rs " + total;
 
         // Add a change event listener to each selector element
         selectorArray.forEach(function(selector) {
@@ -331,21 +351,95 @@
                     document.getElementById('6').innerHTML = monthPay6;
                     document.getElementById('12').innerHTML = monthPay12;
                     document.getElementById('total_pay').innerHTML = "Rs " + total;
+                    document.getElementById('amount').innerHTML = "Rs " + total;
 
                 }
-
-
-
-
-                // Perform any necessary actions with the locker number and duration
 
             });
         });
         const cancelBtn = document.getElementById('cancel');
+        const paybtn = document.getElementById('p-btn');
         const popup = document.getElementById('popup');
+        const confirmbox = document.getElementById('payConfirmation');
+        const cancelpay = document.getElementById('cancelPay');
+        const confirmPay = document.getElementById('confirmPay');
+        // var pageElements = document.querySelectorAll("body > *:not(#popup)");
 
         cancelBtn.addEventListener('click', function() {
             popup.classList.add('show-popup');
+
+            blurDOM(popup, 1);
+            AllDOM(popup, 'none');
+
         });
+        paybtn.addEventListener('click', function() {
+            confirmbox.classList.add('show-popup');
+            blurDOM(confirmbox, 1);
+            AllDOM(confirmbox, 'none');
+        });
+        cancelpay.addEventListener('click', function() {
+            confirmbox.classList.remove('show-popup');
+            blurDOM(confirmbox, 0);
+            AllDOM(confirmbox, 'auto');
+        });
+        const yes = document.getElementById("yes-button");
+        const no = document.getElementById("no-button");
+
+
+        yes.addEventListener("click", function(event) {
+
+
+        });
+
+        no.addEventListener("click", function(event) {
+            popup.classList.remove('show-popup');
+            blurDOM(popup, 0);
+            AllDOM(popup, 'auto');
+        });
+        confirmPay.addEventListener('click', function() {
+
+
+            $.ajax({
+                type: "POST",
+                url: "<?= URLROOT ?>/AllocateLocker/AllocateLocker",
+                data: {
+                    allocatemy: <?= json_encode($data['allocateMy']) ?>,
+                    reserved: <?= json_encode($data['reserve']) ?>,
+                    duration: duration
+                    // ,
+                    // payment: payment
+
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    console.log(response);
+
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error: " + error);
+                }
+            });
+
+
+
+
+        });
+
+        function blurDOM(enable, action) {
+            const bodyChildren = Array.from(document.body.children).filter(child => child !== enable);
+            if (action == 0) {
+                bodyChildren.forEach(child => child.classList.remove('blur'));
+            } else {
+                bodyChildren.forEach(child => child.classList.add('blur'));
+            }
+
+        }
+
+        function AllDOM(enable, event) {
+            const bodyChildren = Array.from(document.body.children).filter(child => child !== enable);
+            bodyChildren.forEach(child => {
+                child.style.pointerEvents = event;
+            });
+        }
     </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>

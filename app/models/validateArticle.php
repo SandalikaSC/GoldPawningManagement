@@ -57,4 +57,12 @@ class validateArticle
         $results = $this->db->resultset(); 
         return $results;
     }
+    public function deleteValidation($id)
+    {
+
+        $this->db->query('Delete FROM validation_articles where id=:id');
+        $this->db->bind(':id', $id);
+       
+        return $this->db->execute();
+    }
 }

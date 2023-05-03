@@ -37,5 +37,17 @@ class Locker
 
         return $result->lockers;
     }
+    public function updateLockerArticles($lockerNo){
+        $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 , Status="Not Available" WHERE lockerNo = :LockerNo');
+        
+        $this->db->bind(':LockerNo', $lockerNo); 
+
+        if($this->db->execute()){
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
      
 }
