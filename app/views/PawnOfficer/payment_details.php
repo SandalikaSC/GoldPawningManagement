@@ -104,7 +104,7 @@
                             </div>
                             <div class="remaining-loan">
                                 <label>REMAINING TO PAY</label>
-                                <div>Rs. <?php echo $data['pawn_item']->Amount; ?></div>
+                                <div>Rs. <?php echo sprintf("%.2f", $data['remaining_loan']); ?></div>
                             </div>
                         </div>
                     
@@ -132,17 +132,46 @@
                         <div class="payment-history">
                             <h2>Payment History</h2>
 
-                            <div class="payment-details">
-                                <div class="div-no-history">
-                                    <div class="no-history-img">
-                                        <img src="<?php echo URLROOT . '/img/no-payment-history.svg'; ?>" alt="No Payment History">
-                                    </div>
-                                    
-                                    <div class="no-history-msg">
-                                        No Payment History
+                            <?php if(empty($data['payment_history'])) : ?>
+                                <div class="payment-details">
+                                    <div class="div-no-history">
+                                        <div class="no-history-img">
+                                            <img src="<?php echo URLROOT . '/img/no-payment-history.svg'; ?>" alt="No Payment History">
+                                        </div>
+                                        
+                                        <div class="no-history-msg">
+                                            No Payment History
+                                        </div>
                                     </div>
                                 </div>
-                            </div>                        
+                            <?php else : ?>
+                                <div class="payment-details"> 
+                                    <div class="div-table">
+                                        <table cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>PID</th>
+                                                    <th>Paid Amount</th>
+                                                    <th>Paid Date</th>
+                                                    <th>Paid Method</th>
+                                                </tr>
+                                            </thead>                            
+                                                
+                                            <tbody>
+                                                <?php foreach($data['payment_history'] as $payment_record) : ?>
+                                                    <tr>
+                                                        <td><?php echo $payment_record->PID; ?></td>
+                                                        <td><?php echo $payment_record->Amount; ?></td>
+                                                        <td><?php echo date('Y-m-d', strtotime($payment_record->Date)); ?></td>
+                                                        <td><?php echo $payment_record->Type; ?></td>
+                                                    </tr> 
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>  
+                                </div>
+                                     
+                            <?php endif; ?>           
                         </div>
                     </div>
                     

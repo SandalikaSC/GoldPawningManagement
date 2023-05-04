@@ -55,14 +55,21 @@ body, html {
 }
 
 main {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     width: 100vw;
     height: calc(100vh - 85px);
     overflow-y: auto;
     padding-top: 10px;
+}
+
+main .main-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 main .main-div-container {

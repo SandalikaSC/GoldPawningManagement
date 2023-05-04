@@ -24,19 +24,15 @@
             $pawned_item = $this->pawningModel->getPawnItemById($id);
             $payment_history = $this->pawningModel->getPaymentsByPawnID($id);
 
-            $paid_loan = 0.00;
-
             $data = [
                 'pawn_item' => $pawned_item,
                 'payment_history' => $payment_history,
                 'remaining_loan' => '',
             ];
 
-            if(!empty($data['payment_history'])) {
-                foreach($data['payment_history'] as $payment_record) {
-                    $paid_loan = $paid_loan + $payment_record->Principle_Amount;
-                }
-            }
+            $remaining_loan = $this->getRemainingLoan($id);
+
+            $data['remaining_loan'] = $remaining_loan;
 
             $this->view('PawnOfficer/payment_details', $data);
         }
@@ -45,13 +41,101 @@
             // Get pawned item
             $pawned_item = $this->pawningModel->getPawnItemById($id);
             $payment_history = $this->pawningModel->getPaymentsByPawnID($id);
+            $last_payment = $this->pawningModel->getLastPayment($id);
+            $remaining_loan = $this->getRemainingLoan($id);
+            $due_months = 0;
+            $amount_to_pay = 0.00;
 
-            $data = [
-                'pawn_item' => $pawned_item,
-                'payment_history' => $payment_history
-            ];
+            if($pawned_item->Repay_Method == "Fixed") {
+                $start_date = new DateTime();
+                $current_date = new DateTime();
+                $date_difference = new DateTime();
+                $due_pay = 0.00;
+                if(empty($last_payment)) {
+                    $start_date = new DateTime(date('Y-m-d', strtotime($pawned_item->Pawn_Date)));
+                } else {
+                    $start_date = new DateTime(date('Y-m-d', strtotime($last_payment->Date)));
+                }
 
-            $this->view('PawnOfficer/make_payments', $data);
+                $date_difference = $start_date->diff($current_date);
+
+                $due_months = $date_difference->format('%r%y') * 12 + $date_difference->format('%r%m');
+
+                $amount_to_pay = $due_months * $pawned_item->monthly_installment;
+            }
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'payment_history' => $payment_history,
+                    'last_payment' => $last_payment,
+                    'amount_to_pay' => $amount_to_pay,
+                    'due_months' => $due_months,
+                    'remaining_loan' => $remaining_loan,
+                    'full_payment' => $_POST['full-amount'],
+                    'covered_loan' => $_POST['loan-amount'],
+                    'pawning_officer' => $_SESSION['user_id'],
+                    'full_payment_err' => ''
+                ];
+
+                if($data['pawn_item'] == "Diminishing") {
+                    if(empty($data['full_payment'])) {
+                        $data['full_payment_err'] = "Please enter the full amount customer wants to pay";
+                    } else {
+                        $interest = $data['remaining_loan'] * $data['pawn_item']->Interest / 100.00;
+                        $covered_loan = $data['full_payment'] - $interest;
+                        $data['covered_loan'] = $covered_loan;
+                    }
+                }                 
+
+                if(empty($data['full_payment_err']) && $data['full_payment'] != 0.00) {
+                    $payment_success = $this->pawningModel->make_payment($data);
+    
+                    if($payment_success) {
+                        flash('register', 'PAYMENT SUCCESSFUL', 'success');
+                        $data = [
+                            'pawn_item' => $pawned_item,
+                            'payment_history' => $payment_history,
+                            'last_payment' => $last_payment,
+                            'amount_to_pay' => $amount_to_pay,
+                            'due_months' => $due_months,
+                            'remaining_loan' => $remaining_loan,
+                            'full_payment' => '',
+                            'covered_loan'=> '',
+                            'pawning_officer' => $_SESSION['user_id'],
+                            'full_payment_err' => ''
+                        ];          
+        
+                        $this->view('PawnOfficer/make_payments', $data);
+                        // redirect('/Pawnings/make_payments/' . $data['pawn_item']->Pawn_Id);
+                        // $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id); 
+                    } else {
+                        flash('register', 'Something went wrong. Please try again.', 'invalid');
+                        $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id, $data); 
+                    }
+                } else {
+                    $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id, $data); 
+                }
+            } else {
+
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'payment_history' => $payment_history,
+                    'last_payment' => $last_payment,
+                    'amount_to_pay' => $amount_to_pay,
+                    'due_months' => $due_months,
+                    'remaining_loan' => $remaining_loan,
+                    'full_payment' => '',
+                    'covered_loan'=> '',
+                    'pawning_officer' => $_SESSION['user_id'],
+                    'full_payment_err' => ''
+                ];          
+
+                $this->view('PawnOfficer/make_payments', $data);
+            }
         }
 
         public function release_pawn($id) {
@@ -74,6 +158,28 @@
             ];
 
             $this->view('PawnOfficer/renew_pawn', $data);
+        }
+
+        public function getRemainingLoan($id) {
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $payment_history = $this->pawningModel->getPaymentsByPawnID($id);
+
+            $paid_loan = 0.00;
+
+            $data = [
+                'pawn_item' => $pawned_item,
+                'payment_history' => $payment_history
+            ];
+
+            if(!empty($data['payment_history'])) {
+                foreach($data['payment_history'] as $payment_record) {
+                    $paid_loan = $paid_loan + $payment_record->Principle_Amount;
+                }
+            }
+
+            $remaining_loan = $pawned_item->Amount - $paid_loan;
+
+            return $remaining_loan;
         }
 
         // public function showConfirmMessage($validation_id, $full_loan, $payment_method) {
