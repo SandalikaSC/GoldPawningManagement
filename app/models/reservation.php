@@ -118,10 +118,13 @@ class reservation
         $this->db->bind(':Keeper_Id', $data['pawn_officer_or_vault_keeper']);
         $this->db->bind(':appraiser_Id', $data['gold_appraiser']);
 
+    
         // Execute
         if ($this->db->execute()) {
 
-            return true;
+           $reserve= $this->getLockerReservation($data['lockerNo'],$data['customer']); 
+
+            return $reserve->Allocate_Id;
         } else {
             return false;
         }

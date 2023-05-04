@@ -301,3 +301,9 @@ cursor: pointer;
 .blur {
     filter: blur(5px);
   }
+  .lockerKeys{
+    display: none; 
+    /* display: grid; */
+    grid-template-columns: repeat(4,1fr);
+    padding: 5%;
+  }

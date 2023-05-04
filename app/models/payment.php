@@ -29,6 +29,29 @@ class payment
                 return false;
             } 
     }
+    public function addCashLockerPayment($amount,$reservationId)
+    {
+ 
+            $this->db->query('INSERT INTO payment (Amount,Type,Principle_Amount, allocate_Id,Employee_Id) 
+                                VALUES( :Amount,:Type,:Principle_Amount,:allocate_Id,:Employee_Id)');
+
+            // Bind values 
+            
+            $this->db->bind(':Amount', $amount);
+            $this->db->bind(':Type',"Cash" ); 
+            $this->db->bind(':Principle_Amount',0); 
+            $this->db->bind(':Employee_Id',$_SESSION['user_id'] );  
+            $this->db->bind(':allocate_Id', $reservationId);
+
+            // Execute
+            if ($this->db->execute()) {
+
+                return true;
+
+            } else {
+                return false;
+            } 
+    }
     public function getReservationPayments($reserveId)
     {
         $this->db->query('SELECT * FROM payment where allocate_Id=:allocate_Id');

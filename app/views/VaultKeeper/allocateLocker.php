@@ -7,7 +7,7 @@
 </head>
 
 <body class="wrapper">
-
+    <?php notification("newAllocation") ?>
     <div class="">
         <div class="right-heading">
             <div class="right-side">
@@ -306,14 +306,29 @@
         </div>
 
 
+        <div class="lockerKeys" id="lockerKeys">
+            <?php for ($i = 0; $i < count($data['duration']); $i++) : ?>
+                <input type="checkbox" id="<?= $i ?>" name="Checkbox" value="<?= $data['duration'][$i]['locker'] ?>">
+                <label for="<?= $i ?>">Locker <?= $data['duration'][$i]['locker'] ?></label>
+            <?php endfor ?>
+        </div>
+
 
         <button class="btn-confirm" id="confirmPay" onclick="">Confirm</button>
         <button class="btn-confirm btn-cancel" id="cancelPay" href="">Cancel </button>
-
+        <span>suggestion: Mark & Handover allocated locker keys</span>
     </div>
-    <?php $duration_json = json_encode($data['duration']); ?>
+    <?php $duration_json = json_encode($data['duration']);
+    $validArticles =  json_encode($data['validArticles']);
+    $allocateMy =  json_encode($data['allocateMy']);
+    $reserve =  json_encode($data['reserve']);
+
+    ?>
     <script>
         var duration = <?php echo $duration_json; ?>;
+        var validArticles = <?php echo $validArticles; ?>;
+        var allocateMy = <?php echo $allocateMy; ?>;
+        var reserve = <?php echo $reserve; ?>;
         let selectors = document.getElementsByClassName('selection');
         let selectorArray = Array.from(selectors);
 
@@ -321,49 +336,105 @@
 
         // payment variables
 
-        let monthPay6 = duration.length * annualPay / 2.0;
+        let monthPay6 = 0;
+
         let monthPay12 = 0;
+
+        if (duration != null) {
+            monthPay6 = duration.length * annualPay / 2.0;
+
+        }
         let total = monthPay6 + monthPay12;
-        document.getElementById('6').innerHTML = monthPay6;
-        document.getElementById('12').innerHTML = monthPay12;
         document.getElementById('total_pay').innerHTML = "Rs " + total;
         document.getElementById('amount').innerHTML = "Rs " + total;
 
-        // Add a change event listener to each selector element
-        selectorArray.forEach(function(selector) {
-            selector.addEventListener('change', function(event) {
-                // Get the locker number and selected duration value
-                var month6 = 0;
-                var month12 = 0;
 
-                for (let i = 0; i < duration.length; i++) {
-                    if (duration[i].locker == selector.id) {
-                        duration[i].duration = selector.value;
-                    }
-                    if (duration[i].duration == 6) {
-                        month6++;
-                    } else {
-                        month12++;
-                    }
-                    monthPay6 = month6 * annualPay / 2.0;
-                    monthPay12 = month12 * annualPay;
-                    total = monthPay6 + monthPay12;
-                    document.getElementById('6').innerHTML = monthPay6;
-                    document.getElementById('12').innerHTML = monthPay12;
-                    document.getElementById('total_pay').innerHTML = "Rs " + total;
-                    document.getElementById('amount').innerHTML = "Rs " + total;
-
-                }
-
-            });
-        });
+        // buttons
         const cancelBtn = document.getElementById('cancel');
-        const paybtn = document.getElementById('p-btn');
         const popup = document.getElementById('popup');
         const confirmbox = document.getElementById('payConfirmation');
         const cancelpay = document.getElementById('cancelPay');
         const confirmPay = document.getElementById('confirmPay');
+        confirmPay.style.display = "none";
         // var pageElements = document.querySelectorAll("body > *:not(#popup)");
+        if (reserve != null) {
+            document.getElementById('6').innerHTML = monthPay6;
+            document.getElementById('12').innerHTML = monthPay12;
+
+            // Add a change event listener to each selector element
+            selectorArray.forEach(function(selector) {
+                selector.addEventListener('change', function(event) {
+                    // Get the locker number and selected duration value
+                    var month6 = 0;
+                    var month12 = 0;
+
+                    for (let i = 0; i < duration.length; i++) {
+                        if (duration[i].locker == selector.id) {
+                            duration[i].duration = selector.value;
+                        }
+                        if (duration[i].duration == 6) {
+                            month6++;
+                        } else {
+                            month12++;
+                        }
+                        monthPay6 = month6 * annualPay / 2.0;
+                        monthPay12 = month12 * annualPay;
+                        total = monthPay6 + monthPay12;
+                        document.getElementById('6').innerHTML = monthPay6;
+                        document.getElementById('12').innerHTML = monthPay12;
+                        document.getElementById('total_pay').innerHTML = "Rs " + total;
+                        document.getElementById('amount').innerHTML = "Rs " + total;
+
+                    }
+
+                });
+            });
+
+            let keysection = document.getElementById('lockerKeys');
+            keysection.style.display = "grid";
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            var checkedCount = 0;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener('change', function() {
+                    checkedCount = 0;
+                    for (var j = 0; j < checkboxes.length; j++) {
+                        if (checkboxes[j].checked) {
+                            checkedCount++;
+                        }
+                    }
+
+                    if (checkedCount == checkboxes.length) {
+                        // perform some task if all checkboxes are checked
+                        confirmPay.style.display = "block";
+                    } else {
+                        confirmPay.style.display = "none";
+                    }
+                });
+            }
+
+
+
+
+
+
+        }
+
+
+
+
+
+        const paybtn = document.getElementById('p-btn');
+        if (reserve != null && allocateMy!= null) {
+            paybtn.style.display = "none";
+        } else {
+            paybtn.addEventListener('click', function() {
+                confirmbox.classList.add('show-popup');
+                blurDOM(confirmbox, 1);
+                AllDOM(confirmbox, 'none');
+            });
+        }
+
 
         cancelBtn.addEventListener('click', function() {
             popup.classList.add('show-popup');
@@ -372,11 +443,7 @@
             AllDOM(popup, 'none');
 
         });
-        paybtn.addEventListener('click', function() {
-            confirmbox.classList.add('show-popup');
-            blurDOM(confirmbox, 1);
-            AllDOM(confirmbox, 'none');
-        });
+
         cancelpay.addEventListener('click', function() {
             confirmbox.classList.remove('show-popup');
             blurDOM(confirmbox, 0);
@@ -387,6 +454,29 @@
 
 
         yes.addEventListener("click", function(event) {
+            $.ajax({
+                type: "POST",
+                url: " <?= URLROOT ?>/AllocateLocker/removeValidations/<?php echo $data['customer']->UserId ?>",
+                data: {
+
+                },
+                dataType: "JSON",
+                success: function(response) {
+                    if (response == 0) {
+                        location.reload();
+                    } else {
+
+                        window.location = "<?= URLROOT ?>/VKDashboard";
+
+                    }
+
+
+
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error: " + error);
+                }
+            });
 
 
         });
@@ -397,6 +487,7 @@
             AllDOM(popup, 'auto');
         });
         confirmPay.addEventListener('click', function() {
+
 
 
             $.ajax({
@@ -414,7 +505,17 @@
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    console.log(response);
+                    if (response == 0) {
+                        location.reload();
+                    } else {
+
+                        window.location = "<?= URLROOT ?>/VKDashboard";
+
+
+
+                    }
+
+
 
                 },
                 error: function(xhr, status, error) {
@@ -426,6 +527,9 @@
 
 
         });
+
+
+
 
         function blurDOM(enable, action) {
             const bodyChildren = Array.from(document.body.children).filter(child => child !== enable);

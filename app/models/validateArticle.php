@@ -65,4 +65,10 @@ class validateArticle
        
         return $this->db->execute();
     }
+    public function deleteValidatedbyCustomer($customerid){
+        $this->db->query('Delete FROM validation_articles where customer=:id AND pawn_officer_or_vault_keeper like "VK%"');
+        $this->db->bind(':id', $customerid);
+       
+        return $this->db->execute();
+    }
 }

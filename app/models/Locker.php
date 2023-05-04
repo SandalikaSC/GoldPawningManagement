@@ -38,7 +38,18 @@ class Locker
         return $result->lockers;
     }
     public function updateLockerArticles($lockerNo,$status){
-        $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 , Status=:Status WHERE lockerNo = :LockerNo');
+
+        if ($status=="Available") {
+            $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 ,Key_Status=1,Key_released_Date=:Date, Status=:Status WHERE lockerNo = :LockerNo');
+            $this->db->bind(':Date', date('Y-m-d')); 
+        } else {
+            $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 , Status=:Status WHERE lockerNo = :LockerNo');
+        
+        }
+        
+
+
+        // $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 ,Key_Status=1, Status=:Status WHERE lockerNo = :LockerNo');
         $this->db->bind(':Status', $status); 
         $this->db->bind(':LockerNo', $lockerNo); 
 
