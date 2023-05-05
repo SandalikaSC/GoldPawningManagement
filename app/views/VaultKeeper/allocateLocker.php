@@ -297,24 +297,28 @@
         </h2>
 
         <div class="">
-            <label class="">
-                Confirm Payment amount of
-            </label>
-            <label class=" amount" id="amount">
-                00.00
-            </label>
+            <h4 class="">
+                <?php  echo empty($data['reserve'])?  "Allocate ".$data['customer']->UserId."'s lockers":"Confirm Payment amount of"?>
+            </h4>
+            <h4 class=" amount" id="amount">
+            <?php  echo empty($data['reserve'])? "Payment " :" Payment 00.00" ?>
+            </h4>
         </div>
 
 
         <div class="lockerKeys" id="lockerKeys">
-            <?php for ($i = 0; $i < count($data['duration']); $i++) : ?>
+            <?php 
+            if (!empty($data['duration'])) :
+            
+            for ($i = 0; $i < count($data['duration']); $i++) : ?>
                 <input type="checkbox" id="<?= $i ?>" name="Checkbox" value="<?= $data['duration'][$i]['locker'] ?>">
                 <label for="<?= $i ?>">Locker <?= $data['duration'][$i]['locker'] ?></label>
-            <?php endfor ?>
+            <?php endfor;
+            endif; ?>
         </div>
 
 
-        <button class="btn-confirm" id="confirmPay" onclick="">Confirm</button>
+        <button class="btn-confirm" id="confirmPay" onclick=""><?php echo empty($data['reserve'])? "Allocate":"Confirm"?></button>
         <button class="btn-confirm btn-cancel" id="cancelPay" href="">Cancel </button>
         <span>suggestion: Mark & Handover allocated locker keys</span>
     </div>
@@ -346,7 +350,7 @@
         }
         let total = monthPay6 + monthPay12;
         document.getElementById('total_pay').innerHTML = "Rs " + total;
-        document.getElementById('amount').innerHTML = "Rs " + total;
+        document.getElementById('amount').innerHTML =  "payment Rs " +total;
 
 
         // buttons
@@ -356,6 +360,31 @@
         const cancelpay = document.getElementById('cancelPay');
         const confirmPay = document.getElementById('confirmPay');
         confirmPay.style.display = "none";
+        const paybtn = document.getElementById('p-btn');
+        paybtn.style.display = "none";
+        if (reserve != null || allocateMy!= null) {
+            paybtn.style.display = "flex";
+            paybtn.addEventListener('click', function() {
+                confirmbox.classList.add('show-popup');
+                blurDOM(confirmbox, 1);
+                AllDOM(confirmbox, 'none');
+            });
+        }  
+
+
+        cancelBtn.addEventListener('click', function() {
+            popup.classList.add('show-popup');
+
+            blurDOM(popup, 1);
+            AllDOM(popup, 'none');
+
+        });
+
+        cancelpay.addEventListener('click', function() {
+            confirmbox.classList.remove('show-popup');
+            blurDOM(confirmbox, 0);
+            AllDOM(confirmbox, 'auto');
+        });
         // var pageElements = document.querySelectorAll("body > *:not(#popup)");
         if (reserve != null) {
             document.getElementById('6').innerHTML = monthPay6;
@@ -383,7 +412,7 @@
                         document.getElementById('6').innerHTML = monthPay6;
                         document.getElementById('12').innerHTML = monthPay12;
                         document.getElementById('total_pay').innerHTML = "Rs " + total;
-                        document.getElementById('amount').innerHTML = "Rs " + total;
+                        document.getElementById('amount').innerHTML =  "payment Rs " + total;
 
                     }
 
@@ -418,37 +447,15 @@
 
 
 
+        }else{
+            confirmPay.style.display = "flex";
         }
 
 
 
 
 
-        const paybtn = document.getElementById('p-btn');
-        if (reserve != null && allocateMy!= null) {
-            paybtn.style.display = "none";
-        } else {
-            paybtn.addEventListener('click', function() {
-                confirmbox.classList.add('show-popup');
-                blurDOM(confirmbox, 1);
-                AllDOM(confirmbox, 'none');
-            });
-        }
-
-
-        cancelBtn.addEventListener('click', function() {
-            popup.classList.add('show-popup');
-
-            blurDOM(popup, 1);
-            AllDOM(popup, 'none');
-
-        });
-
-        cancelpay.addEventListener('click', function() {
-            confirmbox.classList.remove('show-popup');
-            blurDOM(confirmbox, 0);
-            AllDOM(confirmbox, 'auto');
-        });
+      
         const yes = document.getElementById("yes-button");
         const no = document.getElementById("no-button");
 
@@ -486,9 +493,7 @@
             blurDOM(popup, 0);
             AllDOM(popup, 'auto');
         });
-        confirmPay.addEventListener('click', function() {
-
-
+        confirmPay.addEventListener('click', function() { 
 
             $.ajax({
                 type: "POST",

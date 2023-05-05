@@ -19,70 +19,19 @@
             <div class="inside-page">
 
 
-
                 <div class="search-container">
                     <input type="text" placeholder="Search...">
                     <span class="search-icon"></span>
-                </div>
-
-
+                </div> 
 
                 <div class="reservations">
-                    <table class="content-table">
-                        <thead>
-                            <tr>
-                                <th> Locker</th>
-                                <th>Customer ID</th>
-                                <th>Customer</th>
-                                <th>Articles</th>
-                                <th>Key Delivery</th>
-                                <th> </th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="lockers">
+    
 
-                            <tr class="data">
-                                <td> 05</td>
-                                <td>CU001</td>
-                                <td>
-                                    Sandalika Chamari
-                                </td>
+                    <div class="locker">
 
-                                <td>02</td>
-                                <td><label class="tag-del black" for="">Deliverd</label></td>
-                                <td><a href="<?php echo URLROOT ?>/Reservations/ViewReservation">
-                                        <button class="view">View</button>
-                                    </a></td>
-                            </tr>
-                            <tr class="data">
-                                <td> 08</td>
-                                <td>CU005</td>
-                                <td>
-                                    Nadee Darshika
-                                </td>
-
-                                <td>01</td>
-                                <td><label class="tag-del gold" for="">Pending</label></td>
-                                <td><a href="<?php echo URLROOT ?>/Reservations/ViewReservation">
-                                        <button class="view">View</button>
-                                    </a></td>
-                            </tr>
-                            <tr class="data">
-                                <td> 11</td>
-                                <td>CU004</td>
-                                <td>
-                                    Anjalee Neelika
-                                </td>
-
-                                <td>01</td>
-                                <td><label class="tag-del black" for="">Deliverd</label></td>
-                                <td><a href="<?php echo URLROOT ?>/Reservations/ViewReservation">
-                                        <button class="view">View</button>
-                                    </a></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                    </div>
+                    </div>
                     <div class="res-info">
                         <h2>Locker Information</h2>
                         <div class="section">

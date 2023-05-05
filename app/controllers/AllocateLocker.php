@@ -113,26 +113,26 @@ class AllocateLocker extends Controller
         $reserved = $_POST['reserved'];
         $duration = $_POST['duration'];
         $notreserve = $_POST['notreserve'];
-        $invalidArticles = $_POST['invalidArticles']; 
+        $invalidArticles = $_POST['invalidArticles'];
 
 
         // allocate already allocate locker artilces
 
-        // foreach ($alredyAllocate as $allocation) {
+        foreach ($alredyAllocate as $allocation) {
 
-        //     $Rate = $this->rateingModel->getRateIdByKaratage($allocation['karatage']);
-        //     $article_id = $this->articleModel->addArticle($allocation, $Rate);
+            $Rate = $this->rateingModel->getRateIdByKaratage($allocation['karatage']);
+            $article_id = $this->articleModel->addArticle($allocation, $Rate);
 
-        //     if (!empty($article_id)) {
-        //         $this->LockerModel->updateLockerArticles($allocation['lockerNo'], "Not Available");
-        //         $this->reservationModel->addLockerReserved($allocation, $article_id);
-        //         // delete validated
-        //         $this->validationModel->deleteValidation($allocation['id']);
-        //     } else {
-        //         notification("newAllocation", "Somthing went wrong ", "red");
-        //         echo json_encode(0);
-        //     }
-        // }
+            if (!empty($article_id)) {
+                $this->LockerModel->updateLockerArticles($allocation['lockerNo'], "Not Available");
+                $this->reservationModel->addLockerReserved($allocation, $article_id);
+                // delete validated
+                $this->validationModel->deleteValidation($allocation['id']);
+            } else {
+                notification("newAllocation", "Somthing went wrong ", "red");
+                echo json_encode(0);
+            }
+        }
 
         $PreAlocker = 0;
         foreach ($reserved as $allocation) {
@@ -181,17 +181,22 @@ class AllocateLocker extends Controller
             }
         }
         // delete invalid articles from validation tableF
-        foreach ($notreserve as $article) {
-            $this->validationModel->deleteValidation($article['id']);
+        if (!empty($notreserve)) {
+            foreach ($notreserve as $article) {
+                $this->validationModel->deleteValidation($article['id']);
+            }
         }
+
         // delete Articles coudn't alloate from validation table
-        foreach ($invalidArticles as $article) {
-            $this->validationModel->deleteValidation($article['id']);
+        if (!empty($invalidArticles)) {
+            foreach ($invalidArticles as $article) {
+                $this->validationModel->deleteValidation($article['id']);
+            }
         }
 
         //send emai
         //gererate reciept
-        notification("VkDash", "Locker Allocated Successfully", "gold");
+        notification("VkDash", "Lockers Allocated Successfully", "gold");
         echo json_encode(1);
     }
 
@@ -207,18 +212,11 @@ class AllocateLocker extends Controller
     {
         $status = $this->validationModel->deleteValidatedbyCustomer($cusid);
         if ($status) {
-            notification("VkDash", $cusid."'s Validations Removed", "red");
+            notification("VkDash", $cusid . "'s Validations Removed", "red");
             echo json_encode(1);
         } else {
-            notification("newAllocation", "Something went wrong", "red"); 
-        echo json_encode(0);
-        
-        
+            notification("newAllocation", "Something went wrong", "red");
+            echo json_encode(0);
         }
-        
-
-
-
-
     }
 }
