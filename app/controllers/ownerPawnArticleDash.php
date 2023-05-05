@@ -73,7 +73,7 @@ class ownerPawnArticleDash extends controller
       $pawn = $this->model("pawnArticleModel");
       $result = $pawn->viewPawnArticle($id);
       $sum = 0;
-      foreach ($result[2] as $row) {
+      foreach ($result[1] as $row) {
          $sum = $sum + $row->Amount;
       }
       $result[] = $sum;

@@ -88,7 +88,7 @@
                     <div class="search">
 
                         <div class="search-bar">
-                            <input type="text" name="search_input" id="search_input" onkeyup="myFunction()" placeholder="Search.." />
+                            <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Search.." />
                         </div>
                         <div class="filter-set">
                                 <button type="button" id="filter-dropdown-button">Filter</button>
@@ -125,7 +125,7 @@
                         <?php
                         if (!empty($data[0])) {
                         ?>
-                            <table id="myTable">
+                            <table>
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -136,7 +136,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="myTable">
                                 <?php
 
                                 $i = 1;

@@ -175,7 +175,11 @@
                             </div>
                             <div class="amount-and-due-date">
                                 <div class="data-field">
-                                    <div class="field">Amount :</div>
+                                    <div class="field">Paid Amount :</div>
+                                    <div class="value"><?php if (!empty($data[0])) { ?> Rs.<?php echo $data[2] ?>/=<?php } else echo "Not Available"; ?></div>
+                                </div>
+                                <div class="data-field">
+                                    <div class="field">Due Amount to Pay :</div>
                                     <div class="value"><?php if (!empty($data[0])) { ?> Rs.<?php echo $data[0]->Estimated_Value - $data[2] ?>/=<?php } else echo "Not Available"; ?></div>
                                 </div>
                                 <div class="data-field">

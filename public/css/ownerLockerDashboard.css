@@ -69,6 +69,11 @@ body{
     margin: auto;
 }
 
+
+.btn-set a:hover{
+    opacity: 0.5;
+}
+
 .btn-set .dash{
     border: 2px solid #BB8A04;
     background-color: white;
@@ -114,9 +119,6 @@ body{
     align-items: center;
 }
 
-.btn-set a:hover{
-    opacity: 0.5;
-}
 
 .left .lgout{
     display: flex;
@@ -170,13 +172,13 @@ body{
  }
 
 
-
 .vogue {
     width: 200px;
 }
 
 .right-side{
     display: flex;
+    align-items: center;
 }
 
 
@@ -195,7 +197,8 @@ body{
 }
 
 
-/*  */
+
+/* for search bar */
 .search{
     display: flex;
     justify-content: space-between;
@@ -233,15 +236,15 @@ body{
 }
 
 input[type=text] {
-    width: 10rem;
-    /* box-sizing: border-box; */
+    width: 12rem;
+    box-sizing: border-box;
     border-radius: 20px;
     font-size: 20px;
     color:white;
     background-color: black;
     background-image: url(http://localhost/vogue/public/img/search-icon.png);
     background-repeat: no-repeat;
-    padding: 10px 20px 10px 40px;
+    padding: 10px 10px 10px 50px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
@@ -249,21 +252,20 @@ input[type=text] {
   }
 
   input[type=text]:hover {
-    width: 100%;
+    width: 70%;
+    box-sizing: border-box;
   }
 
 .search-bar>input::placeholder {
     font-size: x-large;
 }
 
-/*  */
 
 
 
 
 
-
-@media screen and (max-width:1076px) {
+@media screen and (max-width:1188px) {
     .vogue {
         animation: none;
         width: 100px;
@@ -343,131 +345,130 @@ input[type=text] {
 
 
 
-
-
 /* locker dashboard cards */
 
-.card-set {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin: 5px;
-  }
-  .lc-card {
-    font-family: 'Montserrat','sans-serif';
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-
-  .lc-card:hover{
-    transform: scale(1.1);
-  }
-
-  .lc-no {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: large;
-    font-weight: bold;
-  }
-
-  .lc-img {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .lc-img img {
-    width: 100px;
-    object-fit: cover;
-  }
-
-  .lc-img .nonstatic-img {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    opacity: 0;
-  }
-
-  .lc-img .nonstatic-img:hover {
-    opacity: 1;
-  }
-
-  .down-arrow{
-    background-color: white;
-  }
-
-  .toggle-button img{
-    width:20px;
-    height:20px;
-    background-color: white;
-  }
-  .show {
-    display: block;
-  }
-
-
-  .hover-des {
-    display: block;
-  }
-
-  .hide{
-    display: none;
-  }
-
-  .hover-des .hover-des-field {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
-    /*justify-content: space-between;*/
-  }
-
-  .hover-des-field .label {
-    font-size: large;
-    font-weight: bold;
-    border-bottom: 1px solid #bb8a04;
-    
-  }
-
-  .hover-des-field .key {
-    color: green;
-  }
-
-
-
-  @media screen and (max-width:607px){
-      .search{
-        flex-direction: column;
-        justify-content: space-around;
+    .card-set {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        margin: 5px;
       }
-
-      .locker-summary{
-        margin-top: 10px;
-      }
-  }
-
-
-  @media screen and (max-width:450px){
-     
-      .locker-summary{
-        margin-top: 10px;
+      .lc-card {
+        font-family: 'Montserrat','sans-serif';
+        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       }
 
-      .locker-sum-1{
-        margin-top: 10px;
-
+      .lc-card:hover{
+        transform: scale(1.1);
       }
-  }
+
+      .lc-no {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: large;
+        font-weight: bold;
+      }
+
+      .lc-img {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .lc-img img {
+        width: 100px;
+        object-fit: cover;
+      }
+
+      .lc-img .nonstatic-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        opacity: 0;
+      }
+
+      .lc-img .nonstatic-img:hover {
+        opacity: 1;
+      }
+
+      .down-arrow{
+        background-color: white;
+      }
+
+      .toggle-button img{
+        width:20px;
+        height:20px;
+        background-color: white;
+      }
+      .show {
+        display: block;
+      }
+ 
+
+      .hover-des {
+        display: block;
+      }
+
+      .hide{
+        display: none;
+      }
+
+      .hover-des .hover-des-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0;
+        /*justify-content: space-between;*/
+      }
+
+      .hover-des-field .label {
+        font-size: large;
+        font-weight: bold;
+        border-bottom: 1px solid #bb8a04;
+        
+      }
+
+      .hover-des-field .key {
+        color: green;
+      }
+
+
+
+      @media screen and (max-width:607px){
+          .search{
+            flex-direction: column;
+            justify-content: space-around;
+          }
+
+          .locker-summary{
+            margin-top: 10px;
+          }
+      }
+
+
+      @media screen and (max-width:450px){
+         
+          .locker-summary{
+            margin-top: 10px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .locker-sum-1{
+            margin-top: 10px;
+
+          }
+      }
+

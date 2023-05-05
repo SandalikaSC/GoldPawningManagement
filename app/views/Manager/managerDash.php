@@ -214,6 +214,13 @@
                         <div class="chart">
                             <div class="topic-income">
                                 <label>Income and Expenditure</label>
+                                <select name="yearSelect" id="yearSelect">
+                                    <option value=2023>2023</option>
+                                    <option value=2022>2022</option>
+                                </select>
+
+                                <button type="button" id="downloadbtn">PDF VERSION</button>
+
                             </div>
 
                             <div class="graph">
@@ -232,7 +239,7 @@
                             <div class="search">
 
                                 <div class="search-bar">
-                                    <input type="text" id="myInput" name="search_input" onkeyup="myFunction()" placeholder="DATE.." />
+                                    <input type="text" id="myInput" name="search_input" onkeyup="searchComplaints()" placeholder="DATE.." />
 
                                 </div>
 
@@ -255,8 +262,6 @@
 <script src="<?php echo URLROOT ?>/js/sidebarHide.js"></script>
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 <script>
-
-
     let amountsIncome = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let amountsExpen = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -264,12 +269,20 @@
     let expenData = <?php echo json_encode($data[3][1]); ?>;
 
 
+    for (let i = 0; i < 12; i++) {
+        amountsIncome[i] = 0;
+    }
 
     // Store the income and expense month and total amount in separate arrays
     for (var i = 0; i < incomeData.length; i++) {
         var month = parseInt(incomeData[i].Month);
         amountsIncome[month - 1] = parseFloat(incomeData[i].totalIncome);
 
+    }
+
+
+    for (let i = 0; i < 12; i++) {
+        amountsExpen[i] = 0;
     }
 
     for (var i = 0; i < expenData.length; i++) {
@@ -284,11 +297,13 @@
         data: {
             labels: xValues,
             datasets: [{
+                label: 'Monthly Income',
                 data: amountsIncome,
                 // data: amountsIncome,
                 borderColor: "#BB8A04",
                 fill: false
             }, {
+                label: 'Monthly Expenditure',
                 data: amountsExpen,
                 // data: amountsExpen,
                 borderColor: "black",
@@ -299,15 +314,105 @@
             responsive: true,
             maintainAspectRatio: false,
             legend: {
-                display: false
+                display: true
             }
         }
 
     });
 </script>
 
+
 <script>
-    function myFunction() {
+    let mySelect = document.getElementById("yearSelect");
+    mySelect.addEventListener("change", function() {
+        let selectedValue = mySelect.value;
+        fetch(`<?php echo URLROOT ?>/ownerDashboard/loadChartData/${selectedValue}`)
+            .then(response => response.json())
+            .then(data => {
+                let incomeData, expenData;
+
+                incomeData = data[0];
+
+                for (let i = 0; i < 12; i++) {
+                    amountsIncome[i] = 0;
+                }
+
+
+                for (var i = 0; i < incomeData.length; i++) {
+                    var month = parseInt(incomeData[i].Month);
+                    amountsIncome[month - 1] = parseFloat(incomeData[i].totalIncome);
+
+                }
+                // console.log(amountsIncome);
+
+
+                expenData = data[1];
+
+                for (let i = 0; i < 12; i++) {
+                    amountsExpen[i] = 0;
+                }
+
+                for (var i = 0; i < expenData.length; i++) {
+                    var month = parseInt(expenData[i].Month);
+                    amountsExpen[month - 1] = parseFloat(expenData[i].totalExpen);
+
+                }
+
+                // console.log(amountsExpen);
+                new Chart("myChart", {
+                    type: "line",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            label: 'Monthly Income',
+                            data: amountsIncome,
+                            borderColor: "#BB8A04",
+                            fill: false
+                        }, {
+                            label: 'Monthly Expenditure',
+                            data: amountsExpen,
+                            borderColor: "black",
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: true
+                        }
+                    }
+
+                });
+
+
+
+
+
+            })
+
+    });
+</script>
+
+<script>
+    let download = document.getElementById('downloadbtn');
+    download.addEventListener('click', () => {
+        const canvas = document.getElementById('myChart');
+
+        //create image
+        const canvasImage = canvas.toDataURL('image/jpeg', 1.0);
+
+        let pdf = new jsPDF('landscape');
+        pdf.setFontSize(20);
+        pdf.addImage(canvasImage, 'JPEG', 5, 5, 290, 150);
+        pdf.save('IncomeAndExpenditure.pdf');
+
+    })
+
+</script>
+
+<script>
+    function searchComplaints() {
         var input, filter, ul, li, a, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();

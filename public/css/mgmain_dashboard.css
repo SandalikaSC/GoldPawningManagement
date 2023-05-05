@@ -239,6 +239,7 @@ body{
 
 .count-card:hover{
     margin-top: -10px;
+    /* transform: scale(1.1); */
 }
 
 
@@ -357,6 +358,7 @@ body{
     overflow-y: scroll;
     overflow-wrap: break-word;
     overflow-x: hidden;
+    height:450px;
 }
 
 .search-bar input[type=text] {

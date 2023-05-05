@@ -4,7 +4,8 @@
             flex-direction: column;
             flex-wrap: wrap;
             margin: auto;
-            
+            min-width: 1025px;
+            min-height: 450px;
         }
 
         .complaint-set {
@@ -100,6 +101,11 @@
             .complaint-set {
                 min-width: 900px;
             }
+
+            .complaint-table {
+                min-width: 900px;
+            
+            }
         }
 
 
@@ -107,11 +113,19 @@
             .complaint-set {
                 min-width: 800px;
             }
+            .complaint-table {
+                min-width: 800px;
+            
+            }
         }
 
         @media screen and (max-width:831px) {
             .complaint-set {
                 min-width: 700px;
+            }
+            .complaint-table {
+                min-width: 700px;
+            
             }
         }
 
@@ -119,11 +133,21 @@
             .complaint-set {
                 min-width: 600px;
             }
+
+            .complaint-table {
+                min-width: 600px;
+            
+            }
         }
 
         @media screen and (max-width:631px) {
             .complaint-set {
                 min-width: 500px;
+            }
+
+            .complaint-table {
+                min-width: 500px;
+            
             }
         }
 
@@ -131,16 +155,31 @@
             .complaint-set {
                 min-width: 400px;
             }
+
+            .complaint-table {
+                min-width: 400px;
+            
+            }
         }
 
         @media screen and (max-width:431px) {
             .complaint-set {
                 min-width: 300px;
             }
+
+            .complaint-table {
+                min-width: 300px;
+            
+            }
         }
 
         @media screen and (max-width:831px) {
             .complaint-set {
                 min-width: 0;
+            }
+
+            .complaint-table {
+                min-width: 0;
+            
             }
         }

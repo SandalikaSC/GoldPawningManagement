@@ -302,7 +302,7 @@
                             <div class="search">
 
                                 <div class="search-bar">
-                                    <input type="text" name="search_input" id="myInput" onkeyup="myFunction()" placeholder="Search.." />
+                                    <input type="text" name="search_input" id="myInput" onkeyup="searchComplaint()" placeholder="Search.." />
 
                                 </div>
 
@@ -481,7 +481,7 @@
                     amountsIncome[month - 1] = parseFloat(incomeData[i].totalIncome);
 
                 }
-                console.log(amountsIncome);
+                // console.log(amountsIncome);
 
 
                 expenData = data[1];
@@ -496,7 +496,7 @@
 
                 }
 
-                console.log(amountsExpen);
+                // console.log(amountsExpen);
 
 
 
@@ -593,7 +593,7 @@
 </script>
 
 <script>
-    function myFunction() {
+    function searchComplaint() {
         var input, filter, ul, li, a, i, txtValue;
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();

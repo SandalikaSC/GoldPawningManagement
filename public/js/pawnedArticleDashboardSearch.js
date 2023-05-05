@@ -1,4 +1,4 @@
-function myFunction() {
+function searchItems() {
     var input, filter, table, tr, td1,td2,td3,td4,td5, i, nonCount,txtValue1,txtValue2,txtValue3,txtValue4,txtValue5;
     input = document.getElementById("search_input");
     filter = input.value.toUpperCase();
@@ -7,10 +7,10 @@ function myFunction() {
     nonCount = 0;
     for (i = 0; i < tr.length; i++) {
         td1= tr[i].getElementsByTagName("td")[0];
-        td2= tr[i].getElementsByTagName("td")[2];
-        td3= tr[i].getElementsByTagName("td")[3];
-        td4= tr[i].getElementsByTagName("td")[4];
-        td5= tr[i].getElementsByTagName("td")[5];
+        td2= tr[i].getElementsByTagName("td")[1];
+        td3= tr[i].getElementsByTagName("td")[2];
+        td4= tr[i].getElementsByTagName("td")[3];
+        td5= tr[i].getElementsByTagName("td")[4];
 
         if (td1 || td2 || td3 ||td4 ||td5) {
             txtValue1 = td1.textContent || td1.innerText;
@@ -26,7 +26,7 @@ function myFunction() {
             }
         }
     }
-    if(nonCount==tr.length-1){
+    if(nonCount==tr.length){
         document.getElementById('tfoot').innerHTML="<div style='text-align:center; margin-top:50px;'>No Matched Data </div>";
         nonCount=0;
     }

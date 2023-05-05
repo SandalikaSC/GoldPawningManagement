@@ -131,7 +131,6 @@
     flex: auto;
     display: flex;
     flex-direction: column;
-    /* overflow-y: scroll; */
     position: relative;
     overflow: hidden;
 }
@@ -139,13 +138,13 @@
 .right-heading{
     padding: 15px 15px 0 15px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%; 
     align-items: center;
     position: sticky;
     top: 0; 
     background-color: rgba(255, 255, 255, 0.669);
-    /* background-color:  #e8e6e6; */
     backdrop-filter: blur(15px);
     z-index: 8;
 }
@@ -160,12 +159,7 @@
     width:50px;
  }
 
-@keyframes logo {
-    0%   {transform: rotateY(0);}
-    50%  {transform: rotateY(360deg);}
-    100%  {transform: rotateY(0);}
-    
-}
+
 
 .vogue {
     width: 200px;
@@ -211,6 +205,7 @@
 .search{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
    
 }
 
@@ -220,7 +215,7 @@
     display: flex;
     position: relative;
     z-index: 1;
-    margin-right: 10px;
+    margin: 0 10px;
 }
 
 .search-bar>input {
@@ -247,66 +242,42 @@
 }
 
 
-
-
-@media screen and (max-width:670px) {
-    .vogue {
-        animation: none;
-        width: 100px;
-    }
-    .right-side h1{
-        font-size: medium;
-    }
-
-    
-    .right-side .backbtn img{
-        height: 30px;
-        width:40px;
-     }
-     
-    .left{
-        z-index: 60;
-        position: absolute;
-        margin-top: 55px;
-        height: 94vh;
-        border-radius: 0 ;
-    }
-
-    .inside-page{
-      padding:0;
-    }
-  
-
-    .bars img{
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
-    }
-
-    .auction-page-row{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-       /* margin-left: 60px; */
-    }
-
+#filter-cancel-button{
+  padding: 7px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
 }
+
+#filter-cancel-button:hover{
+  background-color: #444;
+  transform: scale(1.1);
+}
+
+
+
+
+
 
   /*  */
 
-.auction-page-row{
-        position: relative;
-        overflow-y: scroll;
-        height: 600px;
-        overflow-x: hidden;
-        display: flex;
-        flex-wrap: wrap;
-        /* align-items:center;
-        justify-content: center; */
-        /* justify-content:; */
-        flex: 4;
-        margin-left: 20px;
-    }
+  .auction-page-row{
+    position: relative;
+    overflow-y: scroll;
+    height: 600px;
+    overflow-x: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    margin-left: 10px;
+    left: 0;
+  }
 
   .flip-card {
     background-color: transparent;
@@ -378,23 +349,23 @@
 
 .filter-and-article-set {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 20px;
   }
 
 
 /* filter css */
 
-         .outer-filter{
-           display: none;
-            overflow-y: hidden;
-            right: 0;
-            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-            flex: 1;
-            min-width: 230px;
-            max-width: 230px;
-            margin-top: 20px;
-         }
+  .outer-filter{
+    display: none;
+    overflow-y: hidden;
+    right: 0;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    /* flex: 4; */
+    min-width: 230px;
+    max-width: 230px;
+    margin-top: 20px;
+  }
 
 
 
@@ -463,6 +434,7 @@
 
         #filter-popup:hover {
             background-color: #444;
+            transform: scale(1.1);
           }
           
 .filter-cancel-button{
@@ -501,4 +473,57 @@
 
 .visible{
    display: block;
+}
+
+
+@media screen and (max-width:1188px) {
+  .vogue {
+      width: 100px;
+  }
+  .right-side h1{
+      font-size: medium;
+  }
+
+  
+  .right-side .backbtn img{
+      height: 30px;
+      width:40px;
+   }
+   
+  .left{
+      z-index: 60;
+      position: absolute;
+      margin-top: 55px;
+      height: 94vh;
+      border-radius: 0 ;
+  }
+
+  .inside-page{
+    padding:0;
+  }
+
+
+  .bars img{
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+  }
+
+  .right{
+    overflow-y: scroll;
+  }
+
+
+}
+
+@media screen and (max-width:721px) {
+  .right-heading{
+    padding-bottom:10px;
+  }
+}
+
+@media screen and (max-width:458px) {
+  .search-bar{
+    margin-top:5px;
+  }
 }

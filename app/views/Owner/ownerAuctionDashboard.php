@@ -10,16 +10,16 @@
 </head>
 
 <body>
-    <!--  -->
+
     <div class="page">
         <div class="left" id="panel">
             <div class="profile">
                 <div class="profile-pic">
                     <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if (!empty($_SESSION['image'])) {
-                                                echo $_SESSION['image'];
-                                            } else {
-                                                echo URLROOT . "/img/image 1.png";
-                                            } ?>" id="profileImg" alt=""></a>
+                                                                                echo $_SESSION['image'];
+                                                                            } else {
+                                                                                echo URLROOT . "/img/image 1.png";
+                                                                            } ?>" id="profileImg" alt=""></a>
                     <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
 
                 </div>
@@ -68,6 +68,7 @@
                 </div>
                 <div class="search">
                     <button id="filter-popup">Filter</button>
+                    <a id="filter-cancel-button" href="<?php echo URLROOT ?>/ownerAuction">Cancel</a>
                     <div class="search-bar">
                         <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Enter Article ID..">
                         <img src="<?php echo URLROOT ?>/img/searchicon.gif" alt="search-icon">
@@ -111,7 +112,7 @@
                             <div id="tfoot"></div>
                         </div>
                     <?php } else {
-                        echo "<p style='display:flex;justify-content:center;align-items:center;margin-top:40px;'>No Auction Items Found</P>";
+                        echo "<p><center>No Auction Items Found</center></P>";
                     } ?>
 
                     <div id="outer-filter" class="outer-filter">

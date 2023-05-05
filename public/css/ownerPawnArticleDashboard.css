@@ -142,12 +142,14 @@ body{
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    overflow-x: hidden;
     position:relative;
 }
 
 .right-heading{
     padding: 15px 15px 0 15px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     align-items: center;
@@ -205,7 +207,7 @@ body{
 .search{
     display: flex;
     align-items: center;
-   
+    flex-wrap: wrap;
 }
 
 
@@ -256,6 +258,7 @@ body{
     cursor: pointer;
     transition: background-color 0.3s;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    margin-right: 5px;
   }
 
   #filter-dropdown-button:hover {
@@ -263,6 +266,24 @@ body{
     transform: scale(1.1);
   }
 
+
+  #filter-cancel-button{
+    padding: 10px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+  }
+
+  #filter-cancel-button:hover{
+    background-color: #444;
+    transform: scale(1.1);
+  }
 
 
 
@@ -276,11 +297,11 @@ body{
 }
 
 /* locker table */
-.table-section{
+.table-section{  
     height:520px;
-    overflow: auto;
-    padding: 0 5px 10px 5px;
-    
+    overflow-y:scroll;
+    overflow-x: hidden;
+    padding: 0 5px 10px 5px;   
 }
 
 table{
@@ -304,7 +325,7 @@ thead th{
     background-color: #f6f9fc;
     color: black;
     font-size: 15px;
-    padding:20px;
+    padding:10px;
 }
 
 th{
@@ -368,6 +389,7 @@ td a:nth-child(1):hover{
     border-radius: 20px;
     padding: 3px 14px;
     background-color: black !important;
+    border:1px solid black;
 }
 
 .passRedeemedDate{
@@ -376,10 +398,11 @@ td a:nth-child(1):hover{
     border-radius: 20px;
     padding: 3px 14px;
     background-color: red !important;
+    border:1px solid red !important;
 }
 
 .badge {
-    padding: 8px 15px;
+    padding: 3px 8px;
     border-radius: 50%;
     background-color: red;
     color: black;
@@ -394,9 +417,8 @@ td a:nth-child(1):hover{
 }
 
 
-@media screen and (max-width:1076px) {
+@media screen and (max-width:1188px) {
     .vogue {
-        animation: none;
         width: 100px;
     }
     .right-side h1{
@@ -418,7 +440,9 @@ td a:nth-child(1):hover{
     }
  
     .right{
-        padding-left: 15px;
+        padding-left: 0px;
+        overflow-y: scroll;
+        
     }
 
     .bars img{
@@ -426,7 +450,29 @@ td a:nth-child(1):hover{
         height: 20px;
         border-radius: 5px;
     }
+
+    .table-section{
+        overflow-x: scroll;
+    }
+
+    .right-heading{
+        padding: 5px 5px 5px 10px;
+    }
+
     
+    
+}
+
+@media screen and (max-width:935px){
+ .right-side .notifi{
+    display: none;
+ }
+}
+
+@media screen and (max-width:758px){
+   .search{
+    padding-top: 12px;
+   }
 }
 
 @media screen and (max-width:670px) {
@@ -448,9 +494,6 @@ td a:nth-child(1):hover{
         border-radius: 0;
     }
  
-    .right{
-        padding-left: 15px;
-    }
 
     .bars img{
         width: 20px;
@@ -459,6 +502,13 @@ td a:nth-child(1):hover{
     }
     
 }
+
+@media screen and (max-width:440px){
+    .search-bar{
+        margin-bottom: 5px;
+
+    }
+   }
 
 
 

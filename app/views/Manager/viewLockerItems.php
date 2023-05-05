@@ -16,7 +16,11 @@
             <div class="right-heading">
                 <div class="right-side">
 
-                    <a href="<?php echo URLROOT ?>/mgLocker" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                    <a href="<?php if (substr($_SESSION['user_id'], 0, 2) === 'OW') {
+                                   echo URLROOT.'/ownerLocker';     
+                                } else if(substr($_SESSION['user_id'], 0, 2) === 'MG'){
+                                   echo URLROOT.'/mgLocker';
+                                } ?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
                         Viewing Locker No: <i>LC00<?php echo $data[0][0]->lockerNo ?></i>
