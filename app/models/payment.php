@@ -82,5 +82,17 @@ class payment
 
         return $row;
     }
+    public function getreservationPayment($reservations){
+        if(count($reservations)==1){
+            $this->db->query('SELECT * FROM payment where allocate_Id=:allocate_Id');
+            $this->db->bind(':allocate_Id', $reservations[0]->Allocate_Id);
+        }else{
+            $this->db->query('SELECT * FROM payment where allocate_Id=:allocate_Id OR allocate_Id=:allocate_Id2');
+            $this->db->bind(':allocate_Id', $reservations[0]->Allocate_Id);
+            $this->db->bind(':allocate_Id2', $reservations[1]->Allocate_Id);
+        } 
+        $results = $this->db->resultset(); 
+        return $results;
+
+    }
 }
-?>

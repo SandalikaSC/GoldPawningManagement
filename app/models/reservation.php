@@ -63,7 +63,9 @@ class reservation
         } else {
             return false;
         }
-    } public function getLockerReservation($locker,$customer){
+    }
+    public function getLockerReservation($locker, $customer)
+    {
 
         $this->db->query('SELECT * FROM reserves where lockerNo=:lockerNo AND UserID=:UserID And Retrive_status=:Retrive_Status;');
         $this->db->bind(':lockerNo', $locker);
@@ -72,19 +74,18 @@ class reservation
         $results = $this->db->single();
 
         return $results;
-        
     }
     public function addLockerReserved($data, $articleId)
     {
-        $reservation=$this->getLockerReservation($data['lockerNo'],$data['customer']);
+        $reservation = $this->getLockerReservation($data['lockerNo'], $data['customer']);
         $this->db->query('INSERT INTO reserves(Retrieve_Date,Retrive_status,Article_Id,allocation_fee,lockerNo,UserID,Keeper_Id,appraiser_Id) 
         VALUES(:Retrieve_Date,:Retrive_Status,:Article_Id,:allocation_fee,:lockerNo,:UserID,:Keeper_Id,:appraiser_Id )');
 
         // Bind values
 
-        
+
         $this->db->bind(':Retrieve_Date', $reservation->Retrieve_Date);
-        $this->db->bind(':Retrive_Status',0);
+        $this->db->bind(':Retrive_Status', 0);
         $this->db->bind(':Article_Id', $articleId);
         $this->db->bind(':allocation_fee', $reservation->allocation_fee);
         $this->db->bind(':lockerNo',  $data['lockerNo']);
@@ -100,17 +101,17 @@ class reservation
             return false;
         }
     }
-    public function addNewReservation($data, $articleId,$retrieveDate,$payment)
+    public function addNewReservation($data, $articleId, $retrieveDate, $payment)
     {
-         
+
         $this->db->query('INSERT INTO reserves(Retrieve_Date,Retrive_status,Article_Id,allocation_fee,lockerNo,UserID,Keeper_Id,appraiser_Id) 
         VALUES(:Retrieve_Date,:Retrive_Status,:Article_Id,:allocation_fee,:lockerNo,:UserID,:Keeper_Id,:appraiser_Id )');
 
         // Bind values
 
-        
+
         $this->db->bind(':Retrieve_Date', $retrieveDate);
-        $this->db->bind(':Retrive_Status',0);
+        $this->db->bind(':Retrive_Status', 0);
         $this->db->bind(':Article_Id', $articleId);
         $this->db->bind(':allocation_fee', $payment);
         $this->db->bind(':lockerNo',  $data['lockerNo']);
@@ -118,11 +119,11 @@ class reservation
         $this->db->bind(':Keeper_Id', $data['pawn_officer_or_vault_keeper']);
         $this->db->bind(':appraiser_Id', $data['gold_appraiser']);
 
-    
+
         // Execute
         if ($this->db->execute()) {
 
-           $reserve= $this->getLockerReservation($data['lockerNo'],$data['customer']); 
+            $reserve = $this->getLockerReservation($data['lockerNo'], $data['customer']);
 
             return $reserve->Allocate_Id;
         } else {
@@ -130,11 +131,36 @@ class reservation
         }
     }
 
-    public function countCurrentArticles(){
-        $this->db->query('SELECT count(Allocate_Id) as currentArticles FROM reserves where Retrive_status=:Retrive_Status;'); 
+    public function countCurrentArticles()
+    {
+        $this->db->query('SELECT count(Allocate_Id) as currentArticles FROM reserves where Retrive_status=:Retrive_Status;');
         $this->db->bind(':Retrive_Status', 0);
         $results = $this->db->single();
 
         return $results->currentArticles;
+    }
+    public function getCurrentReservations($lockerid)
+    {
+        $this->db->query('SELECT * FROM reserves INNER JOIN article on reserves.Article_Id=article.Article_Id  where lockerNo=:lockerNo And Retrive_status=:Retrive_Status;');
+        $this->db->bind(':lockerNo', $lockerid);
+        $this->db->bind(':Retrive_Status', 0);
+        $results = $this->db->resultSet();
+        if (empty($results)) {
+            return null;
+        } else {
+            return $results;
+        }
+    }
+    public function getPreReservations($lockerid)
+    {
+        $this->db->query('SELECT * FROM reserves INNER JOIN article on reserves.Article_Id=article.Article_Id  where lockerNo=:lockerNo And Retrive_status=:Retrive_Status;');
+        $this->db->bind(':lockerNo', $lockerid);
+        $this->db->bind(':Retrive_Status', 1);
+        $results = $this->db->resultSet();
+        if (empty($results)) {
+            return null;
+        } else {
+            return $results;
+        }
     }
 }

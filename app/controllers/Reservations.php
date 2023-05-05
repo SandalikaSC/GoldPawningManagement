@@ -11,9 +11,11 @@ class Reservations extends Controller
                 $this->modelCustomer = $this->model('Customer');
                 $this->modelAppointment = $this->model('Appointment');
                 $this->lockerModel = $this->model('Locker');
+                // $this->articleMocel = $this->model('article');
                 $this->ReservationModel = $this->model('reservation');
                 $this->validationModel = $this->model('validateArticle');
                 $this->deliveryModel = $this->model('delivery');
+                $this->paymentModel = $this->model('payment');
         }
 
 
@@ -22,10 +24,28 @@ class Reservations extends Controller
         }
         public function ViewReservation($lockerid)
         {
-                $data = [
-                        // 'appointments' => $result,
-                        
+                $currentReservations = $this->ReservationModel->getCurrentReservations($lockerid);
+                $previous_reservations = $this->ReservationModel->getPreReservations($lockerid);
+                // $delivery = null;
+                // $currentpayment = null;
+                // $customer = null;
+                if (!empty($currentReservations)) {
+                //         $delivery = $this->deliveryModel->deliveryByLocker($lockerid);
+                        $currentpayment = $this->paymentModel->getreservationPayment($currentReservations);
 
+                //         $customerid = $currentReservations[0]->UserID;
+                //         $customer = $this->modelCustomer->getCustomerById($customerid);
+                //         // do something with the customer name
+                }
+
+
+                $data = [
+                        'currentReservations' => $currentReservations,
+                        'previous_reservations' => $previous_reservations,
+                        // 'delivery' => $delivery,
+                        'currentpayment' => $currentpayment,
+                        'locker'=>$lockerid,
+                        // 'customer' => $customer 
                 ];
 
 

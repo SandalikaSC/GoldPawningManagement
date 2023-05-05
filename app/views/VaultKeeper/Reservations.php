@@ -28,14 +28,14 @@
                     <div class="lockers">
                         <?php foreach ($data['lockers'] as $locker) : ?>
 
-                            <a href="<?=URLROOT?>/Reservations/ViewReservation/<?=$locker->lockerNo?>" class="locker ">
-                                <div class="lockerno <?php echo ($locker->Status=="Not Available")?"gray":"";?>"><?php echo $locker->lockerNo?></div>
-                                <div><label class="label <?php echo ($locker->Status=="Available")?"green":"";?>"><?php echo $locker->Status?></label> </div>
-                            
+                            <a href="<?= URLROOT ?>/Reservations/ViewReservation/<?= $locker->lockerNo ?>" class="locker ">
+                                <div class="lockerno <?php echo ($locker->Status == "Not Available") ? "gray" : ""; ?>"><?php echo $locker->lockerNo ?></div>
+                                <div><label class="label <?php echo ($locker->Status == "Available") ? "green" : ""; ?>"><?php echo $locker->Status ?></label> </div>
+
                             </a>
 
                         <?php endforeach; ?>
-                        
+
 
 
 
@@ -44,29 +44,29 @@
                         <h2>Locker Information</h2>
                         <div class="section">
                             <label for="">Locker Count</label>
-                            <label for=""><?=$data['lockerCount']?></label>
+                            <label for=""><?= $data['lockerCount'] ?></label>
                         </div>
                         <div class="section">
                             <label for="">Available </label>
-                            <label for=""><?=$data['available']?></label>
+                            <label for=""><?= $data['available'] ?></label>
                         </div>
                         <div class="section">
                             <label for="">Reserved </label>
-                            <label for=""><?=$data['reserverd']?></label>
+                            <label for=""><?= $data['reserverd'] ?></label>
                         </div>
                         <h2>Article Information</h2>
                         <div class="section">
                             <label for="">Total Articles </label>
-                            <label for=""><?=$data['CurrentArticles']?></label>
+                            <label for=""><?= $data['CurrentArticles'] ?></label>
                         </div>
                         <h2>Key Information</h2>
                         <div class="section">
                             <label for="">Deliverd </label>
-                            <label for=""><?=$data['keyDeliverd']?></label>
+                            <label for=""><?= $data['keyDeliverd'] ?></label>
                         </div>
                         <div class="section">
                             <label for="">Tobe Deliverd </label>
-                            <label for=""><?=$data['notDeliverd']?></label>
+                            <label for=""><?= $data['notDeliverd'] ?></label>
                         </div>
 
                     </div>

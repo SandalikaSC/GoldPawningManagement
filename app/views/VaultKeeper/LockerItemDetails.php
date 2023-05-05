@@ -19,7 +19,130 @@
 
     </div>
     <div class="content">
-    <div class="locker-details">
+        <div class="nxt">
+            <a href="<?php echo URLROOT ?>/Reservations/releaseLocker">Release Locker</a>
+            <a href="<?php echo URLROOT ?>/Reservations/makePayment">Make Payment</a>
+
+
+        </div>
+        <div class="page-nxt">
+
+            <div class="locker-details">
+                <div class="locker"><label for="">01.</label></div>
+                <div class="locker-articles">
+                    <div class="article">
+                        <img src="<?php echo URLROOT ?>/img/nati-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="" class="article-pic">
+
+                    </div>
+                    <div class="article">
+                        <img src="<?php echo URLROOT ?>/img/nati-melnychuk-oO0JAOJhquk-unsplash.jpg" alt="" class="article-pic">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="res-details">
+                <div class="card">
+                    <h2>Customer Details</h2>
+                    <div class="details">
+                        <label for="">Customer Id</label>
+                        <label for="">CU001</label>
+                        <label for="">Customer Name</label>
+                        <label for="">Sandalika Chamari</label>
+                        <label for="">Phone Number</label>
+                        <label for="">0714456490</label>
+                    </div>
+                </div>
+                <div class="card">
+
+                    <h2>Reservation</h2>
+                    <div class="details">
+                        <label for="">Reservation No.</label>
+                        <label for="">125</label>
+                        <label for="">Reservation Date</label>
+                        <label for="">2023 Oct 15</label>
+                        <label for="">End Date</label>
+                        <label for="">2024 april 15</label>
+                        <label for="">Time remaining</label>
+                        <label for="">4 Months</label>
+                        <label for="">Key Delivery</label>
+                        <div><label for="" class="tag black">Deliverd</label></div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+        <div class="page-bottom">
+        <div class="card">
+            <h2>
+                Payment History </h2>
+            <div class="payments">
+                <div class="pay-header">
+                    <label>Pay ID</label>
+                    <label>Paid Date</label>
+                    <label> Amount</label>
+                    <label> Type</label>
+
+                </div>
+
+                <div class="payment-content">
+
+                    <label>cascac</label>
+                    <label>cascasc</label>
+                    <label> cascascsacc</label>
+                    <label> cascascascasc</label>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <div class="locker-details">
             <div class="locker"><label for="">01.</label></div>
             <div class="article">
                 <img src="<?php echo URLROOT ?>/img/nati-melnychuk-Ki7TPcA9204-unsplash.jpg" alt="" class="article-pic">
@@ -78,6 +201,6 @@
             <a href="<?php echo URLROOT ?>/Reservations/makePayment"><button>Make Payment</button></a>
             
 
-        </div>
+        </div> -->
     </div>
     <?php require APPROOT . "/views/inc/footer.php" ?>

@@ -29,4 +29,11 @@ class delivery
 
         return $result->count;
     }
+    public function deliveryByLocker($locker){
+        $this->db->query('SELECT * FROM delivery where lockerNo=:lockerNo');
+        $this->db->bind(':lockerNo', $locker);
+        $results = $this->db->single();
+
+        return $results;
+    }
 }
