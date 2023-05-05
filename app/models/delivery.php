@@ -15,4 +15,18 @@ class delivery
 
         return $results;
     }
+    public function countDeliverd()
+    {
+        $this->db->query('SELECT count(Deliver_Id) as count FROM delivery where Status=1');
+        $result = $this->db->single();
+
+        return $result->count;
+    }
+    public function countNotDeliverd()
+    {
+        $this->db->query('SELECT count(Deliver_Id) as count FROM delivery where Status=0');
+        $result = $this->db->single();
+
+        return $result->count;
+    }
 }

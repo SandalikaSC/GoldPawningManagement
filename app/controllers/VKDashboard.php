@@ -11,6 +11,10 @@ class VKDashboard extends Controller
                 $this->lockerModel = $this->model('Locker');
                 $this->ReservationModel = $this->model('reservation');
                 $this->validationModel = $this->model('validateArticle');
+                $this->deliveryModel = $this->model('delivery');  
+ 
+              
+              
         }
 
         public function index()
@@ -46,7 +50,29 @@ class VKDashboard extends Controller
 
         public function Reservations()
         {      
-                $this->view('VaultKeeper/Reservations');
+
+                $lockers= $this->lockerModel->getAllLockers();
+                $lockerCount=$this->lockerModel->countAllLocker();
+                $available=$this->lockerModel->countLockerAvailable();
+                $reserverd=$this->lockerModel->countLockerReserved();
+                $CurrentArticles= $this->ReservationModel->countCurrentArticles();
+                 $keyDeliverd= $this->deliveryModel->countDeliverd(); 
+                 $notDeliverd= $this->deliveryModel ->countNotDeliverd();
+
+                 $data=[
+                        'lockers'=>  $lockers,
+                        'lockerCount'=>  $lockerCount,
+                        'available'=>  $available,
+                        'reserverd'=>  $reserverd,
+                        'CurrentArticles'=>  $CurrentArticles,
+                        'keyDeliverd'=>  $keyDeliverd,
+                        'notDeliverd'=>  $notDeliverd  
+                 ];
+
+
+
+
+                $this->view('VaultKeeper/Reservations',$data);
         } 
         public function Customers()
         {

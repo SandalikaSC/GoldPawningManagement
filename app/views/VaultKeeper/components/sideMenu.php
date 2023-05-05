@@ -17,9 +17,9 @@
             <p>Dashboard</p>
         </a>
          
-        <a id="Reservations" class="dash-btn" href="<?php echo URLROOT ?>/VKDashboard/Reservations">
+        <a id="Lockers" class="dash-btn" href="<?php echo URLROOT ?>/VKDashboard/Reservations">
             <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
-            <p>Reservations</p>
+            <p>Lockers</p>
         </a>
         <a id="Customers"  class="dash-btn" href="<?php echo URLROOT; ?>/VKDashboard/Customers">
             <img id="Customers-Img" src="<?php echo URLROOT ?>/img/white_customers.png" alt="">

@@ -15,6 +15,13 @@ class Locker
 
         return $results;
     }
+    public function getAllLockers()
+    {
+        $this->db->query('SELECT * FROM locker'); 
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
     public function AvailableCustomerArticles($customerId)
     {
         $this->db->query('SELECT  * FROM locker INNER JOIN reserves WHERE reserves.lockerNo=locker.lockerNo AND UserID=:userid AND No_of_Articles=1 AND Retrive_status!=1; ');
@@ -32,11 +39,33 @@ class Locker
     }
     public function countLockerAvailable()
     {
+        $this->db->query('SELECT count(lockerNo) as lockers FROM locker where No_of_Articles!=2');
+        $result = $this->db->single();
+
+        return $result->lockers;
+    }
+    public function countLockerReserved()
+    {
+        $this->db->query('SELECT count(lockerNo) as lockers FROM locker where No_of_Articles!=0');
+        $result = $this->db->single();
+
+        return $result->lockers;
+    }
+    public function countAllLocker()
+    {
+        $this->db->query('SELECT count(lockerNo) as lockers FROM locker');
+        $result = $this->db->single();
+
+        return $result->lockers;
+    }
+    public function countDeliverd()
+    {
         $this->db->query('SELECT count(lockerNo) as lockers FROM locker where No_of_Articles=0');
         $result = $this->db->single();
 
         return $result->lockers;
     }
+    
     public function updateLockerArticles($lockerNo,$status){
 
         if ($status=="Available") {

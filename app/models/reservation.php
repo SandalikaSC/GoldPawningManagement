@@ -129,4 +129,12 @@ class reservation
             return false;
         }
     }
+
+    public function countCurrentArticles(){
+        $this->db->query('SELECT count(Allocate_Id) as currentArticles FROM reserves where Retrive_status=:Retrive_Status;'); 
+        $this->db->bind(':Retrive_Status', 0);
+        $results = $this->db->single();
+
+        return $results->currentArticles;
+    }
 }

@@ -8,18 +8,28 @@ class Reservations extends Controller
                         redirect('/Users');
                 }
                 // $this->Model = $this->model('Appointment');
-
+                $this->modelCustomer = $this->model('Customer');
+                $this->modelAppointment = $this->model('Appointment');
+                $this->lockerModel = $this->model('Locker');
+                $this->ReservationModel = $this->model('reservation');
+                $this->validationModel = $this->model('validateArticle');
+                $this->deliveryModel = $this->model('delivery');
         }
 
 
         public function index()
         {
-                
-
         }
-        public function ViewReservation()
+        public function ViewReservation($lockerid)
         {
-                $this->view('VaultKeeper/LockerItemDetails');
+                $data = [
+                        // 'appointments' => $result,
+                        
+
+                ];
+
+
+                $this->view('VaultKeeper/LockerItemDetails', $data);
         }
         public function makePayment()
         {
@@ -29,6 +39,4 @@ class Reservations extends Controller
         {
                 $this->view('VaultKeeper/ReleaseLocker');
         }
-        
-
-    }
+}
