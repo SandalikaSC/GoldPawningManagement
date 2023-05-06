@@ -46,7 +46,8 @@
 
 }
 
-.page-nxt,.locker-articles {
+.page-nxt,
+.locker-articles {
     justify-content: space-evenly;
 }
 
@@ -55,7 +56,7 @@
     box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
     border-radius: 20px;
     margin: 1% auto;
-    width: 70%;
+    width: 85%;
 }
 
 .details {
@@ -98,24 +99,40 @@
     border: 1px solid rgba(30, 29, 29, 0.811);
 }
 
+.red {
+    color: rgba(255, 255, 255, 0.811);
+    /* border: 1px solid rgba(30, 29, 29, 0.811); */
+    background-color: #ff01018a;
+
+}
+
 .tag {
 
-    border-radius: 20px;
-    padding: 2% 3%;
-    font-size: 1rem;
+    border-radius: 10px;
+    padding: 1% 3%;
+    font-size: 0.9em;
     background-color: white;
 }
 
 .res-details {
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     width: 55%;
 }
 
 .locker-details {
     width: 33%;
+    /* border: 1px solid #bb8a04; */
+    border-radius: 20px;
 }
 
-h2 {
+.locker-articles label {
+    text-align: center;
+    margin: 15% auto;
+    font-weight: 600;
+    font-style: italic;
+}
+
+h2 ,h1{
     border-bottom: 2px solid #bb8a04;
 }
 
@@ -125,8 +142,8 @@ h2 {
 
 .nxt {
     display: flex;
-    justify-content: space-evenly;
-    padding: 2% 0;
+    justify-content: flex-end;
+    /* padding: 2% 0; */
 }
 
 .nxt a {
@@ -135,28 +152,62 @@ h2 {
     border: none;
     color: white;
     padding: 1% 3%;
+    margin: 0% 4%;
 }
-.locker-articles{
 
+.locker-articles {
+    height: 50%;
 }
-.page-nxt{
-    padding: 2% 0 ;
+
+.page-nxt {
+    padding: 2% 0;
 }
-.page-bottom{
-margin: 4% 2% ;
+
+.page-bottom {
+    /* margin: 4% 2% ; */
 }
 
 
 .payments {
     /* align-items: center; */
-    padding: 2%;
+    /* padding: 2%; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
-.pay-header, .payment-content {
+
+.pay-header,
+.payment-content {
     display: grid;
     /* flex-direction: column; */
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
     place-items: left;
+    padding: 2% 0;
+}
+.previous{
+    display: grid;  
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    place-items: left;
+    padding: 2% 0;
+    align-items: center;
+
+}
+
+.last {
+    overflow-y: scroll;
+    height: 40%;
+}
+.pre-div{
+    width: 80%;
+    height: 80%;
+    overflow: hidden;
+}
+.pre-article{
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+}
+.div-border{
+    border-bottom: 2px solid #bb8a04;
+
 }

@@ -139,11 +139,14 @@ class reservation
 
         return $results->currentArticles;
     }
-    public function getCurrentReservations($lockerid)
+    public function getReservationsbyRetrieve($lockerid,$retrive)
     {
-        $this->db->query('SELECT * FROM reserves INNER JOIN article on reserves.Article_Id=article.Article_Id  where lockerNo=:lockerNo And Retrive_status=:Retrive_Status;');
+        $this->db->query('SELECT *,article.image as articleIMG FROM reserves INNER JOIN article on reserves.Article_Id=article.Article_Id 
+        INNER JOIN user on reserves.UserID=user.UserId 
+        Inner Join locker on reserves.lockerNo=locker.lockerNo 
+        where locker.lockerNo=:lockerNo And Retrive_status=:Retrive_Status;');
         $this->db->bind(':lockerNo', $lockerid);
-        $this->db->bind(':Retrive_Status', 0);
+        $this->db->bind(':Retrive_Status',$retrive);
         $results = $this->db->resultSet();
         if (empty($results)) {
             return null;
@@ -151,16 +154,6 @@ class reservation
             return $results;
         }
     }
-    public function getPreReservations($lockerid)
-    {
-        $this->db->query('SELECT * FROM reserves INNER JOIN article on reserves.Article_Id=article.Article_Id  where lockerNo=:lockerNo And Retrive_status=:Retrive_Status;');
-        $this->db->bind(':lockerNo', $lockerid);
-        $this->db->bind(':Retrive_Status', 1);
-        $results = $this->db->resultSet();
-        if (empty($results)) {
-            return null;
-        } else {
-            return $results;
-        }
-    }
+      
+     
 }

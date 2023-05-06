@@ -8,7 +8,8 @@ class delivery
         $this->db = new Database;
     }
 
-    public function getDeliveryByReserveId($reserveId) {
+    public function getDeliveryByReserveId($reserveId)
+    {
         $this->db->query('SELECT * FROM delivery where Allocate_Id=:reserveId');
         $this->db->bind(':reserveId', $reserveId);
         $results = $this->db->single();
@@ -29,9 +30,11 @@ class delivery
 
         return $result->count;
     }
-    public function deliveryByLocker($locker){
-        $this->db->query('SELECT * FROM delivery where lockerNo=:lockerNo');
+    public function deliveryByLocker($locker, $date)
+    {
+        $this->db->query('SELECT * FROM delivery where lockerNo=:lockerNo And DATE(added_Date)=:date');
         $this->db->bind(':lockerNo', $locker);
+        $this->db->bind(':date',    explode(' ', $date)[0]);
         $results = $this->db->single();
 
         return $results;
