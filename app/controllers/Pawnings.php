@@ -45,21 +45,21 @@
             $remaining_loan = $this->getRemainingLoan($id);
             $due_months = 0;
             $amount_to_pay = 0.00;
+            $current_date = new DateTime();
 
             if($pawned_item->Repay_Method == "Fixed") {
-                $start_date = new DateTime();
-                $current_date = new DateTime();
+                $start_date = new DateTime(date('Y-m-d', strtotime($pawned_item->Pawn_Date)));
                 $date_difference = new DateTime();
                 $due_pay = 0.00;
                 if(empty($last_payment)) {
-                    $start_date = new DateTime(date('Y-m-d', strtotime($pawned_item->Pawn_Date)));
+                    $date_difference = $start_date->diff($current_date);
+                    $due_months = $date_difference->format('%r%y') * 12 + $date_difference->format('%r%m');
                 } else {
-                    $start_date = new DateTime(date('Y-m-d', strtotime($last_payment->Date)));
-                }
-
-                $date_difference = $start_date->diff($current_date);
-
-                $due_months = $date_difference->format('%r%y') * 12 + $date_difference->format('%r%m');
+                    $last_payment_date = new DateTime(date('Y-m-d', strtotime($last_payment->Date)));
+                    $total_months = $start_date->diff($current_date)->format('%r%y') * 12 + $start_date->diff($current_date)->format('%r%m');
+                    $paid_months = $start_date->diff($last_payment_date)->format('%r%y') * 12 + $start_date->diff($last_payment_date)->format('%r%m');
+                    $due_months = $total_months - $paid_months;
+                }               
 
                 $amount_to_pay = $due_months * $pawned_item->monthly_installment;
             }
@@ -75,49 +75,66 @@
                     'amount_to_pay' => $amount_to_pay,
                     'due_months' => $due_months,
                     'remaining_loan' => $remaining_loan,
-                    'full_payment' => $_POST['full-amount'],
-                    'covered_loan' => $_POST['loan-amount'],
+                    'full_payment' => trim($_POST['full-payment']),
+                    'covered_loan' => trim($_POST['covered-loan']),
                     'pawning_officer' => $_SESSION['user_id'],
+                    'covered_loan_err' => '',
                     'full_payment_err' => ''
                 ];
 
-                if($data['pawn_item'] == "Diminishing") {
-                    if(empty($data['full_payment'])) {
-                        $data['full_payment_err'] = "Please enter the full amount customer wants to pay";
-                    } else {
-                        $interest = $data['remaining_loan'] * $data['pawn_item']->Interest / 100.00;
-                        $covered_loan = $data['full_payment'] - $interest;
-                        $data['covered_loan'] = $covered_loan;
-                    }
-                }                 
+                $end_date = new DateTime(date('Y-m-d', strtotime($data['pawn_item']->End_Date)));
+                if(($current_date > $end_date) && ($end_date->diff($current_date))->days > 14) {
+                    flash('register', 'Payment cannot be made because the repayment period provided has been exceeded.', 'invalid');
+                    $this->view('PawnOfficer/make_payments', $data);
+                }
 
-                if(empty($data['full_payment_err']) && $data['full_payment'] != 0.00) {
+                if($data['pawn_item']->Repay_Method == "Diminishing") {
+                    if(empty($data['covered_loan'])) {
+                        $data['covered_loan_err'] = "Please enter the loan amount that customer wants to pay";
+                    }
+
+                    if($data['covered_loan'] > $data['remaining_loan']) {
+                        $data['covered_loan_err'] = "Please enter a loan amount less than or equal to the remaining loan amount";
+                    }
+
+                    if(!empty($data['covered_loan']) && $data['full_payment'] == "0.00" && isset($_POST['save'])) {
+                         $data['full_payment_err'] = "Please calculate the full amount to pay";
+                    }
+
+                    if(isset($_POST['calc-full-amount']) && !empty($data['covered_loan'])) {
+                        $interest = $data['remaining_loan'] * 27 / 100;
+                        $full_amount = $data['covered_loan'] + $interest;
+                        $data['full_payment'] = $full_amount;
+                        $this->view('PawnOfficer/make_payments', $data);
+                    }                                       
+                }
+
+                if($data['remaining_loan'] <= 0.00) {
+                    $data['covered_loan_err'] = '';
+                    flash('register', 'Loan has been paid', 'invalid');
+                    // redirect('/Pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
+                    $this->view('PawnOfficer/make_payments', $data);
+                }      
+                
+                if($data['full_payment'] <= 0.00 && $data['remaining_loan'] > 0.00 && $data['pawn_item']->Repay_Method == "Fixed") {
+                    flash('register', 'Payments cannot be made till the payment date', 'invalid');
+                    $this->view('PawnOfficer/make_payments', $data);
+                }
+
+                if(empty($data['covered_loan_err']) && empty($data['full_payment_err']) && isset($_POST['save']) && $data['remaining_loan'] > 0.00 && $data['full_payment'] > 0.00 && !(($current_date > $end_date) && ($end_date->diff($current_date))->days > 14)) {
                     $payment_success = $this->pawningModel->make_payment($data);
-    
+
                     if($payment_success) {
                         flash('register', 'PAYMENT SUCCESSFUL', 'success');
-                        $data = [
-                            'pawn_item' => $pawned_item,
-                            'payment_history' => $payment_history,
-                            'last_payment' => $last_payment,
-                            'amount_to_pay' => $amount_to_pay,
-                            'due_months' => $due_months,
-                            'remaining_loan' => $remaining_loan,
-                            'full_payment' => '',
-                            'covered_loan'=> '',
-                            'pawning_officer' => $_SESSION['user_id'],
-                            'full_payment_err' => ''
-                        ];          
-        
-                        $this->view('PawnOfficer/make_payments', $data);
-                        // redirect('/Pawnings/make_payments/' . $data['pawn_item']->Pawn_Id);
-                        // $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id); 
+                        redirect('/Pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
                     } else {
-                        flash('register', 'Something went wrong. Please try again.', 'invalid');
-                        $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id, $data); 
+                        flash('register', 'Cannot make the payment. Something went wrong', 'invalid');
+                        $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id); 
                     }
+                    
                 } else {
-                    $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id, $data); 
+                    
+                    $this->view('PawnOfficer/make_payments', $data);
                 }
             } else {
 
@@ -129,8 +146,9 @@
                     'due_months' => $due_months,
                     'remaining_loan' => $remaining_loan,
                     'full_payment' => '',
-                    'covered_loan'=> '',
+                    'covered_loan' => '',
                     'pawning_officer' => $_SESSION['user_id'],
+                    'covered_loan_err' => '',
                     'full_payment_err' => ''
                 ];          
 
@@ -141,9 +159,11 @@
         public function release_pawn($id) {
             // Get pawned item
             $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $remaining_loan = $this->getRemainingLoan($id);
 
             $data = [
-                'pawn_item' => $pawned_item
+                'pawn_item' => $pawned_item,
+                'remaining_loan' => $remaining_loan
             ];
 
             $this->view('PawnOfficer/release_pawn', $data);
@@ -176,8 +196,14 @@
                     $paid_loan = $paid_loan + $payment_record->Principle_Amount;
                 }
             }
+            //  else {
+            //     $paid_loan = ceil($data['pawn_item']->Amount / 12);
+            // }
 
             $remaining_loan = $pawned_item->Amount - $paid_loan;
+            if($remaining_loan < 0.00) {
+                $remaining_loan = 0.00;
+            }
 
             return $remaining_loan;
         }

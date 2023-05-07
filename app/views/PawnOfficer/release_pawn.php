@@ -29,41 +29,37 @@
             <div class="main-content">
                 <div class="div-details">
                     <div class="div-img">
-                        <img src="<?php echo URLROOT . '/img/bracelet_01.jpg'; ?>" alt="">
+                        <img src="<?php echo $data['pawn_item']->image; ?>" alt="">
                     </div>
                     
                     <div class="article-details">
                         <div class="field">
                             <label>Article ID</label>
-                            <div>A001</div>
+                            <div><?php echo $data['pawn_item']->Article_Id; ?></div>
                         </div>
                         <div class="field">
                             <label>Article Type</label>
-                            <div>Jewelry</div>
+                            <div><?php echo $data['pawn_item']->Type; ?></div>
                         </div>
                     </div>
                     <div class="pawning-details">
                         <div class="field">
                             <label>Pawned Date</label>
-                            <div>2022/06/20</div>
+                            <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
                         </div>
                         <div class="field">
                             <label>End Date</label>
-                            <div>2023/02/20</div>
+                            <div><?php echo $data['pawn_item']->End_Date; ?></div>
                         </div>
                     </div>
                     <div class="loan-details">
                         <div class="field">
                             <label>Full Loan Amount</label>
-                            <div>Rs. 102000.00</div>
+                            <div><?php echo 'Rs. ' . $data['pawn_item']->Amount; ?></div>
                         </div>
                         <div class="field">
                             <label>Remaining Loan Amount</label>
-                            <div>Rs. 0.00</div>
-                        </div>
-                        <div class="field">
-                            <label>Due Payments</label>
-                            <div>Rs. 0.00</div>
+                            <div><?php echo 'Rs. ' . sprintf("%.2f", $data['remaining_loan']); ?></div>
                         </div>
                     </div>
 
