@@ -154,6 +154,24 @@ class reservation
             return $results;
         }
     }
+    public function RetriveLockerArticle($reservationId)
+    {
+        $this->db->query('UPDATE `reserves` SET finePaidTill=:finePaidTill,Retrive_status=:status,Deallocated_Date=:DeDate WHERE Allocate_Id = :Allocate_Id');
+
+        // Bind values  
+        $this->db->bind(':finePaidTill', date('Y-m-d'));
+        $this->db->bind(':status', 1);
+        $this->db->bind(':DeDate', date('Y-m-d H:i:s')); 
+        $this->db->bind(':Allocate_Id', $reservationId);
+
+        // Execute
+        if ($this->db->execute()) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
       
      
 }

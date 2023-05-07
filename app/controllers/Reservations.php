@@ -69,10 +69,34 @@ class Reservations extends Controller
 
                 $this->view('VaultKeeper/LockerItemDetails', $data);
         }
-        public function extend()
+        public function extend($lockerid)
         {
+                $currentReservations = $this->ReservationModel->getReservationsbyRetrieve($lockerid, 0);
+                $customerid = $currentReservations[0]->UserID;
+                $customer = $this->modelCustomer->getCustomerById($customerid);
+                $allocationFee = $this->interestModel->getAllocationInterest()->Interest_Rate;
+                $fine =  $this->interestModel->getFine();
+
+                $interval = date_diff(date_create($currentReservations[0]->Retrieve_Date), date_create());
+             
+                $overdue=0 ;
+                if ($interval->days<0) {
+                        $overdue=$interval->days;
+                }
+                $extendTo=date('Y-m-d', strtotime('+6 months', strtotime($currentReservations[0]->Retrieve_Date)));
+
+                $data = [
+                        'currentReservations' => $currentReservations,
+                        'customer' => $customer,
+                        'lockerid' => $lockerid,
+                        'fine' => $fine->Interest_Rate,
+                        'allocationFee' => $allocationFee,
+                        'extendTo' => $extendTo,
+                        'overdue' => $overdue
+                ];
+                
                
-                $this->view('VaultKeeper/makepayment', $data);
+                $this->view('VaultKeeper/extend',$data);
         }
         public function releaseLocker($lockerid)
         {
@@ -92,6 +116,7 @@ class Reservations extends Controller
                 $data = [
                         'currentReservations' => $currentReservations,
                         'fine' => $fine->Interest_Rate,
+                        'lockerid' => $lockerid,
                         'overdue' => $overdue
                 ];
 

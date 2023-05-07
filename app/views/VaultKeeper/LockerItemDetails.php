@@ -18,6 +18,7 @@
         </div>
 
     </div>
+    <?php notification("locker") ?>
     <div class="content">
         <div class="nxt">
             <?php if (!empty($data['currentReservations'])) : ?>

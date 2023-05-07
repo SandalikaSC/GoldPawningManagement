@@ -17,7 +17,7 @@ class Locker
     }
     public function getAllLockers()
     {
-        $this->db->query('SELECT * FROM locker'); 
+        $this->db->query('SELECT * FROM locker');
         $results = $this->db->resultSet();
 
         return $results;
@@ -65,29 +65,53 @@ class Locker
 
         return $result->lockers;
     }
-    
-    public function updateLockerArticles($lockerNo,$status){
 
-        if ($status=="Available") {
+    public function updateLockerArticles($lockerNo, $status)
+    {
+
+        if ($status == "Available") {
             $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 ,Key_Status=1,Key_released_Date=:Date, Status=:Status WHERE lockerNo = :LockerNo');
-            $this->db->bind(':Date', date('Y-m-d')); 
+            $this->db->bind(':Date', date('Y-m-d'));
         } else {
             $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 , Status=:Status WHERE lockerNo = :LockerNo');
-        
         }
-        
+
 
 
         // $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles+1 ,Key_Status=1, Status=:Status WHERE lockerNo = :LockerNo');
-        $this->db->bind(':Status', $status); 
-        $this->db->bind(':LockerNo', $lockerNo); 
+        $this->db->bind(':Status', $status);
+        $this->db->bind(':LockerNo', $lockerNo);
 
-        if($this->db->execute()){
+        if ($this->db->execute()) {
             return true;
-        }else
-        {
+        } else {
             return false;
         }
     }
-     
+    public function ReleaseArticleLocker($lockerNo)
+    { 
+        $this->db->query('UPDATE locker SET No_of_Articles =No_of_Articles-1 ,Status=:Status WHERE lockerNo = :LockerNo');
+       
+        $this->db->bind(':LockerNo', $lockerNo);
+        $this->db->bind(':Status', "Available");
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function DeAllocateLocker($lockerNo)
+    { 
+        $this->db->query('UPDATE locker SET No_of_Articles =0,Key_released_Date=null, Key_Status=0,Status=:Status WHERE lockerNo = :LockerNo');
+       
+        $this->db->bind(':LockerNo', $lockerNo);
+        $this->db->bind(':Status', "Available");
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
