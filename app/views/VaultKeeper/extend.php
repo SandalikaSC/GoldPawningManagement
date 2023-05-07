@@ -18,6 +18,7 @@
         </div>
 
     </div>
+    <?php notification("extend")?>
     <div class="content">
         <div class="pay-details">
             <div class="card">

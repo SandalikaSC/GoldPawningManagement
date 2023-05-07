@@ -22,12 +22,31 @@ class Extend extends Controller
     public function index()
     {
     }
-    public function SaveExtend($locker,$months)
-    {  
-         
+    public function SaveExtend($locker, $months)
+    {
+
         $currentReservations = $this->ReservationModel->getReservationsbyRetrieve($locker, 0);
         //add payment
-        //update reservations
-        
+        $allocationFee = $this->interestModel->getAllocationInterest()->Interest_Rate;
+        $setDate=$currentReservations[0]->Retrieve_Date;
+        $setDate = date('Y-m-d', strtotime('+'.$months. 'months', strtotime($setDate)));
+        echo $setDate;
+        if ($months == 6) {
+            $allocationFee = $allocationFee / 2.0;
+        }
+        $status = $this->paymentModel->addCashLockerPayment($allocationFee, $currentReservations[0]->Allocate_Id);
+        // //update reservations
+        if ($status) {
+            foreach ($currentReservations as $reservation) {
+                $this->ReservationModel->lockerExtend($setDate, $reservation->Allocate_Id);
+            } 
+
+            notification("locker","Extened duration successfully","gold");
+            redirect("/Reservations/ViewReservation/".$currentReservations[0]->lockerNo);
+            
+        }else{
+            notification("extend","Something went wrong ","red");
+        }
+
     }
 }
