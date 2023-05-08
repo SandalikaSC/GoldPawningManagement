@@ -1,9 +1,12 @@
-
 <div class="left" id="panel">
     <div class="profile">
         <div class="profile-pic">
-            <a href="<?php echo URLROOT ?>editprofile/viewEditProfile"><img class="profileImg"
-                    src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "/public/img/image 1.png";} ?>" alt=""></a>
+            <a href="<?php echo URLROOT ?>editprofile/viewEditProfile">
+                <img class="profileImg" src="<?php if (!empty($_SESSION['image'])) {
+                                                    echo $_SESSION['image'];
+                                                } else {
+                                                    echo URLROOT . "/public/img/image 1.png";
+                                                } ?>" alt=""></a>
         </div>
         <div class="name">
             <p class="profile_name">
@@ -24,13 +27,13 @@
             <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
             <p>My Locker</p>
         </a>
-        <a id="appointment"  class="dash-btn" href="<?php echo URLROOT; ?>/appointments/">
+        <a id="appointment" class="dash-btn" href="<?php echo URLROOT; ?>/appointments/">
             <img id="appointment-Img" src="<?php echo URLROOT ?>/img/calender-white.png" alt="">
-            <p >Appointments</p>
+            <p>Appointments</p>
         </a>
 
         <hr class="hr">
-        <a  id="contactUs" class="dash-btn" href="<?php echo URLROOT ?>/customerDashboard/ContactUs">
+        <a id="contactUs" class="dash-btn" href="<?php echo URLROOT ?>/customerDashboard/ContactUs">
             <img src="<?php echo URLROOT ?>/img/contact-us-white.png" alt="">
             <p>Contact Us</p>
         </a>

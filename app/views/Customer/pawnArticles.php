@@ -20,25 +20,15 @@
                 <?php foreach ($data['pawnings'] as $pawn) : ?>
 
 
-                    <div class="jewellery-card">
+                    <a href="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle/<?= $pawn->Pawn_Id ?>" class="jewellery-card">
                         <div class="jewellery-img">
-                             <?php 
-                             $finfo = finfo_open();
-                             $imageType = finfo_buffer($finfo, $pawn->image, FILEINFO_MIME_TYPE);
-                             finfo_close($finfo);
-                             
-                             // Set header as image type 
-                             
-                             
-                             ?>
 
-                        
-                            <img src="<?php if(empty($pawn->image)){
-                                    echo URLROOT . "/img/images.jpg" ;
-                                }else{
-                                  echo  "data:image/.'$imageType'.;charset=utf8;base64,".base64_encode($pawn->image);
-                                    }?>
-                                    " alt="" class="jw-img">
+                            <img class="jw-img" src="<?php if (!empty($pawn->image)) {
+                                                            echo $pawn->image;
+                                                        } else {
+                                                            echo URLROOT . "/img/images.jpg";
+                                                        } ?>" alt="">
+
                         </div>
                         <div class="jw-details">
                             <div class="jw-date">
@@ -52,33 +42,32 @@
 
                                 <label>Status</label>
                                 <label class="status 
-                                <?php 
-                                $status=$pawn->Status;
+                                <?php
+                                $status = $pawn->Status;
                                 if (strtotime($pawn->End_Date) < time()) {
-                                    $status='Overdue';
-                                  } 
-                                
-                                if( $status=='Pawned'){
-                                     echo "tag-pending";
-                                    }elseif ( $status=='Overdue') {
-                                        echo "tag-overdue";
-                                    }else{
-                                        echo "tag-auctioned";
+                                    $status = 'Overdue';
+                                }
 
-                                    }?>"><?=  $status?></label>
+                                if ($status == 'Pawned') {
+                                    echo "tag-pending";
+                                } elseif ($status == 'Overdue') {
+                                    echo "tag-overdue";
+                                } else {
+                                    echo "tag-auctioned";
+                                } ?>"><?= $status ?></label>
                             </div>
 
 
 
 
                         </div>
-                        <a href="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle/<?= $pawn->Pawn_Id?>"> <button class="v-btn">View</button></a>
+                        <!-- <a href="<?php echo URLROOT ?>/CustomerPawn/viewPawnArticle/<?= $pawn->Pawn_Id ?>"> <button class="v-btn">View</button></a> -->
 
-                    </div>
+                    </a>
 
 
                 <?php endforeach; ?>
-                
+
             </div>
         </div>
     </div>

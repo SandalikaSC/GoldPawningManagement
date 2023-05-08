@@ -31,13 +31,13 @@
                         finfo_close($finfo);
 
                         ?>
-                        <img src="<?php if (empty($data['articleImg'])) {
+                        <img src="
+                                    <?php if (empty($data['articleImg'])) {
                                         echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg";
                                     } else {
                                         echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['articleImg']);
                                     } ?>
-                                    " alt="" class="jw-img">
-                        <!-- <img src="<?php echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg"; ?> " alt="" class="jw-img"> -->
+                        " alt="" class="jw-img">
                     </div>
                     <div class="info-div info-div-pay-info ">
                         <h2 class="sub-title">
@@ -217,6 +217,7 @@
             </div>
 
         </div>
+      
         <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
         <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
         <script>
