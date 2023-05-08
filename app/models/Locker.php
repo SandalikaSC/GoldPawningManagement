@@ -37,6 +37,17 @@ class Locker
 
         return $results;
     }
+ 
+
+    public function getLockerByCustomerID($customer_id) {
+        $this->db->query('SELECT * FROM reserves INNER JOIN article WHERE reserves.Article_Id=article.Article_Id AND UserID=:userId AND Retrive_status=0; ');
+        $this->db->bind(':userId', $customer_id);
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
+     
+ 
     public function countLockerAvailable()
     {
         $this->db->query('SELECT count(lockerNo) as lockers FROM locker where No_of_Articles!=2');
@@ -114,4 +125,5 @@ class Locker
             return false;
         }
     }
+ 
 }

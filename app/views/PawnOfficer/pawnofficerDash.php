@@ -73,14 +73,14 @@
                             <h2>Customers</h2>
                             <img src="<?php echo URLROOT?>/img/gold_customers.png" alt="">
                         </div>                        
-                        <h1>80</h1>
+                        <h1><?php echo $data['no_of_customers']; ?></h1>
                     </div>
                     <div class="card-summary">
                         <div class="title">
                             <h2>Pawned Items</h2>
                             <img src="<?php echo URLROOT?>/img/golden_pawn_items.png" alt="">
                         </div>                        
-                        <h1>150</h1>
+                        <h1><?php echo $data['pawned_items']; ?></h1>
                     </div>
                 </div>
 
@@ -151,28 +151,32 @@
                             <input type="date">
                         </div>
                         <div class="div-table-appointments">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td>Appointment No</td>
-                                        <td>Appointment Date</td>
-                                        <td>Time</td>
-                                        <td>Reason</td>
-                                    </tr> 
-                                </thead>
-                                <tbody>
-
-                                    <?php foreach ($data['appointments'] as $appointment) : ?>
+                            <?php if(empty($data['appointments'])) : ?>
+                                <div class="no-appointments">No upcoming appointments</div>
+                            <?php else : ?>
+                                <table>
+                                    <thead>
                                         <tr>
-                                            <td><?php echo $appointment->Appointment_Id;?></td>
-                                            <td><?php echo $appointment->appointment_date;?></td>
-                                            <td><?php echo $appointment->time;?></td>
-                                            <td><?php echo $appointment->description;?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    
-                                </tbody>
-                            </table>
+                                            <td>Appointment No</td>
+                                            <td>Appointment Date</td>
+                                            <td>Time</td>
+                                            <td>Reason</td>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+
+                                        <?php foreach ($data['appointments'] as $appointment) : ?>
+                                            <tr>
+                                                <td><?php echo $appointment->Appointment_Id;?></td>
+                                                <td><?php echo $appointment->appointment_date;?></td>
+                                                <td><?php echo $appointment->time;?></td>
+                                                <td><?php echo $appointment->description;?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div>
                     </div>
 

@@ -7,7 +7,7 @@
         }
 
         public function getPawnedItems() {
-            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id;');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Status = "Pawned";');
 
             $results = $this->db->resultSet();
 
@@ -16,7 +16,7 @@
 
         // Get customer details using pawned item's Pawn_Id
         public function getPawnItemById($id) {
-            $this->db->query('SELECT * FROM pawn INNER JOIN loan ON pawn.Pawn_Id=loan.Pawn_Id WHERE pawn.Pawn_Id = :id');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Pawn_Id = :id AND pawn.Status = "Pawned"');
             $this->db->bind(':id', $id);
 
             $row = $this->db->single();
@@ -237,6 +237,45 @@
             return $row;
         }
 
+        public function getPawnByCustomerID($id) {
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON article.Article_Id=pawn.Article_Id WHERE userId=:customerId AND pawn.Status = "Pawned"; ');
+            $this->db->bind(':customerId', $id);
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
+
+        public function getPaymentsByPawnID($id) {
+            $this->db->query('SELECT * FROM payment WHERE Pawn_Id=:pawn_id;');
+            $this->db->bind(':pawn_id', $id);
+            $results = $this->db->resultSet();
+
+            return $results;
+        }
+
+        public function getLastPayment($id) {
+            $this->db->query('SELECT * FROM payment WHERE Pawn_Id=:pawn_id ORDER BY Date DESC LIMIT 1;');
+            $this->db->bind(':pawn_id', $id);
+            $row = $this->db->single();
+
+            return $row;
+        }
+
+        public function make_payment($data) {
+            $this->db->query('INSERT INTO payment (Amount, Type, Date, Principle_Amount, Pawn_Id, Employee_Id) VALUES(:amount, :type, :date, :principle_amount, :pawn_id, :employee_id); ');
+            $this->db->bind(':amount', $data['full_payment']);
+            $this->db->bind(':type', "Cash");
+            $this->db->bind(':date', date('Y-m-d H:i:s'));
+            $this->db->bind(':principle_amount', $data['covered_loan']);
+            $this->db->bind(':pawn_id',$data['pawn_item']->Pawn_Id);
+            $this->db->bind(':employee_id', $data['pawning_officer']);
+
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
 
         //customer pawning

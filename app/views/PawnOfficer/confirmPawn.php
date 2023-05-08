@@ -94,7 +94,7 @@
                                 </div>                            
                             </div>
 
-                            <div class="input-container">
+                            <div class="input-container" <?php if($data['validation_details']->validation_status == 0) echo 'hidden'; ?>>
                                 <label>Full Loan Amount (Rs. )<sup>*</sup></label>
                                 <div>
                                     <input type="text" name="full-loan" class="input-field <?php echo (!empty($data['full_loan_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['full_loan']; ?>" placeholder="Full Loan Amount">   
@@ -102,7 +102,7 @@
                                 </div>                          
                             </div>
 
-                            <div class="input-container">
+                            <div class="input-container" <?php if($data['validation_details']->validation_status == 0) echo 'hidden'; ?>>
                                 <label>Loan Payment Method</label>
                                 <div class="payment-method">                        
                                     <label>
@@ -135,11 +135,11 @@
 
                         <div class="div-buttons">
                             <?php if($data['validation_details']->validation_status) : ?>
-                                <input type="submit" value="Pawn"> 
-                            <?php else : ?>
-                                <input type="submit" value="Dismiss"> 
+                                <input type="submit" name="pawn" value="Pawn"> 
                             <?php endif; ?>
-                            <input type="submit" value="Cancel"> 
+
+                            <input type="submit" name="dismiss" value="Dismiss">                             
+                            <input type="submit" name="cancelzsvr" value="Cancel"> 
                         </div>
                     </form>
                     
