@@ -95,7 +95,7 @@ main .main-content .div-details .field label {
 
 main .main-content .div-details .div-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     padding: 20px;
@@ -116,7 +116,6 @@ main .main-content .div-details .div-buttons a {
 }
 
 main .main-content .div-details .div-buttons a:hover {
-    background: #ddd;
     color: #5f4702;
     border-color: #5f4702;
     transform: translateY(-5px);
