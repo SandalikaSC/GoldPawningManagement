@@ -26,6 +26,7 @@
         </div>
 
         <main>
+            <div class="msg-flash"><?php echo flash('success'); ?></div>
             <div class="main-content">
                 <div class="div-details">
                     <div class="div-img">
@@ -64,7 +65,7 @@
                     </div>
 
                     <div class="div-buttons">
-                        <a href="">Release</a>
+                        <a href="<?php echo URLROOT . '/Pawnings/confirm_release/' . $data['pawn_item']->Pawn_Id; ?>">Release</a>
                         <!-- <a href="">Cancel</a> -->
                     </div>
                 </div>

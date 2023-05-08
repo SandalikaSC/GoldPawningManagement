@@ -161,12 +161,26 @@
             $pawned_item = $this->pawningModel->getPawnItemById($id);
             $remaining_loan = $this->getRemainingLoan($id);
 
-            $data = [
-                'pawn_item' => $pawned_item,
-                'remaining_loan' => $remaining_loan
-            ];
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            $this->view('PawnOfficer/release_pawn', $data);
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan
+                ];
+    
+                $this->view('PawnOfficer/release_pawn', $data);
+            } else {
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan
+                ];
+    
+                $this->view('PawnOfficer/release_pawn', $data);
+            }
+
+            
         }
 
         public function renew_pawn($id) {
@@ -178,6 +192,29 @@
             ];
 
             $this->view('PawnOfficer/renew_pawn', $data);
+        }
+
+        public function confirm_release($id) {
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'pawn_item' => $pawned_item
+                ];
+
+                if(isset($_POST['confirm'])) {
+
+                }
+            }
+
+            $data = [
+                'pawn_item' => $pawned_item
+            ];
+
+            $this->view('PawnOfficer/confirm_pawn_message');
         }
 
         public function getRemainingLoan($id) {
