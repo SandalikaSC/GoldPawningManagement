@@ -41,4 +41,12 @@ class goldprice
 
 
     }
+    public function getRateIdByKaratage($rate){
+        $this->db->query('SELECT * FROM gold_rate WHERE Karatage = :Karatage');
+            $this->db->bind(':Karatage', $rate);
+
+            $row = $this->db->single();
+
+            return $row;
+    }
 }

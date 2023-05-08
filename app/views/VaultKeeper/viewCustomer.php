@@ -24,16 +24,16 @@
             <div class="payment-invoice">
                 <div class="payment-info">
                     <div class="div-img">
-                        <img src="<?php if(empty($data['customer']->image)){
-                                    echo URLROOT . "/img/profile_pic.png" ;
-                                }else{
-                                  echo  $data['customer']->image;
-                                    }?>" alt="" class="profile-pic">
+                        <img src="<?php if (empty($data['customer']->image)) {
+                                        echo URLROOT . "/img/profile_pic.png";
+                                    } else {
+                                        echo  $data['customer']->image;
+                                    } ?>" alt="" class="profile-pic">
 
                     </div>
-                    <h2 class="h2-txt amount"><?= $data['customer']->First_Name." ".$data['customer']->Last_Name ;?></h2>
+                    <h2 class="h2-txt amount"><?= $data['customer']->First_Name . " " . $data['customer']->Last_Name; ?></h2>
                     <div class="info-section">
-                        <label for=""><?= $data['customer']->email;?></label>
+                        <label for=""><?= $data['customer']->email; ?></label>
 
                     </div>
                     <!-- <div class="info-section">
@@ -47,7 +47,7 @@
                         <div><img src="<?php echo URLROOT ?>/img/calender-white.png"" alt="" class=" icon">
                             <label for="">Date Joined</label>
                         </div>
-                        <label for="" class="icon-label"><?php echo date("d M Y", strtotime($data['customer']->Created_date))?></label>
+                        <label for="" class="icon-label"><?php echo date("d M Y", strtotime($data['customer']->Created_date)) ?></label>
                     </div>
                 </div>
                 <form class="card-info">
@@ -58,32 +58,51 @@
 
                     <div class="card-grid">
                         <label for=""> Full Name</label>
-                        <label for=""><?= $data['customer']->First_Name." ".$data['customer']->Last_Name ;?></label>
+                        <label for=""><?= $data['customer']->First_Name . " " . $data['customer']->Last_Name; ?></label>
 
                         <label for=""> NIC</label>
-                        <label for=""><?= $data['customer']->NIC;?></label>
+                        <label for=""><?= $data['customer']->NIC; ?></label>
                         <label for="">Phone No.</label>
-                        <label for=""><?= $data['customer']->phone;?></label>
+                        <label for=""><?= $data['customer']->phone; ?></label>
                         <label for="">Address</label>
                         <div>
-                            <label for=""> <?= $data['customer']->Line1;?></label>
-                            <label for=""> <?= ($data['customer']->Line2===null || strtolower($data['customer']->Line2) == "null")? "" :$data['customer']->Line2 ;?></label>
-                            <label for=""> <?= ($data['customer']->Line3==null || strtolower($data['customer']->Line3) == "null")? " " :$data['customer']->Line3 ;?></label>
+                            <label for=""> <?= $data['customer']->Line1; ?></label>
+                            <label for=""> <?= ($data['customer']->Line2 === null || strtolower($data['customer']->Line2) == "null") ? "" : $data['customer']->Line2; ?></label>
+                            <label for=""> <?= ($data['customer']->Line3 == null || strtolower($data['customer']->Line3) == "null") ? " " : $data['customer']->Line3; ?></label>
                         </div>
                         <label for=""> Gender</label>
-                        <label for=""><?= $data['customer']->Gender;?></label>
+                        <label for=""><?= $data['customer']->Gender; ?></label>
 
                     </div>
                     <hr>
                     <div class="card-grid">
                         <label for=""> Status</label>
-                        <div> <label class="tag green" for=""> <?= ($data['customer']->Status==1)? "Active" :"Blocked" ;?></label></div>
+                        <div> <label class="tag green" for=""> <?= ($data['customer']->Status == 1) ? "Active" : "Blocked"; ?></label></div>
                         <label for=""> Account Verification</label>
-                        <div> <label class="tag gold" for=""> <?= ($data['customer']->verification_status==1)? "Verified" :"Not verified" ;?></label></div>
+                        <div> <label class="tag gold" for=""> <?= ($data['customer']->verification_status == 1) ? "Verified" : "Not verified"; ?></label></div>
                     </div>
-                    
+
 
                 </form>
+            </div>
+
+            <div class="reservation">
+                <h1 class="title">Locker Allocation History</h1>
+                <div class="reserve">
+                     <label for="">Reserve Id</label>
+                     <label for="">Locker</label>
+                     <label for="">Allocated</label>
+                     <label for="">Retrieved</label>
+                     <label for="">Article</label>
+                     <label for="">Article</label>
+                </div>
+                <?php foreach ($data['reservations'] as $article) :?>
+                <div class="reserve">
+                    <div class="img-div">
+                        <img src="" alt="">
+                    </div>
+                </div>
+                <?php endforeach;?>
             </div>
         </div>
 

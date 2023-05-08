@@ -199,7 +199,7 @@ class Customer
         $this->db->query('UPDATE User SET password=:password WHERE email= :email');
 
         // Bind Values
-        $this->db->bind(':password', $userid);
+        $this->db->bind(':password', $hashed_password);
         $this->db->bind(':email', $email);
         //Execute
         if ($this->db->execute()) {
@@ -309,8 +309,16 @@ class Customer
     {
         $this->db->query('SELECT * from User,phone where User.UserId=phone.userId AND user.userId like "CU%";');
         $results = $this->db->resultset();
-        //    header("Content-type: image/jpeg");
-
+        
         return $results;
+    }
+    public function getCustomerByIdNIC($id)
+    {
+        $this->db->query('SELECT * from User,phone where User.UserId=phone.userId AND user.UserId=:cusid OR NIC=:cusid AND user.type = "Customer";');
+        $this->db->bind(':cusid', $id);
+        $result = $this->db->single();
+       
+
+        return $result;
     }
 }

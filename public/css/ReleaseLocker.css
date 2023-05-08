@@ -25,8 +25,9 @@
 }  
 .item{
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(3,1fr);
     text-align: center;
+    
 }
  .article-details{
     display: flex;
@@ -36,15 +37,16 @@
     border-radius: 20px;
     margin: 2% 2%;
     width: 80%;
+    height: fit-content;
  }
  .Img{
-    width: 80%;
-    height: 50%;
+  width: 85%;
+  height: 90%;
     overflow: hidden;
  }
  .item img{
-    width: 100%;
-    height: 100%;
+  width: 70%;
+  height: 100%;
     object-fit: cover;
  }
  .tag-gold{
@@ -66,11 +68,15 @@
   .flex-2{
     padding: 2% 1%;
     width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
   .release-info{
     color: white;
+    margin: 3% 0;
   }
-  .release-info h2{
+  .release-info .title{
     border-bottom: 3px solid white;
   }
   .release-info label,input{
@@ -81,12 +87,13 @@
     justify-content: space-evenly;
     margin-top: 5%;
   }
-  .btn-sec a{
+  .btn-sec button{
     border-radius: 20px;
     /* color: #bb8a04; */
     border: solid 1px #ffffff;
    background-color: #ffffff;
     padding: 2% 10%;
+    cursor: pointer;
   }
   input{
     background-color: white;
@@ -100,3 +107,78 @@
     border: none;
     outline: none;
   }
+  .sec{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+.msg{
+  text-align: center;
+  background: #f07373;
+  color: white;
+  padding: 1%;
+  border-radius: 12px;
+  display: none;
+}
+.popup {
+  width: 31%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 4% 2%;
+  display: none;
+  /* padding: 4em ; */
+  border: 1px solid #bb8a04;
+  border-radius: 20px;
+  z-index: 199;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+  background: rgb(255, 255, 255);
+}
+
+.show-popup {
+  
+  display: flex;
+}
+.btn-confirm {
+  outline: none;
+  background: #bb8a04;
+  border: 1px solid #bb8a04;
+  color: white;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 1% 20%;
+  margin: 3%;
+}
+.btn-cancel {
+  background: #ececec;
+  border: 1px solid #bb8a04;
+  color: #979797;
+
+
+}
+span {
+  color: gray;
+  font-size: small;
+}
+
+.hidden {
+  display: none;
+}
+button,
+a {
+cursor: pointer; 
+}
+.blur {
+  filter: blur(5px);
+}
+.lockerKeys{
+  display: none; 
+  /* display: flex; */
+  flex-direction: column;
+  text-align: center;
+  padding: 5%;
+}
