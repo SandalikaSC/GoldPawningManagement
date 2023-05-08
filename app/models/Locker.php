@@ -37,6 +37,7 @@ class Locker
 
         return $results;
     }
+    
     public function countLockerAvailable()
     {
         $this->db->query('SELECT count(lockerNo) as lockers FROM locker where No_of_Articles!=2');

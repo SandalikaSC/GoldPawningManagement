@@ -34,6 +34,7 @@
 .content {
   display: flex;
   width: inherit;
+  margin: 0 2% ;
 }
 .cancel {
   
@@ -172,4 +173,46 @@
 
 .hidden {
   display: none;
+}
+.article-set{
+  width: 50%;
+  height: 50%;
+  overflow: hidden;
+}
+.article-Img{
+  width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
+padding: 2%;
+border-radius: 20px;
+width: 40%;
+justify-content: space-evenly;
+
+}
+.info-set{
+  margin: 2%;
+}
+.info-set label{
+  margin: 2%;
+}
+.extend-info{
+  display: flex;
+}
+.sub-title{
+  margin-bottom: 2%;
+}
+.sec{
+  margin: 1% 0;
+}
+.payment{
+  margin: 2% 20%;
+}
+.payment .sec{
+  border-bottom: 3px solid #ffffff;
+  
 }
