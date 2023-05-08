@@ -15,8 +15,6 @@ class Appointment
         $this->db->bind(':date', $appointment_date);
         $results = $this->db->resultset();
         return $results;
-
-
     }
     public function getId()
     {
@@ -28,7 +26,6 @@ class Appointment
         if (empty($result)) {
 
             return 'AP000';
-
         } else {
             return $result->Appointment_Id;
         }
@@ -48,7 +45,7 @@ class Appointment
 
             $this->db->bind(':Appointment_Id', $appointmentId);
             $this->db->bind(':appointment_date', $data['date']);
-            $this->db->bind(':status', 1); 
+            $this->db->bind(':status', 1);
             $this->db->bind(':slot_Id', $data['time_slots']);
             $this->db->bind(':UserID', $_SESSION['user_id']);
             $this->db->bind(':Reason_ID', $data['reasonID']);
@@ -57,17 +54,12 @@ class Appointment
             if ($this->db->execute()) {
 
                 return $appointmentId;
-
             } else {
                 return false;
             }
-
-
         } else {
             return false;
         }
-
-
     }
     // Find user by email
     public function isAvailable($data)
@@ -106,7 +98,22 @@ class Appointment
         $this->db->query('DELETE FROM appointment WHERE Appointment_Id= :id');
 
         // Bind Values
-        $this->db->bind(':id',$appointmentId);
+        $this->db->bind(':id', $appointmentId);
+
+        //Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function completeAppointment($appointmentId)
+    {
+        // Prepare Query
+        $this->db->query('UPDATE  appointment set Status=2 Where Appointment_Id= :id');
+
+        // Bind Values
+        $this->db->bind(':id', $appointmentId);
 
         //Execute
         if ($this->db->execute()) {
@@ -129,25 +136,30 @@ class Appointment
         $results = $this->db->resultset();
 
         return $results;
-
     }
     public function getAppointmentByDate($date)
     {
 
-        $this->db->query("SELECT * from appointment,time_slot,user where appointment.slot_id=time_slot.slot_ID AND appointment.UserID=user.UserId AND appointment_date =:date order by time_slot.slot_ID;");
+        $this->db->query("SELECT * from appointment,time_slot,user where appointment.slot_id=time_slot.slot_ID AND  appointment.UserID=user.UserId AND appointment_date =:date AND appointment.Status=1 order by time_slot.slot_ID;");
 
-        $this->db->bind(':date', $date); 
+        $this->db->bind(':date', $date);
         $results = $this->db->resultset();
 
         return $results;
-
     }
     public function countAppointments($date)
     {
-        $this->db->query('select count(Appointment_Id) as countAppointments from appointment where appointment_date =:date ;');
-        $this->db->bind(':date', $date); 
+        $this->db->query('SELECT count(Appointment_Id) as countAppointments from appointment where appointment_date =:date ;');
+        $this->db->bind(':date', $date);
         $result = $this->db->single();
- 
-            return $result->countAppointments; 
+
+        return $result->countAppointments;
+    }
+    public function getAppointmentByAppId($id)
+    {
+        $this->db->query("SELECT * from appointment where Appointment_Id=:id");
+        $this->db->bind(':id', $id);
+        $result = $this->db->single(); 
+        return $result;
     }
 }

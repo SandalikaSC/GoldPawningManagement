@@ -30,17 +30,13 @@
         <div class="article">
 
             <div class="jewellery-img">
-                <?php
-                $finfo = finfo_open();
-                $imageType = finfo_buffer($finfo, $data['goldLoan']->image, FILEINFO_MIME_TYPE);
-                finfo_close($finfo);
-                ?>
-                <img src="<?php if (empty($data['goldLoan']->image)) {
-                                echo URLROOT . "/img/lum3n-esAis38NHT8-unsplash.jpg";
-                            } else {
-                                echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['goldLoan']->image);
-                            } ?>
-                                    " alt="" class="jw-img">
+                 
+            <img class="jw-img" src="<?php if (!empty($data['goldLoan']->image)) {
+                                                            echo $data['goldLoan']->image;
+                                                        } else {
+                                                            echo URLROOT . "/img/lum3n-esAis38NHT8-unsplash.jpg";
+                                                        } ?>" alt="">
+                
 
             </div>
             <div class="article-info">

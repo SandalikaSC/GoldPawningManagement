@@ -193,20 +193,20 @@
                     Payment History </h2>
                 <div class="payments">
                     <div class="pay-header">
-                        <label>Pay ID</label> 
+                        <label>Pay ID</label>
                         <label>Paid Date</label>
-                        <label> Amount</label> 
-                        <label> Type</label> 
+                        <label> Amount</label>
+                        <label> Type</label>
 
                     </div>
                     <?php foreach ($data['payment'] as $paymnet) : ?>
                         <div class="payment-content">
-                            <label><?= $paymnet->PID ?></label> 
+                            <label><?= $paymnet->PID ?></label>
                             <label><?= date("Y-m-d", strtotime($paymnet->Date)) ?></label>
-                            <label><?= 'Rs. '.$paymnet->Amount ?></label>
+                            <label><?= 'Rs. ' . $paymnet->Amount ?></label>
                             <label><?= trim($paymnet->Type) ?></label>
 
-                        </div> 
+                        </div>
                     <?php endforeach; ?>
                 </div>
             </div>

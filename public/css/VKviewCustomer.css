@@ -8,9 +8,16 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif; 
 }
-
-  
-
+.page,.reservation{
+  display: flex;
+  flex-direction: column;
+}
+.reservation{
+margin: 2% 4%;
+  }
+.title{
+  border-bottom: 2px solid #BB8A04;
+}
 
 /*  article */
 .wrapper{
@@ -45,7 +52,7 @@
 .tag{
     color: white;
     border-radius: 20px;
-    padding: 2% 10%;
+    padding: 1% 10%;
     font-size: 1rem;
   }
   .green{
