@@ -60,40 +60,47 @@
         <main> 
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" placeholder="Enter validated article ID">
-                    <a href="#">
-                    <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
-                    </a>                
+                    <div>
+                        <input type="text" placeholder="Enter validation ID or article type">
+                        <a href="#">
+                            <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
+                        </a> 
+                    </div>
+                                   
                 </div>
                 <div class="tbl-details">
                     <table cellspacing="0">
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Article ID</th>
+                                <th>Validation ID</th>
                                 <th>Type</th>
                                 <th>Weight (g)</th>
-                                <th>Karatage</th>
+                                <th>Carats</th>
                                 <th>Estimated Value (Rs.)</th>
+                                <th>Validation Status</th>
+                                <th>Gold Appraiser ID</th>
                             </tr>
-                        </thead>
-
+                        </thead>                            
+                            
                         <tbody>
                             <?php foreach ($data['validated_articles'] as $validated_article) : ?>
                                 <tr class="table-body">
-                                    <!-- <td><img src="<?php echo $validated_article->image; ?>"></td> -->
-                                    <td></td>
-                                    <td><?php echo $validated_article->Article_Id; ?></td>
-                                    <td><?php echo $validated_article->Type; ?></td>
-                                    <td><?php echo $validated_article->Weight; ?></td>
-                                    <td><?php echo $validated_article->Karatage; ?></td>
-                                    <td><?php echo $validated_article->Estimated_Value; ?></td>
+                                    <td><img src="<?php echo $validated_article->image; ?>"></td>
+                                    <td><?php echo $validated_article->id; ?></td>
+                                    <td><?php echo $validated_article->article_type; ?></td>
+                                    <td><?php echo $validated_article->weight; ?></td>
+                                    <td><?php echo $validated_article->karatage; ?></td>
+                                    <td><?php echo $validated_article->estimated_value; ?></td>
+                                    <td><?php echo $validated_article->validation_status; ?></td>
+                                    <td><?php echo $validated_article->gold_appraiser; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>                
-            </div>            
+            </div>
+            
         </main>
 
     </div>

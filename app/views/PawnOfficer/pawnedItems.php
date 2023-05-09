@@ -77,6 +77,7 @@
                     <table cellspacing="0">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Pawn ID</th>
                                 <th>Customer ID</th>
                                 <th>Article ID</th>
@@ -88,6 +89,7 @@
                         <tbody>
                             <?php foreach($data['pawned_items'] as $pawned_item) : ?>
                                 <tr class="table-body">
+                                    <td><img src="<?php echo $pawned_item->image; ?>"></td>
                                     <td><?php echo $pawned_item->Pawn_Id; ?></td>
                                     <td><?php echo $pawned_item->userId; ?></td>
                                     <td><?php echo $pawned_item->Article_Id; ?></td>

@@ -237,7 +237,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 4rem;
+    margin: 10px 20px;
     padding: 0 20px;
     color: #bb8a04;
     box-shadow: 0px 5px 5px rgba(51, 51, 51, 0.5);
@@ -252,14 +252,20 @@ main {
     color: #ffffff;
     text-align: center;
     font-weight: bold;
-    padding: 20px 50px;
+    padding: 20px;
 }
 
 .right-content .tbl-details table td {
     padding: 5px 15px;
     margin: auto;
     text-align: center;
- }
+}
+
+.right-content .tbl-details table img {
+    width: 100px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: 5px;
+}
 
 .right-content .tbl-details table tbody tr {
     border-bottom: 1px solid #dddddd;
