@@ -1,6 +1,6 @@
 <?php
 class payment
-{
+{ 
     private $db;
 
     public function __construct()

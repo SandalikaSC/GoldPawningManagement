@@ -31,30 +31,50 @@
 
                         </div>
                         <div class="jw-details">
-                            <div class="jw-date">
-                                <div class="jw-date-name">
-                                    <label>Due Date</label>
-                                    <label class="jw-dt"><?php echo date("d M Y", strtotime($pawn->End_Date)) ?></label>
+
+                            <?php if ($pawn->updated_status == "Pawned" || $pawn->updated_status == "Overdue" || $pawn->updated_status == "Completed") : ?>
+                                <div class="jw-date">
+                                    <div class="jw-date-name">
+                                        <label>Due Date</label>
+                                        <label class="jw-dt"><?php echo date("d M Y", strtotime($pawn->End_Date)) ?></label>
+                                    </div>
+
+                                </div>
+                            <?php elseif ($pawn->updated_status == "Auctioned") : ?>
+                                <div class="jw-date">
+                                    <div class="jw-date-name">
+                                        <label>Auctioned Date</label>
+                                        <label class="jw-dt"><?php echo date("d M Y", strtotime($pawn->auctioned_date)) ?></label>
+                                    </div>
+
+                                </div>
+                            <?php elseif ($pawn->updated_status == "Retrieved") : ?>
+                                <div class="jw-date">
+                                    <div class="jw-date-name">
+                                        <label>Retrieved Date</label>
+                                        <label class="jw-dt"><?php echo date("d M Y", strtotime($pawn->Redeemed_Date)) ?></label>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                            <?php endif; ?>
                             <div class="jw-date-name">
 
                                 <label>Status</label>
-                                <label class="status 
-                                <?php
-                                $status = $pawn->Status;
-                                if (strtotime($pawn->End_Date) < time()) {
-                                    $status = 'Overdue';
-                                }
-
-                                if ($status == 'Pawned') {
-                                    echo "tag-pending";
-                                } elseif ($status == 'Overdue') {
-                                    echo "tag-overdue";
-                                } else {
+                                <label class="status <?php 
+                                
+                                if ($pawn->updated_status == "Pawned") {
+                                   echo "tag-pending";
+                                } elseif($pawn->updated_status == "Completed") {
+                                    echo "tag-completed";
+                                }elseif($pawn->updated_status == "Auctioned") {
                                     echo "tag-auctioned";
-                                } ?>"><?= $status ?></label>
+                                }elseif($pawn->updated_status == "Overdue") {
+                                    echo "tag-overdue";
+                                }elseif($pawn->updated_status == "Retrieved") {
+                                    echo "tag-retrieved";
+                                }    
+                                ?>"><?=$pawn->updated_status?></label>
                             </div>
 
 
