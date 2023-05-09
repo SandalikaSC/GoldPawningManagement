@@ -83,9 +83,24 @@
                 ];
 
                 $end_date = new DateTime(date('Y-m-d', strtotime($data['pawn_item']->End_Date)));
-                if(($current_date > $end_date) && ($end_date->diff($current_date))->days > 14) {
-                    flash('register', 'Payment cannot be made because the repayment period provided has been exceeded.', 'invalid');
+                
+
+                if($data['remaining_loan'] == 0.00) {
+                    $data['covered_loan_err'] = '';
+                    flash('register', 'Loan has been paid', 'invalid');
+                    // redirect('/Pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
                     $this->view('PawnOfficer/make_payments', $data);
+                } else {
+                    if($data['full_payment'] <= 0.00 && $data['remaining_loan'] > 0.00 && $data['pawn_item']->Repay_Method == "Fixed") {
+                // if($data['full_payment'] <= 0.00 && $data['remaining_loan'] > 0.00 && $data['pawn_item']->Repay_Method == "Fixed") {
+                        flash('register', 'Payments cannot be made till the payment date', 'invalid');
+                        $this->view('PawnOfficer/make_payments', $data);
+                    }
+                    if(($current_date > $end_date) && ($end_date->diff($current_date))->days > 14) {
+                        flash('register', 'Payment cannot be made because the repayment period provided has been exceeded.', 'invalid');
+                        $this->view('PawnOfficer/make_payments', $data);
+                    }
+                   
                 }
 
                 if($data['pawn_item']->Repay_Method == "Diminishing") {
@@ -109,22 +124,16 @@
                     }                                       
                 }
 
-                if($data['remaining_loan'] <= 0.00) {
-                    $data['covered_loan_err'] = '';
-                    flash('register', 'Loan has been paid', 'invalid');
-                    // redirect('/Pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
-                    $this->view('PawnOfficer/make_payments', $data);
-                }      
                 
-                if($data['full_payment'] <= 0.00 && $data['remaining_loan'] > 0.00 && $data['pawn_item']->Repay_Method == "Fixed") {
-                    flash('register', 'Payments cannot be made till the payment date', 'invalid');
-                    $this->view('PawnOfficer/make_payments', $data);
-                }
 
                 if(empty($data['covered_loan_err']) && empty($data['full_payment_err']) && isset($_POST['save']) && $data['remaining_loan'] > 0.00 && $data['full_payment'] > 0.00 && !(($current_date > $end_date) && ($end_date->diff($current_date))->days > 14)) {
                     $payment_success = $this->pawningModel->make_payment($data);
 
                     if($payment_success) {
+                        $remaining_loan = $this->getRemainingLoan($data['pawn_item']->Pawn_Id);
+                        if($remaining_loan == 0.00) {
+                            $update_status = $this->pawningModel->updateCompletedLoanStatus($data['pawn_item']->Pawn_Id);
+                        }
                         flash('register', 'PAYMENT SUCCESSFUL', 'success');
                         redirect('/Pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
                     } else {
@@ -238,7 +247,7 @@
             // }
 
             $remaining_loan = $pawned_item->Amount - $paid_loan;
-            if($remaining_loan < 0.00) {
+            if($remaining_loan < 1.00) {
                 $remaining_loan = 0.00;
             }
 
