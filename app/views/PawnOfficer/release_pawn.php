@@ -65,7 +65,12 @@
                     </div>
 
                     <div class="div-buttons">
-                        <a href="<?php echo URLROOT . '/Pawnings/confirm_release/' . $data['pawn_item']->Pawn_Id; ?>">Release</a>
+                        <form action="<?php echo URLROOT . '/Pawnings/release_pawn/' . $data['pawn_item']->Pawn_Id; ?>" method="post">
+                            <button type="submit">Release</button>
+                        </form>
+                        
+                        <!-- <input type="submit" name="release" value="Release"> -->
+                        <!-- <a href="<?php echo URLROOT . '/Pawnings/confirm_release/'. $data['pawn_item']->Pawn_Id; ?>">Release</a> -->
                         <!-- <a href="">Cancel</a> -->
                     </div>
                 </div>

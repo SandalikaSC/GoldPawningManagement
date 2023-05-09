@@ -101,7 +101,7 @@ main .main-content .div-details .div-buttons {
     padding: 20px;
 }
 
-main .main-content .div-details .div-buttons a {
+main .main-content .div-details .div-buttons input {
     text-decoration: none;
     background: #fff;
     width: 160px;
@@ -109,13 +109,14 @@ main .main-content .div-details .div-buttons a {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 16px;
     color: #bb8a04;
     border: 2px solid #bb8a04;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
-main .main-content .div-details .div-buttons a:hover {
+main .main-content .div-details .div-buttons input:hover {
     color: #5f4702;
     border-color: #5f4702;
     transform: translateY(-5px);
