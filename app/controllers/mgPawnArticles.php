@@ -93,7 +93,7 @@ class mgPawnArticles extends controller
 
       if ($result) {
          $flag = 0;
-         foreach ($result as $row){
+         foreach ($result as $row) {
             if ($this->dateCompareForEmail($row->End_Date, 30) and $row->WarningOne == 0) {
                $useremail = $this->model("pawnArticleModel");
                $email = $useremail->findUserEmail($row->userId);
@@ -103,11 +103,11 @@ class mgPawnArticles extends controller
                $abc = sendMail($email->email, "warning", $sms, "V O G U E");
                if ($abc == null) {
                   $flag = 1;
-                  flashMessage("Network Error Occurd..");
+                  flashMessage("Network Error Occurd..", 0);
                   echo "Done";
                   break;
                } else {
-                  $warning = $this->model("pawnArticleModel")->updateStatus($row->Pawn_Id,30);
+                  $warning = $this->model("pawnArticleModel")->updateStatus($row->Pawn_Id, 30);
                }
             } else if ($this->dateCompareForEmail($row->End_Date, 0) and $row->WarningTwo == 0) {
                $useremail = $this->model("pawnArticleModel");
@@ -118,21 +118,21 @@ class mgPawnArticles extends controller
                $abc = sendMail($email->email, "warning", $sms, "V O G U E");
                if ($abc == null) {
                   $flag = 1;
-                  flashMessage("Network Error Occurd..");
+                  flashMessage("Network Error Occurd..", 0);
                   echo "DONE";
                   break;
                } else {
-                  $warning = $this->model("pawnArticleModel")->updateStatus($row->Pawn_Id,0);
+                  $warning = $this->model("pawnArticleModel")->updateStatus($row->Pawn_Id, 0);
                }
             }
          }
          if (!$flag) {
             echo "DONE";
-            flashMessage("Warnings Sent Successfully");
+            flashMessage("Warnings Sent Successfully", 1);
          }
       } else {
          echo "DONE";
-         flashMessage("No Articles Pawned to send emails");
+         flashMessage("No Articles Pawned to send emails", 0);
       }
    }
 
@@ -158,11 +158,11 @@ class mgPawnArticles extends controller
                   $current_timestamp = date('H:i:s');
                   $auction_date = date('Y-m-d H:i:s');
                   $auction = $this->model("pawnArticleModel");
-                  $row = $auction->pawnToAuction($row->Pawn_Id, $auction_date,$current_timestamp);
+                  $row = $auction->pawnToAuction($row->Pawn_Id, $auction_date, $current_timestamp);
                   $auction = null;
                } else {
                   $flag = 1;
-                  flashMessage("Network Error Occurd..");
+                  flashMessage("Network Error Occurd..", 0);
                   echo "DONE";
                   break;
                }
@@ -170,12 +170,12 @@ class mgPawnArticles extends controller
          }
          if (!$flag) {
             echo "DONE";
-            flashMessage("Added to Auction Successfully");
+            flashMessage("Added to Auction Successfully", 1);
          }
          // redirect('/mgPawnArticles/index');
       } else {
          echo "DONE";
-         flashMessage("No Articles Pawned to add Auction");
+         flashMessage("No Articles Pawned to add Auction", 0);
          // redirect('/mgPawnArticles/index');
       }
    }
@@ -186,13 +186,13 @@ class mgPawnArticles extends controller
 
    public function addOneByOneToAuction($pawnid, $End_Date, $userId)
    {
-      
-      $isComplete =$this->model("pawnArticleModel")->isCompleted($pawnid);
-      if (!($this->dateCompare($End_Date, 14)) and !$isComplete ) {
+
+      $isComplete = $this->model("pawnArticleModel")->isCompleted($pawnid);
+      if (!($this->dateCompare($End_Date, 14)) and !$isComplete) {
          $pawn1 = $this->model("pawnArticleModel")->checkStatus($pawnid);
          if ($pawn1) {
             echo "DONE";
-            flashMessage("Already In Auction");
+            flashMessage("Already In Auction", 0);
             // redirect('/mgPawnArticles/viewPawnedItem/' . $Article_Id);
          } else {
             $useremail = $this->model("pawnArticleModel");
@@ -203,12 +203,12 @@ class mgPawnArticles extends controller
                date_default_timezone_set('Asia/Colombo');
                $current_timestamp = date('H:i:s');
                $auction_date = date('Y-m-d H:i:s');
-               $pawn2 = $this->model("pawnArticleModel")->pawnToAuction($pawnid, $auction_date,$current_timestamp);
+               $pawn2 = $this->model("pawnArticleModel")->pawnToAuction($pawnid, $auction_date, $current_timestamp);
                echo "DONE";
-               flashMessage("Added to Auction Successfully");
+               flashMessage("Added to Auction Successfully", 1);
             } else {
                echo "fail";
-               flashMessage("Network Error Occurd..");
+               flashMessage("Network Error Occurd..", 0);
             }
             // redirect('/mgPawnArticles/viewPawnedItem/' . $Article_Id);
          }
@@ -216,23 +216,23 @@ class mgPawnArticles extends controller
    }
 
 
-   public function sendOneByOneWarning($userId, $End_Date,$pawnid,$warning1,$warning2)
+   public function sendOneByOneWarning($userId, $End_Date, $pawnid, $warning1, $warning2)
    {
-      if ($this->dateCompareForEmail($End_Date, 0) and $warning2==0 ) {
+      if ($this->dateCompareForEmail($End_Date, 0) and $warning2 == 0) {
          $useremail = $this->model("pawnArticleModel");
          $email = $useremail->findUserEmail($userId);
 
          $sms = "Note: Today is the End Date For Your Pawn";
          $abc = sendMail($email->email, "warning", $sms, "V O G U E");
          if ($abc == null) {
-            flashMessage("Network Error Occurd..");
+            flashMessage("Network Error Occurd..", 0);
             echo "DONE";
          } else {
-            $warning = $this->model("pawnArticleModel")->updateStatus($pawnid,0);
+            $warning = $this->model("pawnArticleModel")->updateStatus($pawnid, 0);
             echo "DONE";
-            flashMessage("Warning Sent Successfully");
+            flashMessage("Warning Sent Successfully", 1);
          }
-      } else if ($this->dateCompareForEmail($End_Date, 30) and $warning1==0) {
+      } else if ($this->dateCompareForEmail($End_Date, 30) and $warning1 == 0) {
          $useremail = $this->model("pawnArticleModel");
          $email = $useremail->findUserEmail($userId);
          $sms = "Note: Only One Month Left";
@@ -240,14 +240,13 @@ class mgPawnArticles extends controller
 
          $abc = sendMail($email->email, "warning", $sms, "V O G U E");
          if ($abc == null) {
-            flashMessage("Network Error Occurd..");
+            flashMessage("Network Error Occurd..", 0);
             echo "DONE";
          } else {
-            $warning = $this->model("pawnArticleModel")->updateStatus($pawnid,30);
+            $warning = $this->model("pawnArticleModel")->updateStatus($pawnid, 30);
             echo "DONE";
-            flashMessage("Warning Sent Successfully");
+            flashMessage("Warning Sent Successfully", 1);
          }
-      
       }
    }
 
@@ -292,5 +291,19 @@ class mgPawnArticles extends controller
       } else {
          $this->view("/Manager/pawnArticle_Dashboard", array($res, 0, 0));
       }
+   }
+
+   public function generateReport($article_id)
+   {
+      isLoggedIn();
+      $pawn = $this->model("pawnArticleModel");
+      $result = $pawn->viewPawnArticle($article_id);
+      $sum = 0;
+      foreach ($result[1] as $row) {
+         $sum = $sum + $row->Amount;
+      }
+      $result[] = $sum;
+      // var_dump($result);
+      $this->view("/pages/pawnArticleReceipt", $result);
    }
 }

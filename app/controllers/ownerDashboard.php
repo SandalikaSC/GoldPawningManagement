@@ -55,6 +55,10 @@ class ownerDashboard extends controller{
 
   }
 
+  public function generateReport($year){
+    $this->view("pages/incomeAndExpenditureReport",$year);
+  }
+
  
 }
 ?>

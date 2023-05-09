@@ -25,11 +25,12 @@
     <div class="page">
         <?php include_once 'sendWarningForm.php'; ?>
 
-
         <?php
-        if (!empty($_SESSION['message'])) {
+        if (!empty($_SESSION['message']) and $_SESSION['check'] == 0) {
 
             include_once 'error.php';
+        } else if (!empty($_SESSION['message']) and $_SESSION['check'] == 1) {
+            include_once 'ok.php';
         }
         ?>
 
@@ -44,6 +45,7 @@
                     <h1>
                         Viewing Article: <i><?php echo $data[0]->Article_Id ?></i>
                     </h1>
+
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
@@ -126,6 +128,8 @@
                                     Payment History
                                 </div>
                                 <div class="search-bar">
+                                    <button type='button' id="create-report">Print Me</button>
+
                                     <input type="text" name="search_input" id="search_input" onkeyup="searchPayment()" placeholder="Search.." />
                                 </div>
 
@@ -137,7 +141,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Payment ID</th>
-                                                   <?php if($data[0]->Repay_Method=='Fixed'){?> <th>Installment</th><?php }else{?><th>Principal</th><?php }?>
+                                                    <?php if ($data[0]->Repay_Method == 'Fixed') { ?> <th>Installment</th><?php } else { ?><th>Principal</th><?php } ?>
                                                     <th>Type</th>
                                                     <th>Paid Date/Time</th>
                                                     <th>Paid Amount</th>
@@ -148,8 +152,8 @@
 
                                                 <?php foreach ($data[1] as $row) { ?>
                                                     <tr>
-                                                        <td><?php echo $row->PID?></td>
-                                                        <?php if($data[0]->Repay_Method=='Fixed'){?> <td>Rs. <?php echo $data[0]->monthly_installment ?>/=</td><?php }else{?><td>Rs. <?php echo $row->Principle_Amount?>/=</td><?php }?>                                                
+                                                        <td><?php echo $row->PID ?></td>
+                                                        <?php if ($data[0]->Repay_Method == 'Fixed') { ?> <td>Rs. <?php echo $data[0]->monthly_installment ?>/=</td><?php } else { ?><td>Rs. <?php echo $row->Principle_Amount ?>/=</td><?php } ?>
                                                         <td><?php echo $row->Type ?></td>
                                                         <td><?php echo $row->Date ?></td>
                                                         <td>Rs. <?php echo $row->Amount ?>/=</td>
@@ -174,16 +178,20 @@
                             <div class="with-two-btns">
                                 <div class="amount-and-due-date">
                                     <div class="data-field">
-                                        <div class="field">Amount : </div>
+                                        <div class="field">Paid Amount :</div>
+                                        <div class="value"><?php if (!empty($data[0])) { ?> Rs.<?php echo $data[2] ?>/=<?php } else echo "Not Available"; ?></div>
+                                    </div>
+                                    <div class="data-field">
+                                        <div class="field">Due Amount:</div>
                                         <div class="value"><?php if (!empty($data[0])) { ?> Rs.<?php echo $data[0]->Estimated_Value - $data[2] ?>/=<?php } else echo "Not Available"; ?></div>
                                     </div>
                                     <div class="data-field">
-                                        <div class="field">Due Date : </div>
+                                        <div class="field">Due Date :</div>
                                         <div class="value"><?php echo $data[0]->End_Date ?></div>
                                     </div>
                                 </div>
                                 <div class="twobtns">
-                                   <div class="auction-btn"><button type="button" id="auction-btn">Add to Auction</button></div>
+                                    <div class="auction-btn"><button type="button" id="auction-btn">Add to Auction</button></div>
                                     <div class="email-btn"><button type="button" id="warning-btn">Send Warning</button></div>
                                 </div>
 
@@ -285,6 +293,18 @@
             document.getElementById('tfoot').innerHTML = "";
         }
     }
+</script>
+
+
+<script>
+const createReportButton = document.getElementById('create-report');
+    createReportButton.addEventListener('click', () => {
+
+        let articleId = '<?php echo $data[0]->Article_Id ?>';
+
+        window.location.href=`<?php echo URLROOT?>/mgPawnArticles/generateReport/${articleId}`;
+        
+    });
 </script>
 
 </html>

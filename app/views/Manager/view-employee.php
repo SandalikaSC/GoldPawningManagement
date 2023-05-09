@@ -14,7 +14,7 @@
     <div class="right">
       <div class="right-heading">
         <div class="right-side">
-          <div class="back" >
+          <div class="back">
             <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
           </div>
@@ -90,29 +90,37 @@
               </div>
               <div class="form-group tooltip">
                 <label for="mob-no"><b>Mobile Number:</b></label>
-                <input disabled value="<?php if (!empty($data[0]) && !empty($data[1])) {
-                                          echo $data[1]->phone;
-                                        } else if (!empty($data[0]) && empty($data[1])) {
+                <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
                                           echo $data[0]->phone;
+                                        } else if (!empty($data[0]->phone)) {
+                                          echo $data[0]->phone;
+                                        } else if (!empty($data[1]->phone)) {
+                                          echo $data[1]->phone;
                                         } ?>" type="text" name="mob-no" id="mob-no">
-                <span class="tooltiptext"><?php if (!empty($data[0]) && !empty($data[1])) {
+                <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
                                             echo $data[1]->phone;
-                                          } else if (!empty($data[0]) && empty($data[1])) {
+                                          } else if (!empty($data[0]->phone)) {
                                             echo $data[0]->phone;
+                                          } else if (!empty($data[1]->phone)) {
+                                            echo $data[1]->phone;
                                           } ?></span>
               </div>
               <div class="form-group tooltip">
                 <label for="home-no"><b>Additional Number:</b></label>
-                <input disabled value="<?php if (!empty($data[0]) && !empty($data[1])) {
-                                          echo $data[0]->phone;
-                                        } else if (!empty($data[0]) && empty($data[1])) {
-                                          echo "Not Available";
+                <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
+                                          echo $data[1]->phone;
+                                        } else if (!empty($data[0]->phone)) {
+                                          echo "";
+                                        } else if (!empty($data[1]->phone)) {
+                                          echo "";
                                         } ?>" type="text" name="mob-no2" id="mob-no2">
 
-                <span class="tooltiptext"><?php if (!empty($data[0]) && !empty($data[1])) {
-                                            echo $data[0]->phone;
-                                          } else if (!empty($data[0]) && empty($data[1])) {
-                                            echo "Not Available";
+                <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
+                                            echo $data[1]->phone;
+                                          } else if (!empty($data[0]->phone)) {
+                                            echo "";
+                                          } else if (!empty($data[1]->phone)) {
+                                            echo "";
                                           } ?></span>
               </div>
               <div class="form-group tooltip">

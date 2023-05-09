@@ -47,7 +47,7 @@ class mgDashboard extends controller
     isLoggedIn();
     $complaint = $this->model("UserModel");
     $data = $complaint->deleteComplaint($cid);
-    flashMessage("Complaint Deleted..");
+    flashMessage("Complaint Deleted..",1);
     redirect('/mgDashboard');
   }
 
@@ -62,21 +62,21 @@ class mgDashboard extends controller
         $abc = sendMail($res->email, "send_reply", $_POST['text-area'], "Vogue Pawn");
         if ($abc == null) {
           echo "failed";
-          flashMessage("Network Error Occurd..");
+          flashMessage("Network Error Occurd..",0);
           
         } else {
           echo "done";
-          flashMessage("Successfully Sent..");
+          flashMessage("Successfully Sent..",1);
           
         }
       } else {
           echo "failed";
-          flashMessage("This Customer couldn't find");
+          flashMessage("This Customer couldn't find",0);
        
       }
     } else {
       echo "failed";
-      flashMessage("Please type again the reply");
+      flashMessage("Please type again the reply",0);
 
     }
   }
@@ -126,6 +126,7 @@ class mgDashboard extends controller
     if(isset($_POST['noteTitle']) AND isset($_POST['noteDate']) AND isset($_POST['noteContent'])){
       isLoggedIn();
       $note = $this->model('mgDashboardModel')->addNote($_SESSION['user_id'],$_POST['noteTitle'],$_POST['noteDate'],$_POST['noteContent']);
+      flashMessage("Note Added",1);
       redirect("/mgDashboard/index");
 
     }

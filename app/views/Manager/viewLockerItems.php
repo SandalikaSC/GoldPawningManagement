@@ -23,7 +23,7 @@
                                 } ?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
-                        Viewing Locker No: <i>LC00<?php echo $data[0][0]->lockerNo ?></i>
+                        Viewing Locker No: <i>LC<?php echo $data[0][0]->lockerNo ?></i>
                     </h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">

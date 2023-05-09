@@ -30,9 +30,11 @@
         <?php include_once 'sendReplyForm.php'; ?>
 
         <?php
-        if (!empty($_SESSION['message'])) {
+        if (!empty($_SESSION['message']) and $_SESSION['check']==0) {
 
-            include_once 'success.php';
+            include_once 'error.php';
+        }else if(!empty($_SESSION['message']) and $_SESSION['check']==1){
+            include_once 'ok.php';
         }
         ?>
 
@@ -219,7 +221,7 @@
                                     <option value=2022>2022</option>
                                 </select>
 
-                                <button type="button" id="downloadbtn">PDF VERSION</button>
+                                <button type="button" onclick="redirectToReport()" id="downloadbtn">Print Me</button>
 
                             </div>
 
@@ -323,9 +325,12 @@
 
 
 <script>
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let selectedValue = currentYear;
     let mySelect = document.getElementById("yearSelect");
     mySelect.addEventListener("change", function() {
-        let selectedValue = mySelect.value;
+        selectedValue = mySelect.value;
         fetch(`<?php echo URLROOT ?>/ownerDashboard/loadChartData/${selectedValue}`)
             .then(response => response.json())
             .then(data => {
@@ -367,12 +372,12 @@
                             label: 'Monthly Income',
                             data: amountsIncome,
                             borderColor: "#BB8A04",
-                            fill: false
+                            fill: "false"
                         }, {
                             label: 'Monthly Expenditure',
                             data: amountsExpen,
                             borderColor: "black",
-                            fill: false
+                            fill: "false"
                         }]
                     },
                     options: {
@@ -381,13 +386,10 @@
                         legend: {
                             display: true
                         }
+
                     }
 
                 });
-
-
-
-
 
             })
 
@@ -397,18 +399,12 @@
 <script>
     let download = document.getElementById('downloadbtn');
     download.addEventListener('click', () => {
+        const imageLink = document.createElement('a');
         const canvas = document.getElementById('myChart');
-
-        //create image
-        const canvasImage = canvas.toDataURL('image/jpeg', 1.0);
-
-        let pdf = new jsPDF('landscape');
-        pdf.setFontSize(20);
-        pdf.addImage(canvasImage, 'JPEG', 5, 5, 290, 150);
-        pdf.save('IncomeAndExpenditure.pdf');
-
-    })
-
+        imageLink.download = 'canvas.png';
+        imageLink.href = canvas.toDataURL('image/png', 1);
+        imageLink.click();
+    });
 </script>
 
 <script>
@@ -421,7 +417,6 @@
         nonCount = 0;
         for (i = 0; i < li.length; i++) {
             a = li[i];
-            // a = li[i].getElementsByTagName("a")[0];
             txtValue = a.textContent || a.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 li[i].style.display = "";
@@ -439,7 +434,15 @@
     }
 </script>
 
+<script>
+    function redirectToReport() {
+        // Store income and expenditure arrays in local storage
+        localStorage.setItem('amountsIncome', JSON.stringify(amountsIncome));
+        localStorage.setItem('amountsExpen', JSON.stringify(amountsExpen));
 
+        window.location.href = `<?php echo URLROOT ?>/ownerDashboard/generateReport/${selectedValue}`;
+    }
+</script>
 
 
 

@@ -43,51 +43,92 @@ class staffModel extends Database
         }
     }
 
-    public function emailExist($email)
+    public function emailExist($email, $userId = null)
     {
-        $sql1 = 'select email from user where email=?';
-
-        $this->query($sql1);
-        $this->bind(1, $email);
-
-        $result1 = $this->single();
-
-        if ($this->rowCount()) {
-            return true;
+        if (!empty($userId)) {
+            $sql = 'select email from user where email=? and userId != ?';
+            $this->query($sql);
+            $this->bind(1, $email);
+            $this->bind(2, $userId);
+            $result1 = $this->single();
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            $sql1 = 'select email from user where email=?';
+            $this->query($sql1);
+            $this->bind(1, $email);
+            $result1 = $this->single();
+
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
-    public function nicExist($nic)
+    public function nicExist($nic, $userId = null)
     {
-        $sql1 = 'select NIC from user where NIC=?';
+        if (!empty($userId)) {
+            $sql1 = 'select NIC from user where NIC=? and userId != ?';
 
-        $this->query($sql1);
-        $this->bind(1, $nic);
+            $this->query($sql1);
+            $this->bind(1, $nic);
+            $this->bind(2, $userId);
+            $result1 = $this->single();
 
-        $result1 = $this->single();
-
-        if ($this->rowCount()) {
-            return true;
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+
+            $sql1 = 'select NIC from user where NIC=?';
+
+            $this->query($sql1);
+            $this->bind(1, $nic);
+
+            $result1 = $this->single();
+
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
-    public function phoneExist($phone)
+    public function phoneExist($phone, $userId = null)
     {
-        $sql1 = 'select phone from phone where phone=?';
+        if (!empty($userId)) {
+            $sql1 = 'select phone from phone where phone=? and userId != ?';
+            $this->query($sql1);
+            $this->bind(1, $phone);
+            $this->bind(2, $userId);
+            $result1 = $this->single();
 
-        $this->query($sql1);
-        $this->bind(1, $phone);
-
-        $result1 = $this->single();
-
-        if ($this->rowCount()) {
-            return true;
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            $sql1 = 'select phone from phone where phone=?';
+
+            $this->query($sql1);
+            $this->bind(1, $phone);
+
+            $result1 = $this->single();
+
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -173,6 +214,7 @@ class staffModel extends Database
 
     public function deleteStaffMember($id)
     {
+
         $sql2 = "delete from phone where userId= ?";
         $this->query($sql2);
         $this->bind(1, $id);
@@ -182,7 +224,6 @@ class staffModel extends Database
         $this->query($sql);
         $this->bind(1, $id);
         $result1 = $this->execute();
-
 
         return $result1 and $result2;
     }
@@ -197,10 +238,12 @@ class staffModel extends Database
         return $result;
     }
 
-    public function getAllPasswords()
+    public function getPasswords($userId)
     {
-        $sql = "select password from user";
+
+        $sql = "select password from user where userId != ?";
         $this->query($sql);
+        $this->bind(1, $userId);
         $passwords = $this->resultSet();
         return $passwords;
     }
@@ -215,7 +258,20 @@ class staffModel extends Database
         return $result;
     }
 
-    public function setPersonalInfo($id, $fName, $lName, $gender, $line1, $line2, $line3, $mob, $mob2, $image)
+    public function getUserPhoneNumbers($userId)
+    {
+        $sql = 'select userId,phone from phone where userId=?';
+        $this->query($sql);
+        $this->bind(1, $userId);
+        $phoneNumbers = $this->resultSet();
+        if ($phoneNumbers) {
+            return $phoneNumbers;
+        } else {
+            return 0;
+        }
+    }
+
+    public function setPersonalInfo($id, $fName, $lName, $gender, $line1, $line2, $line3, $mob2, $image, $curr_mob = null, $curr_mob2 = null)
     {
         // $sql = 'insert into user(First_Name, Last_Name, Gender, DOB, Line1, Line2, Line3, image) values (?,?,?,?,?,?,?,?) where userId=?';
         $sql = 'update user set First_Name=?,Last_Name=?,Gender=?,Line1=?,Line2=?,Line3=?,image=?,last_edit=? where userId=?';
@@ -256,44 +312,39 @@ class staffModel extends Database
         // Format the timestamp into a readable string
         $formatted_timestamp = date('Y-m-d H:i:s', $current_timestamp);
 
-        $this->bind(8,$formatted_timestamp);
-
+        $this->bind(8, $formatted_timestamp);
 
         $result = $this->execute();
 
         if ($result) {
             $result1 = '';
-            if (!empty($mob2)) {
-                $sql = 'select phone from phone where userId=?';
+
+            if ($curr_mob2 == null) {
+                $sql = 'insert into phone (userId,phone) values (?,?)';
                 $this->query($sql);
                 $this->bind(1, $id);
-                $bothNum = $this->resultSet();
-
-
-                // print_r($bothNum);
+                $this->bind(2, $mob2);
+                $this->execute();
+                $result1 = '1';
+            } else if ($curr_mob2 == "empty") {
                 $sql1 = 'update phone set phone=? where userId=? and phone=?';
                 $this->query($sql1);
-                $this->bind(1, $mob);
-                $this->bind(2, $id);
-                $this->bind(3, $bothNum[1]->phone);
-                $mobileNumber = $this->execute();
-
-                $sql2 = 'update phone set phone=? where userId=? and phone=?';
-                $this->query($sql2);
                 $this->bind(1, $mob2);
                 $this->bind(2, $id);
-                $this->bind(3, ($bothNum[0])->phone);
-                $additionalNumber = $this->execute();
-
+                $this->bind(3, "");
+                $this->execute();
                 $result1 = '1';
             } else {
-                $sql1 = 'update phone set phone=:mobile where userId=:userId';
+                $sql1 = 'update phone set phone=? where userId=? and phone=?';
                 $this->query($sql1);
-
-                $this->bind(":mobile", $mob);
-                $this->bind(":userId", $id);
-                $result1 = $this->execute();
+                $this->bind(1, $mob2);
+                $this->bind(2, $id);
+                $this->bind(3, $curr_mob2);
+                $this->execute();
+                $result1 = '1';
             }
+            $result1 = '1';
+
             if ($result1) {
                 return $result and $result1;
             } else {

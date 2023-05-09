@@ -108,8 +108,8 @@
                     <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
                     <p>Auction</p>
                 </a>
-                <a href="#">
-                    <img src="<?php echo URLROOT ?>/img/staff.png" alt="">
+                <a href="<?php echo URLROOT ?>/ownerMarket">
+                    <img src="<?php echo URLROOT ?>/img/market.png" alt="">
                     <p>Market</p>
                 </a>
             </div>
@@ -289,7 +289,7 @@
                                 <option value=2022>2022</option>
                             </select>
 
-                            <button onclick="downloadPDF()">PDF VERSION</button>
+                            <button onclick="redirectToReport()">PDF VERSION</button>
                         </div>
 
                         <div class="graph">
@@ -461,9 +461,12 @@
 </script>
 
 <script>
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let selectedValue = currentYear;
     let mySelect = document.getElementById("yearSelect");
     mySelect.addEventListener("change", function() {
-        let selectedValue = mySelect.value;
+        selectedValue = mySelect.value;
         fetch(`<?php echo URLROOT ?>/ownerDashboard/loadChartData/${selectedValue}`)
             .then(response => response.json())
             .then(data => {
@@ -710,6 +713,17 @@
 
 
     });
+</script>
+
+
+<script>
+    function redirectToReport() {
+        // Store income and expenditure arrays in local storage
+        localStorage.setItem('amountsIncome', JSON.stringify(amountsIncome));
+        localStorage.setItem('amountsExpen', JSON.stringify(amountsExpen));
+
+        window.location.href = `<?php echo URLROOT ?>/ownerDashboard/generateReport/${selectedValue}`;
+    }
 </script>
 
 </html>

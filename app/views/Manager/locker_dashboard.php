@@ -125,11 +125,11 @@
                                         </div>
                                         <div class="hover-des-field">
                                             <div class="label">Key</div>
-                                            <div class="element key"><?php if ($row->Key_Status == 1) {
-                                                                            echo "Delivered";
-                                                                        } else {
-                                                                            echo "Not Delivered";
-                                                                        } ?></div>
+                                            <div class="element Green"><?php if ($row->Key_Status == 1) {
+                                                                    echo "Delivered";
+                                                                } else {
+                                                                    echo "Not Delivered";
+                                                                } ?></div>
                                         </div>
                                     </div>
                                 </div>
@@ -201,14 +201,14 @@
 <script>
     const searchInput = document.querySelector('#search_input');
 
-searchInput.addEventListener('input', () => {
-  const userInput = searchInput.value;
-  const regex = /^(100|[1-9][0-9]?)$/;
+    searchInput.addEventListener('input', () => {
+        const userInput = searchInput.value;
+        const regex = /^(100|[1-9][0-9]?)$/;
 
-  if (!regex.test(userInput)) {
-    searchInput.value = userInput.slice(0, -1); // Remove the last character
-  }
-});
+        if (!regex.test(userInput)) {
+            searchInput.value = userInput.slice(0, -1); // Remove the last character
+        }
+    });
 </script>
 
 </html>

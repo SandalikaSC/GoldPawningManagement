@@ -73,27 +73,27 @@ class Staff extends Controller
     if ($staffMem->rowCount() > 0 or $NIC->rowCount()>0 or $phone->rowCount()>0) {
       if($staffMem->rowCount() > 0 and $NIC->rowCount()>0  and $phone->rowCount()>0){
         echo json_encode(array("msg" => "failed"));
-        flashMessage("NIC, Email and Phone Number already Exists");
+        flashMessage("NIC, Email and Phone Number already Exists",0);
       }
       else if($staffMem->rowCount() > 0 and $NIC->rowCount()>0){
         echo json_encode(array("msg" => "failed"));
-        flashMessage("Email and NIC already exist");
+        flashMessage("Email and NIC already exist",0);
       } else if($staffMem->rowCount() > 0 and $phone->rowCount()>0){
         echo json_encode(array("msg" => "failed"));
-        flashMessage("Email and Phone number already exist");
+        flashMessage("Email and Phone number already exist",0);
       } else if($NIC->rowCount() > 0 and $phone->rowCount()>0){
         echo json_encode(array("msg" => "failed"));
-        flashMessage("NIC and Phone number already exist");
+        flashMessage("NIC and Phone number already exist",0);
       }
       else if($NIC->rowCount()>0){
         echo json_encode(array("msg" => "failed"));
-        flashMessage("NIC already exists");
+        flashMessage("NIC already exists",0);
       }else if($staffMem->rowCount() > 0){
         echo json_encode(array("msg" => "failed"));
-        flashMessage("Email already exists");
+        flashMessage("Email already exists",0);
       }else if($phone->rowCount() > 0){
         echo json_encode(array("msg" => "failed"));
-        flashMessage("Phone number already exist");
+        flashMessage("Phone number already exist",0);
       }
       
     } else {
@@ -106,11 +106,11 @@ class Staff extends Controller
           $staffMem = $this->model("staffModel");
           $staffMem->deleteStaffMember($id);
           echo json_encode(array("msg" => "failed"));
-          flashMessage("Network Error Occurd..");
+          flashMessage("Network Error Occurd..",0);
           // redirect('/staff/addNew');
         }else{
           echo json_encode(array("msg" => "success"));
-          flashMessage("Successfully Added");
+          flashMessage("Successfully Added",1);
           // redirect('/staff/index/success');        
         }    
 

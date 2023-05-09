@@ -16,7 +16,6 @@
         .invalid {
             border: 1px solid red !important;
         }
-
     </style>
 </head>
 
@@ -24,8 +23,10 @@
 
     <div class="page">
         <?php
-        if (!empty($_SESSION['message'])) {
+        if (!empty($_SESSION['message']) and $_SESSION['check'] == 0) {
             include_once 'error.php';
+        } elseif (!empty($_SESSION['message']) and $_SESSION['check'] == 1) {
+            include_once 'ok.php';
         }
         ?>
         <div class="right">
@@ -91,9 +92,12 @@
                             <div class="form-group">
                                 <label for="gender"><b>Gender:</b></label>
                                 <select id="gender" name="gender" title="Select One" required>
-                                    <option name="gender" value="<?php echo $data[1][0]->Gender ?>"><?php echo $data[1][0]->Gender ?></option>
-                                    <option name="gender" value="male">Male</option>
-                                    <option name="gender" value="female">Female</option>
+                                    <?php if ($data[1][0]->Gender == "Male" || $data[1][0]->Gender == "male") { ?>
+                                        <option name="gender" value="Male">Male</option>
+                                        <option name="gender" value="Female">Female</option><?php } ?>
+                                    <?php if ($data[1][0]->Gender == "Female" || $data[1][0]->Gender == "female") { ?>
+                                        <option name="gender" value="Female">Female</option>
+                                        <option name="gender" value="Male">Male</option><?php } ?>
                                     <option name="gender" value="other">Other</option>
                                 </select>
 
@@ -140,28 +144,14 @@
                                 </div>
                             </div>
 
-
-                            <div class="form-group-with-err">
-                                <div class="form-group">
-                                    <label for="mob-no"><b>Mobile Number1:</b></label>
-                                    <input type="text" value="<?php if (!empty($data[1][0]) && !empty($data[1][1])) {
-                                                                    echo $data[1][1]->phone;
-                                                                } else if (!empty($data[1][0]) && empty($data[1][1])) {
-                                                                    echo $data[1][0]->phone;
-                                                                } ?>" name="mob-no" id="mob-no" minlength="10" maxlength="10" title="Ex: 07XXXXXXXX">
-                                </div>
-                                <div class="err">
-                                    <small class="error" id="mob1Error"></small>
-                                </div>
-                            </div>
-
-
                             <div class="form-group-with-err">
                                 <div class="form-group">
                                     <label for="home-no"><b>Additional Number:</b></label>
-                                    <input type="text" value="<?php if (!empty($data[1][0]) && !empty($data[1][1])) {
-                                                                    echo $data[1][0]->phone;
-                                                                } else if (!empty($data[1][0]) && empty($data[1][1])) {
+                                    <input type="text" value="<?php if (!empty($data[1][0]->phone) && !empty($data[1][1]->phone)) {
+                                                                    echo $data[1][1]->phone;
+                                                                } else if (!empty($data[1][0]->phone)){
+                                                                    echo "";
+                                                                }elseif(!empty($data[1][1]->phone)){
                                                                     echo "";
                                                                 } ?>" name="mob-no2" id="mob-no2" minlength="10" maxlength="10 ">
                                 </div>
@@ -208,10 +198,10 @@
 
 
 <script>
-    let myArray = [1, 1, 1, 1, 1, 1, 1];
+    let myArray = [1, 1, 1, 1, 1, 1];
 
     let updatebtn = document.getElementById("updatebtn");
-    
+
 
     let cancelbtn = document.getElementById("cancelbtn");
     cancelbtn.addEventListener('click', () => {
@@ -224,7 +214,7 @@
         const nameRegex = /^[A-Z][a-z]{1,19}$/;
 
         // Regular expression for phone number
-        const phoneRegex1 = /^[0][7][0,1,2,5,6,7,8][0-9]{7,}$/;
+        // const phoneRegex1 = /^[0][7][0,1,2,5,6,7,8][0-9]{7,}$/;
         const phoneRegex2 = /^[0][7][0,1,2,5,6,7,8][0-9]{7,}$/;
 
         // Regular expression for address
@@ -260,18 +250,18 @@
         }
 
         // Validate phone number
-        const phoneNumber1 = document.getElementById("mob-no").value;
-        const mob1Error = document.getElementById("mob1Error");
-        if (phoneRegex1.test(phoneNumber1)) {
-            document.getElementById('mob-no').classList.remove('invalid');
-            mob1Error.style.display = "none";
-        } else {
-            document.getElementById('mob-no').classList.remove('invalid');
-            mob1Error.textContent = "Please enter a valid 10-digit phone number.";
-            mob1Error.style.display = "block";
-            myArray[2] = 0;
+        // const phoneNumber1 = document.getElementById("mob-no").value;
+        // const mob1Error = document.getElementById("mob1Error");
+        // if (phoneRegex1.test(phoneNumber1)) {
+        //     document.getElementById('mob-no').classList.remove('invalid');
+        //     mob1Error.style.display = "none";
+        // } else {
+        //     document.getElementById('mob-no').classList.remove('invalid');
+        //     mob1Error.textContent = "Please enter a valid 10-digit phone number.";
+        //     mob1Error.style.display = "block";
+        //     myArray[2] = 0;
 
-        }
+        // }
 
         const phoneNumber2 = document.getElementById("mob-no2").value;
         const mob2Error = document.getElementById("mob2Error");
@@ -282,7 +272,7 @@
             document.getElementById('mob-no2').classList.remove('invalid');
             mob2Error.textContent = "Please enter a valid 10-digit phone number.";
             mob2Error.style.display = "block";
-            myArray[3] = 0;
+            myArray[2] = 0;
 
         }
 
@@ -296,7 +286,7 @@
             document.getElementById('lane1').classList.remove('invalid');
             lane1Error.textContent = "Please enter a valid address.";
             lane1Error.style.display = "block";
-            myArray[4] = 0;
+            myArray[3] = 0;
 
         }
 
@@ -310,7 +300,7 @@
             document.getElementById('lane2').classList.remove('invalid');
             lane2Error.textContent = "Please enter a valid address.First Letter shoulg be Upper Case";
             lane2Error.style.display = "block";
-            myArray[5] = 0;
+            myArray[4] = 0;
 
         }
 
@@ -324,7 +314,7 @@
             document.getElementById('lane3').classList.remove('invalid');
             lane3Error.textContent = "Please enter a valid address.First Letter shoulg be Upper Case";
             lane3Error.style.display = "block";
-            myArray[6] = 0;
+            myArray[5] = 0;
 
         }
 
@@ -368,7 +358,7 @@
                     // Handle the response from the server
                     console.log(response);
                     location.reload(true);
-                   
+
                 })
                 .catch(error => {
                     // Handle the error

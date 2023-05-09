@@ -24,9 +24,11 @@
     </div>
     <div class="page">
         <?php
-        if (!empty($_SESSION['message'])) {
+        if (!empty($_SESSION['message']) and $_SESSION['check'] == 0) {
 
             include_once 'error.php';
+        } else if (!empty($_SESSION['message']) and $_SESSION['check'] == 1) {
+            include_once 'ok.php';
         }
         ?>
         <div class="left" id="panel">
@@ -91,8 +93,8 @@
                             <input type="text" name="search_input" id="search_input" onkeyup="searchItems()" placeholder="Search.." />
                         </div>
                         <div class="filter-set">
-                                <button type="button" id="filter-dropdown-button">Filter</button>
-                                <a class="filter-hide-button" href="<?php echo URLROOT?>/mgPawnArticles">Cancel</a>
+                            <button type="button" id="filter-dropdown-button">Filter</button>
+                            <a class="filter-hide-button" href="<?php echo URLROOT ?>/mgPawnArticles">Cancel</a>
 
                         </div>
 
@@ -149,7 +151,7 @@
                                                         <td>" . $row->End_Date . "</td>
                                                         <td>Rs. " . $row->Estimated_Value . "/=</td>
                                                         <td>
-                                                            <a href='" . URLROOT . "/mgPawnArticles/viewPawnedItem/" . $row->Article_Id . "' class='" . (($this->dateCompare($row->End_Date, 0) and $row->WarningTwo==0) ? '' : (($this->dateCompare($row->End_Date, 14) and $row->Status=="Pawned") ? 'passEndDate' : 'passRedeemedDate')) . "'>View</a>
+                                                            <a href='" . URLROOT . "/mgPawnArticles/viewPawnedItem/" . $row->Article_Id . "' class='" . (($this->dateCompare($row->End_Date, 0) and $row->WarningTwo == 0) ? '' : (($this->dateCompare($row->End_Date, 14) and $row->Status == "Pawned") ? 'passEndDate' : 'passRedeemedDate')) . "'>View</a>
                                                             
                                                         </td>
                                                     </tr>";
@@ -221,9 +223,8 @@
 </script>
 
 <script>
-
-    let inputClean=document.getElementById('filter-clear-inputs');
-    inputClean.addEventListener('click',()=>{
+    let inputClean = document.getElementById('filter-clear-inputs');
+    inputClean.addEventListener('click', () => {
         document.getElementById('end-date').value = "";
         document.getElementById('created-date').value = "";
         document.getElementById('karatage').value = "";
@@ -232,8 +233,6 @@
         document.getElementById('max-weight').value = "";
 
     })
-
-  
 </script>
 
 

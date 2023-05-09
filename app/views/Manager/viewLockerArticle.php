@@ -19,7 +19,7 @@
                     <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems/<?php echo $data[2]?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
-                        <i><?php echo $data[0]->Article_Id?></i> In <i>LC00<?php echo $data[2]?></i>
+                        <i><?php echo $data[0]->Article_Id?></i> In <i>LC<?php echo $data[2]?></i>
                     </h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">

@@ -27,18 +27,20 @@
     ?>
     <div class="page">
         <?php
-        if (!empty($_SESSION['message'])) {
+        if (!empty($_SESSION['message']) and $_SESSION['check'] == 0) {
 
-            include_once 'Manager/error.php';
+            include_once 'error.php';
+        } elseif (!empty($_SESSION['message']) and $_SESSION['check'] == 1) {
+            include_once 'ok.php';
         }
         ?>
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
                     <a href="<?php if (substr($_SESSION['user_id'], 0, 2) === 'OW') {
-                                   echo URLROOT.'/ownerDashboard';     
-                                } else if(substr($_SESSION['user_id'], 0, 2) === 'MG'){
-                                   echo URLROOT.'/mgDashboard';
+                                    echo URLROOT . '/ownerDashboard';
+                                } else if (substr($_SESSION['user_id'], 0, 2) === 'MG') {
+                                    echo URLROOT . '/mgDashboard';
                                 } ?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                     <h1>
                         My Profile
@@ -114,17 +116,17 @@
                                 </div>
                                 <div class="address field-value">
                                     <span name="address" id="address"><?php if ($data[0]->Line1 == NULL) {
-                                                                            echo "Not Available";
+                                                                            echo "";
                                                                         } else {
                                                                             echo $data[0]->Line1;
                                                                         } ?></span>
                                     <span name="address" id="address"><?php if ($data[0]->Line2 == NULL) {
-                                                                            echo "Not Available";
+                                                                            echo "";
                                                                         } else {
                                                                             echo $data[0]->Line2;
                                                                         } ?></span>
                                     <span name="address" id="address"><?php if ($data[0]->Line3 == NULL) {
-                                                                            echo "Not Available";
+                                                                            echo "";
                                                                         } else {
                                                                             echo $data[0]->Line3;
                                                                         } ?></span>
@@ -152,13 +154,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="field-label">
-                                    <label for="mob-no"><b>Mobile Number1 :</b></label>
+                                    <label for="mob-no"><b>Mobile Number :</b></label>
                                 </div>
                                 <div class="field-value">
-                                    <span name="mob-no" id="mob-no"><?php if (!empty($data[0]) && !empty($data[1])) {
-                                                                        echo $data[1]->phone;
-                                                                    } else if (!empty($data[0]) && empty($data[1])) {
+                                    <span name="mob-no" id="mob-no"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
                                                                         echo $data[0]->phone;
+                                                                    } else if (!empty($data[0]->phone)) {
+                                                                        echo $data[0]->phone;
+                                                                    } else if (!empty($data[1]->phone)) {
+                                                                        echo $data[1]->phone;
                                                                     } ?></span>
                                 </div>
 
@@ -168,10 +172,12 @@
                                     <label for="home-no"><b>Additional Number :</b></label>
                                 </div>
                                 <div class="field-value">
-                                    <span name="mob-no2" id="mob-no2"><?php if (!empty($data[0]) && !empty($data[1])) {
-                                                                            echo $data[0]->phone;
-                                                                        } else if (!empty($data[0]) && empty($data[1])) {
-                                                                            echo "Not Available";
+                                    <span name="mob-no2" id="mob-no2"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
+                                                                            echo $data[1]->phone;
+                                                                        } else if (!empty($data[0]->phone)) {
+                                                                            echo "";
+                                                                        } else if (!empty($data[1]->phone)) {
+                                                                            echo "";
                                                                         } ?></span>
                                 </div>
 
@@ -315,10 +321,7 @@
     })
 
 
-    let emailSetBtn = document.getElementById('ok-btn');
-    emailSetBtn.addEventListener('click', () => {
-        emailSetBtn.disabled = true;
-    })
+
 
 
 
@@ -333,39 +336,39 @@
 
 
 
-    let passwordField = document.getElementById("npw");
-    let confirmPasswordField = document.getElementById("confirm-password");
-    let setPasswordButton = document.getElementById("password-change-btn");
+    // let password = document.getElementById('psw');
+    // let pwd;
+    // password.addEventListener("keyup", () => {
+    //     let number = false,
+    //         symbol = false,
+    //         lowercase = false,
+    //         uppercase = false;
+    //     pwd = password.value;
+    //     for (let ch in password.value) {
+    //         console.log(pwd[ch]);
+    //         if (pwd[ch] >= "A" && pwd[ch] <= "Z") {
+    //             uppercase = true;
+    //         } else if (pwd[ch] >= "a" && pwd[ch] <= "z") {
+    //             lowercase = true;
+    //         } else if (pwd[ch] >= 0 && pwd[ch] <= 9) {
+    //             number = true;
+    //         } else if (/[~!@#$%^&*()_+-?><= |\/:;]/.test(pwd[ch])) {
+    //             symbol = true;
+    //         }
 
-    // Function to check if the password meets the required criteria
-    function isValidPassword(password) {
-        var passwordRegex = /^(?=.*?[A-Z].*?[A-Z])(?=.*?[a-z].*?[a-z])(?=.*?[0-9].*?[0-9])(?=.*?[~!@#\$%\^&\*].*?[~!@#\$%\^&\*])[A-Za-z0-9~!@#\$%\^&\*]{8,}$/;
-        return passwordRegex.test(password);
-    }
+    //     }
 
-    // Add event listeners to the password and confirm password input fields
-    passwordField.addEventListener("input", function() {
-        // Disable the set password change button if the password is not valid
-        if (!isValidPassword(passwordField.value) || passwordField.value !== confirmPasswordField.value) {
-            setPasswordButton.disabled = true;
-            document.getElementById('password-warning1').style.display = "flex";
-            document.getElementById('password-warning2').style.display = "flex";
-        } else {
-            setPasswordButton.disabled = false;
-        }
-    });
+    //     if (number == true && symbol == true && lowercase == true && uppercase == true && pwd.length >= 8) {
+    //         password.classList.remove("border-red");
+    //         password.classList.add("border-green");
+    //         document.getElementById("manager-login-btn").disabled = false;
+    //     } else {
+    //         password.classList.remove("border-green");
+    //         password.classList.add("border-red");
+    //         document.getElementById("manager-login-btn").disabled = true;
+    //     }
 
-    confirmPasswordField.addEventListener("input", function() {
-        // Disable the set password change button if the passwords do not match
-        if (!isValidPassword(passwordField.value) || passwordField.value !== confirmPasswordField.value) {
-            setPasswordButton.disabled = true;
-            document.getElementById('password-warning1').style.display = "flex";
-            document.getElementById('password-warning2').style.display = "flex";
-
-        } else {
-            setPasswordButton.disabled = false;
-        }
-    });
+    // })
 
 
 
@@ -398,6 +401,8 @@
                 } else if (data.msg === "already-available") {
                     location.reload(true);
                 } else if (data.msg === "invalid_pwd") {
+                    location.reload(true);
+                } else {
                     location.reload(true);
                 }
             })

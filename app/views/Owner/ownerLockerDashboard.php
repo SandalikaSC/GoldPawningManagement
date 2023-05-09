@@ -30,25 +30,25 @@
                 </div>
             </div>
             <div class="btn-set">
-                <a href="<?php echo URLROOT ?>/mgDashboard">
+                <a href="<?php echo URLROOT ?>/ownerDashboard">
                     <img src="<?php echo URLROOT ?>/img/dashboard.png" alt="">
                     <p>Dashboard</p>
                 </a>
-                <a class="dash" href="<?php echo URLROOT ?>/mgLocker">
+                <a class="dash" href="<?php echo URLROOT ?>/ownerLocker">
                     <img src="<?php echo URLROOT ?>/img/golden_locker.png" alt="">
                     <p>Locker</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgPawnArticles">
+                <a href="<?php echo URLROOT ?>/ownerPawnArticleDash">
                     <img src="<?php echo URLROOT ?>/img/pawned.png" alt="">
                     <p>Pawned Articles</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/mgAuction">
+                <a href="<?php echo URLROOT ?>/ownerAuction">
                     <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
                     <p>Auction</p>
                 </a>
-                <a href="<?php echo URLROOT ?>/staff">
-                    <img src="<?php echo URLROOT ?>/img/staff.png" alt="">
-                    <p>Staff</p>
+                <a href="<?php echo URLROOT?>/ownerMarket">
+                    <img src="<?php echo URLROOT ?>/img/market.png" alt="">
+                    <p>Market</p>
                 </a>
             </div>
             <div class="lgout">
@@ -125,7 +125,7 @@
                                         </div>
                                         <div class="hover-des-field">
                                             <div class="label">Key</div>
-                                            <div class="element key"><?php if ($row->Key_Status == 1) {
+                                            <div class="element Green"><?php if ($row->Key_Status == 1) {
                                                                             echo "Delivered";
                                                                         } else {
                                                                             echo "Not Delivered";
@@ -189,7 +189,7 @@
             }
         }
         if (nonCount == row.length) {
-            document.getElementById('tfoot').innerHTML = "<div style='display:flex;justify-content:center;align-items:center;text-align:center;margin-top:30px;margin-left:100px;'>No Auction Items Found </div>";
+            document.getElementById('tfoot').innerHTML = "<div style='display:flex;justify-content:center;align-items:center;text-align:center;margin-top:30px;margin-left:100px;'>No Lockers Found </div>";
             nonCount = 0;
         } else {
             document.getElementById('tfoot').innerHTML = "";

@@ -44,8 +44,8 @@
                     <img src="<?php echo URLROOT ?>/img/golden_auction.png" alt="">
                     <p>Auction</p>
                 </a>
-                <a href="#">
-                    <img src="<?php echo URLROOT ?>/img/staff.png" alt="">
+                <a href="<?php echo URLROOT?>/ownerMarket">
+                    <img src="<?php echo URLROOT ?>/img/market.png" alt="">
                     <p>Market</p>
                 </a>
             </div>

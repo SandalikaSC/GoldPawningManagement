@@ -71,10 +71,10 @@
                                                             echo "Not Available";
                                                         } ?>" type="text" name="lane2" id="lane2">
                                 <span class="tooltiptext"><?php if (!empty($data[0]->Line2)) {
-                                                            echo $data[0]->Line2;
-                                                        } else {
-                                                            echo "Not Available";
-                                                        } ?></span>
+                                                                echo $data[0]->Line2;
+                                                            } else {
+                                                                echo "Not Available";
+                                                            } ?></span>
                             </div>
                             <div class="form-group tooltip">
                                 <label for="lane3"><b>Address Lane 3:</b></label>
@@ -91,28 +91,36 @@
                             </div>
                             <div class="form-group tooltip">
                                 <label for="mob-no"><b>Mobile Number:</b></label>
-                                <input disabled value="<?php if (!empty($data[0]) && !empty($data[1])) {
-                                                            echo $data[1]->phone;
-                                                        } else if (!empty($data[0]) && empty($data[1])) {
+                                <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
                                                             echo $data[0]->phone;
+                                                        } else if (!empty($data[0]->phone)) {
+                                                            echo $data[0]->phone;
+                                                        } else if (!empty($data[1]->phone)) {
+                                                            echo $data[1]->phone;
                                                         } ?>" type="text" name="mob-no" id="mob-no">
-                                <span class="tooltiptext"><?php if (!empty($data[0]) && !empty($data[1])) {
-                                                                echo $data[1]->phone;
-                                                            } else if (!empty($data[0]) && empty($data[1])) {
+                                <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
                                                                 echo $data[0]->phone;
+                                                            } else if (!empty($data[0]->phone)) {
+                                                                echo $data[0]->phone;
+                                                            } else if (!empty($data[1]->phone)) {
+                                                                echo $data[1]->phone;
                                                             } ?></span>
                             </div>
                             <div class="form-group tooltip">
-                                <label for="home-no"><b>Extra Number:</b></label>
-                                <input disabled value="<?php if (!empty($data[0]) && !empty($data[1])) {
-                                                            echo $data[0]->phone;
-                                                        } else if (!empty($data[0]) && empty($data[1])) {
-                                                            echo "Not Available";
+                                <label for="home-no"><b>Additional Number:</b></label>
+                                <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
+                                                            echo $data[1]->phone;
+                                                        } else if (!empty($data[0]->phone)) {
+                                                            echo "";
+                                                        } else if (!empty($data[1]->phone)) {
+                                                            echo "";
                                                         } ?>" type="text" name="mob-no2" id="mob-no2">
-                                <span class="tooltiptext"><?php if (!empty($data[0]) && !empty($data[1])) {
-                                                                echo $data[0]->phone;
-                                                            } else if (!empty($data[0]) && empty($data[1])) {
-                                                                echo "Not Available";
+                                <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
+                                                                echo $data[1]->phone;
+                                                            } else if (!empty($data[0]->phone)) {
+                                                                echo "";
+                                                            } else if (!empty($data[1]->phone)) {
+                                                                echo "";
                                                             } ?></span>
                             </div>
                             <div class="form-group tooltip">

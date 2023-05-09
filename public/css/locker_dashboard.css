@@ -439,9 +439,13 @@ input[type=text] {
         
       }
 
-      .hover-des-field .key {
-        color: green;
+      .Green {
+        color: green !important;
       }
+
+    .Red {
+        color: red !important;
+    }
 
 
 

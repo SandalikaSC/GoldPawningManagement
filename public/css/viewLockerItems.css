@@ -147,11 +147,11 @@ body{
     justify-content: center;
     padding: 0 10px 10px 10px;
     font-size: x-large;
-    border-bottom: 2px solid goldenrod;
+    border-bottom: 2px solid #BB8A04;
     
   }
 
-
+  /*  */
 .right-set{
     display: flex;
     flex-direction: column;
@@ -170,7 +170,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 2px solid goldenrod;
+    border-bottom: 2px solid #BB8A04;
     font-size: x-large;
     padding-bottom: 5px;
     font-weight: bold;
