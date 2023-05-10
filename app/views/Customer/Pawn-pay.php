@@ -239,29 +239,52 @@
                     <?php if (!empty($data['mylockers'])) : ?>
                         <h3>My Available Lockers</h3>
                         <div class="jw-date-name option-radio">
-                             
+
 
                             <input type="radio" name="locker" id="<?= $data['mylockers'][0]->lockerNo ?>" value="<?= $data['mylockers'][0]->lockerNo ?>" class="hidden radio-label" selected>
                             <label for="<?= $data['mylockers'][0]->lockerNo ?>" class="button-label">
                                 <h1>Locker <?= $data['mylockers'][0]->lockerNo ?></h1>
                             </label>
-                            
-                        </div>
-                    <?php else : ?>
-                        <h3> Available Lockers</h3>
-                        <div class="jw-date-name option-radio">
-                            <?php foreach ($data['locker'] as $locker) : ?>
 
-                                <input type="radio" name="locker" id="<?= $data['locker'][0]->lockerNo ?>" value="<?= $data['locker'][0]->lockerNo ?>" class="hidden radio-label" selected>
-                                <label for="<?= $data['locker'][0]->lockerNo ?>" class="button-label">
-                                    <h1><?= $data['locker'][0]->lockerNo ?></h1>
-                                </label>
-                            <?php endforeach; ?>
                         </div>
+
+                        <div class="jw-date-name">
+                            <label for="date"> Retrieve Date</label>
+                            <label class="jw-dt" id="extendto" value=""><?= $data['mylockers'][0]->Retrieve_Date ?></label>
+
+                        </div>
+
+                    <?php else : ?>
+                        <h3> Will be Assigned To</h3>
+                        <div class="jw-date-name option-radio">
+
+
+                            <input type="radio" name="locker" id="<?= $data['locker'][0]->lockerNo ?>" value="<?= $data['locker'][0]->lockerNo ?>" class="hidden radio-label" selected>
+                            <label for="<?= $data['locker'][0]->lockerNo ?>" class="button-label">
+                                <h1>Locker <?= $data['locker'][0]->lockerNo ?></h1>
+                            </label>
+
+                        </div>
+
+                        <div class="jw-date-name">
+                            <label>Reserve locker till</label>
+                            <select name="duration" class="selection" id="duration">
+                                <option value="6" selected>06 Months</option>
+                                <option value="12">12 Months</option>
+                            </select>
+                        </div>
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label for="date"> Extend To</label>
+                                <label class="jw-dt" id="availlextendto" value=""><?= $data['extendTo'] ?></label>
+
+                            </div>
+                        </div>
+
 
                     <?php endif; ?>
                 </div>
-                <?php if (empty($data['mylockers'])) : ?>
+                <!-- <?php if (empty($data['mylockers'])) : ?>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Reserve locker till</label>
@@ -271,14 +294,14 @@
                             </select>
                         </div>
                     </div>
-                <?php endif; ?>
-                <div class="jw-date">
+                <?php endif; ?> -->
+                <!-- <div class="jw-date">
                     <div class="jw-date-name">
                         <label for="date"> Extend To</label>
                         <label class="jw-dt" id="extendto" value=""><?= $data['extendTo'] ?></label>
 
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="jw-date">
                     <div class="jw-date-name">
                         <label>Reservation Payment</label>
@@ -375,8 +398,8 @@
                 <label class="Tot-pay" id="Delivery_pay" for=" ">0 </label>
             </div>
             <div class=" sec-btn">
-                <a class="p-btn " href="">Cancel </a>
-                <button class="p-btn " id="p-btn" onclick="">Pay</button>
+                <!-- <a class="p-btn " href="">Cancel </a> -->
+                <button class="p-btn " id="p-btn" onclick="makePayment()">Pay</button>
             </div>
         </div>
 
@@ -579,7 +602,10 @@
 
             no.addEventListener("click", function(event) {
 
-                notRepawnPay()
+                notRepawnPay();
+                if (lockerReserve.checked) {
+
+                }
 
                 retrieveRadio.style.display = "flex";
                 Repawn_details.style.display = "none";
@@ -620,6 +646,14 @@
             ReserveLocker_sec.style.display = "flex";
 
         });
+
+        if (<?= !empty($data['mylockers']) ?> == 0) {
+            var selectElement = document.getElementById("duration");
+            selectElement.addEventListener("changed", lockerpayments());
+        }
+
+
+
         // //reservev a locker
         function lockerpayments() {
             if (<?php echo !empty($data['mylockers']) ?>) {
@@ -627,11 +661,28 @@
                 lockerpayment = 0;
             } else {
                 deliverypayment = <?= $data['delivery'] ?>;
-                lockerpayment = <?= $data['reserveInterest'] ?> / 2;
-
-
+                var selectElement = document.getElementById("duration");
+                var today = new Date();
+                if (selectElement.value == 12) {
+                    lockerpayment = <?= $data['reserveInterest'] ?>;
+                   
+                    var sixMonthsLater = new Date(today.getFullYear()+1, today.getMonth(), today.getDate());
+                    var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                } else {
+                    lockerpayment = <?= $data['reserveInterest'] ?> / 2;
+                    var sixMonthsLater = new Date(today.getFullYear(), today.getMonth()+6, today.getDate());
+                    var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                }
+                document.getElementById('availlextendto').textContent=formattedDate;
 
             }
+
+
+
+            locker_label.innerHTML = lockerpayment;
+            delivery_label.innerHTML = deliverypayment;
+            total_payment = (interestpayment + principlepayment + deliverypayment + lockerpayment).toFixed(2);
+            total_label.innerHTML = 'Rs ' + total_payment;
 
         }
         // //set payment laybels when ourdue
@@ -651,7 +702,22 @@
             interest_label.innerHTML = interestpayment;
             principle_label.innerHTML = principlepayment;
 
+            if (app.checked) {
+                deliverypayment = 0;
+                lockerpayment = 0;
+            } else {
+                deliverypayment = <?= $data['delivery'] ?>;
+                var selectElement = document.getElementById("duration");
 
+                if (selectElement.value == 12) {
+                    lockerpayment = <?= $data['reserveInterest'] ?>;
+                } else {
+                    lockerpayment = <?= $data['reserveInterest'] ?> / 2;
+                }
+
+            }
+            locker_label.innerHTML = lockerpayment;
+            delivery_label.innerHTML = deliverypayment;
             //set total paymnt
             total_payment = (interestpayment + principlepayment + deliverypayment + lockerpayment).toFixed(2);
             total_label.innerHTML = 'Rs ' + total_payment;
@@ -687,6 +753,11 @@
 
         }
 
+
+
+
+
+
         function installmentPay() {
             // Get the value of the number input field
             var numbeinstallments = document.getElementById("noInstallments").value;
@@ -712,6 +783,15 @@
             }
 
         }
+
+        function makePayment(){
+            console.log("principle "+principlepayment);
+            console.log("interestpayment "+interestpayment);
+            console.log("deliver "+deliverypayment);
+            console.log("locker "+lockerpayment);
+            console.log("total "+total_payment);
+        }
+
 
         // function appointmentDateSelection() {
         //     document.getElementById("appointment-err").textContent = "";
