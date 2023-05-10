@@ -665,15 +665,15 @@
                 var today = new Date();
                 if (selectElement.value == 12) {
                     lockerpayment = <?= $data['reserveInterest'] ?>;
-                   
-                    var sixMonthsLater = new Date(today.getFullYear()+1, today.getMonth(), today.getDate());
+
+                    var sixMonthsLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
                     var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
                 } else {
                     lockerpayment = <?= $data['reserveInterest'] ?> / 2;
-                    var sixMonthsLater = new Date(today.getFullYear(), today.getMonth()+6, today.getDate());
+                    var sixMonthsLater = new Date(today.getFullYear(), today.getMonth() + 6, today.getDate());
                     var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
                 }
-                document.getElementById('availlextendto').textContent=formattedDate;
+                document.getElementById('availlextendto').textContent = formattedDate;
 
             }
 
@@ -784,12 +784,133 @@
 
         }
 
-        function makePayment(){
-            console.log("principle "+principlepayment);
-            console.log("interestpayment "+interestpayment);
-            console.log("deliver "+deliverypayment);
-            console.log("locker "+lockerpayment);
-            console.log("total "+total_payment);
+        function makePayment() {
+            console.log("principle " + principlepayment);
+            console.log("interestpayment " + interestpayment);
+            console.log("deliver " + deliverypayment);
+            console.log("locker " + lockerpayment);
+            console.log("total " + total_payment);
+
+
+            // var payment = {
+            //     "amount": 5,
+            //     "Principle": "sanda",
+            //     "PawnId":  
+            // };
+            var payment = null;
+            var repawnStatus = 0;
+            var myLocker = null;
+            var lockerAllocation = null;
+            const selectedRadio = document.querySelector('input[name="repawn"]:checked');
+
+            // Get the value of the selected radio button
+            const repawn = selectedRadio.value;
+
+            if (pwnStatus == "Pawned") {
+                payment = {
+                    "amount": total_payment,
+                    "Principle": principlepayment,
+                    "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                };
+
+            } else if (pwnStatus == "Overdue") {
+
+                if (repawn == 1) {
+                    // console.log("Repawn");
+                    repawnStatus = 1;
+                    payment = {
+                        "amount": total_payment,
+                        "Principle": 0,
+                        "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                    };
+
+                } else {
+                    // console.log(" not Repawn");
+                    var repawnStatus = 0;
+                    const retrival = document.querySelector('input[name="retrieval"]:checked');
+                    const method = retrival.value;
+                    if (method == 1) {
+                        // console.log(" Visit Shop");
+                        payment = {
+                            "amount": total_payment,
+                            "Principle": principlepayment,
+                            "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                        };
+                    } else {
+                        payment = {
+                            "amount": total_payment,
+                            "Principle": principlepayment,
+                            "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                        };
+                        // console.log("Safe Locker");
+                        if (<?= count($data['mylockers']) ?> > 0) {
+                            // console.log(<?= $data['locker'][0]->lockerNo ?>);
+                            // console.log(" mylocker");
+                            myLocker = {
+                                "locker": <?= $data['mylockers'][0]->lockerNo ?>,
+                                "retrieve_date": '<?= $data['mylockers'][0]->Retrieve_Date ?>'
+                            };
+                            // payment = {
+                            //     "amount": total_payment,
+                            //     "Principle": principlepayment,
+                            //     "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                            // };
+
+                        } else {
+
+                            // console.log(" available locker");
+                            var selectElement = document.getElementById("duration");
+                            const selectedDuration = selectElement.value;
+                            var today = new Date();
+                            if (selectedDuration == 12) {
+                                lockerpayment = <?= $data['reserveInterest'] ?>;
+                                var sixMonthsLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate()+1);
+                                var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                            } else {
+                                lockerpayment = <?= $data['reserveInterest'] ?> / 2;
+                                var sixMonthsLater = new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()+1);
+                                var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                            }
+                            lockerAllocation = {
+                                "locker": <?= $data['locker'][0]->lockerNo ?>,
+                                "retrieve_date":formattedDate,
+                                "payment":lockerpayment,
+                                "delivery":deliverypayment
+                            };
+
+
+
+                        }
+                    }
+
+                }
+
+            }
+
+            console.log(payment);
+            console.log(repawnStatus);
+            console.log(myLocker);
+            console.log(lockerAllocation);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
 
