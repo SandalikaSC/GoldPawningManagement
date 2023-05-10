@@ -13,12 +13,14 @@
 }
 
 .wrapper {
-    width: 100vw;
-    height: 100vh;
-    background: #faebd7;
+    z-index: 20;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
 }
 
 .wrapper .message-wrapper {
@@ -30,15 +32,17 @@
 }
 
 .wrapper .message-wrapper .div-message {
-    font-size: 40px;
+    font-size: 30px;
     color: #bb8a04;
     margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
 }
 
 .wrapper .message-wrapper .div-buttons {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -46,6 +50,9 @@
     background: #bb8a04;
     padding: 8px;
     width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 18px;
     color: #faebd7;
     border-radius: 20px;

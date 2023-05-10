@@ -7,7 +7,7 @@
         }
 
         public function getPawnedItems() {
-            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Status = "Pawned";');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Status = "Pawned" OR pawn.Status="Completed";');
 
             $results = $this->db->resultSet();
 
@@ -16,7 +16,8 @@
 
         // Get customer details using pawned item's Pawn_Id
         public function getPawnItemById($id) {
-            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Pawn_Id = :id AND pawn.Status = "Pawned"');
+            // $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Pawn_Id = :id AND (pawn.Status = "Pawned" OR pawn.Status="Completed")');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON pawn.Article_Id=article.Article_Id INNER JOIN loan ON pawn.Pawn_Id = loan.Pawn_Id WHERE pawn.Pawn_Id = :id');
             $this->db->bind(':id', $id);
 
             $row = $this->db->single();
@@ -269,6 +270,32 @@
             $this->db->bind(':principle_amount', $data['covered_loan']);
             $this->db->bind(':pawn_id',$data['pawn_item']->Pawn_Id);
             $this->db->bind(':employee_id', $data['pawning_officer']);
+
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // Update status of a pawned item when the loan has been paid completely
+        public function updateCompletedLoanStatus($id) {
+            $this->db->query('UPDATE pawn SET Status="Completed" WHERE Pawn_Id=:pawn_id');
+            $this->db->bind(':pawn_id', $id);
+
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // Release pawned item
+        public function releaseArticle($id) {
+            $this->db->query('UPDATE pawn SET Status=:status, Redeemed_Date=:date WHERE Pawn_Id=:id');
+            $this->db->bind(':status', "Retrieved");
+            $this->db->bind(':date', date('Y-m-d H:i:s'));
+            $this->db->bind(':id', $id);
 
             if($this->db->execute()) {
                 return true;
