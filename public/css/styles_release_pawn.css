@@ -53,6 +53,7 @@ main .main-content {
 main .main-content .div-details {
     width: 100%;
     padding: 30px;
+    margin: 20px;
     max-width: 500px;
     border: 2px solid #bb8a04;
     background: #bb8a04;
@@ -101,7 +102,7 @@ main .main-content .div-details .div-buttons {
     padding: 20px;
 }
 
-main .main-content .div-details .div-buttons input {
+main .main-content .div-details .div-buttons button {
     text-decoration: none;
     background: #fff;
     width: 160px;
@@ -116,7 +117,7 @@ main .main-content .div-details .div-buttons input {
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
-main .main-content .div-details .div-buttons input:hover {
+main .main-content .div-details .div-buttons button:hover {
     color: #5f4702;
     border-color: #5f4702;
     transform: translateY(-5px);

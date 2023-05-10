@@ -26,7 +26,7 @@
         </div>
 
         <main>
-            <div class="msg-flash"><?php echo flash('success'); ?></div>
+            <div class="msg-flash"><?php echo flash('notification'); ?></div>
             <div class="main-content">
                 <div class="div-details">
                     <div class="div-img">
@@ -65,9 +65,11 @@
                     </div>
 
                     <div class="div-buttons">
-                        <form action="<?php echo URLROOT . '/Pawnings/release_pawn/' . $data['pawn_item']->Pawn_Id; ?>" method="post">
-                            <button type="submit">Release</button>
-                        </form>
+                        <?php if($data['pawn_item']->Status != "Retrieved") : ?>
+                            <form action="<?php echo URLROOT . '/Pawnings/release_pawn/' . $data['pawn_item']->Pawn_Id; ?>" method="post">
+                                <button type="submit">Release</button>
+                            </form>
+                        <?php endif; ?>
                         
                         <!-- <input type="submit" name="release" value="Release"> -->
                         <!-- <a href="<?php echo URLROOT . '/Pawnings/confirm_release/'. $data['pawn_item']->Pawn_Id; ?>">Release</a> -->
