@@ -14,66 +14,118 @@ class CustomerLocker extends Controller
         $this->interestModel = $this->model('interest');
         $this->appointment = $this->model('Appointment');
         $this->paymentmodel = $this->model('payment');
+        $this->modelCustomer = $this->model('customer');
     }
 
 
     public function index()
     {
-        $allocation = $this->reservationModel->getReservationByUserID($_SESSION['user_id']);
+        $allocation = $this->reservationModel->getCustomerReserveLockers($_SESSION['user_id']);
         $data = [
             'reservation' => $allocation
         ];
         $this->view('Customer/locker', $data);
     }
-    public function viewLockerArticle($reserveId)
+    public function viewLockerArticle($lockerid)
     {
-        $reservation = $this->reservationModel->getReservation($reserveId);
-        $article = $this->articleModel->getArticleById($reservation->Article_Id);
-        $delivery = $this->deliveryModel->getDeliveryByReserveId($reserveId);
-        $locker = $this->lockerModel->getLockerById($reservation->lockerNo);
-        $interest = $this->interestModel->getAllocationInterest();
-        $payment = $this->paymentmodel->getReservationPayments($reserveId);
+        // $reservation = $this->reservationModel->getReservation($reserveId);
+        // $article = $this->articleModel->getArticleById($reservation->Article_Id);
+        // $delivery = $this->deliveryModel->getDeliveryByLocker($reservation->lockerNo);
+        // $locker = $this->lockerModel->getLockerById($reservation->lockerNo);
+        // $interest = $this->interestModel->getAllocationInterest();
+        // $payment = $this->paymentmodel->getReservationPayments($reserveId);
+
+        // $data = [ 
+        //     'reservation' => $reservation,
+        //     'article' => $article,
+        //     'delivery' => $delivery,
+        //     'locker' => $locker,
+        //     'payment' => $payment,
+        //     'interest' => $interest
+
+        // ];
+        $currentReservations = $this->reservationModel->getReservationsbyRetrieve($lockerid, 0);
+        $previous_reservations = $this->reservationModel->preLockerReservationByCustomer($lockerid);
+        $delivery = null;
+        $currentpayment = null;
+        $customer = null;
+        if (!empty($currentReservations)) {
+            $delivery = $this->deliveryModel->deliveryByLocker($lockerid, $currentReservations[0]->Date);
+            $currentpayment = $this->paymentmodel->filterReservationPayment($currentReservations);
+
+            $customerid = $currentReservations[0]->UserID;
+            $customer = $this->modelCustomer->getCustomerById($customerid);
+            //         // do something with the customer name
+        }
+        $extend = 0;
+        if (!empty($currentReservations)) {
+            $interval = date_diff(date_create($currentReservations[0]->Retrieve_Date), date_create());
+            $date1 =  $currentReservations[0]->Retrieve_Date; // the date to check
+            $current_date = date('Y-m-d'); // the current date
+            $timeremain = $date1 < $current_date ? "Overdue" : $interval->format('%m months  %d days');
+            $tag = $timeremain == "Overdue" ? "tag red" : "";
+            if ($interval->days <= 30) {
+                $extend = 1;
+            }
+        } else {
+            $tag = "";
+            $timeremain = "";
+        }
+
 
         $data = [
-            'reservation' => $reservation,
-            'article' => $article,
+            'currentReservations' => $currentReservations,
+            'previous_reservations' => $previous_reservations,
             'delivery' => $delivery,
-            'locker' => $locker,
-            'payment' => $payment,
-            'interest' => $interest
-
+            'currentpayment' => $currentpayment,
+            'locker' => $lockerid,
+            'timeremain' => $timeremain,
+            'tag' => $tag,
+            'extend' => $extend,
+            'customer' => $customer
         ];
-
         $this->view('Customer/article_locker', $data);
     }
-    public function viewLockerPay($allocate_Id)
+    public function viewExtend($lockerid)
     {
 
-        $reservation = $this->reservationModel->getReservation($allocate_Id);
-        $article = $this->articleModel->getArticleById($reservation->Article_Id);
-        $interest = $this->interestModel->getAllocationInterest();
-        $fineRate = $this->interestModel->getFine();
-        $tomorrow = new DateTime('tomorrow');
-        $tomorrowFormatted = $tomorrow->format('Y-m-d');
-        $timeSlots = $this->appointment->getSlotsNotIn($tomorrowFormatted);
-        $interval = date_diff(date_create($reservation->Retrieve_Date), date_create());
-        $duedays = $interval->days;
+        $currentReservations = $this->reservationModel->getReservationsbyRetrieve($lockerid, 0);
+        // $customerid = $currentReservations[0]->UserID;
+        // $customer = $this->modelCustomer->getCustomerById($customerid);
+        $allocationFee = $this->interestModel->getAllocationInterest()->Interest_Rate;
+        // $fine =  $this->interestModel->getFine();
 
-        $dateObject = date_create($reservation->Retrieve_Date);
-        $retrieve = $dateObject->format('Y-m-d');
+        $interval = date_diff(date_create($currentReservations[0]->Retrieve_Date), date_create());
+        
+
+        $overdue = 0;
+        $periodof6=0;
+        $extendStart=$currentReservations[0]->Retrieve_Date;
+        $extendTo = date('Y-m-d', strtotime('+6 months', strtotime( $extendStart)));
+        if ($interval->days < 0) {
+            $overdue = $interval->days; 
+            $months = ceil($overdue / 30); 
+            $periodof6 = $months/6  ; 
+            if ($periodof6>0) {
+                $mon=$periodof6*6;
+               
+                $extendStart= date('Y-m-d', strtotime('+'.$mon.'months', strtotime($currentReservations[0]->Retrieve_Date)));
+                $extendTo = date('Y-m-d', strtotime('+6 months', strtotime( $extendStart)));
+            
+            }
+        }
 
         $data = [
-            'reservationId' => $reservation->Allocate_Id,
-            'retrieve_Date' => $retrieve,
-            'finePaidTill' => $reservation->finePaidTill,
-            'installement' => $reservation->allocation_fee,
-            'articleId' => $reservation->Article_Id,
-            'articleImg' => $article->image,
-            'duedays' => $duedays,
-            'fineRate' => $fineRate,
-            'timeslot' => $timeSlots,
-            'interest' => $interest
-
+            'currentReservations' => $currentReservations,
+            'allocations' => count($currentReservations),
+            'lockerid' => $lockerid,
+            // 'fine' => $fine->Interest_Rate,
+            'allocationFee' => $allocationFee,
+            'extendTo' => $extendTo,
+            'extendStart' => $extendStart,
+            'periodof6' => $periodof6,
+            'overduepay' => $periodof6*$allocationFee/2,
+            'overdue' => $overdue
         ];
         $this->view('Customer/lockerpaydetails', $data);
     }

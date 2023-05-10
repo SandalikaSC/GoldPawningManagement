@@ -2,7 +2,7 @@
 <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/LockerDetails.css'>
 <!-- <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_pawn.css'> -->
 <title>Vogue | Locker</title>
-</head>
+</head> 
 
 <body class="wrapper">
 

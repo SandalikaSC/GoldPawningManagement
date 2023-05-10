@@ -15,11 +15,25 @@ class reservation
 
         return $results;
     }
+
     public function getReservation($reserveId)
     {
         $this->db->query('SELECT * FROM reserves where Allocate_ID=:allocate');
         $this->db->bind(':allocate', $reserveId);
         $results = $this->db->single();
+
+        return $results;
+    }
+    public function getCustomerReserveLockers($customer)
+    {
+        $this->db->query('SELECT DISTINCT(locker.lockerNo), reserves.*
+                            FROM locker
+                            inner JOIN reserves
+                            ON locker.lockerNo = reserves.lockerNo
+                            WHERE UserID = :user
+                            group BY locker.lockerNo;');
+        $this->db->bind(':user', $customer);
+        $results = $this->db->resultSet();
 
         return $results;
     }
@@ -33,11 +47,10 @@ class reservation
     }
     public function lockerExtend($date, $reservationId)
     {
-        $this->db->query('UPDATE `reserves` SET Retrieve_Date = :newdate, finePaidTill=:finePaidTill WHERE Allocate_Id = :Allocate_Id');
+        $this->db->query('UPDATE `reserves` SET Retrieve_Date = :newdate   WHERE Allocate_Id = :Allocate_Id');
 
         // Bind values 
-        $this->db->bind(':newdate', $date);
-        $this->db->bind(':finePaidTill', NULL);
+        $this->db->bind(':newdate', $date); 
         $this->db->bind(':Allocate_Id', $reservationId);
 
         // Execute
@@ -138,15 +151,15 @@ class reservation
         $results = $this->db->single();
 
         return $results->currentArticles;
-    }
-    public function getReservationsbyRetrieve($lockerid,$retrive)
+    } 
+    public function getReservationsbyRetrieve($lockerid, $retrive)
     {
         $this->db->query('SELECT *,article.image as articleIMG FROM reserves INNER JOIN article on reserves.Article_Id=article.Article_Id 
         INNER JOIN user on reserves.UserID=user.UserId 
         Inner Join locker on reserves.lockerNo=locker.lockerNo 
         where locker.lockerNo=:lockerNo And Retrive_status=:Retrive_Status;');
         $this->db->bind(':lockerNo', $lockerid);
-        $this->db->bind(':Retrive_Status',$retrive);
+        $this->db->bind(':Retrive_Status', $retrive);
         $results = $this->db->resultSet();
         if (empty($results)) {
             return null;
@@ -154,6 +167,7 @@ class reservation
             return $results;
         }
     }
+
     public function RetriveLockerArticle($reservationId)
     {
         $this->db->query('UPDATE `reserves` SET finePaidTill=:finePaidTill,Retrive_status=:status,Deallocated_Date=:DeDate WHERE Allocate_Id = :Allocate_Id');
@@ -161,7 +175,7 @@ class reservation
         // Bind values  
         $this->db->bind(':finePaidTill', date('Y-m-d'));
         $this->db->bind(':status', 1);
-        $this->db->bind(':DeDate', date('Y-m-d H:i:s')); 
+        $this->db->bind(':DeDate', date('Y-m-d H:i:s'));
         $this->db->bind(':Allocate_Id', $reservationId);
 
         // Execute
@@ -172,6 +186,19 @@ class reservation
             return false;
         }
     }
-      
-     
+    public function preLockerReservationByCustomer($locker){
+        $this->db->query('SELECT *,article.image as articleIMG FROM reserves INNER JOIN article on reserves.Article_Id=article.Article_Id 
+        INNER JOIN user on reserves.UserID=user.UserId 
+        Inner Join locker on reserves.lockerNo=locker.lockerNo 
+        where locker.lockerNo=:lockerNo And Retrive_status=:Retrive_Status And user.UserId=:user;');
+        $this->db->bind(':user', $_SESSION['user_id']);
+        $this->db->bind(':lockerNo', $locker);
+        $this->db->bind(':Retrive_Status', 1);
+        $results = $this->db->resultSet();
+        if (empty($results)) {
+            return null;
+        } else {
+            return $results;
+        }
+    }
 }
