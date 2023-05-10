@@ -26,106 +26,307 @@
         </div>
 
         <main>
-            <div class="left-wrapper">
-                <h2>Pawned Item Details</h2>
-                <div class="item-details">
-                    <div>
-                        <div class="field">
-                            <label>Customer ID</label>
-                            <div><?php echo $data['pawn_item']->userId; ?></div>
+            <div class="main-wrapper">
+                <div class="left-wrapper">
+                    <div class="full-side-wrapper">
+                        <div class="div-article-details">                        
+                            <div class="div-img">
+                                <img src="<?php echo $data['pawn_item']->image; ?>" alt="article image">
+                            </div>
+                            <div class="div-details">
+                                <div class="field-container">
+                                    <label>ARTICLE ID</label>
+                                    <div><?php echo $data['pawn_item']->Article_Id; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>PAWNED ID</label>
+                                    <div><?php echo $data['pawn_item']->Pawn_Id; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>CUSTOMER ID</label>
+                                    <div><?php echo $data['pawn_item']->userId; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>PAYMENT METHOD</label>
+                                    <div><?php echo $data['pawn_item']->Repay_Method; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>PAWNED DATE</label>
+                                    <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>END DATE</label>
+                                    <div><?php echo $data['pawn_item']->End_Date; ?></div>
+                                </div>
+                            </div>                        
                         </div>
-                        <div class="field">
-                            <label>Article ID</label>
-                            <div><?php echo $data['pawn_item']->Article_Id; ?></div>
-                        </div>
-                        <div class="field">
-                            <label>Pawned Date</label>
-                            <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
-                        </div>
-                        <div class="field">
-                            <label>End Date</label>
-                            <div><?php echo $data['pawn_item']->End_Date; ?></div>
+
+                        <!-- <div class="loan-details">
+                            <div class="full-loan">
+                                <label>FULL LOAN AMOUNT</label>
+                                <div>Rs. <?php echo $data['pawn_item']->Amount; ?></div>
+                            </div>
+                            <div class="remaining-loan">
+                                <label>REMAINING TO PAY</label>
+                                <div>Rs. <?php echo $data['pawn_item']->Amount; ?></div>
+                            </div>
+                        </div> -->
+
+                        <div class="navigate-btns">
+                            <ul>
+                                <li>
+                                    <a href="<?php echo URLROOT; ?>/pawnings/make_payments/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                        <span>Make Payments</span>
+                                    </a>
+                                </li>
+                                <?php if($data['remaining_loan'] == 0.00 && $data['pawn_item']->Status != "Retrieved") : ?>
+                                    <li>
+                                        <a href="<?php echo URLROOT; ?>/pawnings/release_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                            <span>Release Pawn</span>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                <li>
+                                    <a href = "<?php echo URLROOT; ?>/pawnings/renew_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                        <span>Renew Pawn</span>
+                                    </a>
+                                </li>
+                            </ul>                        
                         </div>
                     </div>
-                    <div>
-                        <img src="<?php echo URLROOT . '/img/bracelet_01.jpg'; ?>" alt="">
-                    </div>                    
+                    
                 </div>
 
-                <h2>Due Payments</h2>
-                <div class="due-payment">                    
-                    <div>
-                        <label>Due Amount</label>
-                        <div class="amount"><?php echo 'Rs. 5000.00'; ?></div>
+                <div class="right-wrapper">
+                    <div class="full-side-wrapper">
+                        <div class="loan-details">
+                            <div class="full-loan">
+                                <label>FULL LOAN AMOUNT</label>
+                                <div>Rs. <?php echo $data['pawn_item']->Amount; ?></div>
+                            </div>
+                            <div class="remaining-loan">
+                                <label>REMAINING TO PAY</label>
+                                <div>Rs. <?php echo sprintf("%.2f", $data['remaining_loan']); ?></div>
+                            </div>
+                        </div>
+                    
+                        <!-- <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                            <div class="due-payments">
+                                <h2>Due Payments</h2>
+                                <div class="div-no-due"> 
+                                    No Due Payments
+                                </div> 
+
+                                <div class="div-due">
+                                    <div class="div-container">
+                                        <label>AMOUNT TO PAY</label>
+                                        <div>Rs. 5000.00</div>
+                                    </div>
+
+                                    <div class="div-container">
+                                        <label>BEFORE</label>
+                                        <div>2023/04/11</div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?> -->
+
+                        <div class="payment-history">
+                            <h2>Payment History</h2>
+
+                            <?php if(empty($data['payment_history'])) : ?>
+                                <div class="payment-details">
+                                    <div class="div-no-history">
+                                        <div class="no-history-img">
+                                            <img src="<?php echo URLROOT . '/img/no-payment-history.svg'; ?>" alt="No Payment History">
+                                        </div>
+                                        
+                                        <div class="no-history-msg">
+                                            No Payment History
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php else : ?>
+                                <div class="payment-details"> 
+                                    <div class="div-table">
+                                        <table cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>PID</th>
+                                                    <th>Paid Amount</th>
+                                                    <th>Paid Date</th>
+                                                    <th>Paid Method</th>
+                                                </tr>
+                                            </thead>                            
+                                                
+                                            <tbody>
+                                                <?php foreach($data['payment_history'] as $payment_record) : ?>
+                                                    <tr>
+                                                        <td><?php echo $payment_record->PID; ?></td>
+                                                        <td><?php echo $payment_record->Amount; ?></td>
+                                                        <td><?php echo date('Y-m-d', strtotime($payment_record->Date)); ?></td>
+                                                        <td><?php echo $payment_record->Type; ?></td>
+                                                    </tr> 
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>  
+                                </div>
+                                     
+                            <?php endif; ?>           
+                        </div>
                     </div>
-                    <div>
-                        <label>Due Date</label>
-                        <div class="due-date warning"><?php echo '2023/01/31'; ?></div>
-                    </div>
-                </div>                
+                    
+
+                    <!-- <div class="navigate-btns">
+                        <ul>
+                            <li>
+                                <a href="<?php echo URLROOT; ?>/pawnings/make_payments/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                    <span>Make Payments</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo URLROOT; ?>/pawnings/release_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                    <span>Release Pawn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href = "<?php echo URLROOT; ?>/pawnings/renew_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                    <span>Renew Pawn</span>
+                                </a>
+                            </li>
+                        </ul>                        
+                    </div> -->
+                </div>
             </div>
+            <!-- <div class="main-wrapper">
 
-            <div class="right-wrapper">
-                <div class="full-amount">
-                    <label>Full Loan Amount:</label>
-                    <div class="amount"><?php echo 'Rs. 120000.00'; ?></div>
-                </div>
-                <div class="table-container">
-                    <div class="table-title">
-                        <h2>Payment History</h2>
+                <div class="div-article-details">
+                    <div class="div-img">
+                        <img src="<?php echo $data['pawn_item']->image; ?>" alt="article image">
                     </div>
-                    <div class="div-table-appointments">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>Payment ID</td>
-                                    <td>Installment</td>
-                                    <td>Paid Date</td>
-                                    <td>Paid Amount</td>
-                                </tr> 
-                            </thead>
-                            <tbody>
-
-                                <!-- <?php foreach ($data['appointments'] as $appointment) : ?>
-                                    <tr>
-                                        <td><?php echo $appointment->Appointment_Id;?></td>
-                                        <td><?php echo $appointment->appointment_date;?></td>
-                                        <td><?php echo $appointment->time;?></td>
-                                        <td><?php echo $appointment->description;?></td>
-                                    </tr>
-                                <?php endforeach; ?> -->
-                                
-                            </tbody>
-                        </table>
+                    <div class="field-container">
+                        <label>ARTICLE ID</label>
+                        <div><?php echo $data['pawn_item']->Article_Id; ?></div>
+                    </div>
+                    <div class="field-container">
+                        <label>CUSTOMER ID</label>
+                        <div><?php echo $data['pawn_item']->userId; ?></div>
+                    </div>
+                    <div class="field-container">
+                        <label>PAWNED DATE</label>
+                        <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
+                    </div>
+                    <div class="field-container">
+                        <label>END DATE</label>
+                        <div><?php echo $data['pawn_item']->End_Date; ?></div>
+                    </div>
+                    <div class="field-container">
+                        <label>PAYMENT METHOD</label>
+                        <div><?php echo $data['pawn_item']->Repay_Method; ?></div>
                     </div>
                 </div>
+                
+                <div class="div-payment-details">
+                    <h2>Payment History</h2>
 
-                <div class="btn-container">
-                    <a href="<?php echo URLROOT; ?>/pawnings/make_payments/<?php echo $data['pawn_item']->Pawn_Id; ?>" class="button">Make Payments</a>
-                    <a href="<?php echo URLROOT; ?>/pawnings/release_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>" class="button">Release Pawn</a>
-                    <a href="<?php echo URLROOT; ?>/pawnings/renew_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>" class="button">Renew Pawn</a>
+                    <div class="div-no-history">
+                        <div class="no-history-img">
+                            <img src="<?php echo URLROOT . '/img/no-payment-history.svg'; ?>" alt="No Payment History">
+                        </div>
+                        
+                        <div class="no-history-msg">
+                            No Payment History
+                        </div>
+                    </div> -->
+
+                    <!-- <div class="div-history-details">
+                        <div class="payment-history">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+
+                        <div class="payment-history">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+
+                        <div class="payment-history">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+
+                        <div class="payment-history">
+                            <span>PD001</span>
+                            <span>1</span>
+                            <span>2023-04-13</span>
+                            <span>Rs. 5000.00</span>
+                        </div>
+                    </div> -->
+
+                    <!-- <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                        <h2>Due Payments</h2> -->
+
+                        <!-- <div class="div-no-due">
+                            No Due Payments
+                        </div> -->
+
+                        <!-- <div class="div-due">
+                            <div class="div-container">
+                                <label>AMOUNT TO PAY</label>
+                                <div>Rs. 5000.00</div>
+                            </div>
+
+                            <div class="div-container">
+                                <label>BEFORE</label>
+                                <div>2023/04/11</div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
-            </div>
+
+                <div class="div-buttons">
+                    <h2>Full Loan Amount</h2>
+
+                    <div class="div-full-loan">
+                        <?php echo 'Rs. ' . $data['pawn_item']->Amount; ?>
+                    </div>
+
+                    <div class="navigate-btns">
+                        <ul>
+                            <li>
+                                <a href="<?php echo URLROOT; ?>/pawnings/make_payments/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                    <span>Make Payments</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?php echo URLROOT; ?>/pawnings/release_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                    <span>Release Pawn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href = "<?php echo URLROOT; ?>/pawnings/renew_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                    <span>Renew Pawn</span>
+                                </a>
+                            </li>
+                        </ul>                        
+                    </div>
+
+                </div>
+
+            </div> -->
+            
         </main>        
-    </div>
-        
+    </div>        
     
     <script type="text/javascript">
-        // const realFileBtn = document.getElementById("real-file");
-        // const customBtn = document.getElementById("custom-button");
-        // const customTxt = document.getElementById("custom-text");
-
-        // customBtn.addEventListener("click", function() {
-        //     realFileBtn.click();
-        // });
-
-        // realFileBtn.addEventListener("change", function() {
-        //     if(realFileBtn.value) {
-        //         customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-        //     } else {
-        //           customTxt.innerHTML = "Image";
-        //     }
-        // });
+        
     </script>
 
 </body>

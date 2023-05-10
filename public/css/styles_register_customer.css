@@ -20,6 +20,7 @@
 .header .title {
     display: flex;
     padding: 10px;
+    flex-wrap: wrap;
 }
 
 .header .title img {
@@ -40,7 +41,7 @@
 
 .wrapper .form-wrapper {
     width: 100vw;
-    height: 100%;
+    height: calc(100vh - 100px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,6 +51,7 @@
 .wrapper .form-wrapper form {
     margin: 0 20px;
     border: 2px solid #bb8a04;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     border-radius: 20px;
     padding: 20px;    
     background-image: url("../img/register_customer.svg");
@@ -137,10 +139,10 @@
     font-weight: 700;
     letter-spacing: 1px;
     border-radius: 20px;
-    border: none;
+    border: 2px solid #bb8a04;
     background: #bb8a04;
     color: #fff;
-    box-shadow: 2px 2px 2px #696969;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     cursor: pointer;
     user-select:none;
     text-align: center;
@@ -151,8 +153,10 @@
 }
 
 .wrapper .form-wrapper .register input:hover {
+    transform: translateY(-5px);
     transition-duration: 0.1s;
-    background-color: #3A3A3A;
+    background-color: #cecece;
+    color: #bb8a04;
 }
 
 .wrapper .form-wrapper .register input:after {
@@ -212,7 +216,12 @@
     }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 440px) {
+    .header .logo img {
+        width: 150px;
+        height: 50px;
+    }
+
     .wrapper .form-wrapper form {
         width: 100vw;
     }
@@ -232,5 +241,24 @@
 
     .wrapper .form-wrapper {
         margin-left: 25%;
+    }
+
+    .wrapper .form-wrapper {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .header .logo img {
+        width: 130px;
+        height: 45px;
+    }
+
+    .header .title h1 {
+        font-size: 24px;
+    }
+
+    .header .title img {
+        height: 25px;
     }
 }

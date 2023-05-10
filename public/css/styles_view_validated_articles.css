@@ -8,8 +8,8 @@
 }
 
 .body {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 
 .sidebar {
@@ -17,7 +17,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    height: 100%;
+    height: 100vh;
     background: #000000;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
@@ -132,7 +132,7 @@ header {
     padding: 0 0 10px 30px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     position: fixed;
-    width: calc(100% - 230px);
+    width: calc(100vw - 230px);
     left: 230px;  
     top: 0;
     z-index: 100;
@@ -165,23 +165,29 @@ header h1 {
 }
 
 main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-top: 85px;
-    padding: 1rem 3rem;
+    padding: 1rem;
     background: #fff;
     min-height: calc(100vh - 85px);
 }
 
-.right-content .details {
-    margin: 20px 30px;
+main .right-content {
+    width: 100%;
 }
 
-.right-content .details h2 {
-    font-size: 20px;
-    width: fit-content;
-    border-bottom: 2px solid #bb8a04;
+main .right-content .div-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0 20px;
 }
 
-.right-content .div-search {
+main .right-content .div-search div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,177 +195,241 @@ main {
     height: 45px;
     border-radius: 25px;
     background: #ddd;
-    margin: 20px 50px 0;
     padding: 0 20px;
 }
 
-.right-content .div-search input {
+main .right-content .div-search input {
     width: 100%;
     height: 100%;
     font-size: 16px;
-    background: none;
     outline: none;
     border: none;
-    padding: 0 20px;
+    background: none;
 }
 
-.right-content .div-search img {
+main .right-content .div-search img {
     height: 25px;
 }
 
-.right-content .div-search input::-webkit-input-placeholder {
+main .right-content .div-search input::-webkit-input-placeholder {
     color: #4d4d4d;
 }
 
-.right-content .tbl-details {
-    padding: 40px 0;
+main .right-content .tbl-details {
+    width: 100%;
+    padding: 20px 10px;
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
+    overflow-x: auto;
 }
 
-.right-content .tbl-details table {
+main .right-content .tbl-details table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); 
+}
+
+main .right-content .tbl-details table thead th {
+    width: fit-content;
+    background-color: #dac17bb0;
+    color: #ffffff;
     text-align: center;
-    border-collapse: separate;
-    border-spacing: 0 15px;
+    font-weight: bold;
+    padding: 15px;
 }
 
-.right-content .tbl-details table th,
-.right-content .tbl-details table tr {
-    font-size: 16px;
-    border: none;
-    padding: 0 3rem;
+main .right-content .tbl-details table td {
+    text-align: center;
 }
 
-.right-content .tbl-details table td {    
-    padding: 15px 0;    
+main .right-content .tbl-details table tbody tr {
+    border-bottom: 1px solid #dddddd;
 }
 
-.right-content .tbl-details table td img {
-    width: 100px;
-    padding-left: 20px;
-    display: flex;
+main .right-content .tbl-details table tbody tr:nth-of-type(even) {
+    background: #f3f3f3;
 }
 
-.right-content .tbl-details table .table-body {
-    background-color: #fff;  
-    border-radius: 20px; 
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+main .right-content .tbl-details table tbody tr:last-child {
+    border-bottom: none;
 }
 
-.right-content .tbl-details table td:first-child {
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+main .right-content .tbl-details table tbody tr:hover {
+    background: #c6c6c6;
 }
 
-.right-content .tbl-details table td:last-child {
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+main .right-content .tbl-details table tbody tr img {
+    height: 80px;
+    margin: 10px;
+    border-radius: 20px;
 }
 
-
-@media only screen and (max-width: 1270px) {
-    .main-content {
-        margin-left: 0;
+@media only screen and (max-width: 1000px) {
+    main .right-content .tbl-details table thead th {
+        padding: 15px 8px;
     }
-    
-    .main-content header {
-        width: 100%;
-        left: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+    main .right-content .tbl-details table {
+        font-size: 14px;
     }
+}
+
+@media only screen and (max-width: 840px) {
     
     #side-toggle + .sidebar {
-        left: 0;
+        left: -230px;
     }
-    
-    #side-toggle:checked ~ .main-content {
-        margin-left: 0;
-    }
-    
-    #side-toggle ~ .main-content header {
-        width: calc(100% - 230px);
-        left: 230px;
-    }
-}
-
-@media only screen and (max-width: 975px) {
-    
-}
-
-@media only screen and (max-width: 800px) {
-    #side-toggle ~ .main-content header {
-        width: 100%;
-        left: 0;
-    }
-
-    #side-toggle ~ .sidebar {
-        top: 85px;
-    }
-}
-
-@media only screen and (max-width: 790px) {
-    
-}
-
-@media only screen and (max-width: 670px) {
-    
-}
-
-
-/* @media only screen and (max-width: 1270px) {
-    .main-content {
-        margin-left: 0;
-    }
-    
-    .main-content header {
-        width: 100%;
-        left: 0;
-    }
-    
-    #side-toggle + .sidebar {
-        left: 0;
-    }
-    
-    #side-toggle:checked ~ .main-content {
-        margin-left: 0;
-    }
-    
-    #side-toggle ~ .main-content header {
-        width: calc(100% - 230px);
-        left: 230px;
-    }
-}
-
-@media only screen and (max-width: 975px) {
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .recent-grid {
-        grid-template-columns: 55% 45%;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    #side-toggle ~ .main-content header {
-        width: 100%;
-        left: 0;
-    }
-
-    #side-toggle ~ .sidebar {
+    #side-toggle:checked + .sidebar {
+        left: 0px;
+        height: calc(100vh - 75px);
         top: 75px;
     }
-}
-
-@media only screen and (max-width: 790px) {
-    .recent-grid {
-        grid-template-columns: 100%;
+    
+    #side-toggle ~ .main-content {
+        margin-left: 0;
+    }
+    
+    #side-toggle ~ header {
+        margin-left: 0;
+    }
+    
+    #side-toggle ~ .main-content header {
+        width: 100%;
+        left: 0;
     }
 }
 
-@media only screen and (max-width: 670px) {
-    .cards {
-        grid-template-columns: 100%;
+@media only screen and (max-width: 640px) {
+    main .right-content .tbl-details table thead th {
+        font-size: 12px;
     }
-} */
+}
 
+@media only screen and (max-width: 580px) {
+    header {
+        padding: 5px 10px 10px;
+        align-items: center;
+    }
+
+    header img {
+        width: 150px;
+        height: 45px;
+    }
+
+    #side-toggle:checked + .sidebar {
+        left: 0px;
+        height: calc(100vh - 60px);
+        top: 60px;
+    }
+
+    main .right-content .tbl-details {
+        overflow-x: auto;        
+    }
+
+    main .right-content .tbl-details table {
+        width: 500px;
+        margin-left: 20%;
+    }
+
+    main .right-content .div-search div {
+        width: 100%;
+        margin: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 580px) {
+    main .right-content .tbl-details table {
+        margin-left: 0;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+    td { 
+		border: none;
+		border-bottom: 1px solid #ddd; 
+		position: relative;
+        padding: 10px 0 10px 50%;        
+	}
+
+    td:last-child {
+        border-bottom: 2px solid #b3b3b3;
+    }
+
+    td:before { 
+		position: absolute;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;      
+        font-weight: 600;
+        font-style: italic;  
+	}
+
+    main .right-content .tbl-details table tbody tr {
+        background: #f3f3f3;
+    }
+
+    main .right-content .tbl-details table tbody tr:nth-of-type(even) {
+        background: #dac17bb0;
+    }
+
+    td:nth-of-type(1):before { content: "Article Image"; }
+	td:nth-of-type(2):before { content: "Validation ID"; }
+	td:nth-of-type(3):before { content: "Type"; }
+	td:nth-of-type(4):before { content: "Weight (g)"; }
+	td:nth-of-type(5):before { content: "Carats"; }
+	td:nth-of-type(6):before { content: "Estimated Value (Rs.)"; }
+	td:nth-of-type(7):before { content: "Validation Status"; }
+	td:nth-of-type(8):before { content: "Gold Appraiser ID"; }
+}
+
+@media only screen and (max-width: 390px) {
+    main .right-content .div-search div {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+    }
+
+    main .right-content .div-search input::-webkit-input-placeholder {
+        font-size: 12px;
+    }
+
+    header h1 {
+        font-size: 28px;
+        width: fit-content;
+        margin-right: 20px;
+    }
+
+    main .right-content .div-search img {
+        height: 15px;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    td:before {
+        font-size: 12px;
+    }
+
+    header span img {
+        width: 20px;
+        height: 20px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+}

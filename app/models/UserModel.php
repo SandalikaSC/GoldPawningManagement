@@ -1,5 +1,12 @@
 <?php
 class UserModel extends Database{
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database;
+    }
+
     public function getUser($email){
         $sql = 'select UserId, email, password, type FROM user where email=? limit 1';
         $this->query($sql);
@@ -16,12 +23,24 @@ class UserModel extends Database{
         return $result;
     }
 
-    public function resetPassword($email,$password){
-        $sql='update user set password=? where email=?';
-        $this->query($sql);
-        $this->bind(1,$password);
-        $this->bind(2,$email);
-        $this->execute();
+    //Change password
+
+    public function changepassword($email,$password)
+    {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $this->db->query('UPDATE User SET password=:password WHERE email= :email');
+
+        // Bind Values
+        $this->db->bind(':password', $hashed_password);
+        $this->db->bind(':email', $email);
+        //Execute
+        if ($this->db->execute()) {
+
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public function resetEmail($curremail,$newemail){

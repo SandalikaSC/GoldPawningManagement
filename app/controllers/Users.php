@@ -5,6 +5,7 @@ class Users extends Controller
   {
 
     $this->userModel = $this->model('Customer');
+    $this->allUserModel = $this->model('UserModel');
   }
 
   public function index()
@@ -386,11 +387,14 @@ class Users extends Controller
   public function createUserSession($user)
   {
     $_SESSION['user_id'] = $user->UserId;
+    $_SESSION['user_type'] = $user->type;
     $_SESSION['user_email'] = $user->email;
     $_SESSION['user_name'] = $user->First_Name . ' ' . $user->Last_Name;
     $_SESSION['user_fname'] = $user->First_Name;
     $_SESSION['user_lname'] = $user->Last_Name;
-    $_SESSION['user_phone'] = $user->Last_Name;
+    $_SESSION['user_phone'] = $user->phone;
+    $_SESSION['user_address'] = $user->Line1.' '.$user->Line2.' '.$user->Line3;  
+
     $_SESSION['image'] = $user->image;
     switch ($user->type) {
       case "Customer":
@@ -406,12 +410,12 @@ class Users extends Controller
         redirect('/Admin/AdminDash');
         break;
       case "Manager":
-       
+
         redirect('/mgDashboard');
         // $this->view('Manager/managerDash');
         break;
       case "Gold Appraiser":
-        $this->view('GoldAppraiser/goldappDash');
+        redirect('/goldAppraiser/dashboard');
         break;
       case "Vault Keeper":
         redirect('/VKDashboard');
@@ -421,49 +425,114 @@ class Users extends Controller
         redirect('/pawningOfficerDashboard/dashboard');
         break;
       case "Owner":
-        $staff=$this->model("staffModel");
-        $result=$staff->loadProfilePicture($_SESSION['user_email']);
-        $_SESSION['profile_pic']=$result->image;
-        $_SESSION['mg_name']=$result->Name;
+        $staff = $this->model("staffModel");
+        $result = $staff->loadProfilePicture($_SESSION['user_email']);
+        $_SESSION['profile_pic'] = $result->image;
+        $_SESSION['mg_name'] = $result->Name;
         redirect('/ownerDashboard');
         break;
     }
   }
+  public function changepassword()
+  {
+    if (isset($_POST["new_pw"])) {
+      $new =  $_POST['new_pw'];
+
+      // Validate Password
+      $uppercase = preg_match('@[A-Z]@',  $new);
+      $lowercase = preg_match('@[a-z]@',  $new);
+      $number = preg_match('@[0-9]@',  $new);
+      $specialChars = preg_match('@[^\w]@',  $new);
+
+       if (!$uppercase || !$lowercase || !$number || !$specialChars) {
+        flash("forget", "Must contain least one uppercase, lowercase, special character and a number", "invalid");
+          $data['success'] = 0; 
+      } elseif (strlen($new) < 6) {
+        flash("forget", "Must be at least 6 characters", "invalid");
+        $data['success'] = 0;  
+      }else{ 
+        $status = $this->allUserModel->changepassword($_SESSION['email'], $new);
+        if ($status) {
+          notification("login", "Password Changed Successfully", "gold");  
+          $data['success'] = 1;
+        } else {
+          notification("forgetPassword", "Something went wrong. Try again", "red");
+          $data['success'] = 0;
+        }
+      } 
+
+      echo json_encode($data);
+    } else {
+      $this->view('pages/changePassword');
+    }
+  }
   public function checkEmail()
   {
-     
-    if(isset($_POST["email"])){
-        $result=$this->userModel->getUserByEmail($_POST["email"]);
-        if(empty($result)){ 
-          flash('register', "You are not registered with Us.", 'invalid');
-          $this->view('pages/userLogin');
 
-        }    
-        else if($result->verification_status==="0"){
-          flash('register', "You are not verified your email yet.", 'invalid');
-          $this->view('pages/userLogin');
-        }else if(!empty($result) && $result->verification_status==="1"){
-          $_SESSION['OTP']=$this->randomPassword();
-          $data['success']=1;
-          echo json_encode($data);
+    if (isset($_POST["email"])) {
+      $email = trim($_POST["email"]);
+      $result = $this->userModel->getUserByEmail($_POST["email"]);
+
+      if (empty($result)) {
+        // flash('register', "You are not registered with Us.", 'invalid');
+        notification("login", "You are not registered with Us.", "red");
+        $data['success'] = 0;
+        // redirect('/Users/login');
+      } else if ($result->verification_status === "0") {
+        // flash('register', "You are not verified your email yet.", 'invalid');
+        notification("login", "You are not verified your email yet.", "red");
+        $data['success'] = 0;
+        // redirect('/Users/login');
+
+      } else if (!empty($result) && $result->verification_status === "1") {
+        $_SESSION['OTP'] = $this->randomPassword();
+
+        $status = sendMail($email, "OTP", $_SESSION['OTP'], "VOGUE");
+        if ($status) {
+          $_SESSION['email'] = $email;
+          $data['success'] = 1;
+        } else {
+          $data['success'] = 0;
+          // flash('register', "Fail to send OTP check your connection", 'invalid');
+          notification("login", "Fail to send OTP check your connection", "red");
+          // redirect('/Users/login');
         }
+      }
 
+      echo json_encode($data);
       // $data['name']="sandalika";
     }
-   
   }
-   //to generate a OTP number
-   private function randomPassword()
-   {
-       $alphabet = '1234567890';
-       $pass = array(); //remember to declare $pass as an array
-       $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-       for ($i = 0; $i < 6; $i++) {
-           $n = rand(0, $alphaLength);
-           $pass[] = $alphabet[$n];
-       }
-       return implode($pass); //turn the array into a string
-   }
+
+  public function verifyOTP()
+  {
+    if (isset($_POST["otp"])) {
+      $otp = $_POST["otp"];
+      if ($_SESSION['OTP'] == $otp) {
+        unset($_SESSION['OTP']);
+        $data['success'] = 1;
+        // $this->view('pages/changePassword');
+      } else {
+        notification("otp", "OTP is incorrect", "red");
+        $data['success'] = 0;
+      }
+      echo json_encode($data);
+    }
+  }
+
+
+  //to generate a OTP number
+  private function randomPassword()
+  {
+    $alphabet = '1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 6; $i++) {
+      $n = rand(0, $alphaLength);
+      $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+  }
 
   public function logout()
   {
@@ -472,7 +541,11 @@ class Users extends Controller
       unset($_SESSION['user_email']);
       unset($_SESSION['user_name']);
       unset($_SESSION['profile_pic']);
-      unset($_SESSION['mg_name']);
+      unset($_SESSION['mg_name']); 
+      unset($_SESSION['user_fname'] );
+      unset($_SESSION['user_lname']  );
+      unset($_SESSION['user_phone'] );
+      unset($_SESSION['user_address']  );
       session_destroy();
 
       redirect('/Users');

@@ -33,9 +33,10 @@
                     <label>Full Name<sup>*</sup></label>
                     <div class="fullname">
                         <input type="text" name="first_name" class="<?php echo (!empty($data['first_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['first_name']; ?>" placeholder="First Name">
-                        <input type="text" name="last_name" value="<?php echo $data['last_name']; ?>" placeholder="Last Name">
+                        <input type="text" name="last_name" class="<?php echo (!empty($data['last_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['last_name']; ?>" placeholder="Last Name">
                     </div>
-                    <span class="invalid-feedback"><?php echo $data['first_name_err']; ?></span>                    
+                    <span class="invalid-feedback"><?php echo $data['first_name_err']; ?></span> 
+                    <span class="invalid-feedback"><?php echo $data['last_name_err']; ?></span>                    
                 </div>
                 <div class="form-wrap">
                     <label>Address<sup>*</sup></label>
@@ -53,13 +54,13 @@
                     </div> 
                     <span class="invalid-feedback"><?php echo $data['nic_err']; ?></span>                   
                 </div>
-                <div class="form-wrap">
+                <!-- <div class="form-wrap">
                     <label>Date of Birth</label>
                     <div class="fullname">
                         <input type="date" name="dob" class="<?php echo (!empty($data['dob_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['dob']; ?>">
                     </div>      
                     <span class="invalid-feedback"><?php echo $data['dob_err']; ?></span>              
-                </div>
+                </div> -->
                 <div class="form-wrap">
                     <label>Gender</label>
                     <div class="gender">                        

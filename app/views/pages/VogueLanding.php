@@ -74,7 +74,7 @@
             <!-- </div> --> 
         </div>
     </section>
-    <section id="services" class="section-services">
+    <section id="services" class="section-services ">
         <h2 class="sevices-txt"> Our Services</h2>
         <div class="service-info">
 

@@ -8,9 +8,16 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif; 
 }
-
-  
-
+.page,.reservation{
+  display: flex;
+  flex-direction: column;
+}
+.reservation{
+margin: 2% 4%;
+  }
+.title{
+  border-bottom: 2px solid #BB8A04;
+}
 
 /*  article */
 .wrapper{
@@ -45,7 +52,7 @@
 .tag{
     color: white;
     border-radius: 20px;
-    padding: 2% 10%;
+    padding: 1% 10%;
     font-size: 1rem;
   }
   .green{
@@ -53,4 +60,35 @@
   }
   .gold{
     background-color: #bb8a04ce;
+  }
+  .reserve{
+    align-items: center;
+    text-align: center;
+    padding: 2%;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+  }
+  .square{
+    border: 1px solid #bb8a04;
+    border-radius: 20px;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 15%);
+    margin: 1%;
+  }
+  .img-div{
+    width: 90%;
+    height: 65%;
+    overflow: hidden;
+  }
+  .img{
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+  }
+  .locker{
+    color: white;
+    background-color: #BB8A04; 
+    padding: 6%;
+    border-radius: 20px;
+    margin: auto;
+    /* font-size: 2rem; */
   }

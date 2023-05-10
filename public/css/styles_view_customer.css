@@ -219,9 +219,12 @@ main {
 }
 
 .right-content .tbl-details table {
-    text-align: center;
-    border-collapse: separate;
-    border-spacing: 0 15px;
+    border-collapse: collapse;
+    margin:  auto;
+    border-radius: 20px ;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 90%;
 }
 
 .right-content .tbl-details table .table-body .btn {
@@ -244,29 +247,35 @@ main {
     transform: translateY(-1px);
 }
 
-.right-content .tbl-details table th,
-.right-content .tbl-details table tr {
-    font-size: 16px;
-    border: none;
-    padding: 0 3.5rem;
+.right-content .tbl-details table thead th {
+    background-color: #dac17bb0;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px 30px;
 }
 
-.right-content .tbl-details table .table-body {
-    background-color: #fff; 
-    border-radius: 20px; 
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+.right-content .tbl-details table td {
+    padding: 5px 15px;
+    margin: auto;
+    text-align: center;
+ }
+
+.right-content .tbl-details table tbody tr {
+    border-bottom: 1px solid #dddddd;
 }
 
-.right-content .tbl-details table td:first-child {
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+.right-content .tbl-details table tbody tr:nth-of-type(even) {
+    background: #f3f3f3;
 }
 
-.right-content .tbl-details table td:last-child {
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+.right-content .tbl-details table tbody tr:last-child {
+    border-bottom: none;
 }
 
+.right-content .tbl-details table tbody tr:hover {
+    background: #c6c6c6;
+}
 
 @media only screen and (max-width: 1270px) {
     .main-content {
@@ -303,7 +312,7 @@ main {
     }
 
     #side-toggle ~ .sidebar {
-        top: 85px;
+        top: 75px;
     }
 }
 

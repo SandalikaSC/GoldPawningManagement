@@ -181,3 +181,16 @@ body{
     font-size: 1rem;
     text-align: center;
  }
+ .wrapper,.set-pw{
+    display: flex;
+    flex-direction: column;
+ }
+ .set-pw{
+   border: solid 2px #bb8a04;
+   border-radius: 20px;
+   padding: 5% ;
+   margin: 0% 30%;
+ }
+ .set-pw input,.p{
+    margin: 2% auto;
+ }

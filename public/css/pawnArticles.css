@@ -2,16 +2,17 @@
 
 
 .pawn-page{
-    display: flex; 
-    justify-content: space-evenly;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(4,1fr);
 }
-
+ 
 .jewellery-card{
     background-color: white;
     position: relative;
-    width: 20%;
-    height: 80%;
-    padding: 1%;
+    width: 80%;
+    height: 64%;
+    padding: 2%;
     padding-bottom: 2%;
     /* border: solid 1px #bb8a04; */
     border-radius: 20px;
@@ -31,7 +32,7 @@
 }
 
 .jw-details{
-    margin-top: 10%;
+    
     display: flex;
     flex-direction: column;
 }
@@ -108,6 +109,12 @@
   } 
   .tag-auctioned {
     background-color: #0000007d;
+  }
+  .tag-completed {
+    background-color: #4bcf6c7d;
+  }
+  .tag-retrieved {
+    background-color: #5452527d;
   }
   
   

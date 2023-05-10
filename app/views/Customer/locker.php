@@ -1,4 +1,4 @@
-<?php require APPROOT."/views/inc/header.php"?>
+<?php require APPROOT . "/views/inc/header.php" ?>
 <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/locker.css'>
 <title>Vogue | My Locker</title>
 </head>
@@ -17,66 +17,28 @@
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
             <div class="locker-page">
+                <?php 
+                    
+                foreach ($data['reservation'] as $reservation) : ?>
 
-                <div class="jewellery-card">
-                    <div class="jewellery-img">
+
+                    <a href="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle/<?= $reservation->lockerNo ?>" class="lockercard no-link-style ">
+
                         <div class="locker-no">
-                            <h2 class="no">01</h2>
+                            <h2 class=" "><?= "Locker ".str_pad($reservation->lockerNo, 2, '0', STR_PAD_LEFT) ?></h2>
                         </div>
-                        <img class="jw-img" src="<?php echo URLROOT ?>/img/harper-sunday-I89WziXZdVc-unsplash.jpg">
-                    </div>
-                    <div class="jw-details">
-                        <div class="jw-date">
-                            <div class="jw-date-name">
-                                <label>Due Date</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05"))?></label>
-                            </div>
-
+                        <?php if ($reservation->Retrive_status==0):?>
+                        <div class="sec">
+                            <label for="">Allocated till</label>
+                            <label for=""><?= date("Y M d",strtotime($reservation->Retrieve_Date))?></label>
                         </div>
-                        <div class="jw-date-name">
-
-                            <label>Status</label>
-                            <label class="status tag-pending">Pending</label>
+                        <?php endif;?>
+                        <div class="sec">
+                            <label for="">Allocated</label>
+                            <label for=""><?= date("Y M d",strtotime($reservation->Date))?></label>
                         </div>
-
-
-
-
-                    </div>
-                    <form action="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle" method="POST"> <button
-                            class="v-btn">View</button>
-                    </form>
-                </div>
-                <div class="jewellery-card">
-                    <div class="jewellery-img">
-                        <div class="locker-no">
-                            <h2 class="no">08</h2>
-                        </div>
-                        <img class="jw-img" src="<?php echo URLROOT ?>/img/nati-melnychuk-oO0JAOJhquk-unsplash.jpg">
-                    </div>
-                    <div class="jw-details">
-                        <div class="jw-date">
-                            <div class="jw-date-name">
-                                <label>Due Date</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05"))?></label>
-                            </div>
-
-                        </div>
-                        <div class="jw-date-name">
-
-                            <label>Status</label>
-                            <label class="status tag-overdue">Overdue</label>
-                        </div>
-
-
-
-
-                    </div>
-                    <button class="v-btn">View</button>
-                </div>
-
-
-
+                    </a>
+                <?php endforeach; ?>
             </div>
 
 
@@ -85,4 +47,4 @@
     </div>
     <script src="<?php echo URLROOT ?>/js/sideMenu.js"></script>
 
-    <?php require APPROOT."/views/inc/footer.php"?>
+    <?php require APPROOT . "/views/inc/footer.php" ?>

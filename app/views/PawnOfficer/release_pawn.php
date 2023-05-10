@@ -26,50 +26,54 @@
         </div>
 
         <main>
+            <div class="msg-flash"><?php echo flash('notification'); ?></div>
             <div class="main-content">
                 <div class="div-details">
                     <div class="div-img">
-                        <img src="<?php echo URLROOT . '/img/bracelet_01.jpg'; ?>" alt="">
+                        <img src="<?php echo $data['pawn_item']->image; ?>" alt="">
                     </div>
                     
                     <div class="article-details">
                         <div class="field">
                             <label>Article ID</label>
-                            <div>A001</div>
+                            <div><?php echo $data['pawn_item']->Article_Id; ?></div>
                         </div>
                         <div class="field">
                             <label>Article Type</label>
-                            <div>Jewelry</div>
+                            <div><?php echo $data['pawn_item']->Type; ?></div>
                         </div>
                     </div>
                     <div class="pawning-details">
                         <div class="field">
                             <label>Pawned Date</label>
-                            <div>2022/06/20</div>
+                            <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
                         </div>
                         <div class="field">
                             <label>End Date</label>
-                            <div>2023/02/20</div>
+                            <div><?php echo $data['pawn_item']->End_Date; ?></div>
                         </div>
                     </div>
                     <div class="loan-details">
                         <div class="field">
                             <label>Full Loan Amount</label>
-                            <div>Rs. 102000.00</div>
+                            <div><?php echo 'Rs. ' . $data['pawn_item']->Amount; ?></div>
                         </div>
                         <div class="field">
                             <label>Remaining Loan Amount</label>
-                            <div>Rs. 0.00</div>
-                        </div>
-                        <div class="field">
-                            <label>Due Payments</label>
-                            <div>Rs. 0.00</div>
+                            <div><?php echo 'Rs. ' . sprintf("%.2f", $data['remaining_loan']); ?></div>
                         </div>
                     </div>
 
                     <div class="div-buttons">
-                        <a href="">Confirm Release</a>
-                        <a href="">Cancel</a>
+                        <?php if($data['pawn_item']->Status != "Retrieved") : ?>
+                            <form action="<?php echo URLROOT . '/Pawnings/release_pawn/' . $data['pawn_item']->Pawn_Id; ?>" method="post">
+                                <button type="submit">Release</button>
+                            </form>
+                        <?php endif; ?>
+                        
+                        <!-- <input type="submit" name="release" value="Release"> -->
+                        <!-- <a href="<?php echo URLROOT . '/Pawnings/confirm_release/'. $data['pawn_item']->Pawn_Id; ?>">Release</a> -->
+                        <!-- <a href="">Cancel</a> -->
                     </div>
                 </div>
             </div>            
@@ -78,21 +82,7 @@
         
     
     <script type="text/javascript">
-        // const realFileBtn = document.getElementById("real-file");
-        // const customBtn = document.getElementById("custom-button");
-        // const customTxt = document.getElementById("custom-text");
-
-        // customBtn.addEventListener("click", function() {
-        //     realFileBtn.click();
-        // });
-
-        // realFileBtn.addEventListener("change", function() {
-        //     if(realFileBtn.value) {
-        //         customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-        //     } else {
-        //           customTxt.innerHTML = "Image";
-        //     }
-        // });
+        
     </script>
 
 </body>

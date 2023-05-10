@@ -75,14 +75,17 @@
                 </div>
                 <div class="tbl-details">
                     <table cellspacing="0">
-                        <tbody>
+                        <thead>
                             <tr>
                                 <th>Customer ID</th>
                                 <th>Customer Name</th>
                                 <th>Phone Number</th>
                                 <th>Email</th>
+                                <th></th>
                             </tr>
+                        </thead>                            
                             
+                        <tbody>
                             <?php foreach($data['customers'] as $customer) : ?>
                                 <tr class="table-body">
                                     <td><?php echo $customer->UserId; ?></td>
