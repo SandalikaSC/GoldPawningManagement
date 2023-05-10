@@ -26,7 +26,169 @@
         </div>
 
         <main>
-            <div class="main-wrapper">
+            <div class="msg-flash"><?php echo flash('register'); ?></div>    
+            <div class="main-body">
+                <div class="main-div-container">
+                    <div class="left-wrapper">
+                        <div class="div-article-details">
+                            <div class="div-img">
+                                <img src="<?php echo $data['pawn_item']->image; ?>" alt="article image">
+                            </div>
+                            <div class="div-details">
+                                <div class="field-container">
+                                    <label>PAWN ID</label>
+                                    <div><?php echo $data['pawn_item']->Pawn_Id; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>ARTICLE ID</label>
+                                    <div><?php echo $data['pawn_item']->Article_Id; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>CUSTOMER ID</label>
+                                    <div><?php echo $data['pawn_item']->userId; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>PAWNED DATE</label>
+                                    <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date)); ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>END DATE</label>
+                                    <div><?php echo $data['pawn_item']->End_Date; ?></div>
+                                </div>
+                                <div class="field-container">
+                                    <label>REPAY METHOD</label>
+                                    <div><?php echo $data['pawn_item']->Repay_Method; ?></div>
+                                </div>
+                                <?php if(!empty($data['last_payment'])) : ?>
+                                    <div class="field-container">
+                                        <label>LAST PAYMENT DATE</label>
+                                        <div><?php echo date('Y-m-d', strtotime($data['last_payment']->Date)); ?></div>
+                                    </div>  
+                                <?php endif; ?>                          
+                            </div>
+
+                            <div class="loan-details">
+                                <label>Full Loan Amount</label>
+                                <div class="amount"><?php echo 'Rs. ' . $data['pawn_item']->Amount; ?></div>
+                            </div>
+                            <div class="loan-details">
+                                <label>Remaining Loan Amount</label>
+                                <div class="amount">Rs. <?php echo sprintf("%.2f", $data['remaining_loan']); ?></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <div class="right-wrapper">
+                        <div class="new-payment">
+                            <div class="div-form-title">
+                                <h2>Payment Details</h2>
+                            </div>
+                            
+                            <form action="<?php echo URLROOT . '/pawnings/make_payments/' . $data['pawn_item']->Pawn_Id; ?>" method="post">
+                                <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                                    <div class="field-wrapper">
+                                        <label>Amount (Rs.)</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="full-payment" value="<?php if($data['remaining_loan'] == 0.00) { echo sprintf("%.2f", 0); } else { echo sprintf("%.2f", ceil($data['amount_to_pay'])); }; ?>" readonly>
+                                        </div>                                        
+                                    </div>
+                                    <div class="field-wrapper">
+                                        <label>Covered Loan Amount (Rs.)</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="covered-loan" value="<?php if($data['remaining_loan'] == 0.00) { echo sprintf("%.2f", 0); } else { echo sprintf("%.2f", ceil(($data['pawn_item']->Amount / 12) * $data['due_months'])); }; ?>" readonly>
+                                        </div>                                        
+                                    </div>
+                                <?php else: ?>                                    
+                                    <div class="field-wrapper">
+                                        <label>Covering Loan Amount (Rs.)</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="covered-loan" class="<?php echo (!empty($data['covered_loan_err'])) ? 'is-invalid' : '' ?>" placeholder="Loan Amount" value="<?php echo (!empty($data['covered_loan'])) ? sprintf("%.2f", $data['covered_loan']) : ''; ?>">
+                                        </div> 
+                                        <span class="invalid-feedback"><?php echo $data['covered_loan_err']; ?></span>                                       
+                                    </div>
+                                    <div class="field-wrapper">
+                                        <label>Full Amount to Pay (Rs.)</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="full-payment" class="<?php echo (!empty($data['full_payment_err'])) ? 'is-invalid' : '' ?>" value="<?php echo sprintf('%.2f', $data['full_payment']); ?>" readonly>
+                                            <input type="submit" class="btn-calculate" name="calc-full-amount" value="Calculate">
+                                        </div>  
+                                        <span class="invalid-feedback"><?php echo $data['full_payment_err']; ?></span>                                        
+                                    </div>
+                                <?php endif; ?>
+
+                                <div class="field-wrapper">
+                                    <label>Date</label>
+                                    <div class="input-wrapper">
+                                        <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" readonly>
+                                    </div>                                        
+                                </div>
+                                <div class="div-button">
+                                    <input type="submit" class="btn-save" name="save" value="Make Payment">
+                                </div>
+                                
+                                <!-- <?php if($data['pawn_item']->Repay_Method == "Fixed") : ?>
+                                    <div class="field-wrapper">
+                                        <label>Amount (Rs.)</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="full-amount" value="<?php echo sprintf("%.2f", ceil($data['pawn_item']->monthly_installment)); ?>" readonly>
+                                            <input type="text" name="full-amount" value="<?php echo sprintf("%.2f", ceil($data['amount_to_pay'])); ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="field-wrapper">
+                                        <label>Covered Loan Amount (Rs.)</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="loan-amount" value="<?php echo sprintf("%.2f", ceil(($data['pawn_item']->Amount)/12 * $data['due_months'])); ?>" placeholder="0.00" readonly>
+                                        </div>
+                                    </div>
+                                <?php else : ?>                                    
+                                    <div class="field-wrapper">
+                                        <label>Covered Loan Amount (Rs.)<sup>*</sup></label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="loan-amount" class="<?php echo (empty($data['covered_loan'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['covered_loan']; ?>" placeholder="Covered Loan Amount">
+                                        </div>
+                                        <span class="invalid-feedback"><?php echo $data['covered_loan_err']; ?></span>
+                                    </div>
+                                    <div class="field-wrapper">
+                                        <label>Full Payment (Rs.)</label>
+                                        <div class="input-wrapper">
+                                            <input type="text" name="full-amount" value="<?php echo (!empty($data['full_payment'])) ? sprintf("%.2f", ceil($data['full_payment'])) : sprintf("%.2f", 0); ?>" readonly>
+                                            <input type="text" name="full-amount" value="<?php echo sprintf("%.2f", ceil($data['full_payment'])); ?>" readonly> -->
+                                            <!-- <input type="submit" name="calc-full-amount" value="Calculate"> 
+                                        </div>                                         
+                                    </div>
+                                <?php endif; ?>  
+                                
+                                <div class="field-wrapper">
+                                    <label>Date</label>
+                                    <div class="input-wrapper">
+                                        <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" readonly>
+                                    </div>
+                                </div>
+                                <div class="field-wrapper">
+                                    <label>Fine (Rs.)</label>
+                                    <div class="input-wrapper">
+                                        <input type="text" name="fine" placeholder="Fine">
+                                    </div>
+                                    <span class="invalid-feedback"></span>
+                                </div> 
+                                
+                                <div class="div-button">
+                                    <input type="submit" class="btn-save" name="save" value="Make Payment">
+                                </div> -->
+                            </form>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>        
+            
+            
+            
+
+            <!-- <div class="main-wrapper">
                 <div class="left-wrapper">   
                     <div class="div-details">
                         <div class="article-details">
@@ -106,7 +268,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
         </main>        
     </div>

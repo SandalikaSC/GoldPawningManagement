@@ -73,14 +73,14 @@
                             <h2>Customers</h2>
                             <img src="<?php echo URLROOT?>/img/gold_customers.png" alt="">
                         </div>                        
-                        <h1>80</h1>
+                        <h1><?php echo $data['no_of_customers']; ?></h1>
                     </div>
                     <div class="card-summary">
                         <div class="title">
                             <h2>Pawned Items</h2>
                             <img src="<?php echo URLROOT?>/img/golden_pawn_items.png" alt="">
                         </div>                        
-                        <h1>150</h1>
+                        <h1><?php echo $data['pawned_items']; ?></h1>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                             <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
                         <div class="box">
-                            <h4>24 KARATS</h4>
+                            <h4>24 CARATS</h4>
                             <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 24) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
                         </div>                                
                     </div>
@@ -100,7 +100,7 @@
                             <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
                         <div class="box">
-                            <h4>22 KARATS</h4>
+                            <h4>22 CARATS</h4>
                             <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 22) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
                         </div>                                
                     </div>
@@ -120,7 +120,7 @@
                             <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
                         <div class="box">
-                            <h4>20 KARATS</h4>
+                            <h4>20 CARATS</h4>
                             <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 20) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
                         </div>                                
                     </div>
@@ -130,7 +130,7 @@
                             <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
                         <div class="box">
-                            <h4>18 KARATS</h4>
+                            <h4>18 CARATS</h4>
                             <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 18) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
                         </div>                                
                     </div>                    
@@ -151,28 +151,32 @@
                             <input type="date">
                         </div>
                         <div class="div-table-appointments">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td>Appointment No</td>
-                                        <td>Appointment Date</td>
-                                        <td>Time</td>
-                                        <td>Reason</td>
-                                    </tr> 
-                                </thead>
-                                <tbody>
-
-                                    <?php foreach ($data['appointments'] as $appointment) : ?>
+                            <?php if(empty($data['appointments'])) : ?>
+                                <div class="no-appointments">No upcoming appointments</div>
+                            <?php else : ?>
+                                <table>
+                                    <thead>
                                         <tr>
-                                            <td><?php echo $appointment->Appointment_Id;?></td>
-                                            <td><?php echo $appointment->appointment_date;?></td>
-                                            <td><?php echo $appointment->time;?></td>
-                                            <td><?php echo $appointment->description;?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    
-                                </tbody>
-                            </table>
+                                            <td>Appointment No</td>
+                                            <td>Appointment Date</td>
+                                            <td>Time</td>
+                                            <td>Reason</td>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+
+                                        <?php foreach ($data['appointments'] as $appointment) : ?>
+                                            <tr>
+                                                <td><?php echo $appointment->Appointment_Id;?></td>
+                                                <td><?php echo $appointment->appointment_date;?></td>
+                                                <td><?php echo $appointment->time;?></td>
+                                                <td><?php echo $appointment->description;?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div>
                     </div>
 
@@ -182,28 +186,48 @@
                         </div>
                         <div class="div-table-validated">
                             <table>
-                                <thead>
-                                    <tr>
-                                        <td>Article ID</td>
-                                        <td>Estimated Value</td>
-                                    </tr> 
-                                </thead>
-                                <tbody>
-                                    <tr>
+                                <?php if(empty($data['validated_articles'])) : ?>
+                                    <div class="no-articles">No validated articles</div>
+                                <?php else : ?> 
+                                    
+                                        <thead>
+                                            <tr>
+                                                <td>Validation ID</td>
+                                                <td>Estimated Value</td>
+                                                <td>Validation Status</td>
+                                            </tr> 
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($data['validated_articles'] as $validated_article) : ?>
+                                                
+                                                <tr>                                                    
+                                                    <td><?php echo $validated_article->id;?></td>
+                                                    <td><?php echo 'Rs. ' . $validated_article->estimated_value;?></td>
+                                                    <td><?php echo ($validated_article->validation_status) ? 'Valid' : 'Invalid';?></td>
+                                                    <td><a href="<?php echo URLROOT; ?>/pawnings/confirm_pawn/<?php echo $validated_article->id; ?>" class="btn-validated btn-pawn">View</a></td>
+                                                    <!-- <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td> -->
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                <?php endif; ?>
+                            </table>
+                                    <!-- <tr>
                                         <td>AR001</td>
                                         <td>Rs. 150,000/-</td>
+                                        <td>Valid</td>
                                         <td><a href="<?php echo URLROOT; ?>/customers/confirm_pawn" class="btn-validated btn-pawn">Pawn</a></td>
                                         <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
                                     </tr>
                                     <tr>
                                         <td>AR001</td>
                                         <td>Rs. 150,000/-</td>
+                                        <td>Invalid</td>
                                         <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
                                         <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
-                                    </tr>
+                                    </tr> -->
                                     
-                                </tbody>
-                            </table>
+                                
+                            
                         </div>                            
                     </div>
                 </div>     

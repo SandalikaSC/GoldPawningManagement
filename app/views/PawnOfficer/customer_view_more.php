@@ -74,18 +74,22 @@
                                 <h2>Pawned Articles</h2>
                             </div>   
                             <div class="article-details">
-                                <div class="article-details-card">
-                                    <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                                    <div><label>Article ID: </label>AR001</div>
-                                    <div><label>Customer ID: </label>CS0021</div>
-                                    <div><label>Type: </label>Jewelry</div>
-                                </div> 
-                                <div class="article-details-card">
-                                    <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                                    <div><label>Article ID: </label>AR001</div>
-                                    <div><label>Customer ID: </label>CS0021</div>
-                                    <div><label>Type: </label>Jewelry</div>
-                                </div> 
+                                <?php if(empty($data['pawns'])) : ?>
+                                    <div class="no-articles">No Pawned Articles</div>
+                                <?php else : ?>
+                                    <?php foreach($data['pawns'] as $pawned_articles) : ?>
+                                        <div class="article-details-card">
+                                            <div class="div-img">
+                                                <img src="<?php echo $pawned_articles->image; ?>">
+                                            </div>
+                                            
+                                            <div><label>Pawn ID: </label><?php echo $pawned_articles->Pawn_Id; ?></div>
+                                            <div><label>Article ID: </label><?php echo $pawned_articles->Article_Id; ?></div>
+                                            <div><label>Pawned Date: </label><?php echo date('Y-m-d', strtotime($pawned_articles->Pawn_Date)); ?></div>
+                                            <div><label>End Date: </label><?php echo $pawned_articles->End_Date; ?></div>
+                                        </div>
+                                    <?php endforeach; ?> 
+                                <?php endif; ?>                                
                             </div>             
                         </div>
 
@@ -94,18 +98,22 @@
                                 <h2>Articles in Lockers</h2>
                             </div>     
                             <div class="article-details">
-                                <div class="article-details-card">
-                                    <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                                    <div><label>Article ID: </label>AR001</div>
-                                    <div><label>Customer ID: </label>CS0021</div>
-                                    <div><label>Type: </label>Jewelry</div>
-                                </div> 
-                                <div class="article-details-card">
-                                    <img src="<?php echo URLROOT?>/img/ring1.jpg">
-                                    <div><label>Article ID: </label>AR001</div>
-                                    <div><label>Customer ID: </label>CS0021</div>
-                                    <div><label>Type: </label>Jewelry</div>
-                                </div> 
+                                <?php if(empty($data['in_lockers'])) : ?>
+                                    <div class="no-articles">No Articles In Lockers</div>
+                                <?php else : ?>
+                                    <?php foreach($data['in_lockers'] as $articles_in_lockers) : ?>
+                                        <div class="article-details-card">
+                                            <div class="div-img">
+                                                <img src="<?php echo $articles_in_lockers->image; ?>">
+                                            </div>
+                                            
+                                            <div><label>Locker No: </label><?php echo $articles_in_lockers->lockerNo; ?></div>
+                                            <div><label>Allocation ID: </label><?php echo $articles_in_lockers->Allocate_Id; ?></div>
+                                            <div><label>Added Date: </label><?php echo date('Y-m-d', strtotime($articles_in_lockers->Date)); ?></div>
+                                            <div><label>Retrieving Date: </label><?php echo $articles_in_lockers->Retrieve_Date; ?></div>
+                                        </div>
+                                    <?php endforeach; ?> 
+                                <?php endif; ?> 
                             </div>            
                         </div>
                     </div>

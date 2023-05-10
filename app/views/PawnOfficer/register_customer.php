@@ -33,9 +33,10 @@
                     <label>Full Name<sup>*</sup></label>
                     <div class="fullname">
                         <input type="text" name="first_name" class="<?php echo (!empty($data['first_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['first_name']; ?>" placeholder="First Name">
-                        <input type="text" name="last_name" value="<?php echo $data['last_name']; ?>" placeholder="Last Name">
+                        <input type="text" name="last_name" class="<?php echo (!empty($data['last_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['last_name']; ?>" placeholder="Last Name">
                     </div>
-                    <span class="invalid-feedback"><?php echo $data['first_name_err']; ?></span>                    
+                    <span class="invalid-feedback"><?php echo $data['first_name_err']; ?></span> 
+                    <span class="invalid-feedback"><?php echo $data['last_name_err']; ?></span>                    
                 </div>
                 <div class="form-wrap">
                     <label>Address<sup>*</sup></label>

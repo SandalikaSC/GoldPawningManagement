@@ -66,7 +66,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>24 KARATS</h4>
+                                <h4>24 CARATS</h4>
                                 <h2>Rs. 102000.00</h2>
                             </div>                                
                         </div>
@@ -76,7 +76,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>22 KARATS</h4>
+                                <h4>22 CARATS</h4>
                                 <h2>Rs. 90000.00</h2>
                             </div>                                
                         </div>
@@ -86,7 +86,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>20 KARATS</h4>
+                                <h4>20 CARATS</h4>
                                 <h2>Rs. 78000.00</h2>
                             </div>                                
                         </div>
@@ -96,7 +96,7 @@
                                 <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                             </div>
                             <div class="box">
-                                <h4>18 KARATS</h4>
+                                <h4>18 CARATS</h4>
                                 <h2>Rs. 66000.00</h2>
                             </div>                                
                         </div>                        
@@ -108,17 +108,24 @@
                 <div class="bottom-div">
                     <h2>Articles to be Validated</h2>
                     <div class="article-details">
-                        <?php foreach($data['articles_to_validate'] as $article_to_validate) : ?>
-                            <div class="article-details-card">
-                                <img src="<?php echo $article_to_validate->image; ?>">
-                                <div><label>Validation ID: </label><?php echo $article_to_validate->id; ?></div>
-                                <div><label>Customer ID: </label><?php echo $article_to_validate->customer; ?></div>
-                                <div><label>Type: </label><?php echo $article_to_validate->article_type; ?></div>
-                                <div class="div-btn">
-                                    <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $article_to_validate->id; ?>">Validate</a>
-                                </div>
+                        <?php if(empty($data['articles_to_validate'])) : ?>
+                            <div class="no-articles">
+                                <img src="<?php echo URLROOT?>/img/no-payment-history.svg" alt="No Article Found">
+                                <div>No Articles to be Validated</div>
                             </div>
-                        <?php endforeach; ?>                     
+                        <?php else : ?>
+                            <?php foreach($data['articles_to_validate'] as $article_to_validate) : ?>
+                                <div class="article-details-card">
+                                    <img src="<?php echo $article_to_validate->image; ?>">
+                                    <div><label>Validation ID: </label><?php echo $article_to_validate->id; ?></div>
+                                    <div><label>Customer ID: </label><?php echo $article_to_validate->customer; ?></div>
+                                    <div><label>Type: </label><?php echo $article_to_validate->article_type; ?></div>
+                                    <div class="div-btn">
+                                        <a href="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $article_to_validate->id; ?>">Validate</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
 

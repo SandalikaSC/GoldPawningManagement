@@ -6,6 +6,8 @@
             }
 
             $this->customerModel = $this->model('Customer');
+            $this->pawningModel = $this->model('Pawning');
+            $this->lockerModel = $this->model('Locker');
         }
 
         public function index() {
@@ -24,16 +26,6 @@
                 $pass[] = $alphabet[$n];
             }
             return implode($pass);
-        }
-
-        public function confirm_pawn() {
-            // Get pawned items
-
-            $data = [
-                
-            ];
-
-            $this->view('PawnOfficer/confirmPawn');
         }
 
 
@@ -158,6 +150,7 @@
                     'email' => trim($_POST['email']),
                     'created_by' => $_SESSION['user_id'],
                     'first_name_err' => '',
+                    'last_name_err' => '',
                     'line1_err' => '',
                     'nic_err' => '',
                     'dob_err' => '',
@@ -181,7 +174,14 @@
                 // Validate name
                 if(empty($data['first_name'])) {
                     $data['first_name_err'] = 'Please enter name';
+                } elseif(!preg_match("/^[a-zA-Z]+$/", $data['first_name'])) {
+                    $data['first_name_err'] = 'Name can only contain letters';
                 }
+
+                if(!empty($data['last_name']) && (!preg_match("/^[a-zA-Z]+$/", $data['last_name']))) {
+                    $data['last_name_err'] = 'Name can only contain letters';
+                }
+
 
                 // Validate NIC
                 if(empty($data['nic'])) {
@@ -199,6 +199,10 @@
                 // Validate phone
                 if(empty($data['phone'])) {
                     $data['phone_err'] = 'Please enter a working phone number';
+                } elseif(!preg_match("/^[0-9]+$/", $data['phone'])) {
+                    $data['phone_err'] = 'Phone number can only contain digits from 0-9';
+                } elseif(strlen($data['phone']) != 10) {
+                    $data['phone_err'] = 'Phone number can only contain 10 digits from 0-9';
                 }
 
                 // Validate address
@@ -207,7 +211,7 @@
                 }
 
                 // When there are no errors
-                if(empty($data['email_err']) && empty($data['first_name_err']) && empty($data['line1_err']) && empty($data['nic_err']) && empty($data['phone_err'])) {
+                if(empty($data['email_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['line1_err']) && empty($data['nic_err']) && empty($data['phone_err'])) {
                     // Register customer
                     $reg_success = $this->model("Customer")->registerCustomer($data);
                     
@@ -242,6 +246,7 @@
                     'phone' => '',
                     'email' => '',
                     'first_name_err' => '',
+                    'last_name_err' => '',
                     'line1_err' => '',
                     'nic_err' => '',
                     'dob_err' => '',
@@ -268,9 +273,13 @@
         public function customer_view_more($id) {
             // Get customer
             $customers = $this->customerModel->getCustomerById($id);
+            $pawned_items = $this->pawningModel->getPawnByCustomerID($id);
+            $articles_in_lockers = $this->lockerModel->getLockerByCustomerID($id);
 
             $data = [
-                'customers' => $customers
+                'customers' => $customers,
+                'pawns' => $pawned_items,
+                'in_lockers' => $articles_in_lockers
             ];
 
             $this->view('PawnOfficer/customer_view_more', $data);
@@ -278,7 +287,5 @@
 
 
        
-
-
 
     }

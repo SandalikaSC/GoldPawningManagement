@@ -24,13 +24,14 @@ body, html {
     width: 100vw;
     position: static;
     height: fit-content;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .header .title {
     display: flex;
     padding: 10px;
     height: fit-content;
+    flex-wrap: wrap;
 }
 
 .header .title img {
@@ -54,13 +55,446 @@ body, html {
 }
 
 main {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; */
+    width: 100vw;
+    height: calc(100vh - 85px);
+    overflow-y: auto;
+    padding-top: 10px;
+}
+
+main .main-body {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-main .main-wrapper {
+main .main-div-container {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    border-radius: 15px;
+    margin: 0px 30px 30px;
+}
+
+main h2 {
+    font-size: 24px;
+    border-bottom: 2px solid #bb8a04;
+    width: fit-content;    
+}
+
+main .main-div-container .left-wrapper,
+main .main-div-container .right-wrapper {
+    width: 100%;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+main .main-div-container .left-wrapper {
+    background: #bb8a04;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+main .main-div-container .left-wrapper .div-article-details {
+    width: 100%;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-img img {
+    max-width: 200px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details {
+    padding: 0 40px;
+    margin-bottom: 30px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details .field-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details .field-container div {
+    font-size: 18px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .div-details .field-container label {
+    font-weight: 600;
+    margin-right: 30px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .loan-details {
+    text-align: center;
+    margin-top: 20px;
+}
+
+main .main-div-container .left-wrapper .div-article-details .loan-details label {
+    font-size: 18px;
+    color: rgb(94, 24, 24);
+    font-weight: 600;
+    font-style: italic;
+}
+
+main .main-div-container .left-wrapper .div-article-details .loan-details .amount {
+    font-size: 40px;
+    font-weight: 600;
+    color: #faebd7;
+    font-style: italic;
+}
+
+main .main-div-container .right-wrapper {
+    background: #faebd7;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+main .main-div-container .right-wrapper .new-payment {
+    background: #fff;
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 15px;
+}
+
+main .main-div-container .right-wrapper .new-payment .div-form-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+main .main-div-container .right-wrapper .new-payment form .field-wrapper {
+    margin-bottom: 20px;
+}
+
+main .main-div-container .right-wrapper .new-payment form .field-wrapper label sup {
+    color: #f00;
+}
+
+main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-wrapper {
+    margin-top: 2px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-wrapper input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-wrapper input::placeholder,
+main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-wrapper input::-webkit-input-placeholder {
+    font-size: 15px;
+}
+
+main .main-div-container .right-wrapper .new-payment form .div-button {
+    margin: 40px 0 10px;
+    width: 100%;
+}
+
+main .main-div-container .right-wrapper .new-payment form .div-button input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #a17702;
+    background: #bb8a04;
+    color: #faebd7;
+    font-size: 18px;
+    box-shadow: 0px 2px 0 #c1c1c1, 2px 4px 6px #c1c1c1;
+    letter-spacing: 1px;
+    transition: all 150ms linear;
+}
+
+main .main-div-container .right-wrapper .new-payment form .div-button input:hover {
+    opacity: 0.8;
+    box-shadow: 1px 1px 2px rgba(#fff, .2); 
+    text-shadow: -1px -1px 0 #8e6904;
+    transition: all 250ms linear;
+    transform: translateY(-3px);
+}
+
+main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-wrapper .btn-calculate {
+    margin-left: 10px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    background: #000;
+    color: #faebd7;
+    border: 2px solid #000;
+}
+
+main .main-div-container .right-wrapper .new-payment form .field-wrapper .input-wrapper .btn-calculate:hover {
+    transform: translateY(-3px);
+    transition: 0.3s;
+    opacity: 0.7;
+    color: #bb8a04;
+    border: 2px solid #bb8a04;
+}
+
+.invalid {
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(255, 14, 14);
+    background: rgb(255 199 199);
+    margin: auto;
+    font-size: 1vw;
+}
+
+.success {
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: #836000;
+    background: #f9dc8b;
+    margin: auto;
+}
+
+.msg-flash {
+    margin-bottom: 10px;
+}
+
+.invalid-feedback {
+    color: #f00;
+    font-size: 12px;
+}
+
+.is-invalid {
+    border-color: #f00;
+
+}
+
+@media only screen and (max-width: 1100px) {
+    main .main-div-container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    main .main-div-container {
+        width: 100%;
+        margin: 30px;
+    }
+}
+
+@media only screen and (max-width: 860px) {
+    main .main-div-container .left-wrapper {
+        padding: 30px;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    main .main-div-container .left-wrapper .div-article-details .div-details {
+        padding: 0;
+    }
+
+    main .main-div-container .right-wrapper .new-payment {
+        padding: 20px 30px;
+    }
+
+    main .main-div-container .right-wrapper {
+        padding: 30px;
+    }
+}
+
+@media only screen and (max-width: 710px) {
+    main .main-div-container .right-wrapper .new-payment {
+        padding: 15px 30px;
+    }
+
+    main .main-div-container .right-wrapper {
+        padding: 20px;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .loan-details .amount {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    main .main-div-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    main .main-div-container .right-wrapper {
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 15px;
+    }
+
+    main .main-div-container .left-wrapper {
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    main {
+        height: fit-content;
+    }
+
+    main .main-div-container {
+        width: 70%;
+    }
+
+    main .main-div-container .left-wrapper {
+        padding: 30px 40px;
+    }
+
+    main .main-div-container .right-wrapper {
+        padding: 30px;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .div-details {
+        padding: 0 20px;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .loan-details .amount {
+        font-size: 38px;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    main .main-div-container .left-wrapper .div-article-details .div-details {
+        padding: 0;
+    }
+
+    .header .logo img {
+        width: 150px;
+        height: 45px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    main .main-div-container {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+    main .main-div-container {
+        width: 100%;
+    }
+
+    .header .logo img {
+        width: 120px;
+        height: 40px;
+    }
+    
+    .header .title img {
+        height: 30px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+    .header .title h1 {
+        font-size: 30px;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .loan-details .amount {
+        font-size: 36px;
+    }
+
+    main .main-div-container .left-wrapper {
+        padding: 30px;
+    }
+
+    main .main-div-container .right-wrapper {
+        padding: 20px;
+    }
+
+    main .main-div-container {
+        margin: 0px 20px 20px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    main .main-div-container .left-wrapper,
+    main .main-div-container .right-wrapper {
+        min-width: 200px;
+    }
+
+    main .main-div-container {
+        margin: 0px 10px 20px;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .div-details {
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .div-details .field-container {
+        display: block;
+        text-align: center;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .div-details .field-container label {
+        margin-right: 0px;
+    }
+
+    main h2 {
+        text-align: center;
+        font-size: 22px;
+    }
+
+    main .main-div-container .left-wrapper .div-article-details .loan-details .amount {
+        font-size: 32px;
+    }
+}
+
+@media only screen and (max-width: 290px) {
+    .header .logo img {
+        width: 100px;
+        height: 35px;
+    }
+    
+    .header .title img {
+        height: 25px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    
+    .header .title h1 {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (max-width: 260px) {
+    .header .logo img {
+        width: 80px;
+        height: 30px;
+    }
+}
+
+
+/* main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 80%;
@@ -102,7 +536,7 @@ main .left-wrapper .div-details .article-details .article-image img {
     margin: 20px;
 }
 
-main .left-wrapper .div-details .article-details .field-container {
+main .left-wrapper .div-details .article-details .div-details .field-container {
     width: 80%;
     display: flex;
     justify-content: space-between;
@@ -118,7 +552,7 @@ main .left-wrapper .div-details .article-details .field-wrapper {
     flex-wrap: wrap;
 }
 
-main .left-wrapper .div-details .article-details .field-container label {
+main .left-wrapper .div-details .article-details .div-details .field-container label {
     font-weight: 600;
 }
 
@@ -268,4 +702,4 @@ main .right-wrapper .form-wrapper .div-form form .field-wrapper .btn-save:hover 
     main .right-wrapper .form-wrapper {
         width: 100%;
     }
-}
+} */
