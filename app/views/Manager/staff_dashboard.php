@@ -12,13 +12,8 @@
 
 <body>
     <?php
-       if (!empty($data[1] && $data[1] == 'success')) {
-        //    include_once URLROOT.'/Manager/add-success.php';
-            include_once 'add-success.php';
-        } elseif (!empty($data[1] && $data[1] == 'delsuccess')) {
+       if(!empty($data[1] == 'delsuccess')) {
             include_once 'del-success.php';
-        } else if (!empty($data[1] && $data[1] == 'unsuccess')) {
-            include_once 'mgNetworkError.php';
         }
         ?>
     
@@ -35,7 +30,7 @@
 
                 </div>
                 <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
+                    <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
                 </div>
             </div>
             <div class="btn-set">
@@ -98,14 +93,16 @@
                     <div class="table-section">
                         <?php
                         if ($data[0] != 0) {
+                            $i=1;
                         ?>
                             <table id="myTable">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Role</th>
-                                        <th>Date</th>
+                                        <th>Created Date/Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -115,6 +112,7 @@
                                 foreach ($data[0] as $row) {
                                     echo "
                                             <tr>
+                                                <td>" . $i . ".</td>
                                                 <td>" . $row->UserId . "</td>
                                                 <td>" . $row->Name . "</td>
                                                 <td>" . $row->Role . "</td>
@@ -124,6 +122,7 @@
                                                     <a href='" . URLROOT . "/staff/confirmDelete/" . $row->UserId . "' class='delete'>Delete</a>
                                                 </td>
                                             </tr>";
+                                            $i++;
                                 }
                             } else {
                                 echo "<center>NO Matched Data</center>";
@@ -147,3 +146,4 @@
 
 
 </html>
+

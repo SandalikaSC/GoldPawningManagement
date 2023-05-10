@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins';
+    display: flex;
+    overflow-y: hidden;
+    overflow-x:hidden;
+}
+
+.page{
+    display:flex;
+    width: 100%;
+    height:100vh;
+}
+
+.left{
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 20px 10px;
+    border-radius: 0 25px 25px 0;
+    position: relative;
+    transition: all 0.7s ease;
+    overflow-y: hidden;
+    z-index: 7;
+}
+
+.hide{
+   display: none;
+}
+
+.profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile p{
+    padding-top: 10px;
+}
+
+.page .left .profile .profile-pic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page .left .profile .profile-pic img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+
+.btn-set a:hover{
+    opacity: 0.5;
+}
+
+.btn-set .dash{
+    border: 2px solid #BB8A04;
+    background-color: white;
+}
+
+.btn-set .dash p{
+    color: #BB8A04;
+}
+.btn-set .staf p{
+    color: #BB8A04;
+
+}
+
+.btn-set .staf{
+    border: 2px solid #BB8A04;
+    background-color: white;
+}
+
+.btn-set a{
+    padding: 10px 20px;
+    background-color: #212121;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+.btn-set a img{
+    width:40px;
+    padding-right: 15px;
+}
+
+
+.page .left .profile .name{
+    color: white ;
+}
+
+.btn-set p{
+    color: white;
+}
+
+.btn-set a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+
+.left .lgout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left .lgout a{
+    text-decoration: none;
+    font: bold;
+    color: #BB8A04;
+    font-size: large;
+    border: 2px solid #BB8A04;
+    padding: 5px 50px;
+    border-radius: 20px;
+}
+
+
+
+
+.right{
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    position:relative;
+}
+
+.right-heading{
+    padding: 15px 15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    position: sticky;
+    top: 0; 
+    background-color: rgba(255, 255, 255, 0.669);
+    backdrop-filter: blur(15px);
+    z-index: 8;
+    
+}
+
+.right-side h1{
+    border-bottom: 2px solid #BB8A04;
+    margin: 0 20px;
+}
+
+.right-side .backbtn img{
+    height: 40px;
+    width:50px;
+ }
+
+
+.vogue {
+    width: 200px;
+}
+
+.right-side{
+    display: flex;
+    align-items: center;
+}
+
+
+.bars img{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.bars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    cursor: pointer;
+}
+
+
+
+
+
+@media screen and (max-width:1188px) {
+    .vogue {
+        animation: none;
+        width: 100px;
+    }
+    .right-side h1{
+        font-size: large;
+        margin: 0 10px ;
+    }
+
+    .right-side .backbtn img{
+        height: 30px;
+        width:40px;
+     }
+     
+    .left{
+        height: 94vh;
+        z-index: 60;
+        position: absolute;
+        margin-top: 55px;
+        border-radius: 0;
+    }
+ 
+    .right{
+        padding-left: 15px;
+    }
+
+    .bars img{
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+    
+}
+
+@media screen and (max-width:670px) {
+    .vogue {
+        animation: none;
+        width: 100px;
+    }
+    .right-side h1{
+        font-size: large;
+        margin: 0 10px ;
+    }
+
+
+    .left{
+        height: 94vh;
+        z-index: 60;
+        position: absolute;
+        margin-top: 55px;
+        border-radius: 0;
+    }
+ 
+    .right{
+        padding-left: 15px;
+    }
+
+    .bars img{
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+    }
+    
+}
+
+
+
+
+.profile-hidden{
+    filter:brightness(50%);
+    cursor:pointer;
+}
+
+.hidden{
+    display:none;
+}
+
+
+
+.inside-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin:auto; */
+}
+
+.market-table{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #BB8A04;
+    min-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    margin-top: 40px;
+    padding-bottom:10px;
+}
+
+.market-table-topic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.table-rows{
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+}
+
+.tab-row{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+/* .tab-row:hover{
+    transform: scale(1.1);
+} */
+
+
+.tab-row-label{
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+.tab-row-data{
+    font-size: 20px;
+    font-weight: 600;
+}

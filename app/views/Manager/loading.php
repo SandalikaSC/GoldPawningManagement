@@ -79,7 +79,8 @@
 <body>
     <section class="whole">
         <div class="add-success-box">
-            <p>Added Successfully</p>
+            <p>please Wait...</p>
+            <img src="<?php echo URLROOT?>/img/loading.gif" alt="">
             <a class="done-btn" href="<?php echo URLROOT ?>/staff">Done</a>
         </div>
     </section>

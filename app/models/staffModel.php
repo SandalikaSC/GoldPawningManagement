@@ -6,7 +6,7 @@ class staffModel extends Database
 {
     public function getStaffMember()
     {
-        $sql = 'select UserId, concat(First_Name," ",Last_Name) as Name, type as Role, Created_date as Date from user where UserId not like "MG%"  AND UserId not like "CU%" AND UserId not like "AD%"';
+        $sql = 'select UserId,concat(First_Name," ",Last_Name) as Name, type as Role, Created_date as Date from user where UserId not like "MG%"  AND UserId not like "CU%" AND UserId not like "AD%" AND UserId not like "OW%"';
         $this->query($sql);
         $result = $this->resultSet();
         if ($this->rowCount() > 0) {
@@ -43,57 +43,98 @@ class staffModel extends Database
         }
     }
 
-    public function emailExist($email)
+    public function emailExist($email, $userId = null)
     {
-        $sql1 = 'select email from user where email=?';
-
-        $this->query($sql1);
-        $this->bind(1, $email);
-
-        $result1 = $this->single();
-
-        if ($this->rowCount()) {
-            return true;
+        if (!empty($userId)) {
+            $sql = 'select email from user where email=? and userId != ?';
+            $this->query($sql);
+            $this->bind(1, $email);
+            $this->bind(2, $userId);
+            $result1 = $this->single();
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            $sql1 = 'select email from user where email=?';
+            $this->query($sql1);
+            $this->bind(1, $email);
+            $result1 = $this->single();
+
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
-    public function nicExist($nic)
+    public function nicExist($nic, $userId = null)
     {
-        $sql1 = 'select NIC from user where NIC=?';
+        if (!empty($userId)) {
+            $sql1 = 'select NIC from user where NIC=? and userId != ?';
 
-        $this->query($sql1);
-        $this->bind(1, $nic);
+            $this->query($sql1);
+            $this->bind(1, $nic);
+            $this->bind(2, $userId);
+            $result1 = $this->single();
 
-        $result1 = $this->single();
-
-        if ($this->rowCount()) {
-            return true;
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+
+            $sql1 = 'select NIC from user where NIC=?';
+
+            $this->query($sql1);
+            $this->bind(1, $nic);
+
+            $result1 = $this->single();
+
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
-    public function phoneExist($phone)
+    public function phoneExist($phone, $userId = null)
     {
-        $sql1 = 'select phone from phone where phone=?';
+        if (!empty($userId)) {
+            $sql1 = 'select phone from phone where phone=? and userId != ?';
+            $this->query($sql1);
+            $this->bind(1, $phone);
+            $this->bind(2, $userId);
+            $result1 = $this->single();
 
-        $this->query($sql1);
-        $this->bind(1, $phone);
-
-        $result1 = $this->single();
-
-        if ($this->rowCount()) {
-            return true;
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            $sql1 = 'select phone from phone where phone=?';
+
+            $this->query($sql1);
+            $this->bind(1, $phone);
+
+            $result1 = $this->single();
+
+            if ($this->rowCount()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
     public function addStaffMember($id, $fName, $lName, $gender, $nic, $dob, $line1, $line2, $line3, $mob, $mob2, $email, $role, $image, $hash)
     {
-        
+
         $sql = 'insert into user(UserId,email,password,type,verification_status,First_Name, Last_Name, Gender, NIC, DOB, Line1, Line2, Line3, image, Status,Created_By) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
         $this->query($sql);
@@ -126,13 +167,13 @@ class staffModel extends Database
         } else {
             $this->bind(13, $line3);
         }
-        
+
         $this->bind(14, $image);
         $this->bind(15, 1);
-        $this->bind(16,$_SESSION['user_id']);
-        $result=$this->execute();
+        $this->bind(16, $_SESSION['user_id']);
+        $result = $this->execute();
         if ($result) {
-              $result1='';
+            $result1 = '';
             if (!empty($mob2)) {
                 $sql1 = 'insert into phone (userId,phone) values (:userId,:mobile),(:userId,:home);';
                 $this->query($sql1);
@@ -140,14 +181,14 @@ class staffModel extends Database
                 $this->bind(":userId", $id);
                 $this->bind(":mobile", $mob);
                 $this->bind(":home", $mob2);
-                $result1=$this->execute();
+                $result1 = $this->execute();
             } else {
                 $sql1 = 'insert into phone (userId,phone) values (:userId,:mobile);';
                 $this->query($sql1);
 
                 $this->bind(":userId", $id);
                 $this->bind(":mobile", $mob);
-                $result1=$this->execute();
+                $result1 = $this->execute();
             }
             if ($result1) {
                 return $result and $result1;
@@ -163,7 +204,7 @@ class staffModel extends Database
 
     public function viewStaffMember($id)
     {
-        $sql="select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date,user.Created_By,user.last_edit, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
+        $sql = "select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date,user.Created_By,user.last_edit, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
         $this->query($sql);
         $this->bind(1, $id);
         $result = $this->resultSet();
@@ -172,21 +213,21 @@ class staffModel extends Database
     }
 
     public function deleteStaffMember($id)
-    {  
+    {
+
         $sql2 = "delete from phone where userId= ?";
         $this->query($sql2);
         $this->bind(1, $id);
         $result2 = $this->execute();
-        
-        $sql="delete from user where UserId=?";
+
+        $sql = "delete from user where UserId=?";
         $this->query($sql);
         $this->bind(1, $id);
         $result1 = $this->execute();
-        
 
         return $result1 and $result2;
-   }
-    
+    }
+
 
     public function loadProfilePicture($email)
     {
@@ -197,82 +238,113 @@ class staffModel extends Database
         return $result;
     }
 
+    public function getPasswords($userId)
+    {
 
-    public function getUserPassword($email){
-       $sql='select password from user where email= ? limit 1';
-       $this->query($sql);
-       $this->bind(1,$email);
-       $result=$this->single();
-       return $result;
-
+        $sql = "select password from user where userId != ?";
+        $this->query($sql);
+        $this->bind(1, $userId);
+        $passwords = $this->resultSet();
+        return $passwords;
     }
 
-    public function setPersonalInfo($id,$fName, $lName, $gender, $line1, $line2, $line3, $mob, $mob2, $image){
-        // $sql = 'insert into user(First_Name, Last_Name, Gender, DOB, Line1, Line2, Line3, image) values (?,?,?,?,?,?,?,?) where userId=?';
-        $sql='update user set First_Name=?,Last_Name=?,Gender=?,Line1=?,Line2=?,Line3=?,image=? where userId=?';
+
+    public function getUserPassword($email)
+    {
+        $sql = 'select password from user where email= ? limit 1';
         $this->query($sql);
-        
-        $this->bind(8, $id);
+        $this->bind(1, $email);
+        $result = $this->single();
+        return $result;
+    }
+
+    public function getUserPhoneNumbers($userId)
+    {
+        $sql = 'select userId,phone from phone where userId=?';
+        $this->query($sql);
+        $this->bind(1, $userId);
+        $phoneNumbers = $this->resultSet();
+        if ($phoneNumbers) {
+            return $phoneNumbers;
+        } else {
+            return 0;
+        }
+    }
+
+    public function setPersonalInfo($id, $fName, $lName, $gender, $line1, $line2, $line3, $mob2, $image, $curr_mob = null, $curr_mob2 = null)
+    {
+        // $sql = 'insert into user(First_Name, Last_Name, Gender, DOB, Line1, Line2, Line3, image) values (?,?,?,?,?,?,?,?) where userId=?';
+        $sql = 'update user set First_Name=?,Last_Name=?,Gender=?,Line1=?,Line2=?,Line3=?,image=?,last_edit=? where userId=?';
+        $this->query($sql);
+
+        $this->bind(9, $id);
         $this->bind(1, $fName);
         $this->bind(2, $lName);
         $this->bind(3, $gender);
-        
-        
+
+
         if ($line1 == "") {
-            $this->bind(4,NULL);
+            $this->bind(4, NULL);
         } else {
             $this->bind(4, $line1);
         }
-        
+
         if ($line2 == "") {
             $this->bind(5, NULL);
         } else {
             $this->bind(5, $line2);
         }
-        
+
         if ($line3 == "") {
             $this->bind(6, NULL);
         } else {
             $this->bind(6, $line3);
         }
-        
+
         $this->bind(7, $image);
-        
-        $result=$this->execute();
+
+        // Set the timezone to Sri Lanka
+        date_default_timezone_set('Asia/Colombo');
+
+        // Get the current timestamp in Sri Lanka
+        $current_timestamp = time();
+
+        // Format the timestamp into a readable string
+        $formatted_timestamp = date('Y-m-d H:i:s', $current_timestamp);
+
+        $this->bind(8, $formatted_timestamp);
+
+        $result = $this->execute();
 
         if ($result) {
-              $result1='';
-            if (!empty($mob2)) {
-                $sql='select phone from phone where userId=?';
+            $result1 = '';
+
+            if ($curr_mob2 == null) {
+                $sql = 'insert into phone (userId,phone) values (?,?)';
                 $this->query($sql);
                 $this->bind(1, $id);
-                $bothNum=$this->resultSet();
-
-
-                // print_r($bothNum);
+                $this->bind(2, $mob2);
+                $this->execute();
+                $result1 = '1';
+            } else if ($curr_mob2 == "empty") {
                 $sql1 = 'update phone set phone=? where userId=? and phone=?';
                 $this->query($sql1);
-                $this->bind(1, $mob);
-                $this->bind(2, $id);
-                $this->bind(3, $bothNum[1]->phone);
-                $mobileNumber=$this->execute();
-
-                $sql2 = 'update phone set phone=? where userId=? and phone=?';
-                $this->query($sql2);
                 $this->bind(1, $mob2);
                 $this->bind(2, $id);
-                $this->bind(3, ($bothNum[0])->phone);
-                $additionalNumber=$this->execute();
-                  
-                  $result1='1';
+                $this->bind(3, "");
+                $this->execute();
+                $result1 = '1';
             } else {
-                $sql1 = 'update phone set phone=:mobile where userId=:userId';
+                $sql1 = 'update phone set phone=? where userId=? and phone=?';
                 $this->query($sql1);
-
-                $this->bind(":mobile", $mob);
-                $this->bind(":userId", $id);
-                $result1=$this->execute();
+                $this->bind(1, $mob2);
+                $this->bind(2, $id);
+                $this->bind(3, $curr_mob2);
+                $this->execute();
+                $result1 = '1';
             }
+            $result1 = '1';
+
             if ($result1) {
                 return $result and $result1;
             } else {
