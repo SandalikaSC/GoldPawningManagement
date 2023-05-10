@@ -41,7 +41,17 @@
                                     echo URLROOT . '/ownerDashboard';
                                 } else if (substr($_SESSION['user_id'], 0, 2) === 'MG') {
                                     echo URLROOT . '/mgDashboard';
-                                } ?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                                }else if (substr($_SESSION['user_id'], 0, 2) === 'VK') {
+                                    echo URLROOT . '/VKDashboard';
+                                } else if (substr($_SESSION['user_id'], 0, 2) === 'GA') {
+                                    echo URLROOT . '/goldAppraiser/dashboard';
+                                } else if (substr($_SESSION['user_id'], 0, 2) === 'CU') {
+                                    echo URLROOT . '/customerDashboard/dashboard';
+                                } else if (substr($_SESSION['user_id'], 0, 2) === 'AD') {
+                                    echo URLROOT . '/Admin/AdminDash ';
+                                }  else if (substr($_SESSION['user_id'], 0, 2) === 'PO') {
+                                    echo URLROOT . '/pawningOfficerDashboard/dashboard';
+                                }  ?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                     <h1>
                         My Profile
                     </h1>
