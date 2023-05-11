@@ -26,7 +26,70 @@
         </div>
 
         <main>
-            <div class="left-wrapper">
+            <div class="main-container">
+                
+                <div class="pawn-details">
+                    <div class="div-image">
+                        <img src="<?php echo $data['pawn_item']->image; ?>" alt="">
+                    </div>
+                    <div class="div-details">
+                        <div class="div-field">
+                            <label>Article ID</label>
+                            <div><?php echo $data['pawn_item']->Article_Id;?></div>
+                        </div>
+                        <div class="div-field">
+                            <label>Current Pawn ID</label>
+                            <div><?php echo $data['pawn_item']->Pawn_Id;?></div>
+                        </div>
+                        <div class="div-field">
+                            <label>Article Type</label>
+                            <div><?php echo $data['pawn_item']->Type;?></div>
+                        </div>
+                        <div class="div-field">
+                            <label>Current Pawn Date</label>
+                            <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->Pawn_Date));?></div>
+                        </div>
+                        <div class="div-field">
+                            <label>Current End Date</label>
+                            <div><?php echo date('Y-m-d', strtotime($data['pawn_item']->End_Date));?></div>
+                        </div>
+                        <div class="loan-details">
+                            <label>Full Loan Amount</label>
+                            <div><?php echo 'Rs. ' . $data['pawn_item']->Amount;?></div>
+                        </div>
+                        <div class="loan-details">
+                            <label>Remaining Loan Amount</label>
+                            <div><?php echo 'Rs. ' . sprintf('%.2f', $data['remaining_loan']);?></div>
+                        </div>
+                    </div>                                   
+                </div>
+
+                <form action="<?php echo URLROOT . '/pawnings/renew_pawn/' . $data['pawn_item']->Pawn_Id; ?>" method="post">
+                    <div class="div-button">
+                        <button type="submit" class="main-button">Re-pawn</button>
+                    </div> 
+                </form>
+                 
+                <!-- <div class="div-payment">
+                    <div class="form-title">
+                        Payment Details
+                    </div>
+                    <div class="div-form">
+                        <form action="" method="post">
+                            <div class="input-container">
+                                <label>Interest Amount</label>
+                                <input type="text" name="amount" class="input-field" value="" placeholder="Interest Amount">
+                            </div>
+                            <div class="input-container">
+                                <label>Date</label>
+                                <input type="date" name="date" class="input-field" value="" placeholder="Date">
+                            </div>
+                        </form>
+                    </div>
+                </div> -->
+            </div>
+            
+            <!-- <div class="left-wrapper">
                 <div class="div-details">
                     <div class="div-img">
                         <img src="<?php echo URLROOT . '/img/bracelet_01.jpg'; ?>" alt="">
@@ -106,27 +169,13 @@
                         </form>
                     </div>
                 </div>
-            </div>          
+            </div>           -->
         </main>        
     </div>
         
     
     <script type="text/javascript">
-        // const realFileBtn = document.getElementById("real-file");
-        // const customBtn = document.getElementById("custom-button");
-        // const customTxt = document.getElementById("custom-text");
-
-        // customBtn.addEventListener("click", function() {
-        //     realFileBtn.click();
-        // });
-
-        // realFileBtn.addEventListener("change", function() {
-        //     if(realFileBtn.value) {
-        //         customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-        //     } else {
-        //           customTxt.innerHTML = "Image";
-        //     }
-        // });
+        
     </script>
 
 </body>

@@ -165,6 +165,8 @@
             }
         }
 
+
+        // Function to release a pawned article when the loan has paid completely
         public function release_pawn($id) {
             // Get pawned item
             $pawned_item = $this->pawningModel->getPawnItemById($id);
@@ -206,17 +208,6 @@
             }            
         }
 
-        public function renew_pawn($id) {
-            // Get pawned item
-            $pawned_item = $this->pawningModel->getPawnItemById($id);
-
-            $data = [
-                'pawn_item' => $pawned_item
-            ];
-
-            $this->view('PawnOfficer/renew_pawn', $data);
-        }
-
         public function confirm_release($id) {
             $pawned_item = $this->pawningModel->getPawnItemById($id);
             $remaining_loan = $this->getRemainingLoan($id);
@@ -248,6 +239,117 @@
             }                   
         }
 
+
+
+        // Function to re-pawn an article after the end date
+        public function renew_pawn($id) {
+            // Get pawned item
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $remaining_loan = $this->getRemainingLoan($id);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan
+                ];
+
+                redirect('/pawnings/pay_interest/'. $data['pawn_item']->Pawn_Id);
+            } else {
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan
+                ];
+                $this->view('PawnOfficer/renew_pawn', $data);  
+            } 
+        }        
+
+        // Function for paying the interest for the remaining loan when re-pawning
+        public function pay_interest($id) {
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $remaining_loan = $this->getRemainingLoan($id);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan,
+                    'paid_amount' => trim($_POST['paying-amount']),
+                    'date' => trim($_POST['date']),
+                ];
+
+                if($data['pawn_item']->End_Date > $data['date']) {
+                    flash('notification', 'Cannot be re-pawned until the end date', 'invalid');
+                    $this->view('PawnOfficer/pay_interest', $data);
+                }
+
+                if($data['paid_amount'] == 0.00) {
+                    flash('notification', 'Cannot be re-pawned', 'invalid');
+                    $this->view('PawnOfficer/pay_interest', $data);
+                }
+
+                if(($data['paid_amount'] > 0.00) && ($data['pawn_item']->End_Date < $data['date'])) {
+                    redirect('/pawnings/confirm_repawn/'. $data['pawn_item']->Pawn_Id);
+                }
+            } else {
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan,
+                    'paid_amount' => '',
+                    'date' => '',
+                ];
+    
+                $this->view('PawnOfficer/pay_interest', $data);
+            }            
+        }
+
+        // Function for article re-pawning
+        public function confirm_repawn($id) {
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $remaining_loan = $this->getRemainingLoan($id);
+            
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan,
+                    'paying_amount' => '',
+                    'employee' => $_SESSION['user_id']
+                ];
+
+                $data['paying_amount'] = sprintf('%.2f', ceil($data['remaining_loan'] * $data['pawn_item']->Interest / 100));
+
+                if(isset($_POST['confirm'])) {
+                    $payment_success = $this->pawningModel->payInterest($data);
+                    if($payment_success) {
+                        $repawn_success = $this->pawningModel->repawnArticle($data);
+
+                        if($repawn_success) {
+                            $new_pawn_id = $this->pawningModel->getPawnByArticleID($data['pawn_item']->Article_Id);
+                            $this->view('PawnOfficer/repawn_success'); 
+                        }
+                    }
+                }
+                if(isset($_POST['cancel'])) {
+                    redirect('/pawnings/payment_details/'. $data['pawn_item']->Pawn_Id);
+                }
+            } else {
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan,
+                    'paying_amount' => '',
+                    'employee' => ''
+                ];
+                $this->view('PawnOfficer/confirm_repawn', $data);   
+            } 
+        }
+
         public function getRemainingLoan($id) {
             $pawned_item = $this->pawningModel->getPawnItemById($id);
             $payment_history = $this->pawningModel->getPaymentsByPawnID($id);
@@ -275,39 +377,6 @@
 
             return $remaining_loan;
         }
-
-        // public function showConfirmMessage($validation_id, $full_loan, $payment_method) {
-        //     $validation_details = $this->pawningModel->getValidationDetailsByID($validation_id);
-        //     $customer = $this->pawningModel->getCustomerByID($validation_details->customer);
-
-        //     $data = [
-        //         'validation_details' => $validation_details,
-        //         'customer_details' => $customer,
-        //         'full_loan' => $full_loan,
-        //         'payment_method' => $payment_method,
-        //         'pawn_officer' => $_SESSION['user_id']
-        //     ];
-
-        //     // $this->view('PawnOfficer/confirm_pawn_message', $data);
-        //     if($_SERVER['REQUEST_METHOD'] == 'POST') {                
-        //         // Sanitize POST data
-        //         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-        //         if(isset($_POST['confirm'])) {
-        //             $pawn_article = $this->pawningModel->pawnArticle($data);
-    
-        //             if($pawn_article) {
-        //                 redirect('/pawningOfficerDashboard/dashboard');
-        //             } else {
-        //                 flash('register', 'Something went wrong. Please try again.', 'invalid');
-        //                 $this->view('PawnOfficer/confirmPawn', $data); 
-        //             }
-        //         }
-                
-        //     } else {
-        //         $this->view('PawnOfficer/confirm_pawn_message', $data);
-        //     }
-        // }
 
         public function confirm_pawn($id) {
             // Get validation details of the article

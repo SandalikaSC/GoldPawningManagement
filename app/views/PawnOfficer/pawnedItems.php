@@ -68,7 +68,7 @@
         <main>
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" placeholder="Enter Article ID">
+                    <input type="text" placeholder="Enter Article ID/Customer ID">
                     <a href="#">
                     <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
                     </a>                

@@ -125,3 +125,26 @@ main .main-content .div-details .div-buttons button:hover {
     opacity: 0.7;
 }
 
+.invalid {
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(255, 14, 14);
+    background: rgb(255 199 199);
+    margin: auto;
+    font-size: 1vw;
+}
+
+.success {
+    width: 80%;
+    border-radius: 10px;
+    text-align: center;
+    color: #836000;
+    background: #f9dc8b;
+    margin: auto;
+}
+
+.msg-flash {
+    margin-bottom: 10px;
+}
+

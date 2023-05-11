@@ -24,6 +24,8 @@
 }
 
 .wrapper .message-wrapper {
+    width: 500px;
+    text-align: center;
     background: #fff;
     border: 3px solid #bb8a04;
     border-radius: 20px;
