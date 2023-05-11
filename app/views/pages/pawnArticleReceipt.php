@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo SITENAME ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/pawnArticleReceipt.css" />
 </head>
 
 <body>
     <div class="print-btn">
-        <a href="<?php echo URLROOT ?>/mgPawnArticles/viewPawnedItem/<?php echo $data[0]->Article_Id?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+        <a href="<?php if(substr($data[0]->Status,0,1)=='A' || substr($data[0]->Status,0,1)=='a') echo URLROOT."/mgPawnArticles/viewPawnedItem/". $data[0]->Article_Id;  else if(substr($data[0]->Status,0,1)=='P' || substr($data[0]->Status,0,1)=='p') echo URLROOT."/mgAuction/viewAuctionItem/". $data[0]->Article_Id;?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
         <button id="generate-pdf">Print Me</button>
     </div>
@@ -28,59 +29,86 @@
             <div class="article-des">
                 <div class="article-info">
                     <div class="field-name">Customer ID</div>
-                    <div class="field-value"><?php echo $data[0]->userId ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->userId)) echo $data[0]->userId;
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Article ID</div>
-                    <div class="field-value"><?php echo $data[0]->Article_Id ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Article_Id)) echo $data[0]->Article_Id;
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Pawn ID</div>
-                    <div class="field-value"><?php echo $data[0]->Pawn_Id ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Pawn_Id)) echo $data[0]->Pawn_Id;
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Loan ID</div>
-                    <div class="field-value"><?php echo $data[0]->Loan_Id ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Loan_Id)) echo $data[0]->Loan_Id;
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Karatage</div>
-                    <div class="field-value"><?php echo $data[0]->Karatage ?>K</div>
+                    <div class="field-value"><?php if (!empty($data[0]->Karatage)) echo $data[0]->Karatage . 'k';
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Weight</div>
-                    <div class="field-value"><?php echo $data[0]->Weight ?>g</div>
+                    <div class="field-value"><?php if (!empty($data[0]->Weight)) echo $data[0]->Weight . 'g';
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Type</div>
-                    <div class="field-value"><?php echo $data[0]->Type ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Type)) echo $data[0]->Type;
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Karatage Price</div>
-                    <div class="field-value">Rs. <?php echo $data[0]->Karatage_Price ?>/=</div>
+                    <div class="field-value"><?php if (!empty($data[0]->Karatage_Price)) echo 'Rs. ' . $data[0]->Karatage_Price . '/=';
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Loan Interest</div>
-                    <div class="field-value"><?php echo $data[0]->Interest ?>%</div>
+                    <div class="field-value"><?php if (!empty($data[0]->Interest)) echo $data[0]->Interest . '%';
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Pawned Date</div>
-                    <div class="field-value"><?php echo $data[0]->Pawn_Date ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Pawn_Date)) echo $data[0]->Pawn_Date;
+                                                else echo "Not Available"; ?></div>
                 </div>
+                <?php if (!empty($data[0]->auctioned_date)) { ?>
+                    <div class="article-info">
+                        <div class="field-name">Auctioned Date</div>
+                        <div class="field-value"><?php echo $data[0]->auctioned_date; ?></div>
+                    </div>
+                <?php } ?>
+
+                <?php if (!empty($data[0]->auctioned_time)) { ?>
+                    <div class="article-info">
+                        <div class="field-name">Auctioned Time</div>
+                        <div class="field-value"><?php echo $data[0]->auctioned_time; ?></div>
+                    </div>
+                <?php } ?>
                 <div class="article-info">
                     <div class="field-name">Repay Method</div>
-                    <div class="field-value"><?php echo $data[0]->Repay_Method ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Repay_Method)) echo $data[0]->Repay_Method;
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Full Loan Amount</div>
-                    <div class="field-value">Rs. <?php echo $data[0]->Estimated_Value ?>/=</div>
+                    <div class="field-value"><?php if (!empty($data[0]->Estimated_Value)) echo 'Rs. ' . $data[0]->Estimated_Value . '/=';
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Registerd By</div>
-                    <div class="field-value"><?php echo $data[0]->Officer_Id ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Officer_Id)) echo $data[0]->Officer_Id;
+                                                else echo "Not Available"; ?></div>
                 </div>
                 <div class="article-info">
                     <div class="field-name">Validated By</div>
-                    <div class="field-value"><?php echo $data[0]->Appraiser_Id ?></div>
+                    <div class="field-value"><?php if (!empty($data[0]->Appraiser_Id)) echo $data[0]->Appraiser_Id;
+                                                else echo "Not Available"; ?></div>
                 </div>
             </div>
 
@@ -140,7 +168,8 @@
                     </div>
                     <div class="data-field">
                         <div class="field">Due Date :</div>
-                        <div class="value"><?php echo $data[0]->End_Date ?></div>
+                        <div class="value"><?php if (!empty($data[0]->End_Date)) echo $data[0]->End_Date;
+                                            else echo "Not Available"; ?></div>
                     </div>
                 </div>
             </section>

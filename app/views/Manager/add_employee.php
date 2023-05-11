@@ -37,9 +37,9 @@
         <?php
         if (!empty($_SESSION['message']) and $_SESSION['check']==0) {
 
-            include_once '../pages/error.php';
+            include_once 'error.php';
         }else if(!empty($_SESSION['message']) and $_SESSION['check']==1){
-            include_once '../pages/ok.php';
+            include_once 'ok.php';
         }
         ?>
 

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/edit-profile.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/authentication-for-editprofile.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/manualSetEmail.css">

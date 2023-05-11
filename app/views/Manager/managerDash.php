@@ -161,7 +161,8 @@
                                     <div class="vk-count"><?php if ($data[4][6]->lockers) echo $data[4][6]->lockers;
                                                             else echo 0; ?></div>
                                     <div class="vk-count">Out Of</div>
-                                    <div class="vk-count">100</div>
+                                    <div class="vk-count"><?php if ($data[4][10]->tot_lockers) echo $data[4][10]->tot_lockers;
+                                                            else echo 0; ?></div>
                                 </div>
                             </div>
                         </div>

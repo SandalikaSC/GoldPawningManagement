@@ -173,7 +173,7 @@ body{
   }
 
   .search-bar input[type=text]:focus {
-    width: 80%;
+    width: 60%;
   }
 
 
@@ -374,4 +374,12 @@ tr:hover td{
     .table-section{
         padding:0;
     }
+}
+
+#create-report{
+    padding:10px;
+    color: #000000;
+    font-size: 20px;
+    background-color: #BB8A04;
+    border-radius: 5px;
 }

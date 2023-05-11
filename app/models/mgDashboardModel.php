@@ -23,7 +23,7 @@ class MgDashboardModel extends Database
     public function loadComplaints()
     {
         // $sql = 'select CID,Date,Description,UserID,Status from complaint order by CID desc';
-        $sql = 'select c.CID,c.Date,c.Description,c.UserID,c.Status,concat(u.First_Name," ",u.Last_Name) as Name,u.image from complaint c inner join user u on c.UserID=u.UserId order by c.Date';
+        $sql = 'select c.CID,c.Date,c.Description,c.UserID,c.Status,concat(u.First_Name," ",u.Last_Name) as Name,u.image from complaint c inner join user u on c.UserID=u.UserId order by c.Date desc';
         $this->query($sql);
         $result = $this->resultSet();
         return $result;
@@ -104,7 +104,7 @@ class MgDashboardModel extends Database
 
         $sql7 = "select count(distinct lockerNo) as lockers from reserves";
         $this->query($sql7);
-        $LC = $this->single();
+        $LC_allocated = $this->single();
 
         $sql8 = "select count(Type) as online_payments from payment where Type=?";
         $this->query($sql8);
@@ -120,7 +120,11 @@ class MgDashboardModel extends Database
         $this->query($sql10);
         $total_payments = $this->single();
 
-        return array($CUS, $VK, $GA, $PO, $PAWN, $AUC, $LC, $online_payments, $cash_payments, $total_payments);
+         $sql11 = "select count(distinct lockerNo) as tot_lockers from locker";
+        $this->query($sql11);
+        $LC_tot = $this->single();
+
+        return array($CUS, $VK, $GA, $PO, $PAWN, $AUC, $LC_allocated, $online_payments, $cash_payments, $total_payments,$LC_tot);
     }
 
 

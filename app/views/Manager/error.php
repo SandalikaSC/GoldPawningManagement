@@ -1,3 +1,5 @@
+<link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
+<title><?php echo SITENAME?></title>
 <style>
     .side-message {
         position: absolute;

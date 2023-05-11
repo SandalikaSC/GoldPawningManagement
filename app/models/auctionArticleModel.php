@@ -19,7 +19,7 @@ class auctionArticleModel extends Database
     public function viewAuctionArticle($article_id)
     {
 
-        $sql1='select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.Karatage_Price,a.image,p.Pawn_Id,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.userId,p.Appraiser_Id,p.Officer_Id,p.auctioned_date,p.auctioned_time,p.WarningOne,p.WarningTwo,l.Loan_Id,l.Amount,l.Interest,l.Repay_Method,l.monthly_installment from article a inner join pawn p on a.Article_Id=p.Article_Id inner join loan l on p.Pawn_Id=l.Pawn_Id where a.Article_Id=?';
+        $sql1='select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.Karatage_Price,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.userId,p.Appraiser_Id,p.Officer_Id,p.auctioned_date,p.auctioned_time,p.WarningOne,p.WarningTwo,l.Loan_Id,l.Amount,l.Interest,l.Repay_Method,l.monthly_installment from article a inner join pawn p on a.Article_Id=p.Article_Id inner join loan l on p.Pawn_Id=l.Pawn_Id where a.Article_Id=?';
         $this->query($sql1);
         $this->bind(1, $article_id);
         $result1 = $this->single();

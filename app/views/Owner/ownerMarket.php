@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/ownerMarket.css">
 
 </head>
@@ -25,7 +26,7 @@
 
                 </div>
                 <div class="name">
-                    <p><b><i>Hi...</i></b><?php echo $_SESSION['user_name'] ?></p>
+                    <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
 
                 </div>
             </div>

@@ -2,7 +2,7 @@
 class lockerModel extends Database{
 
 public function loadLockers(){
-    $sql='select lockerNo,Status,Key_Status,No_of_Articles from locker';
+    $sql='select lockerNo,Status,Key_Status,No_of_Articles from locker order by lockerNo';
     $this->query($sql);
     $lockers=$this->resultSet();
     if($lockers){

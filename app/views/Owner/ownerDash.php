@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/owner-dashboard.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js" integrity="sha512-t2JWqzirxOmR9MZKu+BMz0TNHe55G5BZ/tfTmXMlxpUY8tsTo3QMD27QGoYKZKFAraIPDhFv56HLdN11ctmiTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -212,7 +213,8 @@
                                         <div class="vk-count"><?php if ($data[4][6]->lockers) echo $data[4][6]->lockers;
                                                                 else echo 0; ?></div>
                                         <div class="vk-count">Out Of</div>
-                                        <div class="vk-count">100</div>
+                                        <div class="vk-count"><?php if ($data[4][10]->tot_lockers) echo $data[4][10]->tot_lockers;
+                                                            else echo 0; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -367,33 +369,33 @@
                 label: 'Monthly Income',
                 data: amountsIncome,
                 backgroundColor: [
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)'
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04'
 
                 ],
                 borderColor: [
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)',
-                    'rgba(255, 99, 13, 0.2)'
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04',
+                    '#BB8A04'
 
                 ],
 
@@ -402,32 +404,32 @@
                 label: 'Monthly Expenditure',
                 data: amountsExpen,
                 backgroundColor: [
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
                 ],
                 borderColor: [
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
-                    'rgba(54, 16, 235, 0.2)',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
+                    'black',
                 ],
 
                 fill: false

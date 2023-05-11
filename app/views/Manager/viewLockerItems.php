@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="locker-info">
                                         <div class="field-name">Key Status</div>
-                                        <div class="field-value change-color"><?php if ($data[0][0]->Key_Status == 1) echo "Delivered";
+                                        <div class="field-value <?php echo ($data[0][0]->Key_Status == 1) ? 'change-color':'red-color'?>"><?php if ($data[0][0]->Key_Status == 1) echo "Delivered";
                                                                                 else echo "Not Delivered"; ?></div>
                                     </div>
 

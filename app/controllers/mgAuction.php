@@ -4,13 +4,10 @@ class mgAuction extends controller
 
    public function index()
    {
-
       isLoggedIn();
-
       $auction = $this->model("auctionArticleModel");
       $result = $auction->getAuctionArticles();
       $this->view("/Manager/auction_dashboard", $result);
-      // $this->view("/Manager/auction_dashboard");
    }
 
    public function viewAuctionItem($article_id)
@@ -46,9 +43,22 @@ class mgAuction extends controller
 
       }else{
          $this->view("/Manager/auction_dashboard", 0);
-
       }
       
+   }
+
+
+   public function generateAuctionReport($article_id)
+   {
+      isLoggedIn();
+      $auction = $this->model("auctionArticleModel");
+      $result = $auction->viewAuctionArticle($article_id);
+      $sum = 0;
+      foreach ($result[1] as $row) {
+         $sum = $sum + $row->Amount;
+      }
+      $result[] = $sum;
+      $this->view("/pages/pawnArticleReceipt", $result);
    }
 }
 ?>

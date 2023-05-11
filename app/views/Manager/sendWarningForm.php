@@ -1,3 +1,6 @@
+<link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
+<title><?php echo SITENAME?></title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 

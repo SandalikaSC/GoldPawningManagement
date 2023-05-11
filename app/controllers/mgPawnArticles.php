@@ -293,7 +293,7 @@ class mgPawnArticles extends controller
       }
    }
 
-   public function generateReport($article_id)
+   public function generatePawnReport($article_id)
    {
       isLoggedIn();
       $pawn = $this->model("pawnArticleModel");

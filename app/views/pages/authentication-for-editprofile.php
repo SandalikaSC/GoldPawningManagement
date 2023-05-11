@@ -1,3 +1,6 @@
+<link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
+<title><?php echo SITENAME?></title>
+
 <div style="display:none;" class="auth-page" id="popup-form">
 
     <div class="content">

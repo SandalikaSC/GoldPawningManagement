@@ -323,6 +323,14 @@ body{
    margin-bottom: 5px;
 }
 
+.topic-income button{
+    background-color: #BB8A04;
+    padding:5px;
+    border-radius: 5px;
+    color: white;
+}
+
+
 .topic-gold-rates{
     display: flex;
     font-weight: bold;

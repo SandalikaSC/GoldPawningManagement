@@ -1,3 +1,6 @@
+<link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
+<title><?php echo SITENAME?></title>
+
 <style>
     .side-message {
         position: absolute;
@@ -54,8 +57,7 @@
     }
 </style>
 
-<!-- <link rel="stylesheet" href="public/stylesheets/resourceCreator/rightAlert.css">
-<script defer src="public/javascripts/rightAlert.js"></script> -->
+
 <div style="overflow-x: hidden; z-index: 30;">
     <section class="side-message" id="message-main">
         <div class="message-content" id="message-content">
