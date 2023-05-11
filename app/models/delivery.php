@@ -8,10 +8,10 @@ class delivery
         $this->db = new Database;
     }
 
-    public function getDeliveryByReserveId($reserveId)
+    public function getDeliveryByLocker($locker)
     {
-        $this->db->query('SELECT * FROM delivery where Allocate_Id=:reserveId');
-        $this->db->bind(':reserveId', $reserveId);
+        $this->db->query('SELECT * FROM delivery where lockerNo=:locker');
+        $this->db->bind(':locker', $locker);
         $results = $this->db->single();
 
         return $results;

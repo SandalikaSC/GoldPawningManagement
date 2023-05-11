@@ -12,183 +12,105 @@
                 <a href="<?php echo URLROOT ?>/CustomerLocker" id="back">
                     <img class="back" src="<?php echo URLROOT ?>/img/back.png" alt="back">
                 </a>
-                <h1 id="title">Article</h1>
+                <h1 id="title">Locker 1</h1>
             </div>
             <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
         </div>
 
     </div>
     <div class="content">
-        <div class="locker-item">
-            <div class="jewellery-card">
-                <div class="jewellery-img">
-                    <div class="locker-no">
-                        <h2 class="no"><?= str_pad($data['locker']->lockerNo, 2, '0', STR_PAD_LEFT) ?></h2>
-                    </div>
-                    <?php
-                    $finfo = finfo_open();
-                    $imageType = finfo_buffer($finfo, $data['article']->image, FILEINFO_MIME_TYPE);
-                    finfo_close($finfo);
+        <div class="nxt">
+            <?php if (!empty($data['currentReservations'])) : ?> 
 
-                    ?>
-                    <img src="<?php if (empty($data['article']->image)) {
-                                    echo URLROOT . "/img/harper-sunday-I89WziXZdVc-unsplash.jpg";
-                                } else {
-                                    echo  "data:image/.'$imageType'.;charset=utf8;base64," . base64_encode($data['article']->image);
-                                } ?>
-                                    " alt="" class="jw-img">
-                </div>
-                <div class="jw-details">
-                    <div class="jw-date">
+                <?php if ($data['extend'] == 1) : ?>
 
-                        <?php if ($data['reservation']->Retrive_status !== 1) : ?>
+                    <a href="<?php echo URLROOT ?>/CustomerLocker/viewExtend/<?php echo $data['locker'] ?>">Extend Duration</a>
 
+            <?php endif;
+            endif ?>
 
-                            <?php $interval = date_diff(date_create($data['reservation']->Retrieve_Date), date_create());
-                            $days_diff = $interval->days * ($interval->invert ? -1 : 1);
+        </div>
+        <div class="nxt-page">
+            <div class="locker-item">
+                <div class="locker-details">
+                    <div class="locker"><label for=""><?php echo "Locker " . $data['locker'] ?></label></div>
+                    <div class="locker-articles">
 
-                            ?>
-                            <div class="jw-date-name">
-                                <label>Reserved till</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Retrieve_Date)) ?></label>
-                            </div>
-                            <div class="jw-date-name">
+                        <?php
+                        if (empty($data['currentReservations'])) : ?>
 
-                                <label>Remaining</label>
-                                <label class="jw-dt">
-                                    <?php echo ($days_diff < 0 ? -1 * $days_diff . " days"  : $days_diff . " days ago"); ?>
+                            <label for="">Locker is empty</label>
 
-                                </label>
-                            </div>
-                            <?php if ($days_diff > 0) : ?>
-                                <?php if (!empty($data['reservation']->finePaidTill)) : ?>
-                                    <div class="jw-date-name">
-                                        <label>Fine Paid till</label>
-                                        <label class="jw-dt"><?php echo $data['reservation']->finePaidTill ?></label>
-                                    </div>
+                            <?php else :
+                            foreach ($data['currentReservations'] as $reservation) : ?>
+                                <div class="article">
+                                    <img src="<?php echo  $reservation->articleIMG ?>" alt="" class="article-pic">
 
-                                <?php endif; ?>
-                                <div class="jw-date-name">
-                                    <label class="status tag-overdue">Overdue</label>
                                 </div>
-
-                            <?php endif; ?>
-                        <?php else : ?>
-                            <div class="jw-date-name">
-                                <label>Reserved</label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Date)) ?></label>
-                            </div>
-                            <div class="jw-date-name">
-                                <label>Retrieved </label>
-                                <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Deallocated_Date)) ?></label>
-                            </div>
-
-
-                            <div class="jw-date-name">
-                                <label class="status tag-auctioned">Retrieved</label>
-                            </div>
-
-
-
-
-                        <?php endif; ?>
-
+                        <?php endforeach;
+                        endif ?>
                     </div>
-                </div>
 
+                </div>
+                <div class="card">
+
+                    <h2>Reservation</h2>
+                    <?php
+                    if (empty($data['currentReservations'])) : ?>
+
+                        <label for="">No reservations</label>
+
+                    <?php else :  ?>
+                        <div class="details">
+                            <label for="">Reservation Date</label>
+                            <label for=""><?php echo  date("Y M d", strtotime($data['currentReservations'][0]->Date)); ?></label>
+                            <label for="">End Date</label>
+                            <label for=""><?php echo  date("Y M d", strtotime($data['currentReservations'][0]->Retrieve_Date)); ?></label>
+                            <label for="">Time remaining</label>
+                            <label for="" class="<?php echo   $data['tag'] ?>"><?php echo $data['timeremain'] ?></label>
+                            <label for="">Key Status</label>
+                            <div><label for="" class="tag black"><?php if ($data['currentReservations'][0]->Key_Status == 1) {
+                                                                        echo "Released";
+                                                                    } elseif ($data['currentReservations'][0]->Key_Status == 0) {
+                                                                        if ($data['delivery'][0]->Status = 1) {
+                                                                            echo "Deliverd";
+                                                                        } else {
+                                                                            echo "Not Deliverd";
+                                                                        }
+                                                                    } ?></label></div>
+                            <label for="">Key Released</label>
+                            <div><label for="" class=""><?php echo  date("Y M d", strtotime($data['currentReservations'][0]->Key_released_Date)); ?></label></div>
+                        </div>
+                    <?php endif ?>
+
+
+
+                </div>
             </div>
 
-        </div>
-        <div class="item-details">
-            <!-- <div class="article-details"> -->
-            <div class="info-div">
+            <div class="history-card">
                 <h2 class="sub-title">
-                    Article Details
-                </h2>
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Article Id</label>
-                        <label class="jw-dt"><?= $data['article']->Article_Id ?></label>
-                    </div>
+                    Payment History </h2>
+
+                <div class="tble-row">
+                    <label>Pay ID</label>
+                    <label>Paid Date</label>
+                    <label> Amount</label>
+                    <label> Type</label>
 
                 </div>
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Estimate value</label>
-                        <label class="jw-dt"><?= 'Rs.' . $data['article']->Estimated_Value ?></label>
+                <?php foreach ($data['currentpayment'] as $paymnet) : ?>
+                    <div class="tble-row ">
+                        <label><?= $paymnet->PID ?></label>
+                        <label><?= date("Y-m-d", strtotime($paymnet->Date)) ?></label>
+                        <label><?= 'Rs. ' . $paymnet->Amount ?></label>
+                        <label><?= trim($paymnet->Type) ?></label>
+
                     </div>
-
-                </div>
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Karatage</label>
-                        <label class="jw-dt"><?= $data['article']->Karatage . 'K' ?></label>
-                    </div>
-
-                </div>
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Weight</label>
-                        <label class="jw-dt"><?= $data['article']->Weight . ' g' ?></label>
-                    </div>
-
-                </div>
-
-
+                <?php endforeach; ?>
 
             </div>
-            <div class="due-payment info-div">
-                <h2 class="sub-title">
-                    Reservation Details
-                </h2>
-
-
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Reservation Date</label>
-                        <label class="jw-dt"><?php echo date("d M Y", strtotime($data['reservation']->Date)) ?></label>
-                    </div>
-
-                </div>
-
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Reserving Interest</label>
-                        <label class="jw-dt"><?php echo   $data['interest']->Interest_Rate . '%' ?></label>
-                    </div>
-
-                </div>
-                <div class="jw-date">
-                    <div class="jw-date-name">
-                        <label>Monthly Installment</label>
-                        <label class="jw-dt"><?php echo  'Rs. ' . $data['reservation']->allocation_fee ?></label>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-
-
-            <!-- </div> -->
-
-        </div>
-
-        <div class="item-payments">
-
-            <?php $interval = date_diff(date_create($data['reservation']->Retrieve_Date), date_create());
-            $days_diff = $interval->days * ($interval->invert ? -1 : 1);
-            if ($days_diff > 0 && $data['reservation']->Retrive_status !== 1 && (empty($data['reservation']->finePaidTill) || date('Y-m-d') > $data['reservation']->finePaidTill)) : ?>
-
-                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerLocker/viewLockerPay/<?= $data['reservation']->Allocate_Id ?>" method="get">
-                    <button class="pay-btn">Pay</button>
-
-                </a>
-            <?php endif; ?>
-
-            <!-- <div class="payment-history"> -->
-            <div class="payments his-div">
+            <!-- <div class="payments his-div">
                 <h2 class="sub-title">
                     Payment History </h2>
                 <div class="payments">
@@ -199,7 +121,7 @@
                         <label> Type</label>
 
                     </div>
-                    <?php foreach ($data['payment'] as $paymnet) : ?>
+                    <?php foreach ($data['currentpayment'] as $paymnet) : ?>
                         <div class="payment-content">
                             <label><?= $paymnet->PID ?></label>
                             <label><?= date("Y-m-d", strtotime($paymnet->Date)) ?></label>
@@ -209,10 +131,48 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-            </div>
+            </div> -->
 
 
         </div>
+        <div class="card">
+            <h1 class="div-border">
+                Reservation History</h1>
+            <div class="payments">
+                <div class="previous">
+                    <label>Artricle</label>
+                    <label>Reserve Id</label>
+                    <label> Allocated</label>
+                    <label> Retrieved</label> 
+                    <label> Allocated By</label>
+
+                </div>
+                <?php if (empty($data['previous_reservations'])) : ?>
+                    <!-- <div class="details"> -->
+                    <label for="">No reservations</label>
+                    <!-- </div> -->
+                    <?php else :
+                    foreach ($data['previous_reservations'] as $reservation) : ?>
+                        <div class="previous div-border">
+
+                            <div class="pre-div ">
+                                <img src="<?= $reservation->articleIMG ?>" alt="" class="pre-article">
+                            </div>
+                            <label><?= $reservation->Allocate_Id ?></label>
+                            <label> <?= date("Y-m-d", strtotime($reservation->Date)) ?></label>
+                            <label> <?= $reservation->Deallocated_Date ?></label>
+                            
+                            <label> <?= $reservation->Keeper_Id?></label>
+                        </div>
+
+                <?php endforeach;
+                endif; ?>
+            </div>
+        </div>
+
+
+    </div>
+
     </div>
 
     <!-- </div> -->
@@ -221,173 +181,3 @@
 
     </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- 
-
-    <div>
-            <div class="jewellery-card">
-                <div class="jewellery-img">
-                    <div class="locker-no">
-                        <h2 class="no">01</h2>
-                    </div>
-                    <img class="jw-img" src="<?php echo URLROOT ?>/img/harper-sunday-I89WziXZdVc-unsplash.jpg">
-                </div>
-                <div class="jw-details">
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Due Date</label>
-                            <label class="jw-dt"><?php echo date("d M Y", strtotime("2023/10/05")) ?></label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date-name">
-
-                        <label>Status</label>
-                        <label class="status tag-pending">Pending</label>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div>
-            <div class="article-details">
-                <div class="info-div">
-                    <h2 class="sub-title">
-                        Article Details
-                    </h2>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Article Id</label>
-                            <label class="jw-dt">AR1125</label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Estimate value</label>
-                            <label class="jw-dt">Rs 150,000</label>
-                        </div>
-
-                    </div>
-
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Pawned Date</label>
-                            <label class="jw-dt">2022/11/03</label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Due Date</label>
-                            <label class="jw-dt">2023/11/03</label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Loan Amount</label>
-                            <label class="jw-dt">Rs 112,500</label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date-name">
-
-                        <label>Status</label>
-                        <label class="status tag-pending">Pending</label>
-                    </div>
-                </div>
-                <div class="due-payment info-div">
-                    <h2 class="sub-title">
-                        Loan Details
-                    </h2>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Interest</label>
-                            <label class="jw-dt">27%</label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Interest Amount</label>
-                            <label class="jw-dt">Rs 22,250</label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Due Interest</label>
-                            <label class="jw-dt">Rs 10,250</label>
-                        </div>
-
-                    </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Due Loan</label>
-                            <label class="jw-dt">Rs 84,350</label>
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="payment-history">
-                <div class="payments his-div">
-                    <h2 class="sub-title">
-                        Payment History </h2>
-                    <div class="payments">
-                        <div class="pay-header">
-                            <label>Payment ID</label>
-                            <label>Inst No</label>
-                            <label>Paid Date</label>
-                            <label> Amount</label>
-                            
-                        </div>
-                        <div class="payment-content">
-                            <label>PD1956</label>
-                            <label>03</label>
-                            <label>2022/09/30 09:53 A.M.</label>
-                            <label>Rs. 5000</label>
-                            
-                        </div>
-                        <div class="payment-content">
-                            <label>PD1866</label>
-                            <label>02</label>
-                            <label>2022/09/30 09:53 A.M.</label>
-                            <label>Rs.25000</label>
-                            
-                        </div>
-                        <div class="payment-content">
-                            <label>PD1096</label>
-                            <label>01</label>
-                            <label>2022/09/30 09:53 A.M.</label>
-                            <label>Rs. 15000</label>
-                            
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <button class="pay-btn">Pay</button>
-
-
-            </div>
-        </div> -->

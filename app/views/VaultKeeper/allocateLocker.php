@@ -20,7 +20,7 @@
         </div>
 
     </div>
-    <div class="content">
+    <div class="contentx">
         <div class="item-details">
             <!-- <div class="article-details"> -->
             <div class="info-div">

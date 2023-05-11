@@ -72,23 +72,30 @@ class Staff extends Controller
     ++$id;
     if ($staffMem->rowCount() > 0 or $NIC->rowCount()>0 or $phone->rowCount()>0) {
       if($staffMem->rowCount() > 0 and $NIC->rowCount()>0  and $phone->rowCount()>0){
-        flashMessage("NIC, Email and Phone Number already Exists");
+        echo json_encode(array("msg" => "failed"));
+        flashMessage("NIC, Email and Phone Number already Exists",0);
       }
       else if($staffMem->rowCount() > 0 and $NIC->rowCount()>0){
-        flashMessage("Email and NIC already exist");
+        echo json_encode(array("msg" => "failed"));
+        flashMessage("Email and NIC already exist",0);
       } else if($staffMem->rowCount() > 0 and $phone->rowCount()>0){
-        flashMessage("Email and Phone number already exist");
+        echo json_encode(array("msg" => "failed"));
+        flashMessage("Email and Phone number already exist",0);
       } else if($NIC->rowCount() > 0 and $phone->rowCount()>0){
-        flashMessage("NIC and Phone number already exist");
+        echo json_encode(array("msg" => "failed"));
+        flashMessage("NIC and Phone number already exist",0);
       }
       else if($NIC->rowCount()>0){
-        flashMessage("NIC already exists");
+        echo json_encode(array("msg" => "failed"));
+        flashMessage("NIC already exists",0);
       }else if($staffMem->rowCount() > 0){
-        flashMessage("Email already exists");
+        echo json_encode(array("msg" => "failed"));
+        flashMessage("Email already exists",0);
       }else if($phone->rowCount() > 0){
-        flashMessage("Phone number already exist");
+        echo json_encode(array("msg" => "failed"));
+        flashMessage("Phone number already exist",0);
       }
-      redirect('/staff/addNew');
+      
     } else {
       $staffMem = $this->model("staffModel");
       $result = $staffMem->addStaffMember($id,$_POST['fName'], $_POST['lName'], $_POST['gender'], $_POST['nic'], $_POST['dob'], $_POST['lane1'], $_POST['lane2'], $_POST['lane3'], $_POST['mob-no'], $_POST['mob-no2'], $_POST['email'], $_POST['role'], $_POST['image'], $hash);
@@ -98,14 +105,17 @@ class Staff extends Controller
         if($abc == null){
           $staffMem = $this->model("staffModel");
           $staffMem->deleteStaffMember($id);
-          flashMessage("Network Error Occurd..");
-          redirect('/staff/addNew');
+          echo json_encode(array("msg" => "failed"));
+          flashMessage("Network Error Occurd..",0);
+          // redirect('/staff/addNew');
         }else{
-          redirect('/staff/index/success');        
+          echo json_encode(array("msg" => "success"));
+          flashMessage("Successfully Added",1);
+          // redirect('/staff/index/success');        
         }    
 
       } else {
-        redirect('/staff/addNew');
+        echo json_encode(array("msg" => "failed"));
       }
     }
   }
@@ -138,9 +148,9 @@ class Staff extends Controller
     $staffMem = $this->model("staffModel");
     $dd = $staffMem->deleteStaffMember($id);
     if (!$dd) {
-      redirect("staff/confirmDelete/$id");
+      redirect("/staff/confirmDelete/$id");
     } else {
-      redirect("staff/index/delsuccess");
+      redirect("/staff/index/delsuccess");
     }
   }
   

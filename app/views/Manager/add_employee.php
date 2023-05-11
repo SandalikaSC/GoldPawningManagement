@@ -6,68 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
-    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/add_employee.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/loading.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/css/addSuccess.css">
 </head>
 
 <body>
+
+    <section style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;padding:20px 40px;z-index:99;" id="success-form">
+        <div class="whole">
+            <div class="add-success-box">
+                <p>Added Successfully</p>
+                <a class="done-btn" href="<?php echo URLROOT ?>/staff">Done</a>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="pleaseWait" style="display:none;position:absolute;left:0;right:0;top:0;bottom:0;z-index:50;">
+        <section class="whole">
+            <div class="loading-box">
+                <p>please Wait...</p>
+                <img src="<?php echo URLROOT ?>/img/loading.gif" alt="">
+            </div>
+        </section>
+    </div>
     <div class="page">
 
         <?php
-        if (!empty($_SESSION['message'])) {
-          
-            include_once 'error.php';
-         
-        } 
+        if (!empty($_SESSION['message']) and $_SESSION['check']==0) {
+
+            include_once '../pages/error.php';
+        }else if(!empty($_SESSION['message']) and $_SESSION['check']==1){
+            include_once '../pages/ok.php';
+        }
         ?>
 
-        <div class="left" id="panel">
-            <div class="profile">
-                <div class="profile-pic">
-                    <a href="<?php echo URLROOT ?>/mgEditProfile"><img src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "/public/img/image 1.png";} ?>" id="profileImg" alt=""></a>
-                    <div style="color:brown; position:absolute; font-weight:1000;" class="change-btn hidden" id="change-btn">Edit Profile</div>
-
-                </div>
-                <div class="name">
-                    <p><?php echo $_SESSION['user_name'] ?></p>
-                </div>
-            </div>
-            <div class="btn-set">
-                <a href="<?php echo URLROOT ?>/mgDashboard">
-                    <img src="<?php echo URLROOT ?>/img/dashboard.png" alt="">
-                    <p>Dashboard</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgLocker">
-                    <img src="<?php echo URLROOT ?>/img/locker-white.png" alt="">
-                    <p>Locker</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgPawnArticles">
-                    <img src="<?php echo URLROOT ?>/img/pawned.png" alt="">
-                    <p>Pawned Articles</p>
-                </a>
-                <a href="<?php echo URLROOT ?>/mgAuction">
-                    <img src="<?php echo URLROOT ?>/img/auction.png" alt="">
-                    <p>Auction</p>
-                </a>
-                <a class="staf" href="<?php echo URLROOT ?>/staff">
-                    <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
-                    <p>Staff</p>
-                </a>
-            </div>
-            <div class="lgout">
-                <a href="<?php echo URLROOT ?>/Users/logout">Logout</a>
-            </div>
-        </div>
+        
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
                     <div class="bars" id="bars">
-                         <img src="<?php echo URLROOT ?>/img/icons8-bars-48.png" alt="bars">
+                        <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                     </div>
                     <h1>
-                        Add New
+                        Add New Employee
                     </h1>
-                    <a href="<?php echo URLROOT ?>/staff" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
@@ -149,9 +134,12 @@
                                     <input type="radio" id="role3" name="role" value="Vault Keeper" required /> <label>Vault Keeper </label>
                                 </div>
                             </div>
+                            <div>
+                                <h3><b>You Need To Add ?</b></h3>
+                            </div>
                             <div class="two-btns">
-                                <a href="<?php echo URLROOT ?>/staff/index" class="cancelbtn">Cancel</a>
-                                <button type="submit" id="registerbtn" class="registerbtn button-visibility">Add New</button>
+                                <a href="<?php echo URLROOT ?>/staff/index" class="cancelbtn">No</a>
+                                <button type="submit" id="registerbtn" class="registerbtn button-visibility">Yes</button>
                             </div>
                         </section>
                     </section>
@@ -170,7 +158,40 @@
 
 <script src="<?php echo URLROOT ?>/js/profileImageHover.js"></script>
 
+<script>
+    let regibtn = document.getElementById("registerbtn");
+    let pleaseWait = document.getElementById("pleaseWait");
+    let successmsg = document.getElementById("success-form");
+    regibtn.addEventListener('click', () => {
+            pleaseWait.style.display = "block";
 
+            // Send the fetch request
+            fetch(`<?php echo URLROOT ?>/staff/setStaffMember`)
+
+                .then(response => response.json())
+                .then(response => {
+                    // Handle the response from the server
+
+                    if (response.msg == "failed") {
+                        location.reload(true);
+
+                    } else {
+                        // location.reload(true);
+                        pleaseWait.style.display = "none";
+                        successmsg.style.display = "block";
+                    }
+
+                })
+                .catch(error => {
+                    // Handle the error
+                    console.error(error);
+                    location.reload(true);
+
+                });
+        }
+
+    )
+</script>
 
 
 </html>
