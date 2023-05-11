@@ -143,9 +143,7 @@ class CustomerPawn extends Controller
         } else if ($pawning->Status == 'Pawned') {
             $current_date = date('Y-m-d');
             $retrieve_date = $pawning->End_Date;
-
-            if ($pawning->WarningOne == 1 || $pawning->WarningTwo == 1) {
-            }
+ 
             if (strtotime($retrieve_date) < strtotime($current_date)) {
                 $status = 'Overdue';
             } else if ($pawning->WarningOne == 1 || $pawning->WarningTwo == 1) {
@@ -153,6 +151,8 @@ class CustomerPawn extends Controller
             } else {
                 $status = 'Pawned';
             }
+        }else{
+            $status = 'Repawn';
         }
         $toPayInst = 0;
         if ($loan->Repay_Method == 'Fixed') {
@@ -193,5 +193,41 @@ class CustomerPawn extends Controller
 
             echo json_encode($data);
         }
+    }
+    public function PawnOnlinePay($pawnId, $amount){
+        $order_id = uniqid();
+        $currency = "LKR";
+
+        $data = [];
+        $data['hash'] = strtoupper(md5(
+            merchant_id .
+                $order_id .
+                number_format($amount, 2, '.', '') .
+                $currency .
+                strtoupper(md5(merchant_secret))
+        ));
+        $data['merchant_id'] = merchant_id;
+        $data['order_id'] = $order_id;
+        $data['reservationId'] = $pawnId;
+        $data['amount'] =  number_format($amount, 2, '.', '');
+        $data['currency'] = $currency;
+        $data['merchant_secret'] = merchant_secret;
+        $data['items'] = "Pawn Id " . $pawnId;
+        $data['first_name'] = $_SESSION['user_fname'];
+        $data['last_name'] = $_SESSION['user_lname'];
+        $data['email'] = $_SESSION['user_email'];
+        $data['phone'] = $_SESSION['user_phone'];
+        $data['address'] = $_SESSION['user_address'];
+        $data['city'] = "Colombo";
+        $data['country'] = "Sri Lanka";
+        $data['delivery_address'] = "VoguePawn";
+        $data['delivery_city'] = "Colombo";
+        $data['delivery_country'] = "Sri Lanka";
+
+
+        echo json_encode($data);
+    }
+    public function savePawnPayment(){
+
     }
 }
