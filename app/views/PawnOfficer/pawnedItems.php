@@ -68,13 +68,8 @@
         <main>
             <div class="right-content">
                 <div class="div-search">
-
                     <input type="text" name="search" id="search" onkeyup="searchPawnedItems()" placeholder="Search Here">
-                    <img src="<?php echo URLROOT . '/img/search_icon.png'?>">  
-                    <input type="text" placeholder="Enter Article ID/Customer ID">
-                    <a href="#">
-                        <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
-                    </a>   
+                    <img src="<?php echo URLROOT . '/img/search_icon.png'?>">                
                 </div>
                 <div class="tbl-details" id="div_table">
                     <table cellspacing="0" id="pawned_table">
