@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: sans-serif;
+}
+
+header {
+    width: 100vw;
+    padding: 10px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+}
+
+header .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+header .button-container .main-btn {
+    width: 100px;
+    padding: 8px;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 20px;
+    border: 1px solid #000;
+    background: #000;
+    color: #faebd7;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+header .button-container .main-btn:hover {
+    opacity: 0.8;
+    transform: translateY(-3px);
+    transition: 0.3s;
+}
+
+main {
+    top: 80px;
+    height: calc(100vh - 80px);
+    width: 100vw;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+main .div-receipt {
+    width: 600px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+main .div-receipt .div-title .div-logo {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 10px;
+}
+
+main .div-receipt .div-title .div-logo img {
+    width: 150px;
+    height: 45px;
+}
+
+main .div-receipt .div-title .receipt-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+main .div-receipt .div-container {
+    padding: 20px;
+}
+
+main .div-receipt .div-container .customer-details {
+    padding: 0 20px;
+}
+
+main .div-receipt .div-container .customer-details .field-container label {
+    font-weight: 600;
+}

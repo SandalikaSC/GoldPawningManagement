@@ -6,6 +6,7 @@
             }
 
             $this->pawningModel = $this->model('Pawning');
+            $this->customerModel = $this->model('Customer');
         }
 
         public function pawned_items() {
@@ -134,8 +135,9 @@
                         if($remaining_loan == 0.00) {
                             $update_status = $this->pawningModel->updateCompletedLoanStatus($data['pawn_item']->Pawn_Id);
                         }
-                        flash('register', 'PAYMENT SUCCESSFUL', 'success');
-                        redirect('/Pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
+                        // flash('register', 'PAYMENT SUCCESSFUL', 'success');
+                        // redirect('/Pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
+                        redirect('/Pawnings/payment_success/'. $data['pawn_item']->Pawn_Id);
                     } else {
                         flash('register', 'Cannot make the payment. Something went wrong', 'invalid');
                         $this->view('PawnOfficer/make_payments', $data['pawn_item']->Pawn_Id); 
@@ -165,6 +167,49 @@
             }
         }
 
+        // Payment success
+        public function payment_success($id) {
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $remaining_loan = $this->getRemainingLoan($id);
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan
+                ];
+
+                if(isset($_POST['yes'])) {
+                    redirect('/pawnings/generate_receipt/'. $data['pawn_item']->Pawn_Id);
+                }
+                if(isset($_POST['no'])) {
+                    redirect('/pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
+                }
+            } else {
+                $data = [
+                    'pawn_item' => $pawned_item,
+                    'remaining_loan' => $remaining_loan
+                ];
+                $this->view('PawnOfficer/payment_success_msg', $data);   
+            }
+        }
+
+        // Generate payment receipt
+        public function generate_receipt($id) {
+            $pawned_item = $this->pawningModel->getPawnItemById($id);
+            $remaining_loan = $this->getRemainingLoan($id);
+            $customer = $this->customerModel->getCustomerById($pawned_item->userId);
+
+            $data = [
+                'pawn_item' => $pawned_item,
+                'remaining_loan' => $remaining_loan,
+                'customer' => $customer
+            ];
+
+            $this->view('PawnOfficer/loan_payment_bill', $data); 
+        }
 
         // Function to release a pawned article when the loan has paid completely
         public function release_pawn($id) {
@@ -208,6 +253,7 @@
             }            
         }
 
+        // Function to confirm the releasing of articles that the loan has completely paid
         public function confirm_release($id) {
             $pawned_item = $this->pawningModel->getPawnItemById($id);
             $remaining_loan = $this->getRemainingLoan($id);
@@ -463,11 +509,12 @@
 
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
                 
                 $data = [
                     'nic' => trim($_POST['nic']),
                     'email' => trim($_POST['email']),
-                    'type' => trim($_POST['type']),
+                    'type' => $type,
                     'image' => trim($_POST['image']),
                     'customer' => '',
                     'pawn_officer' => $_SESSION['user_id'],
@@ -491,7 +538,7 @@
                             $data['customer'] = $customer->UserId;
                         }
                     } else {
-                        $data['nic_err'] = 'A customer with this NIC has not registered with us'; 
+                        $data['nic_err'] = 'NIC not matched with the registered NIC'; 
                     }
                 }
 
@@ -499,7 +546,7 @@
                     $data['email_err'] = 'Please enter customer email';
                 }
 
-                if(empty($data['type'])) {
+                if(!$data['type']) {
                     $data['type_err'] = 'Please choose a type';
                 }
 
