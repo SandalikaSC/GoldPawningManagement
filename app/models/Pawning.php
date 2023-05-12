@@ -311,6 +311,73 @@ class Pawning
             }
         }
 
+        // Pay interest for the remaining loan for the re-pawning article
+        public function payInterest($data) {
+            $this->db->query('INSERT INTO payment (Amount, Type, Date, Principle_Amount, Pawn_Id, Employee_Id) VALUES(:amount, :type, :date, :principle_amount, :pawn_id, :employee_id); ');
+            $this->db->bind(':amount', $data['paying_amount']);
+            $this->db->bind(':type', "Cash");
+            $this->db->bind(':date', date('Y-m-d H:i:s'));
+            $this->db->bind(':principle_amount', 0.00);
+            $this->db->bind(':pawn_id', $data['pawn_item']->Pawn_Id);
+            $this->db->bind(':employee_id', $data['employee']);
+
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // Re-pawn an article
+        public function repawnArticle($data) {
+            $this->db->query('INSERT INTO pawn (Status, Pawn_Date, End_Date, Article_Id, userId, Appraiser_Id, Officer_Id) VALUES(:status, :pawn_date, :end_date, :article_id, :user_id, :appraiser_id, :officer_id);');
+
+            $this->db->bind(':status', "Pawned");
+            $this->db->bind(':pawn_date', date('Y-m-d H:i:s'));
+            $this->db->bind(':end_date', date('Y-m-d', strtotime('+1 year')));
+            $this->db->bind(':article_id', $data['pawn_item']->Article_Id);
+            $this->db->bind(':user_id', $data['pawn_item']->userId);
+            $this->db->bind(':appraiser_id', $data['pawn_item']->Appraiser_Id);
+            $this->db->bind(':officer_id', $data['employee']);
+
+            if($this->db->execute()) {
+                $pawn_details = $this->getPawnByArticleID($data['pawn_item']->Article_Id);
+                $interest_details = $this->getInterestDetails();
+
+                $this->db->query('INSERT INTO loan (Amount, Interest, Repay_Method, Pawn_Id, interest_ID, monthly_installment) VALUES(:amount, :interest, :repay_method, :pawn_id, :interest_id, :monthly_installment);');
+                    
+                $this->db->bind(':pawn_id', $pawn_details->Pawn_Id);
+                $this->db->bind(':amount', $data['remaining_loan']); 
+                $this->db->bind(':interest', $interest_details->Interest_Rate); 
+                $this->db->bind(':repay_method', $data['pawn_item']->Repay_Method); 
+                $this->db->bind(':interest_id', $interest_details->interest_ID);
+
+                if($data['pawn_item']->Repay_Method == 'Fixed') {
+                    $monthly_installment = (($data['remaining_loan'])/12.00) * (($interest_details->Interest_Rate)+100)/100;
+                } else {
+                    $monthly_installment = 'NULL';
+                }
+
+                $this->db->bind(':monthly_installment', $monthly_installment);
+
+                if($this->db->execute()) {
+                    $old_pawn_id = $data['pawn_item']->Pawn_Id;
+                    $this->db->query('UPDATE pawn SET Status="Repawned" WHERE Pawn_Id=:id;');
+                    $this->db->bind(':id', $old_pawn_id);
+
+                    if($this->db->execute()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
 
         //customer pawning
 
