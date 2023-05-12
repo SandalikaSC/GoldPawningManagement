@@ -22,7 +22,7 @@
     </div>
     <div class="content">
         <div class="invalid err-msg" id="err-msg"> Exceed the maximum online payment of Rs 50000</div>
-        <?php notification("Pawn")?>
+        <?php notification("Pawn") ?>
         <div class="pay-details">
 
             <div class="cardnew">
@@ -259,7 +259,7 @@
 
                     <?php else : ?>
                         <h3> Will be Assigned To</h3>
-                        <div class="jw-date-name option-radio"> 
+                        <div class="jw-date-name option-radio">
                             <input type="radio" name="locker" id="<?= $data['locker'][0]->lockerNo ?>" value="<?= $data['locker'][0]->lockerNo ?>" class="hidden radio-label" selected>
                             <label for="<?= $data['locker'][0]->lockerNo ?>" class="button-label">
                                 <h1>Locker <?= $data['locker'][0]->lockerNo ?></h1>
@@ -663,7 +663,7 @@
             ReserveLocker_sec.style.display = "flex";
 
         });
-        var myLockers = <?= json_encode($data['mylockers']) ?>; 
+        var myLockers = <?= json_encode($data['mylockers']) ?>;
         // if (Array.isArray(myLockers) && myLockers.length == 0 ) {
         //     var selectElement = document.getElementById("duration");
         //     selectElement.addEventListener("changed",function(){
@@ -671,8 +671,8 @@
         //     });
         //     console.log(1);
         // }
-       
-        
+
+
 
         // //reservev a locker
         function lockerpayments() {
@@ -845,6 +845,7 @@
                             payment = {
                                 "amount": total_payment,
                                 "Principle": principlepayment,
+                                "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                 "PawnId": <?= $data['pawning']->Pawn_Id ?>
                             };
                             pawnProcess = {
@@ -865,13 +866,14 @@
                                 "retrieve": "Locker"
                             };
                             var myLockers = <?= json_encode($data['mylockers']) ?>;
-  
-   
+
+
                             if (Array.isArray(myLockers) && myLockers.length != 0) {
                                 // console.log(" mylocker");
                                 payment = {
                                     "amount": total_payment,
                                     "Principle": principlepayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
 
@@ -899,6 +901,7 @@
                                 payment = {
                                     "amount": total_payment - (deliverypayment + lockerpayment),
                                     "Principle": principlepayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
                                 lockerAllocation = {
@@ -923,6 +926,7 @@
                         payment = {
                             "amount": total_payment,
                             "Principle": principlepayment,
+                            "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
                         pawnProcess = {
@@ -947,6 +951,7 @@
                         payment = {
                             "amount": total_payment,
                             "Principle": 0,
+                            "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
                         myLocker = null;
@@ -968,6 +973,7 @@
                             payment = {
                                 "amount": total_payment,
                                 "Principle": principlepayment,
+                                "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                 "PawnId": <?= $data['pawning']->Pawn_Id ?>
                             };
                             myLocker = null;
@@ -989,13 +995,14 @@
                                 "retrieve": "Locker"
                             };
                             var myLockers = <?= json_encode($data['mylockers']) ?>;
-  
-   
+
+
                             if (Array.isArray(myLockers) && myLockers.length != 0) {
                                 // console.log(" mylocker");
                                 payment = {
                                     "amount": total_payment,
                                     "Principle": principlepayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
                                 myLocker = {
@@ -1023,6 +1030,7 @@
                                 payment = {
                                     "amount": total_payment - (deliverypayment + lockerpayment),
                                     "Principle": principlepayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
                                 myLocker = null;
@@ -1188,18 +1196,18 @@
         //             },
         //             dataType: "JSON",
         //             success: function(response) {
-                        // var parentElement = document.getElementById("time-slots");
-                        // while (parentElement.firstChild) {
-                        //     parentElement.removeChild(parentElement.firstChild);
-                        // }
-                        // response.forEach(function(item) {
+        // var parentElement = document.getElementById("time-slots");
+        // while (parentElement.firstChild) {
+        //     parentElement.removeChild(parentElement.firstChild);
+        // }
+        // response.forEach(function(item) {
 
-                        //     var newElement = '<div class="selector-item">' +
-                        //         '<input type="radio" value="' + item.slotID + ' "id="' + item.slotID + '" name="selector" class="selector-item_radio" checked>' +
-                        //         '<label  for="' + item.slotID + '" class="selector-item_label">' + item.time + '</label>' +
-                        //         '</div>';
-                        //     $("#time-slots").append(newElement);
-                        // });
+        //     var newElement = '<div class="selector-item">' +
+        //         '<input type="radio" value="' + item.slotID + ' "id="' + item.slotID + '" name="selector" class="selector-item_radio" checked>' +
+        //         '<label  for="' + item.slotID + '" class="selector-item_label">' + item.time + '</label>' +
+        //         '</div>';
+        //     $("#time-slots").append(newElement);
+        // });
 
 
         //             },

@@ -353,12 +353,54 @@ class CustomerPawn extends Controller
                 $status = $this->paymentmodel->addOnlinePawnPayment($payment['amount'], $pawnId, $payment['Principle'], $orderId);
 
                 //upate pawn as repawn 
-                if ($status) {
-
-
-                } else {
-                }
                 // add loan pawn new details 
+                if ($status) {
+                    $pawninfo = $this->customerPawnModel->getPawnById($pawnId);
+                    $loaninfo = $this->loanModel->getLoanByPawnId($pawnId);
+                    $this->customerPawnModel->updateRePawnLoanStatus($pawnId);
+
+                    $pawn = [
+                        'Article_id' => $pawninfo->Article_Id,
+                        'appraiser' => $pawninfo->Appraiser_Id,
+                        'officer' => $pawninfo->Officer_Id
+
+                    ];
+
+
+                    //calculate new loan infomation
+                    $newPawnId = $this->customerPawnModel->RepawnOnline($pawn);
+                    if ($newPawnId) {
+                        if ($loaninfo->Repay_Method == "Fixed") {
+
+                            $monthly_installment = $payment['PrincipletobePaid'] * ($loaninfo->Interest + 100) / 100 / 12;
+                        } else {
+                            $monthly_installment = 0;
+                        }
+
+                        $loan = [
+                            'Amount' => $payment['PrincipletobePaid'],
+                            'Interest' => $loaninfo->Interest,
+                            'Repay_Method' => $loaninfo->Repay_Method,
+                            'Pawn_Id' =>  $newPawnId,
+                            'interest_ID' => $loaninfo->interest_ID,
+                            'monthly_installment' =>  $monthly_installment
+                        ];
+                        $status = $this->loanModel->insertRepawnLoan($loan);
+                        if ($status) {
+                            notification("Pawn", "Your gold loan has been successfully renewed.", "gold");
+                            echo json_encode(1);
+                        } else {
+                            notification("Pawn", "Something went wrong", "red");
+                            echo json_encode(0);
+                        }
+                    } else {
+                        notification("Pawn", "Something went wrong", "red");
+                        echo json_encode(0);
+                    }
+                } else {
+                    notification("Pawn", "Something went wrong", "red");
+                    echo json_encode(0);
+                }
             } else {
                 if ($RetrieveStatus == "Visit") {
                     //add payment
