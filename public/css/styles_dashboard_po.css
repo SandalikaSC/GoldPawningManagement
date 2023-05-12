@@ -175,6 +175,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     padding: 20px 0;
 }
 
@@ -186,6 +187,7 @@ main {
     color: #bb8a04;
     font-size: 20px;
     display: flex;
+    margin: 20px;
     justify-content: center;
     align-items: center;
     border: 2px solid #bb8a04;
@@ -223,6 +225,11 @@ main {
     padding: 10px;
     margin: 10px;
     border: 2px solid #bb8a04;
+}
+
+.cards .card-container {
+    display: flex;
+    justify-content: space-between;
 }
 
 .cards .card-summary h1 {
@@ -413,50 +420,97 @@ tr td:last-child {
     border-color: #bb8a04;
 }
 
-/*@media only screen and (max-width: 1270px) {
+@media only screen and (max-width: 1200px) {
+    .table-wrapper {
+        display: block;
+    }
+    .table-wrapper .table-container {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .card-container {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    header {
+        padding: 0;
+    }
+    .logo-name {
+        height: 45px;
+        width: 150px;
+        margin: 5px 0 10px;
+    }
+    .menu-bar img {
+        margin-left: 20px;
+    }
+
     .main-content {
         margin-left: 0;
     }
-    
-    .main-content header {
+
+    .cards-rates {
+        margin: 0 100px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .sidebar {
+        top: 60px;
+        height: calc(100vh - 60px);
+    }
+
+    header {
         width: 100%;
         left: 0;
     }
-    
+
+    .sidebar-brand img {
+        width: 100px;
+    }
+
+    .table-wrapper {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .card-container {
+        display: grid;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #side-toggle:checked {
+        display: none;
+    }
+
     #side-toggle + .sidebar {
-        left: 0;
-    }
-    
-    #side-toggle:checked ~ .main-content {
-        margin-left: 0;
-    }
-    
-    #side-toggle ~ .main-content header {
-        width: calc(100% - 230px);
-        left: 230px;
-    }
-}
-
-@media only screen and (max-width: 975px) {
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
+        left: -230px;
     }
 
-    .recent-grid {
-        grid-template-columns: 55% 45%;
-    }
-}*/
-
-@media only screen and (max-width: 800px) {
-    #side-toggle ~ .main-content header {
-        width: 100%;
+    #side-toggle:checked + .sidebar {
         left: 0;
     }
 
-    #side-toggle ~ .sidebar {
-        top: 75px;
+    .menu-bar img {
+        width: 20px;
+        height: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .logo-name {
+        width: 120px;
+        height: 35px;
+    }
+
+    header {
+        padding: 10px 0;
     }
 }
-
-
-
