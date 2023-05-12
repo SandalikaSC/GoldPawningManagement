@@ -8,6 +8,7 @@ require_once 'helpers/UrlHelper.php';
 require_once 'helpers/SessionHelper.php';
 require_once 'helpers/mailHelper.php';
 require_once 'helpers/flashErrors.php';
+require_once 'helpers/pdfHelper.php';
 
 
 // Autoload Core Libraries

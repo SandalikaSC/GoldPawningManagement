@@ -845,6 +845,7 @@
                             payment = {
                                 "amount": total_payment,
                                 "Principle": principlepayment,
+                                    "interest": interestpayment,
                                 "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                 "PawnId": <?= $data['pawning']->Pawn_Id ?>
                             };
@@ -873,6 +874,7 @@
                                 payment = {
                                     "amount": total_payment,
                                     "Principle": principlepayment,
+                                    "interest": interestpayment,
                                     "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
@@ -901,6 +903,7 @@
                                 payment = {
                                     "amount": total_payment - (deliverypayment + lockerpayment),
                                     "Principle": principlepayment,
+                                    "interest": interestpayment,
                                     "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
@@ -926,6 +929,7 @@
                         payment = {
                             "amount": total_payment,
                             "Principle": principlepayment,
+                                    "interest": interestpayment,
                             "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
@@ -951,6 +955,7 @@
                         payment = {
                             "amount": total_payment,
                             "Principle": 0,
+                                    "interest": interestpayment,
                             "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
@@ -973,6 +978,7 @@
                             payment = {
                                 "amount": total_payment,
                                 "Principle": principlepayment,
+                                    "interest": interestpayment,
                                 "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                 "PawnId": <?= $data['pawning']->Pawn_Id ?>
                             };
@@ -1002,6 +1008,7 @@
                                 payment = {
                                     "amount": total_payment,
                                     "Principle": principlepayment,
+                                    "interest": interestpayment,
                                     "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
@@ -1030,6 +1037,7 @@
                                 payment = {
                                     "amount": total_payment - (deliverypayment + lockerpayment),
                                     "Principle": principlepayment,
+                                    "interest": interestpayment,
                                     "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
@@ -1078,6 +1086,7 @@
                         // Note: validate the payment and show success or failure page to the customer
                         saveDetails(pawnId, pawnprocess, payment, myLocker, availableLocker, object['order_id']);
                         // alert("complete");
+                        // window.location.href ='<?php echo URLROOT ?>/CustomerPawn/makePayment';
                     };
 
                     // Payment window closed
@@ -1149,13 +1158,21 @@
                     availableLocker: availableLocker,
                     orderid: orderId
                 },
-                dataType: "JSON",
                 success: function(response) {
 
-                    alert(response);
+                    if (response!=0) { 
+                       
+                        window.location = ' <?= URLROOT ?>/CustomerPawn/geneartePdf';
+                    
+                        window.location = ' <?= URLROOT ?>/CustomerPawn/viewPawnArticle/'+response;
+                    
+                    
+                    } else {
+
+                    }
 
 
-                    // window.location = ' <?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + response;
+
                 },
                 error: function(xhr, status, error) {
                     // handle errors here
