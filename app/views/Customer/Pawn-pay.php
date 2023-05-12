@@ -1060,8 +1060,8 @@
                 }
 
 
-                // OnlinePayment(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, total_payment);
-                saveDetails(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, 5);
+                OnlinePayment(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, total_payment);
+                // saveDetails(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, 5);
 
             }
 
