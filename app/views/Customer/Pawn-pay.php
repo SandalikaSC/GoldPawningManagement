@@ -22,6 +22,7 @@
     </div>
     <div class="content">
         <div class="invalid err-msg" id="err-msg"> Exceed the maximum online payment of Rs 50000</div>
+        <?php notification("Pawn")?>
         <div class="pay-details">
 
             <div class="cardnew">
@@ -258,9 +259,7 @@
 
                     <?php else : ?>
                         <h3> Will be Assigned To</h3>
-                        <div class="jw-date-name option-radio">
-
-
+                        <div class="jw-date-name option-radio"> 
                             <input type="radio" name="locker" id="<?= $data['locker'][0]->lockerNo ?>" value="<?= $data['locker'][0]->lockerNo ?>" class="hidden radio-label" selected>
                             <label for="<?= $data['locker'][0]->lockerNo ?>" class="button-label">
                                 <h1>Locker <?= $data['locker'][0]->lockerNo ?></h1>
@@ -270,7 +269,7 @@
 
                         <div class="jw-date-name">
                             <label>Reserve locker till</label>
-                            <select name="duration" class="selection" id="duration">
+                            <select name="duration" class="selection" id="duration" onchange="lockerpayments()">
                                 <option value="6" selected>06 Months</option>
                                 <option value="12">12 Months</option>
                             </select>
@@ -406,7 +405,7 @@
         </div>
 
     </div>
-    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+    <!-- <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script> -->
     <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
     <script>
         //pay btn
@@ -664,17 +663,20 @@
             ReserveLocker_sec.style.display = "flex";
 
         });
-
-        if (<?= !empty($data['mylockers']) ?> == 0) {
-            var selectElement = document.getElementById("duration");
-            selectElement.addEventListener("changed", lockerpayments());
-        }
-
-
+        var myLockers = <?= json_encode($data['mylockers']) ?>; 
+        // if (Array.isArray(myLockers) && myLockers.length == 0 ) {
+        //     var selectElement = document.getElementById("duration");
+        //     selectElement.addEventListener("changed",function(){
+        //         console.log(selectElement.value);
+        //     });
+        //     console.log(1);
+        // }
+       
+        
 
         // //reservev a locker
         function lockerpayments() {
-            if (<?php echo !empty($data['mylockers']) ?>) {
+            if (Array.isArray(myLockers) && myLockers.length != 0) {
                 deliverypayment = 0;
                 lockerpayment = 0;
             } else {
@@ -808,6 +810,7 @@
             var repawnStatus = 0;
             var myLocker = null;
             var lockerAllocation = null;
+            var pawnProcess = null;
             const selectedRadio = document.querySelector('input[name="repawn"]:checked');
             document.getElementById('err-msg').style.display = "none";
 
@@ -815,13 +818,13 @@
 
                 document.getElementById("dim_err").innerHTML = "Invalid Payment amount";
 
-            } else if (total_payment >= 50000) {
+                // } else if (total_payment >= 50000) {
 
-                document.getElementById('err-msg').style.display = "block";
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                //     document.getElementById('err-msg').style.display = "block";
+                //     window.scrollTo({
+                //         top: 0,
+                //         behavior: 'smooth'
+                //     });
 
 
             } else {
@@ -844,21 +847,37 @@
                                 "Principle": principlepayment,
                                 "PawnId": <?= $data['pawning']->Pawn_Id ?>
                             };
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Visit"
+                            };
                             myLocker = null;
                             lockerAllocation = null;
                         } else {
 
                             // console.log("Safe Locker");
-                            if (<?= count($data['mylockers']) ?> > 0) {
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Locker"
+                            };
+                            var myLockers = <?= json_encode($data['mylockers']) ?>;
+  
+   
+                            if (Array.isArray(myLockers) && myLockers.length != 0) {
                                 // console.log(" mylocker");
                                 payment = {
                                     "amount": total_payment,
                                     "Principle": principlepayment,
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
+
                                 myLocker = {
-                                    "locker": <?= $data['mylockers'][0]->lockerNo ?>,
-                                    "retrieve_date": '<?= $data['mylockers'][0]->Retrieve_Date ?>'
+                                    "locker": myLockers[0].lockerNo,
+                                    "retrieve_date": myLockers[0].Retrieve_Date
                                 };
                                 lockerAllocation = null;
 
@@ -906,6 +925,12 @@
                             "Principle": principlepayment,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
+                        pawnProcess = {
+                            "pawnStatus": pwnStatus,
+                            "Repawn": 0,
+                            "loanPay": "Half",
+                            "retrieve": null
+                        };
                         repawnStatus = 0;
                         myLocker = null;
                         lockerAllocation = null;
@@ -926,6 +951,12 @@
                         };
                         myLocker = null;
                         lockerAllocation = null;
+                        pawnProcess = {
+                            "pawnStatus": pwnStatus,
+                            "Repawn": 1,
+                            "loanPay": null,
+                            "retrieve": null
+                        };
 
                     } else {
                         // console.log(" not Repawn");
@@ -941,10 +972,26 @@
                             };
                             myLocker = null;
                             lockerAllocation = null;
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Visit"
+                            };
+
                         } else {
 
                             // console.log("Safe Locker");
-                            if (<?= count($data['mylockers']) ?> > 0) {
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Locker"
+                            };
+                            var myLockers = <?= json_encode($data['mylockers']) ?>;
+  
+   
+                            if (Array.isArray(myLockers) && myLockers.length != 0) {
                                 // console.log(" mylocker");
                                 payment = {
                                     "amount": total_payment,
@@ -952,9 +999,10 @@
                                     "PawnId": <?= $data['pawning']->Pawn_Id ?>
                                 };
                                 myLocker = {
-                                    "locker": <?= $data['mylockers'][0]->lockerNo ?>,
-                                    "retrieve_date": '<?= $data['mylockers'][0]->Retrieve_Date ?>'
+                                    "locker": myLockers[0].lockerNo,
+                                    "retrieve_date": myLockers[0].Retrieve_Date
                                 };
+
                                 lockerAllocation = null;
 
                             } else {
@@ -996,34 +1044,8 @@
                 }
 
 
-                OnlinePayment(<?= $data['pawning']->Pawn_Id ?>, pwnStatus, repawnStatus, payment, myLocker, lockerAllocation, total_payment);
-
-                // $.ajax({
-                //     type: "POST",
-                //     url: " <?= URLROOT ?>/ / ",
-                //     data: {
-                //         pawnId: <?= $data['pawning']->Pawn_Id ?>,
-                //         status: pwnStatus,
-                //         repawnStatus: repawnStatus,
-                //         payment: payment,
-                //         lockemyLocker: myLocker,
-                //         AvailableLocker: lockerAllocation
-
-                //     },
-                //     dataType: "JSON",
-                //     success: function(response) {
-                //         alert(response)
-
-                //     },
-                //     error: function(xhr, status, error) {
-                //         console.log("Error: " + error);
-                //     }
-                // });
-                console.log("Total :" + total_payment);
-                console.log(payment);
-                console.log(repawnStatus);
-                console.log(myLocker);
-                console.log(lockerAllocation);
+                // OnlinePayment(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, total_payment);
+                saveDetails(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, 5);
 
             }
 
@@ -1031,7 +1053,7 @@
 
         }
 
-        function OnlinePayment(pawnId, pawnStatus, RepawnStatus, payment, myLocker, availableLocker, total) {
+        function OnlinePayment(pawnId, pawnprocess, payment, myLocker, availableLocker, total) {
 
             var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object 
             xhr.onreadystatechange = function() { // set the callback function
@@ -1046,7 +1068,7 @@
                     payhere.onCompleted = function onCompleted(orderId) {
                         //    alert("Payment completed. OrderID:" + object["order_id"]);
                         // Note: validate the payment and show success or failure page to the customer
-                        saveDetails(pawnId, pawnStatus, RepawnStatus, payment, myLocker, availableLocker, object['order_id']);
+                        saveDetails(pawnId, pawnprocess, payment, myLocker, availableLocker, object['order_id']);
                         // alert("complete");
                     };
 
@@ -1107,26 +1129,29 @@
 
         }
 
-        function saveDetails(pawnId, pawnStatus, RepawnStatus, payment, myLocker, availableLocker, orderId) {
+        function saveDetails(pawnId, pawnProcess, payment, myLocker, availableLocker, orderId) {
             $.ajax({
                 type: "GET",
                 url: "  <?= URLROOT ?>/CustomerPawn/savePawnPayment",
                 data: {
                     pawnId: pawnId,
-                    pawnStatus: pawnStatus,
-                    RepawnStatus: RepawnStatus,
+                    pawnProcess: pawnProcess,
                     payment: payment,
-                    myLocker: myLocker, 
+                    myLocker: myLocker,
                     availableLocker: availableLocker,
-                    orderid: orderid
+                    orderid: orderId
                 },
                 dataType: "JSON",
                 success: function(response) {
 
                     alert(response);
-                    
+
 
                     // window.location = ' <?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + response;
+                },
+                error: function(xhr, status, error) {
+                    // handle errors here
+                    console.log(error);
                 }
             });
 
@@ -1163,18 +1188,18 @@
         //             },
         //             dataType: "JSON",
         //             success: function(response) {
-        //                 var parentElement = document.getElementById("time-slots");
-        //                 while (parentElement.firstChild) {
-        //                     parentElement.removeChild(parentElement.firstChild);
-        //                 }
-        //                 response.forEach(function(item) {
+                        // var parentElement = document.getElementById("time-slots");
+                        // while (parentElement.firstChild) {
+                        //     parentElement.removeChild(parentElement.firstChild);
+                        // }
+                        // response.forEach(function(item) {
 
-        //                     var newElement = '<div class="selector-item">' +
-        //                         '<input type="radio" value="' + item.slotID + ' "id="' + item.slotID + '" name="selector" class="selector-item_radio" checked>' +
-        //                         '<label  for="' + item.slotID + '" class="selector-item_label">' + item.time + '</label>' +
-        //                         '</div>';
-        //                     $("#time-slots").append(newElement);
-        //                 });
+                        //     var newElement = '<div class="selector-item">' +
+                        //         '<input type="radio" value="' + item.slotID + ' "id="' + item.slotID + '" name="selector" class="selector-item_radio" checked>' +
+                        //         '<label  for="' + item.slotID + '" class="selector-item_label">' + item.time + '</label>' +
+                        //         '</div>';
+                        //     $("#time-slots").append(newElement);
+                        // });
 
 
         //             },

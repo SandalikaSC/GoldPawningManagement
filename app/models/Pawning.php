@@ -286,6 +286,7 @@ class Pawning
         }
 
         // Update status of a pawned item when the loan has been paid completely
+        //used in customer online pay
         public function updateCompletedLoanStatus($id) {
             $this->db->query('UPDATE pawn SET Status="Completed" WHERE Pawn_Id=:pawn_id');
             $this->db->bind(':pawn_id', $id);
@@ -316,7 +317,7 @@ class Pawning
 
 
         public function getPawnByUserID($userId) {
-            $this->db->query('SELECT * FROM pawn INNER JOIN article ON article.Article_Id=pawn.Article_Id where userId=:userid AND Status not like "Re%"');
+            $this->db->query('SELECT * FROM pawn INNER JOIN article ON article.Article_Id=pawn.Article_Id where userId=:userid AND Status not like "Repawn%"');
             $this->db->bind(':userid', $userId);
             $results = $this->db->resultSet();
 
@@ -339,6 +340,18 @@ class Pawning
 
             return $row;
         }
+        public function updateRetrievedLoanStatus($id) {
+            $this->db->query('UPDATE pawn SET Status="Retrieved",Redeemed_Date=:Redeemed_Date WHERE Pawn_Id=:pawn_id');
+            $this->db->bind(':pawn_id', $id);
+            $this->db->bind(':Redeemed_Date', date('Y-m-d H:i:s'));
+
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
 
     }
 
