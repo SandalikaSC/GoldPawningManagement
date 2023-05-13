@@ -378,6 +378,16 @@ class Pawning
             }
         }
 
+        // Get total number of payments
+        public function totalPayments($id) {
+            $this->db->query('SELECT COUNT(*) AS count FROM payment WHERE Pawn_Id=:id');
+            $this->db->bind(':id', $id);
+
+            $count = $this->db->single();
+
+            return $count;
+        }
+
 
         //customer pawning
 
