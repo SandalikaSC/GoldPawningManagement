@@ -147,7 +147,7 @@
                                     $payment_no = 0;
                                     foreach ($data['payment_history'] as $payment) :
                                 ?>
-                                    <?php if(date('Y-m-d', strtotime($payment->Date)) < date('Y-m-d')) : ?>
+                                    <?php if($payment->PID != $data['payment_details']->PID) : ?>
                                         <tr>
                                             <td><?php echo $payment->PID; ?></td>
                                             <td><?php echo ++$payment_no; ?></td>
