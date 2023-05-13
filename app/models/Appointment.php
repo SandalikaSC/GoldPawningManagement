@@ -84,7 +84,8 @@ class Appointment
         $this->db->query("SELECT Appointment_Id,appointment_date,Status,time_slot.time as time, description as reason from appointment,reason,time_slot
          where appointment.slot_ID=time_slot.slot_Id 
          AND reason.reason_Id=appointment.reason_Id 
-         AND userId= :userid ORDER BY Appointment_Id ;");
+         AND userId= :userid AND  appointment_date >= CURDATE() 
+         ORDER BY Appointment_Id ;");
 
         $this->db->bind(':userid', $userId);
 
@@ -159,7 +160,7 @@ class Appointment
     {
         $this->db->query("SELECT * from appointment where Appointment_Id=:id");
         $this->db->bind(':id', $id);
-        $result = $this->db->single(); 
+        $result = $this->db->single();
         return $result;
     }
 }

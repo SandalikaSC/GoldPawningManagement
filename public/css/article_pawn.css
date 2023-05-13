@@ -156,6 +156,9 @@
   .tag-retrieved {
     background-color: #5452527d;
   }
+  .tag-repawn {
+    background-color: #ec812f8c;
+  } 
   .tag-warn{
     background-color: #dca12b7d;
     margin: 1%;

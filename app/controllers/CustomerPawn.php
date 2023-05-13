@@ -22,9 +22,13 @@ class CustomerPawn extends Controller
 
     public function index()
     {
+        $checked = isset($_POST['check-substitution-2']) ? $_POST['check-substitution-2'] : 1;
+        $data = [
+            'pawnings' => array(null),
+            'checked' => $checked
+        ];
         $pawning = $this->customerPawnModel->getPawnByUserID($_SESSION['user_id']);
-
-        foreach ($pawning as &$pawn) {
+        foreach ($pawning as $pawn) {
             // Check the status of the pawn and set the status field accordingly
             if ($pawn->Status == 'Completed' || $pawn->Status == 'Retrieved') {
                 if (empty($pawn->Redeemed_Date)) {
@@ -42,10 +46,48 @@ class CustomerPawn extends Controller
                 } else {
                     $pawn->updated_status = 'Pawned';
                 }
+            } else if ($pawn->Status == 'Repawn') {
+                $pawn->updated_status = 'Repawn';
             }
         }
+
+        switch ($checked) {
+            case 2:
+                for ($i = count($pawning) - 1; $i >= 0; $i--) { 
+                    if ($pawning[$i]->updated_status != "Pawned") {
+                        array_splice($pawning, $i, 1);
+                    }
+                }
+
+                break;
+            case 3:
+                for ($i = count($pawning) - 1; $i >= 0; $i--) { 
+                    if ($pawning[$i]->updated_status != "Overdue") {
+                        array_splice($pawning, $i, 1);
+                    }
+                }
+                break;
+            case 4:
+                for ($i = count($pawning) - 1; $i >= 0; $i--) { 
+                    if ($pawning[$i]->updated_status != "Retrieved") {
+                        array_splice($pawning, $i, 1);
+                    }
+                }
+                break;
+            case 5:
+                for ($i = count($pawning) - 1; $i >= 0; $i--) { 
+                    if ($pawning[$i]->updated_status != "Repawn") {
+                        array_splice($pawning, $i, 1);
+                    }
+                }
+                break;
+        }
+
+
+
         $data = [
-            'pawnings' => $pawning
+            'pawnings' => $pawning,
+            'checked' => $checked
         ];
 
 
@@ -81,6 +123,8 @@ class CustomerPawn extends Controller
             } else {
                 $status = 'Pawned';
             }
+        } else if ($pawning->Status == 'Repawn') {
+            $status = 'Repawn';
         }
 
         $data = [
@@ -227,6 +271,7 @@ class CustomerPawn extends Controller
 
         echo json_encode($data);
     }
+
     public function savePawnPayment()
     {
         $pawnId = $_GET['pawnId'];
@@ -242,7 +287,12 @@ class CustomerPawn extends Controller
         $RetrieveStatus = $pawnProcess['retrieve'];
         $RepawnStatus = $pawnProcess['Repawn'];
 
-        // echo json_encode($payment['amount'].$pawnId.$payment['Principle']. $orderId);
+        $_SESSION['payment'] = $payment;
+
+
+
+
+        echo json_encode($payment['amount'] . $pawnId . $payment['Principle'] . $orderId);
         if ($pawnStatus == "Pawned") {
 
             if ($loanStatus == "Full") {
@@ -388,7 +438,7 @@ class CustomerPawn extends Controller
                         $status = $this->loanModel->insertRepawnLoan($loan);
                         if ($status) {
                             notification("Pawn", "Your gold loan has been successfully renewed.", "gold");
-                            echo json_encode(1);
+                            echo json_encode($newPawnId);
                         } else {
                             notification("Pawn", "Something went wrong", "red");
                             echo json_encode(0);
@@ -402,27 +452,116 @@ class CustomerPawn extends Controller
                     echo json_encode(0);
                 }
             } else {
+
+                // if ($RetrieveStatus == "Visit") {
+                //     //add payment
+                //     //update pawn as completed
+                // } else {
+                //     if (!empty($myLocker)) {
+                //         //add payment
+                //         //add reserve table data
+                //         //set locker not available
+                //     } else {
+                //         //add payment
+                //         //add locker payment
+                //         //add reserve table data
+                //         //set locker update    
+                //         //add delivery details
+                //     }
+                // }
                 if ($RetrieveStatus == "Visit") {
-                    //add payment
-                    //update pawn as completed
+                    // add payment
+                    $status = $this->paymentmodel->addOnlinePawnPayment($payment['amount'], $pawnId, $payment['Principle'], $orderId);
+
+                    // update pawn as completed
+                    if ($status) {
+
+                        $this->customerPawnModel->updateCompletedLoanStatus($pawnId);
+                        notification("Pawn", "Successfully repaid the entire loan", "gold");
+                        echo json_encode($pawnId);
+                    } else {
+                        notification("Pawn", "Something went wrong", "red");
+                        echo json_encode(0);
+                    }
                 } else {
                     if (!empty($myLocker)) {
                         //add payment
+                        // status update
                         //add reserve table data
                         //set locker not available
+                        // echo json_encode( $myLocker['locker'].$myLocker['retrieve_date'].$payment['amount']);
+                        $status = $this->paymentmodel->addOnlinePawnPayment($payment['amount'], $pawnId, $payment['Principle'], $orderId);
+                        if ($status) {
+                            $this->customerPawnModel->updateCompletedLoanStatus($pawnId);
+                            $pawninfo = $this->customerPawnModel->getPawnById($pawnId);
+                            $data = [
+                                'lockerNo' => $myLocker['locker'],
+                                'customer' => $_SESSION['user_id'],
+                                'pawn_officer_or_vault_keeper' =>  "VK002",
+                                'gold_appraiser' =>  $pawninfo->Appraiser_Id
+                            ];
+                            $status = $this->reservationModel->addLockerReserved($data,  $pawninfo->Article_Id);
+                            if ($status) {
+                                $this->lockermodel->updateLockerArticles($myLocker['locker'], "Not Available");
+                                notification("Pawn", "Successfully repaid the entire loan <br> Article allocated to the locker", "gold");
+                                echo json_encode($pawnId);
+                            } else {
+                                notification("Pawn", "Something went wrong", "red");
+                                echo json_encode(0);
+                            }
+                        } else {
+                            notification("Pawn", "Something went wrong", "red");
+                            echo json_encode(0);
+                        }
                     } else {
                         //add payment
-                        //add locker payment
                         //add reserve table data
-                        //set locker update    
+                        //set locker update   
+                        //add locker payment  
                         //add delivery details
+                        $status = $this->paymentmodel->addOnlinePawnPayment($payment['amount'], $pawnId, $payment['Principle'], $orderId);
+                        if ($status) {
+                            $this->customerPawnModel->updateCompletedLoanStatus($pawnId);
+                            $pawninfo = $this->customerPawnModel->getPawnById($pawnId);
+
+                            //update locker
+                            $this->lockermodel->updateLockerArticles($availableLocker['locker'], "Available");
+                            //insert delivery
+                            $this->deliveryModel->insertDelivery($availableLocker['locker']);
+                            //insert reservation
+
+                            $data = [
+                                'lockerNo' => $availableLocker['locker'],
+                                'customer' => $_SESSION['user_id'],
+                                'pawn_officer_or_vault_keeper' =>  "VK002",
+                                'gold_appraiser' =>  $pawninfo->Appraiser_Id
+
+                            ];
+                            $retrieveDate = $availableLocker['retrieve_date'];
+                            $amount = $availableLocker['payment'];
+                            $reserveId = $this->reservationModel->addNewReservation($data, $pawninfo->Article_Id, $retrieveDate, $amount);
+                            if ($reserveId) {
+
+                                $this->paymentmodel->addOnlineLockerPayment($amount + $availableLocker['delivery'], $reserveId, $orderId);
+
+                                notification("Pawn", "Successfully repaid the entire loan <br> Article allocated to the locker", "gold");
+                                echo json_encode($pawnId);
+                            } else {
+                                notification("Pawn", "Something went wrong", "red");
+                                echo json_encode(0);
+                            }
+                        } else {
+                            notification("Pawn", "Something went wrong", "red");
+                            echo json_encode(0);
+                        }
                     }
                 }
             }
         }
-
-
-
-        // echo json_encode($pawnStatus);
+    }
+    public function geneartePdf()
+    {
+        printReciept();
+        unset($_SESSION['payment']);
     }
 }

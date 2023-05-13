@@ -85,23 +85,25 @@
                                                     echo "tag-completed";
                                                 } elseif ($data['status'] == 'Retrieved') {
                                                     echo "tag-retrieved";
-                                                } else {
+                                                } else if ($data['status'] == 'Auctioned') {
                                                     echo "tag-auctioned";
+                                                }  else if ($data['status'] == 'Repawn') {
+                                                    echo "tag-repawn";
                                                 } ?>"> <?= $data['status'] ?> </label>
 
-                        
+
                     </div>
                     <div class="jw-date">
-                            <div class="jw-date-name">
-                                <label> </label>
-                                <?php if ($data['goldLoan']->WarningOne == 1 && $data['goldLoan']->WarningTwo == 1) : ?>
-                                    <label class="status tag-warn">Warning 1 </label>
-                                    <label class="status tag-warn">Warning 2 </label>
-                                <?php elseif ($data['goldLoan']->WarningOne == 1) : ?>
-                                    <label class="status tag-warn">Warning 1 </label>
-                                <?php endif; ?>
-                            </div>
+                        <div class="jw-date-name">
+                            <label> </label>
+                            <?php if ($data['goldLoan']->WarningOne == 1 && $data['goldLoan']->WarningTwo == 1) : ?>
+                                <label class="status tag-warn">Warning 1 </label>
+                                <label class="status tag-warn">Warning 2 </label>
+                            <?php elseif ($data['goldLoan']->WarningOne == 1) : ?>
+                                <label class="status tag-warn">Warning 1 </label>
+                            <?php endif; ?>
                         </div>
+                    </div>
                 </div>
                 <div class="due-payment info-div">
                     <h2 class="sub-title">
@@ -173,7 +175,7 @@
         </div>
         <div class="payment-history">
             <?php if ($data['status'] != 'Auctioned' && $data['status'] != 'Retrieved' && $data['status'] != 'Completed' && $data['status'] != 'Repawn') : ?>
-                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerPawn/makePayment/<?= $data['goldLoan']->Pawn_Id ?>"  >
+                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerPawn/makePayment/<?= $data['goldLoan']->Pawn_Id ?>">
                     Pay </a>
             <?php endif; ?>
             <div class="payments his-div payHistory">
