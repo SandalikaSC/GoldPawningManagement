@@ -107,6 +107,9 @@
   .tag-pending {
     background-color: #bb8a048c;
   } 
+  .tag-repawn {
+    background-color: #ec812f8c;
+  } 
   .tag-auctioned {
     background-color: #0000007d;
   }
@@ -166,3 +169,49 @@
     margin: 0 0 40px;
   }
    
+
+  .btn_filter {
+    float: left; 
+    width: 100px;
+    height: 40px;
+    position: relative;
+  }
+  
+  .btn_filter label,
+  .btn_filter input {
+    display: block;
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .btn_filter input[type="radio"] {
+    opacity: 0.011;
+    z-index: 100;
+  }
+  
+  .btn_filter input[type="radio"]:checked + label {
+    background: #dcb856;
+    border-radius: 15px;
+    color: white;
+  }
+  
+  .btn_filter label {
+    cursor: pointer;
+    z-index: 90;
+    line-height: 1.8em;
+  }
+  
+.filter {
+  margin: 0 auto;
+  text-align: center;
+}
+.empty-lbl{
+  margin: 2% auto;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 18% 45%;
+}
+  

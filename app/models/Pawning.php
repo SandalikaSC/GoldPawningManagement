@@ -81,6 +81,7 @@ class Pawning
                 return false;
             }
         }
+    } 
 
         // Get validation details of a article by using the validation ID
         public function getValidationDetailsByID($id) {
@@ -388,8 +389,9 @@ class Pawning
             return $count;
         }
 
-
         //customer pawning
+        return $results;
+    }
 
 
         public function getPawnByUserID($userId) {

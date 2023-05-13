@@ -803,8 +803,111 @@
             var lockerAllocation = null;
             const selectedRadio = document.querySelector('input[name="repawn"]:checked');
 
+
             // Get the value of the selected radio button
             const repawn = selectedRadio.value;
+
+                //     document.getElementById('err-msg').style.display = "block";
+                //     window.scrollTo({
+                //         top: 0,
+                //         behavior: 'smooth'
+                //     });
+
+
+            } else {
+                if (pwnStatus == "Pawned") {
+
+
+                    if (<?= $data['topayPrinciple'] ?> == principlepayment) {
+                        // console.log("completed");
+                        // payment = {
+                        //     "amount": total_payment,
+                        //     "Principle": principlepayment,
+                        //     "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                        // };
+                        const retrival = document.querySelector('input[name="retrieval"]:checked');
+                        const method = retrival.value;
+                        if (method == 1) {
+                            // console.log(" Visit Shop");
+                            payment = {
+                                "amount": total_payment,
+                                "Principle": principlepayment,
+                                    "interest": interestpayment,
+                                "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+                                "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                            };
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Visit"
+                            };
+                            myLocker = null;
+                            lockerAllocation = null;
+                        } else {
+
+                            // console.log("Safe Locker");
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Locker"
+                            };
+                            var myLockers = <?= json_encode($data['mylockers']) ?>;
+
+
+                            if (Array.isArray(myLockers) && myLockers.length != 0) {
+                                // console.log(" mylocker");
+                                payment = {
+                                    "amount": total_payment,
+                                    "Principle": principlepayment,
+                                    "interest": interestpayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+                                    "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                                };
+
+                                myLocker = {
+                                    "locker": myLockers[0].lockerNo,
+                                    "retrieve_date": myLockers[0].Retrieve_Date
+                                };
+                                lockerAllocation = null;
+
+                            } else {
+
+                                // console.log(" available locker");
+                                var selectElement = document.getElementById("duration");
+                                const selectedDuration = selectElement.value;
+                                var today = new Date();
+                                if (selectedDuration == 12) {
+                                    lockerpayment = <?= $data['reserveInterest'] ?>;
+                                    var sixMonthsLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate() + 1);
+                                    var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                                } else {
+                                    lockerpayment = <?= $data['reserveInterest'] ?> / 2;
+                                    var sixMonthsLater = new Date(today.getFullYear(), today.getMonth() + 6, today.getDate() + 1);
+                                    var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                                }
+                                payment = {
+                                    "amount": total_payment - (deliverypayment + lockerpayment),
+                                    "Principle": principlepayment,
+                                    "interest": interestpayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+                                    "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                                };
+                                lockerAllocation = {
+                                    "locker": <?= $data['locker'][0]->lockerNo ?>,
+                                    "retrieve_date": formattedDate,
+                                    "duration": selectedDuration,
+                                    "payment": lockerpayment,
+                                    "delivery": deliverypayment
+                                };
+                                myLocker = null;
+
+
+
+                            }
+                        }
+
 
             if (pwnStatus == "Pawned") {
                 payment = {
@@ -834,11 +937,16 @@
                         payment = {
                             "amount": total_payment,
                             "Principle": principlepayment,
+
+                                    "interest": interestpayment,
+                            "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
                     } else {
                         payment = {
                             "amount": total_payment,
+
                             "Principle": principlepayment,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
@@ -849,6 +957,43 @@
                             myLocker = {
                                 "locker": <?= $data['mylockers'][0]->lockerNo ?>,
                                 "retrieve_date": '<?= $data['mylockers'][0]->Retrieve_Date ?>'
+
+                            "Principle": 0,
+                                    "interest": interestpayment,
+                            "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+                            "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                        };
+                        myLocker = null;
+                        lockerAllocation = null;
+                        pawnProcess = {
+                            "pawnStatus": pwnStatus,
+                            "Repawn": 1,
+                            "loanPay": null,
+                            "retrieve": null
+                        };
+
+                    } else {
+                        // console.log(" not Repawn");
+                        var repawnStatus = 0;
+                        const retrival = document.querySelector('input[name="retrieval"]:checked');
+                        const method = retrival.value;
+                        if (method == 1) {
+                            // console.log(" Visit Shop");
+                            payment = {
+                                "amount": total_payment,
+                                "Principle": principlepayment,
+                                    "interest": interestpayment,
+                                "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+                                "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                            };
+                            myLocker = null;
+                            lockerAllocation = null;
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Visit"
+
                             };
                             // payment = {
                             //     "amount": total_payment,
@@ -857,6 +1002,7 @@
                             // };
 
                         } else {
+
 
                             // console.log(" available locker");
                             var selectElement = document.getElementById("duration");
@@ -878,12 +1024,76 @@
                                 "delivery":deliverypayment
                             };
 
+                            // console.log("Safe Locker");
+                            pawnProcess = {
+                                "pawnStatus": pwnStatus,
+                                "Repawn": 0,
+                                "loanPay": "Full",
+                                "retrieve": "Locker"
+                            };
+                            var myLockers = <?= json_encode($data['mylockers']) ?>;
+
+
+                            if (Array.isArray(myLockers) && myLockers.length != 0) {
+                                // console.log(" mylocker");
+                                payment = {
+                                    "amount": total_payment,
+                                    "Principle": principlepayment,
+                                    "interest": interestpayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+                                    "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                                };
+                                myLocker = {
+                                    "locker": myLockers[0].lockerNo,
+                                    "retrieve_date": myLockers[0].Retrieve_Date
+                                };
+
+                                lockerAllocation = null;
+
+                            } else {
+
+                                // console.log(" available locker");
+                                var selectElement = document.getElementById("duration");
+                                const selectedDuration = selectElement.value;
+                                var today = new Date();
+                                if (selectedDuration == 12) {
+                                    lockerpayment = <?= $data['reserveInterest'] ?>;
+                                    var sixMonthsLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate() + 1);
+                                    var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                                } else {
+                                    lockerpayment = <?= $data['reserveInterest'] ?> / 2;
+                                    var sixMonthsLater = new Date(today.getFullYear(), today.getMonth() + 6, today.getDate() + 1);
+                                    var formattedDate = sixMonthsLater.toISOString().slice(0, 10);
+                                }
+                                payment = {
+                                    "amount": total_payment - (deliverypayment + lockerpayment),
+                                    "Principle": principlepayment,
+                                    "interest": interestpayment,
+                                    "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
+                                    "PawnId": <?= $data['pawning']->Pawn_Id ?>
+                                };
+                                myLocker = null;
+                                lockerAllocation = {
+                                    "locker": <?= $data['locker'][0]->lockerNo ?>,
+                                    "retrieve_date": formattedDate,
+                                    "duration": selectedDuration,
+                                    "payment": lockerpayment,
+                                    "delivery": deliverypayment
+                                };
+
+
 
 
                         }
                     }
 
                 }
+
+
+
+                OnlinePayment(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, total_payment);
+                // saveDetails(<?= $data['pawning']->Pawn_Id ?>, pawnProcess, payment, myLocker, lockerAllocation, 5);
+
 
             }
 
@@ -894,6 +1104,19 @@
 
 
 
+
+
+
+                    object = JSON.parse(obj);
+
+                    // Payment completed.It can be a successful failure.
+                    payhere.onCompleted = function onCompleted(orderId) {
+                        //    alert("Payment completed. OrderID:" + object["order_id"]);
+                        // Note: validate the payment and show success or failure page to the customer
+                        saveDetails(pawnId, pawnprocess, payment, myLocker, availableLocker, object['order_id']);
+                        // alert("complete");
+                        // window.location.href ='<?php echo URLROOT ?>/CustomerPawn/makePayment';
+                    };
 
 
 
@@ -913,6 +1136,44 @@
 
         }
 
+
+        function saveDetails(pawnId, pawnProcess, payment, myLocker, availableLocker, orderId) {
+            $.ajax({
+                type: "GET",
+                url: "  <?= URLROOT ?>/CustomerPawn/savePawnPayment",
+                data: {
+                    pawnId: pawnId,
+                    pawnProcess: pawnProcess,
+                    payment: payment,
+                    myLocker: myLocker,
+                    availableLocker: availableLocker,
+                    orderid: orderId
+                },
+                success: function(response) {
+
+                    if (response!=0) { 
+                       
+                        window.location = ' <?= URLROOT ?>/CustomerPawn/geneartePdf';
+                    
+                        window.location = ' <?= URLROOT ?>/CustomerPawn/viewPawnArticle/'+response;
+                    
+                    
+                    } else {
+
+                    }
+
+
+
+                },
+                error: function(xhr, status, error) {
+                    // handle errors here
+                    console.log(error);
+                }
+            });
+
+
+            // 
+        }
 
         // function appointmentDateSelection() {
         //     document.getElementById("appointment-err").textContent = "";
