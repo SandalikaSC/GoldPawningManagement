@@ -12,7 +12,7 @@
                 <a href="<?php echo URLROOT ?>/CustomerLocker" id="back">
                     <img class="back" src="<?php echo URLROOT ?>/img/back.png" alt="back">
                 </a>
-                <h1 id="title">Locker 1</h1>
+                <h1 id="title">Locker <?php echo $data['locker'] ?></h1>
             </div>
             <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
         </div>
@@ -67,12 +67,12 @@
                             <label for="">End Date</label>
                             <label for=""><?php echo  date("Y M d", strtotime($data['currentReservations'][0]->Retrieve_Date)); ?></label>
                             <label for="">Time remaining</label>
-                            <label for="" class="<?php echo   $data['tag'] ?>"><?php echo $data['timeremain'] ?></label>
+                            <label for="" class="<?php echo  ($data['timeremain']=='Overdue')?$data['tag']:'' ?>"><?php echo $data['timeremain'] ?></label>
                             <label for="">Key Status</label>
                             <div><label for="" class="tag black"><?php if ($data['currentReservations'][0]->Key_Status == 1) {
                                                                         echo "Released";
                                                                     } elseif ($data['currentReservations'][0]->Key_Status == 0) {
-                                                                        if ($data['delivery'][0]->Status = 1) {
+                                                                         if ($data['delivery'][0]->Status = 1) {
                                                                             echo "Deliverd";
                                                                         } else {
                                                                             echo "Not Deliverd";
