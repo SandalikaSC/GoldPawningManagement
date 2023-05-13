@@ -150,13 +150,13 @@
                         </div>
                         <div class="div-date">
                             <label for="date">Date</label>
-                            <input type="date" name="date" id="date" onkeyup="searchByDate()">
+                            <input type="date">
                         </div>
                         <div class="div-table-appointments">
                             <?php if(empty($data['appointments'])) : ?>
                                 <div class="no-appointments">No upcoming appointments</div>
                             <?php else : ?>
-                                <table id="table">
+                                <table>
                                     <thead>
                                         <tr>
                                             <td>Appointment No</td>
@@ -180,7 +180,6 @@
                                 </table>
                             <?php endif; ?>
                         </div>
-                        <div id="div-search-msg"></div>
                     </div>
 
                     <div class="table-container">
@@ -213,7 +212,24 @@
                                             <?php endforeach; ?>
                                         </tbody>
                                 <?php endif; ?>
-                            </table>     
+                            </table>
+                                    <!-- <tr>
+                                        <td>AR001</td>
+                                        <td>Rs. 150,000/-</td>
+                                        <td>Valid</td>
+                                        <td><a href="<?php echo URLROOT; ?>/customers/confirm_pawn" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AR001</td>
+                                        <td>Rs. 150,000/-</td>
+                                        <td>Invalid</td>
+                                        <td><a href="#" class="btn-validated btn-pawn">Pawn</a></td>
+                                        <td><a href="#" class="btn-validated btn-cancel">Cancel</a></td>
+                                    </tr> -->
+                                    
+                                
+                            
                         </div>                            
                     </div>
                 </div>     
@@ -222,9 +238,6 @@
         </main>
     </div>
 </body>
-
-<script src="<?php echo URLROOT ?>/js/search.js"></script>
-
 </html>
 
 

@@ -103,11 +103,10 @@
         public function checkNICValidity($nic) {            
             if(strlen($nic) == 10) {
                 $nic_substr = substr($nic, 0, 9);
-                if(!is_numeric($nic_substr)) {
+                if(!(is_numeric($nic_substr))) {
                     return false;
                 } else {
-                    $nic_letter = substr($nic, 9, 1);
-                    if(strtoupper($nic_letter) != 'V') {
+                    if($nic[-1] != 'V' || $nic[-1] != 'v') {
                         return false;
                     } else {
                         return true;
@@ -191,7 +190,7 @@
                 } else {
                     if($this->customerModel->findUserByNic($data['nic'])) {
                         $data['nic_err'] = 'A customer has already registered with the NIC';
-                    } elseif(!($this->calculateDOB($data))) {
+                    } elseif(!($this->checkNICValidity($data['nic'])) || !($this->calculateDOB($data))) {
                         $data['nic_err'] = 'Invalid NIC';
                     } else {
                         $data['dob'] = $this->calculateDOB($data);
