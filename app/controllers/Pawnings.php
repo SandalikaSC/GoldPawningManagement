@@ -201,17 +201,11 @@
             $pawned_item = $this->pawningModel->getPawnItemById($id);
             $remaining_loan = $this->getRemainingLoan($id);
             $customer = $this->customerModel->getCustomerById($pawned_item->userId);
-            $payment = $this->pawningModel->getLastPayment($id);
-            $payment_no = $this->pawningModel->totalPayments($id)->count;
-            $payment_history = $this->pawningModel->getPaymentsByPawnID($id);
 
             $data = [
                 'pawn_item' => $pawned_item,
                 'remaining_loan' => $remaining_loan,
-                'customer' => $customer,
-                'payment_details' => $payment,
-                'payment_no' => $payment_no,
-                'payment_history' => $payment_history
+                'customer' => $customer
             ];
 
             $this->view('PawnOfficer/loan_payment_bill', $data); 

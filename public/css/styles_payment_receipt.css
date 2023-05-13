@@ -7,7 +7,7 @@
 }
 
 header {
-    width: 100%;
+    width: 100vw;
     padding: 10px;
     height: 80px;
     display: flex;
@@ -43,19 +43,17 @@ header .button-container .main-btn:hover {
 main {
     top: 80px;
     height: calc(100vh - 80px);
-    width: 100%;
+    width: 100vw;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    overflow-y: auto;
 }
 
 main .div-receipt {
-    width: 700px;
+    width: 600px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    margin: 20px;
 }
 
 main .div-receipt .div-title .div-logo {
@@ -77,148 +75,14 @@ main .div-receipt .div-title .receipt-name {
     padding: 10px;
 }
 
-main .div-receipt .div-title .receipt-name h1 {
-    border-bottom: 3px solid #bb8a04;
+main .div-receipt .div-container {
+    padding: 20px;
 }
 
-main .div-receipt .div-detail-container {
-    padding: 40px;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
+main .div-receipt .div-container .customer-details {
+    padding: 0 20px;
 }
 
-main .div-receipt .div-detail-container .field-container {
-    margin-bottom: 5px;
-}
-
-main .div-receipt .div-detail-container .customer-details .field-container:first-child {
-    padding-top: 12px;
-    border-top: 1px solid #ddd;
-}
-
-main .div-receipt .div-detail-container .field-container span {
+main .div-receipt .div-container .customer-details .field-container label {
     font-weight: 600;
-}
-
-main .div-receipt .div-detail-container .field-container .contact {
-    font-style: italic;
-    font-weight: 500;
-}
-
-main .div-receipt .article-details {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main .div-receipt .article-details img {
-    width: 200px;
-    border-radius: 10px;
-} 
-
-main .div-receipt .article-details .div-details {
-    margin-left: 50px;
-}
-
-main .div-receipt .article-details .div-details .field {
-    display: flex;
-    margin-bottom: 5px;
-}
-
-main .div-receipt .article-details .div-details .field label {
-    font-weight: 600;
-    margin-right: 10px;
-}
-
-main .div-receipt .payment-details {
-    padding: 20px;
-}
-
-main .div-receipt .payment-details .div-details {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-main .div-receipt .payment-details .div-details .div-container {
-    padding: 30px;
-    background: #faebd7;
-    border-radius: 5px;
-}
-
-main .div-receipt .payment-details .div-details .field {
-    display: grid;
-    grid-template-columns: 1fr 0.8fr;
-    margin-bottom: 8px;
-}
-
-main .div-receipt .payment-details .div-details .field:last-child {
-    margin-bottom: 0;
-}
-
-main .div-receipt .payment-details .div-details .div-container .field label {
-    font-weight: 600;
-    font-style: italic;
-}
-
-main .div-receipt .payment-details .div-details .div-container .field div {
-    text-align: right;
-}
-
-main .div-receipt .payment-history {
-    padding: 20px;
-    margin-top: 5px;
-}
-
-main .div-receipt .loan-details {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-main .div-receipt .loan-details .field {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-main .div-receipt .loan-details .field label {
-    font-size: 28px;
-    font-style: italic;
-    color: #453301;
-}
-
-main .div-receipt .loan-details .field div {
-    font-size: 32px;
-    color: #bb8a04;
-}
-
-main .div-receipt .payment-history .div-table {
-    width: 100%;
-    margin-top: 20px;
-}
-
-main .div-receipt .payment-history .div-table table {
-    width: 100%;
-}
-
-main .div-receipt .payment-history .div-table table thead th {
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
-}
-
-main .div-receipt .payment-history .div-table table td {
-    padding: 5px 15px;
-    margin: auto;
-    text-align: center;
-}
-
-main .div-receipt .payment-history .div-table table .loan-amount {
-    width: 170px;
 }
