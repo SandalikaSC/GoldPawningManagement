@@ -182,7 +182,7 @@
                 ];
 
                 if(isset($_POST['yes'])) {
-                    redirect('/pawnings/generate_receipt/'. $data['pawn_item']->Pawn_Id);
+                    $receipt = printReciept();
                 }
                 if(isset($_POST['no'])) {
                     redirect('/pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
@@ -214,7 +214,7 @@
                 'payment_history' => $payment_history
             ];
 
-            $this->view('PawnOfficer/loan_payment_bill', $data); 
+            $this->view('PawnOfficer/generate_invoice', $data); 
         }
 
         // Function to release a pawned article when the loan has paid completely
