@@ -10,68 +10,7 @@
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/owner-dashboard.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js" integrity="sha512-t2JWqzirxOmR9MZKu+BMz0TNHe55G5BZ/tfTmXMlxpUY8tsTo3QMD27QGoYKZKFAraIPDhFv56HLdN11ctmiTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
-
-    <style>
-        .navigation {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: sticky;
-            margin-bottom: 30px;
-            width: 100%;
-
-        }
-
-        nav {
-            height: 50px;
-            display: flex;
-            justify-content: center;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-        }
-
-        li {
-            color: black;
-            font-size: 20px;
-            margin: 0 10px;
-            padding: 10px;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            background-color: #bb8a04;
-
-        }
-
-        li:hover {
-            color: black;
-
-        }
-
-        @media screen and (max-width: 768px) {
-            nav {
-                height: auto;
-            }
-
-            ul {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            li {
-                margin: 10px 0;
-                font-size: 18px;
-            }
-        }
-    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script> 
 </head>
 
 <body>
@@ -136,7 +75,7 @@
                             <li id="sum">Summary</li>
                             <li id="gr">Gold Rates</li>
                             <li id="ch">Chart</li>
-                            <li id="com">Complaint</li>
+                            <li id="com">Complaints</li>
                         </ul>
                     </nav>
                 </div>
@@ -291,7 +230,7 @@
                                 <option value=2022>2022</option>
                             </select>
 
-                            <button onclick="redirectToReport()">PDF VERSION</button>
+                            <button onclick="redirectToReport()">Print Me</button>
                         </div>
 
                         <div class="graph">
@@ -513,33 +452,33 @@
                             label: 'Monthly Income',
                             data: amountsIncome,
                             backgroundColor: [
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)'
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04'
 
                             ],
                             borderColor: [
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)',
-                                'rgba(255, 99, 13, 0.2)'
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04',
+                                '#BB8A04'
 
                             ],
 
@@ -548,32 +487,32 @@
                             label: 'Monthly Expenditure',
                             data: amountsExpen,
                             backgroundColor: [
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
                             ],
                             borderColor: [
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
-                                'rgba(54, 16, 235, 0.2)',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
+                                'black',
                             ],
 
                             fill: false

@@ -115,5 +115,4 @@ function isValidEmail($email)
     }
     return true;
 
-    // <!-- abuugrshlwzghtwj -->
 }

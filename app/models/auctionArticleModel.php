@@ -2,6 +2,7 @@
 
 class auctionArticleModel extends Database
 {
+    //to load auction articles
     public function getAuctionArticles()
     {
         $sql = 'select Article_Id,Estimated_Value,Karatage,Weight,Type,image from article where Article_Id in(select distinct Article_Id from pawn where Status like "A%" AND Status like "a%")';
@@ -15,7 +16,7 @@ class auctionArticleModel extends Database
         }
     }
 
-
+//to view the detaiis of auctioned article
     public function viewAuctionArticle($article_id)
     {
 
@@ -34,6 +35,7 @@ class auctionArticleModel extends Database
     }
 
 
+    //to filter data
     public function filter($auctionDate,$firstDate, $secondDate, $karatage, $type, $minWeight, $maxWeight)
     {
 
@@ -70,9 +72,6 @@ class auctionArticleModel extends Database
 
             $sql .= " AND a.Weight <= $maxWeight";
         }
-
-
-
 
         $this->query($sql);
 

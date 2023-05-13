@@ -80,6 +80,7 @@ body{
 
 .three-sets{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .left-set{
@@ -276,7 +277,7 @@ body{
 
 
 
-@media screen and (max-width:1188px) {
+@media screen and (max-width:1192px) {
     .right{   
         overflow-y: scroll;
     }
@@ -346,9 +347,26 @@ body{
     justify-content: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    height:200px;
+    height:800px;
   }
 
+  .top{
+    margin-bottom: 10px;
+  }
+
+  .lock-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lock-items .arti img{  
+    width:100px;
+    height:100px;
+    margin:10px;
+
+}
   
 }
 

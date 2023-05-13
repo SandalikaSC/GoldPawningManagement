@@ -12,7 +12,7 @@
 
 <body>
     <div class="print-btn">
-        <a href="<?php if(substr($data[0]->Status,0,1)=='A' || substr($data[0]->Status,0,1)=='a') echo URLROOT."/mgPawnArticles/viewPawnedItem/". $data[0]->Article_Id;  else if(substr($data[0]->Status,0,1)=='P' || substr($data[0]->Status,0,1)=='p') echo URLROOT."/mgAuction/viewAuctionItem/". $data[0]->Article_Id;?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+        <a href="<?php if(substr($data[0]->Status,0,1)==='P' || substr($data[0]->Status,0,1)==='p') echo URLROOT."/mgPawnArticles/viewPawnedItem/". $data[0]->Article_Id;  else if(substr($data[0]->Status,0,1)==='A' || substr($data[0]->Status,0,1)=='a') echo URLROOT."/mgAuction/viewAuctionItem/". $data[0]->Article_Id;?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
         <button id="generate-pdf">Print Me</button>
     </div>

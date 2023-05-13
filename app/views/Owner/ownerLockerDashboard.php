@@ -78,15 +78,15 @@
                     <div class="locker-summary">
                         <div class="locker-sum-1">
                             <div class="topic-label">Total</div>
-                            <div class="no">100</div>
+                            <div class="no"><?php if($data[1]==0) echo 0; else echo $data[1]; ?></div>
                         </div>
                         <div class="locker-sum-1">
                             <div class="topic-label">Allocated</div>
-                            <div class="no"><?php echo $data[1] ?></div>
+                            <div class="no"><?php if($data[2]==0) echo 0; else echo $data[2]; ?></div>
                         </div>
                         <div class="locker-sum-1">
                             <div class="topic-label">Remaining</div>
-                            <div class="no"><?php echo $data[2] ?></div>
+                            <div class="no"><?php if($data[3]==0) echo 0; else echo $data[3]; ?></div>
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="hover-des-field">
                                             <div class="label">Key</div>
-                                            <div class="element Green"><?php if ($row->Key_Status == 1) {
+                                            <div class="element <?php echo ($row->Key_Status == 1) ? 'Green':'Red'?>"><?php if ($row->Key_Status == 1) {
                                                                             echo "Delivered";
                                                                         } else {
                                                                             echo "Not Delivered";

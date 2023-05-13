@@ -2,6 +2,7 @@
 class mgAuction extends controller
 {
 
+   //to load all auctioned articles
    public function index()
    {
       isLoggedIn();
@@ -10,13 +11,14 @@ class mgAuction extends controller
       $this->view("/Manager/auction_dashboard", $result);
    }
 
+   //to view auction article
    public function viewAuctionItem($article_id)
    {
       isLoggedIn();
       $auction = $this->model("auctionArticleModel");
       $result = $auction->viewAuctionArticle($article_id);
       $sum = 0;
-      foreach ($result[1] as $row) {
+      foreach ($result[1] as $row) { //to calculate paid amount
          $sum = $sum + $row->Amount;
       }
       $result[] = $sum;
@@ -24,6 +26,7 @@ class mgAuction extends controller
    }
 
 
+   //to filter the articles in auction dashboard
    public function filter()
    {
       $auctionDate=isset($_POST['auction-date']) ? $_POST['auction-date'] : '';
@@ -48,6 +51,7 @@ class mgAuction extends controller
    }
 
 
+   //to generate a report, all details when an article is clicked is sent to 'pawnArticleReceipt' User Interface
    public function generateAuctionReport($article_id)
    {
       isLoggedIn();
@@ -61,4 +65,3 @@ class mgAuction extends controller
       $this->view("/pages/pawnArticleReceipt", $result);
    }
 }
-?>

@@ -1,7 +1,7 @@
 <?php
 class ownerPawnArticleDash extends controller
 {
-  
+   //to come date for adding auction
    public function dateCompare($date, $days_to_add = 0)
    {
       $currentDate = new DateTime(date('Y-m-d'));
@@ -16,6 +16,7 @@ class ownerPawnArticleDash extends controller
       }
    }
 
+   //load all current pawned articles
    public function index()
    {
       isLoggedIn();
@@ -45,13 +46,13 @@ class ownerPawnArticleDash extends controller
       }
    }
 
-
+   //to compare dates for sending warning emails
    public function dateCompareForEmail($date, $days_to_sub = 0)
    {
       $currentDate = new DateTime(date('Y-m-d'));
 
       $givenDate = new DateTime($date);
-      $givenDate->modify("-$days_to_sub day"); 
+      $givenDate->modify("-$days_to_sub day");
 
 
       if ($currentDate == $givenDate) {
@@ -61,10 +62,7 @@ class ownerPawnArticleDash extends controller
       }
    }
 
-
-
-
-
+   //to view the details of pawned item
    public function viewPawnedItem($id)
    {
 
@@ -82,9 +80,9 @@ class ownerPawnArticleDash extends controller
    }
 
 
-   
 
 
+   //to filter articles in owner pawned article dashboard
    public function filter()
    {
 

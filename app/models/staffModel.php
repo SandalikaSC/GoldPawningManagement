@@ -4,6 +4,7 @@ use LDAP\Result;
 
 class staffModel extends Database
 {
+    //to load the Pawning Officers,vault keepers,gold appraisers
     public function getStaffMember()
     {
         $sql = 'select UserId,concat(First_Name," ",Last_Name) as Name, type as Role, Created_date as Date from user where UserId not like "MG%"  AND UserId not like "CU%" AND UserId not like "AD%" AND UserId not like "OW%"';
@@ -16,6 +17,7 @@ class staffModel extends Database
         }
     }
 
+    //to calculate the next user id
     public function getStaffId($role)
     {
         $sql = "select UserId from user where type=? order by UserId desc limit 1";
@@ -43,6 +45,7 @@ class staffModel extends Database
         }
     }
 
+    //to check whether a email already exists or not
     public function emailExist($email, $userId = null)
     {
         if (!empty($userId)) {
@@ -70,6 +73,7 @@ class staffModel extends Database
         }
     }
 
+    //to check whether NIC already exist or not
     public function nicExist($nic, $userId = null)
     {
         if (!empty($userId)) {
@@ -102,6 +106,7 @@ class staffModel extends Database
         }
     }
 
+    //to check whether the phone number already exist or not
     public function phoneExist($phone, $userId = null)
     {
         if (!empty($userId)) {
@@ -132,6 +137,8 @@ class staffModel extends Database
         }
     }
 
+
+    //create new staff member
     public function addStaffMember($id, $fName, $lName, $gender, $nic, $dob, $line1, $line2, $line3, $mob, $mob2, $email, $role, $image, $hash)
     {
 
@@ -201,7 +208,7 @@ class staffModel extends Database
     }
 
 
-
+// to view a staff member. getting all staff member details
     public function viewStaffMember($id)
     {
         $sql = "select user.UserId, user.First_Name, user.Last_Name, user.Gender, user.NIC, user.DOB, user.Line1, user.Line2, user.Line3, user.email, user.image, user.type, user.Created_date,user.Created_By,user.last_edit, phone.phone from user inner join phone on user.UserId=phone.userId where user.UserId=? ;";
@@ -212,6 +219,8 @@ class staffModel extends Database
         return $result;
     }
 
+
+    //delete staff member
     public function deleteStaffMember($id)
     {
 
@@ -228,7 +237,7 @@ class staffModel extends Database
         return $result1 and $result2;
     }
 
-
+   //to load a profile picture
     public function loadProfilePicture($email)
     {
         $sql = 'select image, concat(First_Name," ",Last_Name) as Name from user where email=? limit 1';
@@ -238,6 +247,7 @@ class staffModel extends Database
         return $result;
     }
 
+    //to get all passwords except given user
     public function getPasswords($userId)
     {
 
@@ -248,7 +258,7 @@ class staffModel extends Database
         return $passwords;
     }
 
-
+//to get all passwords
     public function getUserPassword($email)
     {
         $sql = 'select password from user where email= ? limit 1';
@@ -258,6 +268,7 @@ class staffModel extends Database
         return $result;
     }
 
+    //to get phone numbers of given user
     public function getUserPhoneNumbers($userId)
     {
         $sql = 'select userId,phone from phone where userId=?';
@@ -271,9 +282,9 @@ class staffModel extends Database
         }
     }
 
+    //to update personal details
     public function setPersonalInfo($id, $fName, $lName, $gender, $line1, $line2, $line3, $mob2, $image, $curr_mob = null, $curr_mob2 = null)
     {
-        // $sql = 'insert into user(First_Name, Last_Name, Gender, DOB, Line1, Line2, Line3, image) values (?,?,?,?,?,?,?,?) where userId=?';
         $sql = 'update user set First_Name=?,Last_Name=?,Gender=?,Line1=?,Line2=?,Line3=?,image=?,last_edit=? where userId=?';
         $this->query($sql);
 
@@ -339,7 +350,7 @@ class staffModel extends Database
                 $this->query($sql1);
                 $this->bind(1, $mob2);
                 $this->bind(2, $id);
-                $this->bind(3, $curr_mob2);
+                $this->bind(3, $curr_mob);
                 $this->execute();
                 $result1 = '1';
             }
@@ -353,5 +364,44 @@ class staffModel extends Database
         } else {
             return false;
         }
+    }
+
+//to reset the email
+    public function resetEmail($newemail,$UserId){
+        $sql='update user set email=? where UserId=?';
+        $this->query($sql);
+        $this->bind(1,$newemail);
+        $this->bind(2,$UserId);
+        $this->execute();
+    }
+
+  //to reset the password
+    public function resetPassword($UserId, $password)
+    {
+        $sql = 'update user set password=? where UserId=?';
+        $this->query($sql);
+        $this->bind(1, $password);
+        $this->bind(2, $UserId);
+        $this->execute();
+    }
+
+    //to get user email
+    public function getUserEmail($id)
+    {
+        $sql = 'select email from user where UserId=?';
+        $this->query($sql);
+        $this->bind(1, $id);
+        $result = $this->single();
+        return $result;
+    }
+
+ //to delete complaint
+    public function deleteComplaint($cid)
+    {
+        $sql = 'delete from complaint where CID=?';
+        $this->query($sql);
+        $this->bind(1, $cid);
+        $result = $this->execute();
+        return $result;
     }
 }

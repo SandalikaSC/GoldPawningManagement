@@ -48,7 +48,7 @@
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
             </div>
-            <div class="content-add-new-page">
+            <div class="content-page">
                 <div class="three-boxes">
                     <div class="left-box">
                         <div class="article-details-topic">
@@ -59,7 +59,7 @@
                                             echo $data[0]->image;
                                         } else {
                                             echo URLROOT . "/img/2.png";
-                                        } ?>" alt="">
+                                        } ?>" alt="Jewelry">
                         </div>
                         <div class="article-des">
                             <div class="article-info">
@@ -206,7 +206,7 @@
                                 </div>
                                 <div class="twobtns">
                                     <div class='<?php echo ($this->dateCompare($data[0]->End_Date, 0) and $data[0]->WarningTwo == 0) ? 'auction-btn' : (($this->dateCompare($data[0]->End_Date, 14) and $data[0]->Status == "Pawned") ? "black-btn" :"red-btn")?>'><button type="button" id="auction-btn">Add to Auction</button></div>
-                                    <div class="<?php echo ($this->dateCompareForEmail($data[0]->End_Date, 30) and $data[0]->WarningOne == 0) ? 'email-btn': (($this->dateCompareForEmail($data[0]->End_Date, 0) and $data[0]->WarningTwo == 0) ? 'red-email-btn':'email-btn')?>"><button type="button" id="warning-btn">Send Warning</button></div>
+                                    <div class="<?php echo ($this->dateCompareForEmail($data[0]->End_Date, 30) and $data[0]->WarningOne == 0) ? 'red-email-btn': (($this->dateCompareForEmail($data[0]->End_Date, 0) and $data[0]->WarningTwo == 0) ? 'red-email-btn':'email-btn')?>"><button type="button" id="warning-btn">Send Warning</button></div>
                                 </div>
 
                             </div>

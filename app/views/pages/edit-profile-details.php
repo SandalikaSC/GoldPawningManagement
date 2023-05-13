@@ -149,10 +149,10 @@
                                 <div class="form-group">
                                     <label for="home-no"><b>Additional Number:</b></label>
                                     <input type="text" value="<?php if (!empty($data[1][0]->phone) && !empty($data[1][1]->phone)) {
-                                                                    echo $data[1][1]->phone;
-                                                                } else if (!empty($data[1][0]->phone)){
+                                                                    echo $data[1][0]->phone;
+                                                                } else if (empty($data[1][0]->phone)){
                                                                     echo "";
-                                                                }elseif(!empty($data[1][1]->phone)){
+                                                                }elseif(empty($data[1][1]->phone)){
                                                                     echo "";
                                                                 } ?>" name="mob-no2" id="mob-no2" minlength="10" maxlength="10 ">
                                 </div>
@@ -215,7 +215,7 @@
         const nameRegex = /^[A-Z][a-z]{1,19}$/;
 
         // Regular expression for phone number
-        // const phoneRegex1 = /^[0][7][0,1,2,5,6,7,8][0-9]{7,}$/;
+        
         const phoneRegex2 = /^[0][7][0,1,2,5,6,7,8][0-9]{7,}$/;
 
         // Regular expression for address
@@ -294,7 +294,7 @@
         const addressLane2 = document.getElementById("lane2").value;
         const lane2Error = document.getElementById("lane2Error");
 
-        if (addressRegex2.test(addressLane2) || addressLane2 == "") {
+        if (addressRegex2.test(addressLane2)) {
             document.getElementById('lane2').classList.remove('invalid');
             lane2Error.style.display = "none";
         } else {

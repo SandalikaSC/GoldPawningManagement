@@ -6,6 +6,7 @@ class mgPawnArticles extends controller
       flashMessage();
    }
 
+   //to compare the date
    public function dateCompare($date, $days_to_add = 0)
    {
       $currentDate = new DateTime(date('Y-m-d'));
@@ -20,21 +21,22 @@ class mgPawnArticles extends controller
       }
    }
 
+   //to display all pawned articles
    public function index()
    {
       isLoggedIn();
       $pawn = $this->model("pawnArticleModel");
       $result = $pawn->loadPawnArticles();
-      if ($result) {
+      if ($result) {  
          $count = 0;
-         foreach ($result as $row) {
+         foreach ($result as $row) {    //to count no of articles which are to be added to the Auction.
             if (!($this->dateCompare($row->End_Date, 14)) and $row->Status == "Pawned") {
                $count++;
             }
          }
 
          $noOfEmails = 0;
-         foreach ($result as $row) {
+         foreach ($result as $row) {  //to count no of warning emails.
             if ($this->dateCompareForEmail($row->End_Date, 30) and $row->WarningOne == 0) {
                $noOfEmails++;
             } else if ($this->dateCompareForEmail($row->End_Date, 0) and $row->WarningTwo == 0) {
@@ -49,7 +51,7 @@ class mgPawnArticles extends controller
       }
    }
 
-
+  //date compare for warning emails.
    public function dateCompareForEmail($date, $days_to_sub = 0)
    {
       $currentDate = new DateTime(date('Y-m-d'));
@@ -65,10 +67,7 @@ class mgPawnArticles extends controller
       }
    }
 
-
-
-
-
+//to view pawned article details
    public function viewPawnedItem($id)
    {
 
@@ -85,7 +84,7 @@ class mgPawnArticles extends controller
       $this->view("/Manager/viewPawnedItem", $result);
    }
 
-
+//to send warning emails at once
    public function sendWarningEmails()
    {
       $pawn = $this->model("pawnArticleModel");
@@ -95,13 +94,13 @@ class mgPawnArticles extends controller
          $flag = 0;
          foreach ($result as $row) {
             if ($this->dateCompareForEmail($row->End_Date, 30) and $row->WarningOne == 0) {
-               $useremail = $this->model("pawnArticleModel");
+               $useremail = $this->model("pawnArticleModel");  //set email details
                $email = $useremail->findUserEmail($row->userId);
                $sms = "Note: Only One Month Left";
                $useremail = null;
 
-               $abc = sendMail($email->email, "warning", $sms, "V O G U E");
-               if ($abc == null) {
+               $abc = sendMail($email->email, "warning", $sms, "V O G U E");  //send warning mails
+               if ($abc == null) {  //if network issue
                   $flag = 1;
                   flashMessage("Network Error Occurd..", 0);
                   echo "Done";
@@ -110,13 +109,13 @@ class mgPawnArticles extends controller
                   $warning = $this->model("pawnArticleModel")->updateStatus($row->Pawn_Id, 30);
                }
             } else if ($this->dateCompareForEmail($row->End_Date, 0) and $row->WarningTwo == 0) {
-               $useremail = $this->model("pawnArticleModel");
+               $useremail = $this->model("pawnArticleModel");   //set email details
                $email = $useremail->findUserEmail($row->userId);
                $sms = "Note: Today is the End Date For Your Pawn";
                $useremail = null;
 
-               $abc = sendMail($email->email, "warning", $sms, "V O G U E");
-               if ($abc == null) {
+               $abc = sendMail($email->email, "warning", $sms, "V O G U E");  //send warning mails
+               if ($abc == null) {   //if network issue
                   $flag = 1;
                   flashMessage("Network Error Occurd..", 0);
                   echo "DONE";
@@ -137,9 +136,7 @@ class mgPawnArticles extends controller
    }
 
 
-
-
-
+//to add to the auction at once.
    public function addToAuction()
    {
       $pawn = $this->model("pawnArticleModel");
@@ -149,13 +146,13 @@ class mgPawnArticles extends controller
          foreach ($result as $row) {
             if (!($this->dateCompare($row->End_Date, 14))) {
                $useremail = $this->model("pawnArticleModel");
-               $email = $useremail->findUserEmail($row->userId);
+               $email = $useremail->findUserEmail($row->userId);  //set email details
                $sms = "Your Article was added to Auction";
                $useremail = null;
 
                if (sendMail($email->email, "pawn_to_auction", $sms, "V O G U E")) {
                   date_default_timezone_set('Asia/Colombo');
-                  $current_timestamp = date('H:i:s');
+                  $current_timestamp = date('H:i:s');  //derive the current date
                   $auction_date = date('Y-m-d H:i:s');
                   $auction = $this->model("pawnArticleModel");
                   $row = $auction->pawnToAuction($row->Pawn_Id, $auction_date, $current_timestamp);
@@ -172,35 +169,33 @@ class mgPawnArticles extends controller
             echo "DONE";
             flashMessage("Added to Auction Successfully", 1);
          }
-         // redirect('/mgPawnArticles/index');
+         
       } else {
          echo "DONE";
          flashMessage("No Articles Pawned to add Auction", 0);
-         // redirect('/mgPawnArticles/index');
       }
    }
 
 
 
 
-
+//to add to the auction one by one
    public function addOneByOneToAuction($pawnid, $End_Date, $userId)
    {
 
-      $isComplete = $this->model("pawnArticleModel")->isCompleted($pawnid);
+      $isComplete = $this->model("pawnArticleModel")->isCompleted($pawnid);  //to check whether pawning time period is completed
       if (!($this->dateCompare($End_Date, 14)) and !$isComplete) {
          $pawn1 = $this->model("pawnArticleModel")->checkStatus($pawnid);
          if ($pawn1) {
             echo "DONE";
             flashMessage("Already In Auction", 0);
-            // redirect('/mgPawnArticles/viewPawnedItem/' . $Article_Id);
          } else {
             $useremail = $this->model("pawnArticleModel");
-            $email = $useremail->findUserEmail($userId);
+            $email = $useremail->findUserEmail($userId);  //find the user email
             $sms = "Your Article was added to Auction";
             $sms = "Your Article was added to Auction";
             if (sendMail($email->email, "pawn_to_auction", $sms, "V O G U E")) {
-               date_default_timezone_set('Asia/Colombo');
+               date_default_timezone_set('Asia/Colombo');  //derive the current date
                $current_timestamp = date('H:i:s');
                $auction_date = date('Y-m-d H:i:s');
                $pawn2 = $this->model("pawnArticleModel")->pawnToAuction($pawnid, $auction_date, $current_timestamp);
@@ -210,15 +205,14 @@ class mgPawnArticles extends controller
                echo "fail";
                flashMessage("Network Error Occurd..", 0);
             }
-            // redirect('/mgPawnArticles/viewPawnedItem/' . $Article_Id);
          }
       }
    }
 
-
+//to send warning emails one by one
    public function sendOneByOneWarning($userId, $End_Date, $pawnid, $warning1, $warning2)
    {
-      if ($this->dateCompareForEmail($End_Date, 0) and $warning2 == 0) {
+      if ($this->dateCompareForEmail($End_Date, 0) and $warning2 == 0) {  //today is the end date
          $useremail = $this->model("pawnArticleModel");
          $email = $useremail->findUserEmail($userId);
 
@@ -232,7 +226,7 @@ class mgPawnArticles extends controller
             echo "DONE";
             flashMessage("Warning Sent Successfully", 1);
          }
-      } else if ($this->dateCompareForEmail($End_Date, 30) and $warning1 == 0) {
+      } else if ($this->dateCompareForEmail($End_Date, 30) and $warning1 == 0) { //before one month from the end date
          $useremail = $this->model("pawnArticleModel");
          $email = $useremail->findUserEmail($userId);
          $sms = "Note: Only One Month Left";
@@ -250,7 +244,7 @@ class mgPawnArticles extends controller
       }
    }
 
-
+//to filter the articles
    public function filter()
    {
 
