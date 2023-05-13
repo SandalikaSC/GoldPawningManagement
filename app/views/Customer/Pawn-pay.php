@@ -22,7 +22,7 @@
     </div>
     <div class="content">
         <div class="invalid err-msg" id="err-msg"> Exceed the maximum online payment of Rs 50000</div>
-        <?php notification("Pawn") ?>
+         
         <div class="pay-details">
 
             <div class="cardnew">
@@ -405,7 +405,7 @@
         </div>
 
     </div>
-    <!-- <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script> -->
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
     <script src="<?php echo URLROOT ?>/js/jquery.min.js"></script>
     <script>
         //pay btn
@@ -1069,7 +1069,7 @@
 
         }
 
-        function OnlinePayment(pawnId, pawnprocess, payment, myLocker, availableLocker, total) {
+        function OnlinePayment(pawnId, pawnprocess, paymentinfo, myLocker, availableLocker, total) {
 
             var xhr = new XMLHttpRequest(); // create a new XMLHttpRequest object 
             xhr.onreadystatechange = function() { // set the callback function
@@ -1084,7 +1084,7 @@
                     payhere.onCompleted = function onCompleted(orderId) {
                         //    alert("Payment completed. OrderID:" + object["order_id"]);
                         // Note: validate the payment and show success or failure page to the customer
-                        saveDetails(pawnId, pawnprocess, payment, myLocker, availableLocker, object['order_id']);
+                        saveDetails(pawnId, pawnprocess, paymentinfo, myLocker, availableLocker, object['order_id']);
                         // alert("complete");
                         // window.location.href ='<?php echo URLROOT ?>/CustomerPawn/makePayment';
                     };
@@ -1158,19 +1158,13 @@
                     availableLocker: availableLocker,
                     orderid: orderId
                 },
-                success: function(response) {
-
-                    if (response!=0) { 
+                success: function(response) { 
                        
-                        window.location = ' <?= URLROOT ?>/CustomerPawn/geneartePdf';
+                         
+                    // window.location = '<?= URLROOT ?>/CustomerPawn/geneartePdf'; 
+                        window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/'+response;
                     
-                        window.location = ' <?= URLROOT ?>/CustomerPawn/viewPawnArticle/'+response;
-                    
-                    
-                    } else {
-
-                    }
-
+                        // window.open('<?= URLROOT ?>/CustomerPawn/geneartePdf/'+response, "_blank");
 
 
                 },

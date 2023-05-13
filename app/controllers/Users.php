@@ -438,7 +438,6 @@ class Users extends Controller
     if (isset($_POST["new_pw"])) {
       $new =  $_POST['new_pw'];
 
-      // Validate Password
       $uppercase = preg_match('@[A-Z]@',  $new);
       $lowercase = preg_match('@[a-z]@',  $new);
       $number = preg_match('@[0-9]@',  $new);

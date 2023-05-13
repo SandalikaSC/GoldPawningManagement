@@ -6,6 +6,7 @@
 <body>
     <!-- <?php require APPROOT . "/views/inc/notification.php" ?> -->
     <?php notification("login"); ?>
+    <?php notification("otp"); ?>
     <div class="log-container center">
 
         <div class="login">
@@ -157,6 +158,7 @@
                     dataType: "JSON",
                     success: function(resp) {
                         if (resp.success == 0) { 
+                            window.location='<?= URLROOT ?>/Users/login';
                             
                         } 
                         if (resp.success == 1) {
