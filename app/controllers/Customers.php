@@ -161,14 +161,15 @@
                 // Validate email
                 if(empty($data['email'])) {
                     $data['email_err'] = 'Please enter email';
-                } else {
+                } elseif(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                    $data['email_err'] = "Invalid email address";
+                }
+                else {
                     // Check for email
                     if($this->customerModel->findUserByEmail($data['email'])) {
                         // User found
-                        $data['email_err'] = 'Customer already exist';
-                    } else {
-                        // User not found
-                    }
+                        $data['email_err'] = 'A customer has already registered with this email';
+                    } 
                 }
 
                 // Validate name
@@ -188,7 +189,7 @@
                     $data['nic_err'] = 'Please enter NIC';
                 } else {
                     if($this->customerModel->findUserByNic($data['nic'])) {
-                        $data['nic_err'] = 'Customer has already registered with the NIC';
+                        $data['nic_err'] = 'A customer has already registered with the NIC';
                     } elseif(!($this->checkNICValidity($data['nic'])) || !($this->calculateDOB($data))) {
                         $data['nic_err'] = 'Invalid NIC';
                     } else {
@@ -198,7 +199,7 @@
                 
                 // Validate phone
                 if(empty($data['phone'])) {
-                    $data['phone_err'] = 'Please enter a working phone number';
+                    $data['phone_err'] = 'Please enter a valid phone number';
                 } elseif(!preg_match("/^[0-9]+$/", $data['phone'])) {
                     $data['phone_err'] = 'Phone number can only contain digits from 0-9';
                 } elseif(strlen($data['phone']) != 10) {

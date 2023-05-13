@@ -188,6 +188,8 @@ class CustomerPawn extends Controller
             $current_date = date('Y-m-d');
             $retrieve_date = $pawning->End_Date;
 
+            if ($pawning->WarningOne == 1 || $pawning->WarningTwo == 1) {
+            }
             if (strtotime($retrieve_date) < strtotime($current_date)) {
                 $status = 'Overdue';
             } else if ($pawning->WarningOne == 1 || $pawning->WarningTwo == 1) {
@@ -195,8 +197,6 @@ class CustomerPawn extends Controller
             } else {
                 $status = 'Pawned';
             }
-        } else {
-            $status = 'Repawn';
         }
         $toPayInst = 0;
         if ($loan->Repay_Method == 'Fixed') {
@@ -204,26 +204,27 @@ class CustomerPawn extends Controller
         }
         $today = date('Y-m-d'); // Get today's date in 'YYYY-MM-DD' format
         $extendto = date('Y-m-d', strtotime('+6 months', strtotime($today)));
-        $topayPrinciple = $loan->Amount - $principle->PaidPrinciple;
+       $topayPrinciple=$loan->Amount-$principle->PaidPrinciple;
 
-        $data = [
-            'pawning' => $pawning,
-            'locker' => $locker,
-            'loan' => $loan,
-            'extendTo' => $extendto,
-            'mylockers' => $mylockers,
-            'article' => $article,
-            'payment' => $payment,
-            'status' => $status,
-            'pawnInterest' => $pawnInterest,
-            'reserveInterest' => $reserveInterest,
-            'delivery' => $delivery,
-            'paid' => $paid->Paid,
-            'topayPrinciple' => $topayPrinciple,
-            'toPayInst' => $toPayInst,
-            'principle' => $principle->PaidPrinciple,
-            'timeslot' => $timeSlots
-        ];
+            $data = [
+                'pawning' => $pawning,
+                'locker' => $locker,
+                'loan' => $loan,
+                'extendTo' => $extendto,
+                'locker' => $locker,
+                'mylockers' => $mylockers,
+                'article' => $article,
+                'payment' => $payment,
+                'status' => $status,
+                'pawnInterest' => $pawnInterest,
+                'reserveInterest' => $reserveInterest,
+                'delivery' => $delivery,
+                'paid' => $paid->Paid,
+                'topayPrinciple' => $topayPrinciple,
+                'toPayInst' => $toPayInst,
+                'principle' => $principle->PaidPrinciple,
+                'timeslot' => $timeSlots
+            ];
 
         $this->view('Customer/Pawn-pay', $data);
     }
@@ -237,6 +238,8 @@ class CustomerPawn extends Controller
             echo json_encode($data);
         }
     }
+
+
     public function PawnOnlinePay($pawnId, $amount)
     {
         $order_id = uniqid();
@@ -564,4 +567,5 @@ class CustomerPawn extends Controller
         printReciept();
         unset($_SESSION['payment']);
     }
+
 }
