@@ -12,7 +12,7 @@
                 <a href="<?php echo URLROOT ?>/CustomerLocker/viewLockerArticle/<?= $data['lockerid'] ?>" id="back">
                     <img class="back" src="<?php echo URLROOT ?>/img/back.png" alt="back">
                 </a>
-                <h1 id="title">Extend Payment </h1>
+                <h1 id="title">Extend Duration </h1>
             </div>
             <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
         </div>
@@ -254,7 +254,7 @@
                     dataType: "JSON",
                     success: function(response) {
                         // alert('  URLROOT ?> / CustomerLocker / viewLockerArticle / ' + response);
-
+                        
                         window.location = ' <?=URLROOT ?>/CustomerLocker/viewLockerArticle/' + response;
                     }
                 });

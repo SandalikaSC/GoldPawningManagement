@@ -16,7 +16,7 @@
             </div>
             <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
         </div>
-
+ 
     </div>
     <?php notification("locker") ?>
     <div class="content">

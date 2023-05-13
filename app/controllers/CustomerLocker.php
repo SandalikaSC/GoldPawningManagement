@@ -62,10 +62,17 @@ class CustomerLocker extends Controller
             $interval = date_diff(date_create($currentReservations[0]->Retrieve_Date), date_create());
             $date1 =  $currentReservations[0]->Retrieve_Date; // the date to check
             $current_date = date('Y-m-d'); // the current date
-            $timeremain = $date1 < $current_date ? "Overdue" : $interval->format('%m months  %d days');
-            $tag = $timeremain == "Overdue" ? "tag red" : "";
-            if ($interval->days <= 30) {
+            if($interval->y>0){
+                $format=$interval->format('%Y Year %m months  %d days');
+            }else{
+                $format=$interval->format('%m months  %d days');
+            }
+            $timeremain = $date1 < $current_date ? "Overdue" : $format;
+            $tag = ($timeremain == "Overdue" )? "red" : "";
+            
+            if ($interval->days <= 30 || $current_date> $date1) {
                 $extend = 1;
+                
             }
         } else {
             $tag = "";
@@ -102,7 +109,7 @@ class CustomerLocker extends Controller
         $periodof6=0;
         $extendStart=$currentReservations[0]->Retrieve_Date;
         $extendTo = date('Y-m-d', strtotime('+6 months', strtotime( $extendStart)));
-        if ($interval->days < 0) {
+        if ($currentReservations[0]->Retrieve_Date<date_create() ) {
             $overdue = $interval->days; 
             $months = ceil($overdue / 30); 
             $periodof6 = $months/6  ; 
@@ -121,7 +128,7 @@ class CustomerLocker extends Controller
             'lockerid' => $lockerid,
             // 'fine' => $fine->Interest_Rate,
             'allocationFee' => $allocationFee,
-            'extendTo' => $extendTo,
+            'extendTo' => $extendTo, 
             'extendStart' => $extendStart,
             'periodof6' => $periodof6,
             'overduepay' => $periodof6*$allocationFee/2,

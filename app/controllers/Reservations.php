@@ -42,9 +42,17 @@ class Reservations extends Controller
                         $interval = date_diff(date_create($currentReservations[0]->Retrieve_Date), date_create());
                         $date1 =  $currentReservations[0]->Retrieve_Date; // the date to check
                         $current_date = date('Y-m-d'); // the current date
-                        $timeremain = $date1 < $current_date ? "Overdue" : $interval->format('%m months  %d days');
-                        $tag = $timeremain == "Overdue" ? "tag red" : "";
-                        if ($interval->days <= 30) {
+
+                        if ($interval->y > 0) {
+                                $format = $interval->format('%Y Year %m months  %d days');
+                        } else {
+                                $format = $interval->format('%m months  %d days');
+                        }
+
+
+                        $timeremain = $date1 < $current_date ? "Overdue" : $format;
+                        $tag = $timeremain == "Overdue" ? "red" : "";
+                        if ($interval->days <= 30 || $current_date > $date1) {
                                 $extend = 1;
                         }
                 } else {
@@ -78,12 +86,22 @@ class Reservations extends Controller
                 $fine =  $this->interestModel->getFine();
 
                 $interval = date_diff(date_create($currentReservations[0]->Retrieve_Date), date_create());
-             
-                $overdue=0 ;
-                if ($interval->days<0) {
-                        $overdue=$interval->days;
+
+                $overdue = 0;
+                $periodof6=0;
+                $extendTo = date('Y-m-d', strtotime('+6 months', strtotime($currentReservations[0]->Retrieve_Date)));
+                $extendStart=$currentReservations[0]->Retrieve_Date;
+                if ($currentReservations[0]->Retrieve_Date < date_create()) {
+                        $overdue = $interval->days;
+                        $months = ceil($overdue / 30);
+                        $periodof6 = $months / 6;
+                        if ($periodof6 > 0) {
+                                $mon = $periodof6 * 6;
+
+                                $extendStart = date('Y-m-d', strtotime('+' . $mon . 'months', strtotime($currentReservations[0]->Retrieve_Date)));
+                                $extendTo = date('Y-m-d', strtotime('+6 months', strtotime($extendStart)));
+                        }
                 }
-                $extendTo=date('Y-m-d', strtotime('+6 months', strtotime($currentReservations[0]->Retrieve_Date)));
 
                 $data = [
                         'currentReservations' => $currentReservations,
@@ -92,11 +110,14 @@ class Reservations extends Controller
                         'fine' => $fine->Interest_Rate,
                         'allocationFee' => $allocationFee,
                         'extendTo' => $extendTo,
+                        'periodof6' => $periodof6, 
+                        'extendStart' => $extendStart,
+                        'overduepay' => $periodof6*$allocationFee/2,
                         'overdue' => $overdue
                 ];
-                
-               
-                $this->view('VaultKeeper/extend',$data);
+
+
+                $this->view('VaultKeeper/extend', $data);
         }
         public function releaseLocker($lockerid)
         {
@@ -106,10 +127,10 @@ class Reservations extends Controller
 
 
                 $interval = date_diff(date_create($currentReservations[0]->Retrieve_Date), date_create());
-             
-                $overdue=0 ;
-                if ($interval->days<0) {
-                        $overdue=$interval->days;
+
+                $overdue = 0;
+                if ($interval->days < 0) {
+                        $overdue = $interval->days;
                 }
 
 
