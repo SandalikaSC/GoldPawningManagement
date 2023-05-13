@@ -119,6 +119,7 @@ main .div-receipt .article-details {
 main .div-receipt .article-details img {
     width: 200px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 } 
 
 main .div-receipt .article-details .div-details {
