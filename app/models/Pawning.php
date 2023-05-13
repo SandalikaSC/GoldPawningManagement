@@ -85,7 +85,7 @@ class Pawning
         } else {
             return false;
         }
-    }
+    } 
 
     // Get validation details of a article by using the validation ID
     public function getValidationDetailsByID($id)
@@ -411,6 +411,7 @@ class Pawning
 
         return $results;
     }
+    
 
     public function goldLoanDetails($id)
     {

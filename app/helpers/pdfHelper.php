@@ -7,17 +7,17 @@ require 'vendor/autoload.php';
 
 function printReciept()
 {
-   
+
     // $path = URLROOT.'/img/FULLlogo.png';
     // $type = pathinfo($path, PATHINFO_EXTENSION);
     // $data = file_get_contents($path);
     // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-     
+
     $html = '<html> 
     
     <head>
         
-        <link rel="stylesheet" href="'.  URLROOT .'/css/pdfstyle.css"> 
+        <link rel="stylesheet" href="' .  URLROOT . '/css/pdfstyle.css"> 
     </head>
     
     <body>
@@ -34,21 +34,16 @@ function printReciept()
     </tr>
     <tr>
         <td for="">Customer Id</td>
-        <td for="">'.$_SESSION['user_id'].'</td>
+        <td for="">' . $_SESSION['user_id'] . '</td>
     </tr>
     <tr>
         <td for="">Customer Name</td>
-        <td for="">'.$_SESSION['user_fname']." ".$_SESSION['user_lname'].'</td>
+        <td for="">' . $_SESSION['user_fname'] . " " . $_SESSION['user_lname'] . '</td>
     </tr>
     <tr>
         <td for="">Payment Date</td>
-        <td for="">'.date("Y-m-d").'</td>
-    </tr>
-
-
-
-
-
+        <td for="">' . date("Y-m-d") . '</td>
+    </tr> 
 </table>
 <table class="paytbl">
 
@@ -58,10 +53,10 @@ function printReciept()
     <th class="total-slip">Total</th>
     
         <tr>
-            <td for="">'. $_SESSION['payment']['PawnId'].'</td>
-            <td for="">'. $_SESSION['payment']['Principle'].'</td>
-            <td for="">'. $_SESSION['payment']['interest'].'</td>
-            <td class="total-info">'. $_SESSION['payment']['amount'].'</td>
+            <td for="">' . $_SESSION['payment']['PawnId'] . '</td>
+            <td for="">' . $_SESSION['payment']['Principle'] . '</td>
+            <td for="">' . $_SESSION['payment']['interest'] . '</td>
+            <td class="total-info">' . $_SESSION['payment']['amount'] . '</td>
 
         </tr>
 
