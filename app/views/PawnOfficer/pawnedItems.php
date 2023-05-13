@@ -68,11 +68,11 @@
         <main>
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" name="search" id="search" onkeyup="searchPawnedItems()" placeholder="Search Here">
+                    <input type="text" name="search" id="search" onkeyup="searchByText()" placeholder="Search Here">
                     <img src="<?php echo URLROOT . '/img/search_icon.png'?>">                
                 </div>
                 <div class="tbl-details" id="div_table">
-                    <table cellspacing="0" id="pawned_table">
+                    <table cellspacing="0" id="table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -106,7 +106,7 @@
     </div>
 </body>
 
-<script src="<?php echo URLROOT ?>/js/searchPawnedPO.js"></script>
+<script src="<?php echo URLROOT ?>/js/search.js"></script>
 
 </html>
 

@@ -61,7 +61,7 @@
             <div class="right-content">
                 <div class="div-search">
                     <div>
-                        <input type="text" placeholder="Enter validation ID or article type">
+                        <input type="text" name="search" id="search" placeholder="Search Here" onkeyup="searchByText()">
                         <a href="#">
                             <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
                         </a> 
@@ -69,7 +69,7 @@
                                    
                 </div>
                 <div class="tbl-details">
-                    <table cellspacing="0">
+                    <table cellspacing="0" id="table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -98,13 +98,17 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                </div>                
+                </div>  
+                <div id="div-search-msg"></div>              
             </div>
             
         </main>
 
     </div>
 </body>
+
+<script src="<?php echo URLROOT ?>/js/search.js"></script>
+
 </html>
 
 
