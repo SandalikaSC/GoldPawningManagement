@@ -99,4 +99,25 @@ class payment
         $results = $this->db->resultset();
         return $results;
     }
+    public function addOnlinePawnPayment($amount, $pawn,$principle, $order_id)
+    {
+
+        $this->db->query('INSERT INTO payment (orderId,Amount,Type,Principle_Amount,Pawn_Id,Employee_Id) 
+                                VALUES( :orderId,:Amount,:Type,:Principle_Amount,:Pawn_Id,:Employee_Id)');
+
+        // Bind values 
+        $this->db->bind(':orderId', $order_id);
+        $this->db->bind(':Amount', $amount);
+        $this->db->bind(':Type', "Online");
+        $this->db->bind(':Principle_Amount', $principle);
+        $this->db->bind(':Pawn_Id', $pawn);
+        $this->db->bind(':Employee_Id', $_SESSION['user_id']);
+        // Execute
+        if ($this->db->execute()) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

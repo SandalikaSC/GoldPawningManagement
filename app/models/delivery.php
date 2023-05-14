@@ -1,7 +1,7 @@
 <?php
 class delivery
 {
-    private $db;
+    private $db; 
 
     public function __construct()
     {
@@ -35,6 +35,19 @@ class delivery
         $this->db->query('SELECT * FROM delivery where lockerNo=:lockerNo And DATE(added_Date)=:date');
         $this->db->bind(':lockerNo', $locker);
         $this->db->bind(':date',    explode(' ', $date)[0]);
+        $results = $this->db->single();
+
+        return $results;
+    }
+    public function insertDelivery($locker)
+    {
+        $this->db->query('INSERT INTO delivery(`Status`, `deliverd_date`, `added_Date`, `lockerNo`)VALUES(
+            :Status,:deliverd_date,:added_Date,:lockerNo 
+        );');
+        $this->db->bind(':Status', 0);
+        $this->db->bind(':deliverd_date', NULL);
+        $this->db->bind(':added_Date', date('Y-m-d H:i:s'));
+        $this->db->bind(':lockerNo', $locker); 
         $results = $this->db->single();
 
         return $results;

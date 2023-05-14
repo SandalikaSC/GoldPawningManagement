@@ -416,6 +416,38 @@ class Pawning
 
         return $row;
     }
+    public function updateRePawnLoanStatus($id)
+    {
+        $this->db->query('UPDATE pawn SET Status="Repawn" WHERE Pawn_Id=:pawn_id');
+        $this->db->bind(':pawn_id', $id);
+        // $this->db->bind(':Redeemed_Date', date('Y-m-d H:i:s'));
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function RepawnOnline($pawn)
+    {
+        $this->db->query('INSERT INTO pawn( `Status`, `Pawn_Date`,`End_Date`, `Article_Id`, `userId`, `Appraiser_Id`, `Officer_Id` ) 
+                                     VALUES ( :Status, :Pawn_Date,:End_Date,:Article_Id,:userId,:Appraiser_Id,:Officer_Id)');
+        $this->db->bind(':Status', "Pawned");
+        $this->db->bind(':Pawn_Date', date('Y-m-d H:i:s'));
+        $this->db->bind(':End_Date', date('Y-m-d', strtotime('+1 year')));
+        $this->db->bind(':Article_Id', $pawn['Article_id']);
+        $this->db->bind(':userId', $_SESSION['user_id']);
+        $this->db->bind(':Appraiser_Id',$pawn['appraiser']);
+        $this->db->bind(':Officer_Id',$pawn['officer']);
+       
+
+        if ($this->db->execute()) {
+            $newPawnId=$this->getLastPawnIdbyCustomer($_SESSION['user_id']);
+            return $newPawnId;
+        } else {
+            return 0;
+        }
+    }
 
 }
 

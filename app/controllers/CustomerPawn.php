@@ -311,7 +311,7 @@ class CustomerPawn extends Controller
 
                         $this->customerPawnModel->updateCompletedLoanStatus($pawnId);
                         notification("Pawn", "Successfully repaid the entire loan", "gold");
-                        echo json_encode($pawnId);
+                         echo json_encode($pawnId);
                     } else {
                         notification("Pawn", "Something went wrong", "red");
                         echo json_encode(0);
