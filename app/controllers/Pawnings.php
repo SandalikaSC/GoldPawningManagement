@@ -183,6 +183,7 @@
 
                 if(isset($_POST['yes'])) {
                     $receipt = printReciept();
+                    // redirect('/pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
                 }
                 if(isset($_POST['no'])) {
                     redirect('/pawnings/make_payments/'. $data['pawn_item']->Pawn_Id);
