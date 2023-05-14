@@ -19,7 +19,7 @@
 
           </div>
           <h1>
-            Viewing Emp ID: <?php echo $data[0]->UserId ?>
+            Viewing Emp ID: <i> <?php echo $data[0]->UserId ?></i>
           </h1>
         </div>
         <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
@@ -29,13 +29,6 @@
         <form action="<?php echo URLROOT ?>/staff/setStaffMember" method="POST">
           <section class="section_left">
             <section class="big-form">
-
-              <img src="<?php if (!empty($data[0]->image)) {
-                          echo $data[0]->image;
-                        } else {
-                          echo URLROOT . "/img/image 1.png";
-                        } ?>" alt="photo" />
-
 
               <div class="form-group tooltip">
                 <label for="fName"><b>First Name:</b></label>
@@ -91,35 +84,35 @@
               <div class="form-group tooltip">
                 <label for="mob-no"><b>Mobile Number:</b></label>
                 <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                          echo $data[0]->phone;
-                                        } else if (!empty($data[0]->phone)) {
-                                          echo $data[0]->phone;
-                                        } else if (!empty($data[1]->phone)) {
                                           echo $data[1]->phone;
+                                        } else if (empty($data[0]->phone)) {
+                                          echo $data[1]->phone;
+                                        } else if (empty($data[1]->phone)) {
+                                          echo $data[0]->phone;
                                         } ?>" type="text" name="mob-no" id="mob-no">
                 <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
                                             echo $data[1]->phone;
-                                          } else if (!empty($data[0]->phone)) {
-                                            echo $data[0]->phone;
-                                          } else if (!empty($data[1]->phone)) {
+                                          } else if (empty($data[0]->phone)) {
                                             echo $data[1]->phone;
+                                          } else if (empty($data[1]->phone)) {
+                                            echo $data[0]->phone;
                                           } ?></span>
               </div>
               <div class="form-group tooltip">
                 <label for="home-no"><b>Additional Number:</b></label>
                 <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                          echo $data[1]->phone;
-                                        } else if (!empty($data[0]->phone)) {
+                                          echo $data[0]->phone;
+                                        } else if (empty($data[0]->phone)) {
                                           echo "";
-                                        } else if (!empty($data[1]->phone)) {
+                                        } else if (empty($data[1]->phone)) {
                                           echo "";
                                         } ?>" type="text" name="mob-no2" id="mob-no2">
 
                 <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                            echo $data[1]->phone;
-                                          } else if (!empty($data[0]->phone)) {
+                                            echo $data[0]->phone;
+                                          } else if (empty($data[0]->phone)) {
                                             echo "";
-                                          } else if (!empty($data[1]->phone)) {
+                                          } else if (empty($data[1]->phone)) {
                                             echo "";
                                           } ?></span>
               </div>
@@ -131,6 +124,13 @@
 
             </section>
             <section class="section_right">
+              <div>
+                <img src="<?php if (!empty($data[0]->image)) {
+                            echo $data[0]->image;
+                          } else {
+                            echo URLROOT . "/img/image 1.png";
+                          } ?>" alt="photo" />
+              </div>
               <div class="roles" style="justify-self:center;">
 
                 <div class="form-group tooltip">
@@ -161,9 +161,6 @@
                                               echo $data[0]->Created_By;
                                             } ?></span>
                 </div>
-              </div>
-              <div class="single-btn">
-                <a href="<?php echo URLROOT ?>/staff/index" class="backbtn">Back</a>
               </div>
             </section>
           </section>

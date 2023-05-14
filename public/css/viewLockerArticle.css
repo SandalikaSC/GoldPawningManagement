@@ -222,6 +222,18 @@ body{
     /* align-items: flex-start; */
 }
 
+.red-date{
+    color:red !important;
+    font-weight: bold !important;
+    display: flex;
+    font-style: oblique;
+}
+
+.red-article-topic{
+    color:red !important;
+    font-weight: bold !important;
+}
+
 
 @media screen and (max-width:1188px) {
     .right{   

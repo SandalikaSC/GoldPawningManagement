@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo SITENAME?></title>
+    <title><?php echo SITENAME ?></title>
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/viewLockerItems.css">
 </head>
@@ -17,9 +17,9 @@
                 <div class="right-side">
 
                     <a href="<?php if (substr($_SESSION['user_id'], 0, 2) === 'OW') {
-                                   echo URLROOT.'/ownerLocker';     
-                                } else if(substr($_SESSION['user_id'], 0, 2) === 'MG'){
-                                   echo URLROOT.'/mgLocker';
+                                    echo URLROOT . '/ownerLocker';
+                                } else if (substr($_SESSION['user_id'], 0, 2) === 'MG') {
+                                    echo URLROOT . '/mgLocker';
                                 } ?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
@@ -48,11 +48,9 @@
                                     </div>
                                     <div class="locker-info">
                                         <div class="field-name">Key Status</div>
-                                        <div class="field-value change-color"><?php if ($data[0][0]->Key_Status == 1) echo "Delivered";
-                                                                                else echo "Not Delivered"; ?></div>
+                                        <div class="field-value <?php echo ($data[0][0]->Key_Status == 1) ? 'change-color' : 'red-color' ?>"><?php if ($data[0][0]->Key_Status == 1) echo "Delivered";
+                                                                                                                                                else echo "Not Delivered"; ?></div>
                                     </div>
-
-
 
                                 </div>
                                 <div class="right-of-des-box">
@@ -81,14 +79,17 @@
                                 <div class="arti-log">
                                     <?php if ($data[0][0]->No_of_Articles == 2) { ?>
                                         <div class="arti">
-                                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerArticles/<?php echo $data[0][0]->lockerNo ?>/<?php echo $data[0][0]->Article_Id ?>"><img src="<?php if(!empty($data[2][0]->image)) echo $data[2][0]->image; else echo URLROOT."/img/2.png"; ?>" alt="Jewelry"></a>
+                                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerArticles/<?php echo $data[0][0]->lockerNo ?>/<?php echo $data[0][0]->Article_Id ?>"><img src="<?php if (!empty($data[2][0]->image)) echo $data[2][0]->image;
+                                                                                                                                                                                            else echo URLROOT . "/img/2.png"; ?>" alt="Jewelry"></a>
                                         </div>
                                         <div class="arti">
-                                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerArticles/<?php echo $data[0][0]->lockerNo ?>/<?php echo $data[0][1]->Article_Id ?>"><img src="<?php if(!empty($data[2][1]->image)) echo $data[2][1]->image; else echo URLROOT."/img/2.png"; ?>" alt="Jewelry"></a>
+                                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerArticles/<?php echo $data[0][0]->lockerNo ?>/<?php echo $data[0][1]->Article_Id ?>"><img src="<?php if (!empty($data[2][1]->image)) echo $data[2][1]->image;
+                                                                                                                                                                                            else echo URLROOT . "/img/2.png"; ?>" alt="Jewelry"></a>
                                         </div>
                                     <?php } else { ?>
                                         <div class="arti">
-                                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerArticles/<?php echo $data[0][0]->lockerNo ?>/<?php echo $data[0][0]->Article_Id ?>"><img src="<?php if(!empty($data[2][0]->image)) echo $data[2][0]->image; else echo URLROOT."/img/2.png"; ?>" alt="Jewelry"></a>
+                                            <a href="<?php echo URLROOT ?>/mgLocker/viewLockerArticles/<?php echo $data[0][0]->lockerNo ?>/<?php echo $data[0][0]->Article_Id ?>"><img src="<?php if (!empty($data[2][0]->image)) echo $data[2][0]->image;
+                                                                                                                                                                                            else echo URLROOT . "/img/2.png"; ?>" alt="Jewelry"></a>
                                         </div>
                                     <?php } ?>
                                 </div>

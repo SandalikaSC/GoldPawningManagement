@@ -92,34 +92,34 @@
                             <div class="form-group tooltip">
                                 <label for="mob-no"><b>Mobile Number:</b></label>
                                 <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                                            echo $data[0]->phone;
-                                                        } else if (!empty($data[0]->phone)) {
-                                                            echo $data[0]->phone;
-                                                        } else if (!empty($data[1]->phone)) {
                                                             echo $data[1]->phone;
+                                                        } else if (empty($data[0]->phone)) {
+                                                            echo $data[1]->phone;
+                                                        } else if (empty($data[1]->phone)) {
+                                                            echo $data[0]->phone;
                                                         } ?>" type="text" name="mob-no" id="mob-no">
                                 <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                                                echo $data[0]->phone;
-                                                            } else if (!empty($data[0]->phone)) {
-                                                                echo $data[0]->phone;
-                                                            } else if (!empty($data[1]->phone)) {
                                                                 echo $data[1]->phone;
+                                                            } else if (empty($data[0]->phone)) {
+                                                                echo $data[1]->phone;
+                                                            } else if (empty($data[1]->phone)) {
+                                                                echo $data[0]->phone;
                                                             } ?></span>
                             </div>
                             <div class="form-group tooltip">
                                 <label for="home-no"><b>Additional Number:</b></label>
                                 <input disabled value="<?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                                            echo $data[1]->phone;
-                                                        } else if (!empty($data[0]->phone)) {
+                                                            echo $data[0]->phone;
+                                                        } else if (empty($data[0]->phone)) {
                                                             echo "";
-                                                        } else if (!empty($data[1]->phone)) {
+                                                        } else if (empty($data[1]->phone)) {
                                                             echo "";
                                                         } ?>" type="text" name="mob-no2" id="mob-no2">
                                 <span class="tooltiptext"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                                                echo $data[1]->phone;
-                                                            } else if (!empty($data[0]->phone)) {
+                                                                echo $data[0]->phone;
+                                                            } else if (empty($data[0]->phone)) {
                                                                 echo "";
-                                                            } else if (!empty($data[1]->phone)) {
+                                                            } else if (empty($data[1]->phone)) {
                                                                 echo "";
                                                             } ?></span>
                             </div>
@@ -147,6 +147,19 @@
                                     <label for="added_date"><b>Added date:</b></label>
                                     <input class="data" type="text" disabled value="<?php echo $data[0]->Created_date ?>" name="added_date" id="added_date">
                                     <span class="tooltiptext"><?php echo $data[0]->Created_date ?></span>
+                                </div>
+                                <div class="form-group tooltip">
+                                    <label for="created_by"><b>Created By:</b></label>
+                                    <input class="data" type="text" disabled value="<?php if ($data[0]->Created_By == null) {
+                                                                                        echo "Not Available";
+                                                                                    } else {
+                                                                                        echo $data[0]->Created_By;
+                                                                                    } ?>" name="created_by" id="created_by">
+                                    <span class="tooltiptext"><?php if ($data[0]->Created_By == null) {
+                                                                    echo "Not Available";
+                                                                } else {
+                                                                    echo $data[0]->Created_By;
+                                                                } ?></span>
                                 </div>
                             </div>
                             <div>

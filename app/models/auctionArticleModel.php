@@ -2,6 +2,7 @@
 
 class auctionArticleModel extends Database
 {
+    //to load auction articles
     public function getAuctionArticles()
     {
         $sql = 'select Article_Id,Estimated_Value,Karatage,Weight,Type,image from article where Article_Id in(select distinct Article_Id from pawn where Status like "A%" AND Status like "a%")';
@@ -15,11 +16,11 @@ class auctionArticleModel extends Database
         }
     }
 
-
+//to view the detaiis of auctioned article
     public function viewAuctionArticle($article_id)
     {
 
-        $sql1='select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.Karatage_Price,a.image,p.Pawn_Id,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.userId,p.Appraiser_Id,p.Officer_Id,p.auctioned_date,p.auctioned_time,p.WarningOne,p.WarningTwo,l.Loan_Id,l.Amount,l.Interest,l.Repay_Method,l.monthly_installment from article a inner join pawn p on a.Article_Id=p.Article_Id inner join loan l on p.Pawn_Id=l.Pawn_Id where a.Article_Id=?';
+        $sql1='select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.Karatage_Price,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.userId,p.Appraiser_Id,p.Officer_Id,p.auctioned_date,p.auctioned_time,p.WarningOne,p.WarningTwo,l.Loan_Id,l.Amount,l.Interest,l.Repay_Method,l.monthly_installment from article a inner join pawn p on a.Article_Id=p.Article_Id inner join loan l on p.Pawn_Id=l.Pawn_Id where a.Article_Id=?';
         $this->query($sql1);
         $this->bind(1, $article_id);
         $result1 = $this->single();
@@ -34,6 +35,7 @@ class auctionArticleModel extends Database
     }
 
 
+    //to filter data
     public function filter($auctionDate,$firstDate, $secondDate, $karatage, $type, $minWeight, $maxWeight)
     {
 
@@ -70,9 +72,6 @@ class auctionArticleModel extends Database
 
             $sql .= " AND a.Weight <= $maxWeight";
         }
-
-
-
 
         $this->query($sql);
 

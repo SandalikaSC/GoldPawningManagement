@@ -384,6 +384,8 @@ class Users extends Controller
       $this->view('pages/EmailVerify', $data);
     }
   }
+
+  
   public function createUserSession($user)
   {
     $_SESSION['user_id'] = $user->UserId;
@@ -410,7 +412,6 @@ class Users extends Controller
         redirect('/Admin/AdminDash');
         break;
       case "Manager":
-
         redirect('/mgDashboard');
         // $this->view('Manager/managerDash');
         break;
@@ -425,10 +426,10 @@ class Users extends Controller
         redirect('/pawningOfficerDashboard/dashboard');
         break;
       case "Owner":
-        $staff = $this->model("staffModel");
-        $result = $staff->loadProfilePicture($_SESSION['user_email']);
-        $_SESSION['profile_pic'] = $result->image;
-        $_SESSION['mg_name'] = $result->Name;
+        // $staff = $this->model("staffModel");
+        // $result = $staff->loadProfilePicture($_SESSION['user_email']);
+        // $_SESSION['profile_pic'] = $result->image;
+        // $_SESSION['mg_name'] = $result->Name;
         redirect('/ownerDashboard');
         break;
     }

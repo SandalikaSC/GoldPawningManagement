@@ -15,7 +15,7 @@
             <div class="right-heading">
                 <div class="right-side">
 
-                    <a href="<?php echo URLROOT ?>/mgAuction" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
+                    <a href="<?php echo URLROOT ?>/mgAuction/index" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
                         Viewing Article:<i><?php if (!empty($data[0]->Article_Id)) echo $data[0]->Article_Id;
@@ -128,6 +128,8 @@
                                     Payment History
                                 </div>
                                 <div class="search-bar">
+                                    <button type='button' id="create-report">Print Me</button>
+
                                     <input type="text" name="search_input" id="search_input" onkeyup="searchPayment()" placeholder="Search.." />
                                 </div>
 
@@ -232,5 +234,14 @@
     }
 </script>
 
+<script>
+    const createReportButton = document.getElementById('create-report');
+    createReportButton.addEventListener('click', () => {
 
+        let articleId = '<?php echo $data[0]->Article_Id ?>';
+
+        window.location.href = `<?php echo URLROOT ?>/mgAuction/generateAuctionReport/${articleId}`;
+
+    });
+</script>
 </html>

@@ -1,9 +1,11 @@
 <?php
 class pawnArticleModel extends Database
 {
+
+    //load all pawned Articles
     public function loadPawnArticles()
     {
-        $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.Article_Id,p.userId,p.WarningOne,p.WarningTwo from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "p%" AND  p.Status like "P%"';
+        $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.Article_Id,p.userId,p.WarningOne,p.WarningTwo from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "p%" AND  p.Status like "P%" order by a.Article_Id asc';
         $this->query($sql);
         $result = $this->resultSet();
 
@@ -14,10 +16,11 @@ class pawnArticleModel extends Database
         }
     }
 
+    //view pawned article details
     public function viewPawnArticle($article_id)
     {
 
-        $sql1='select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.Karatage_Price,a.image,p.Pawn_Id,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.userId,p.Appraiser_Id,p.Officer_Id,p.auctioned_date,p.WarningOne,p.WarningTwo,l.Loan_Id,l.Amount,l.Interest,l.Repay_Method,l.monthly_installment from article a inner join pawn p on a.Article_Id=p.Article_Id inner join loan l on p.Pawn_Id=l.Pawn_Id where a.Article_Id=?';
+        $sql1 = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.Karatage_Price,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.userId,p.Appraiser_Id,p.Officer_Id,p.auctioned_date,p.WarningOne,p.WarningTwo,l.Loan_Id,l.Amount,l.Interest,l.Repay_Method,l.monthly_installment from article a inner join pawn p on a.Article_Id=p.Article_Id inner join loan l on p.Pawn_Id=l.Pawn_Id where a.Article_Id=?';
         $this->query($sql1);
         $this->bind(1, $article_id);
         $result1 = $this->single();
@@ -31,7 +34,8 @@ class pawnArticleModel extends Database
         return array($result1, $result2);
     }
 
-    public function pawnToAuction($pawnid,$auction_date,$auction_time)
+    //to add pawning section into auction section
+    public function pawnToAuction($pawnid, $auction_date, $auction_time)
     {
         $sql = 'update pawn set Status=?,auctioned_date=?,auctioned_time=? where Pawn_Id=?';
         $this->query($sql);
@@ -42,6 +46,7 @@ class pawnArticleModel extends Database
         $result = $this->execute();
     }
 
+    //to find the user email
     public function findUserEmail($userid)
     {
         $sql = 'select email from user where UserId=?';
@@ -52,6 +57,7 @@ class pawnArticleModel extends Database
         else return 0;
     }
 
+    //to check whether a article has been added to the auction. (article is already in auction)
     public function checkStatus($pawnid)
     {
         $sql = 'select Status from pawn where Pawn_Id=?';
@@ -66,7 +72,7 @@ class pawnArticleModel extends Database
         }
     }
 
-
+    //to check whether the pawning duration is completed or not
     public function isCompleted($pawnid)
     {
         $sql = 'select Status from pawn where Pawn_Id=?';
@@ -81,17 +87,16 @@ class pawnArticleModel extends Database
         }
     }
 
+    //to filter pawned articles
     public function filter($min_price, $max_price, $created_date, $end_date, $karatage, $type, $minWeight, $maxWeight)
     {
-        // $sql = 'select a.Article_Id,a.Estimated_Value,a.Karatage,a.Weight,a.Type,a.image,p.Pawn_Id,p.Status,p.Pawn_Date,p.Redeemed_Date,p.End_Date,p.Article_Id,p.userId,p.WarningOne,p.WarningTwo from article a inner join pawn p on a.Article_Id = p.Article_Id where p.Status like "p%" AND  p.Status like "P%"';
-
 
         $sql = 'SELECT a.Article_Id, a.Estimated_Value, a.Karatage, a.Weight, a.Type, a.image, p.Pawn_Id,p.Status,p.Pawn_Date, p.Redeemed_Date, p.End_Date, p.userId,p.WarningOne,p.WarningTwo 
         FROM article a 
         INNER JOIN pawn p 
         ON a.Article_Id = p.Article_Id 
         WHERE p.Status LIKE "p%" 
-        AND p.Status LIKE "P%"'; 
+        AND p.Status LIKE "P%"';
 
         if ($min_price) {
             $sql .= " AND a.Estimated_Value >= " . intval($min_price); // sanitize input and add to the query
@@ -138,25 +143,22 @@ class pawnArticleModel extends Database
         }
     }
 
-    public function updateStatus($pawnid,$days){
+    //to update warning one and warning two
+    public function updateStatus($pawnid, $days)
+    {
 
-        if($days==30){
+        if ($days == 30) {
             $sql = 'update pawn set WarningOne=? where Pawn_Id=?';
             $this->query($sql);
             $this->bind(1, 1);
             $this->bind(2, $pawnid);
             $result = $this->execute();
-
-        }else{
+        } else {
             $sql = 'update pawn set WarningTwo=? where Pawn_Id=?';
             $this->query($sql);
             $this->bind(1, 1);
             $this->bind(2, $pawnid);
             $result = $this->execute();
-
         }
     }
-
-
-
 }

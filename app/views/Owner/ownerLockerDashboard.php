@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/locker_dashboard.css">
 
 </head>
@@ -25,7 +26,7 @@
 
                 </div>
                 <div class="name">
-                    <p><b><i>Hi...</i></b><?php echo $_SESSION['user_name'] ?></p>
+                    <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
 
                 </div>
             </div>
@@ -77,15 +78,15 @@
                     <div class="locker-summary">
                         <div class="locker-sum-1">
                             <div class="topic-label">Total</div>
-                            <div class="no">100</div>
+                            <div class="no"><?php if($data[1]==0) echo 0; else echo $data[1]; ?></div>
                         </div>
                         <div class="locker-sum-1">
                             <div class="topic-label">Allocated</div>
-                            <div class="no"><?php echo $data[1] ?></div>
+                            <div class="no"><?php if($data[2]==0) echo 0; else echo $data[2]; ?></div>
                         </div>
                         <div class="locker-sum-1">
                             <div class="topic-label">Remaining</div>
-                            <div class="no"><?php echo $data[2] ?></div>
+                            <div class="no"><?php if($data[3]==0) echo 0; else echo $data[3]; ?></div>
                         </div>
                     </div>
 
@@ -125,7 +126,7 @@
                                         </div>
                                         <div class="hover-des-field">
                                             <div class="label">Key</div>
-                                            <div class="element Green"><?php if ($row->Key_Status == 1) {
+                                            <div class="element <?php echo ($row->Key_Status == 1) ? 'Green':'Red'?>"><?php if ($row->Key_Status == 1) {
                                                                             echo "Delivered";
                                                                         } else {
                                                                             echo "Not Delivered";

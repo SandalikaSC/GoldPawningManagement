@@ -266,6 +266,30 @@ body{
     border: none;
 }
 
+.twobtns .red-btn button{
+    padding: 10px 30px;
+    text-decoration: none;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 20px;
+    background-color: red !important;
+    color: white;
+    border: none;
+}
+
+.twobtns .black-btn button{
+    padding: 10px 30px;
+    text-decoration: none;
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: large;
+    border-radius: 20px;
+    background-color: black !important;
+    color: white;
+    border: none;
+}
+
 .twobtns .email-btn button{
     padding:10px 45px;
     text-decoration: none;
@@ -278,19 +302,30 @@ body{
     
 }
 
+.twobtns .red-email-btn button{
+    padding:10px 45px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    background-color: red !important;
+    
+}
 
 
 
 
 
-@media screen and (max-width:1188px){
+
+@media screen and (max-width:1192px){
     .right{
         overflow-y: scroll;
         overflow-x:hidden;
         position:relative;
     }
-}
-@media screen and (max-width:500px) {
+
     .vogue {
         width: 100px;
         animation: none;
@@ -369,7 +404,7 @@ tr:hover td{
 
 ::-webkit-scrollbar{
     height:5px;
-    width:5px;
+    width:1px;
 }
 ::-webkit-scrollbar-track{
     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -379,31 +414,37 @@ tr:hover td{
     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
-@media screen and (max-width:720px) {
-    thead th{
-        
-        font-size: 10px;
+@media screen and (max-width:1192px){
+    .content-page{
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin: auto;
     }
 }
 
-@media screen and (max-width:500px) {
-    th,td{
-        padding: 2px 3px;
-    }
+@media screen and (max-width:880px) {
+   .with-two-btns{
+    display: flex;
+    flex-direction: column;
+   }
+
+.table{
+    display: none;
 }
 
-@media screen and (max-width:350px) {
-    tr td{
-        font-size: x-small;
-    }
+.top-box-of-right-box button{
+    display: flex;
+}
 
-    th,td{
-        padding: 2px 1px;
-    }
+.payment-history-topic{
+    display: none;
+}
+.search-bar input{
+    display: none;
+}
 
-    .table-section{
-        padding:0;
-    }
 }
 
 

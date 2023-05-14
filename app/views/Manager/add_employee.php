@@ -35,15 +35,15 @@
     <div class="page">
 
         <?php
-        if (!empty($_SESSION['message']) and $_SESSION['check']==0) {
+        if (!empty($_SESSION['message']) and $_SESSION['check'] == 0) {
 
-            include_once '../pages/error.php';
-        }else if(!empty($_SESSION['message']) and $_SESSION['check']==1){
-            include_once '../pages/ok.php';
+            include_once 'error.php';
+        } else if (!empty($_SESSION['message']) and $_SESSION['check'] == 1) {
+            include_once 'ok.php';
         }
         ?>
 
-        
+
         <div class="right">
             <div class="right-heading">
                 <div class="right-side">
@@ -76,19 +76,16 @@
                             <div class="form-group">
                                 <label for="gender"><b>Gender:</b></label>
                                 <select id="gender" name="gender" title="Select One" required>
-                                    <option name="gender" value="male">Male</option>
-                                    <option name="gender" value="female">Female</option>
-                                    <option name="gender" value="other">Other</option>
+                                    <option name="gender" value="">Select</option>
+                                    <option name="gender" value="Male">Male</option>
+                                    <option name="gender" value="Female">Female</option>
+                                    <option name="gender" value="Other">Other</option>
                                 </select>
 
                             </div>
                             <div class="form-group">
                                 <label for="nic"><b>NIC:</b></label>
-                                <input type="text" placeholder="National Identity Card Number" name="nic" id="nic" minlength="10" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="dob"><b>Date of Birth:</b></label>
-                                <input type="date" placeholder="EX: year/month/day" name="dob" id="dob" maxlength="10" title="Ex: yyyy/mm/dd" oninput="dobValidate()" required>
+                                <input type="text" placeholder="National Identity Card Number" name="nic" id="nic" minlength="10" maxlength="12" required>
                             </div>
                             <div class="form-group">
                                 <label for="lane1"><b>Address:</b></label>
@@ -103,7 +100,7 @@
                                 <input type="text" placeholder="Lane 3(Optional)" name="lane3" id="lane3" title="First letter should be uppercase letter" maxlength="20">
                             </div>
                             <div class="form-group">
-                                <label for="mob-no"><b>Mobile Number1:</b></label>
+                                <label for="mob-no"><b>Mobile Number:</b></label>
                                 <input type="text" placeholder="Mobile Number" name="mob-no" id="mob-no" minlength="10" maxlength="10" title="Ex: 07XXXXXXXX" required>
                             </div>
                             <div class="form-group">

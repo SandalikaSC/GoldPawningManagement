@@ -9,8 +9,6 @@
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/pawnedArticleDashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/loading.css">
-
-
 </head>
 
 <body>

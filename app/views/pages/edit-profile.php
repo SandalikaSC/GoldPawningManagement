@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo SITENAME ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/edit-profile.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/authentication-for-editprofile.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/manualSetEmail.css">
@@ -168,11 +169,11 @@
                                 </div>
                                 <div class="field-value">
                                     <span name="mob-no" id="mob-no"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                                                        echo $data[0]->phone;
-                                                                    } else if (!empty($data[0]->phone)) {
-                                                                        echo $data[0]->phone;
-                                                                    } else if (!empty($data[1]->phone)) {
                                                                         echo $data[1]->phone;
+                                                                    } else if (empty($data[0]->phone)) {
+                                                                        echo $data[1]->phone;
+                                                                    } else if (empty($data[1]->phone)) {
+                                                                        echo $data[0]->phone;
                                                                     } ?></span>
                                 </div>
 
@@ -183,10 +184,10 @@
                                 </div>
                                 <div class="field-value">
                                     <span name="mob-no2" id="mob-no2"><?php if (!empty($data[0]->phone) && !empty($data[1]->phone)) {
-                                                                            echo $data[1]->phone;
-                                                                        } else if (!empty($data[0]->phone)) {
+                                                                            echo $data[0]->phone;
+                                                                        } else if (empty($data[0]->phone)) {
                                                                             echo "";
-                                                                        } else if (!empty($data[1]->phone)) {
+                                                                        } else if (empty($data[1]->phone)) {
                                                                             echo "";
                                                                         } ?></span>
                                 </div>
@@ -398,12 +399,11 @@
                 body: formData
             })
             .then(data => data.json())
-            // .then(data => data.slice(27))
+            // .then(data => data.slice(1))
             // .then(data => JSON.parse(data))
             .then(data => {
-                console.log(data.msg);
-                if (data.msg === 1) {
-
+                //   console.log(data.msg);
+                if (data.msg == "ok") {
                     passwordChangeForm.style.display = "none";
                     document.getElementById('password-changed-message-box').style.display = "flex";
                 } else if (data.msg === "new-not-match-to-confirm") {

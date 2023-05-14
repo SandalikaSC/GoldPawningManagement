@@ -55,17 +55,9 @@ body{
     width:50px;
  }
 
-@keyframes logo {
-    0%   {transform: rotateY(0);}
-    50%  {transform: rotateY(360deg);}
-    100%  {transform: rotateY(0);}
-}
 
 .vogue {
-    /* animation-name: logo; */
-    animation-duration:18s;
     width: 200px;
-    animation-iteration-count: infinite;
 }
 
 .right-side{
@@ -88,6 +80,7 @@ body{
 
 .three-sets{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .left-set{
@@ -115,6 +108,13 @@ body{
 }
 
 .locker-des .locker-info .change-color{
+    color: white;
+    padding: 1% 6%;
+    background: #34b33499;
+    border-radius: 20px;
+}
+
+.locker-des .locker-info .red-color{
     color: white;
     padding: 1% 6%;
     background: #34b33499;
@@ -261,6 +261,7 @@ body{
 .lock-items .arti img{
     box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);  
     width:150px;
+    height:150px;
     object-fit: cover;
     /* padding:10px; */
     border-radius: 10px;
@@ -276,7 +277,7 @@ body{
 
 
 
-@media screen and (max-width:1188px) {
+@media screen and (max-width:1192px) {
     .right{   
         overflow-y: scroll;
     }
@@ -346,9 +347,26 @@ body{
     justify-content: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    height:200px;
+    height:800px;
   }
 
+  .top{
+    margin-bottom: 10px;
+  }
+
+  .lock-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lock-items .arti img{  
+    width:100px;
+    height:100px;
+    margin:10px;
+
+}
   
 }
 

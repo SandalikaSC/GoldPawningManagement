@@ -5,7 +5,7 @@
         public function __construct() {
             $this->db = new Database;
         }
-
+//vugfufu
         // Get gold rates
         public function getGoldRates() {
             $this->db->query('SELECT * FROM gold_rate;');

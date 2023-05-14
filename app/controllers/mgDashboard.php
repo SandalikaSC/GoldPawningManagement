@@ -1,7 +1,7 @@
 <?php
 class mgDashboard extends controller
 {
-  public function __construct()
+  public function __construct()  //to display a flash message
   {
     flashMessage();
   }
@@ -11,51 +11,49 @@ class mgDashboard extends controller
   {
 
     isLoggedIn();
-    $staff = $this->model("staffModel");
-    $result = $staff->loadProfilePicture($_SESSION['user_email']);
-    $_SESSION['profile_pic'] = $result->image;
-    $_SESSION['mg_name'] = $result->Name;
+    // $staff = $this->model("staffModel"); 
+    // $result = $staff->loadProfilePicture($_SESSION['user_email']);
+    // $_SESSION['profile_pic'] = $result->image;
 
-    $goldRates = $this->model('mgDashboardModel');
+    $goldRates = $this->model('mgDashboardModel');  //to display gold rates
     $result1 = $goldRates->loadGoldRates();
 
-    $interest = $this->model('mgDashboardModel');
+    $interest = $this->model('mgDashboardModel');  //to get a loan interest
     $result2 = $interest->loadInterest();
 
-    $complaint = $this->model('mgDashboardModel');
+    $complaint = $this->model('mgDashboardModel');  //to load all complaints
     $result3 = $complaint->loadComplaints();
 
-    $incomeAndExp = $this->model('mgDashboardModel');
+    $incomeAndExp = $this->model('mgDashboardModel'); //to derive the income and expenditure from the database
     $resultArr = $incomeAndExp->deriveIncomeAndExpen();
 
-    $count = $this->model('mgDashboardModel');
+    $count = $this->model('mgDashboardModel');  //to get values for the summary
     $countArr = $count->countAll();
 
     $today = date("Y-m-d");
-    $note = $this->model('mgDashboardModel')->viewNote($_SESSION['user_id'],$today);
+    $note = $this->model('mgDashboardModel')->viewNote($_SESSION['user_id'],$today); //to view notes
    
-    // var_dump($resultArr);
-  
 
     $this->view("/Manager/managerDash", array($result1, $result2, $result3,$resultArr,$countArr,$note));
   }
 
 
-
+//to remove complaints in complaint section
   public function removeComplaint($cid)
   {
     isLoggedIn();
-    $complaint = $this->model("UserModel");
+    $complaint = $this->model("staffModel");
     $data = $complaint->deleteComplaint($cid);
     flashMessage("Complaint Deleted..",1);
     redirect('/mgDashboard');
   }
 
 
+  //for replying to complaint
   public function sendReplyForComplaints()
   {
     if (!empty($_POST["text-area"])) {
-      $complaint = $this->model('UserModel');
+      $complaint = $this->model('staffModel');
       $res = $complaint->getUserEmail($_POST['cusId']);
 
       if ($res) {
@@ -82,46 +80,14 @@ class mgDashboard extends controller
   }
 
 
-  public function incomeAndExpen()
-  {
-    $income = $this->model('mgDashboardModel');
-    $resultArr = $income->deriveIncomeAndExpen();
-    // var_dump($result);
-
-    $monthsIncome = array();
-    $amountsIncome = array();
-    $monthsExpen = array();
-    $amountsExpen = array();
-
-    // Store the paid month and total amount in separate arrays
-    if ($resultArr[0]->num_rows > 0) {
-      foreach ($resultArr[0] as $row) {
-        // $month = date("F", mktime(0, 0, 0, $row['Month'], 1, $row['Year']));
-        $month=$row['Month'];
-        $totIncome = $row['totalIncome'];
-        array_push($monthsIncome, $month);
-        array_push($amountsIncome, $totIncome);
-      }
-    }
-    
-    // Store the paid month and total amount in separate arrays
-    if ($resultArr[1]->num_rows > 0) {
-      foreach ($resultArr[1] as $row) {
-        // $month = date("F", mktime(0, 0, 0, $row['Month'], 1, $row['Year']));
-        $month=$row['Month'];
-        $totIncome = $row['totalExpen'];
-        array_push($monthsExpen, $month);
-        array_push($amountsExpen, $totIncome);
-      }
-    }
-
-  }
-
+  //to check whether some complaint is viewed or not.
   public function updateStatusOfComplaints($cid){
     $obj = $this->model('mgDashboardModel');
     $result= $obj->updateStatus($cid);
   }
 
+
+  //to add a note
   public function setNote(){
     if(isset($_POST['noteTitle']) AND isset($_POST['noteDate']) AND isset($_POST['noteContent'])){
       isLoggedIn();
@@ -129,6 +95,9 @@ class mgDashboard extends controller
       flashMessage("Note Added",1);
       redirect("/mgDashboard/index");
 
+    }else{
+      flashMessage("Fill form correctly",0);
+      redirect("/mgDashboard/index");
     }
 
   }

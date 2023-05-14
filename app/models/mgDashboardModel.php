@@ -2,9 +2,9 @@
 
 class MgDashboardModel extends Database
 {
+    //to load gold rates in owner and manager dashboard
     public function loadGoldRates()
     {
-
         $sql1 = 'select Karatage, Price from gold_rate';
         $this->query($sql1);
         $result = $this->resultSet();
@@ -12,6 +12,7 @@ class MgDashboardModel extends Database
         return $result;
     }
 
+    //to load the loan interest
     public function loadInterest()
     {
         $sql = 'select Interest_Rate from interest order by interest_ID desc limit 1';
@@ -20,16 +21,16 @@ class MgDashboardModel extends Database
         return $result;
     }
 
+    //to load the complaints
     public function loadComplaints()
     {
-        // $sql = 'select CID,Date,Description,UserID,Status from complaint order by CID desc';
-        $sql = 'select c.CID,c.Date,c.Description,c.UserID,c.Status,concat(u.First_Name," ",u.Last_Name) as Name,u.image from complaint c inner join user u on c.UserID=u.UserId order by c.Date';
+        $sql = 'select c.CID,c.Date,c.Description,c.UserID,c.Status,concat(u.First_Name," ",u.Last_Name) as Name,u.image from complaint c inner join user u on c.UserID=u.UserId order by c.Date desc';
         $this->query($sql);
         $result = $this->resultSet();
         return $result;
     }
 
-
+    //to calculate the income and expenditure
     public function deriveIncomeAndExpen()
     {
 
@@ -46,14 +47,11 @@ class MgDashboardModel extends Database
         $this->bind(1, $year);
         $result2 = $this->resultSet();
 
-
-        // if (!empty($result) and !empty($result2)) {
-            return array($result, $result2);
-        // } else {
-        //     return 0;
-        // }
+        return array($result, $result2);
+     
     }
 
+    //to calculate the income and expenditure for a given year
     public function deriveIncomeAndExpenInGivenYear($year)
     {
         $sql = "select  YEAR(Date) AS Year,MONTH(Date) AS Month, SUM(Amount) AS totalIncome from payment where YEAR(Date) = ? group by YEAR(Date), MONTH(Date) order by MONTH(Date) asc";
@@ -67,15 +65,11 @@ class MgDashboardModel extends Database
         $this->bind(1, $year);
         $result2 = $this->resultSet();
 
-
-        // if (!empty($result) and !empty($result2)) {
-            return array($result, $result2);
-        // } else {
-        //     return 0;
-        // }
+        return array($result, $result2);
     }
 
 
+    //to count details for dashboard summary
     public function countAll()
     {
         $sql1 = "select count(distinct UserId) as customers from user where type='Customer'";
@@ -104,7 +98,7 @@ class MgDashboardModel extends Database
 
         $sql7 = "select count(distinct lockerNo) as lockers from reserves";
         $this->query($sql7);
-        $LC = $this->single();
+        $LC_allocated = $this->single();
 
         $sql8 = "select count(Type) as online_payments from payment where Type=?";
         $this->query($sql8);
@@ -120,10 +114,15 @@ class MgDashboardModel extends Database
         $this->query($sql10);
         $total_payments = $this->single();
 
-        return array($CUS, $VK, $GA, $PO, $PAWN, $AUC, $LC, $online_payments, $cash_payments, $total_payments);
+         $sql11 = "select count(distinct lockerNo) as tot_lockers from locker";
+        $this->query($sql11);
+        $LC_tot = $this->single();
+
+        return array($CUS, $VK, $GA, $PO, $PAWN, $AUC, $LC_allocated, $online_payments, $cash_payments, $total_payments,$LC_tot);
     }
 
 
+    //to prove whether some complaint is read or not
     public function updateStatus($cid)
     {
         $sql = "update complaint set Status=1 where CID=?";
@@ -134,7 +133,7 @@ class MgDashboardModel extends Database
     }
 
 
-
+//to add a node. to create a note
     public function addNote($UserId, $title, $date, $note)
     {
         $sql = 'insert into notes (UserId,Title,Date,Note) values (?,?,?,?)';
@@ -150,6 +149,7 @@ class MgDashboardModel extends Database
         return $result;
     }
 
+    //to view a selected note
     public function viewNote($UserId, $date)
     {
         $sql = 'select Title,Note from notes where UserID=? and Date=?';

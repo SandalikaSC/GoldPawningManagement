@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo SITENAME ?></title>
   <link rel="stylesheet" href="<?php echo URLROOT ?>/css/pawnArticleFilter.css">
+  <link rel="icon" type="image/x-icon" href="<?php echo URLROOT ?>/Img/logo.png">
 </head>
 
 <body>

@@ -19,7 +19,7 @@
                     <a href="<?php echo URLROOT ?>/mgLocker/viewLockerItems/<?php echo $data[2]?>" class="backbtn"><img src="<?php echo URLROOT ?>/img/backbutton.png" alt="back"></a>
 
                     <h1>
-                        <i><?php echo $data[0]->Article_Id?></i> In <i>LC<?php echo $data[2]?></i>
+                        <i class="<?php echo ($data[0]->Retrive_status==0 and $this->dateComp($data[0]->Retrieve_Date,0)) ? 'red-article-topic':''?>"><?php echo $data[0]->Article_Id . "  "?></i>In<i><?php echo " LC".$data[2]?></i>
                     </h1>
                 </div>
                 <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
@@ -38,51 +38,51 @@
                             <div class="article-des">
                                 <div class="article-info">
                                     <div class="field-name">Article ID</div>
-                                    <div class="field-value"><?php echo $data[0]->Article_Id?></div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Article_Id)) echo $data[0]->Article_Id; else "";?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Estimated Value</div>
-                                    <div class="field-value">Rs. <?php echo $data[0]->Estimated_Value?>/=</div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Estimated_Value)) echo 'Rs. '.$data[0]->Estimated_Value.'/='; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Karatage</div>
-                                    <div class="field-value"><?php echo $data[0]->Karatage?>k</div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Karatage)) echo $data[0]->Karatage.'k'; else echo "";?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Weight</div>
-                                    <div class="field-value"><?php echo $data[0]->Weight?>g</div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Weight)) echo $data[0]->Weight.'g'; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Type</div>
-                                    <div class="field-value"><?php echo $data[0]->Type?></div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Type)) echo $data[0]->Type; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Allocate Id</div>
-                                    <div class="field-value"><?php echo $data[0]->Allocate_Id?></div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Allocate_Id)) echo $data[0]->Allocate_Id; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Allocated Date</div>
-                                    <div class="field-value"><?php echo $data[0]->Date?></div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Date)) echo $data[0]->Date; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
-                                    <div class="field-name">Retrieve Date</div>
-                                    <div class="field-value"><?php echo $data[0]->Retrieve_Date?></div>
+                                    <div class="<?php echo ($data[0]->Retrive_status==0 and $this->dateComp($data[0]->Retrieve_Date,0)) ? 'red-date':'field-name'?>">Retrieve Date</div>
+                                    <div class="<?php echo ($data[0]->Retrive_status==0 and $this->dateComp($data[0]->Retrieve_Date,0)) ? 'red-date':'field-value'?>"><?php if(!empty($data[0]->Retrieve_Date)) echo $data[0]->Retrieve_Date; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Allocation Fee</div>
-                                    <div class="field-value">Rs. <?php echo $data[0]->allocation_fee?>/=</div>
+                                    <div class="field-value"><?php if(!empty($data[0]->allocation_fee)) echo 'Rs. '.$data[0]->allocation_fee.'/='; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">User ID</div>
-                                    <div class="field-value"><?php echo $data[0]->UserID?></div>
+                                    <div class="field-value"><?php if(!empty($data[0]->UserID)) echo $data[0]->UserID; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Vault Keeper ID</div>
-                                    <div class="field-value"><?php echo $data[0]->Keeper_Id?></div>
+                                    <div class="field-value"><?php if(!empty($data[0]->Keeper_Id)) echo $data[0]->Keeper_Id; else echo '';?></div>
                                 </div>
                                 <div class="article-info">
                                     <div class="field-name">Gold Appraiser ID</div>
-                                    <div class="field-value"><?php echo $data[0]->appraiser_Id?></div>
+                                    <div class="field-value"><?php if(!empty($data[0]->appraiser_Id)) echo $data[0]->appraiser_Id; else echo '';?></div>
                                 </div>
 
                             </div>

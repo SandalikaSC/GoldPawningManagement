@@ -3,17 +3,18 @@
 class ownerAuction extends controller
 {
 
+   //to view auction articles
    public function index()
    {
 
       isLoggedIn();
-
       $auction = $this->model("auctionArticleModel");
       $result = $auction->getAuctionArticles();
       $this->view("/Owner/ownerAuctionDashboard", $result);
      
    }
 
+   //to view the details of auctioned article
    public function viewAuctionItem($article_id)
    {
       isLoggedIn();
@@ -28,6 +29,7 @@ class ownerAuction extends controller
    }
 
 
+   //to filter the articles
    public function filter()
    {
       $auctionDate=isset($_POST['auction-date']) ? $_POST['auction-date'] : '';
