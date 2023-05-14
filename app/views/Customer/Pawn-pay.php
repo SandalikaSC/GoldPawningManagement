@@ -1162,12 +1162,11 @@
                     availableLocker: availableLocker,
                     orderid: orderId
                 },
-                success: function(response) {
-                    alert(response);
+                success: function(response) { 
 
 
                     // window.location = '<?= URLROOT ?>/CustomerPawn/geneartePdf'; 
-                    // window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + response;
+                    window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + response;
 
                     // window.open('<?= URLROOT ?>/CustomerPawn/geneartePdf/'+response, "_blank");
 
@@ -1175,7 +1174,7 @@
                 },
                 error: function(xhr, status, error) {
                     // handle errors here
-                    console.log(error);
+                    window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + myLocker;
                 }
             });
 

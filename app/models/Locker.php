@@ -75,7 +75,7 @@ class Locker
 
         return $result->lockers;
     }
-
+ 
     public function updateLockerArticles($lockerNo, $status)
     {
 

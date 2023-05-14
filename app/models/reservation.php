@@ -111,7 +111,7 @@ class reservation
 
             return true;
         } else {
-            return false;
+            return false; 
         }
     }
     public function addNewReservation($data, $articleId, $retrieveDate, $payment)
