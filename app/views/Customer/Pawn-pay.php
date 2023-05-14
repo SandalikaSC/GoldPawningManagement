@@ -1174,7 +1174,7 @@
                 },
                 error: function(xhr, status, error) {
                     // handle errors here
-                    window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + myLocker;
+                    window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + pawnId;
                 }
             });
 
