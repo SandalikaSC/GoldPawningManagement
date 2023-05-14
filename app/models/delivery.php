@@ -39,4 +39,17 @@ class delivery
 
         return $results;
     }
+    public function insertDelivery($locker)
+    {
+        $this->db->query('INSERT INTO delivery(`Status`, `deliverd_date`, `added_Date`, `lockerNo`)VALUES(
+            :Status,:deliverd_date,:added_Date,:lockerNo 
+        );');
+        $this->db->bind(':Status', 0);
+        $this->db->bind(':deliverd_date', NULL);
+        $this->db->bind(':added_Date', date('Y-m-d H:i:s'));
+        $this->db->bind(':lockerNo', $locker); 
+        $results = $this->db->single();
+
+        return $results;
+    }
 }

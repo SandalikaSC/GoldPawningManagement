@@ -139,8 +139,8 @@
                 </div>
 
                 <div class="div-main-buttons">
-                    <a href="<?php echo URLROOT; ?>/customers/register_customer">+ New Customer</a>
-                    <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">+ New Pawning</a>
+                    <a href="<?php echo URLROOT; ?>/customers/register_customer">Register Customer</a>
+                    <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">New Pawning</a>
                 </div>
 
                 <div class="table-wrapper">

@@ -62,9 +62,9 @@
                                 <input type="text" name="weight" id="weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>" placeholder="Weight">                                
 
                                 <select name="unit" id="unit">
-                                    <option value="" <?php echo ($data['unit'] == '') ? 'selected' : '';?> disabled>Choose weight unit</option>
-                                    <option value="gram" <?php echo ($data['unit'] == 'gram') ? 'selected' : '';?> >gram</option>
-                                    <option value="ounce" <?php echo ($data['unit'] == 'ounce') ? 'selected' : '';?> >ounce</option>
+                                    <option value="" <?php if($data['unit'] == '') echo 'selected'; else '';?> disabled>Choose weight unit</option>
+                                    <option value="gram" <?php if($data['unit'] == 'gram') echo 'selected'; else '';?> >gram</option>
+                                    <option value="ounce" <?php if($data['unit'] == 'ounce') echo 'selected'; else '';?> >ounce</option>
                                 </select>
                                 
                             </div>

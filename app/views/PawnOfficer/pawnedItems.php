@@ -68,11 +68,13 @@
         <main>
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" name="search" id="search" onkeyup="searchPawnedItems()" placeholder="Search Here">
-                    <img src="<?php echo URLROOT . '/img/search_icon.png'?>">                
+                    <input type="text" placeholder="Enter Article ID/Customer ID">
+                    <a href="#">
+                    <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
+                    </a>                
                 </div>
-                <div class="tbl-details" id="div_table">
-                    <table cellspacing="0" id="pawned_table">
+                <div class="tbl-details">
+                    <table cellspacing="0">
                         <thead>
                             <tr>
                                 <th></th>
@@ -99,14 +101,10 @@
 
                     </table>
                 </div>
-                <div id="div-search-msg"></div>
                 
             </div>
         </main>
     </div>
 </body>
-
-<script src="<?php echo URLROOT ?>/js/searchPawnedPO.js"></script>
-
 </html>
 

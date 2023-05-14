@@ -175,13 +175,8 @@
             </div>
         </div>
         <div class="payment-history">
-
-            <?php if ($data['status'] != 'Auctioned' && $data['status'] != 'Retrieved' && $data['status'] != 'Completed') : ?>
-                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerPawn/makePayment/<?= $data['goldLoan']->Pawn_Id ?>"  >
-
             <?php if ($data['status'] != 'Auctioned' && $data['status'] != 'Retrieved' && $data['status'] != 'Completed' && $data['status'] != 'Repawn') : ?>
                 <a class="a-pay" href="<?php echo URLROOT ?>/CustomerPawn/makePayment/<?= $data['goldLoan']->Pawn_Id ?>">
-
                     Pay </a>
             <?php endif; ?>
             <div class="payments his-div payHistory">
