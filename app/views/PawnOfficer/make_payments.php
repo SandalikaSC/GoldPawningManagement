@@ -102,7 +102,7 @@
                                     </div>
                                 <?php else: ?>                                    
                                     <div class="field-wrapper">
-                                        <label>Covering Loan Amount (Rs.)</label>
+                                        <label>Covering Loan Amount (Rs.)<sup>*</sup></label>
                                         <div class="input-wrapper">
                                             <input type="text" name="covered-loan" class="<?php echo (!empty($data['covered_loan_err'])) ? 'is-invalid' : '' ?>" placeholder="Loan Amount" value="<?php echo (!empty($data['covered_loan'])) ? sprintf("%.2f", $data['covered_loan']) : ''; ?>">
                                         </div> 
