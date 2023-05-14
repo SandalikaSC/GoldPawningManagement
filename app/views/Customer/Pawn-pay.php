@@ -414,7 +414,8 @@
         //errer display
         let exeecderr = document.getElementById("errdiv");
 
-
+        document.getElementById('err-msg').style.display = "none";
+            
         function checkTotal(amount) {
             if (amount > 50000) {
                 pay_btn.style.display = 'none';
@@ -818,13 +819,14 @@
 
                 document.getElementById("dim_err").innerHTML = "Invalid Payment amount";
 
-                // } else if (total_payment >= 50000) {
+            } else if (total_payment >= 50000) {
 
-                //     document.getElementById('err-msg').style.display = "block";
-                //     window.scrollTo({
-                //         top: 0,
-                //         behavior: 'smooth'
-                //     });
+                document.getElementById('err-msg').style.display = "block";
+            
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
 
 
             } else {
