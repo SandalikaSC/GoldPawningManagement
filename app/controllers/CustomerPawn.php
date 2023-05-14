@@ -274,7 +274,8 @@ class CustomerPawn extends Controller
 
     public function savePawnPayment()
     {
-        $pawnId = intval($_GET['pawnId']);
+        $pawnId = $_GET['pawnId'];
+        $pawnId = intval($pawnId);
         $pawnProcess = $_GET['pawnProcess'];
         $payment = $_GET['payment'];
         $myLocker = $_GET['myLocker'];
@@ -289,7 +290,7 @@ class CustomerPawn extends Controller
 
         $_SESSION['payment'] = $payment;
 
-        echo json_encode($pawnId);
+        // echo json_encode($pawnId);
 
 
 

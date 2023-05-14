@@ -109,10 +109,10 @@ class CustomerLocker extends Controller
         $periodof6=0;
         $extendStart=$currentReservations[0]->Retrieve_Date;
         $extendTo = date('Y-m-d', strtotime('+6 months', strtotime( $extendStart)));
-        if ($currentReservations[0]->Retrieve_Date<date_create() ) {
+        if ($interval->days<30 && $currentReservations[0]->Retrieve_Date<date_create()) {
             $overdue = $interval->days; 
             $months = ceil($overdue / 30); 
-            $periodof6 = $months/6  ; 
+            $periodof6 =  floor($months/6 ) ; 
             if ($periodof6>0) {
                 $mon=$periodof6*6;
                
