@@ -58,12 +58,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2px;
+    padding: 5px;
     border-radius: 20px;
     background: #333333;
     color: #fff;
     column-gap: 10px;
-    border: 1px solid transparent;
 }
 
 .sidebar-menu li a img {
@@ -76,6 +75,7 @@
 
 .sidebar-menu li a:hover {
     border: 1px solid #bb8a04;
+    opacity: 0.8;
 }
 
 .sidebar-menu .btn-logout {
@@ -96,6 +96,10 @@
     color: #bb8a04;
     border-radius: 20px;
     margin-top: 50px;
+}
+
+.sidebar-menu .btn-logout .logout:hover {
+    opacity: 0.8;
 }
 
 #side-toggle {
