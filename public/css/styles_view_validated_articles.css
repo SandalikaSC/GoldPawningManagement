@@ -179,15 +179,15 @@ main .right-content {
     width: 100%;
 }
 
-main .right-content .div-search {
+/* main .right-content .div-search {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     margin: 30px 0 20px;
-}
+} */
 
-main .right-content .div-search div {
+.right-content .div-search {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,23 +195,25 @@ main .right-content .div-search div {
     height: 45px;
     border-radius: 25px;
     background: #ddd;
+    margin: 20px 50px 0;
     padding: 0 20px;
 }
 
-main .right-content .div-search input {
+.right-content .div-search input {
     width: 100%;
     height: 100%;
     font-size: 16px;
+    background: none;
     outline: none;
     border: none;
-    background: none;
+    padding: 0 20px;
 }
 
-main .right-content .div-search img {
+.right-content .div-search img {
     height: 25px;
 }
 
-main .right-content .div-search input::-webkit-input-placeholder {
+.right-content .div-search input::-webkit-input-placeholder {
     color: #4d4d4d;
 }
 

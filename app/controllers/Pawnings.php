@@ -469,6 +469,19 @@
                             $this->view('PawnOfficer/confirmPawn', $data); 
                         }
                     }
+                    if(isset($_POST['dismiss'])) {
+                        $dismiss_success = $this->pawningModel->deleteValidatedArticle($id);
+    
+                        if($dismiss_success) {
+                            redirect('/pawningOfficerDashboard/dashboard');
+                        } else {
+                            flash('register', 'Something went wrong. Please try again.', 'invalid');
+                            $this->view('PawnOfficer/confirmPawn', $data); 
+                        }
+                    } 
+                    if(isset($_POST['cancel'])) {
+                        redirect('/pawningOfficerDashboard/dashboard');
+                    }
                 } else {
                     if(isset($_POST['dismiss'])) {
                         $dismiss_success = $this->pawningModel->deleteValidatedArticle($id);
@@ -485,17 +498,6 @@
                         $this->view('PawnOfficer/confirmPawn', $data);
                     }
                 }
-
-                // if(isset($_POST['dismiss'])) {
-                //     $dismiss_success = $this->pawningModel->deleteValidatedArticle($id);
-
-                //     if($dismiss_success) {
-                //         redirect('/pawningOfficerDashboard/dashboard');
-                //     } else {
-                //         flash('register', 'Something went wrong. Please try again.', 'invalid');
-                //         $this->view('PawnOfficer/confirmPawn', $data); 
-                //     }
-                // }
               
             } else {
                 $data = [
