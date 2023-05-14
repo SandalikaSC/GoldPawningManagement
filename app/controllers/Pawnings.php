@@ -462,7 +462,8 @@
 
                         if($pawn_article) {
                             redirect('/pawningOfficerDashboard/dashboard');
-                            
+                            notification("pawn_success", "Article pawned successfully", "gold");
+                            echo json_encode(1);
                         } else {
                             flash('register', 'Something went wrong. Please try again.', 'invalid');
                             $this->view('PawnOfficer/confirmPawn', $data); 
