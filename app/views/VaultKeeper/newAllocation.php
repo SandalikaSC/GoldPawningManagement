@@ -25,19 +25,19 @@
                                                                                                         echo "0";
                                                                                                     } ?>">
         <div class="validation-img">
-            <?php if (empty($data['appointment']) ) : 
-                if (empty($data['customerId'])):?>
-                <div class="search-container" method="post" action="<?php echo URLROOT ?>/LockerValidation/getCustomer">
-                    <input type="text" name="" id="search" placeholder="Enter CustomerId or NIC">
-                    <button type="button" class="search-icon" id="searchbtn" onclick="searchCustomer()"></button>
-                </div>
+            <?php if (empty($data['appointment'])) :
+                if (empty($data['customerId'])) : ?>
+                    <div class="search-container" method="post" action="<?php echo URLROOT ?>/LockerValidation/getCustomer">
+                        <input type="text" name="" id="search" placeholder="Enter CustomerId or NIC">
+                        <button type="button" class="search-icon" id="searchbtn" onclick="searchCustomer()"></button>
+                    </div>
                 <?php endif; ?>
             <?php else : ?>
-                 
-                    <label for="">Appointment Number</label>
-                    <input type="text" name="appointment" id="appointment" value="<?php echo $data['appointment'] ?>" readonly>
 
-                
+                <label for="">Appointment Number</label>
+                <input type="text" name="appointment" id="appointment" value="<?php echo $data['appointment'] ?>" readonly>
+
+
             <?php endif; ?>
             <span class="error" id="error"></span>
             <img src="<?php echo URLROOT ?>/img/Web search-cuate.svg" alt="">
@@ -84,11 +84,13 @@
             </div>
             <!-- <div class="info-section" > -->
             <div class="buttion-container">
-            <button type="submit" name="Add_another" class="btn sub"><h3>+ Add Another</h3></button>
-            <button type="submit" name="validation_btn" class="btn">Submit</button>
+                <button type="submit" name="Add_another" class="btn sub">
+                    <h3>+ Add Another</h3>
+                </button>
+                <button type="submit" name="validation_btn" class="btn">Submit</button>
             </div>
-            
-           
+
+
 
         </div>
 
@@ -158,7 +160,8 @@
         function searchCustomer() {
 
             var customerid = searchid.value;
-
+            error.innerHTML = '';
+            setnullfields();
             // Define a regular expression to match
             var regex = /^([Cc][Uu]\d+|\d{12}|\d{10}[Vv])$/;
             // Test if the customer ID matches the regular expression
@@ -195,6 +198,21 @@
 
             }
 
+        }
+
+        function setnullfields() {
+            // Set input fields in cus-details to null
+            document.querySelectorAll('.cus-details input[type="text"]').forEach(input => {
+                input.value = '';
+            });
+
+            // Set input fields in article-details to null
+            document.querySelectorAll('.article-details input[type="text"], .article-details input[type="file"]').forEach(input => {
+                input.value = '';
+            });
+
+            // Reset article_type select field to the first option
+            document.querySelector('.article-details select[name="article_type"]').selectedIndex = 0;
         }
     </script>
     <?php require APPROOT . "/views/inc/footer.php" ?>

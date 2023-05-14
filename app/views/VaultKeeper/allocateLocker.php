@@ -512,19 +512,16 @@
                 success: function(response) {
                     if (response == 0) {
                         location.reload();
-                    } else {
-
+                    } else { 
                         window.location = "<?= URLROOT ?>/VKDashboard";
 
 
 
-                    }
-
-
-
+                    } 
                 },
                 error: function(xhr, status, error) {
-                    console.log("Error: " + error);
+                    window.location = "<?= URLROOT ?>/VKDashboard";
+
                 }
             });
 
