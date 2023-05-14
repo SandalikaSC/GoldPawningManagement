@@ -106,7 +106,7 @@
                 if(!(is_numeric($nic_substr))) {
                     return false;
                 } else {
-                    if($nic[-1] != 'V' || $nic[-1] != 'v') {
+                    if(strtoupper($nic[-1]) != 'V') {
                         return false;
                     } else {
                         return true;

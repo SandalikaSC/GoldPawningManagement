@@ -91,6 +91,10 @@
                     $data['weight_err'] = "Please enter the article weight";
                 }
 
+                if(!is_numeric($data['weight'])) {
+                    $data['weight_err'] = "Please enter a valid weight";
+                }
+
                 if(empty($data['karats'])) {
                     $data['karats_err'] = "Please enter the carat value";
                 }

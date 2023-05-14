@@ -9,12 +9,6 @@
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
 </head>
 <body>
-    <header>
-        <div class="button-container">
-            <button type="submit" class="main-btn">Print</button>
-            <button type="submit" class="main-btn">Cancel</button>
-        </div>
-    </header>
 
     <main>
         <div class="div-receipt">
@@ -30,6 +24,9 @@
                 <div class="company-details">
                     <div class="field-container">
                         <h2>Vogue Pawn</h2>                    
+                    </div>
+                    <div class="field-container">
+                        <span>No.528 Galle Road, Colombo 03</span>                 
                     </div>
                     <div class="field-container">
                         <span class="contact">voguepawners@gmail.com</span>
@@ -48,7 +45,7 @@
                     </div>
                     <div class="field-container">
                         <span>
-                            <?php if(($data['customer']->Line1 != "Empty") || (!empty($data['customer']->Line1))) { echo $data['customer']->Line1 . ', '; } ?>
+                        <?php if(($data['customer']->Line1 != "Empty") || (!empty($data['customer']->Line1))) { echo $data['customer']->Line1 . ', '; } ?>
                             <?php if(($data['customer']->Line2 != "Empty") || (!empty($data['customer']->Line2))) { echo $data['customer']->Line2 . ', '; } ?>
                             <?php if(($data['customer']->Line3 != "Empty") || (!empty($data['customer']->Line3))) { echo $data['customer']->Line3; } ?>
                         </span>
@@ -147,7 +144,7 @@
                                     $payment_no = 0;
                                     foreach ($data['payment_history'] as $payment) :
                                 ?>
-                                    <?php if(date('Y-m-d', strtotime($payment->Date)) < date('Y-m-d')) : ?>
+                                    <?php if($payment->PID != $data['payment_details']->PID) : ?>
                                         <tr>
                                             <td><?php echo $payment->PID; ?></td>
                                             <td><?php echo ++$payment_no; ?></td>
