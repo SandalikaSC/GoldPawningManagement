@@ -68,10 +68,8 @@
         <main>
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" placeholder="Enter customer name">
-                    <a href="#">
+                    <input type="text" name="search" id="search" placeholder="Enter customer name" onkeyup="">
                     <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
-                    </a>                
                 </div>
                 <div class="tbl-details">
                     <table cellspacing="0">
@@ -103,6 +101,9 @@
         </main>
     </div>
 </body>
+
+<script src="<?php echo URLROOT ?>/js/searchOnStaffDashboard.js"></script>
+
 </html>
 
 

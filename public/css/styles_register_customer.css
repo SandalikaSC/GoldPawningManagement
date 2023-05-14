@@ -50,9 +50,9 @@
 
 .wrapper .form-wrapper form {
     margin: 0 20px;
-    border: 2px solid #bb8a04;
+    border: 1px solid #bb8a04;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 20px;    
     background-image: url("../img/register_customer.svg");
     background-size: 300px;
@@ -154,7 +154,7 @@
 
 .wrapper .form-wrapper .register input:hover {
     transform: translateY(-5px);
-    transition-duration: 0.1s;
+    transition-duration: 0.3s;
     background-color: #cecece;
     color: #bb8a04;
 }

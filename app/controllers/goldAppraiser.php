@@ -36,6 +36,7 @@
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $unit = filter_input(INPUT_POST, 'unit', FILTER_SANITIZE_STRING);
 
                 $data = [
                     'validation_id' => $id,
@@ -44,7 +45,7 @@
                     'article_details' => $article,
                     'weight' => trim($_POST['weight']),
                     'karats' => trim($_POST['carats']),
-                    'unit' => $_POST['unit'],
+                    'unit' => $unit,
                     'estimated_value' => '',
                     'validation_status' => '',
                     'weight_err' => '',
