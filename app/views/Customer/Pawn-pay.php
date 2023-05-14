@@ -22,7 +22,7 @@
     </div>
     <div class="content">
         <div class="invalid err-msg" id="err-msg"> Exceed the maximum online payment of Rs 50000</div>
-         
+
         <div class="pay-details">
 
             <div class="cardnew">
@@ -845,7 +845,7 @@
                             payment = {
                                 "amount": total_payment,
                                 "Principle": principlepayment,
-                                    "interest": interestpayment,
+                                "interest": interestpayment,
                                 "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                 "PawnId": <?= $data['pawning']->Pawn_Id ?>
                             };
@@ -929,7 +929,7 @@
                         payment = {
                             "amount": total_payment,
                             "Principle": principlepayment,
-                                    "interest": interestpayment,
+                            "interest": interestpayment,
                             "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
@@ -955,7 +955,7 @@
                         payment = {
                             "amount": total_payment,
                             "Principle": 0,
-                                    "interest": interestpayment,
+                            "interest": interestpayment,
                             "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                             "PawnId": <?= $data['pawning']->Pawn_Id ?>
                         };
@@ -978,7 +978,7 @@
                             payment = {
                                 "amount": total_payment,
                                 "Principle": principlepayment,
-                                    "interest": interestpayment,
+                                "interest": interestpayment,
                                 "PrincipletobePaid": <?= $data['topayPrinciple'] ?>,
                                 "PawnId": <?= $data['pawning']->Pawn_Id ?>
                             };
@@ -1158,13 +1158,13 @@
                     availableLocker: availableLocker,
                     orderid: orderId
                 },
-                success: function(response) { 
-                       
-                         
+                success: function(response) {
+
+
                     // window.location = '<?= URLROOT ?>/CustomerPawn/geneartePdf'; 
-                        window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/'+response;
-                    
-                        // window.open('<?= URLROOT ?>/CustomerPawn/geneartePdf/'+response, "_blank");
+                    window.location = '<?= URLROOT ?>/CustomerPawn/viewPawnArticle/' + response;
+
+                    // window.open('<?= URLROOT ?>/CustomerPawn/geneartePdf/'+response, "_blank");
 
 
                 },
