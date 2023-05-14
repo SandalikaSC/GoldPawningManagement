@@ -52,7 +52,7 @@
     </div>
 
     <div class="main-content">
-        <div><?php echo notification('success', 'Pawning successful'); ?></div>
+        <?php notification('success', 'Pawning successful'); ?>
         
         <header>
             <div class="page-title">
