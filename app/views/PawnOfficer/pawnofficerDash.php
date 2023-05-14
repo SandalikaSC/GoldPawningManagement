@@ -52,6 +52,8 @@
     </div>
 
     <div class="main-content">
+        <div><?php echo notification('success', 'Pawning successful'); ?></div>
+        
         <header>
             <div class="page-title">
                 <label for="side-toggle">

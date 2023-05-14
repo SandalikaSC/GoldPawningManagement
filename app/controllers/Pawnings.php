@@ -462,6 +462,7 @@
 
                         if($pawn_article) {
                             redirect('/pawningOfficerDashboard/dashboard');
+                            
                         } else {
                             flash('register', 'Something went wrong. Please try again.', 'invalid');
                             $this->view('PawnOfficer/confirmPawn', $data); 
