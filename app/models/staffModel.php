@@ -313,7 +313,7 @@ class staffModel extends Database
         }
 
         $this->bind(7, $image);
-
+        $_SESSION['image']=$image;
         // Set the timezone to Sri Lanka
         date_default_timezone_set('Asia/Colombo');
 
