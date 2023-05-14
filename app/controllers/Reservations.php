@@ -133,7 +133,7 @@ class Reservations extends Controller
                         $overdue = $interval->days;
                 }
 
-
+  
                 $data = [
                         'currentReservations' => $currentReservations,
                         'fine' => $fine->Interest_Rate,

@@ -65,7 +65,8 @@
   
 .content-table {
   border-collapse: collapse;
-  margin: 2% 12%;
+  margin: 2% auto;
+  width: 80%;
   border-radius: 20px 20px 0 0;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);

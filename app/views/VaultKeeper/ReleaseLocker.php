@@ -216,16 +216,15 @@
                 },
                 dataType: "JSON",
                 success: function(response) {
-                    alert(response)
                     if (response == 1) {
                         window.location = "<?= URLROOT ?>/Reservations/ViewReservation/<?= $data['lockerid'] ?>";
 
                     } else {
-                        <?= $data['lockerid'] ?>
+                        location.reload();
                        
                     }
 
-
+ 
 
                 },
                 error: function(xhr, status, error) {

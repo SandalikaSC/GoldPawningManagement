@@ -278,6 +278,7 @@ class CustomerPawn extends Controller
     public function savePawnPayment()
     {
         $pawnId = $_GET['pawnId'];
+        $pawnId = intval($pawnId);
         $pawnProcess = $_GET['pawnProcess'];
         $payment = $_GET['payment'];
         $myLocker = $_GET['myLocker'];
@@ -292,10 +293,12 @@ class CustomerPawn extends Controller
 
         $_SESSION['payment'] = $payment;
 
+        // echo json_encode($pawnId);
 
 
 
-        echo json_encode($payment['amount'] . $pawnId . $payment['Principle'] . $orderId);
+
+        
         if ($pawnStatus == "Pawned") {
 
             if ($loanStatus == "Full") {
@@ -565,7 +568,8 @@ class CustomerPawn extends Controller
     public function geneartePdf()
     {
         printReciept();
-        unset($_SESSION['payment']);
+        unset($_SESSION['payment']); 
+        // redirect('CustomerPawn/viewPawnArticle/'.$id);
     }
 
 }
