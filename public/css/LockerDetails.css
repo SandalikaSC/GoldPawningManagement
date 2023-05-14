@@ -7,7 +7,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-  
+
 
 
 /*  article */
@@ -210,12 +210,4 @@ h2 ,h1{
 .div-border{
     border-bottom: 2px solid #bb8a04;
 
-}
-.red{
-    border-radius: 10px;
-    padding: 1% 2%;
-    font-size: 0.9em;
-    background-color: rgb(233, 103, 103); 
-    color: white;
-    text-align: center;
 }

@@ -20,7 +20,7 @@
         </div>
 
     </div>
-    <div class="contentx">
+    <div class="content">
         <div class="item-details">
             <!-- <div class="article-details"> -->
             <div class="info-div">
@@ -512,16 +512,19 @@
                 success: function(response) {
                     if (response == 0) {
                         location.reload();
-                    } else { 
+                    } else {
+
                         window.location = "<?= URLROOT ?>/VKDashboard";
 
 
 
-                    } 
+                    }
+
+
+
                 },
                 error: function(xhr, status, error) {
-                    window.location = "<?= URLROOT ?>/VKDashboard";
-
+                    console.log("Error: " + error);
                 }
             });
 

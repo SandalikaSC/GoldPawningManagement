@@ -52,8 +52,6 @@
     </div>
 
     <div class="main-content">
-        <?php notification('success', 'Pawning successful'); ?>
-        
         <header>
             <div class="page-title">
                 <label for="side-toggle">
@@ -64,7 +62,7 @@
                 <h1>Dashboard</h1> 
             </div>
                     
-            <img src="<?php echo URLROOT?>/img/logo_name.png" class="logo-name">
+            <img src="<?php echo URLROOT?>/img/logo_name.png">
         </header>
 
         <main> 
@@ -86,63 +84,61 @@
                     </div>
                 </div>
 
-                <div class="cards cards-rates">  
-                    <div class="card-container">
-                        <div class="gold-rates">
-                            <div class="icon-case">
-                                <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
-                            </div>
-                            <div class="box">
-                                <h4>24 CARATS</h4>
-                                <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 24) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
-                            </div>                                
+                <div class="cards">                    
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
+                        <div class="box">
+                            <h4>24 CARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 24) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
+                    </div>
 
-                        <div class="gold-rates">
-                            <div class="icon-case">
-                                <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
-                            </div>
-                            <div class="box">
-                                <h4>22 CARATS</h4>
-                                <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 22) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
-                            </div>                                
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
-                    </div>                
-                    
+                        <div class="box">
+                            <h4>22 CARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 22) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
+                    </div>
+
                     <div class="loan-interest">
+                        <!-- <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-interest.png" alt="">
+                        </div> -->
                         <div class="box">
                             <h3>Loan Interest</h3>
                             <h1><?php echo $data['interest'] . '%'; ?></h1>
                         </div>                                
                     </div>
 
-                    <div class="card-container">
-                        <div class="gold-rates">
-                            <div class="icon-case">
-                                <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
-                            </div>
-                            <div class="box">
-                                <h4>20 CARATS</h4>
-                                <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 20) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
-                            </div>                                
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
                         </div>
-
-                        <div class="gold-rates">
-                            <div class="icon-case">
-                                <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
-                            </div>
-                            <div class="box">
-                                <h4>18 CARATS</h4>
-                                <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 18) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
-                            </div>                                
-                        </div>
+                        <div class="box">
+                            <h4>20 CARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 20) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
                     </div>
-                                        
+
+                    <div class="gold-rates">
+                        <div class="icon-case">
+                            <img src="<?php echo URLROOT?>/img/gold-gold-rates.png" alt="">
+                        </div>
+                        <div class="box">
+                            <h4>18 CARATS</h4>
+                            <h2><?php foreach ($data['gold_rates'] as $gold_rates) : if($gold_rates->Karatage == 18) echo 'Rs. ' . $gold_rates->Price; endforeach; ?></h2>
+                        </div>                                
+                    </div>                    
                 </div>
 
                 <div class="div-main-buttons">
-                    <a href="<?php echo URLROOT; ?>/customers/register_customer">+ New Customer</a>
-                    <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">+ New Pawning</a>
+                    <a href="<?php echo URLROOT; ?>/customers/register_customer">Register Customer</a>
+                    <a href="<?php echo URLROOT; ?>/pawnings/new_pawning">New Pawning</a>
                 </div>
 
                 <div class="table-wrapper">

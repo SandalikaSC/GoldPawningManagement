@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_pawned_items_admin.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/js/simple-datatables/style.css'>
     <title>Vogue Pawn | Pawned Items</title>
 </head>
 <body>
@@ -92,26 +93,30 @@
 
         <main>
             <div class="right-content">
-                <div class="div-search">
+                <!-- <div class="div-search">
                     <input type="text" placeholder="Enter Article ID">
                     <a href="#">
                     <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
                     </a>                
-                </div>
+                </div> -->
+
+          
+
                 <div class="tbl-details">
-                    <table cellspacing="0">
-                        <tbody>
+                    <table cellspacing="0" id="table1">
+                        <thead>
                             <tr>
-                                <th></th>
+                                <th>Photo</th>
                                 <th>Pawn ID</th>
                                 <th>Customer ID</th>
                                 <th>Article ID</th>
                                 <th>Full Loan Amount</th>
                             </tr>
-                            
+                        </thead>
+                         <tbody>   
                             <?php foreach($data['pawned_items'] as $pawned_item) : ?>
                                 <tr class="table-body">
-                                    <td><img src="<?php echo URLROOT?>/img/gold_bracelet.jpg"></td>
+                                    <td><img Style="width: 151px;height: 91px;" src="<?php echo $pawned_item->image;?>"></td>
                                     <td><?php echo $pawned_item->Pawn_Id; ?></td>
                                     <td><?php echo $pawned_item->userId; ?></td>
                                     <td><?php echo $pawned_item->Article_Id; ?></td>
@@ -128,5 +133,13 @@
         </main>
     </div>
 </body>
+<script src='<?php echo URLROOT ?>/js/simple-datatables/simple-datatables.js'></script>
+
+<script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+
 </html>
 

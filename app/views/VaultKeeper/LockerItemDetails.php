@@ -2,7 +2,7 @@
 <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/LockerDetails.css'>
 <!-- <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/css/article_pawn.css'> -->
 <title>Vogue | Locker</title>
-</head> 
+</head>
 
 <body class="wrapper">
 
@@ -16,7 +16,7 @@
             </div>
             <img class="vogue" src="<?php echo URLROOT ?>/img/FULLlogo.png" alt="logo">
         </div>
- 
+
     </div>
     <?php notification("locker") ?>
     <div class="content">

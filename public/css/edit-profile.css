@@ -71,6 +71,17 @@ body{
 
 
 
+/* .bars img{
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.bars{
+    z-index: 100;
+    cursor: pointer;
+} */
+
 
 /* with respect to the form */
 .content-edit-profile-page{
@@ -90,57 +101,43 @@ body{
     border-right: 2px solid #B47D00;
     /* align-items: center; */
     justify-content: space-evenly;
-    margin-right: 20px;
   
   }
   
   
   .big-form{
       display: flex;
-      /* border: 2px solid #B47D00; */
+      border: 2px solid #B47D00;
       border-radius: 20px;
       position: relative;
-      padding:40px;
+      padding:100px 10px 10px 10px;
       /* margin-bottom: 60px; */
-      margin-top: 10px;
-      background-color: rgba(180, 125, 0, 0.1);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
+      margin-top: 50px;
   }
   
   .big-form .profile-pic{
-      width: 250px;
-      height: 250px;
+      width: 180px;
+      height: 180px;
       object-fit: cover;
       border: 2px solid #B47D00;
-      border-radius: 10%;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 2;
+
+      left: 365px;
+      top: -80px;
   }
 
   .big-form .avatar{
     position: absolute;
-    left: 900px;
-    top: 300px;
+    left: 700px;
+    top: 280px;
   }
-
- 
   
   .section_right{
       display: flex;
       flex-direction: column;
-      align-items:start;
-      margin-left: 20px;
-      
-  }
-
-  .section_right .profile-img{
-    display: flex;
-    margin-left: 80px;
-    margin-bottom: 20px; 
-  }
-
-  .section_right .profile-img:hover{
-
-      transform: scale(1.1);
+    
   }
   
   .form-group{
@@ -150,17 +147,11 @@ body{
       margin: 10px;
      
   }
-
-  .form-group .field-value:hover{
-      transform: scale(1.1);
-
-  }
-
   
   .form-group .field-value{
       display: flex;
        margin-left: 20px;
-       width: 300px;
+       width: 250px;
        box-sizing: border-box;
   }
 
@@ -174,10 +165,6 @@ body{
       padding:0;
 
   } */
-
-  .form-group label,.form-group span{
-    font-size: large;
-  }
 
   
   .three-btns{
@@ -195,14 +182,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    
     
   }
-
-  .three-btns .edit-profile:hover{
-    transform: scale(1.1);
-
-}
   .edit-profile a{
     font-weight: 500;
     font-size: large;
@@ -213,8 +195,6 @@ body{
     border: 4px solid #B47D00;
     color: white;
     text-decoration: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
   }
   
   .three-btns .edit-password{
@@ -222,12 +202,6 @@ body{
     align-items: center;
     justify-content: center;
       /* width: 200px; */
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
-
-    }
-
-    .three-btns .edit-password:hover{
-        transform: scale(1.1);
     }
     
     .edit-password button{
@@ -240,8 +214,7 @@ body{
       border: 4px solid #B47D00;
       color: white;
       text-decoration: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      
+
   }
   
   .three-btns .edit-email{
@@ -251,10 +224,6 @@ body{
     /* width: 200px; */
 }
 
-
-.three-btns .edit-email:hover{
-    transform: scale(1.1);
-}
 .edit-email button{
     font-weight: 500;
     font-size: large;
@@ -265,20 +234,9 @@ body{
     border: 4px solid #B47D00;
     color: white;
     text-decoration: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     
 }
 
-@media screen and (max-width:1188px) {
-    .big-form .avatar{
-        display: none;
-      }
-
-      .section_right .profile-img{
-        margin-left: 0px;
-        
-      }
-}
 
   @media screen and (max-width:1200px) {
      .all{
@@ -328,16 +286,11 @@ body{
         justify-content: flex-start;
     }
 
-    /* .big-form .profile-pic{
+    .big-form .profile-pic{
   
         left: 230px;
         top: -80px;
-    } */
-
-    .section_right .profile-img{
-        margin-top: 20px;
-        
-      }
+    }
   }
 
   @media screen and (max-width:625px){

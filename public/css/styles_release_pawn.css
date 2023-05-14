@@ -53,7 +53,6 @@ main .main-content {
 main .main-content .div-details {
     width: 100%;
     padding: 30px;
-    margin: 20px;
     max-width: 500px;
     border: 2px solid #bb8a04;
     background: #bb8a04;
@@ -102,7 +101,7 @@ main .main-content .div-details .div-buttons {
     padding: 20px;
 }
 
-main .main-content .div-details .div-buttons button {
+main .main-content .div-details .div-buttons a {
     text-decoration: none;
     background: #fff;
     width: 160px;
@@ -110,41 +109,17 @@ main .main-content .div-details .div-buttons button {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
     color: #bb8a04;
     border: 2px solid #bb8a04;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
-main .main-content .div-details .div-buttons button:hover {
+main .main-content .div-details .div-buttons a:hover {
     color: #5f4702;
     border-color: #5f4702;
     transform: translateY(-5px);
     transition: 0.5s;
     opacity: 0.7;
-}
-
-.invalid {
-    width: 80%;
-    border-radius: 10px;
-    text-align: center;
-    color: rgb(255, 14, 14);
-    background: rgb(255 199 199);
-    margin: auto;
-    font-size: 1vw;
-}
-
-.success {
-    width: 80%;
-    border-radius: 10px;
-    text-align: center;
-    color: #836000;
-    background: #f9dc8b;
-    margin: auto;
-}
-
-.msg-flash {
-    margin-bottom: 10px;
 }
 

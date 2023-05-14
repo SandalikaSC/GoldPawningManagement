@@ -58,11 +58,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 4px;
+    padding: 2px;
     border-radius: 20px;
     background: #333333;
     color: #fff;
     column-gap: 10px;
+    border: 1px solid transparent;
 }
 
 .sidebar-menu li a img {
@@ -75,7 +76,6 @@
 
 .sidebar-menu li a:hover {
     border: 1px solid #bb8a04;
-    opacity: 0.8;
 }
 
 .sidebar-menu .btn-logout {
@@ -96,10 +96,6 @@
     color: #bb8a04;
     border-radius: 20px;
     margin-top: 50px;
-}
-
-.sidebar-menu .btn-logout .logout:hover {
-    opacity: 0.8;
 }
 
 #side-toggle {
@@ -179,31 +175,27 @@ main {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
     padding: 20px 0;
 }
 
 .div-main-buttons a {
     width: 220px;
-    padding: 20px;
+    padding: 15px;
     border-radius: 20px;
     background: #fff;
     color: #bb8a04;
-    font-size: 18px;
+    font-size: 20px;
     display: flex;
-    margin: 20px;
     justify-content: center;
     align-items: center;
     border: 2px solid #bb8a04;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    box-shadow: 0px 6px 5px rgba(0, 0, 0, 0.5);
 }
 
 .div-main-buttons a:hover {
     background: #bb8a04;
     color: #fff;
-    transform: translateY(-3px);
-    transition: 0.5s;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    transform: translateY(-5px);
 }
 
 .page-wrapper {
@@ -231,11 +223,6 @@ main {
     padding: 10px;
     margin: 10px;
     border: 2px solid #bb8a04;
-}
-
-.cards .card-container {
-    display: flex;
-    justify-content: space-between;
 }
 
 .cards .card-summary h1 {
@@ -426,97 +413,50 @@ tr td:last-child {
     border-color: #bb8a04;
 }
 
-@media only screen and (max-width: 1200px) {
-    .table-wrapper {
-        display: block;
-    }
-    .table-wrapper .table-container {
-        width: 100%;
-    }
-}
-
-@media only screen and (max-width: 950px) {
-    .card-container {
-        display: flex;
-    }
-}
-
-@media only screen and (max-width: 740px) {
-    header {
-        padding: 0;
-    }
-    .logo-name {
-        height: 45px;
-        width: 150px;
-        margin: 5px 0 10px;
-    }
-    .menu-bar img {
-        margin-left: 20px;
-    }
-
+/*@media only screen and (max-width: 1270px) {
     .main-content {
         margin-left: 0;
     }
-
-    .cards-rates {
-        margin: 0 100px;
+    
+    .main-content header {
+        width: 100%;
+        left: 0;
+    }
+    
+    #side-toggle + .sidebar {
+        left: 0;
+    }
+    
+    #side-toggle:checked ~ .main-content {
+        margin-left: 0;
+    }
+    
+    #side-toggle ~ .main-content header {
+        width: calc(100% - 230px);
+        left: 230px;
     }
 }
 
-@media only screen and (max-width: 650px) {
-    .sidebar {
-        top: 60px;
-        height: calc(100vh - 60px);
+@media only screen and (max-width: 975px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    header {
+    .recent-grid {
+        grid-template-columns: 55% 45%;
+    }
+}*/
+
+@media only screen and (max-width: 800px) {
+    #side-toggle ~ .main-content header {
         width: 100%;
         left: 0;
     }
 
-    .sidebar-brand img {
-        width: 100px;
-    }
-
-    .table-wrapper {
-        padding: 0;
+    #side-toggle ~ .sidebar {
+        top: 75px;
     }
 }
 
-@media only screen and (max-width: 500px) {
-    .card-container {
-        display: grid;
-    }
-}
 
-@media only screen and (max-width: 450px) {
-    #side-toggle:checked {
-        display: none;
-    }
 
-    #side-toggle + .sidebar {
-        left: -230px;
-    }
-
-    #side-toggle:checked + .sidebar {
-        left: 0;
-    }
-
-    .menu-bar img {
-        width: 20px;
-        height: 20px;
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-
-    .logo-name {
-        width: 120px;
-        height: 35px;
-    }
-
-    header {
-        padding: 10px 0;
-    }
-}

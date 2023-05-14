@@ -79,13 +79,11 @@
                                         <span>Make Payments</span>
                                     </a>
                                 </li>
-                                <?php if($data['remaining_loan'] == 0.00 && $data['pawn_item']->Status != "Retrieved") : ?>
-                                    <li>
-                                        <a href="<?php echo URLROOT; ?>/pawnings/release_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
-                                            <span>Release Pawn</span>
-                                        </a>
-                                    </li>
-                                <?php endif; ?>
+                                <li>
+                                    <a href="<?php echo URLROOT; ?>/pawnings/release_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
+                                        <span>Release Pawn</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href = "<?php echo URLROOT; ?>/pawnings/renew_pawn/<?php echo $data['pawn_item']->Pawn_Id; ?>">
                                         <span>Renew Pawn</span>

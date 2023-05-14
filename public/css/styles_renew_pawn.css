@@ -7,8 +7,12 @@
 }
 
 .wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 20px;
     height: 100%;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .wrapper .header {
@@ -39,130 +43,11 @@
 }
 
 main {
-    height: calc(100vh - 85px);    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
-main .main-container {
-    padding: 30px;  
-}
-
-main .main-container .pawn-details {
-    width: fit-content;
-    background: #faebd7;
-    z-index: -10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    border-radius: 10px;
-    padding: 30px;
-}
-
-main .main-container .pawn-details .div-image {
-    width: 300px;
-    margin: 10px;
-}
-
-main .main-container .pawn-details .div-image img {
-    width: 100%;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    border-radius: 20px;
-}
-
-main .main-container .pawn-details .div-details {
-    padding: 20px;
-}
-
-main .main-container .pawn-details .div-details .div-field {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-main .main-container .pawn-details .div-details .div-field label {
-    font-weight: 550;
-}
-
-main .main-container .pawn-details .div-details .loan-details {
-    width: 100%;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 36px;
-    font-weight: 600;
-}
-
-main .main-container .pawn-details .div-details .loan-details label {
-    color: #bb8a04;    
-}
-
-main .main-container .pawn-details .div-details .loan-details div {
-    color: #634902;
-    font-size: 40px;
-}
-
-main .main-container .div-button {
-    margin-top: 50px;
-    text-align: center;
-}
-
-main .main-container .div-button .main-button {
-    background: #bb8a04;
-    padding: 15px 50px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    color: #faebd7;
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-}
-
-main .main-container .div-button .main-button:hover {
-    opacity: 0.8;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* main .main-container .div-payment {
-    padding: 30px;
-    background: #ddd;
-    width: 350px;
-    border-radius: 10px;
-}
-
-main .main-container .div-payment .form-title {
-    font-size: 30px;
-    font-weight: 600;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-main .main-container .div-payment .div-form {
-    width: 100%;
-}
-
-main .main-container .div-payment .div-form form {
-    width: 100%;
-}
-
-main .main-container .div-payment .div-form form .input-container {
-    margin-bottom: 10px;
-}
-
-main .main-container .div-payment .div-form form .input-container .input-field {
-    width: 100%;
-    padding: 8px 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 15px;
-} */
-
-
-/* main .left-wrapper,
+main .left-wrapper,
 main .right-wrapper {
     display: flex;
     justify-content: center;
@@ -340,4 +225,4 @@ main .right-wrapper .form-wrapper .div-form form .field-wrapper .payment-method 
     font-weight: 500;
 }
 
- */
+

@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
 body{
     font-family: 'Poppins';
     display: flex;
     overflow-y: hidden;
 }
 
-.page-manual-email-enter{  
+.page-manual-email-enter{
+    
     position: absolute;
     top:0;
     display:flex;
@@ -26,9 +34,9 @@ body{
 
 .content-manual-email-enter{
     display: flex;
+    border: 2px solid goldenrod;
     padding:20px;
     border-radius: 20px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 

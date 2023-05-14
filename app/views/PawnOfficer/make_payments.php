@@ -91,18 +91,18 @@
                                     <div class="field-wrapper">
                                         <label>Amount (Rs.)</label>
                                         <div class="input-wrapper">
-                                            <input type="text" name="full-payment" value="<?php if(floor($data['remaining_loan']) <= 0) { echo sprintf("%.2f", 0); } else { echo sprintf("%.2f", ceil($data['amount_to_pay'])); }; ?>" readonly>
+                                            <input type="text" name="full-payment" value="<?php if($data['remaining_loan'] == 0.00) { echo sprintf("%.2f", 0); } else { echo sprintf("%.2f", ceil($data['amount_to_pay'])); }; ?>" readonly>
                                         </div>                                        
                                     </div>
                                     <div class="field-wrapper">
                                         <label>Covered Loan Amount (Rs.)</label>
                                         <div class="input-wrapper">
-                                            <input type="text" name="covered-loan" value="<?php if(floor($data['remaining_loan']) <= 0) { echo sprintf("%.2f", 0); } else { echo sprintf("%.2f", ceil(($data['pawn_item']->Amount / 12) * $data['due_months'])); }; ?>" readonly>
+                                            <input type="text" name="covered-loan" value="<?php if($data['remaining_loan'] == 0.00) { echo sprintf("%.2f", 0); } else { echo sprintf("%.2f", ceil(($data['pawn_item']->Amount / 12) * $data['due_months'])); }; ?>" readonly>
                                         </div>                                        
                                     </div>
                                 <?php else: ?>                                    
                                     <div class="field-wrapper">
-                                        <label>Covering Loan Amount (Rs.)<sup>*</sup></label>
+                                        <label>Covering Loan Amount (Rs.)</label>
                                         <div class="input-wrapper">
                                             <input type="text" name="covered-loan" class="<?php echo (!empty($data['covered_loan_err'])) ? 'is-invalid' : '' ?>" placeholder="Loan Amount" value="<?php echo (!empty($data['covered_loan'])) ? sprintf("%.2f", $data['covered_loan']) : ''; ?>">
                                         </div> 

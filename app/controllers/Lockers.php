@@ -7,8 +7,12 @@
         }
 
         public function show_lockers(){
+            
+            $lockers = $this->model('Locker')->getAllLockers();
+            // echo $lockers;
             $data = [
-                'title' => 'Locker'
+                'title' => 'Locker',
+                'lockers' => $lockers,
             ];
 
             $this->view('Admin/locker', $data);

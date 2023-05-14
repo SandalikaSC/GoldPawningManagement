@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_staff_admin.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='<?php echo URLROOT ?>/js/simple-datatables/style.css'>
+    
     <title>Vogue Pawn | Staff</title>
 </head>
 <body>
@@ -93,14 +95,14 @@
         <main>
             <div class="right-content">
                 <div class="div-top">
-                    <div class="div-search">
-                        <input type="text" placeholder="Enter Locker Number">
+                    <!-- <div class="div-search">
+                        <input class='dataTable-input'  type="text" placeholder="Enter Locker Number">
                         <a href="#">
                         <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
                         </a>                
-                    </div>
+                    </div> -->
                     <div class="main-btn">
-                        <a href="">
+                        <a href="<?php echo URLROOT; ?>/Admin/view_add_staff">
                             <img src="<?php echo URLROOT . '/img/golden-plus.png'?>">
                             <div>New Employee</div>
                         </a>
@@ -108,32 +110,53 @@
                 </div>
                 
                 <div class="tbl-details">
-                    <table cellspacing="0">
-                        <tbody>
+                    <table cellspacing="0" id="table1">
+                        
+                        <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Emp_ID</th>
                                 <th>Name</th>
+                                <th>Gender</th>
                                 <th>Role</th>
                                 <th>Status</th>
+                                <th>Created Date/Time</th>
                                 <th></th>
                                 <th></th>
                             </tr>
+                        </thead>
+                        <tbody>
+                         <?php foreach($data['get_staff_list'] as $key => $get_staff_list) : ?>
                             <tr class="tbl-body">
-                                <td>MG001</td>
-                                <td>Thimeth Imesha</td>
-                                <td>Manager</td>
-                                <td class="key-status">Working</td>
-                                <td><a href="" class="btn">View</a></td>
-                                <td><a href="" class="btn">Delete</a></td>
-                            </tr>
-                            
+                                <td><?php echo ++$key; ?></td>
+                                <td><?php echo $get_staff_list->UserId; ?></td>
+                                <td><?php echo $get_staff_list->Gender; ?></td>
+                                <td><?php echo $get_staff_list->First_Name." ".$get_staff_list->Last_Name; ?></td>
+                                <td><?php echo $get_staff_list->type; ?></td>
+                                <?php if($get_staff_list->Status == 1){?>
+                                   <td class="key-status">Working</td>  <?php } else{ ?>
+                                   <td class="key-status" style="color: #e90b43;">-----------</td>  <?php }?>
+                                <td><?php echo $get_staff_list->Created_date; ?></td>
+                                <td><a href="<?php echo URLROOT?>/Admin/view_staff_details/<?php echo $get_staff_list->UserId; ?>" class="btn">View</a></td>
+                                <!-- <td><a href="<?php echo URLROOT?>/Admin/view_staff_details/<?php echo $get_staff_list->UserId; ?>" class="btn">Delete</a></td> -->
+                                <td><a href="<?php echo URLROOT?>/Admin/confirm_delete_staff/<?php echo $get_staff_list->UserId; ?>" class="btn">Delete</a></td>
+                            </tr> 
+                         <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
-                
             </div>
         </main>
     </div>
 </body>
+
+<script src='<?php echo URLROOT ?>/js/simple-datatables/simple-datatables.js'></script>
+
+<script>
+        // Simple Datatable
+        let table1 = document.querySelector('#table1');
+        let dataTable = new simpleDatatables.DataTable(table1);
+</script>
+
 </html>
 

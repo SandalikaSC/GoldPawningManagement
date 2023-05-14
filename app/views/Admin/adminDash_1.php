@@ -6,6 +6,168 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_adminDash.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_staff_admin.css">
+    <style>
+        .inside-page{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            flex-wrap: wrap;
+        }
+        .dashboard-items{
+            display: flex;
+            flex-direction: column;
+        }
+        .item-count{
+            display:flex;
+            flex-wrap: wrap;
+            /* align-items: center; */
+            justify-content: space-between;
+            width: 100%;
+
+        }
+        .count-card{
+            display: flex;
+            flex-direction: column;
+            margin:0 10px 10px 0;
+            /* border: 1px solid #BB8A04; */
+            border-radius: 10px;
+            padding:20px;
+            width: 200px;
+            background-color: white;
+            box-shadow: 1px 5px 5px 0 black;
+            /* transition: top ease 0.5s; */
+
+        }
+
+        .count-card:hover{
+            margin-top: -10;
+        }
+        .card-topic{
+            display: flex;
+            justify-content: space-between;
+            /* margin-bottom: 10px;   */
+        }
+
+        .vk-count{
+            font-style: oblique;
+        }
+
+        .card-topic .name{
+            font-weight: bold;
+        }
+        .right{
+            margin-top: 25px;
+            /* flex: auto; */
+            display: flex !important;
+            flex-direction: column;
+            /* overflow-y: scroll; */
+            position: relative;
+        }
+
+        .complaint-chart{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .chart{
+            display: flex;
+            background-color: white;
+        }
+        .complaint-chart .chart{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            float: left;
+            /* border: 2px solid goldenrod; */
+            border-radius: 20px;
+            margin-right: 10px;
+            box-shadow: 1px 5px 5px 0 black;
+            margin-bottom: 2px;
+
+        }
+
+        .topic-income{
+            display: flex;
+            /* align-items: center; */
+            justify-content: space-around;
+            padding:10px;
+            /* border-bottom: 1px solid goldenrod; */
+            font-weight: bold;
+            font-size: large;
+            margin-bottom: 5px;
+        }
+
+        .topic-gold-rates{
+            display: flex;
+            font-weight: bold;
+            font-size: large;
+            margin-left:10px;
+        }
+
+        .topic{
+            /* display: flex; */
+            /* align-items: center; */
+            justify-content: space-around;
+            /* padding:3px; */
+            /* border-bottom: 1px solid goldenrod; */
+            font-weight: bold;
+            font-size: large;
+            margin-bottom: 5px;
+        }
+
+        .topic .search{
+            display: flex;
+        }
+
+        .graph{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            width: 520px;
+            height:220px;
+        }
+        input[type=text] {
+            width: 140px;
+            box-sizing: border-box;
+            border: 2px solid #BB8A04;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            /* background-image: url('http://localhost/vogueMy/public/img/search-icon.png'); */
+            /* background-image: url('searchicon.png'); */
+            /* background-position: 10px 10px;  */
+            background-repeat: no-repeat;
+            padding: 15px 20px 15px 10px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+        }
+
+        input[type=text]:focus {
+            width: 100%;
+        }
+
+        .search-bar>input::placeholder {
+            color: rgba(82, 82, 82, 0.608);
+        }
+
+        .complaint-chart .complaint-tab{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            float: left;
+            /* border: 2px solid goldenrod;  */
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 1px 5px 5px 0 black;
+
+        }
+    </style>
     <title>Vogue Pawn | Dashboard</title>
 </head>
 <body>
@@ -144,25 +306,143 @@
                         </div>                                
                     </div>                    
                 </div>
-
-                <div class="div-income">
-                    <div class="title">
-                        <h2>Monthly Income</h2>
-                    </div>
-                    
-                </div>
-
                 
+                    <div class="right">
+                        <div class="inside-page">
+                            <div class="dashboard-items">
+                                <div class="item-count">
+                                    <div class="count-card">
+                                        <div class="card-topic">
+                                            <div class="name">Admin</div>
+                                            <div class="card-logo">
+                                                <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
+                                            </div>
 
-                     
-            </div>
-            
-        </main>
+                                        </div>
+                                        <div class="vk-count"><?php echo $data['admin_count']; ?></div>
+                                    </div>
+                                    <div class="count-card">
+                                        <div class="card-topic">
+                                            <div class="name">Manager</div>
+                                            <div class="card-logo">
+                                                <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
+                                            </div>
+
+                                        </div>
+                                        <div class="vk-count"><?php echo $data['manager_count']; ?></div>
+                                    </div>  
+                                    <div class="count-card">
+                                        <div class="card-topic">
+                                            <div class="name">Customer</div>
+                                            <div class="card-logo">
+                                                <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
+                                            </div>
+
+                                        </div>
+                                        <div class="vk-count"><?php echo $data['customer_count']; ?></div>
+                                    </div>
+                                    <div class="count-card">
+                                        <div class="card-topic">
+                                            <div class="name">Pawning Officer</div>
+                                            <div class="card-logo">
+                                                <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
+                                            </div>
+
+                                        </div>
+                                        <div class="vk-count"><?php echo $data['pawning_officer_count']; ?></div>
+                                    </div>
+                                    <div class="count-card">
+                                        <div class="card-topic">
+                                            <div class="name">Vault Keeper</div>
+                                            <div class="card-logo">
+                                                <img src="<?php echo URLROOT ?>/img/golden_staff.png" alt="">
+                                            </div>
+
+                                        </div>
+                                        <div class="vk-count"><?php echo $data['vault_keeper_count']; ?></div>
+                                    </div>                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            <div class="div-income">
+                <div class="title">
+                    <h2>Monthly Income</h2>
+                    <div class="complaint-chart">
+                        <div class="chart">
+                            <div class="topic-income">
+                                <label>Income and Expenditure</label>
+                            </div>
+
+                            <div class="graph">
+                                <canvas id="myChart"></canvas>
+                            </div>
+                    </div>
+                    <div class="complaint-tab">
+                            <div class="topic">
+                                <div class="topic-income">
+                                    <label>Payment</label>
+                                </div>
+                                <div class="right-content">
+                                    <div class="tbl-details" style="padding: 0px 0px;">
+                                        <table cellspacing="0">
+                                            <tbody>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Emp_ID</th>
+                                                    <th>Name</th>
+                                                    <th>Type</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                                <?php foreach($data['get_payment_list'] as $key => $get_payment_list) : ?>
+                                                <tr class="tbl-body">
+                                                    <td><?php echo ++$key; ?></td>
+                                                    <td><?php echo $get_payment_list->UserId; ?></td>
+                                                    <td><?php echo $get_payment_list->First_Name; ?></td>
+                                                    <td><?php echo $get_payment_list->PayType; ?></td>
+                                                    <td><?php echo $get_payment_list->Amount; ?></td>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>  
+        </main> 
     </div>
 </body>
 
 <script>
-    
+    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", " Sep", "Oct", "Nov", "Dec"];
+
+    new Chart("myChart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                data: [10, 40, 30, 21, 50, 35, 90, 80, 90, 15, 100, 1],
+                borderColor: "#BB8A04",
+                fill: false
+            }, {
+                data: [50, 0, 100, 20, 10, 150, 100, 110, 120, 0, 30, 40],
+                borderColor: "black",
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            }
+        }
+
+    });
 </script>
 </html>
 

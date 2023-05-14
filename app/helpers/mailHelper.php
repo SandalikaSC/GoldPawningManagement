@@ -25,17 +25,7 @@ function sendMail($receiver, $email_Type, $code, $name)
             case "send_reply":
                 $mail->Subject = "Reply For Complaint";
                 $mail->Body    = "$code";
-                $mail->addAddress($receiver, $name);
-                break;
-            case "pawn_to_auction":
-                $mail->Subject = "Notice From VOGUE";
-                $mail->Body    = "$code";
-                $mail->addAddress($receiver, $name);
-                break;
-            case "warning":
-                $mail->Subject = "Warning From VOGUE";
-                $mail->Body    = "$code";
-                $mail->addAddress($receiver, $name);
+                $mail->addAddress($receiver, $name); 
                 break;
             case "registration":
                 $link = "<a href='http://localhost/Vogue/Users/emailVerify/$code'>here</a>";
@@ -115,4 +105,5 @@ function isValidEmail($email)
     }
     return true;
 
+    // <!-- abuugrshlwzghtwj -->
 }

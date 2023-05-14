@@ -22,7 +22,116 @@ body{
 }
 
 
+/* with respect to the side bar */
+.left{
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 20px 10px;
+    border-radius: 0 25px 25px 0;
+    position: relative;
+    transition: all 0.7s ease;
+    overflow-y: hidden;
+    z-index: 7;
+}
 
+.hide{
+   display: none;
+}
+
+
+
+.profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile p{
+    padding-top: 10px;
+}
+
+.page .left .profile .profile-pic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page .left .profile .profile-pic img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile .name{
+    color: white ;
+}
+
+
+
+.btn-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+.btn-set p{
+    color: white;
+}
+
+.btn-set .staf p{
+    
+    color: #BB8A04;
+}
+
+.btn-set .staf{
+    border: 2px solid #BB8A04;
+    background-color: white;
+}
+
+.btn-set a{
+    padding: 10px 20px;
+    background-color: #212121;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.btn-set a img{
+    width:40px;
+    padding-right: 15px;
+}
+
+.btn-set a:hover{
+    opacity: 0.5;
+}
+
+
+
+.left .lgout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left .lgout a{
+    text-decoration: none;
+    font: bold;
+    color: #BB8A04;
+    font-size: large;
+    border: 2px solid #BB8A04;
+    padding: 5px 50px;
+    border-radius: 20px;
+}
+
+/*  */
 
 
 .right{
@@ -63,8 +172,10 @@ body{
 }
 
 .vogue {
+    /* animation-name: logo; */
+    animation-duration:18s;
     width: 200px;
-    
+    animation-iteration-count: infinite;
 }
 
 .right-side{
@@ -110,10 +221,9 @@ body{
       border: 2px solid #B47D00;
       border-radius: 20px;
       position: relative;
-      padding:80px 10px 30px;
+      padding:80px 10px 50px;
       margin-bottom: 10px;
       margin-top: 75px;
-      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   }
   
   .big-form img{
@@ -126,7 +236,7 @@ body{
       /* z-index: 20; */
       z-index: 2;
 
-      left: 270px;
+      left: 220px;
       top: -80px;
   }
 
@@ -139,12 +249,8 @@ body{
       border-radius: 20px;
       padding:50px;
       margin: auto;
-      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   }
   
-  .roles label{
-    font-size: large;
-  }
   
   .role{
       display: flex;
@@ -168,16 +274,6 @@ body{
       justify-content: space-between;
       align-items: center;
   }
-
-  .form-group-with-err{
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group-with-err .err small{
-    display: flex;
-    text-align: center;
-  }
   
   .form-group input, .form-group select {
       padding: 7px;
@@ -186,14 +282,8 @@ body{
       border: none;
       outline: none;
       margin-left: 50px;
-      width: 300px;
-      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-      font-size: large;
+      width: 250px;
   }
-
-  .form-group label{
-    font-size: large;
-}
 
 
   .form-group input:focus, .form-group select:focus{
@@ -243,7 +333,7 @@ body{
       }
 
        .big-form img{
-        left: 250px;
+        left: 190px;
         top: -90px;
       }
   }
@@ -254,7 +344,7 @@ body{
       }
 
     .big-form img{
-        left: 220px;
+        left: 170px;
         top: -90px;
       }
   }
@@ -285,7 +375,7 @@ body{
     }
   
     .big-form img{
-        left: 130px;
+        left: 100px;
         top: -90px;
     }
      
@@ -325,7 +415,7 @@ body{
       }
       
       .big-form img{
-        left: 85px;
+        left: 65px;
         top: -90px;
      }
       .big-form .form-group{

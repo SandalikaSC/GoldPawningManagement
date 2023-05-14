@@ -198,7 +198,7 @@ body{
 .add-new-and-search{
     display: flex;
     justify-content: space-between;
-    margin: 5px 30px;
+    margin: 30px;
 }
 
 /* for add new employee button */

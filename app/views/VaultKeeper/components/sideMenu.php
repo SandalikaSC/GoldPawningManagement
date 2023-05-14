@@ -2,7 +2,7 @@
 <div class="left" id="panel">
     <div class="profile">
         <div class="profile-pic">
-            <a href="<?php echo URLROOT ?>/mgEditProfile"><img class="profileImg"
+            <a href="<?php echo URLROOT ?>editprofile/viewEditProfile"><img class="profileImg"
                     src="<?php if(!empty($_SESSION['image'])){echo $_SESSION['image'];}else{echo URLROOT . "/public/img/image 1.png";} ?>" alt=""></a>
         </div>
         <div class="name">

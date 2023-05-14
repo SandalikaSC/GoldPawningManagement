@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo SITENAME ?></title>
-    <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
+    <title><?php echo SITENAME ?></title><link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/Img/logo.png">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/staff_dashboard.css">
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/staff_table.css">
 </head>
 
 <body>
     <?php
-       if(!empty($data[1] == 'delsuccess')) {
+       if (!empty($data[1] && $data[1] == 'success')) {
+        //    include_once URLROOT.'/Manager/add-success.php';
+            include_once 'add-success.php';
+        } elseif (!empty($data[1] && $data[1] == 'delsuccess')) {
             include_once 'del-success.php';
+        } else if (!empty($data[1] && $data[1] == 'unsuccess')) {
+            include_once 'mgNetworkError.php';
         }
         ?>
     
@@ -31,7 +35,7 @@
 
                 </div>
                 <div class="name">
-                    <p><b>Hi...</b><?php echo $_SESSION['user_name'] ?></p>
+                    <p><?php echo $_SESSION['user_name'] ?></p>
                 </div>
             </div>
             <div class="btn-set">
@@ -94,16 +98,14 @@
                     <div class="table-section">
                         <?php
                         if ($data[0] != 0) {
-                            $i=1;
                         ?>
                             <table id="myTable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Role</th>
-                                        <th>Created Date/Time</th>
+                                        <th>Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -113,7 +115,6 @@
                                 foreach ($data[0] as $row) {
                                     echo "
                                             <tr>
-                                                <td>" . $i . ".</td>
                                                 <td>" . $row->UserId . "</td>
                                                 <td>" . $row->Name . "</td>
                                                 <td>" . $row->Role . "</td>
@@ -123,7 +124,6 @@
                                                     <a href='" . URLROOT . "/staff/confirmDelete/" . $row->UserId . "' class='delete'>Delete</a>
                                                 </td>
                                             </tr>";
-                                            $i++;
                                 }
                             } else {
                                 echo "<center>NO Matched Data</center>";
@@ -147,4 +147,3 @@
 
 
 </html>
-

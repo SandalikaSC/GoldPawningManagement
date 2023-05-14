@@ -95,7 +95,7 @@ class AllocateLocker extends Controller
             $data['invalidArticles'] = $invalidArticles;
         }
 
- 
+
         // $data['reserve'] = $reserve;
         // $data['duration'] = $duration;
         // $data['notreserve'] = $validArticles;
@@ -114,7 +114,6 @@ class AllocateLocker extends Controller
         $duration = $_POST['duration'];
         $notreserve = $_POST['notreserve'];
         $invalidArticles = $_POST['invalidArticles'];
-        
 
 
         // allocate already allocate locker artilces

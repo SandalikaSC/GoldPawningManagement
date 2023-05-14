@@ -20,30 +20,26 @@
 
 
                 <div class="search-container">
-                    <input type="text" id="locker-search" placeholder="Search by Locker Number......" oninput="searchLocker()">
+                    <input type="text" placeholder="Search...">
                     <span class="search-icon"></span>
                 </div>
 
-                <div class="reservations" id="reservations">
-                    <!-- <div class="lockers" id="lockers-container">
+                <div class="reservations">
+                    <div class="lockers">
                         <?php foreach ($data['lockers'] as $locker) : ?>
+
                             <a href="<?= URLROOT ?>/Reservations/ViewReservation/<?= $locker->lockerNo ?>" class="locker ">
                                 <div class="lockerno <?php echo ($locker->Status == "Not Available") ? "gray" : ""; ?>"><?php echo $locker->lockerNo ?></div>
                                 <div><label class="label <?php echo ($locker->Status == "Available") ? "green" : ""; ?>"><?php echo $locker->Status ?></label> </div>
+
                             </a>
 
-                        <?php endforeach; ?> 
-
-                    </div> -->
-                    <div class="lockers" id="lockers-container">
-                        <?php foreach ($data['lockers'] as $locker) : ?>
-                            <a href="<?= URLROOT ?>/Reservations/ViewReservation/<?= $locker->lockerNo ?>" class="locker">
-                                <div class="lockerno <?php echo ($locker->Status == "Not Available") ? "gray" : ""; ?>"><?php echo $locker->lockerNo ?></div>
-                                <div><label class="label <?php echo ($locker->Status == "Available") ? "green" : ""; ?>"><?php echo $locker->Status ?></label> </div>
-                            </a>
                         <?php endforeach; ?>
+
+
+
+
                     </div>
-                    <div id="search-results" class="empty-div">No result found</div>
                     <div class="res-info">
                         <h2>Locker Information</h2>
                         <div class="section">
@@ -80,34 +76,5 @@
         </div>
     </div>
     <script src="<?php echo URLROOT ?>/js/vksideMenu.js"></script>
-    <script>
-        function searchLocker() {
-            const searchInput = document.getElementById('locker-search');
-            const searchQuery = searchInput.value.toLowerCase();
-            const lockerItems = document.getElementsByClassName('locker');
-            let foundResults = false; // Flag to track if any results are found
-
-            Array.from(lockerItems).forEach((item) => {
-                const lockerNumber = item.querySelector('.lockerno').textContent.toLowerCase();
-
-                if (lockerNumber.includes(searchQuery)) {
-                    item.style.display = 'block'; // Show the locker item
-                    foundResults = true; // Set the flag to true if a match is found
-                } else {
-                    item.style.display = 'none'; // Hide the locker item
-                }
-            });
-
-            const searchResultsContainer = document.getElementById('search-results');
-
-            if (!foundResults) {
-                // If no results are found, display the "No Results Found" message
-                searchResultsContainer.style.display = 'flex';
-            } else {
-                // If results are found, clear the "No Results Found" message
-                searchResultsContainer.style.display = 'none';
-            }
-        }
-    </script>
 
     <?php require APPROOT . "/views/inc/footer.php" ?>

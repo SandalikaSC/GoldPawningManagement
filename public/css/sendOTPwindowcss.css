@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("http://localhost/vogueMy/public/img/img5.jpg");
+    background-repeat: none;
+    background-size: cover;
+}
+
+.whole-send-otp-form{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    font-family: 'Poppins';
+}
+
+.left-side-of-send-otp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:85px 100px;
+    background-color: white;
+    border-radius: 20px 0 0 20px;
+}
+
+.left-side-of-send-otp label{
+    font-size: x-large;
+    font-weight: bold;
+    padding:10px;
+}
+
+.left-side-of-send-otp .label-welcome{
+    font-size: xxx-large;
+}
+
+.left-side-of-send-otp .label-back-to{
+    margin-bottom: 80px;
+}
+
+.left-side-of-send-otp img{
+    width: 200px;
+}
+
+@keyframes logo {
+    0%   {transform: rotateY(0);}
+    50%  {transform: rotateY(360deg);}
+    100%  {transform: rotateY(0);}
+}
+
+.vogue {
+    /* animation-name: logo; */
+    animation-duration:18s;
+    width: 200px;
+    animation-iteration-count: infinite;
+}
+
+
+.right-side-of-send-otp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 0 20px 20px 0;
+    opacity: 0.5;
+}
+
+.right-side-of-send-otp .title-part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding-top: 5px;
+}
+
+.title-part span{
+    font-size: x-large;
+    font-weight: 600;
+    color: rgb(44, 47, 50);
+
+}
+
+.title-part p{
+    font-size: small;
+    font-weight: 600;
+    color: rgb(44, 47, 50);
+}
+
+.right-side-of-send-otp form a{
+   text-decoration: none;
+   color: rgb(16, 16, 16);
+}
+
+.right-side-of-send-otp form a:hover{
+    text-decoration:underline;
+}
+
+.input-field-part{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 40px;
+}
+
+#manager-send-otp-btn{
+background-color: rgb(16, 16, 16);
+  color: #c29006;
+  border-radius: 25px;
+  padding: 14px 20px;
+  margin-top: 50px;
+  margin-bottom: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: large;
+  font-weight: bold;
+}
+
+input[type=text] {
+    width: 250px;
+    padding: 12px 10px;
+    /* margin: 16px 0; */
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 20px;
+    background: transparent;
+  }
+
+  input[type=text]:focus:focus{
+    width: 250px;
+    padding: 12px 10px;
+    /* margin: 16px 0; */
+    display: inline-block;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    background: transparent;
+    border-bottom: 3px solid rgb(196, 18, 18);
+  }
+  
+
+
+#manager-send-otp-btn:hover {
+    opacity: 0.8;
+  }
+
+
+
+@media screen and (max-width: 740px) {
+    .left-side-of-send-otp img{
+        width: 180px;
+    }
+
+    .left-side-of-send-otp{
+        /* padding:97px 30px; */
+        padding:85px 80px;
+    }
+    
+    .left-side-of-send-otp label{
+        font-size: large;
+        font-weight: bold;
+        padding:10px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .left-side-of-send-otp{
+        display: none;
+    }
+
+    .right-side-of-send-otp{
+        border-radius:20px;
+    }
+
+    .title-part span{
+        padding-top: 25px;
+    }
+}
+
+@media screen and (max-width: 329px){
+    input[type=text] {
+        width: 200px;
+    }
+
+    input[type=text]:focus:focus{
+        width: 200px;
+        padding: 12px 10px;
+      }
+}
+
+
+.border-red{
+    border-bottom: 2px solid rgb(181, 17, 17) !important;
+}
+
+.border-green{
+    border-bottom: 2px solid green !important;
+}

@@ -17,19 +17,26 @@
         </div>
 
     </div>
-    <?php notification("Pawn")?>
     <div class="content">
 
+        <!-- <div class="jewellery-card">
+            <div class="jewellery-img">
+                <img class="jw-img" src="<?php echo URLROOT ?>/img/lum3n-esAis38NHT8-unsplash.jpg">
+            </div>
+            <div class="pawn-info" >
+                
+            </div>
+        </div> -->
         <div class="article">
 
             <div class="jewellery-img">
-
-                <img class="jw-img" src="<?php if (!empty($data['goldLoan']->image)) {
-                                                echo $data['goldLoan']->image;
-                                            } else {
-                                                echo URLROOT . "/img/lum3n-esAis38NHT8-unsplash.jpg";
-                                            } ?>" alt="">
-
+                 
+            <img class="jw-img" src="<?php if (!empty($data['goldLoan']->image)) {
+                                                            echo $data['goldLoan']->image;
+                                                        } else {
+                                                            echo URLROOT . "/img/lum3n-esAis38NHT8-unsplash.jpg";
+                                                        } ?>" alt="">
+                
 
             </div>
             <div class="article-info">
@@ -47,7 +54,7 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Estimate value</label>
-                            <label class="jw-dt"><?= "Rs " . $data['goldLoan']->Estimated_Value ?> </label>
+                            <label class="jw-dt"><?= $data['goldLoan']->Estimated_Value ?> </label>
                         </div>
 
                     </div>
@@ -66,15 +73,7 @@
                         </div>
 
                     </div>
-                    <?php if ($data['status'] == "Retrieved") : ?>
-                        <div class="jw-date">
-                            <div class="jw-date-name">
-                                <label>Redeemed Date Date</label>
-                                <label class="jw-dt"><?= date("d M Y", strtotime($data['goldLoan']->Redeemed_Date)) ?></label>
-                            </div>
 
-                        </div>
-                    <?php endif; ?>
                     <div class="jw-date-name">
 
                         <label>Status</label>
@@ -82,41 +81,15 @@
                                                     echo "tag-pending";
                                                 } elseif ($data['status'] == 'Overdue') {
                                                     echo "tag-overdue";
-                                                } elseif ($data['status'] == 'Completed') {
-                                                    echo "tag-completed";
-                                                } elseif ($data['status'] == 'Retrieved') {
-                                                    echo "tag-retrieved";
-                                                } else if ($data['status'] == 'Auctioned') {
+                                                } else {
                                                     echo "tag-auctioned";
-                                                }  else if ($data['status'] == 'Repawn') {
-                                                    echo "tag-repawn";
-                                                } ?>"> <?= $data['status'] ?> </label>
-
-
-                    </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label> </label>
-                            <?php if ($data['goldLoan']->WarningOne == 1 && $data['goldLoan']->WarningTwo == 1) : ?>
-                                <label class="status tag-warn">Warning 1 </label>
-                                <label class="status tag-warn">Warning 2 </label>
-                            <?php elseif ($data['goldLoan']->WarningOne == 1) : ?>
-                                <label class="status tag-warn">Warning 1 </label>
-                            <?php endif; ?>
-                        </div>
+                                                } ?>"> <?= $data['status']?></label>
                     </div>
                 </div>
                 <div class="due-payment info-div">
                     <h2 class="sub-title">
                         Loan Details
                     </h2>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Pay Method</label>
-                            <label class="jw-dt"><?= $data['goldLoan']->Repay_Method ?></label>
-                        </div>
-
-                    </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Interest</label>
@@ -133,8 +106,7 @@
                     </div>
 
 
-
-                    <?php if ($data['goldLoan']->Repay_Method == 'Fixed') : ?>
+                    <?php if ($data['goldLoan']->Repay_Method == 'fixed') : ?>
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Interest amount</label>
@@ -146,25 +118,22 @@
                         <div class="jw-date">
                             <div class="jw-date-name">
                                 <label>Installement</label>
-                                <label class="jw-dt"><?= 'Rs ' . number_format(ceil($data['goldLoan']->monthly_installment), 2) ?></label>
+                                <label class="jw-dt"><?= 'Rs ' . number_format($data['goldLoan']->monthly_installement, 2) ?></label>
                             </div>
 
                         </div>
-                    <?php else : ?>
-                        <div class="jw-date">
+                        <!-- <div class="jw-date">
                             <div class="jw-date-name">
-                                <label>Paid Principle</label>
-                                <label class="jw-dt"><?= 'Rs ' . number_format(ceil($data['paidPrinciple']), 2) ?></label>
+                                <label>Due Interest</label>
+                                <label class="jw-dt"><?= number_format((float) $data['goldLoan']->Amount * $data['goldLoan']->Interest / 100, 2) ?></label>
                             </div>
 
-                        </div>
-
-
+                        </div> -->
                     <?php endif; ?>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Paid Amount</label>
-                            <label class="jw-dt"><?= 'Rs ' . number_format($data['paid'], 2)  ?></label>
+                            <label class="jw-dt"><?= 'Rs ' . $data['paid'] ?></label>
                         </div>
 
                     </div>
@@ -175,12 +144,8 @@
             </div>
         </div>
         <div class="payment-history">
-
-
-                    <?php if ($data['status'] != 'Auctioned' && $data['status'] != 'Retrieved' && $data['status'] != 'Completed' && $data['status'] != 'Repawn') : ?>
-
-                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerPawn/makePayment/<?= $data['goldLoan']->Pawn_Id ?>">
-
+            <?php if ($data['goldLoan']->Status != 'Auctioned') : ?> 
+                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerPawn/makePayment/<?= $data['goldLoan']->Pawn_Id ?>" method="get">
                     Pay </a>
             <?php endif; ?>
             <div class="payments his-div payHistory">

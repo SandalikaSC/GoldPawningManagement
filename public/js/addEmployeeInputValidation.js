@@ -1,4 +1,4 @@
-let fields = [false, false, false, false, false, false, false, false,false];
+let fields = [false, false, false, false, false, false, false, false, false];
 
 
     let fName = document.getElementById('fName');
@@ -38,9 +38,8 @@ let fields = [false, false, false, false, false, false, false, false,false];
     let nic = document.getElementById('nic');
     nic.addEventListener("keyup", () => {
 
-        let pattern1 = /^[0-9]{9}[V]$/;
-        let pattern2 = /^[0-9]{12}$/;
-        if (pattern1.test(nic.value) || pattern2.test(nic.value)) {
+        let pattern = /^(?:19|20)?\d{2}(?:[0-35-8]\d\d(?<!(?:000|500|36[7-9]|3[7-9]\d|86[7-9]|8[7-9]\d)))\d{4}(?:[vVxX])$/;
+        if (pattern.test(nic.value)) {
             nic.classList.remove("border-red");
             nic.classList.add("border-green");
             fields[2] = true;
@@ -52,7 +51,7 @@ let fields = [false, false, false, false, false, false, false, false,false];
             function1();
         }
     })
-//199684502894
+
     let lane1 = document.getElementById('lane1');
     lane1.addEventListener("keyup", () => {
         let pattern = /^[A-Za-z0-9-/]{1,19}$/;
@@ -120,7 +119,7 @@ let fields = [false, false, false, false, false, false, false, false,false];
         if (pattern.test(mobNo2.value)) {
             mobNo2.classList.remove("border-red");
             mobNo2.classList.add("border-green");
-            
+            // function1();
         } else {
             mobNo2.classList.remove("border-green");
             mobNo2.classList.add("border-red");
@@ -146,45 +145,25 @@ let fields = [false, false, false, false, false, false, false, false,false];
 
 
 
-    // function dobValidate(){
-    //     let dob = document.getElementById('dob');
-    //     var GivenDate = dob.value;
-    //     var CurrentDate = new Date();
-    //     GivenDate = new Date(GivenDate);
+    function dobValidate(){
+        let dob = document.getElementById('dob');
+        var GivenDate = dob.value;
+        var CurrentDate = new Date();
+        GivenDate = new Date(GivenDate);
 
-    //     if (GivenDate < CurrentDate) {
-    //         dob.classList.remove("border-red");
-    //         dob.classList.add("border-green");
-    //         fields[8] = true;
-    //         function1();
-    //     } else {
-    //         dob.classList.remove("border-green");
-    //         dob.classList.add("border-red");
-    //         fields[8] = false;
-    //         function1();
-    //     }
+        if (GivenDate < CurrentDate) {
+            dob.classList.remove("border-red");
+            dob.classList.add("border-green");
+            fields[8] = true;
+            function1();
+        } else {
+            dob.classList.remove("border-green");
+            dob.classList.add("border-red");
+            fields[8] = false;
+            function1();
+        }
 
-    // }
-
-    const selectElement = document.querySelector('select');
-    let gen=document.getElementById('gender');
-
-     selectElement.addEventListener('change', function(event) {
-         const selectedOption = event.target.value;
-         if(selectedOption=="Male" || selectedOption=="Female" || selectedOption=="Other"){
-             gen.classList.remove("border-red");
-             gen.classList.add("border-green");
-             fields[8] = true;
-             function1();
-
-         }else{
-             gen.classList.remove("border-green");
-             gen.classList.add("border-red");
-             fields[8] = false;
-             function1();
-         }
-     });
-    
+    }
 
 
 

@@ -139,7 +139,7 @@
                             <?php endif; ?>
 
                             <input type="submit" name="dismiss" value="Dismiss">                             
-                            <input type="submit" name="cancel" value="Cancel"> 
+                            <input type="submit" name="cancelzsvr" value="Cancel"> 
                         </div>
                     </form>
                     

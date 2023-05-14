@@ -19,6 +19,116 @@ body{
     height:100vh;
 }
 
+/*  */
+.left{
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 20px 10px;
+    border-radius: 0 25px 25px 0;
+    position: relative;
+    transition: all 0.7s ease;
+    overflow-y: hidden;
+    z-index: 7;
+}
+
+.hide{
+   display: none;
+}
+
+
+
+.profile{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.profile p{
+    padding-top: 10px;
+}
+
+.profile-pic{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center; 
+}
+
+.profile-pic img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile .name{
+    color: white ;
+}
+
+
+
+.btn-set{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+.btn-set p{
+    color: white;
+}
+
+.btn-set .staf p{
+    
+    color: #BB8A04;
+}
+
+.btn-set .staf{
+    border: 2px solid #BB8A04;
+    background-color: white;
+}
+
+.btn-set a{
+    padding: 10px 20px;
+    background-color: #212121;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.btn-set a img{
+    width:40px;
+    padding-right: 15px;
+}
+
+.btn-set a:hover{
+    opacity: 0.5;
+}
+
+
+
+.left .lgout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left .lgout a{
+    text-decoration: none;
+    font: bold;
+    color: #BB8A04;
+    font-size: large;
+    border: 2px solid #BB8A04;
+    padding: 5px 50px;
+    border-radius: 20px;
+}
+
+/*  */
 
 .right{
     flex: auto;
@@ -54,8 +164,10 @@ body{
 }
 
 .vogue {
-   
+    /* animation-name: logo; */
+    animation-duration:18s;
     width: 200px;
+    animation-iteration-count: infinite;
 }
 
 .right-side{
@@ -100,14 +212,22 @@ body{
       border: 2px solid #B47D00;
       border-radius: 20px;
       position: relative;
-      padding: 30px 20px;
+      padding: 80px 10px 50px;
       margin-bottom: 10px;
-      margin-top:50px;
-      box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-
+      margin-top:75px;
     }
     
-    
+    .big-form img{
+        width: 150px;
+        height:150px;
+        object-fit: cover;
+        border: 2px solid #B47D00;
+        border-radius: 50%;
+        position: absolute;
+        z-index:2;
+        left: 220px;
+        top: -80px;
+    }
     
     .roles{
         display: flex;
@@ -117,8 +237,6 @@ body{
         border-radius: 20px;
         padding:50px 0;
         margin: auto;
-        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-
     }
   
 
@@ -126,24 +244,8 @@ body{
   .section_right{
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 20px;
-     
+      justify-content: space-around;
   }
-
-  .section_right img{
-    width: 250px;
-    height:250px;
-    object-fit: cover;
-    border: 2px solid #B47D00;
-    border-radius: 10%;
-  
-}
-
-.section_right img:hover{
-    transform:scale(1.1);
-}
   
   .form-group{
       display: flex;
@@ -151,7 +253,6 @@ body{
       margin: 5px 70px;
       justify-content: space-between;
       align-items: center;
-      
   }
 
 
@@ -162,13 +263,8 @@ body{
     border: none;
     outline: none;
     margin-left: 50px;
-    width: 300px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-    font-size: large;
-}
+    width: 250px;
 
-.form-group label{
-     font-size: large;
 }
 
 /* for tooltip */
@@ -179,7 +275,7 @@ body{
   /* Tooltip text */
   .tooltip .tooltiptext {
     visibility: hidden;
-    width: 300px;
+    width: 250px;
     background-color: rgba(0, 0, 0, 0.267);
     color: #fff;
     text-align: center;
@@ -207,13 +303,32 @@ body{
       outline: none;
   }
   
+  .single-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .single-btn .backbtn{
+    font-weight: 500;
+    font-size: large;
+    margin: 10px 10px 150px 10px;
+    padding: 5px 60px;
+    background-color: rgba(128, 128, 128, 0.272);
+    color: black;
+    border: 4px solid #B47D00;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
   
   @media screen and (max-width:1385px) {
     .vogue {
-        width: 200px;
+        animation: none;
+        width: 100px;
     }
     .right-side h1{
-        font-size: large;
+        font-size: medium;
     }
 
     .left{
@@ -239,12 +354,16 @@ body{
   }
   
   
-  @media screen and (max-width:712px) {
+  @media screen and (max-width:700px) {
       .big-form{
-          padding:20px;
-          margin-top: 30px;
+          padding:70px 5px 50px;
+          margin-top: 100px;
       }
 
+      .big-form img{
+        left: 150px;
+        top: -90px;
+      }
 
      .form-group{
         flex-direction: column;
@@ -256,42 +375,54 @@ body{
   
   
   
-  @media screen and (max-width:533px) {
-    .roles{
-        padding:10px;
-    }
+  @media screen and (max-width:600px) {
+   
+
+    .big-form img{
+      left: 150px;
+      top: -90px;
+  }
+
+     
+  }
+  
+  @media screen and (max-width:464px) {
+    /* .roles{
+        margin-top: 50px;
+        margin-bottom: 50px;
+    } */
 
     .form-group label{
         margin-left: 0;
     }
+
+    .big-form img{
+      width: 120px;
+      height:120px;
+      left: 120px;
+      top: -80px;
+  }
    
     .form-group{
         margin: 5px 30px;
     }
-
-    .big-form{
-        padding:10px;
-        margin-top: 30px;
-    }
   }
 
-  @media screen and (max-width:436px) {
+  @media screen and (max-width:385px) {
     .big-form{
         margin-left: 0;
         width: fit-content;
       }
 
+      .big-form img{
+        width: 120px;
+        height: 120px;
+        left: 100px;
+        top: -80px;
+    }
       .form-group{
         margin: 5px 10px;
 
-    }
-
-    .form-group input{
-      
-        margin-left: 0px;
-        width: 250px;
-        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-        font-size: large;
     }
   }
 
@@ -314,7 +445,12 @@ body{
 
 }
 
-
+.big-form img{
+    width: 120px;
+    height: 120px;
+    left: 75px;
+    top: -80px;
+}
     
   }
 /* with respect to the form */

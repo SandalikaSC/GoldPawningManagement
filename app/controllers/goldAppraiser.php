@@ -36,7 +36,6 @@
 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                $unit = filter_input(INPUT_POST, 'unit', FILTER_SANITIZE_STRING);
 
                 $data = [
                     'validation_id' => $id,
@@ -45,7 +44,7 @@
                     'article_details' => $article,
                     'weight' => trim($_POST['weight']),
                     'karats' => trim($_POST['carats']),
-                    'unit' => $unit,
+                    'unit' => $_POST['unit'],
                     'estimated_value' => '',
                     'validation_status' => '',
                     'weight_err' => '',
@@ -89,10 +88,6 @@
                     $data['weight_err'] = "Please enter a unit";
                 } elseif(empty($data['weight'])) {
                     $data['weight_err'] = "Please enter the article weight";
-                }
-
-                if(!is_numeric($data['weight'])) {
-                    $data['weight_err'] = "Please enter a valid weight";
                 }
 
                 if(empty($data['karats'])) {

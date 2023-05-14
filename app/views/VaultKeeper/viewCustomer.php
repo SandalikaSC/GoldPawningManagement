@@ -89,29 +89,20 @@
             <div class="reservation">
                 <h1 class="title">Locker Allocation History</h1>
                 <div class="reserve">
-                    <label for="">Locker</label>
-                    <label for="">Reserve Id</label>
-                    <label for="">Article</label>
-                    <label for="">Allocated</label>
-                    <label for="">Retrieve Date</label>
-                    <label for="">Released</label>
-                    <label for="">Allocated By</label>
+                     <label for="">Reserve Id</label>
+                     <label for="">Locker</label>
+                     <label for="">Allocated</label>
+                     <label for="">Retrieved</label>
+                     <label for="">Article</label>
+                     <label for="">Article</label>
                 </div>
-                <?php foreach ($data['reservations'] as $article) : ?>
-                    <div class="reserve square">
-                        <label for="" class="locker"><?php echo "Locker ".$article->lockerNo ?></label>
-                        <div class="img-div">
-                            <img src="<?php echo $article->image ?>" class="img" alt="">
-                        </div>
-                        <label for=""><?php echo $article->Allocate_Id ?></label>
-                        <label for=""><?php echo $article->Date ?></label>
-                        <label for=""><?php echo $article->Retrieve_Date ?></label>
-
-
-                        <label for=""><?php echo empty($article->Deallocated_Date)?"-":$article->Deallocated_Date ?></label>
-                        <label for=""><?php echo $article->Keeper_Id ?></label>
+                <?php foreach ($data['reservations'] as $article) :?>
+                <div class="reserve">
+                    <div class="img-div">
+                        <img src="" alt="">
                     </div>
-                <?php endforeach; ?>
+                </div>
+                <?php endforeach;?>
             </div>
         </div>
 

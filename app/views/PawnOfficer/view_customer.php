@@ -68,11 +68,13 @@
         <main>
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" name="search" id="search" placeholder="Search Here" onkeyup="searchByText()">
+                    <input type="text" placeholder="Enter customer name">
+                    <a href="#">
                     <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
+                    </a>                
                 </div>
-                <div class="tbl-details" id="div-table">
-                    <table cellspacing="0" id="table">
+                <div class="tbl-details">
+                    <table cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Customer ID</th>
@@ -96,15 +98,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="div-search-msg"></div>
                 
             </div>
         </main>
     </div>
 </body>
-
-<script src="<?php echo URLROOT ?>/js/search.js"></script>
-
 </html>
 
 

@@ -60,13 +60,13 @@
                             <label for="type">Article Type<sup>*</sup></label>
                             <div>
                                 <select name="type" id="type" class="<?php echo (!empty($data['type_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['type']; ?>">
-                                    <option value="" <?php echo ($data['type']=="") ? "selected" : "" ?>>Choose a type</option>
-                                    <option value="Gold Bar" <?php echo ($data['type']=="Gold Bar") ? "selected" : "" ?>>Gold Bar</option>
-                                    <option value="Necklace" <?php echo ($data['type']=="Necklace") ? "selected" : "" ?>>Necklace</option>
-                                    <option value="Earings" <?php echo ($data['type']=="Earings") ? "selected" : "" ?>>Earings</option>
-                                    <option value="Bracelet" <?php echo ($data['type']=="Bracelet") ? "selected" : "" ?>>Bracelet</option>
-                                    <option value="Ring" <?php echo ($data['type']=="Ring") ? "selected" : "" ?>>Ring</option>
-                                    <option value="Other" <?php echo ($data['type']=="Other") ? "selected" : "" ?>>Other</option>
+                                    <option selected disabled>Choose a type</option>
+                                    <option value="Gold Bar">Gold Bar</option>
+                                    <option value="Necklace">Necklace</option>
+                                    <option value="Earings">Earings</option>
+                                    <option value="Bracelet">Bracelet</option>
+                                    <option value="Ring">Ring</option>
+                                    <option value="Other">Other</option>
                                 </select>
                                 <span class="invalid-feedback"><?php echo $data['type_err']; ?></span>   
                             </div>                            
