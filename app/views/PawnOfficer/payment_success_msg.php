@@ -17,10 +17,15 @@
                     Want to generate a receipt?
                 </div>
                 <div class="div-buttons">
-                    <input type="submit" name="yes" value="Yes" class="button btn-confirm">
+                    <input type="submit" name="yes" value="Yes" class="button btn-confirm" onclick="pageload()">
                     <input type="submit" name="no" value="No" class="button btn-cancel">
                 </div>
             </form>            
         </div>
     </div>
+    <script>
+        function pageload(){
+            window.location('<?=URLROOT.'/pawnings/make_payments/'.$data['pawn_item']->Pawn_Id?>');
+        }
+    </script>
 </body>
