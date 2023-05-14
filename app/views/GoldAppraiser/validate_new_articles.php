@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="<?php echo URLROOT?>/img/logo_1.png">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_validate_articles.css">
     <title>Vogue Pawn | Validate Article</title>
+    <script src="<?php echo URLROOT . '/js/jquery.min.js'; ?>"></script>
 </head>
 <body>
    
@@ -24,54 +25,66 @@
             </div>
         </div>
 
+        <div class="msg-flash"><?php echo flash('validation_success'); ?></div>
+
         <main>
-            <div class="left-content">
+            <div class="div-validation">
                 <div class="article-details">
                     <div class="div-img">
-                        <img src="<?php echo URLROOT?>/img/ring1.jpg">
+                        <img src="<?php echo $data['article_details']->image; ?>">
                     </div>
                     <div class="div-details">
                         <div class="field">
-                            <label>Article ID</label>
-                            <div>AR001</div>
+                            <h1 class="type"><?php echo $data['article_details']->article_type; ?></h1>
                         </div>
                         <div class="field">
-                            <label>Customer ID</label>
-                            <div>C0001</div>
+                            <div>
+                                <label>Validation ID</label>
+                                <div><?php echo $data['article_details']->id; ?></div>
+                            </div>
+                            <div>
+                                <label>Customer ID</label>
+                                <div><?php echo $data['article_details']->customer; ?></div>
+                            </div>                            
                         </div>
-                        <div class="field">
-                            <label>Type</label>
-                            <div>Jewelry</div>
-                        </div>
+                        
                     </div>
                 </div>
 
-                
-            </div>
-            <div class="right-content">                
                 <div class="form-wrapper">
                     <div class="form-title">
-                        <h2>Validation Details</h2>
+                        <h1>Validation Details</h1>
                     </div>
-                    <form action="" method="post">
+                    <form action="<?php echo URLROOT; ?>/goldAppraiser/validate_articles/<?php echo $data['article_details']->id; ?>" method="post">
                         <div class="field-wrapper">
-                            <label>Weight (g)<sup>*</sup></label>
-                            <div class="input-wrapper">
-                                <input type="text" name="amount" placeholder="Weight">
+                            <label>Weight<sup>*</sup></label>
+                            <div class="input-wrapper wrapper-weight">
+                                <input type="text" name="weight" id="weight" class="<?php echo (!empty($data['weight_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['weight']; ?>" placeholder="Weight">                                
+
+                                <select name="unit" id="unit">
+                                    <option value="" <?php if($data['unit'] == '') echo 'selected'; else '';?> disabled>Choose weight unit</option>
+                                    <option value="gram" <?php if($data['unit'] == 'gram') echo 'selected'; else '';?> >gram</option>
+                                    <option value="ounce" <?php if($data['unit'] == 'ounce') echo 'selected'; else '';?> >ounce</option>
+                                </select>
+                                
                             </div>
-                            <span class="invalid-feedback"></span>
+                            <div class="div-error">
+                                <span class="invalid-feedback"><?php echo $data['weight_err']; ?></span>                               
+                            </div>                            
                         </div>
                         <div class="field-wrapper">
-                            <label>Karats<sup>*</sup></label>
+                            <label>Carats<sup>*</sup></label>
                             <div class="input-wrapper">
-                                <input type="text" name="karats" placeholder="Karats">
+                                <input type="text" name="carats" id="carats" class="<?php echo (!empty($data['karats_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['karats']; ?>" placeholder="Carats">
                             </div>
-                            <span class="invalid-feedback"></span>
+                            <span class="invalid-feedback"><?php echo $data['karats_err']; ?></span>
                         </div>
+                        
                         <div class="field-wrapper">
                             <label>Estimated Value (Rs.)<sup>*</sup></label>
-                            <div class="input-wrapper">
-                                <input type="text" name="estimated-value" placeholder="Estimated Value">
+                            <div class="input-wrapper div-value">
+                                <input type="text" name="estimated-value" id="estimated-value" value="<?php echo $data['estimated_value']; ?>" placeholder="Estimated Value" disabled />
+                                <input type="submit" class="btn-calc" name="calculate" value="Calculate">
                             </div>
                             <span class="invalid-feedback"></span>
                         </div>
@@ -87,7 +100,7 @@
                             </div> 
                         </div>                         
                         <div class="btn-container">
-                            <a href="" class="btn-submit">Submit</a>
+                            <input type="submit" class="btn-submit" name="save" value="Save">
                         </div>
                     </form>
                 </div>
@@ -95,8 +108,57 @@
         </main>
     </div>
     
-    <script>
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //     $('input').keyup(function() {
+        //         // Get input weight of the article
+        //         var weight = parseFloat($('#weight').val());
+        //         // Get input carat value of the article
+        //         var carats = parseFloat($('#carats').val());
+        //         // the unit of weight
+        //         var unit = $('#unit').val();
 
+        //         // Variable to store the gold price per 8g according to the carat value that retrieved from the db 
+        //         var gold_price = 0.00;
+        //         // Final value of the article
+        //         var estimated_value = 0.00;
+                
+        //         // Get the gold rates array retrieved from db using PHP
+        //         var gold_rates = <?php echo json_encode($data['gold_rates'])?>;
+
+        //         // When the carat value is entered
+        //         if(carats) {
+        //             for(var i = 0; i < gold_rates.length; i++){
+        //                 // Get gold price according to carat value
+        //                 if(gold_rates[i]['Karatage'] == carats) {
+        //                     gold_price = gold_rates[i]['Price'];
+        //                 }
+        //             }
+        //         }
+
+        //         // When the weight unit has chosen
+        //         if(unit) {
+        //             // Get the gold price of 1g of the given caratage
+        //             var gram_price = gold_price / 8;
+
+        //             /* If the weight unit is 'Troy ounce'.
+        //                1 Troy ounce is approximately equal to 31g
+        //                Here the troy ounce value will be converted into grams*/
+        //             if(unit === "ounce") {
+        //                 weight = weight * 31;
+        //             }
+
+        //             var pure_gold_price = weight * gram_price;
+
+        //             // Calculate the value of the gold article
+        //             estimated_value = (pure_gold_price * carats / 24).toFixed(2);
+        //         }
+
+        //         if(weight && carats && unit) {
+        //             $('#estimated-value').attr('value', estimated_value);
+        //         }                
+        //     });
+        // });
     </script>
  
 </html>

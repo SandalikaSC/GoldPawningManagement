@@ -60,47 +60,47 @@
         <main> 
             <div class="right-content">
                 <div class="div-search">
-                    <input type="text" placeholder="Enter validated article ID">
-                    <a href="#">
-                    <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
-                    </a>                
+                    <div>
+                        <input type="text" placeholder="Enter validation ID or article type">
+                        <a href="#">
+                            <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
+                        </a> 
+                    </div>
+                                   
                 </div>
                 <div class="tbl-details">
                     <table cellspacing="0">
-                        <tbody>
+                        <thead>
                             <tr>
                                 <th></th>
-                                <th>Article ID</th>
-                                <th>Customer ID</th>
+                                <th>Validation ID</th>
                                 <th>Type</th>
-                                <th>Weight</th>
-                                <th>Karats</th>
-                                <th>Estimated Values</th>
+                                <th>Weight (g)</th>
+                                <th>Carats</th>
+                                <th>Estimated Value (Rs.)</th>
+                                <th>Validation Status</th>
+                                <th>Gold Appraiser ID</th>
                             </tr>
+                        </thead>                            
                             
-                            <!-- <?php foreach($data['customers'] as $customer) : ?>
+                        <tbody>
+                            <?php foreach ($data['validated_articles'] as $validated_article) : ?>
                                 <tr class="table-body">
-                                    <td><?php echo $customer->UserId; ?></td>
-                                    <td><?php echo $customer->First_Name . ' ' . $customer->Last_Name; ?></td>
-                                    <td><?php echo $customer->phone; ?></td>
-                                    <td><?php echo $customer->email; ?></td>
-                                    <td><a href="<?php echo URLROOT; ?>/customers/customer_view_more/<?php echo $customer->UserId; ?>" class="view btn">View</a></td>                            
+                                    <td><img src="<?php echo $validated_article->image; ?>"></td>
+                                    <td><?php echo $validated_article->id; ?></td>
+                                    <td><?php echo $validated_article->article_type; ?></td>
+                                    <td><?php echo $validated_article->weight; ?></td>
+                                    <td><?php echo $validated_article->karatage; ?></td>
+                                    <td><?php echo $validated_article->estimated_value; ?></td>
+                                    <td><?php echo $validated_article->validation_status; ?></td>
+                                    <td><?php echo $validated_article->gold_appraiser; ?></td>
                                 </tr>
-                            <?php endforeach; ?> -->
-
-                            <tr class="table-body">
-                                <td><img src="<?php echo URLROOT?>/img/ring1.jpg"></td>
-                                <td>A001</td>
-                                <td>CS0021</td>
-                                <td>Jewelry</td>
-                                <td>25g</td>
-                                <td>24</td>
-                                <td>Rs. 105000.00</td>
-                            </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>                
-            </div>            
+            </div>
+            
         </main>
 
     </div>

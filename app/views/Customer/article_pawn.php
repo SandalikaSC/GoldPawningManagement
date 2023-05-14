@@ -30,8 +30,13 @@
         <div class="article">
 
             <div class="jewellery-img">
-                <img class="jw-img" src="<?php echo URLROOT ?>/img/lum3n-esAis38NHT8-unsplash.jpg">
-
+                 
+            <img class="jw-img" src="<?php if (!empty($data['goldLoan']->image)) {
+                                                            echo $data['goldLoan']->image;
+                                                        } else {
+                                                            echo URLROOT . "/img/lum3n-esAis38NHT8-unsplash.jpg";
+                                                        } ?>" alt="">
+                
 
             </div>
             <div class="article-info">
@@ -42,14 +47,14 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Article Id</label>
-                            <label class="jw-dt">AR1125</label>
+                            <label class="jw-dt"><?= $data['goldLoan']->Article_Id ?></label>
                         </div>
 
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Estimate value</label>
-                            <label class="jw-dt">Rs 150,000</label>
+                            <label class="jw-dt"><?= $data['goldLoan']->Estimated_Value ?> </label>
                         </div>
 
                     </div>
@@ -57,28 +62,28 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Pawned Date</label>
-                            <label class="jw-dt">2022/11/03</label>
+                            <label class="jw-dt"><?= date("d M Y", strtotime($data['goldLoan']->Pawn_Date)) ?></label>
                         </div>
 
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Due Date</label>
-                            <label class="jw-dt">2023/11/03</label>
+                            <label class="jw-dt"><?= date("d M Y", strtotime($data['goldLoan']->End_Date)) ?></label>
                         </div>
 
                     </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Loan Amount</label>
-                            <label class="jw-dt">Rs 112,500</label>
-                        </div>
 
-                    </div>
                     <div class="jw-date-name">
 
                         <label>Status</label>
-                        <label class="status tag-overdue">Overdue</label>
+                        <label class="status <?php if ($data['status'] == 'Pawned') {
+                                                    echo "tag-pending";
+                                                } elseif ($data['status'] == 'Overdue') {
+                                                    echo "tag-overdue";
+                                                } else {
+                                                    echo "tag-auctioned";
+                                                } ?>"> <?= $data['status']?></label>
                     </div>
                 </div>
                 <div class="due-payment info-div">
@@ -88,28 +93,47 @@
                     <div class="jw-date">
                         <div class="jw-date-name">
                             <label>Interest</label>
-                            <label class="jw-dt">27%</label>
+                            <label class="jw-dt"> <?= $data['goldLoan']->Interest . '%' ?></label>
                         </div>
 
                     </div>
                     <div class="jw-date">
                         <div class="jw-date-name">
-                            <label>Interest Amount</label>
-                            <label class="jw-dt">Rs 22,250</label>
+                            <label>Loan Amount</label>
+                            <label class="jw-dt"><?= 'Rs ' . $data['goldLoan']->Amount ?></label>
                         </div>
 
                     </div>
-                    <div class="jw-date">
-                        <div class="jw-date-name">
-                            <label>Due Interest</label>
-                            <label class="jw-dt">Rs 10,250</label>
+
+
+                    <?php if ($data['goldLoan']->Repay_Method == 'fixed') : ?>
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Interest amount</label>
+                                <label class="jw-dt"><?= 'Rs ' . number_format($data['interestAmount'], 2) ?></label>
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Installement</label>
+                                <label class="jw-dt"><?= 'Rs ' . number_format($data['goldLoan']->monthly_installement, 2) ?></label>
+                            </div>
+
+                        </div>
+                        <!-- <div class="jw-date">
+                            <div class="jw-date-name">
+                                <label>Due Interest</label>
+                                <label class="jw-dt"><?= number_format((float) $data['goldLoan']->Amount * $data['goldLoan']->Interest / 100, 2) ?></label>
+                            </div>
+
+                        </div> -->
+                    <?php endif; ?>
                     <div class="jw-date">
                         <div class="jw-date-name">
-                            <label>Due Loan</label>
-                            <label class="jw-dt">Rs 84,350</label>
+                            <label>Paid Amount</label>
+                            <label class="jw-dt"><?= 'Rs ' . $data['paid'] ?></label>
                         </div>
 
                     </div>
@@ -120,45 +144,32 @@
             </div>
         </div>
         <div class="payment-history">
-            <div class="payments his-div">
-            <h2 class="sub-title">
-                Payment History </h2>
-            <div class="payments">
-                <div class="pay-header">
-                    <label>Payment ID</label>
-                    <label>Inst No</label>
-                    <label>Paid Date</label>
-                    <label> Amount</label>
-                    <!-- <label>Article Id</label> -->
-                </div>
-                <div class="payment-content">
-                    <label>PD1956</label>
-                    <label>03</label>
-                    <label>2022/09/30 09:53 A.M.</label>
-                    <label>Rs. 5000</label>
-                    <!-- <label>sdfsdfsdfsdf Id</label> -->
-                </div>
-                <div class="payment-content">
-                    <label>PD1866</label>
-                    <label>02</label>
-                    <label>2022/09/30 09:53 A.M.</label>
-                    <label>Rs.25000</label>
-                    <!-- <label>sdfsdfsdfsdf Id</label> -->
-                </div>
-                <div class="payment-content">
-                    <label>PD1096</label>
-                    <label>01</label>
-                    <label>2022/09/30 09:53 A.M.</label>
-                    <label>Rs. 15000</label>
-                    <!-- <label>sdfsdfsdfsdf Id</label> -->
-                </div>
+            <?php if ($data['goldLoan']->Status != 'Auctioned') : ?> 
+                <a class="a-pay" href="<?php echo URLROOT ?>/CustomerPawn/makePayment/<?= $data['goldLoan']->Pawn_Id ?>" method="get">
+                    Pay </a>
+            <?php endif; ?>
+            <div class="payments his-div payHistory">
+                <h2 class="sub-title">
+                    Payment History </h2>
+                <div class="payments">
+                    <div class="pay-header">
+                        <label>PID</label>
+                        <label>Paid Date</label>
+                        <label> Amount</label>
+                        <label>Type</label>
 
+                    </div>
+                    <?php foreach ($data['payment'] as $paymnet) : ?>
+                        <div class="payment-content">
+                            <label><?= $paymnet->PID ?></label>
+                            <label><?= date("Y-m-d", strtotime($paymnet->Date)) ?></label>
+                            <label><?= 'Rs. ' . $paymnet->Amount ?></label>
+                            <label><?= trim($paymnet->Type) ?></label>
+
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-            </div>
-           
-            <form action="<?php echo URLROOT ?>/CustomerPawn/makePayment" method="get">
-            <button class="pay-btn">Renew</button>
-            </form>
 
         </div>
     </div>

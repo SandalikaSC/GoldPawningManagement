@@ -1,4 +1,4 @@
-.payment-invoice{
+.payment-invoice {
     width: 60%;
     height: 75%;
     /* border: 1px solid black; */
@@ -6,11 +6,10 @@
     display: flex;
     justify-content: space-around;
 }
-.page{
-    
 
-}  
-.payment-info{
+.page {}
+
+.payment-info {
     width: 45%;
     height: 90%;
     margin: auto;
@@ -19,56 +18,65 @@
     border-top-left-radius: 20px;
     color: white;
     padding: 5%;
- /* border: 1px solid black; */
- display: flex;
- flex-direction: column;
- /* place-content: center; */
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    /* place-content: center; */
     box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
 }
-.card-info{
- /* border: 1px solid black; */
- border-radius: 20px;
- width: 55%;
- box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
- color: black;
- display: flex;
- flex-direction: column;
- padding: 5% 4%
+
+.card-info {
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    width: 55%;
+    box-shadow: 0 2px 20px rgb(0 0 0 / 30%);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 4%
 }
-.h2-txt{
+
+.h2-txt {
     font-size: 1.2rem;
     /* padding: 5%; */
 }
-.info-section{
+
+.info-section {
     display: flex;
     justify-content: space-between;
 }
-hr{
+
+hr {
     color: white;
     width: 100%;
     margin: 8% 3%;
 }
-.info-section div{
-    display :flex;
+
+.info-section div {
+    display: flex;
     justify-content: flex-start;
     place-content: center;
 }
 
-.info-section div label{
+.info-section div label {
     margin: auto;
 }
-.icon-label{
-    margin:  auto 0 auto auto;
+
+.icon-label {
+    margin: auto 0 auto auto;
 
 }
-.icon{
+
+.icon {
     width: 20%;
 }
-.card-grid{
+
+.card-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.card-info input{
+
+.card-info input {
     border: 1px solid #bb8a04ab;
     outline: none;
     padding: 2% 3%;
@@ -77,10 +85,12 @@ hr{
     /* border: none; */
     /* box-shadow: 0 2px 20px rgb(0 0 0 / 10%);*/
 }
-.card-info label{
+
+.card-info label {
     margin: 2% 1%;
 }
-button{
+
+button {
     background: #bb8a04;
     border: none;
     color: white;
@@ -88,3 +98,28 @@ button{
     border-radius: 20px;
     margin: 2%;
 }
+
+.inputf { 
+    border: 1px gray solid;
+    border-radius: 0.8em;
+    outline: none;
+    margin: auto 0;
+    width: 15vw;
+    height: 5vh;
+    padding: 5px;
+    background: #ffffff;
+    color: black;
+    
+}
+
+.inputf:focus {
+    border: #bb8a04 2px solid;
+}
+.pay{
+    border-bottom: 3px white solid
+}
+.pay label{
+    font-size: 1.5em;
+}
+.p-btn {
+    margin: 5%;}

@@ -8,6 +8,71 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles_locker.css">
     <title>Vogue Pawn | Locker</title>
 </head>
+<style>
+    .count-card{
+            display: inline-flex;
+            flex-direction: column;
+            margin:0 10px 10px 0;
+            /* border: 1px solid #BB8A04; */
+            border-radius: 10px;
+            padding:20px;
+            width: 200px;
+            background-color: white;
+            box-shadow: 1px 5px 5px 0 black;
+            /* transition: top ease 0.5s; */
+
+        }
+
+        .count-card:hover{
+            margin-top: -10;
+        }
+
+        img {
+            width: 50%;
+            position: center;
+        }
+
+        .btn {
+            appearance: none;
+            -webkit-appearance: none;
+            font-family: sans-serif;
+            cursor: pointer;
+            padding: 12px;
+            min-width: 100px;
+            border: 0px;
+            -webkit-transition: background-color 100ms linear;
+            -ms-transition: background-color 100ms linear;
+            transition: background-color 100ms linear;
+        }
+
+        .btn:focus, .btn.focus {
+            outline: 0;
+        }
+
+        .btn-round-1 {
+            border-radius: 8px;
+        }
+
+        .btn-success {
+            background: #03fc17;
+            color: #ffffff;
+        }
+
+        .btn-success:hover {
+            background: #27ae60;
+            color: #ffffff;
+        }
+
+        .btn-danger {
+            background: #fc0303;
+            color: #ffffff;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+            color: #ffffff;
+        }
+</style>
 <body>
     <input type="checkbox" id="side-toggle">
     <div class="sidebar">
@@ -91,39 +156,18 @@
         </header>
 
         <main>
-            <div class="right-content">
-                <div class="div-search">
-                    <input type="text" placeholder="Enter Locker Number">
-                    <a href="#">
-                    <img src="<?php echo URLROOT . '/img/search_icon.png'?>">
-                    </a>                
+            <?php foreach ($data['lockers'] as $locker) : ?>
+            <a href="<?= URLROOT ?>/Admin/ViewLocker/<?= $locker->lockerNo ?>" class="locker ">
+                <div class="count-card">
+                    <div class="card-topic">
+                        <div class="card-logo">
+                            <img src="<?php echo URLROOT ?>/img/new_locker.png" alt="">
+                        </div>
+                        <button class="btn <?php echo ($locker->Status == "Not Available") ? "btn-danger" : "btn-success"; ?> btn-round-1"><?php echo $locker->Status ?></button>
+                    </div>
                 </div>
-                <div class="tbl-details">
-                    <table cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <th>No</th>
-                                <th>Date</th>
-                                <th>Name</th>
-                                <th>Due Date</th>
-                                <th>No of Items</th>
-                                <th>Key Status</th>
-                            </tr>
-                            <tr class="tbl-body">
-                                <td>LC001</td>
-                                <td>2022/11/03</td>
-                                <td>M.A. Thimeth Imesha</td>
-                                <td>2022/05/03</td>
-                                <td>2</td>
-                                <td class="key-status">Delivered</td>
-                                <td><a href="<?php echo URLROOT; ?>/Lockers/view_locker" class="btn">View</a></td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
-                
-            </div>
+            </a>
+            <?php endforeach; ?>
         </main>
     </div>
 </body>

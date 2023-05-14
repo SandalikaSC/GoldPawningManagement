@@ -93,7 +93,9 @@ class staffModel extends Database
 
     public function addStaffMember($id, $fName, $lName, $gender, $nic, $dob, $line1, $line2, $line3, $mob, $mob2, $email, $role, $image, $hash)
     {
-        
+       try{
+
+       
         $sql = 'insert into user(UserId,email,password,type,verification_status,First_Name, Last_Name, Gender, NIC, DOB, Line1, Line2, Line3, image, Status,Created_By) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
         $this->query($sql);
@@ -156,6 +158,11 @@ class staffModel extends Database
             }
         } else {
             return false;
+        }
+        }
+        catch(ex)
+        {
+           return $result = false;
         }
     }
 
